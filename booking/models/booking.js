@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     dateFormat = require('dateformat'),
     counter = require('./counters');
 
-mongoose.connect('mongodb://localhost/restful-booker');
+mongoose.connect('mongodb://localhost/restful-booker-platform');
 
 var bookingSchema = mongoose.Schema({
     bookingid: {type: Number},
@@ -27,16 +27,6 @@ bookingSchema.pre('save', function(next) {
       next();
     });
 });
-
-exports.getIDs = function(query, callback){
-  Booking.find(query).select('bookingid -_id').exec(function(err, booking){
-    if(err){
-      callback(err);
-    } else {
-      callback(null, booking);
-    }
-  });
-},
 
 exports.get = function(id, callback){
   Booking.find({'bookingid': id}, function(err, booking){
@@ -70,10 +60,10 @@ exports.delete = function(id, callback){
   Booking.remove({'bookingid': id}, function(err){
     callback(null);
   })
-}
+},
 
 exports.deleteAll = function(callback){
   Booking.remove({}, function(err){
-    callback(null); 
+    callback(null);
   })
 }

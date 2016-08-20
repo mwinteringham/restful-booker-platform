@@ -32,36 +32,6 @@ router.get('/ping', function(req, res, next) {
   res.sendStatus(201);
 });
 
-router.get('/booking', function(req, res, next) {
-  var query = {};
-
-  if(typeof(req.query.firstname) != 'undefined'){
-    query.firstname = req.query.firstname
-  }
-
-  if(typeof(req.query.lastname) != 'undefined'){
-    query.lastname = req.query.lastname
-  }
-
-  if(typeof(req.query.checkin) != 'undefined'){
-    query["bookingdates.checkin"] = {$gt: new Date(req.query.checkin).toISOString()}
-  }
-
-  if(typeof(req.query.checkout) != 'undefined'){
-    query["bookingdates.checkout"] = {$lt: new Date(req.query.checkout).toISOString()}
-  }
-
-  Booking.getIDs(query, function(err, record){
-    var booking = parse.bookingids(req, record);
-
-    if(!booking){
-      res.sendStatus(418);
-    } else {
-      res.send(booking);
-    }
-  })
-});
-
 router.get('/booking/:id',function(req, res, next){
   Booking.get(req.params.id, function(err, record){
     if(record){
@@ -80,8 +50,6 @@ router.get('/booking/:id',function(req, res, next){
 
 router.post('/booking', function(req, res, next) {
   newBooking = req.body;
-
-  if(req.headers['content-type'] === 'text/xml') newBooking = newBooking.booking;
 
   Booking.create(newBooking, function(err, booking){
     if(err)

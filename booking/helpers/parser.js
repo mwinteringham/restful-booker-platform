@@ -1,5 +1,4 @@
-var js2xmlparser = require("js2xmlparser"),
-    dateFormat = require('dateformat');
+var dateFormat = require('dateformat');
 
 exports.bookingids = function(req, rawBooking){
   var payload = [];
@@ -32,9 +31,6 @@ exports.booking = function(accept, rawBooking){
   }
 
   switch(accept){
-    case 'application/xml':
-      return js2xmlparser('booking', booking);
-      break;
     case 'application/json':
       return booking;
       break;
@@ -68,9 +64,6 @@ exports.bookingWithId = function(req, rawBooking){
   }
 
   switch(req.headers.accept){
-    case 'application/xml':
-      return js2xmlparser('created-booking', payload);
-      break;
     case 'application/json':
       return payload;
       break;
