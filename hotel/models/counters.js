@@ -21,9 +21,3 @@ exports.bumpId = function(doc, callback){
         }
     });
 }
-
-exports.resetCounter = function(callback){
-  Counter.findOneAndUpdate({type: 'bookingid'}, { $set: { seq: 0 } }, function(){
-    callback();
-  })
-}

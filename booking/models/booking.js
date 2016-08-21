@@ -61,10 +61,4 @@ exports.delete = function(id, callback){
   Booking.remove({'bookingid': id}, function(err){
     callback(null);
   })
-},
-
-exports.deleteAll = function(callback){
-  Booking.remove({}, function(err){
-    callback(null);
-  })
 }

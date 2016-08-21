@@ -123,69 +123,16 @@ describe('restful-booker-platform POST /booking - multiple bookings', function()
 
 });
 
-describe('restful-booker-platform POST /auth', function(){
-
-  it('responds with a 200 and a token to use when POSTing a valid credential', function testAuthReturnsToken(done){
-    request(server)
-      .post('/auth')
-      .send({'username': 'admin', 'password': 'password123'})
-      .expect(200)
-      .expect(function(res){
-        res.body.should.have.property('token').and.to.match(/[a-zA-Z0-9]{15,}/);
-      })
-      .end(done)
-  })
-
-  it('responds with a 200 and a message informing of login failed when POSTing invalid credential', function testAuthReturnsError(done){
-    request(server)
-      .post('/auth')
-      .send({'username': 'nimda', 'password': '321drowssap'})
-      .expect(200)
-      .expect(function(res){
-        res.body.should.have.property('reason').and.to.equal('Bad credentials');
-      })
-      .end(done)
-  })
-
-});
-
 describe('restful-booker-platform - PUT /booking', function () {
-
-  it('responds with a 403 when no token is sent', function testNoLoginForPut(done){
-    request(server)
-      .put('/booking/1')
-      .expect(403, done);
-  });
-
-  it('responds with a 403 when not authorised', function testBadLoginForPut(done){
-      request(server)
-        .post('/auth')
-        .send({'username': 'nmida', 'password': '321drowssap'})
-        .expect(200)
-        .then(function(res){
-          request(server)
-            .put('/booking/1')
-            .set('Accept', 'application/json')
-            .set('Cookie', 'token=' + res.body.token)
-            .send(payload2)
-            .expect(403, done)
-        });
-  });
 
   it('responds with a 200 and an updated payload', function testUpdatingABooking(done){
     request(server)
       .post('/booking')
       .send(payload)
-      .then(function(){
-        return request(server)
-          .post('/auth')
-          .send({'username': 'admin', 'password': 'password123'})
-      })
       .then(function(res){
         request(server)
           .put('/booking/1')
           .set('Accept', 'application/json')
-          .set('Cookie', 'token=' + res.body.token)
           .send(payload2)
           .expect(200)
           .expect(payload2, done);
@@ -208,55 +155,24 @@ describe('restful-booker-platform - PUT /booking', function () {
   });
 
   it('responds with a 405 when attempting to update a booking that does not exist', function testUpdatingNonExistantBooking(done){
-      request(server)
-      .post('/auth')
-      .send({'username': 'admin', 'password': 'password123'})
-      .then(function(res){
-        request(server)
-          .put('/booking/100000')
-          .set('Accept', 'application/json')
-          .set('Cookie', 'token=' + res.body.token)
-          .send(payload2)
-          .expect(405, done);
-      });
+    request(server)
+      .put('/booking/100000')
+      .set('Accept', 'application/json')
+      .send(payload2)
+      .expect(405, done);
   });
 
 });
 
 describe('restful-booker-platform DELETE /booking', function(){
 
-  it('responds with a 403 when not authorised', function testNoLoginForDelete(done){
-    request(server)
-      .delete('/booking/1')
-      .expect(403, done);
-  });
-
-  it('responds with a 403 when not authorised', function testBadLoginForDelete(done){
-      request(server)
-        .post('/auth')
-        .send({'username': 'nmida', 'password': '321drowssap'})
-        .expect(200)
-        .then(function(res){
-          request(server)
-            .delete('/booking/1')
-            .set('Cookie', 'token=' + res.body.token)
-            .expect(403, done)
-        })
-  });
-
   it('responds with a 201 when deleting an existing booking', function testDeletingAValidBooking(done){
     request(server)
       .post('/booking')
       .send(payload)
-      .then(function(){
-        return request(server)
-          .post('/auth')
-          .send({'username': 'admin', 'password': 'password123'})
-      })
       .then(function(res){
         return request(server)
           .delete('/booking/1')
-          .set('Cookie', 'token=' + res.body.token)
           .expect(201)
       }).then(function(){
         request(server)
@@ -283,14 +199,8 @@ describe('restful-booker-platform DELETE /booking', function(){
 
   it('responds with a 405 when deleting a non existing booking', function testDeletingNonExistantBooking(done){
     request(server)
-      .post('/auth')
-      .send({'username': 'admin', 'password': 'password123'})
-      .then(function(res){
-        request(server)
-          .delete('/booking/1')
-          .set('Cookie', 'token=' + res.body.token)
-          .expect(405, done)
-      })
+      .delete('/booking/1')
+      .expect(405, done)
   });
 
 });
