@@ -1,5 +1,4 @@
-var js2xmlparser = require("js2xmlparser"),
-    dateFormat = require('dateformat');
+var dateFormat = require('dateformat');
 
 exports.bookingids = function(req, rawBooking){
   var payload = [];
@@ -15,26 +14,12 @@ exports.bookingids = function(req, rawBooking){
   return payload;
 }
 
-exports.booking = function(accept, rawBooking){
+exports.hotel = function(accept, rawHotel){
 	var booking = {
-    'firstname' : rawBooking.firstname,
-    'lastname' : rawBooking.lastname,
-    'totalprice' : rawBooking.totalprice,
-    'depositpaid' : rawBooking.depositpaid,
-    'bookingdates' : {
-      'checkin' : dateFormat(rawBooking.bookingdates.checkin, "yyyy-mm-dd"),
-      'checkout' : dateFormat(rawBooking.bookingdates.checkout, "yyyy-mm-dd")
-    }
-  }
-
-  if(typeof(rawBooking.additionalneeds) !== 'undefined'){
-    booking.additionalneeds = rawBooking.additionalneeds;
+    'name' : rawHotel.name
   }
 
   switch(accept){
-    case 'application/xml':
-      return js2xmlparser('booking', booking);
-      break;
     case 'application/json':
       return booking;
       break;

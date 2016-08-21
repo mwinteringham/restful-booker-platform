@@ -169,7 +169,7 @@ describe('restful-booker-platform - PUT /booking', function () {
             .set('Cookie', 'token=' + res.body.token)
             .send(payload2)
             .expect(403, done)
-        })
+        });
   });
 
   it('responds with a 200 and an updated payload', function testUpdatingABooking(done){
@@ -189,7 +189,7 @@ describe('restful-booker-platform - PUT /booking', function () {
           .send(payload2)
           .expect(200)
           .expect(payload2, done);
-      })
+      });
   });
 
   it('responds with a 200 and an updated payload using auth', function testUpdatingABooking(done){
@@ -204,10 +204,10 @@ describe('restful-booker-platform - PUT /booking', function () {
           .send(payload2)
           .expect(200)
           .expect(payload2, done);
-      })
+      });
   });
 
-  it('responsds with a 405 when attempting to update a booking that does not exist', function testUpdatingNonExistantBooking(done){
+  it('responds with a 405 when attempting to update a booking that does not exist', function testUpdatingNonExistantBooking(done){
       request(server)
       .post('/auth')
       .send({'username': 'admin', 'password': 'password123'})
@@ -218,9 +218,9 @@ describe('restful-booker-platform - PUT /booking', function () {
           .set('Cookie', 'token=' + res.body.token)
           .send(payload2)
           .expect(405, done);
-      })
-  })
-  
+      });
+  });
+
 });
 
 describe('restful-booker-platform DELETE /booking', function(){
@@ -242,7 +242,7 @@ describe('restful-booker-platform DELETE /booking', function(){
             .set('Cookie', 'token=' + res.body.token)
             .expect(403, done)
         })
-  })
+  });
 
   it('responds with a 201 when deleting an existing booking', function testDeletingAValidBooking(done){
     request(server)
@@ -291,6 +291,6 @@ describe('restful-booker-platform DELETE /booking', function(){
           .set('Cookie', 'token=' + res.body.token)
           .expect(405, done)
       })
-  })
+  });
 
 });

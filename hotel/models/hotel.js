@@ -21,15 +21,15 @@ hotelSchema.pre('save', function(next) {
     });
 });
 
-// exports.get = function(id, callback){
-//   Booking.find({'bookingid': id}, function(err, booking){
-//     if(err){
-//       callback(err, null)
-//     } else {
-//       callback(null, booking[0]);
-//     }
-//   })
-// },
+exports.get = function(id, callback){
+  Hotel.find({'hotelid': id}, function(err, hotel){
+    if(err){
+      callback(err, null)
+    } else {
+      callback(null, hotel[0]);
+    }
+  })
+},
 
 exports.create = function(payload, callback){
   var newHotel = new Hotel(payload);
@@ -43,20 +43,14 @@ exports.create = function(payload, callback){
   });
 }
 
-// exports.update = function(id, updatedBooking, callback){
-//   Booking.find({'bookingid': id}).update(updatedBooking, function(err){
-//     callback(err);
-//   });
-// },
-//
-// exports.delete = function(id, callback){
-//   Booking.remove({'bookingid': id}, function(err){
-//     callback(null);
-//   })
-// },
-//
-// exports.deleteAll = function(callback){
-//   Booking.remove({}, function(err){
-//     callback(null);
-//   })
-// }
+exports.update = function(id, updatedHotel, callback){
+  Hotel.find({'hotelid': id}).update(updatedHotel, function(err){
+    callback(err);
+  });
+},
+
+exports.delete = function(id, callback){
+  Hotel.remove({'hotelid': id}, function(err){
+    callback(null);
+  })
+}
