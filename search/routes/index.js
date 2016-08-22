@@ -14,22 +14,28 @@ router.get('/search',function(req, res, next){
       bookingQuery = {},
       collection = {};
 
-  hotelQuery.name = { $regex: '.*' + req.query.keyword + '.*' };
+  if(typeof(req.query.keyword) != 'undefined'){
+    hotelQuery.name = { $regex: '.*' + req.query.keyword + '.*' };
 
-  bookingQuery = {'$or' : [
-    { "firstname": {$regex: '.*' + req.query.keyword + '.*'}},
-    { "lastname": {$regex: '.*' + req.query.keyword + '.*'}}
-  ]}
+    bookingQuery = {'$or' : [
+      { "firstname": {$regex: '.*' + req.query.keyword + '.*'}},
+      { "lastname": {$regex: '.*' + req.query.keyword + '.*'}}
+    ]}
+  }
+
+  if(typeof(req.query.hotelid) != 'undefined'){
+    bookingQuery.hotelid = parseInt(req.query.hotelid);
+  }
 
   Booking.search(bookingQuery, function(err, record){
     if (err) res.sendStatus(500);
 
-    if(record.length > 0) collection.bookings = record;
+    if(record.length > 0 && Object.keys(bookingQuery).length > 0) collection.bookings = record;
 
     Hotel.search(hotelQuery, function(err, record){
       if (err) res.sendStatus(500);
 
-      if(record.length > 0) collection.hotels = record;
+      if(record.length > 0 && Object.keys(hotelQuery).length > 0) collection.hotels = record;
 
       res.send(collection);
     });

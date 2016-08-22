@@ -16,6 +16,7 @@ exports.bookingids = function(req, rawBooking){
 
 exports.booking = function(accept, rawBooking){
 	var booking = {
+    'hotelid' : rawBooking.hotelid,
     'firstname' : rawBooking.firstname,
     'lastname' : rawBooking.lastname,
     'totalprice' : rawBooking.totalprice,
@@ -44,6 +45,7 @@ exports.booking = function(accept, rawBooking){
 
 exports.bookingWithId = function(req, rawBooking){
   var booking = {
+    'hotelid' : rawBooking.hotelid,
     'firstname' : rawBooking.firstname,
     'lastname' : rawBooking.lastname,
     'totalprice' : rawBooking.totalprice,

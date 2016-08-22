@@ -3,8 +3,7 @@ var router  = express.Router(),
     parse   = require('../helpers/parser'),
     crypto = require('crypto'),
     Booking = require('../models/booking'),
-    Counter = require('../models/counters'),
-    creator = require('../helpers/bookingcreator');
+    Counter = require('../models/counters');
 
 router.get('/ping', function(req, res, next) {
   res.sendStatus(201);

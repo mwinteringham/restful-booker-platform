@@ -1,10 +1,10 @@
 var express = require('express');
 var router  = express.Router(),
     parse   = require('../helpers/parser'),
-    crypto = require('crypto'),
+    crypto  = require('crypto'),
+    request = require('request'),
     Hotel   = require('../models/hotel'),
-    Counter = require('../models/counters'),
-    creator = require('../helpers/bookingcreator');
+    Counter = require('../models/counters');
 
 router.get('/ping', function(req, res, next) {
   res.sendStatus(201);
@@ -18,7 +18,13 @@ router.get('/hotel/:id',function(req, res, next){
       if(!hotel){
         res.sendStatus(418);
       } else {
-        res.send(hotel);
+        request('http://localhost:3002/search?hotelid=' + req.params.id, function(error, response, body){
+          if(error) res.sendStatus(500);
+
+          if(response.body) hotel.bookings = JSON.parse(response.body).bookings;
+
+          res.send(hotel);
+        })
       }
     } else {
       res.sendStatus(404)

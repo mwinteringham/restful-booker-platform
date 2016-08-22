@@ -9,6 +9,7 @@ mongoose.createConnection('mongodb://localhost/restful-booker-platform');
 
 var generatePayload = function(firstname, lastname, totalprice, depositpaid, additionalneeds, checkin, checkout){
   var payload = {
+      'hotelid': 1,
       'firstname': firstname,
       'lastname': lastname,
       'totalprice': totalprice,

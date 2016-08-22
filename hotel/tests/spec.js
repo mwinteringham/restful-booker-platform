@@ -2,9 +2,8 @@ var request      = require('supertest-as-promised'),
     expect       = require('chai').expect,
     should       = require('chai').should(),
     mongoose     = require('mongoose'),
-    js2xmlparser = require("js2xmlparser"),
-    assert       = require('assert'),
-    xml2js       = require('xml2js').parseString;
+    booking      = require('../../booking/models/booking.js'),
+    assert       = require('assert');
 
 mongoose.createConnection('mongodb://localhost/restful-booker-platform');
 
@@ -18,6 +17,7 @@ var payload = generatePayload('hotel one'),
     payload2 = generatePayload('hotel two');
 
 var server = require('../app')
+var searchServer = require('../../search/app');
 
 describe('restful-booker-platform /hotel', function () {
 
@@ -90,20 +90,78 @@ describe('restful-booker-platform POST /hotel', function(){
 describe('restful-booker-platform GET /hotel', function(){
 
   it('should respond with a 200 and payload when getting a hotel resource', function(done){
+
+    var bookingPayload = {
+      "hotelid": 2,
+      "firstname": 'Geoff',
+      "lastname": 'White',
+      "totalprice": 111,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": '2013-02-02',
+        "checkout": '2013-02-05'
+      },
+      "additionalneeds": 'Breakfast'
+    };
+
+    var bookingPayload2 = {
+      "hotelid": 2,
+      "firstname": 'Barry',
+      "lastname": 'White',
+      "totalprice": 111,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": '2013-02-02',
+        "checkout": '2013-02-05'
+      },
+      "additionalneeds": 'Breakfast'
+    };
+
     request(server)
       .post('/hotel')
       .set('Accept', 'application/json')
       .send(payload)
       .then(function(res){
-        request(server)
-          .get('/hotel/' + res.body.hotelid)
-          .set('Accept', 'application/json')
-          .expect(200)
-          .expect(function(res){
-            res.body.should.deep.equal(payload);
-          })
-          .end(done)
-      })
+        booking.create(bookingPayload, function(){
+          booking.create(bookingPayload2, function(){
+            request(server)
+              .get('/hotel/2')
+              .set('Accept', 'application/json')
+              .expect(200)
+              .expect(function(res){
+                res.body.should.deep.equal({
+                  "name": "hotel one",
+                  "bookings": [{
+                    "hotelid": 2,
+                    "bookingid": 3,
+                    "firstname": 'Geoff',
+                    "lastname": 'White',
+                    "totalprice": 111,
+                    "depositpaid": true,
+                    "bookingdates": {
+                      "checkin": '2013-02-02T00:00:00.000Z',
+                      "checkout": '2013-02-05T00:00:00.000Z'
+                    },
+                    "additionalneeds": 'Breakfast'
+                  }, {
+                    "hotelid": 2,
+                    "bookingid": 4,
+                    "firstname": 'Barry',
+                    "lastname": 'White',
+                    "totalprice": 111,
+                    "depositpaid": true,
+                    "bookingdates": {
+                      "checkin": '2013-02-02T00:00:00.000Z',
+                      "checkout": '2013-02-05T00:00:00.000Z'
+                    },
+                    "additionalneeds": 'Breakfast'
+                  }]
+                });
+              })
+              .end(done)
+          });
+        });
+      });
   });
 
   it('should respond with a 418 and payload when getting a hotel resource with no accept header', function(done){

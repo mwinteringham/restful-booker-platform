@@ -7,6 +7,7 @@ mongoose.connect('mongodb://localhost/restful-booker-platform');
 
 var bookingSchema = mongoose.Schema({
     bookingid: {type: Number},
+    hotelid: {type: Number},
     firstname: { type: String, required: true},
     lastname: { type: String, required: true},
     totalprice: { type: Number, required: true},

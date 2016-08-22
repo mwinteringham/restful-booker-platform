@@ -8,8 +8,9 @@ var request      = require('supertest-as-promised'),
 
 mongoose.createConnection('mongodb://localhost/restful-booker-platform');
 
-var generatePayload = function(firstname, lastname, totalprice, depositpaid, additionalneeds, checkin, checkout){
+var generatePayload = function(hotelid, firstname, lastname, totalprice, depositpaid, additionalneeds, checkin, checkout){
   var payload = {
+      'hotelid' : hotelid,
       'firstname': firstname,
       'lastname': lastname,
       'totalprice': totalprice,
@@ -27,9 +28,9 @@ var generatePayload = function(firstname, lastname, totalprice, depositpaid, add
   return payload
 }
 
-var payload  = generatePayload('Sally', 'Brown', 111, true, 'Breakfast', '2013-02-01', '2013-02-04'),
-    payload2 = generatePayload('Brown', 'Geoff', 111, true, 'Breakfast', '2013-02-01', '2013-02-04'),
-    payload3 = generatePayload('Geoff', 'White', 111, true, 'Breakfast', '2013-02-01', '2013-02-04');
+var payload  = generatePayload(1, 'Sally', 'Brown', 111, true, 'Breakfast', '2013-02-01', '2013-02-04'),
+    payload2 = generatePayload(2, 'Brown', 'Geoff', 111, true, 'Breakfast', '2013-02-01', '2013-02-04'),
+    payload3 = generatePayload(3, 'Geoff', 'White', 111, true, 'Breakfast', '2013-02-01', '2013-02-04');
 
 var server = require('../app')
 
@@ -71,6 +72,32 @@ describe('restful-booker-platform GET /search', function () {
     });
   });
 
+  it('should respond with a 200 and the hotel details when searching for a hotel by hotel id', function(done){
+    booking.create(payload, function(){
+      request(server)
+        .get('/search?hotelid=1')
+        .expect(200)
+        .expect(function(res){
+          res.body.should.deep.equal({"bookings":[
+            {
+              "bookingid": 1,
+              "hotelid": 1,
+              "firstname": 'Sally',
+              "lastname": 'Brown',
+              "totalprice": 111,
+              "depositpaid": true,
+              "bookingdates": {
+                "checkin": '2013-02-01T00:00:00.000Z',
+                "checkout": '2013-02-04T00:00:00.000Z'
+              },
+              "additionalneeds": 'Breakfast'
+            }
+          ]});
+        })
+        .end(done)
+    })
+  });
+
   it('should respond with a 200 and multiple hotel details when searching for multiple hotels', function(done){
     hotel.create({"name": "hotel one"}, function(){
       hotel.create({"name": "hotel two"}, function(){
@@ -105,6 +132,7 @@ describe('restful-booker-platform GET /search', function () {
           res.body.should.deep.equal({"bookings":[
             {
               "bookingid": 1,
+              "hotelid": 1,
               "firstname": 'Sally',
               "lastname": 'Brown',
               "totalprice": 111,
@@ -130,31 +158,7 @@ describe('restful-booker-platform GET /search', function () {
           res.body.should.deep.equal({"bookings":[
             {
               "bookingid": 1,
-              "firstname": 'Sally',
-              "lastname": 'Brown',
-              "totalprice": 111,
-              "depositpaid": true,
-              "bookingdates": {
-                "checkin": '2013-02-01T00:00:00.000Z',
-                "checkout": '2013-02-04T00:00:00.000Z'
-              },
-              "additionalneeds": 'Breakfast'
-            }
-          ]});
-        })
-        .end(done)
-    })
-  });
-
-  it('should respond with a 200 and the booking details when searching for a booking by lastname', function(done){
-    booking.create(payload, function(){
-      request(server)
-        .get('/search?keyword=Brown')
-        .expect(200)
-        .expect(function(res){
-          res.body.should.deep.equal({"bookings":[
-            {
-              "bookingid": 1,
+              "hotelid": 1,
               "firstname": 'Sally',
               "lastname": 'Brown',
               "totalprice": 111,
@@ -182,6 +186,7 @@ describe('restful-booker-platform GET /search', function () {
               res.body.should.deep.equal({"bookings":[
                 {
                   "bookingid": 1,
+                  "hotelid": 1,
                   "firstname": 'Sally',
                   "lastname": 'Brown',
                   "totalprice": 111,
@@ -193,6 +198,7 @@ describe('restful-booker-platform GET /search', function () {
                   "additionalneeds": 'Breakfast'
                 },{
                   "bookingid": 2,
+                  "hotelid": 2,
                   "firstname": 'Brown',
                   "lastname": 'Geoff',
                   "totalprice": 111,
@@ -228,6 +234,7 @@ describe('restful-booker-platform GET /search', function () {
                   ],
                   "bookings":[{
                     "bookingid": 1,
+                    "hotelid": 1,
                     "firstname": 'Sally',
                     "lastname": 'Brown',
                     "totalprice": 111,
