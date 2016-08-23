@@ -89,10 +89,51 @@ describe('restful-booker-platform POST /hotel', function(){
 
 describe('restful-booker-platform GET /hotel', function(){
 
+  beforeEach(function(){
+    mongoose.connection.db.dropDatabase();
+  });
+
+  it('should respond with a 200 and a list of hotels when calling /hotel', function(done){
+    request(server)
+      .post('/hotel')
+      .set('Accept', 'application/json')
+      .send(payload)
+      .then(function(){
+        return request(server)
+          .post('/hotel')
+          .set('Accept', 'application/json')
+          .send(payload2)
+      })
+      .then(function(){
+        request(server)
+          .get('/hotel')
+          .expect(function(res){
+            res.body.should.deep.equal([
+                {
+                  "hotelid": 1,
+                  "name": "hotel one"
+                },{
+                  "hotelid": 2,
+                  "name": "hotel two"
+                }
+            ]);
+          })
+          .end(done)
+      })
+  })
+
+});
+
+describe('restful-booker-platform GET /hotel/:id', function(){
+
+  beforeEach(function(){
+    mongoose.connection.db.dropDatabase();
+  });
+
   it('should respond with a 200 and payload when getting a hotel resource', function(done){
 
     var bookingPayload = {
-      "hotelid": 2,
+      "hotelid": 1,
       "firstname": 'Geoff',
       "lastname": 'White',
       "totalprice": 111,
@@ -105,7 +146,7 @@ describe('restful-booker-platform GET /hotel', function(){
     };
 
     var bookingPayload2 = {
-      "hotelid": 2,
+      "hotelid": 1,
       "firstname": 'Barry',
       "lastname": 'White',
       "totalprice": 111,
@@ -125,15 +166,15 @@ describe('restful-booker-platform GET /hotel', function(){
         booking.create(bookingPayload, function(){
           booking.create(bookingPayload2, function(){
             request(server)
-              .get('/hotel/2')
+              .get('/hotel/1')
               .set('Accept', 'application/json')
               .expect(200)
               .expect(function(res){
                 res.body.should.deep.equal({
                   "name": "hotel one",
                   "bookings": [{
-                    "hotelid": 2,
-                    "bookingid": 3,
+                    "hotelid": 1,
+                    "bookingid": 2,
                     "firstname": 'Geoff',
                     "lastname": 'White',
                     "totalprice": 111,
@@ -144,8 +185,8 @@ describe('restful-booker-platform GET /hotel', function(){
                     },
                     "additionalneeds": 'Breakfast'
                   }, {
-                    "hotelid": 2,
-                    "bookingid": 4,
+                    "hotelid": 1,
+                    "bookingid": 3,
                     "firstname": 'Barry',
                     "lastname": 'White',
                     "totalprice": 111,

@@ -11,9 +11,9 @@ router.get('/ping', function(req, res, next) {
 });
 
 router.get('/hotel/:id',function(req, res, next){
-  Hotel.get(req.params.id, function(err, record){
-    if(record){
-      var hotel = parse.hotel(req.headers.accept, record);
+  Hotel.get({'hotelid': req.params.id}, function(err, record){
+    if(record.length > 0){
+      var hotel = parse.hotel(req.headers.accept, record[0]);
 
       if(!hotel){
         res.sendStatus(418);
@@ -31,6 +31,14 @@ router.get('/hotel/:id',function(req, res, next){
     }
   })
 });
+
+router.get('/hotel', function(req, res, next){
+  Hotel.get({}, function(err, record){
+    if(err) res.sendStatus(500);
+
+    res.send(record);
+  })
+})
 
 router.post('/hotel', function(req, res, next) {
   newHotel = req.body;
@@ -52,9 +60,9 @@ router.post('/hotel', function(req, res, next) {
 
 router.put('/hotel/:id', function(req, res, next) {
   Hotel.update(req.params.id, req.body, function(err){
-    Hotel.get(req.params.id, function(err, record){
-      if(record){
-        var hotel = parse.hotel(req.headers.accept, record);
+    Hotel.get({'hotelid': req.params.id}, function(err, record){
+      if(record.length > 0){
+        var hotel = parse.hotel(req.headers.accept, record[0]);
 
         if(!hotel){
           res.sendStatus(418);
@@ -69,8 +77,8 @@ router.put('/hotel/:id', function(req, res, next) {
 });
 
 router.delete('/hotel/:id', function(req, res, next) {
-  Hotel.get(req.params.id, function(err, record){
-    if(record){
+  Hotel.get({'hotelid': req.params.id}, function(err, record){
+    if(record.length > 0){
       Hotel.delete(req.params.id, function(err){
         res.sendStatus(201);
       });

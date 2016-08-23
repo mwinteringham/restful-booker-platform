@@ -21,12 +21,12 @@ hotelSchema.pre('save', function(next) {
     });
 });
 
-exports.get = function(id, callback){
-  Hotel.find({'hotelid': id}, function(err, hotel){
+exports.get = function(query, callback){
+  Hotel.find(query).select('-_id').exec(function(err, hotel){
     if(err){
       callback(err, null)
     } else {
-      callback(null, hotel[0]);
+      callback(null, hotel);
     }
   })
 },
