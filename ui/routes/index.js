@@ -11,7 +11,7 @@ router.get('/', function(req, res){
   request('http://localhost:3001/hotel', function(error, response, body){
     view.index(JSON.parse(response.body), function(render){
       res.send(render);
-    })
+    });
   });
 });
 
