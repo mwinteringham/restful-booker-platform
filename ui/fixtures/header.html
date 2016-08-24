@@ -23,6 +23,30 @@
             });
           }
         });
+
+        $( ".hotelDelete" ).click(function(){
+          var id = $(this).attr('id');
+
+          $.ajax({
+            method: "DELETE",
+            url: "http://localhost:3001/hotel/" + id
+          })
+          .done(function( msg ) {
+            location.reload();
+          });
+        });
+
+        $( ".bookingDelete" ).click(function(){
+          var id = $(this).attr('id');
+
+          $.ajax({
+            method: "DELETE",
+            url: "http://localhost:3000/booking/" + id
+          })
+          .done(function( msg ) {
+            location.reload();
+          });
+        });
     });
 
     </script>
@@ -49,6 +73,13 @@
   </head>
   <body>
   <div class="container">
-    <div class="jumbotron">
-      <h1>Hotel management platform</h1>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Hotel Management Platform</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+      </ul>
     </div>
+</nav>
