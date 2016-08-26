@@ -40,9 +40,8 @@ exports.hotel = function(view, callback){
                      '<div class="col-sm-2"><p>Last name</p></div>' +
                      '<div class="col-sm-1"><p>Total price</p></div>' +
                      '<div class="col-sm-1"><p>Deposit paid?</p></div>' +
-                     '<div class="col-sm-2"><p>Additional needs</p></div>' +
-                     '<div class="col-sm-1"><p>Check in</p></div>' +
-                     '<div class="col-sm-1"><p>Check out</p></div>' +
+                     '<div class="col-sm-2"><p>Check in</p></div>' +
+                     '<div class="col-sm-2"><p>Check out</p></div>' +
                      '<div class="col-sm-1"></div>' +
                      '</div>' +
                      '{{#bookings}}' +
@@ -51,21 +50,28 @@ exports.hotel = function(view, callback){
                      '<div class="col-sm-2"><p>{{lastname}}</p></div>' +
                      '<div class="col-sm-1"><p>{{totalprice}}</p></div>' +
                      '<div class="col-sm-1"><p>{{depositpaid}}</p></div>' +
-                     '<div class="col-sm-2"><p>{{additionalneeds}}</p></div>' +
-                     '<div class="col-sm-1"><p>{{#formatDate}}{{bookingdates.checkin}}{{/formatDate}}</p></div>' +
-                     '<div class="col-sm-1"><p>{{#formatDate}}{{bookingdates.checkout}}{{/formatDate}}</p></div>' +
-                     '<div class="col-sm-1"><span class="glyphicon glyphicon-remove bookingDelete" id="{{bookingid}}"></span></div>' +
+                     '<div class="col-sm-2"><p>{{#formatDate}}{{bookingdates.checkin}}{{/formatDate}}</p></div>' +
+                     '<div class="col-sm-2"><p>{{#formatDate}}{{bookingdates.checkout}}{{/formatDate}}</p></div>' +
+                     '<div class="col-sm-1">' +
+                     '<input type="hidden" value="{{bookingid}}"/>' +
+                     '<span class="glyphicon glyphicon-pencil bookingEdit"></span> ' +
+                     '<span class="glyphicon glyphicon-trash bookingDelete"></span>' +
+                     '</div>' +
                      '</div>' +
                      '{{/bookings}}' +
                      '<div class="row">' +
                      '<div class="col-sm-2"><input type="text" id="firstName" /></div>' +
                      '<div class="col-sm-2"><input type="text" id="lastName" /></div>' +
                      '<div class="col-sm-1"><input type="text" id="totalPrice" /></div>' +
-                     '<div class="col-sm-1"><input type="text" id="depositPaid" /></div>' +
-                     '<div class="col-sm-2"><input type="text" id="additionalNeeds" /></div>' +
-                     '<div class="col-sm-1"><input type="text" id="checkin" /></div>' +
-                     '<div class="col-sm-1"><input type="text" id="checkout" /></div>' +
-                     '<div class="col-sm-1"></div>' +
+                     '<div class="col-sm-1">' +
+                     '<select id="depositPaid" />' +
+                     '<option value="false">false</option>' +
+                     '<option value="true">true</option>' +
+                     '</select>' +
+                     '</div>' +
+                     '<div class="col-sm-2"><input type="text" id="checkIn" /></div>' +
+                     '<div class="col-sm-2"><input type="text" id="checkOut" /></div>' +
+                     '<div class="col-sm-1"><input type="button" id="createBooking" value="Create"><input type="hidden" id="hotelId" value="{{hotelid}}"></div>' +
                      '</div>';
 
 

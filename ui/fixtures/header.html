@@ -6,50 +6,7 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <script>
-    $( document ).ready(function() {
-
-        $( "#createHotel" ).click(function() {
-          var hotelName = $( "#hotelName" ).val();
-
-          if(hotelName){
-            $.ajax({
-              method: "POST",
-              url: "http://localhost:3001/hotel",
-              data: { name: hotelName}
-            })
-            .done(function( msg ) {
-              location.reload();
-            });
-          }
-        });
-
-        $( ".hotelDelete" ).click(function(){
-          var id = $(this).attr('id');
-
-          $.ajax({
-            method: "DELETE",
-            url: "http://localhost:3001/hotel/" + id
-          })
-          .done(function( msg ) {
-            location.reload();
-          });
-        });
-
-        $( ".bookingDelete" ).click(function(){
-          var id = $(this).attr('id');
-
-          $.ajax({
-            method: "DELETE",
-            url: "http://localhost:3000/booking/" + id
-          })
-          .done(function( msg ) {
-            location.reload();
-          });
-        });
-    });
-
-    </script>
+    <script src="/static/controls.js"></script>
     <style>
       html {
         position: relative;
@@ -68,6 +25,10 @@
 
       .text-muted {
         margin: 20px 0;
+      }
+
+      input {
+        width: 100%
       }
     </style>
   </head>

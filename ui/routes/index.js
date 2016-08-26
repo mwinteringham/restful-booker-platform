@@ -23,7 +23,9 @@ router.get('/hotel/:id', function(req, res){
     uri: 'http://localhost:3001/hotel/' + req.params.id,
     method: 'GET'
   }, function (error, response) {
-    view.hotel(JSON.parse(response.body), function(render){
+    response = JSON.parse(response.body)
+    response.hotelid = req.params.id;
+    view.hotel(response, function(render){
       res.send(render);
     });
   });

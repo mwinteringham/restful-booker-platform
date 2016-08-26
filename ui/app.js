@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var app = express();
 
 app.use(logger('dev'));
+app.use('/static', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
