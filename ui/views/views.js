@@ -6,19 +6,35 @@ var Mustache = require('mustache'),
 exports.index = function(view, callback){
 
   var hotelsList = '<div class="row">' +
-                   '<div class="col-sm-12 rowHeader"><p>Hotel name</p></div>' +
+                   '<div class="col-sm-2 rowHeader"><p>Hotel name</p></div>' +
+                   '<div class="col-sm-2 rowHeader"><p>Address</p></div>' +
+                   '<div class="col-sm-2 rowHeader"><p>Owner</p></div>' +
+                   '<div class="col-sm-2 rowHeader"><p>Phone number</p></div>' +
+                   '<div class="col-sm-2 rowHeader"><p>Email</p></div>' +
+                   '<div class="col-sm-2"></div>' +
                    '</div>' +
                    '{{#.}}' +
-                   '<div class="row">' +
-                   '<div class="col-sm-11"><a href="/hotel/{{hotelid}}">{{name}}</a></div>' +
-                   '<div class="col-sm-1"><span class="glyphicon glyphicon-remove hotelDelete" id="{{hotelid}}"></span></div>' +
+                   '<div class="row hotelRow">' +
+                   '<div class="col-sm-2"><p>{{name}}</p></div>' +
+                   '<div class="col-sm-2"><p>{{address}}</p></div>' +
+                   '<div class="col-sm-2"><p>{{contact.name}}</p></div>' +
+                   '<div class="col-sm-2"><p>{{contact.phone}}</p></div>' +
+                   '<div class="col-sm-2"><p>{{contact.email}}</p></div>' +
+                   '<div class="col-sm-2">' +
+                   '<span class="glyphicon glyphicon-remove hotelDelete" id="{{hotelid}}"></span>' +
+                   '<input type="hidden" id="{{hotelid}}" />' +
+                   '</div>' +
                    '</div>' +
                    '{{/.}}';
 
 
   var createHotelForm = '<div class="row">' +
-                        '<div class="col-sm-11"><input type="text" id="hotelName" /></div>' +
-                        '<div class="col-sm-1"><input type="button" value="Create" id="createHotel"/></div>' +
+                        '<div class="col-sm-2"><input type="text" id="hotelName" /></div>' +
+                        '<div class="col-sm-2"><input type="text" id="address" /></div>' +
+                        '<div class="col-sm-2"><input type="text" id="owner" /></div>' +
+                        '<div class="col-sm-2"><input type="text" id="phone" /></div>' +
+                        '<div class="col-sm-2"><input type="text" id="email" /></div>' +
+                        '<div class="col-sm-2"><input type="button" value="Create" id="createHotel"/></div>' +
                         '</div>';
 
   callback(header + Mustache.render(hotelsList + createHotelForm, view) + footer);
@@ -32,9 +48,16 @@ exports.hotel = function(view, callback){
     }
   }
 
-  var hotelInfo = '<div class="row">' +
-                  '<div class="col-sm-12">' +
-                  '<div class="well"><h2>{{name}}</h2></div>' +
+  var hotelInfo = '<div class="well">' +
+                  '<div class="container-fluid">' +
+                  '<div class="row">' +
+                  '<div class="col-sm-6">' +
+                  '<h2>{{name}}</h2><p>Address: {{address}}</p><p>Registration date: {{#formatDate}}{{regdate}}{{/formatDate}}</p>' +
+                  '</div>' +
+                  '<div class="col-sm-6">' +
+                  '<br /><br /><br /><p>Owner: {{contact.name}}</p><p>Phone: {{contact.phone}}</p><p>Email: {{contact.email}}</p>' +
+                  '</div>' +
+                  '</div>' +
                   '</div>' +
                   '</div>';
 

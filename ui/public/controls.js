@@ -1,5 +1,4 @@
-function getUrlVars()
-{
+function getUrlVars(){
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
     for(var i = 0; i < hashes.length; i++)
@@ -23,14 +22,30 @@ $( document ).ready(function() {
       }
     });
 
-    $( "#createHotel" ).click(function() {
-      var hotelName = $( "#hotelName" ).val();
+    $('body').on('click', '.hotelRow', function(){
+      window.location.href = '/hotel/' + $(this).find('input').attr('id');
+    });
 
+    $( "#createHotel" ).click(function() {
       if(hotelName){
+        var payload = {
+          name: $( "#hotelName" ).val(),
+          address: $( "#address" ).val(),
+          regdate: new Date(),
+          contact: {
+            name: $( "#owner" ).val(),
+            phone: $( "#phone" ).val(),
+            email: $( "#email" ).val()
+          }
+        };
+
         $.ajax({
           method: "POST",
           url: "http://localhost:3001/hotel",
-          data: { name: hotelName}
+          data: JSON.stringify(payload),
+          dataType: "json",
+          contentType: "application/json;charset=utf-8",
+          headers: {"Accept": "application/json"}
         })
         .done(function( msg ) {
           location.reload();
