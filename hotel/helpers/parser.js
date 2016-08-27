@@ -15,16 +15,23 @@ exports.bookingids = function(req, rawBooking){
 }
 
 exports.hotel = function(accept, rawHotel){
-	var booking = {
-    'name' : rawHotel.name
+	var hotel = {
+    "name" : rawHotel.name,
+    "address" : rawHotel.address,
+    "regdate" : rawHotel.regdate,
+    "contact" : {
+      "name" : rawHotel.contact.name,
+      "phone" : rawHotel.contact.phone,
+      "email" : rawHotel.contact.email
+    }
   }
 
   switch(accept){
     case 'application/json':
-      return booking;
+      return hotel;
       break;
     case '*/*':
-      return booking;
+      return hotel;
       break;
     default:
       return null;
@@ -33,7 +40,14 @@ exports.hotel = function(accept, rawHotel){
 
 exports.hotelWithId = function(req, rawHotel){
   var hotel = {
-    'name' : rawHotel.name
+    "name" : rawHotel.name,
+    "address" : rawHotel.address,
+    "regdate" : rawHotel.regdate,
+    "contact" : {
+      "name" : rawHotel.contact.name,
+      "phone" : rawHotel.contact.phone,
+      "email" : rawHotel.contact.email
+    }
   }
 
   var payload = {

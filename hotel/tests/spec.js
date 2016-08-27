@@ -7,14 +7,21 @@ var request      = require('supertest-as-promised'),
 
 mongoose.createConnection('mongodb://localhost/restful-booker-platform');
 
-var generatePayload = function(hotelName){
+var generatePayload = function(hotelName, addressDetails, registrationDate, contactName, phoneNumber, emailAddress){
   return {
-    name: hotelName
+    name : hotelName,
+    address : addressDetails,
+    regdate : registrationDate,
+    contact : {
+      name : contactName,
+      phone : phoneNumber,
+      email : emailAddress
+    }
   }
 };
 
-var payload = generatePayload('hotel one'),
-    payload2 = generatePayload('hotel two');
+var payload = generatePayload('hotel one', '28 Street, Avenue place, city, SG1 8KA', '2014-01-01', 'Mark owner', '01938 938192', 'test@email.com'),
+    payload2 = generatePayload('hotel two', 'One Street, Avenue place, city, SG2 9JA', '2014-01-01', 'Geoff owner', '01938 281931', 'fake@email.com');
 
 var server = require('../app')
 var searchServer = require('../../search/app');
@@ -52,7 +59,16 @@ describe('restful-booker-platform POST /hotel', function(){
       .expect(200)
       .expect(function(res){
         res.body.hotelid.should.equal(1);
-        res.body.hotel.should.deep.equal(payload);
+        res.body.hotel.should.deep.equal({
+          'name' : 'hotel one',
+          'address' : '28 Street, Avenue place, city, SG1 8KA',
+          'regdate' : '2014-01-01T00:00:00.000Z',
+          'contact' : {
+            'name' : 'Mark owner',
+            'phone' : '01938 938192',
+            'email' : 'test@email.com'
+          }
+        })
       })
       .end(done)
   });
@@ -67,7 +83,7 @@ describe('restful-booker-platform POST /hotel', function(){
   });
 
   it('responds with a 200 when a payload with too many params are sent', function testCreateExtraPayload(done){
-    var extraPayload = generatePayload('hotel two')
+    var extraPayload = generatePayload('hotel two', 'One Street, Avenue place, city, SG2 9JA', '2014-01-01', 'Geoff owner', '01938 281931', 'fake@email.com')
     extraPayload.extra = 'bad'
 
     request(server)
@@ -109,13 +125,27 @@ describe('restful-booker-platform GET /hotel', function(){
           .get('/hotel')
           .expect(function(res){
             res.body.should.deep.equal([
-                {
-                  "hotelid": 1,
-                  "name": "hotel one"
-                },{
-                  "hotelid": 2,
-                  "name": "hotel two"
+              {
+                'hotelid' : 1,
+                'name' : 'hotel one',
+                'address' : '28 Street, Avenue place, city, SG1 8KA',
+                'regdate' : '2014-01-01T00:00:00.000Z',
+                'contact' : {
+                  'name' : 'Mark owner',
+                  'phone' : '01938 938192',
+                  'email' : 'test@email.com'
                 }
+              },{
+                'hotelid' : 2,
+                'name' : 'hotel two',
+                'address' : 'One Street, Avenue place, city, SG2 9JA',
+                'regdate' : '2014-01-01T00:00:00.000Z',
+                'contact' : {
+                  'name' : 'Geoff owner',
+                  'phone' : '01938 281931',
+                  'email' : 'fake@email.com'
+                }
+              }
             ]);
           })
           .end(done)
@@ -171,7 +201,14 @@ describe('restful-booker-platform GET /hotel/:id', function(){
               .expect(200)
               .expect(function(res){
                 res.body.should.deep.equal({
-                  "name": "hotel one",
+                  'name' : 'hotel one',
+                  'address' : '28 Street, Avenue place, city, SG1 8KA',
+                  'regdate' : '2014-01-01T00:00:00.000Z',
+                  'contact' : {
+                    'name' : 'Mark owner',
+                    'phone' : '01938 938192',
+                    'email' : 'test@email.com'
+                  },
                   "bookings": [{
                     "hotelid": 1,
                     "bookingid": 2,
@@ -266,7 +303,19 @@ describe('restful-booker-platform PUT /hotel', function(){
           .set('Accept', 'application/json')
           .send(payload2)
           .expect(200)
-          .expect(payload2, done);
+          .expect(function(res){
+            res.body.should.deep.equal({
+              'name' : 'hotel two',
+              'address' : 'One Street, Avenue place, city, SG2 9JA',
+              'regdate' : '2014-01-01T00:00:00.000Z',
+              'contact' : {
+                'name' : 'Geoff owner',
+                'phone' : '01938 281931',
+                'email' : 'fake@email.com'
+              }
+            })
+          })
+          .end(done)
       })
   });
 

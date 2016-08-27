@@ -6,8 +6,15 @@ mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/restful-booker-platform');
 
 var hotelSchema = mongoose.Schema({
-    hotelid: {type: Number},
-    name: { type: String, required: true}
+    hotelid: { type: Number},
+    name: { type: String, required: true},
+    address: { type: String, required: true },
+    regdate: { type: Date, required: true },
+    contact: {
+      name: { type: String, required: true },
+      phone: { type: String, required: true },
+      email: { type: String, required: true}
+    }
   }, { versionKey: false });
 
 var Hotel = mongoose.model('Hotel', hotelSchema);
