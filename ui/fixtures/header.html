@@ -30,6 +30,19 @@
       input {
         width: 100%
       }
+
+      #search {
+        margin-top: 8%;
+        width: 150%;
+      }
+
+      .rowHeader {
+        font-weight: bold;
+      }
+
+      .row:hover {
+        background-color: #ddd;
+      }
     </style>
   </head>
   <body>
@@ -37,10 +50,14 @@
     <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Hotel Management Platform</a>
+        <a class="navbar-brand" href="/">Hotel Management Platform</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Search:</a></li>
+        <li><input type="text" id="search" /></li>
+
       </ul>
     </div>
 </nav>

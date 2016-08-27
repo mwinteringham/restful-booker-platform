@@ -6,14 +6,15 @@ var Mustache = require('mustache'),
 exports.index = function(view, callback){
 
   var hotelsList = '<div class="row">' +
-                   '<div class="col-sm-12"><p>Hotel name</p></div>' +
+                   '<div class="col-sm-12 rowHeader"><p>Hotel name</p></div>' +
                    '</div>' +
-                   '<div class="row">' +
                    '{{#.}}' +
+                   '<div class="row">' +
                    '<div class="col-sm-11"><a href="/hotel/{{hotelid}}">{{name}}</a></div>' +
                    '<div class="col-sm-1"><span class="glyphicon glyphicon-remove hotelDelete" id="{{hotelid}}"></span></div>' +
-                   '{{/.}}' +
-                   '</div>';
+                   '</div>' +
+                   '{{/.}}';
+
 
   var createHotelForm = '<div class="row">' +
                         '<div class="col-sm-11"><input type="text" id="hotelName" /></div>' +
@@ -32,16 +33,18 @@ exports.hotel = function(view, callback){
   }
 
   var hotelInfo = '<div class="row">' +
-                  '<div class="col-sm-12">{{name}}</div>' +
+                  '<div class="col-sm-12">' +
+                  '<div class="well"><h2>{{name}}</h2></div>' +
+                  '</div>' +
                   '</div>';
 
   var bookingsList = '<div class="row">' +
-                     '<div class="col-sm-2"><p>First name</p></div>' +
-                     '<div class="col-sm-2"><p>Last name</p></div>' +
-                     '<div class="col-sm-1"><p>Total price</p></div>' +
-                     '<div class="col-sm-1"><p>Deposit paid?</p></div>' +
-                     '<div class="col-sm-2"><p>Check in</p></div>' +
-                     '<div class="col-sm-2"><p>Check out</p></div>' +
+                     '<div class="col-sm-2 rowHeader"><p>First name</p></div>' +
+                     '<div class="col-sm-2 rowHeader"><p>Last name</p></div>' +
+                     '<div class="col-sm-1 rowHeader"><p>Price</p></div>' +
+                     '<div class="col-sm-2 rowHeader"><p>Deposit paid?</p></div>' +
+                     '<div class="col-sm-2 rowHeader"><p>Check in</p></div>' +
+                     '<div class="col-sm-2 rowHeader"><p>Check out</p></div>' +
                      '<div class="col-sm-1"></div>' +
                      '</div>' +
                      '{{#bookings}}' +
@@ -49,13 +52,13 @@ exports.hotel = function(view, callback){
                      '<div class="col-sm-2"><p>{{firstname}}</p></div>' +
                      '<div class="col-sm-2"><p>{{lastname}}</p></div>' +
                      '<div class="col-sm-1"><p>{{totalprice}}</p></div>' +
-                     '<div class="col-sm-1"><p>{{depositpaid}}</p></div>' +
+                     '<div class="col-sm-2"><p>{{depositpaid}}</p></div>' +
                      '<div class="col-sm-2"><p>{{#formatDate}}{{bookingdates.checkin}}{{/formatDate}}</p></div>' +
                      '<div class="col-sm-2"><p>{{#formatDate}}{{bookingdates.checkout}}{{/formatDate}}</p></div>' +
                      '<div class="col-sm-1">' +
                      '<input type="hidden" value="{{bookingid}}"/>' +
                      '<span class="glyphicon glyphicon-pencil bookingEdit"></span> ' +
-                     '<span class="glyphicon glyphicon-trash bookingDelete"></span>' +
+                     '<span class="glyphicon glyphicon-trash bookingDelete" id="{{bookingid}}"></span>' +
                      '</div>' +
                      '</div>' +
                      '{{/bookings}}' +
@@ -63,7 +66,7 @@ exports.hotel = function(view, callback){
                      '<div class="col-sm-2"><input type="text" id="firstName" /></div>' +
                      '<div class="col-sm-2"><input type="text" id="lastName" /></div>' +
                      '<div class="col-sm-1"><input type="text" id="totalPrice" /></div>' +
-                     '<div class="col-sm-1">' +
+                     '<div class="col-sm-2">' +
                      '<select id="depositPaid" />' +
                      '<option value="false">false</option>' +
                      '<option value="true">true</option>' +
@@ -76,4 +79,50 @@ exports.hotel = function(view, callback){
 
 
   callback(header + Mustache.render(hotelInfo + bookingsList, view) + footer);
+}
+
+exports.search = function(searchResults, callback){
+  searchResults.formatDate = function() {
+    return function(rawDate, render) {
+      var completeDate = render(rawDate);
+      return completeDate.split('T')[0];
+    }
+  }
+
+  var searchHeading = '<div class="row">' +
+                      '<div class="col-sm-12">' +
+                      '<div class="well"><h2>Search results</h2></div>' +
+                      '</div>' +
+                      '</div>';
+
+  var hotelResults = '<div class="row">' +
+                     '<div class="col-sm-12">' +
+                     '<h3>Hotel Results</h3>' +
+                     '</div>' +
+                     '</div>' +
+                     '{{#hotels}}' +
+                     '{{#.}}' +
+                     '<div class="row">' +
+                     '<div class="col-sm-12"><a href="/hotel/{{hotelid}}">{{name}}</a></div>' +
+                     '</div>' +
+                     '{{/.}}' +
+                     '{{/hotels}}';
+
+   var bookingResults = '<div class="row">' +
+                        '<div class="col-sm-12">' +
+                        '<h3>Booking Results</h3>' +
+                        '</div>' +
+                        '</div>' +
+                        '{{#bookings}}' +
+                        '{{#.}}' +
+                        '<div class="row">' +
+                        '<div class="col-sm-8"><a href="/hotel/{{hotelid}}?bookingid={{bookingid}}">{{firstname}} {{lastname}}</a></div>' +
+                        '<div class="col-sm-2" style="text-align: center"><p>{{#formatDate}}{{bookingdates.checkin}}{{/formatDate}}</p></div>' +
+                        '<div class="col-sm-2" style="text-align: center"><p>{{#formatDate}}{{bookingdates.checkout}}{{/formatDate}}</p></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '{{/.}}' +
+                        '{{/bookings}}';
+
+  callback(header + Mustache.render(searchHeading + hotelResults + bookingResults, searchResults) + footer)
 }

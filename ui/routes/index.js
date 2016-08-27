@@ -31,4 +31,18 @@ router.get('/hotel/:id', function(req, res){
   });
 });
 
+router.get('/search', function(req, res){
+  request({
+    headers: {
+      'Accept': 'application/json',
+    },
+    uri: 'http://localhost:3002/search?keyword=' + req.query.keyword,
+    method: 'GET'
+  }, function (error, response) {
+    view.search(JSON.parse(response.body), function(render){
+      res.send(render);
+    });
+  });
+})
+
 module.exports = router;
