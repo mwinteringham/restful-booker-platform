@@ -10,7 +10,12 @@ var routes = require('./routes/index');
 
 var app = express();
 
-app.use(cors());
+var corsOptions = {
+  "credentials": true,
+  "origin": 'http://localhost:3003'
+}
+
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

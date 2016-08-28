@@ -45,7 +45,12 @@ $( document ).ready(function() {
           data: JSON.stringify(payload),
           dataType: "json",
           contentType: "application/json;charset=utf-8",
-          headers: {"Accept": "application/json"}
+          xhrFields: {
+             withCredentials: true
+          },
+          headers: {
+            "Accept": "application/json"
+          }
         })
         .done(function( msg ) {
           location.reload();
@@ -124,6 +129,9 @@ $( document ).ready(function() {
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
+        xhrFields: {
+           withCredentials: true
+        },
         headers: {"Accept": "application/json"}
       })
       .done(function( msg ) {
@@ -136,7 +144,10 @@ $( document ).ready(function() {
 
       $.ajax({
         method: "DELETE",
-        url: "http://localhost:3001/hotel/" + id
+        url: "http://localhost:3001/hotel/" + id,
+        xhrFields: {
+           withCredentials: true
+        }
       })
       .done(function( msg ) {
         location.reload();
@@ -162,7 +173,10 @@ $( document ).ready(function() {
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
-        headers: {"Accept": "application/json"}
+        headers: {"Accept": "application/json"},
+        xhrFields: {
+           withCredentials: true
+        }
       })
       .done(function( msg ) {
         location.reload();
@@ -229,7 +243,10 @@ $( document ).ready(function() {
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
-        headers: {"Accept": "application/json"}
+        headers: {"Accept": "application/json"},
+        xhrFields: {
+           withCredentials: true
+        }
       })
       .done(function( msg ) {
         location.reload();
@@ -260,7 +277,10 @@ $( document ).ready(function() {
 
       $.ajax({
         method: "DELETE",
-        url: "http://localhost:3000/booking/" + id
+        url: "http://localhost:3000/booking/" + id,
+        xhrFields: {
+           withCredentials: true
+        }
       })
       .done(function( msg ) {
         location.reload();
@@ -284,6 +304,9 @@ $( document ).ready(function() {
             "password" : password
           }),
           contentType: "application/json",
+          xhrFields: {
+             withCredentials: true
+          },
           success: function(data, textStatus, request){
             Cookies.set("token", data.token);
 
