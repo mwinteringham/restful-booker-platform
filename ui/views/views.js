@@ -47,7 +47,7 @@ exports.index = function(view, callback){
                    '<div class="col-sm-1"></div>' +
                    '</div>' +
                    '{{#.}}' +
-                   '<div class="row hotelRow">' +
+                   '<div class="row hotelRow detail">' +
                    '<div class="col-sm-2"><p>{{name}}</p></div>' +
                    '<div class="col-sm-3"><p>{{address}}</p></div>' +
                    '<div class="col-sm-2"><p>{{contact.name}}</p></div>' +
@@ -59,7 +59,6 @@ exports.index = function(view, callback){
                    '</div>' +
                    '</div>' +
                    '{{/.}}';
-
 
   var createHotelForm = '{{#auth}}<div class="row">' +
                         '<div class="col-sm-2"><input type="text" id="hotelName" /></div>' +
@@ -105,7 +104,7 @@ exports.hotel = function(view, callback){
                      '<div class="col-sm-1"></div>' +
                      '</div>' +
                      '{{#bookings}}' +
-                     '<div class="row">' +
+                     '<div class="row detail">' +
                      '<div class="col-sm-2"><p>{{firstname}}</p></div>' +
                      '<div class="col-sm-2"><p>{{lastname}}</p></div>' +
                      '<div class="col-sm-1"><p>{{totalprice}}</p></div>' +
@@ -129,8 +128,8 @@ exports.hotel = function(view, callback){
                      '<option value="true">true</option>' +
                      '</select>' +
                      '</div>' +
-                     '<div class="col-sm-2"><input type="text" id="checkIn" /></div>' +
-                     '<div class="col-sm-2"><input type="text" id="checkOut" /></div>' +
+                     '<div class="col-sm-2"><input type="text" class="datepicker" id="checkIn" /></div>' +
+                     '<div class="col-sm-2"><input type="text" class="datepicker" id="checkOut" /></div>' +
                      '<div class="col-sm-1"><input type="button" id="createBooking" value="Create"><input type="hidden" id="hotelId" value="{{hotelid}}"></div>' +
                      '</div>{{/auth}}';
 
@@ -159,7 +158,7 @@ exports.search = function(searchResults, callback){
                      '</div>' +
                      '{{#hotels}}' +
                      '{{#.}}' +
-                     '<div class="row">' +
+                     '<div class="row detail">' +
                      '<div class="col-sm-12 searchResult"><input type="hidden" value="{{hotelid}}"></p>{{name}}</p></div>' +
                      '</div>' +
                      '{{/.}}' +
@@ -172,8 +171,8 @@ exports.search = function(searchResults, callback){
                         '</div>' +
                         '{{#bookings}}' +
                         '{{#.}}' +
-                        '<div class="row">' +
-                        '<div class="col-sm-8 searchResult"><input type="hidden" value="{{hotelid}}?bookingid={{bookingid}}" /><p>{{firstname}} {{lastname}}<p></div>' +
+                        '<div class="row detail searchResult">' +
+                        '<div class="col-sm-8"><input type="hidden" value="{{hotelid}}?bookingid={{bookingid}}" /><p>{{firstname}} {{lastname}}</p></div>' +
                         '<div class="col-sm-2" style="text-align: center"><p>{{#formatDate}}{{bookingdates.checkin}}{{/formatDate}}</p></div>' +
                         '<div class="col-sm-2" style="text-align: center"><p>{{#formatDate}}{{bookingdates.checkout}}{{/formatDate}}</p></div>' +
                         '</div>' +

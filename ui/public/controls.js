@@ -12,8 +12,12 @@ function getUrlVars(){
 
 $( document ).ready(function() {
 
+    $('body').on('focus', '.datepicker', function(){
+        $(this).datepicker({ dateFormat: 'yy-mm-dd' })
+    })
+
     if(getUrlVars()['bookingid']){
-      $( "#" + getUrlVars()['bookingid']).closest(".row").css('background-color', 'yellow');
+      $( "#" + getUrlVars()['bookingid']).closest(".row").css('color', 'red');
     }
 
     $( '#search' ).keypress(function(e) {
@@ -202,8 +206,8 @@ $( document ).ready(function() {
                    '<input type="hidden" value="' + rows[3].textContent + '" />' +
                    '<select>' + generateSelectList(rows[3].textContent) + '</select>' +
                    '</div>' +
-                   '<div class="col-sm-2"><input type="text" placeholder="' + rows[4].textContent + '" /></div>' +
-                   '<div class="col-sm-2"><input type="text" placeholder="' + rows[5].textContent + '" /></div>' +
+                   '<div class="col-sm-2"><input type="text" class="datepicker" placeholder="' + rows[4].textContent + '" /></div>' +
+                   '<div class="col-sm-2"><input type="text" class="datepicker" placeholder="' + rows[5].textContent + '" /></div>' +
                    '<div class="col-sm-1">' +
                    '<input type="hidden" value="' + id + '"/>' +
                    '<span class="glyphicon glyphicon-ok confirmBookingEdit"></span> ' +
