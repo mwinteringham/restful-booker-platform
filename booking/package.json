@@ -16,7 +16,8 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "mongoose": "^4.2.9",
-    "morgan": "~1.6.1"
+    "morgan": "~1.6.1",
+    "request": "^2.74.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
