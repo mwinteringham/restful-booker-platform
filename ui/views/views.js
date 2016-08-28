@@ -52,10 +52,11 @@ exports.hotel = function(view, callback){
                   '<div class="container-fluid">' +
                   '<div class="row">' +
                   '<div class="col-sm-6">' +
-                  '<h2>{{name}}</h2><p>Address: {{address}}</p><p>Registration date: {{#formatDate}}{{regdate}}{{/formatDate}}</p>' +
+                  '<h2>{{name}}<span class="glyphicon glyphicon-pencil hotelEdit" style="margin-left: 5px; font-size: 0.5em"></span>'+
+                  '</h2><p>Address: <span>{{address}}</span></p><p>Registration date: <span>{{#formatDate}}{{regdate}}{{/formatDate}}</span></p>' +
                   '</div>' +
                   '<div class="col-sm-6">' +
-                  '<br /><br /><br /><p>Owner: {{contact.name}}</p><p>Phone: {{contact.phone}}</p><p>Email: {{contact.email}}</p>' +
+                  '<br /><br /><br /><p>Owner: <span>{{contact.name}}</span></p><p>Phone: <span>{{contact.phone}}</span></p><p>Email: <span>{{contact.email}}</span></p>' +
                   '</div>' +
                   '</div>' +
                   '</div>' +

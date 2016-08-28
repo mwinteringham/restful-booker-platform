@@ -53,6 +53,86 @@ $( document ).ready(function() {
       }
     });
 
+    $('body').on('click', '.hotelEdit', function(){
+      var hotelHtml = $(this).closest('.row');
+      var rows = $(hotelHtml).find('p > span');
+
+      var editHotel = '<div class="col-sm-6">' +
+                      '  <h2><input type="text" placeholder="' + $(hotelHtml).find('h2')[0].textContent + '" style="width: 90%"/>' +
+                      '  <span class="glyphicon glyphicon-ok confirmHotelEdit" style="font-size: 0.5em"></span>' +
+                      '  <span class="glyphicon glyphicon-remove exitHotelEdit" style="font-size: 0.5em"></span>' +
+                      '  </h2>' +
+                      '  <p>Address: <input type="text" placeholder="' + rows[0].textContent + '" /></p>' +
+                      '  <p>Registration date: <span>2014-01-01</span></p>' +
+                      '</div><div class="col-sm-6">' +
+                      '<br><br><br>' +
+                      '  <p>Owner: <input type="text" placeholder="' + rows[2].textContent + '" /></p>' +
+                      '  <p>Phone: <input type="text" placeholder="' + rows[3].textContent + '" /></p>' +
+                      '  <p>Email: <input type="text" placeholder="' + rows[4].textContent + '" /></p>' +
+                      '</div>';
+
+      $(this).closest('.row').html(editHotel);
+    });
+
+    $('body').on('click', '.exitHotelEdit', function(){
+      var hotelHtml = $(this).closest('.row');
+      var rows = $(hotelHtml).find('input');
+
+      var resumeHotel = '<div class="col-sm-6">' +
+                        '<h2>' + $(rows[0]).attr('placeholder') + '<span class="glyphicon glyphicon-pencil hotelEdit" style="margin-left: 5px; font-size: 0.5em"></span></h2>' +
+                        '<p>Address: <span>' + $(rows[1]).attr('placeholder') + '</span></p>' +
+                        '<p>Registration date: <span>' + $(hotelHtml).find('p > span')[0].textContent + '</span></p>' +
+                        '</div>' +
+                        '<div class="col-sm-6">' +
+                        '<br><br><br>' +
+                        '<p>Owner: <span>' + $(rows[2]).attr('placeholder') + '</span></p>' +
+                        '<p>Phone: <span>' + $(rows[3]).attr('placeholder') + '</span></p>' +
+                        '<p>Email: <span>' + $(rows[4]).attr('placeholder') + '</span></p>' +
+                        '</div>';
+
+      $(this).closest('.row').html(resumeHotel);
+    });
+
+    $('body').on('click', '.confirmHotelEdit', function(){
+      var hotelHtml = $(this).closest('.row');
+      var rows = $(hotelHtml).find('input');
+      var id = $('#hotelId').val()
+
+      var returnValOrPlaceholder = function(index){
+        if($(rows[index]).val() == ""){
+          return $(rows[index]).attr('placeholder');
+        } else {
+          return $(rows[index]).val();
+        }
+      }
+
+      console.log($(rows[3]).attr('placeholder'));
+
+      var payload = {
+          "hotelid": id,
+          "name" : returnValOrPlaceholder(0),
+          "address" : returnValOrPlaceholder(1),
+          "regdate" : $(hotelHtml).find('p > span')[0].textContent,
+          "contact" : {
+              "name" : returnValOrPlaceholder(2),
+              "phone" : returnValOrPlaceholder(3),
+              "email" : returnValOrPlaceholder(4)
+          }
+      }
+
+      $.ajax({
+        method: "PUT",
+        url: "http://localhost:3001/hotel/" + id,
+        data: JSON.stringify(payload),
+        dataType: "json",
+        contentType: "application/json;charset=utf-8",
+        headers: {"Accept": "application/json"}
+      })
+      .done(function( msg ) {
+        location.reload();
+      });
+    });
+
     $( ".hotelDelete" ).click(function(){
       var id = $(this).attr('id');
 
