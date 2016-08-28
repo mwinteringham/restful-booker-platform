@@ -11,9 +11,7 @@ router.post('/auth', function(req, res){
     var token = Math.random().toString(36).substr(2);
     tokens.push(token);
 
-    res.cookie('token', token)
-
-    res.sendStatus(200);
+    res.send({'token': token});
   } else {
     res.sendStatus(403);
   }

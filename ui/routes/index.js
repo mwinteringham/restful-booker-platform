@@ -9,24 +9,59 @@ router.get('/ping', function(req, res) {
 
 router.get('/', function(req, res){
   request('http://localhost:3001/hotel', function(error, response, body){
-    view.index(JSON.parse(response.body), function(render){
-      res.send(render);
+    var payload = JSON.parse(response.body);
+    var options = {
+      uri: 'http://localhost:3004/validate',
+      method: 'POST',
+      json: {
+        "token": req.cookies.token
+      }
+    };
+
+    request(options, function(error, response, body){
+      if(response.statusCode == 200){
+          payload.auth = true;
+      } else {
+          payload.auth = false;
+      }
+
+      view.index(payload, function(render){
+        res.send(render);
+      });
     });
   });
 });
 
 router.get('/hotel/:id', function(req, res){
-  request({
+  var hotelOptions = {
     headers: {
       'Accept': 'application/json',
     },
     uri: 'http://localhost:3001/hotel/' + req.params.id,
     method: 'GET'
-  }, function (error, response) {
-    response = JSON.parse(response.body)
-    response.hotelid = req.params.id;
-    view.hotel(response, function(render){
-      res.send(render);
+  }
+
+  request(hotelOptions, function (error, response) {
+    var payload = JSON.parse(response.body);
+    var options = {
+      uri: 'http://localhost:3004/validate',
+      method: 'POST',
+      json: {
+        "token": req.cookies.token
+      }
+    };
+
+    request(options, function(error, response, body){
+      if(response.statusCode == 200){
+          payload.auth = true;
+      } else {
+          payload.auth = false;
+      }
+
+      payload.hotelid = req.params.id;
+      view.hotel(payload, function(render){
+        res.send(render);
+      });
     });
   });
 });

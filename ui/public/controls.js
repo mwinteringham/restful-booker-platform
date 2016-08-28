@@ -270,4 +270,36 @@ $( document ).ready(function() {
     $('body').on('click', '.searchResult', function(){
       window.location.href = '/hotel/' + $(this).find('input')[0].defaultValue;
     });
+
+    $('body').on('click', '#doLogin', function(){
+      var username = $('#username').val()
+      var password = $('#password').val()
+
+      if(username != "" && password != ""){
+        $.ajax({
+          method: "POST",
+          url: "http://localhost:3004/auth",
+          data: JSON.stringify({
+            "username" : username,
+            "password" : password
+          }),
+          contentType: "application/json",
+          success: function(data, textStatus, request){
+            Cookies.set("token", data.token);
+
+            location.reload();
+          },
+          error: function (request, textStatus, errorThrown) {
+            $('#username').css('border','1px solid red');
+            $('#password').css('border','1px solid red');
+          }
+        });
+      }
+    });
+
+    $('body').on('click', '#logout', function(){
+      Cookies.remove('token');
+
+      location.reload();
+    });
 });

@@ -33,7 +33,7 @@ describe('restful-booker-platform - POST /auth', function () {
       })
       .expect(200)
       .expect(function(res){
-        should.exist(res.header['set-cookie'])
+        should.exist(res.body.token)
       })
       .end(done)
   });
@@ -46,9 +46,6 @@ describe('restful-booker-platform - POST /auth', function () {
         "password": "drowssap"
       })
       .expect(403)
-      .expect(function(res){
-        should.not.exist(res.header['set-cookie'])
-      })
       .end(done)
   });
 
@@ -66,7 +63,7 @@ describe('restful-booker-platform - POST /validate', function () {
       .then(function(res){
           request(server)
             .post('/validate')
-            .send({"token" : res.header['set-cookie'][0].split('=')[1].split(';')[0]})
+            .send({"token" : res.body.token})
             .expect(200, done)
       });
   });
@@ -92,7 +89,7 @@ describe('restful-booker-platform - POST /logout', function () {
         "password": "password"
       })
       .then(function(res){
-          return tokenToUse = res.header['set-cookie'][0].split('=')[1].split(';')[0];
+          return tokenToUse = res.body.token;
       })
       .then(function(){
         return request(server)
