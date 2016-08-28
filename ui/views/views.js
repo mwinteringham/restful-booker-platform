@@ -127,7 +127,7 @@ exports.search = function(searchResults, callback){
                      '{{#hotels}}' +
                      '{{#.}}' +
                      '<div class="row">' +
-                     '<div class="col-sm-12"><a href="/hotel/{{hotelid}}">{{name}}</a></div>' +
+                     '<div class="col-sm-12 searchResult"><input type="hidden" value="{{hotelid}}"></p>{{name}}</p></div>' +
                      '</div>' +
                      '{{/.}}' +
                      '{{/hotels}}';
@@ -140,7 +140,7 @@ exports.search = function(searchResults, callback){
                         '{{#bookings}}' +
                         '{{#.}}' +
                         '<div class="row">' +
-                        '<div class="col-sm-8"><a href="/hotel/{{hotelid}}?bookingid={{bookingid}}">{{firstname}} {{lastname}}</a></div>' +
+                        '<div class="col-sm-8 searchResult"><input type="hidden" value="{{hotelid}}?bookingid={{bookingid}}" /><p>{{firstname}} {{lastname}}<p></div>' +
                         '<div class="col-sm-2" style="text-align: center"><p>{{#formatDate}}{{bookingdates.checkin}}{{/formatDate}}</p></div>' +
                         '<div class="col-sm-2" style="text-align: center"><p>{{#formatDate}}{{bookingdates.checkout}}{{/formatDate}}</p></div>' +
                         '</div>' +

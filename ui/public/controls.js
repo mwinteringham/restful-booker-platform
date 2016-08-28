@@ -106,8 +106,6 @@ $( document ).ready(function() {
         }
       }
 
-      console.log($(rows[3]).attr('placeholder'));
-
       var payload = {
           "hotelid": id,
           "name" : returnValOrPlaceholder(0),
@@ -243,21 +241,21 @@ $( document ).ready(function() {
       var id = $(this).siblings('input').val();
 
       var newRow = '<div class="col-sm-2"><p>' + $(rows[0]).children('input').attr('placeholder') + '</p></div>' +
-      '<div class="col-sm-2"><p>' + $(rows[1]).children('input').attr('placeholder') + '</p></div>' +
-      '<div class="col-sm-1"><p>' + $(rows[2]).children('input').attr('placeholder') + '</p></div>' +
-      '<div class="col-sm-2"><p>' + $(rows[3]).children('input').val() + '</p></div>' +
-      '<div class="col-sm-2"><p>' + $(rows[4]).children('input').attr('placeholder') + '</p></div>' +
-      '<div class="col-sm-2"><p>' + $(rows[5]).children('input').attr('placeholder') + '</p></div>' +
-      '<div class="col-sm-1">' +
-      '<input type="hidden" value="' + id + '"/>' +
-      '<span class="glyphicon glyphicon-pencil bookingEdit"></span> ' +
-      '<span class="glyphicon glyphicon-trash bookingDelete"></span>' +
-      '</div>'
+                   '<div class="col-sm-2"><p>' + $(rows[1]).children('input').attr('placeholder') + '</p></div>' +
+                   '<div class="col-sm-1"><p>' + $(rows[2]).children('input').attr('placeholder') + '</p></div>' +
+                   '<div class="col-sm-2"><p>' + $(rows[3]).children('input').val() + '</p></div>' +
+                   '<div class="col-sm-2"><p>' + $(rows[4]).children('input').attr('placeholder') + '</p></div>' +
+                   '<div class="col-sm-2"><p>' + $(rows[5]).children('input').attr('placeholder') + '</p></div>' +
+                   '<div class="col-sm-1">' +
+                   '<input type="hidden" value="' + id + '"/>' +
+                   '<span class="glyphicon glyphicon-pencil bookingEdit"></span> ' +
+                   '<span class="glyphicon glyphicon-trash bookingDelete"></span>' +
+                   '</div>';
 
       $(this).closest(".row").html(newRow);
     });
 
-    $('body').on('click', ".bookingDelete", function(){
+    $('body').on('click', '.bookingDelete', function(){
       var id = $(this).siblings('input').val();
 
       $.ajax({
@@ -267,5 +265,9 @@ $( document ).ready(function() {
       .done(function( msg ) {
         location.reload();
       });
+    });
+
+    $('body').on('click', '.searchResult', function(){
+      window.location.href = '/hotel/' + $(this).find('input')[0].defaultValue;
     });
 });
