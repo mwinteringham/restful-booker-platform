@@ -43,47 +43,90 @@ router.get('/hotel', function(req, res, next){
 router.post('/hotel', function(req, res, next) {
   newHotel = req.body;
 
-  Hotel.create(newHotel, function(err, hotel){
-    if(err)
-      res.sendStatus(500);
-    else {
-      var record = parse.hotelWithId(req, hotel);
-
-      if(!record){
-        res.sendStatus(418);
-      } else {
-        res.send(record);
-      }
+  var options = {
+    uri: 'http://localhost:3004/validate',
+    method: 'POST',
+    json: {
+      "token": req.cookies.token
     }
-  })
+  };
+
+  request(options, function(error, response, body){
+    if(response.statusCode == 200){
+      Hotel.create(newHotel, function(err, hotel){
+        console.log()
+        if(err)
+          res.sendStatus(500);
+        else {
+          var record = parse.hotelWithId(req, hotel);
+
+          if(!record){
+            res.sendStatus(418);
+          } else {
+            res.send(record);
+          }
+        }
+      })
+    } else {
+      res.sendStatus(403);
+    }
+  });
 });
 
 router.put('/hotel/:id', function(req, res, next) {
-  Hotel.update(req.params.id, req.body, function(err){
-    Hotel.get({'hotelid': req.params.id}, function(err, record){
-      if(record.length > 0){
-        var hotel = parse.hotel(req.headers.accept, record[0]);
+  var options = {
+    uri: 'http://localhost:3004/validate',
+    method: 'POST',
+    json: {
+      "token": req.cookies.token
+    }
+  };
 
-        if(!hotel){
-          res.sendStatus(418);
-        } else {
-          res.send(hotel);
-        }
-      } else {
-        res.sendStatus(405);
-      }
-    })
-  })
+  request(options, function(error, response, body){
+    if(response.statusCode == 200){
+      Hotel.update(req.params.id, req.body, function(err){
+        Hotel.get({'hotelid': req.params.id}, function(err, record){
+          if(record.length > 0){
+            var hotel = parse.hotel(req.headers.accept, record[0]);
+
+            if(!hotel){
+              res.sendStatus(418);
+            } else {
+              res.send(hotel);
+            }
+          } else {
+            res.sendStatus(405);
+          }
+        })
+      })
+    } else {
+      res.sendStatus(403);
+    }
+  });
 });
 
 router.delete('/hotel/:id', function(req, res, next) {
-  Hotel.get({'hotelid': req.params.id}, function(err, record){
-    if(record.length > 0){
-      Hotel.delete(req.params.id, function(err){
-        res.sendStatus(201);
+  var options = {
+    uri: 'http://localhost:3004/validate',
+    method: 'POST',
+    json: {
+      "token": req.cookies.token
+    }
+  };
+
+  request(options, function(error, response, body){
+    if(response.statusCode == 200){
+      Hotel.get({'hotelid': req.params.id}, function(err, record){
+        if(record.length > 0){
+          Hotel.delete(req.params.id, function(err){
+            res.sendStatus(201);
+          });
+        } else {
+          res.sendStatus(405);
+        }
       });
     } else {
-      res.sendStatus(405);
+      res.sendStatus(403);
     }
   });
 });
