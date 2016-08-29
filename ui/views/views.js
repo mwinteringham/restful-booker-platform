@@ -25,7 +25,7 @@ var nav = '<nav class="navbar navbar-default">' +
              '        </div>' +
              '        <div class="modal-body">' +
              '          <p><label for="username">Username </label><input type="text" id="username" /></p>' +
-             '          <p><label for="password">Password </label><input type="text" id="password" /></p>' +
+             '          <p><label for="password">Password </label><input type="password" id="password" /></p>' +
              '        </div>' +
              '        <div class="modal-footer">' +
              '          <button type="button" class="btn btn-default" id="doLogin">Login</button>' +

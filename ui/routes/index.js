@@ -43,6 +43,8 @@ router.get('/hotel/:id', function(req, res){
   }
 
   request(hotelOptions, function (error, response) {
+    if(response.statusCode != 200) res.send(response.statusCode);
+
     var payload = JSON.parse(response.body);
     var options = {
       uri: 'http://' + config.auth() + ':3004/validate',

@@ -4,16 +4,19 @@ services:
     image: mongo
     ports:
       - "27017:27017"
+    restart: always
   auth:
     build: ./auth
     ports:
       - "3004:3004"
+    restart: always
   search:
     build: ./search
     ports:
       - "3002:3002"
     links:
       - "db:database"
+    restart: always
   booking:
     build: ./booking
     ports:
@@ -21,6 +24,7 @@ services:
     links:
       - "db:database"
       - "auth:auth"
+    restart: always
   hotel:
     build: ./hotel
     ports:
@@ -29,6 +33,7 @@ services:
       - "db:database"
       - "auth:auth"
       - "search:search"
+    restart: always
   ui:
     build: ./ui
     ports:
@@ -37,3 +42,4 @@ services:
       - "hotel:hotel"
       - "search:search"
       - "auth:auth"
+    restart: always
