@@ -4,6 +4,4 @@ EXPOSE 3000
 
 ADD . /usr/local/hotel
 
-CMD cd /usr/local/hotel && npm install
-
-ENTRYPOINT sleep 5 && npm start
+ENTRYPOINT sleep 5 && cd /usr/local/hotel && npm install && npm start
