@@ -4,4 +4,6 @@ EXPOSE 3003
 
 ADD . /usr/local/ui
 
-ENTRYPOINT sleep 5 && cd /usr/local/ui && npm install && npm start
+CMD cd /usr/local/ui && npm install
+
+ENTRYPOINT sleep 5 && npm start

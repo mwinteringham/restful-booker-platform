@@ -4,4 +4,6 @@ EXPOSE 3002
 
 ADD . /usr/local/search
 
-ENTRYPOINT sleep 5 && cd /usr/local/search && npm install && npm start
+CMD cd /usr/local/search && npm install
+
+ENTRYPOINT sleep 5 && npm start

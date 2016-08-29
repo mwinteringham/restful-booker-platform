@@ -45,7 +45,7 @@ $( document ).ready(function() {
 
         $.ajax({
           method: "POST",
-          url: "http://localhost:3001/hotel",
+          url: "http://" + document.domain + ":3001/hotel",
           data: JSON.stringify(payload),
           dataType: "json",
           contentType: "application/json;charset=utf-8",
@@ -129,7 +129,7 @@ $( document ).ready(function() {
 
       $.ajax({
         method: "PUT",
-        url: "http://localhost:3001/hotel/" + id,
+        url: "http://" + document.domain + ":3001/hotel/" + id,
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
@@ -148,7 +148,7 @@ $( document ).ready(function() {
 
       $.ajax({
         method: "DELETE",
-        url: "http://localhost:3001/hotel/" + id,
+        url: "http://" + document.domain + ":3001/hotel/" + id,
         xhrFields: {
            withCredentials: true
         }
@@ -173,7 +173,7 @@ $( document ).ready(function() {
 
       $.ajax({
         method: "POST",
-        url: "http://localhost:3000/booking",
+        url: "http://" + document.domain + ":3000/booking",
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
@@ -243,7 +243,7 @@ $( document ).ready(function() {
 
       $.ajax({
         method: "PUT",
-        url: "http://localhost:3000/booking/" + id,
+        url: "http://" + document.domain + ":3000/booking/" + id,
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
@@ -281,7 +281,7 @@ $( document ).ready(function() {
 
       $.ajax({
         method: "DELETE",
-        url: "http://localhost:3000/booking/" + id,
+        url: "http://" + document.domain + ":3000/booking/" + id,
         xhrFields: {
            withCredentials: true
         }
@@ -302,7 +302,7 @@ $( document ).ready(function() {
       if(username != "" && password != ""){
         $.ajax({
           method: "POST",
-          url: "http://localhost:3004/auth",
+          url: "http://" + document.domain + ":3004/auth",
           data: JSON.stringify({
             "username" : username,
             "password" : password
