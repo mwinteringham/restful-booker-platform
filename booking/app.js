@@ -12,7 +12,7 @@ var app = express();
 
 var corsOptions = {
   "credentials": true,
-  "origin": 'http://localhost:3003'
+  "origin": ['http://localhost:3003', /http:\/\/52.[0-9]*.[0-9]*.[0-9]*:3003/]
 }
 
 app.use(cors(corsOptions));
