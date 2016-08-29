@@ -1,9 +1,10 @@
 var mongoose = require('mongoose'),
     dateFormat = require('dateformat'),
-    counter = require('./counters');
+    counter = require('./counters'),
+    config = require('../helpers/env');
 
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/restful-booker-platform');
+mongoose.connect('mongodb://' + config.database() + '/restful-booker-platform');
 
 var bookingSchema = mongoose.Schema({
     bookingid: {type: Number},

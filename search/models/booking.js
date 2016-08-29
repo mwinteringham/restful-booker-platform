@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    config = require('../helpers/env');
 
 mongoose.Promise = require('bluebird');
-mongoose.createConnection('mongodb://localhost/restful-booker-platform');
+mongoose.createConnection('mongodb://' + config.database() + '/restful-booker-platform');
 
 var bookingSchema = mongoose.Schema({
     bookingid: {type: Number},

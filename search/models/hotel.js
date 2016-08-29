@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    config = require('../helpers/env');
 
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/restful-booker-platform');
+mongoose.connect('mongodb://' + config.database() + '/restful-booker-platform');
 
 var hotelSchema = mongoose.Schema({
     hotelid: {type: Number},

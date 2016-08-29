@@ -4,7 +4,8 @@ var router  = express.Router(),
     crypto = require('crypto'),
     request = require('request'),
     Booking = require('../models/booking'),
-    Counter = require('../models/counters');
+    Counter = require('../models/counters'),
+    config = require('../helpers/env');
 
 router.get('/ping', function(req, res, next) {
   res.sendStatus(201);
@@ -30,7 +31,7 @@ router.post('/booking', function(req, res, next) {
   newBooking = req.body;
 
   var options = {
-    uri: 'http://localhost:3004/validate',
+    uri: 'http://' + config.auth() + ':3004/validate',
     method: 'POST',
     json: {
       "token": req.cookies.token
@@ -60,7 +61,7 @@ router.post('/booking', function(req, res, next) {
 
 router.put('/booking/:id', function(req, res, next) {
   var options = {
-    uri: 'http://localhost:3004/validate',
+    uri: 'http://' + config.auth() + ':3004/validate',
     method: 'POST',
     json: {
       "token": req.cookies.token
@@ -92,7 +93,7 @@ router.put('/booking/:id', function(req, res, next) {
 
 router.delete('/booking/:id', function(req, res, next) {
   var options = {
-    uri: 'http://localhost:3004/validate',
+    uri: 'http://' + config.auth() + ':3004/validate',
     method: 'POST',
     json: {
       "token": req.cookies.token

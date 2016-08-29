@@ -47,12 +47,14 @@ exports.index = function(view, callback){
                    '<div class="col-sm-1"></div>' +
                    '</div>' +
                    '{{#.}}' +
-                   '<div class="row hotelRow detail">' +
+                   '<div class="row detail">' +
+                   '<div class="hotelRow">' +
                    '<div class="col-sm-2"><p>{{name}}</p></div>' +
                    '<div class="col-sm-3"><p>{{address}}</p></div>' +
                    '<div class="col-sm-2"><p>{{contact.name}}</p></div>' +
                    '<div class="col-sm-2"><p>{{contact.phone}}</p></div>' +
                    '<div class="col-sm-2"><p>{{contact.email}}</p></div>' +
+                   '</div>' +
                    '<div class="col-sm-1">' +
                    '{{#auth}}<span class="glyphicon glyphicon-remove hotelDelete" id="{{hotelid}}"></span>{{/auth}}' +
                    '<input type="hidden" id="{{hotelid}}" />' +

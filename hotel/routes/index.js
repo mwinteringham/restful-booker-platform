@@ -4,7 +4,8 @@ var router  = express.Router(),
     crypto  = require('crypto'),
     request = require('request'),
     Hotel   = require('../models/hotel'),
-    Counter = require('../models/counters');
+    Counter = require('../models/counters'),
+    config = require('../helpers/env');
 
 router.get('/ping', function(req, res, next) {
   res.sendStatus(201);
@@ -18,7 +19,7 @@ router.get('/hotel/:id',function(req, res, next){
       if(!hotel){
         res.sendStatus(418);
       } else {
-        request('http://localhost:3002/search?hotelid=' + req.params.id, function(error, response, body){
+        request('http://' + config.search() +':3002/search?hotelid=' + req.params.id, function(error, response, body){
           if(error) res.sendStatus(500);
 
           if(response.body) hotel.bookings = JSON.parse(response.body).bookings;
@@ -44,7 +45,7 @@ router.post('/hotel', function(req, res, next) {
   newHotel = req.body;
 
   var options = {
-    uri: 'http://localhost:3004/validate',
+    uri: 'http://' + config.auth() + ':3004/validate',
     method: 'POST',
     json: {
       "token": req.cookies.token
@@ -75,7 +76,7 @@ router.post('/hotel', function(req, res, next) {
 
 router.put('/hotel/:id', function(req, res, next) {
   var options = {
-    uri: 'http://localhost:3004/validate',
+    uri: 'http://' + config.auth() + ':3004/validate',
     method: 'POST',
     json: {
       "token": req.cookies.token
@@ -107,7 +108,7 @@ router.put('/hotel/:id', function(req, res, next) {
 
 router.delete('/hotel/:id', function(req, res, next) {
   var options = {
-    uri: 'http://localhost:3004/validate',
+    uri: 'http://' + config.auth() + ':3004/validate',
     method: 'POST',
     json: {
       "token": req.cookies.token

@@ -1,17 +1,18 @@
 var express = require('express');
 var router  = express.Router(),
     request = require('request'),
-    view    = require('../views/views');
+    view    = require('../views/views'),
+    config  = require('../helpers/env');
 
 router.get('/ping', function(req, res) {
   res.sendStatus(201);
 });
 
 router.get('/', function(req, res){
-  request('http://localhost:3001/hotel', function(error, response, body){
+  request('http://' + config.hotel() + ':3001/hotel', function(error, response, body){
     var payload = JSON.parse(response.body);
     var options = {
-      uri: 'http://localhost:3004/validate',
+      uri: 'http://' + config.auth() + ':3004/validate',
       method: 'POST',
       json: {
         "token": req.cookies.token
@@ -37,14 +38,14 @@ router.get('/hotel/:id', function(req, res){
     headers: {
       'Accept': 'application/json',
     },
-    uri: 'http://localhost:3001/hotel/' + req.params.id,
+    uri: 'http://' + config.hotel() + ':3001/hotel/' + req.params.id,
     method: 'GET'
   }
 
   request(hotelOptions, function (error, response) {
     var payload = JSON.parse(response.body);
     var options = {
-      uri: 'http://localhost:3004/validate',
+      uri: 'http://' + config.auth() + ':3004/validate',
       method: 'POST',
       json: {
         "token": req.cookies.token
@@ -71,7 +72,7 @@ router.get('/search', function(req, res){
     headers: {
       'Accept': 'application/json',
     },
-    uri: 'http://localhost:3002/search?keyword=' + req.query.keyword,
+    uri: 'http://' + config.search() + ':3002/search?keyword=' + req.query.keyword,
     method: 'GET'
   }, function (error, response) {
     view.search(JSON.parse(response.body), function(render){

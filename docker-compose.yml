@@ -1,6 +1,39 @@
 version: '2'
 services:
-  restful-booker:
-    build: ./
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+  auth:
+    build: ./auth
+    ports:
+      - "3004:3004"
+  search:
+    build: ./search
+    ports:
+      - "3002:3002"
+    links:
+      - "db:database"
+  booking:
+    build: ./booking
+    ports:
+      - "3000:3000"
+    links:
+      - "db:database"
+      - "auth:auth"
+  hotel:
+    build: ./hotel
     ports:
       - "3001:3001"
+    links:
+      - "db:database"
+      - "auth:auth"
+      - "search:search"
+  ui:
+    build: ./ui
+    ports:
+      - "3003:3003"
+    links:
+      - "hotel:hotel"
+      - "search:search"
+      - "auth:auth"
