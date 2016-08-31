@@ -43,29 +43,31 @@ router.get('/hotel/:id', function(req, res){
   }
 
   request(hotelOptions, function (error, response) {
-    if(response.statusCode != 200) res.send(response.statusCode);
+    if(response.statusCode == 200){
+      var payload = JSON.parse(response.body);
+      var options = {
+        uri: 'http://' + config.auth() + ':3004/validate',
+        method: 'POST',
+        json: {
+          "token": req.cookies.token
+        }
+      };
 
-    var payload = JSON.parse(response.body);
-    var options = {
-      uri: 'http://' + config.auth() + ':3004/validate',
-      method: 'POST',
-      json: {
-        "token": req.cookies.token
-      }
-    };
+      request(options, function(error, response, body){
+        if(response.statusCode == 200){
+            payload.auth = true;
+        } else {
+            payload.auth = false;
+        }
 
-    request(options, function(error, response, body){
-      if(response.statusCode == 200){
-          payload.auth = true;
-      } else {
-          payload.auth = false;
-      }
-
-      payload.hotelid = req.params.id;
-      view.hotel(payload, function(render){
-        res.send(render);
+        payload.hotelid = req.params.id;
+        view.hotel(payload, function(render){
+          res.send(render);
+        });
       });
-    });
+    } else {
+      res.send(response.statusCode);
+    }
   });
 });
 
