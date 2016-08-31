@@ -27,7 +27,7 @@ $( document ).ready(function() {
     });
 
     $('body').on('click', '.hotelRow', function(){
-      window.location.href = '/hotel/' + $(this).find('input').attr('id');
+      window.location.href = '/hotel/' + $(this).parent().find('input').attr('id');
     });
 
     $( "#createHotel" ).click(function() {

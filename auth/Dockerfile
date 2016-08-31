@@ -1,7 +1,11 @@
 FROM node:5
 
-EXPOSE 3004
-
 ADD . /usr/local/auth
 
-ENTRYPOINT sleep 5 && cd /usr/local/auth && npm install && npm start
+WORKDIR /usr/local/auth
+
+RUN npm install
+RUN npm install frontail -g
+RUN touch auth.log
+
+ENTRYPOINT sleep 5 && npm start & frontail -t dark -p 9004 auth.log

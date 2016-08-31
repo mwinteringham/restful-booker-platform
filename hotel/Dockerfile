@@ -1,7 +1,11 @@
 FROM node:5
 
-EXPOSE 3000
-
 ADD . /usr/local/hotel
 
-ENTRYPOINT sleep 5 && cd /usr/local/hotel && npm install && npm start
+WORKDIR /usr/local/hotel
+
+RUN npm install
+RUN npm install frontail -g
+RUN touch hotel.log
+
+ENTRYPOINT sleep 5 && npm start & frontail -t dark -p 9001 hotel.log

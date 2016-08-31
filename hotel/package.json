@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node ./bin/www",
-    "local": "NODE_ENV=development node ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www > hotel.log",
+    "local": "NODE_ENV=development node ./bin/www > hotel.log",
     "test": "mocha -R spec tests/spec.js"
   },
   "dependencies": {

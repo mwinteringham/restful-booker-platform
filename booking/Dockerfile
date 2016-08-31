@@ -1,7 +1,11 @@
 FROM node:5
 
-EXPOSE 3001
-
 ADD . /usr/local/booking
 
-ENTRYPOINT sleep 5 && cd /usr/local/booking && npm install && npm start
+WORKDIR /usr/local/booking
+
+RUN npm install
+RUN npm install frontail -g
+RUN touch booking.log
+
+ENTRYPOINT sleep 5 && npm start & frontail -t dark -p 9000 booking.log
