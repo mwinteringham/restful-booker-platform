@@ -2,3 +2,5 @@
 **/.DS_Store
 **/npm-debug.log
 *.log
+target/
+acceptancetests.iml
