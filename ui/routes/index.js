@@ -79,8 +79,26 @@ router.get('/search', function(req, res){
     uri: 'http://' + config.search() + ':3002/search?keyword=' + req.query.keyword,
     method: 'GET'
   }, function (error, response) {
-    view.search(JSON.parse(response.body), function(render){
-      res.send(render);
+    var payload = JSON.parse(response.body);
+    var options = {
+      uri: 'http://' + config.auth() + ':3004/validate',
+      method: 'POST',
+      json: {
+        "token": req.cookies.token
+      }
+    };
+
+    request(options, function(error, response, body){
+      if(response.statusCode == 200){
+          payload.auth = true;
+      } else {
+          payload.auth = false;
+      }
+
+      payload.hotelid = req.params.id;
+      view.search(payload, function(render){
+        res.send(render);
+      });
     });
   });
 })
