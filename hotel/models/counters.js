@@ -8,14 +8,14 @@ var CounterSchema = mongoose.Schema({
 var Counter = mongoose.model('counter', CounterSchema);
 
 exports.bumpId = function(doc, callback){
-    Counter.findOneAndUpdate({type: 'bookingid'}, {$inc: { seq: 1} }, {new: true}, function(error, counter)   {
+    Counter.findOneAndUpdate({type: 'hotelid'}, {$inc: { seq: 1} }, {new: true}, function(error, counter)   {
         if(error)
             return next(error);
 
         if(counter){
           callback(counter.seq);
         } else {
-          new Counter({type: 'bookingid', seq: 1}).save();
+          new Counter({type: 'hotelid', seq: 1}).save();
 
           callback(1);
         }

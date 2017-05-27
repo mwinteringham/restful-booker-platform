@@ -18,8 +18,6 @@ var hotelSchema = mongoose.Schema({
     }
   }, { versionKey: false });
 
-var Hotel = mongoose.model('Hotel', hotelSchema);
-
 hotelSchema.pre('save', function(next) {
     var doc = this;
 
@@ -28,6 +26,8 @@ hotelSchema.pre('save', function(next) {
       next();
     });
 });
+
+var Hotel = mongoose.model('Hotel', hotelSchema);
 
 exports.get = function(query, callback){
   Hotel.find(query).select('-_id').exec(function(err, hotel){

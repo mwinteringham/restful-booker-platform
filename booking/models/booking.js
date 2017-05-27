@@ -20,8 +20,6 @@ var bookingSchema = mongoose.Schema({
     additionalneeds: { type: String, required: false}
   }, { versionKey: false });
 
-var Booking = mongoose.model('Booking', bookingSchema);
-
 bookingSchema.pre('save', function(next) {
     var doc = this;
 
@@ -30,6 +28,8 @@ bookingSchema.pre('save', function(next) {
       next();
     });
 });
+
+var Booking = mongoose.model('Booking', bookingSchema);
 
 exports.get = function(id, callback){
   Booking.find({'bookingid': id}, function(err, booking){
