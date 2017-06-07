@@ -13,7 +13,7 @@ router.get('/ping', function(req, res, next) {
 
 router.get('/hotel/:id',function(req, res, next){
   Hotel.get({'hotelid': req.params.id}, function(err, record){
-    if(record.length > 0){
+    if(record && record.length > 0){
       var hotel = parse.hotel(req.headers.accept, record[0]);
 
       if(!hotel){
