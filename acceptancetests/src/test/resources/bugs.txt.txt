@@ -1,0 +1,5 @@
+1. Phone number filed is should accept only numbers
+2. multiple hotels can be created with same details
+3. UI overlapping (delete button is over lapping with email text if email is too long)
+4. Email field should match email signature
+5. No validation messages are displayed
