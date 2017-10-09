@@ -118,7 +118,7 @@ router.delete('/hotel/:id', function(req, res, next) {
   request(options, function(error, response, body){
     if(response.statusCode == 200){
       Hotel.get({'hotelid': req.params.id}, function(err, record){
-        if(record.length > 0){
+        if(record && record.length > 0){
           Hotel.delete(req.params.id, function(err){
             res.sendStatus(201);
           });
