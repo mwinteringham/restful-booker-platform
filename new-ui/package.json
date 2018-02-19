@@ -29,5 +29,8 @@
     "react-dom": "^16.2.0",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
+  },
+  "dependencies": {
+    "react-router-dom": "^4.2.2"
   }
 }
