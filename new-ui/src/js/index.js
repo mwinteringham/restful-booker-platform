@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
-import { BrowserRouter } from 'react-router-dom'
+import Footer from './components/Footer.jsx';
+import { HashRouter } from 'react-router-dom';
+import '../styles/style.scss';
 
 ReactDOM.render((
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>
-), document.getElementById('root'))
+  </HashRouter>
+), document.getElementById('root'));
+
+ReactDOM.render((
+  <Footer />
+), document.getElementById('footer'));

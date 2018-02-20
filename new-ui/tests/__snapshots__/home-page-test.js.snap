@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App container component 1`] = `
+<div
+  className="container"
+>
+  <Nav />
+  <Link
+    replace={false}
+    to="hotel"
+  >
+    Hotel
+  </Link>
+  <Link
+    replace={false}
+    to="search"
+  >
+    Search
+  </Link>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/hotel"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/search"
+    />
+  </Switch>
+</div>
+`;
+
+exports[`Footer component 1`] = `
+<footer
+  className="footer"
+>
+  <div
+    className="container"
+  >
+    <p
+      className="text-muted"
+    >
+      restful-booker-platform v1.0 - Created by Mark Winteringham - © 2016
+    </p>
+  </div>
+</footer>
+`;
