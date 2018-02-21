@@ -1,19 +1,24 @@
 import React from 'react';
-import Footer from '../src/js/components/Footer.jsx';
-import App from '../src/js/components/App.jsx';
+import Hotels from '../src/js/components/Hotels.jsx';
 
-test('App container component', () => {
-    const app = shallow(
-        <App />
+test('Hotels list component', () => {
+    const hotelPayload = {
+        "hotelid": 1,
+        "name": "Hilton",
+        "address": "123 The Street",
+        "regdate": "2018-02-20T22:47:38.176Z",
+        "contact": {
+            "name": "Mark Winteringham",
+            "phone": "07411222473",
+            "email": "mark@hilton.com"
+        }
+    }
+
+    const hotels = shallow(
+        <Hotels />
     );
 
-    expect(app).toMatchSnapshot();
-});
+    hotels.setState({hotels : [hotelPayload]});
 
-test('Footer component', () => {
-    const footer = shallow(
-        <Footer />
-    );
-
-    expect(footer).toMatchSnapshot();
+    expect(hotels).toMatchSnapshot();
 });
