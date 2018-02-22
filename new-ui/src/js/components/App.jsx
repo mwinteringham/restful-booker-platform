@@ -9,14 +9,25 @@ export default class App extends React.Component {
 
     constructor() {
         super();
-    }
+
+        this.state = {
+          isAuthenticated : false
+        }
+        this.setAuthenticate = this.setAuthenticate.bind(this);
+	}
+	
+	setAuthenticate(e){
+		this.setState({
+			isAuthenticated : e
+		});
+	}
 
     render() {
       return(
           <div className="container">
-            <Nav />
+            <Nav setAuthenticate={this.setAuthenticate}/>
             <Switch>
-              <Route exact path='/' component={Hotels} />
+              <Route exact path='/' render={(props) => <Hotels isAuthenticated={this.state.isAuthenticated} {...props} />} />
               <Route exact path='/search' component={Search}/>
             </Switch>
           </div>

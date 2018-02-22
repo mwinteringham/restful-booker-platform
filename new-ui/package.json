@@ -33,6 +33,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
+    "universal-cookie": "^2.1.2",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },

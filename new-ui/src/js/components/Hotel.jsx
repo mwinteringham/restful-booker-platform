@@ -1,16 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom';
 
-export default class Hotel extends React.Component {
+class Hotel extends React.Component {
 
     constructor() {
         super();
+
+        this.handleOnClick = this.handleOnClick.bind(this);
+    }
+
+    handleOnClick(){        
+        const { history } = this.props;
+        history.push('/hotel/' + this.props.details.hotelid);
     }
 
     render() {
-      return(
-        <Link to={"/hotel/" + this.props.details.hotelid}>
-            <div className="row">
+        return(
+            <div className="row" onClick={() => this.handleOnClick()}>
                 <div className="col-sm-2"><p>{this.props.details.name}</p></div>
                 <div className="col-sm-3"><p>{this.props.details.address}</p></div>
                 <div className="col-sm-2"><p>{this.props.details.contact.name}</p></div>
@@ -18,7 +25,14 @@ export default class Hotel extends React.Component {
                 <div className="col-sm-2"><p>{this.props.details.contact.email}</p></div>
                 <div className="col-sm-1"></div>
             </div>
-        </Link>
-      );
+        );
     }
-  }
+}
+
+Hotel.propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+}
+
+export default withRouter(Hotel);

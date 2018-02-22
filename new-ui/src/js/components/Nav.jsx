@@ -1,9 +1,37 @@
 import React from "react";
+import Cookies from 'universal-cookie';
 
 export default class Nav extends React.Component {
 
     constructor() {
         super();
+        this.state = {
+          username : "",
+          password : ""
+        }
+        this.doLogin = this.doLogin.bind(this);
+    }
+
+    doLogin() {
+      fetch('http://localhost:3004/auth',{
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(this.state)
+      })
+      .then(res=>res.json())
+      .then(res => {
+		this.props.setAuthenticate(true);
+		
+		const cookies = new Cookies();
+		cookies.set('token', res.token, { path: '/' });
+      })
+      .catch(e => {
+        console.log("Failed to authenticate");
+        console.log(e);
+      })
     }
 
     render() {
@@ -28,11 +56,11 @@ export default class Nav extends React.Component {
                   <h4 className="modal-title">Login</h4> 
                 </div> 
                 <div className="modal-body"> 
-                  <p><label htmlFor="username">Username </label><input type="text" id="username" /></p> 
-                  <p><label htmlFor="password">Password </label><input type="password" id="password" /></p> 
+                  <p><label htmlFor="username">Username </label><input type="text" id="username" onChange={val => this.setState({username : val.target.value})}/></p> 
+                  <p><label htmlFor="password">Password </label><input type="password" id="password" onChange={val => this.setState({password : val.target.value})}/></p> 
                 </div> 
                 <div className="modal-footer"> 
-                  <button type="button" className="btn btn-default" id="doLogin">Login</button> 
+                  <button type="button" className="btn btn-default" id="doLogin" data-dismiss="modal" onClick={this.doLogin}>Login</button> 
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button> 
                 </div> 
               </div> 

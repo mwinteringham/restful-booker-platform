@@ -18,6 +18,17 @@ export default class Hotels extends React.Component {
     }
 
     render() {
+      let inputFields = null;
+      if(this.props.isAuthenticated){
+        inputFields = <div className="row">
+                    	<div className="col-sm-2"><input type="text" id="hotelName" /></div>
+        				<div className="col-sm-3"><input type="text" id="address" /></div>
+        				<div className="col-sm-2"><input type="text" id="owner" /></div>
+        				<div className="col-sm-2"><input type="text" id="phone" /></div>
+        				<div className="col-sm-2"><input type="text" id="email" /></div>
+        				<div className="col-sm-1"><input type="button" value="Create" id="createHotel"/></div>
+        			</div>
+      }
       return(
         <div>
           <div className="row">
@@ -30,7 +41,8 @@ export default class Hotels extends React.Component {
           </div>
           {this.state.hotels.map((hotel, index) => {
             return <div key={hotel.hotelid}><Hotel details={hotel}/></div>
-          })}
+		  })}
+		  {inputFields}
         </div>
       );
     }
