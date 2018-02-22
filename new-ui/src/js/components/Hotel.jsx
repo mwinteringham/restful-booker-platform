@@ -16,6 +16,11 @@ class Hotel extends React.Component {
     }
 
     render() {
+        let deleteHotel = null;
+        if(this.props.isAuthenticated){
+            deleteHotel = <span class="glyphicon glyphicon-remove hotelDelete" id={this.props.details.hotelid}></span>
+        }
+
         return(
             <div className="row" onClick={() => this.handleOnClick()}>
                 <div className="col-sm-2"><p>{this.props.details.name}</p></div>
@@ -23,7 +28,7 @@ class Hotel extends React.Component {
                 <div className="col-sm-2"><p>{this.props.details.contact.name}</p></div>
                 <div className="col-sm-2"><p>{this.props.details.contact.phone}</p></div>
                 <div className="col-sm-2"><p>{this.props.details.contact.email}</p></div>
-                <div className="col-sm-1"></div>
+                <div className="col-sm-1">{deleteHotel}</div>
             </div>
         );
     }
