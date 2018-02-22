@@ -6,16 +6,27 @@ export default class Hotels extends React.Component {
 
     constructor() {
         super();
-        this.state = { hotels : []};
+		this.state = { hotels : []};
+		
+		this.updateHotels = this.updateHotels.bind(this);
     }
     
     componentDidMount() {
-      fetch('http://localhost:3001/hotel')
-        .then(res => res.json())
-        .then(body => {
-          this.setState({hotels : body});
-        });
-    }
+		fetch('http://localhost:3001/hotel')
+			.then(res => res.json())
+			.then(body => {
+				this.setState({hotels : body});
+			});
+	}
+
+	updateHotels() {
+		console.log("HOTELZ");
+		fetch('http://localhost:3001/hotel')
+			.then(res => res.json())
+			.then(body => {
+				this.setState({hotels : body});
+			});
+	}
 
     render() {
       let inputFields = null;
@@ -40,7 +51,7 @@ export default class Hotels extends React.Component {
             <div className="col-sm-1"></div>
           </div>
           {this.state.hotels.map((hotel, index) => {
-            return <div key={hotel.hotelid}><Hotel details={hotel} isAuthenticated={this.props.isAuthenticated}/></div>
+            return <div key={hotel.hotelid}><Hotel details={hotel} updateHotels={this.updateHotels} isAuthenticated={this.props.isAuthenticated}/></div>
 		  })}
 		  {inputFields}
         </div>

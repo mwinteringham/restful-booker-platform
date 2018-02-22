@@ -13,7 +13,8 @@ export default class App extends React.Component {
 
         this.state = {
           isAuthenticated : false
-        }
+		}
+		
         this.setAuthenticate = this.setAuthenticate.bind(this);
 	}
 
