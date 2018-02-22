@@ -30,6 +30,7 @@
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.4.0",
     "node-fetch": "^2.0.0",
+    "query-string": "^5.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
