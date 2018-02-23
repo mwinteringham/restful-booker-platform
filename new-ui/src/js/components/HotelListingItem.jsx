@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
-export default class Hotel extends React.Component {
+export default class HotelListingItem extends React.Component {
 
     constructor() {
         super();
@@ -29,7 +29,7 @@ export default class Hotel extends React.Component {
         }
 
         return(
-            <div className="row" onClick={() => this.navigateToHotel()}>
+            <div className="row">
                 <Link to={"/hotel/" + this.props.details.hotelid}>
                     <div className="col-sm-2"><p>{this.props.details.name}</p></div>
                     <div className="col-sm-3"><p>{this.props.details.address}</p></div>

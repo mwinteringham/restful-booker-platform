@@ -61,6 +61,8 @@ class Nav extends React.Component {
 
 	doSearch(event){
 		if(event.key == 'Enter'){
+			document.getElementById("search").value = '';
+
 			const { history } = this.props;
 			history.push('/search?keyword=' + this.state.search)
 		}

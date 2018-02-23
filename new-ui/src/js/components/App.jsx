@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
 import { Route, Switch } from 'react-router-dom'
-import Hotels from './Hotels.jsx';
+import HotelListings from './HotelListings.jsx';
 import Search from './Search.jsx';
 import Footer from './Footer.jsx';
 import Nav from './Nav.jsx';
+import HotelDetails from './HotelDetails.jsx';
 import Cookies from 'universal-cookie';
 
 export default class App extends React.Component {
@@ -47,8 +48,11 @@ export default class App extends React.Component {
           <div className="container">
             <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
             <Switch>
-              <Route exact path='/' render={(props) => <Hotels isAuthenticated={this.state.isAuthenticated} {...props} />} />
+              <Route exact path='/' render={(props) => <HotelListings isAuthenticated={this.state.isAuthenticated} {...props} />} />
               <Route exact path='/search' component={Search}/>
+							<Route exact path="/hotel/:id" render={({ location, match }) => (
+									<HotelDetails isAuthenticated={this.state.isAuthenticated} params={match.params}/>
+							)} />
             </Switch>
           </div>
       );

@@ -1,8 +1,8 @@
 import React from 'react';
 import fetch from 'node-fetch';
-import Hotel from './Hotel.jsx';
+import HotelListingItem from './HotelListingItem.jsx';
 
-export default class Hotels extends React.Component {
+export default class HotelListings extends React.Component {
 
     constructor() {
         super();
@@ -46,8 +46,8 @@ export default class Hotels extends React.Component {
 		fetch('http://localhost:3001/hotel', {
 			method: 'POST',
 			headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
 			},
 			credentials: 'include',
 			body : JSON.stringify(this.state.newHotel)
@@ -89,7 +89,7 @@ export default class Hotels extends React.Component {
 				<div className="col-sm-1"></div>
 			</div>
 			{this.state.hotels.map((hotel, index) => {
-				return <div key={hotel.hotelid}><Hotel details={hotel} updateHotels={this.updateHotels} isAuthenticated={this.props.isAuthenticated}/></div>
+				return <div key={hotel.hotelid}><HotelListingItem details={hotel} updateHotels={this.updateHotels} isAuthenticated={this.props.isAuthenticated}/></div>
 			})}
 			{inputFields}
         </div>
