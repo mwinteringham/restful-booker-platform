@@ -22,7 +22,7 @@ export default class App extends React.Component {
 	componentDidMount(){
 		const cookies = new Cookies();
 
-		fetch('http://localhost:3004/validate', {
+		fetch('http://' + window.location.hostname + ':3004/validate', {
 				method: 'POST',
 				headers: {
 				'Accept': 'application/json',

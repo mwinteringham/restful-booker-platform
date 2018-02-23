@@ -50,7 +50,7 @@ export default class BookingForm extends React.Component {
     }
 
     createBooking() {
-        fetch('http://localhost:3000/booking', {
+        fetch('http://' + window.location.hostname + ':3000/booking', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',

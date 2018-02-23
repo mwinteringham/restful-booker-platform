@@ -26,7 +26,7 @@ export default class Search extends React.Component {
 	}
 
 	doSearch() {
-		fetch('http://localhost:3002/search' + this.props.location.search, {
+		fetch('http://' + window.location.hostname + ':3002/search' + this.props.location.search, {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'

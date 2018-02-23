@@ -25,7 +25,7 @@ export default class HotelListings extends React.Component {
     }
     
     componentDidMount() {
-		fetch('http://localhost:3001/hotel')
+		fetch('http://' + window.location.hostname + ':3001/hotel')
 			.then(res => res.json())
 			.then(body => {
 				this.setState({hotels : body});
@@ -33,7 +33,7 @@ export default class HotelListings extends React.Component {
 	}
 
 	updateHotels() {
-		fetch('http://localhost:3001/hotel')
+		fetch('http://' + window.location.hostname + ':3001/hotel')
 			.then(res => res.json())
 			.then(body => {
 				this.setState({hotels : body});
@@ -43,7 +43,7 @@ export default class HotelListings extends React.Component {
 	createHotel() {
 		this.state.newHotel.regdate = new Date();
 		
-		fetch('http://localhost:3001/hotel', {
+		fetch('http://' + window.location.hostname + ':3001/hotel', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',

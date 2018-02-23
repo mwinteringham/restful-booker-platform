@@ -19,7 +19,7 @@ class Nav extends React.Component {
     }
 
     doLogin() {
-      fetch('http://localhost:3004/auth', {
+      fetch('http://' + window.location.hostname + ':3004/auth', {
         method: 'POST',
         headers: {
         	'Accept': 'application/json',
@@ -41,7 +41,7 @@ class Nav extends React.Component {
 	}
 	
 	doLogout(){
-		fetch('http://localhost:3004/logout', {
+		fetch('http://' + window.location.hostname + ':3004/logout', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',

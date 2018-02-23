@@ -27,7 +27,7 @@ export default class BookingListing extends React.Component {
     }
 
     doDelete(){
-        fetch('http://localhost:3000/booking/' + this.props.booking.bookingid, {
+        fetch('http://' + window.location.hostname + ':3000/booking/' + this.props.booking.bookingid, {
 			method: 'DELETE',
 			credentials: 'include',
         })
@@ -48,7 +48,7 @@ export default class BookingListing extends React.Component {
     }
 
     doEdit(){
-        fetch('http://localhost:3000/booking/' + this.props.booking.bookingid, {
+        fetch('http://' + window.location.hostname + ':3000/booking/' + this.props.booking.bookingid, {
 			method: 'PUT',
 			headers: {
 				'Accept': 'application/json',

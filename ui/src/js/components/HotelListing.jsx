@@ -11,7 +11,7 @@ export default class HotelListing extends React.Component {
     }
 
     deleteBooking(){
-        fetch('http://localhost:3001/hotel/' + this.props.details.hotelid, {
+        fetch('http://' + window.location.hostname + ':3001/hotel/' + this.props.details.hotelid, {
             method: 'DELETE',
             credentials: 'include'
         })

@@ -44,7 +44,7 @@ export default class HotelDetails extends React.Component {
     }
 
     doEdit(){
-        fetch('http://localhost:3001/hotel/' + this.props.params.id, {
+        fetch('http://' + window.location.hostname + ':3001/hotel/' + this.props.params.id, {
 			method: 'PUT',
 			headers: {
 				'Accept': 'application/json',
@@ -62,7 +62,7 @@ export default class HotelDetails extends React.Component {
     }
 
     fetchHotelDetails() {
-        fetch('http://localhost:3001/hotel/' + this.props.params.id, {
+        fetch('http://' + window.location.hostname + ':3001/hotel/' + this.props.params.id, {
             headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
