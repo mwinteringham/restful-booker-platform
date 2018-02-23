@@ -1,4 +1,5 @@
 import React from 'react';
+import BookingListings from './BookingListings.jsx';
 
 export default class HotelDetails extends React.Component {
 
@@ -119,10 +120,13 @@ export default class HotelDetails extends React.Component {
         }
 
         return(
-            <div className="well">
-                <div className="container-fluid">
-                    {hotelSummary}
+            <div>
+                <div className="well">
+                    <div className="container-fluid">
+                        {hotelSummary}
+                    </div>
                 </div>
+                <BookingListings fetchHotelDetails={this.fetchHotelDetails} hotelid={this.props.params.id} bookings={this.state.details.bookings} isAuthenticated={this.props.isAuthenticated}/>
             </div>
         )
     }
