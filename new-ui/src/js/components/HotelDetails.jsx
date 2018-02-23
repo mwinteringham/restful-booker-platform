@@ -1,5 +1,6 @@
 import React from 'react';
 import BookingListings from './BookingListings.jsx';
+import Form from './BookingForm.jsx';
 
 export default class HotelDetails extends React.Component {
 
@@ -77,6 +78,8 @@ export default class HotelDetails extends React.Component {
     render(){
         let editButton = null;
         let hotelSummary = null;
+        let bookings = null;
+        let form = null;
 
         if(this.props.isAuthenticated == true){
             editButton = <span className="glyphicon glyphicon-pencil hotelEdit" onClick={this.enableEdit} style={{marginLeft: "5px", fontSize: 0.5 + "em"}} ></span>;
@@ -119,6 +122,14 @@ export default class HotelDetails extends React.Component {
                             </div>
         }
 
+        if(this.state.details.bookings){
+            bookings = <BookingListings fetchHotelDetails={this.fetchHotelDetails} hotelid={this.props.params.id} bookings={this.state.details.bookings} isAuthenticated={this.props.isAuthenticated} />
+        }
+
+        if(this.props.isAuthenticated){
+            form = <Form fetchHotelDetails={this.fetchHotelDetails} hotelid={this.props.params.id}/>
+        }
+
         return(
             <div>
                 <div className="well">
@@ -126,7 +137,17 @@ export default class HotelDetails extends React.Component {
                         {hotelSummary}
                     </div>
                 </div>
-                <BookingListings fetchHotelDetails={this.fetchHotelDetails} hotelid={this.props.params.id} bookings={this.state.details.bookings} isAuthenticated={this.props.isAuthenticated}/>
+                <div className="row">
+                    <div className="col-sm-2 rowHeader"><p>First name</p></div>
+                    <div className="col-sm-2 rowHeader"><p>Last name</p></div>
+                    <div className="col-sm-1 rowHeader"><p>Price</p></div>
+                    <div className="col-sm-2 rowHeader"><p>Deposit paid?</p></div>
+                    <div className="col-sm-2 rowHeader"><p>Check in</p></div>
+                    <div className="col-sm-2 rowHeader"><p>Check out</p></div>
+                    <div className="col-sm-1"></div>
+                </div>
+                {bookings}
+                {form}
             </div>
         )
     }

@@ -29,7 +29,7 @@ export default class HotelListing extends React.Component {
         }
 
         return(
-            <div className="row">
+            <div className="row detail">
                 <Link to={"/hotel/" + this.props.details.hotelid}>
                     <div className="col-sm-2"><p>{this.props.details.name}</p></div>
                     <div className="col-sm-3"><p>{this.props.details.address}</p></div>

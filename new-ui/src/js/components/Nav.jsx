@@ -64,7 +64,14 @@ class Nav extends React.Component {
 			document.getElementById("search").value = '';
 
 			const { history } = this.props;
-			history.push('/search?keyword=' + this.state.search)
+			
+			if(history.location.pathname == '/search'){
+				history.push({
+					search: '?keyword=' + this.state.search
+				})
+			} else {
+				history.push('/search?keyword=' + this.state.search)
+			}
 		}
 	}
 
@@ -86,7 +93,7 @@ class Nav extends React.Component {
 					<li><Link to="/">Home</Link></li> 
 					{loginState}
 					<li><a href="#">Search:</a></li> 
-					<li><input type="text" id="search" onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 
+					<li><input type="text" id="search" defaultValue={this.props.location.search.split('=')[1]} onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 
 					</ul> 
 				</div> 
 				<div id="myModal" className="modal fade" role="dialog"> 

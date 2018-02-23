@@ -17,7 +17,7 @@ export default class HotelListings extends React.Component {
 								"phone": "",
 								"email": ""
 							}
-						} 
+						}
 					};
 		
 		this.updateHotels = this.updateHotels.bind(this);

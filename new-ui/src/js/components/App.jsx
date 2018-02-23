@@ -49,7 +49,7 @@ export default class App extends React.Component {
             <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
             <Switch>
               <Route exact path='/' render={(props) => <HotelListings isAuthenticated={this.state.isAuthenticated} {...props} />} />
-              <Route exact path='/search' component={Search}/>
+              <Route exact path='/search' component={Search} {...this.props}/>
 							<Route exact path="/hotel/:id" render={({ location, match }) => (
 									<HotelDetails isAuthenticated={this.state.isAuthenticated} params={match.params}/>
 							)} />
