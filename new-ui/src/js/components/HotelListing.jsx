@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
-export default class HotelListingItem extends React.Component {
+export default class HotelListing extends React.Component {
 
     constructor() {
         super();

@@ -1,6 +1,6 @@
 import React from 'react';
 import fetch from 'node-fetch';
-import HotelListingItem from './HotelListingItem.jsx';
+import HotelListing from './HotelListing.jsx';
 
 export default class HotelListings extends React.Component {
 
@@ -89,7 +89,7 @@ export default class HotelListings extends React.Component {
 				<div className="col-sm-1"></div>
 			</div>
 			{this.state.hotels.map((hotel, index) => {
-				return <div key={hotel.hotelid}><HotelListingItem details={hotel} updateHotels={this.updateHotels} isAuthenticated={this.props.isAuthenticated}/></div>
+				return <div key={hotel.hotelid}><HotelListing details={hotel} updateHotels={this.updateHotels} isAuthenticated={this.props.isAuthenticated}/></div>
 			})}
 			{inputFields}
         </div>

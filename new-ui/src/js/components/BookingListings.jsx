@@ -92,8 +92,8 @@ export default class BookingListings extends React.Component {
                             <option value="true">true</option>
                         </select>
                     </div>
-                    <div className="col-sm-2 datepicker"><DatePicker selected={this.state.bookingdates.checkin} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
-                    <div className="col-sm-2 datepicker"><DatePicker selected={this.state.bookingdates.checkout} onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
+                    <div className="col-sm-2"><DatePicker onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
+                    <div className="col-sm-2"><DatePicker onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
                     <div className="col-sm-1"><input type="button" id="createBooking" value="Create" onClick={this.createBooking}/></div>
                   </div>
         }
@@ -110,7 +110,7 @@ export default class BookingListings extends React.Component {
                     <div className="col-sm-1"></div>
                 </div>
                 {this.props.bookings.map((booking, index) => {
-                    return <div key={booking.bookingid}><BookingListing {...booking} isAuthenticated={this.props.isAuthenticated}/></div>
+                    return <div key={booking.bookingid}><BookingListing booking={booking} isAuthenticated={this.props.isAuthenticated} fetchHotelDetails={this.fetchHotelDetails} /></div>
                 })}
                 {form}
             </div>

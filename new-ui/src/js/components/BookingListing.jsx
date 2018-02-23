@@ -1,32 +1,139 @@
 import React from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 export default class BookingListing extends React.Component {
 
     constructor(){
         super();
+
+        this.state = {
+            allowEdit : false,
+            booking : {}
+        }
+
+        this.doDelete = this.doDelete.bind(this);
+        this.enableEdit = this.enableEdit.bind(this);
+        this.disableEdit = this.disableEdit.bind(this);
+        this.handleStartChange = this.handleStartChange.bind(this);
+        this.handleEndChange = this.handleEndChange.bind(this);
+        this.doEdit = this.doEdit.bind(this);
+    }
+
+    componentDidMount(){
+        this.setState({
+            booking : this.props.booking
+        })
+    }
+
+    doDelete(){
+        fetch('http://localhost:3000/booking/' + this.props.booking.bookingid, {
+			method: 'DELETE',
+			credentials: 'include',
+        })
+        .then(res => {
+            if(res.status == 201){
+                this.props.fetchHotelDetails();
+            }
+        })
+        .catch(e => console.log(e))
+    }
+
+    enableEdit(){
+        this.setState({ allowEdit : true });
+    }
+
+    disableEdit(){
+        this.setState({ allowEdit : false });
+    }
+
+    doEdit(){
+        fetch('http://localhost:3000/booking/' + this.props.booking.bookingid, {
+			method: 'PUT',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+            credentials: 'include',
+            body : JSON.stringify(this.state.booking)
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.setState({allowEdit : false});
+            this.fetchHotelDetails();
+        })
+        .catch(e => console.log(e));
+    }
+
+    handleStartChange(date) {
+        this.setState({
+            booking : {
+                bookingdates: {
+                    checkin : date,
+                    checkout : this.state.booking.bookingdates.checkout
+                }
+            }
+        });
+    }
+
+    handleEndChange(date) {
+        this.setState({
+            booking : {
+                bookingdates: {
+                    checkin : this.state.booking.bookingdates.checkin,
+                    checkout : date
+                }
+            }
+        });
     }
 
     render(){
         let buttons = null;
+        let booking = null;
 
         if(this.props.isAuthenticated){
             buttons = <div className="col-sm-1">
-                        <span className="glyphicon glyphicon-pencil bookingEdit"></span> 
-                        <span className="glyphicon glyphicon-trash bookingDelete" id="{{bookingid}}"></span>
+                        <span className="glyphicon glyphicon-pencil bookingEdit" onClick={this.enableEdit} style={{paddingRight: 10 + "px"}}></span>
+                        <span className="glyphicon glyphicon-trash bookingDelete" onClick={this.doDelete} id="{{bookingid}}"></span>
                       </div>
         } else {
             buttons = <div className="col-sm-1"></div>
         }
 
+        if(this.state.allowEdit){
+
+            booking = <div>
+                        <div className="col-sm-2"><input type="text" defaultValue={this.props.booking.firstname} onChange={val => this.state.booking.firstname = val.target.value} /></div>
+                        <div className="col-sm-2"><input type="text" defaultValue={this.props.booking.lastname} onChange={val => this.state.booking.lastname = val.target.value} /></div>
+                        <div className="col-sm-1"><input type="text" defaultValue={this.props.booking.totalprice} onChange={val => this.state.booking.totalprice = val.target.value} /></div>
+                        <div className="col-sm-2">
+                            <select defaultValue={this.props.booking.depositpaid} onChange={val => this.state.depositpaid = val.target.value}>
+                                <option value="false">false</option>
+                                <option value="true">true</option>
+                            </select>
+                        </div>
+                        <div className="col-sm-2"><DatePicker selected={moment(this.state.booking.bookingdates.checkin)} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
+                        <div className="col-sm-2"><DatePicker selected={moment(this.state.booking.bookingdates.checkout)} onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
+                        <div className="col-sm-1">
+                            <span className="glyphicon glyphicon-ok confirmBookingEdit" onClick={this.doEdit} style={{paddingRight : 10 + "px"}}></span>
+                            <span className="glyphicon glyphicon-remove exitBookingEdit" onClick={this.disableEdit}></span>
+                        </div>
+                    </div>
+        } else {
+            booking = <div>
+                        <div className="col-sm-2"><p>{this.props.booking.firstname}</p></div>
+                        <div className="col-sm-2"><p>{this.props.booking.lastname}</p></div>
+                        <div className="col-sm-1"><p>{this.props.booking.totalprice}</p></div>
+                        <div className="col-sm-2"><p>{String(this.props.booking.depositpaid)}</p></div>
+                        <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkin.split('T')[0]}</p></div>
+                        <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkout.split('T')[0]}</p></div>
+                        {buttons}
+                      </div>
+        }
+
         return(
-            <div className="row detail">
-                <div className="col-sm-2"><p>{this.props.firstname}</p></div>
-                <div className="col-sm-2"><p>{this.props.lastname}</p></div>
-                <div className="col-sm-1"><p>{this.props.totalprice}</p></div>
-                <div className="col-sm-2"><p>{String(this.props.depositpaid)}</p></div>
-                <div className="col-sm-2"><p>{this.props.bookingdates.checkin.split('T')[0]}</p></div>
-                <div className="col-sm-2"><p>{this.props.bookingdates.checkout.split('T')[0]}</p></div>
-                {buttons}
+            <div className="row detal">
+                {booking}
             </div>
         )
     }
