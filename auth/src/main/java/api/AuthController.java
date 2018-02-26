@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class AuthController {
 
-//    @RequestMapping(value = "/ping", method = RequestMethod.GET)
-//    public ResponseEntity sendHeartbeat(){
-//        return ResponseEntity.status(HttpStatus.OK).build();
-//    }
-
     @CrossOrigin()
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<Token> createToken(@RequestBody Auth auth) {
