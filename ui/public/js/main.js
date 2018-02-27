@@ -44507,6 +44507,7 @@ var HotelDetails = function (_React$Component) {
                 return res.json();
             }).then(function (res) {
                 _this3.setState({ details: res });
+                _this3.setState({ editHotel: res });
             }).catch(function (e) {
                 return console.log(e);
             });
@@ -44538,8 +44539,8 @@ var HotelDetails = function (_React$Component) {
                             _react2.default.createElement('input', { type: 'text', defaultValue: this.state.details.name, style: { width: "90%" }, onChange: function onChange(val) {
                                     return _this4.state.editHotel.name = val.target.value;
                                 } }),
-                            _react2.default.createElement('span', { className: 'glyphicon glyphicon-ok confirmHotelEdit', onClick: this.doEdit, style: { fontSize: 0.5 + "em" } }),
-                            _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove exitHotelEdit', onClick: this.disableEdit, style: { fontSize: 0.5 + "em" } })
+                            _react2.default.createElement('span', { className: 'glyphicon glyphicon-ok confirmHotelEdit', onClick: this.doEdit, style: { paddingLeft: 10 + "px", fontSize: 0.5 + "em" } }),
+                            _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove exitHotelEdit', onClick: this.disableEdit, style: { paddingLeft: 10 + "px", fontSize: 0.5 + "em" } })
                         ),
                         _react2.default.createElement(
                             'p',

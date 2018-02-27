@@ -71,6 +71,7 @@ export default class HotelDetails extends React.Component {
         .then(res => res.json())
         .then(res => {
             this.setState({details : res})
+            this.setState({editHotel : res})
         })
         .catch(e => console.log(e));
     }
@@ -89,8 +90,8 @@ export default class HotelDetails extends React.Component {
             hotelSummary =  <div className="row">
                                 <div className="col-sm-6">
                                     <h2><input type="text" defaultValue={this.state.details.name} style={{width: "90%"}} onChange={val => this.state.editHotel.name = val.target.value} />
-                                        <span className="glyphicon glyphicon-ok confirmHotelEdit" onClick={this.doEdit} style={{fontSize: 0.5 + "em"}}></span>
-                                        <span className="glyphicon glyphicon-remove exitHotelEdit" onClick={this.disableEdit} style={{fontSize: 0.5 + "em"}}></span>
+                                        <span className="glyphicon glyphicon-ok confirmHotelEdit" onClick={this.doEdit} style={{paddingLeft: 10 + "px", fontSize: 0.5 + "em"}}></span>
+                                        <span className="glyphicon glyphicon-remove exitHotelEdit" onClick={this.disableEdit} style={{paddingLeft: 10 + "px", fontSize: 0.5 + "em"}}></span>
                                     </h2>
                                     <p>Address: <input type="text" defaultValue={this.state.details.address} onChange={val => this.state.editHotel.address = val.target.value} /></p>
                                     <p>Registration date: <span>{this.state.details.regdate.split('T')[0]}</span></p>
