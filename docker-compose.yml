@@ -1,5 +1,16 @@
-version: '2'
+version: '3.4'
 services:
+  mysql:
+    image: mysql
+    command: mysqld --character-set-server=latin1 --collation-server=latin1_swedish_ci
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./db/:/docker-entrypoint-initdb.d
+    networks:
+      - rbpnetwork
   db:
     image: mongo
     ports:
@@ -11,40 +22,43 @@ services:
       - "3004:3004"
       - "9004:9004"
     restart: always
+    networks:
+      - rbpnetwork
   search:
     build: ./search
     ports:
       - "3002:3002"
       - "9002:9002"
-    links:
-      - "db:database"
+    networks:
+      - rbpnetwork
     restart: always
   booking:
-    build: ./booking
+    build: 
+      context: ./new-booking
+      network: restfulbookerplatform_rbpnetwork
     ports:
       - "3000:3000"
       - "9000:9000"
-    links:
-      - "db:database"
-      - "auth:auth"
     restart: always
+    networks: 
+      - rbpnetwork
   hotel:
     build: ./hotel
     ports:
       - "3001:3001"
       - "9001:9001"
-    links:
-      - "db:database"
-      - "auth:auth"
-      - "search:search"
+    networks:
+      - rbpnetwork
     restart: always
   ui:
     build: ./ui
     ports:
       - "3003:3003"
       - "9003:9003"
-    links:
-      - "hotel:hotel"
-      - "search:search"
-      - "auth:auth"
+    networks:
+      - rbpnetwork
     restart: always
+
+networks:
+  rbpnetwork:
+    driver: bridge
