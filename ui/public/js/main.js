@@ -43457,7 +43457,7 @@ var HotelListing = function (_React$Component) {
                 method: 'DELETE',
                 credentials: 'include'
             }).then(function (res) {
-                if (res.status == 201) {
+                if (res.status == 202) {
                     _this2.props.updateHotels();
                 }
             });
@@ -44894,7 +44894,7 @@ var BookingListing = function (_React$Component) {
                 method: 'DELETE',
                 credentials: 'include'
             }).then(function (res) {
-                if (res.status == 201) {
+                if (res.status == 202) {
                     _this2.props.fetchHotelDetails();
                 }
             }).catch(function (e) {
@@ -44928,7 +44928,7 @@ var BookingListing = function (_React$Component) {
                 return res.json();
             }).then(function (res) {
                 _this3.setState({ allowEdit: false });
-                _this3.fetchHotelDetails();
+                _this3.props.fetchHotelDetails();
             }).catch(function (e) {
                 return console.log(e);
             });

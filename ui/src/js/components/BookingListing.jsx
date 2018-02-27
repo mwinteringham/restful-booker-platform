@@ -32,7 +32,7 @@ export default class BookingListing extends React.Component {
 			credentials: 'include',
         })
         .then(res => {
-            if(res.status == 201){
+            if(res.status == 202){
                 this.props.fetchHotelDetails();
             }
         })
@@ -60,7 +60,7 @@ export default class BookingListing extends React.Component {
         .then(res => res.json())
         .then(res => {
             this.setState({allowEdit : false});
-            this.fetchHotelDetails();
+            this.props.fetchHotelDetails();
         })
         .catch(e => console.log(e));
     }

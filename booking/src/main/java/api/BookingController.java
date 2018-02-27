@@ -1,13 +1,12 @@
 package api;
 
-import Requests.Auth;
 import db.BookingDB;
 import model.Booking;
 import model.CreatedBooking;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
+import requests.Auth;
 
 import java.sql.SQLException;
 
@@ -21,7 +20,6 @@ public class BookingController {
     }
 
     @CrossOrigin
-    @ExceptionHandler(HttpClientErrorException.class)
     @RequestMapping(value = "/booking", method = RequestMethod.POST)
     public ResponseEntity<CreatedBooking> createBooking(@RequestBody Booking booking, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(Auth.postCheckAuth(token)){
@@ -39,6 +37,7 @@ public class BookingController {
         return bookingDB.query(id);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/booking/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteBooking(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(Auth.postCheckAuth(token)){
@@ -52,6 +51,7 @@ public class BookingController {
         }
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/booking/{id}", method = RequestMethod.PUT)
     public ResponseEntity<CreatedBooking> updateBooking(@RequestBody Booking booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(Auth.postCheckAuth(token)){

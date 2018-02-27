@@ -16,7 +16,7 @@ export default class HotelListing extends React.Component {
             credentials: 'include'
         })
         .then(res => {
-            if(res.status == 201){
+            if(res.status == 202){
                 this.props.updateHotels();
             }
         })

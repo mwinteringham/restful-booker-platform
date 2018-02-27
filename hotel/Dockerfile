@@ -1,11 +1,16 @@
-FROM node:5
+FROM maven:3.5.2-jdk-8-alpine
 
-ADD . /usr/local/hotel
+ADD . /usr/local/auth
 
-WORKDIR /usr/local/hotel
+WORKDIR /usr/local/auth
 
-RUN npm install
-RUN npm install frontail -g
-RUN touch hotel.log
+COPY src ./
+COPY pom.xml ./
 
-ENTRYPOINT sleep 5 && npm start & frontail -t dark -p 9001 hotel.log
+ENV authDomain=auth
+ENV mysqlDomain=mysql
+ENV searchDomain=search
+
+RUN mvn clean package
+
+ENTRYPOINT java -jar target/restful-booker-platform-hotel-1.0-SNAPSHOT.jar -D
