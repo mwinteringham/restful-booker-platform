@@ -1,0 +1,12 @@
+{
+  "request" : {
+    "method" : "POST",
+    "path" : "/hotel",
+    "parameters" : ["name", "address", "regdate", "contactName", "contactPhone", "contactEmail"]
+  },
+  "sql" : {
+    "database" : "mysql",
+    "query" : "INSERT INTO HOTELS (name, address, regdate, contactName, contactPhone, contactEmail) VALUE (${name}, ${address}, ${regdate}, ${contactName}, ${contactPhone}, ${contactEmail})"
+  }
+}
+

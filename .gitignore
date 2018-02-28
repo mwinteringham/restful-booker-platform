@@ -2,3 +2,10 @@
 **/.DS_Store
 **/npm-debug.log
 *.log
+
+# IntelliJ
+.idea
+*.iml
+
+# Java
+target/

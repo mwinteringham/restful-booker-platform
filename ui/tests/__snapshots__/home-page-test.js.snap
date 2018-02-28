@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hotels list component 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Hotel name
+      </p>
+    </div>
+    <div
+      className="col-sm-3 rowHeader"
+    >
+      <p>
+        Address
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Owner
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Phone number
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Email
+      </p>
+    </div>
+    <div
+      className="col-sm-1"
+    />
+  </div>
+  <div
+    key="1"
+  >
+    <Hotel
+      details={
+        Object {
+          "address": "123 The Street",
+          "contact": Object {
+            "email": "mark@hilton.com",
+            "name": "Mark Winteringham",
+            "phone": "07411222473",
+          },
+          "hotelid": 1,
+          "name": "Hilton",
+          "regdate": "2018-02-20T22:47:38.176Z",
+        }
+      }
+    />
+  </div>
+</div>
+`;

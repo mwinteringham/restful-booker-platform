@@ -1,11 +1,15 @@
-FROM node:5
+FROM maven:3.5.2-jdk-8-alpine
 
-ADD . /usr/local/search
+ADD . /usr/local/auth
 
-WORKDIR /usr/local/search
+WORKDIR /usr/local/auth
 
-RUN npm install
-RUN npm install frontail -g
-RUN touch search.log
+COPY src ./
+COPY pom.xml ./
 
-ENTRYPOINT sleep 5 && npm start & frontail -t dark -p 9002 search.log
+ENV authDomain=auth
+ENV mysqlDomain=mysql
+
+RUN mvn clean package
+
+ENTRYPOINT java -jar target/restful-booker-platform-search-1.0-SNAPSHOT.jar -D
