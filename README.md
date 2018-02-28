@@ -1,5 +1,5 @@
 # restful-booker-platform
-A platform of multiple node based web services for training others on how to explore and test web service platforms
+A platform of web services that form a Hotel booking system for training others on how to explore and test web service platforms as well as strategise and implement automation in testing strategies.
 
 ## Requirements
 RBP is currently known to work with the following requirements:
