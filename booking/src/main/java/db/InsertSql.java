@@ -16,7 +16,7 @@ public class InsertSql {
     private Date checkout;
     private SimpleDateFormat dateFormat;
 
-    InsertSql(Booking booking) {
+    public InsertSql(Booking booking) {
         this.hotelid = booking.getHotelid();
         this.firstname = booking.getFirstname();
         this.lastname = booking.getLastname();
