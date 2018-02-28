@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
     render() {
       return(<footer className="footer">
                 <div className="container">
-                    <p className="text-muted">restful-booker-platform v1.0 - Created by Mark Winteringham - &copy; 2016</p>
+                    <p className="text-muted">restful-booker-platform v2.0 - Created by <a href="http://www.mwtestconsultancy.co.uk">Mark Winteringham</a> - &copy; 2018</p>
                 </div>
             </footer>);
     }

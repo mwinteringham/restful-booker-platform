@@ -7007,7 +7007,13 @@ var Footer = function (_React$Component) {
                     _react2.default.createElement(
                         "p",
                         { className: "text-muted" },
-                        "restful-booker-platform v1.0 - Created by Mark Winteringham - \xA9 2016"
+                        "restful-booker-platform v2.0 - Created by ",
+                        _react2.default.createElement(
+                            "a",
+                            { href: "http://www.mwtestconsultancy.co.uk" },
+                            "Mark Winteringham"
+                        ),
+                        " - \xA9 2018"
                     )
                 )
             );
