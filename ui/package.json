@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "jest --watch",
-    "start": "webpack && NODE_ENV=production node ./bin/www > ui.log",
-    "build": "webpack"
+    "start": "webpack && NODE_ENV=production node ./bin/www > ui.log"
   },
   "repository": {
     "type": "git",
