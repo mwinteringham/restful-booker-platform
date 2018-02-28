@@ -1,5 +1,5 @@
 import React from 'react';
-import Hotels from '../src/js/components/Hotels.jsx';
+import HotelListings from '../src/js/components/HotelListings.jsx';
 
 test('Hotels list component', () => {
     const hotelPayload = {
@@ -15,7 +15,7 @@ test('Hotels list component', () => {
     }
 
     const hotels = shallow(
-        <Hotels />
+        <HotelListings />
     );
 
     hotels.setState({hotels : [hotelPayload]});

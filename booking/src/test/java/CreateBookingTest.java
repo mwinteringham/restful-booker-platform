@@ -24,7 +24,7 @@ public class CreateBookingTest {
 
         InsertSql insertSql = new InsertSql(booking);
         String sqlStatement = insertSql.buildSql();
-        
+
         assertThat(sqlStatement, is("INSERT INTO BOOKINGS(hotelid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(1,'Mark','Winteringham',100,true,'2013-01-31','2013-01-31');"));
     }
 
