@@ -9,8 +9,6 @@ import java.util.Collections;
 
 public class Auth {
 
-    final static String uri = "http://" + System.getenv("authDomain") + ":3004/validate";
-
     public static boolean postCheckAuth(String tokenValue){
         Token token = new Token(tokenValue);
 
@@ -23,7 +21,7 @@ public class Auth {
         HttpEntity<Token> httpEntity = new HttpEntity<Token>(token, requestHeaders);
 
         try{
-            ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(getUrl(), HttpMethod.POST, httpEntity, String.class);
             if(response.getStatusCodeValue() == 200){
                 return true;
             } else {
@@ -32,6 +30,18 @@ public class Auth {
         } catch (HttpClientErrorException e){
             return false;
         }
+    }
+
+    private static String getUrl() {
+        String host = "";
+
+        if(System.getenv("authDomain") == null){
+            host = "localhost";
+        } else {
+            host = System.getenv("authDomain");
+        }
+
+        return "http://" + host + ":3004/validate";
     }
 
 }

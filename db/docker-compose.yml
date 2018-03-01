@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  mysql:
+    image: mysql
+    command: mysqld --character-set-server=latin1 --collation-server=latin1_swedish_ci
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./:/docker-entrypoint-initdb.d
+    networks:
+      - rbpnetwork
+
+networks:
+  rbpnetwork:
+    driver: bridge

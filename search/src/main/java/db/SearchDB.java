@@ -15,7 +15,15 @@ public class SearchDB {
     private Connection connection;
 
     public SearchDB() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://" + System.getenv("mysqlDomain") + ":3306/rbp?user=root&password=password");
+        String host;
+
+        if(System.getenv("mysqlDomain") == null){
+            host = "localhost";
+        } else {
+            host = System.getenv("mysqlDomain");
+        }
+
+        connection = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/rbp?user=root&password=password");
     }
 
 
