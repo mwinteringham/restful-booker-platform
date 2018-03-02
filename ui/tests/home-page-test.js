@@ -22,3 +22,9 @@ test('Hotels list component', () => {
 
     expect(hotels).toMatchSnapshot();
 });
+
+// Check suggestions...
+//
+// Check creation of components are consistent
+// Check state changes in components that use isAuthorised
+// Check BookingListings populates with BookingListing components

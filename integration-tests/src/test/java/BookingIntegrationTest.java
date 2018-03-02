@@ -94,4 +94,11 @@ public class BookingIntegrationTest {
         assertThat(response.getBooking().getBookingDates().getCheckout().toString(), is("Fri Feb 02 00:00:00 GMT 2018"));
     }
 
+
+//    ...Integration check suggestions
+//
+//    Check each service integrates and read / writes to the MySQL service
+//    Check each service integrates with the Auth web service
+//    Check hotel and booking services integrate with one another
+
 }
