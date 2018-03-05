@@ -19,7 +19,7 @@ RBP is currently known to work with the following requirements:
 ### Production
 You will require Docker and Docker-compose to run RBP in production mode (as in none of the APIs running standalone). The following steps will guide you to getting setup:
 
-1. Clone the repo
+1. Clone/Download the repository
 2. Navigate into the restful-booker-platform root folder
 3. Run ```docker-compose build``` to generate images
 4. Run ```docker-compose up``` to start the platform
