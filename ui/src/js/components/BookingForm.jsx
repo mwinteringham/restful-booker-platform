@@ -31,7 +31,6 @@ export default class BookingForm extends React.Component {
     }
 
     handleStartChange(date) {
-        console.log(date)
         this.setState({
             bookingdates: {
                 checkin : date,
@@ -67,7 +66,12 @@ export default class BookingForm extends React.Component {
                 document.getElementById("lastname").value = '';
                 document.getElementById("totalprice").value = '';
                 document.getElementById("depositpaid").value = 'false';
+                
                 this.setState({
+                    firstname: "",
+                    lastname: "",
+                    totalprice: "",
+                    depositpaid: "",
                     bookingdates: {
                         checkin : moment(),
                         checkout : moment()
