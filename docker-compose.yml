@@ -9,23 +9,15 @@ services:
       MYSQL_ROOT_PASSWORD: password
     volumes:
       - ./db/:/docker-entrypoint-initdb.d
-    networks:
-      - rbpnetwork
   auth:
     build: ./auth
     ports:
       - "3004:3004"
-      - "9004:9004"
     restart: always
-    networks:
-      - rbpnetwork
   search:
     build: ./search
     ports:
       - "3002:3002"
-      - "9002:9002"
-    networks:
-      - rbpnetwork
     restart: always
   booking:
     build: 
@@ -33,27 +25,15 @@ services:
       network: restfulbookerplatform_rbpnetwork
     ports:
       - "3000:3000"
-      - "9000:9000"
     restart: always
-    networks: 
-      - rbpnetwork
   hotel:
     build: ./hotel
     ports:
       - "3001:3001"
-      - "9001:9001"
-    networks:
-      - rbpnetwork
     restart: always
   ui:
     build: ./ui
     ports:
       - "3003:3003"
       - "9003:9003"
-    networks:
-      - rbpnetwork
     restart: always
-
-networks:
-  rbpnetwork:
-    driver: bridge
