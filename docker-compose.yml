@@ -22,7 +22,6 @@ services:
   booking:
     build: 
       context: ./booking
-      network: restfulbookerplatform_rbpnetwork
     ports:
       - "3000:3000"
     restart: always
