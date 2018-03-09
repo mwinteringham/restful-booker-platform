@@ -152,7 +152,6 @@ export default class BookingForm extends React.Component {
 
         if(Object.keys(this.state.errors).length > 0){
             errors = <div className="alert alert-danger" style={{marginTop : 15 + "px"}}>
-                    <button type="button" className="close" data-dismiss="alert">&times;</button>
                     {Object.keys(this.state.errors).map((key, index) => {
                         return this.state.errors[key].map((value, index) => {
                             return <p key={index}>{value}</p>

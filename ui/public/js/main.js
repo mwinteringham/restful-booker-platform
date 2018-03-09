@@ -44721,9 +44721,9 @@ var constraints = {
             minimum: 1
         },
         format: {
-            pattern: "[a-z0-9]+",
+            pattern: "[ A-Za-z0-9]+",
             flags: "i",
-            message: "can only contain a-z and 0-9"
+            message: "can only contain A-Z, a-z and 0-9"
         }
     },
     address: {
@@ -44733,9 +44733,9 @@ var constraints = {
             minimum: 1
         },
         format: {
-            pattern: "[ a-z0-9]+",
+            pattern: "[ A-Za-z0-9]+",
             flags: "i",
-            message: "can only contain a-z and 0-9"
+            message: "can only contain A-Z, a-z and 0-9"
         }
     },
     "contact.name": {
@@ -44845,11 +44845,6 @@ var HotelForm = function (_React$Component) {
                 errors = _react2.default.createElement(
                     'div',
                     { className: 'alert alert-danger', style: { marginTop: 15 + "px" } },
-                    _react2.default.createElement(
-                        'button',
-                        { type: 'button', className: 'close', 'data-dismiss': 'alert' },
-                        '\xD7'
-                    ),
                     Object.keys(this.state.errors).map(function (key, index) {
                         return _this3.state.errors[key].map(function (value, index) {
                             return _react2.default.createElement(
