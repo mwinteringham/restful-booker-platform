@@ -9,9 +9,9 @@ const constraints = {
             minimum: 1
         },
         format: {
-            pattern: "[ a-z0-9]+",
+            pattern: "[ A-Za-z0-9]+",
             flags: "i",
-            message: "can only contain a-z and 0-9"
+            message: "can only contain A-Z, a-z and 0-9"
         }
     },
     address : {
@@ -21,9 +21,9 @@ const constraints = {
             minimum: 1
         },
         format: {
-            pattern: "[ a-z0-9]+",
+            pattern: "[ A-Za-z0-9]+",
             flags: "i",
-            message: "can only contain a-z and 0-9"
+            message: "can only contain A-Z, a-z and 0-9"
         }
     },
     "contact.name": {
