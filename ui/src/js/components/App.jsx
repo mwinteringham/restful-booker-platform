@@ -5,6 +5,7 @@ import Search from './Search.jsx';
 import Footer from './Footer.jsx';
 import Nav from './Nav.jsx';
 import HotelDetails from './HotelDetails.jsx';
+import Report from './Report.jsx';
 import Cookies from 'universal-cookie';
 
 export default class App extends React.Component {
@@ -48,11 +49,12 @@ export default class App extends React.Component {
           <div className="container">
             <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
             <Switch>
-              <Route exact path='/' render={(props) => <HotelListings isAuthenticated={this.state.isAuthenticated} {...props} />} />
-              <Route exact path='/search' component={Search} {...this.props}/>
-							<Route exact path="/hotel/:id" render={({ location, match }) => (
-									<HotelDetails isAuthenticated={this.state.isAuthenticated} params={match.params}/>
-							)} />
+				<Route exact path='/' render={(props) => <HotelListings isAuthenticated={this.state.isAuthenticated} {...props} />} />
+				<Route exact path='/search' component={Search} {...this.props}/>
+				<Route exact path='/hotel/:id' render={({ location, match }) => (
+						<HotelDetails isAuthenticated={this.state.isAuthenticated} params={match.params}/>
+				)} />
+				<Route exact path='/report' component={Report} />
             </Switch>
           </div>
       );

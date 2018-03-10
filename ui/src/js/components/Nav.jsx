@@ -90,7 +90,8 @@ class Nav extends React.Component {
 					<a className="navbar-brand" href="/">Hotel Management Platform</a> 
 					</div> 
 					<ul className="nav navbar-nav"> 
-					<li><Link to="/">Home</Link></li> 
+					<li><Link to="/">Home</Link></li>
+					<li><Link to="/report">Report</Link></li> 
 					{loginState}
 					<li><a href="#">Search:</a></li> 
 					<li><input type="text" id="search" defaultValue={this.props.location.search.split('=')[1]} onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 

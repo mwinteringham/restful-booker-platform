@@ -30,6 +30,11 @@ services:
     ports:
       - "3001:3001"
     restart: always
+  report:
+    build: ./report
+    ports:
+      - "3005:3005"
+    restart: always
   ui:
     build: ./ui
     ports:
