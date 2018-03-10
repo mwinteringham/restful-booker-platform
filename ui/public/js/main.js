@@ -50514,13 +50514,14 @@ var BookingForm = function (_React$Component) {
 
                         _this2.setState({
                             newbooking: {
+                                hotelid: _this2.props.hotelid,
                                 firstname: "",
                                 lastname: "",
                                 totalprice: "",
                                 depositpaid: "false",
                                 bookingdates: {
-                                    checkin: (0, _moment2.default)(),
-                                    checkout: (0, _moment2.default)()
+                                    checkin: (0, _moment2.default)().format("YYYY-MM-DD"),
+                                    checkout: (0, _moment2.default)().format("YYYY-MM-DD")
                                 }
                             },
                             errors: {}

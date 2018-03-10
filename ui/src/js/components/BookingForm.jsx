@@ -130,13 +130,14 @@ export default class BookingForm extends React.Component {
 
                     this.setState({
                         newbooking: {
+                            hotelid : this.props.hotelid,
                             firstname: "",
                             lastname: "",
                             totalprice: "",
                             depositpaid: "false",
                             bookingdates: {
-                                checkin : moment(),
-                                checkout : moment()
+                                checkin : moment().format("YYYY-MM-DD"),
+                                checkout : moment().format("YYYY-MM-DD")
                             }
                         },
                         errors : {}
