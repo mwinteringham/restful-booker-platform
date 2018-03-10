@@ -11,6 +11,7 @@
         <module>hotel</module>
         <module>search</module>
         <module>ui</module>
+        <module>report</module>
         <module>integration-tests</module>
     </modules>
 </project>
