@@ -12,7 +12,7 @@ public class BookingApi {
 
     public static Response postBooking(String token, Booking payload){
         // We are using RestAssured to set the Content Type, the Cookie
-        // add the payload before sending a POST http request to the
+        // and the payload before sending a POST http request to the
         // Booking endpoint
         return given()
                 .cookie("token", token)
@@ -22,4 +22,11 @@ public class BookingApi {
                 .post(baseUrl + "/booking");
     }
 
+    public static Response getBooking(int identifier) {
+        // We are using RestAssured to GET a specific booking;
+
+        return given()
+                .get(baseUrl + "/booking/" + Integer.toString(identifier));
+
+    }
 }

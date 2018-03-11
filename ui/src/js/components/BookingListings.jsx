@@ -5,10 +5,6 @@ export default class BookingListings extends React.Component {
 
     constructor(){
         super();
-
-        this.state = {
-            bookings : [],
-        };
     }
 
     render(){

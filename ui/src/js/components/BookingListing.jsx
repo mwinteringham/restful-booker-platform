@@ -94,7 +94,7 @@ export default class BookingListing extends React.Component {
         if(this.props.isAuthenticated){
             buttons = <div className="col-sm-1">
                         <span className="glyphicon glyphicon-pencil bookingEdit" onClick={this.enableEdit} style={{paddingRight: 10 + "px"}}></span>
-                        <span className="glyphicon glyphicon-trash bookingDelete" onClick={this.doDelete} id="{{bookingid}}"></span>
+                        <span className="glyphicon glyphicon-trash bookingDelete" onClick={this.doDelete}></span>
                       </div>
         } else {
             buttons = <div className="col-sm-1"></div>
@@ -132,7 +132,7 @@ export default class BookingListing extends React.Component {
         }
 
         return(
-            <div className="row detal">
+            <div className={"row detail booking-" + this.props.booking.hotelid}>
                 {booking}
             </div>
         )
