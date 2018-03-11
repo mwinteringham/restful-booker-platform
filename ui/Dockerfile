@@ -1,11 +1,10 @@
 FROM node:9
 
-ADD . /usr/local/ui
+ADD ./ /usr/local/ui
 
 WORKDIR /usr/local/ui
 
 RUN npm install
-RUN npm rebuild node-sass --force
 RUN npm install frontail -g
 RUN touch ui.log
 
