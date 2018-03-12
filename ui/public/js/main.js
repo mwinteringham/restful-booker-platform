@@ -46335,12 +46335,7 @@ var BookingListings = function (_React$Component) {
     function BookingListings() {
         _classCallCheck(this, BookingListings);
 
-        var _this = _possibleConstructorReturn(this, (BookingListings.__proto__ || Object.getPrototypeOf(BookingListings)).call(this));
-
-        _this.state = {
-            bookings: []
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (BookingListings.__proto__ || Object.getPrototypeOf(BookingListings)).call(this));
     }
 
     _createClass(BookingListings, [{
@@ -46514,7 +46509,7 @@ var BookingListing = function (_React$Component) {
                     'div',
                     { className: 'col-sm-1' },
                     _react2.default.createElement('span', { className: 'glyphicon glyphicon-pencil bookingEdit', onClick: this.enableEdit, style: { paddingRight: 10 + "px" } }),
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-trash bookingDelete', onClick: this.doDelete, id: '{{bookingid}}' })
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-trash bookingDelete', onClick: this.doDelete })
                 );
             } else {
                 buttons = _react2.default.createElement('div', { className: 'col-sm-1' });
@@ -46647,7 +46642,7 @@ var BookingListing = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'row detal' },
+                { className: "row detail booking-" + this.props.booking.hotelid },
                 booking
             );
         }
