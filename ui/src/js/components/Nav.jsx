@@ -78,9 +78,9 @@ class Nav extends React.Component {
 	render() {
 		let loginState = null;
 		if(this.props.isAuthenticated){
-			loginState = <li><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
+			loginState = <li id="logout"><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
 		} else {
-			loginState = <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+			loginState = <li id="login"><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
 		}
 
     	return(
@@ -97,7 +97,7 @@ class Nav extends React.Component {
 					<li><input type="text" id="search" defaultValue={this.props.location.search.split('=')[1]} onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 
 					</ul> 
 				</div> 
-				<div id="myModal" className="modal fade" role="dialog"> 
+				<div id="loginModal" className="modal fade" role="dialog">
 					<div className="modal-dialog"> 
 					<div className="modal-content"> 
 						<div className="modal-header"> 

@@ -44780,7 +44780,7 @@ var HotelListing = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'row detail' },
+                { id: "hotel" + this.props.details.hotelid, className: 'row detail' },
                 _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: "/hotel/" + this.props.details.hotelid },

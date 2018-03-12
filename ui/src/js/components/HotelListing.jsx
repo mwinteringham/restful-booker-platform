@@ -29,13 +29,13 @@ export default class HotelListing extends React.Component {
         }
 
         return(
-            <div className="row detail">
+            <div data-type="hotel" id={"hotel"+ this.props.details.hotelid} className="row detail">
                 <Link to={"/hotel/" + this.props.details.hotelid}>
-                    <div className="col-sm-2"><p>{this.props.details.name}</p></div>
-                    <div className="col-sm-3"><p>{this.props.details.address}</p></div>
-                    <div className="col-sm-2"><p>{this.props.details.contact.name}</p></div>
-                    <div className="col-sm-2"><p>{this.props.details.contact.phone}</p></div>
-                    <div className="col-sm-2"><p>{this.props.details.contact.email}</p></div>
+                    <div className="col-sm-2"><p id={"hotelname"+ this.props.details.hotelid}>{this.props.details.name}</p></div>
+                    <div className="col-sm-3"><p id={"hoteladdress"+ this.props.details.hotelid}>{this.props.details.address}</p></div>
+                    <div className="col-sm-2"><p id={"hotelowner"+ this.props.details.hotelid}>{this.props.details.contact.name}</p></div>
+                    <div className="col-sm-2"><p id={"hotelphone"+ this.props.details.hotelid}>{this.props.details.contact.phone}</p></div>
+                    <div className="col-sm-2"><p id={"hotelemail"+ this.props.details.hotelid}>{this.props.details.contact.email}</p></div>
                 </Link>
                 <div className="col-sm-1">{deleteHotel}</div>
             </div>
