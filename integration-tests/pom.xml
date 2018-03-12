@@ -20,35 +20,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>com.dkanejs.maven.plugins</groupId>
-                <artifactId>docker-compose-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <executions>
-                    <execution>
-                        <id>up</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>up</goal>
-                        </goals>
-                        <configuration>
-                            <composeFile>${project.basedir}/../db/docker-compose.yml</composeFile>
-                            <detachedMode>true</detachedMode>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>down</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>down</goal>
-                        </goals>
-                        <configuration>
-                            <composeFile>${project.basedir}/../db/docker-compose.yml</composeFile>
-                            <removeVolumes>true</removeVolumes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>

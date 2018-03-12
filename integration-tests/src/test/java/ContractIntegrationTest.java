@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class ContractTest {
+public class ContractIntegrationTest {
 
     // We need to ensure that our API is up and running so we will
     // create an ApplicationContexts to startup and teardown
@@ -28,6 +28,7 @@ public class ContractTest {
     public void setup(){
         // First we start up the Booking API. By importing the BookingApplication
         // class from the Booking module to run.
+        System.setProperty("server.port", "3000");
         bookingApp = SpringApplication.run(BookingApplication.class);
     }
 

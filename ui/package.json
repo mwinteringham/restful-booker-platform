@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "start": "webpack && node ./bin/www > ui.log"
+    "build": "webpack",
+    "start": "node ./bin/www > ui.log"
   },
   "repository": {
     "type": "git",
