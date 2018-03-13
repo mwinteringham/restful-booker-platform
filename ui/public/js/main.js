@@ -44780,7 +44780,7 @@ var HotelListing = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { id: "hotel" + this.props.details.hotelid, className: 'row detail' },
+                { 'data-type': 'hotel', id: "hotel" + this.props.details.hotelid, className: 'row detail' },
                 _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: "/hotel/" + this.props.details.hotelid },
@@ -44789,7 +44789,7 @@ var HotelListing = function (_React$Component) {
                         { className: 'col-sm-2' },
                         _react2.default.createElement(
                             'p',
-                            null,
+                            { id: "hotelname" + this.props.details.hotelid },
                             this.props.details.name
                         )
                     ),
@@ -44798,7 +44798,7 @@ var HotelListing = function (_React$Component) {
                         { className: 'col-sm-3' },
                         _react2.default.createElement(
                             'p',
-                            null,
+                            { id: "hoteladdress" + this.props.details.hotelid },
                             this.props.details.address
                         )
                     ),
@@ -44807,7 +44807,7 @@ var HotelListing = function (_React$Component) {
                         { className: 'col-sm-2' },
                         _react2.default.createElement(
                             'p',
-                            null,
+                            { id: "hotelowner" + this.props.details.hotelid },
                             this.props.details.contact.name
                         )
                     ),
@@ -44816,7 +44816,7 @@ var HotelListing = function (_React$Component) {
                         { className: 'col-sm-2' },
                         _react2.default.createElement(
                             'p',
-                            null,
+                            { id: "hotelphone" + this.props.details.hotelid },
                             this.props.details.contact.phone
                         )
                     ),
@@ -44825,7 +44825,7 @@ var HotelListing = function (_React$Component) {
                         { className: 'col-sm-2' },
                         _react2.default.createElement(
                             'p',
-                            null,
+                            { id: "hotelemail" + this.props.details.hotelid },
                             this.props.details.contact.email
                         )
                     )
@@ -45398,7 +45398,7 @@ var Nav = function (_React$Component) {
 			if (this.props.isAuthenticated) {
 				loginState = _react2.default.createElement(
 					'li',
-					null,
+					{ id: 'logout' },
 					_react2.default.createElement(
 						'a',
 						{ href: '#', id: 'logout', onClick: this.doLogout },
@@ -45408,10 +45408,10 @@ var Nav = function (_React$Component) {
 			} else {
 				loginState = _react2.default.createElement(
 					'li',
-					null,
+					{ id: 'login' },
 					_react2.default.createElement(
 						'a',
-						{ href: '#', 'data-toggle': 'modal', 'data-target': '#myModal' },
+						{ href: '#', 'data-toggle': 'modal', 'data-target': '#loginModal' },
 						'Login'
 					)
 				);
@@ -45474,7 +45474,7 @@ var Nav = function (_React$Component) {
 				),
 				_react2.default.createElement(
 					'div',
-					{ id: 'myModal', className: 'modal fade', role: 'dialog' },
+					{ id: 'loginModal', className: 'modal fade', role: 'dialog' },
 					_react2.default.createElement(
 						'div',
 						{ className: 'modal-dialog' },
@@ -50822,13 +50822,7 @@ var Report = function (_React$Component) {
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
+                scaleShowLabels: true
             }
         };
         return _this;
@@ -50846,7 +50840,8 @@ var Report = function (_React$Component) {
                         labels: body.hotels,
                         datasets: [{
                             label: "Total price",
-                            data: body.totals
+                            data: body.totals,
+                            fillColor: ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
                         }]
                     }
                 });

@@ -11,13 +11,7 @@ export default class Report extends React.Component {
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
+                scaleShowLabels: true
             }
         }
     }
@@ -31,7 +25,8 @@ export default class Report extends React.Component {
                 datasets: [
                     {
                         label: "Total price",
-                        data: body.totals
+                        data: body.totals,
+                        fillColor: ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
                     }
                 ]
             }
