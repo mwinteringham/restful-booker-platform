@@ -77,14 +77,8 @@ export default class HotelDetails extends React.Component {
     }
 
     render(){
-        let editButton = null;
         let hotelSummary = null;
         let bookings = null;
-        let form = null;
-
-        if(this.props.isAuthenticated == true){
-            editButton = <span className="glyphicon glyphicon-pencil hotelEdit" onClick={this.enableEdit} style={{marginLeft: "5px", fontSize: 0.5 + "em"}} ></span>;
-        }
 
         if(this.state.edit == true){
             hotelSummary =  <div className="row">
@@ -108,7 +102,7 @@ export default class HotelDetails extends React.Component {
         } else {
             hotelSummary = <div className="row">
                                 <div className="col-sm-6">
-                                    <h2>{this.state.details.name}{editButton}</h2>
+                                    <h2>{this.state.details.name} <span className="glyphicon glyphicon-pencil hotelEdit" onClick={this.enableEdit} style={{marginLeft: "5px", fontSize: 0.5 + "em"}} ></span></h2>
                                     <p>Address: <span>{this.state.details.address}</span></p>
                                     <p>Registration date: <span>{this.state.details.regdate.split('T')[0]}</span></p>
                                 </div>
@@ -124,11 +118,7 @@ export default class HotelDetails extends React.Component {
         }
 
         if(this.state.details.bookings){
-            bookings = <BookingListings fetchHotelDetails={this.fetchHotelDetails} hotelid={this.props.params.id} bookings={this.state.details.bookings} isAuthenticated={this.props.isAuthenticated} />
-        }
-
-        if(this.props.isAuthenticated){
-            form = <Form fetchHotelDetails={this.fetchHotelDetails} hotelid={this.props.params.id}/>
+            bookings = <BookingListings fetchHotelDetails={this.fetchHotelDetails} hotelid={this.props.params.id} bookings={this.state.details.bookings} />
         }
 
         return(
@@ -148,7 +138,7 @@ export default class HotelDetails extends React.Component {
                     <div className="col-sm-1"></div>
                 </div>
                 {bookings}
-                {form}
+                <Form fetchHotelDetails={this.fetchHotelDetails} hotelid={this.props.params.id}/>
             </div>
         )
     }

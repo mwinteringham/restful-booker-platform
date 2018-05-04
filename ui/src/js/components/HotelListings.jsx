@@ -8,8 +8,8 @@ export default class HotelListings extends React.Component {
     constructor() {
         super();
 		this.state = {
-						hotels : []
-					};
+			hotels : []
+		};
 		
 		this.updateHotels = this.updateHotels.bind(this);
     }
@@ -30,13 +30,7 @@ export default class HotelListings extends React.Component {
 			});
 	}
 
-    render() {
-		let inputFields = null;
-		
-		if(this.props.isAuthenticated){
-			inputFields = <HotelForm updateHotels={this.updateHotels}/>
-		}
-	  
+    render() {	  
 		return(
 			<div>
 				<div className="row">
@@ -48,9 +42,9 @@ export default class HotelListings extends React.Component {
 					<div className="col-sm-1"></div>
 				</div>
 				{this.state.hotels.map((hotel, index) => {
-					return <div key={hotel.hotelid}><HotelListing details={hotel} updateHotels={this.updateHotels} isAuthenticated={this.props.isAuthenticated}/></div>
+					return <div key={hotel.hotelid}><HotelListing details={hotel} updateHotels={this.updateHotels} /></div>
 				})}
-				{inputFields}
+				<HotelForm updateHotels={this.updateHotels}/>
 			</div>
 		);
     }

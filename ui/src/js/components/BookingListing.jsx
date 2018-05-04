@@ -88,20 +88,9 @@ export default class BookingListing extends React.Component {
     }
 
     render(){
-        let buttons = null;
         let booking = null;
 
-        if(this.props.isAuthenticated){
-            buttons = <div className="col-sm-1">
-                        <span className="glyphicon glyphicon-pencil bookingEdit" onClick={this.enableEdit} style={{paddingRight: 10 + "px"}}></span>
-                        <span className="glyphicon glyphicon-trash bookingDelete" onClick={this.doDelete}></span>
-                      </div>
-        } else {
-            buttons = <div className="col-sm-1"></div>
-        }
-
         if(this.state.allowEdit){
-
             booking = <div>
                         <div className="col-sm-2"><input type="text" defaultValue={this.props.booking.firstname} onChange={val => this.state.booking.firstname = val.target.value} /></div>
                         <div className="col-sm-2"><input type="text" defaultValue={this.props.booking.lastname} onChange={val => this.state.booking.lastname = val.target.value} /></div>
@@ -127,7 +116,10 @@ export default class BookingListing extends React.Component {
                         <div className="col-sm-2"><p>{String(this.props.booking.depositpaid)}</p></div>
                         <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkin.split('T')[0]}</p></div>
                         <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkout.split('T')[0]}</p></div>
-                        {buttons}
+                        <div className="col-sm-1">
+                            <span className="glyphicon glyphicon-pencil bookingEdit" onClick={this.enableEdit} style={{paddingRight: 10 + "px"}}></span>
+                            <span className="glyphicon glyphicon-trash bookingDelete" onClick={this.doDelete}></span>
+                        </div>
                       </div>
         }
 

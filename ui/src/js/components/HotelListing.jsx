@@ -24,9 +24,6 @@ export default class HotelListing extends React.Component {
 
     render() {
         let deleteHotel = null;
-        if(this.props.isAuthenticated){
-            deleteHotel = <span className="glyphicon glyphicon-remove hotelDelete" id={this.props.details.hotelid} onClick={() => this.deleteBooking()}></span>
-        }
 
         return(
             <div data-type="hotel" id={"hotel"+ this.props.details.hotelid} className="row detail">
@@ -37,7 +34,9 @@ export default class HotelListing extends React.Component {
                     <div className="col-sm-2"><p id={"hotelphone"+ this.props.details.hotelid}>{this.props.details.contact.phone}</p></div>
                     <div className="col-sm-2"><p id={"hotelemail"+ this.props.details.hotelid}>{this.props.details.contact.email}</p></div>
                 </Link>
-                <div className="col-sm-1">{deleteHotel}</div>
+                <div className="col-sm-1">
+                    <span className="glyphicon glyphicon-remove hotelDelete" id={this.props.details.hotelid} onClick={() => this.deleteBooking()}></span>
+                </div>
             </div>
         );
     }

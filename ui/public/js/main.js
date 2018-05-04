@@ -1902,7 +1902,7 @@ function loadLocale(name) {
         try {
             oldLocale = globalLocale._abbr;
             var aliasedRequire = require;
-            __webpack_require__(223)("./" + name);
+            __webpack_require__(224)("./" + name);
             getSetGlobalLocale(oldLocale);
         } catch (e) {}
     }
@@ -4574,7 +4574,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(40)(module)))
 
 /***/ }),
 /* 1 */
@@ -5085,7 +5085,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(1);
-var createReactClass = __webpack_require__(238);
+var createReactClass = __webpack_require__(239);
 var ReactDOM = __webpack_require__(18);
 
 module.exports = {
@@ -5145,7 +5145,7 @@ module.exports = {
         };
 
         classData.initializeChart = function(nextProps) {
-            var Chart = __webpack_require__(240);
+            var Chart = __webpack_require__(241);
             var el = ReactDOM.findDOMNode(this);
             var ctx = el.getContext("2d");
             var chart = new Chart(ctx)[chartType](nextProps.data, nextProps.options || {});
@@ -5398,7 +5398,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(185);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HashRouter", function() { return __WEBPACK_IMPORTED_MODULE_1__HashRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(35);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(187);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__["a"]; });
@@ -5408,7 +5408,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_5__Prompt__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(195);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(36);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(21);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
@@ -5592,8 +5592,8 @@ var createPath = function createPath(location) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createLocation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return locationsAreEqual; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(14);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -5805,11 +5805,11 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(31);
+var _resolvePathname = __webpack_require__(32);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(32);
+var _valueEqual = __webpack_require__(33);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
@@ -6265,6 +6265,26 @@ var createTransitionManager = function createTransitionManager() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Cookies = __webpack_require__(215);
+
+var _Cookies2 = _interopRequireDefault(_Cookies);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Cookies2.default;
+module.exports = exports['default'];
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -6300,7 +6320,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6381,7 +6401,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6423,7 +6443,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6494,7 +6514,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6537,7 +6557,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6567,7 +6587,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6644,7 +6664,7 @@ function resolvePathname(to) {
 /* harmony default export */ __webpack_exports__["default"] = (resolvePathname);
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6689,7 +6709,7 @@ function valueEqual(a, b) {
 /* harmony default export */ __webpack_exports__["default"] = (valueEqual);
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6750,7 +6770,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6860,18 +6880,18 @@ Link.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Link);
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Route__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Route__ = __webpack_require__(37);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Route__["a" /* default */]);
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7020,7 +7040,7 @@ Route.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Route);
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7086,7 +7106,7 @@ var isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
 };
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {/*!
@@ -8270,16 +8290,16 @@ var isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
     }
   };
 
-  validate.exposeModule(validate, this, exports, module, __webpack_require__(40));
+  validate.exposeModule(validate, this, exports, module, __webpack_require__(41));
 }).call(this,
          true ? /* istanbul ignore next */ exports : null,
          true ? /* istanbul ignore next */ module : null,
-        __webpack_require__(40));
+        __webpack_require__(41));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(40)(module)))
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -8307,7 +8327,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -8316,7 +8336,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8380,26 +8400,6 @@ var Footer = function (_React$Component) {
 exports.default = Footer;
 
 /***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Cookies = __webpack_require__(215);
-
-var _Cookies2 = _interopRequireDefault(_Cookies);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Cookies2.default;
-module.exports = exports['default'];
-
-/***/ }),
 /* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8409,12 +8409,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_onclickoutside__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_onclickoutside__ = __webpack_require__(223);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_popper__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_popper__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_popper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_popper__);
 
 
@@ -23157,7 +23157,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(234);
+var	fixUrls = __webpack_require__(235);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -23498,13 +23498,13 @@ var _App = __webpack_require__(180);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _Footer = __webpack_require__(41);
+var _Footer = __webpack_require__(42);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
 var _reactRouterDom = __webpack_require__(12);
 
-__webpack_require__(247);
+__webpack_require__(248);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24926,7 +24926,7 @@ module.exports = react;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),l=__webpack_require__(25),B=__webpack_require__(7),C=__webpack_require__(6),ba=__webpack_require__(26),da=__webpack_require__(27),ea=__webpack_require__(28),fa=__webpack_require__(29),ia=__webpack_require__(30),D=__webpack_require__(10);
+var aa=__webpack_require__(1),l=__webpack_require__(26),B=__webpack_require__(7),C=__webpack_require__(6),ba=__webpack_require__(27),da=__webpack_require__(28),ea=__webpack_require__(29),fa=__webpack_require__(30),ia=__webpack_require__(31),D=__webpack_require__(10);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -25226,14 +25226,14 @@ if (process.env.NODE_ENV !== "production") {
 var React = __webpack_require__(1);
 var invariant = __webpack_require__(9);
 var warning = __webpack_require__(11);
-var ExecutionEnvironment = __webpack_require__(25);
+var ExecutionEnvironment = __webpack_require__(26);
 var _assign = __webpack_require__(7);
 var emptyFunction = __webpack_require__(6);
-var EventListener = __webpack_require__(26);
-var getActiveElement = __webpack_require__(27);
-var shallowEqual = __webpack_require__(28);
-var containsNode = __webpack_require__(29);
-var focusNode = __webpack_require__(30);
+var EventListener = __webpack_require__(27);
+var getActiveElement = __webpack_require__(28);
+var shallowEqual = __webpack_require__(29);
+var containsNode = __webpack_require__(30);
+var focusNode = __webpack_require__(31);
 var emptyObject = __webpack_require__(10);
 var checkPropTypes = __webpack_require__(16);
 var hyphenateStyleName = __webpack_require__(176);
@@ -40767,7 +40767,7 @@ module.exports = camelize;
 
 
 Object.defineProperty(exports, "__esModule", {
-		value: true
+    value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -40788,7 +40788,7 @@ var _Search = __webpack_require__(213);
 
 var _Search2 = _interopRequireDefault(_Search);
 
-var _Footer = __webpack_require__(41);
+var _Footer = __webpack_require__(42);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -40796,15 +40796,19 @@ var _Nav = __webpack_require__(214);
 
 var _Nav2 = _interopRequireDefault(_Nav);
 
-var _HotelDetails = __webpack_require__(218);
+var _Login = __webpack_require__(218);
+
+var _Login2 = _interopRequireDefault(_Login);
+
+var _HotelDetails = __webpack_require__(219);
 
 var _HotelDetails2 = _interopRequireDefault(_HotelDetails);
 
-var _Report = __webpack_require__(235);
+var _Report = __webpack_require__(236);
 
 var _Report2 = _interopRequireDefault(_Report);
 
-var _universalCookie = __webpack_require__(42);
+var _universalCookie = __webpack_require__(25);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -40817,76 +40821,88 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = function (_React$Component) {
-		_inherits(App, _React$Component);
+    _inherits(App, _React$Component);
 
-		function App() {
-				_classCallCheck(this, App);
+    function App() {
+        _classCallCheck(this, App);
 
-				var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-				_this.state = {
-						isAuthenticated: false
-				};
+        _this.state = {
+            isAuthenticated: false
+        };
 
-				_this.setAuthenticate = _this.setAuthenticate.bind(_this);
-				return _this;
-		}
+        _this.setAuthenticate = _this.setAuthenticate.bind(_this);
+        return _this;
+    }
 
-		_createClass(App, [{
-				key: 'componentDidMount',
-				value: function componentDidMount() {
-						var _this2 = this;
+    _createClass(App, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
 
-						var cookies = new _universalCookie2.default();
+            var cookies = new _universalCookie2.default();
 
-						fetch('http://' + window.location.hostname + ':3004/validate', {
-								method: 'POST',
-								headers: {
-										'Accept': 'application/json',
-										'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({ token: cookies.get('token') })
-						}).then(function (res) {
-								if (res.status == 200) {
-										_this2.setState({ isAuthenticated: true });
-								}
-						});
-				}
-		}, {
-				key: 'setAuthenticate',
-				value: function setAuthenticate(e) {
-						this.setState({
-								isAuthenticated: e
-						});
-				}
-		}, {
-				key: 'render',
-				value: function render() {
-						var _this3 = this;
+            fetch('http://' + window.location.hostname + ':3004/validate', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token: cookies.get('token') })
+            }).then(function (res) {
+                if (res.status == 200) {
+                    _this2.setState({ isAuthenticated: true });
+                }
+            });
+        }
+    }, {
+        key: 'setAuthenticate',
+        value: function setAuthenticate(e) {
+            this.setState({
+                isAuthenticated: e
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
 
-						return _react2.default.createElement(
-								'div',
-								{ className: 'container' },
-								_react2.default.createElement(_Nav2.default, { setAuthenticate: this.setAuthenticate, isAuthenticated: this.state.isAuthenticated }),
-								_react2.default.createElement(
-										_reactRouterDom.Switch,
-										null,
-										_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
-														return _react2.default.createElement(_HotelListings2.default, _extends({ isAuthenticated: _this3.state.isAuthenticated }, props));
-												} }),
-										_react2.default.createElement(_reactRouterDom.Route, _extends({ exact: true, path: '/search', component: _Search2.default }, this.props)),
-										_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/hotel/:id', render: function render(_ref) {
-														var location = _ref.location,
-														    match = _ref.match;
-														return _react2.default.createElement(_HotelDetails2.default, { isAuthenticated: _this3.state.isAuthenticated, params: match.params });
-												} }),
-										_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/report', component: _Report2.default })
-								)
-						);
-				}
-		}]);
+            var app = null;
 
-		return App;
+            if (!this.state.isAuthenticated) {
+                app = _react2.default.createElement(_Login2.default, { setAuthenticate: this.setAuthenticate });
+            } else {
+                app = _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(_Nav2.default, { setAuthenticate: this.setAuthenticate }),
+                    _react2.default.createElement(
+                        _reactRouterDom.Switch,
+                        null,
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
+                                return _react2.default.createElement(_HotelListings2.default, props);
+                            } }),
+                        _react2.default.createElement(_reactRouterDom.Route, _extends({ exact: true, path: '/search', component: _Search2.default }, this.props)),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/hotel/:id', render: function render(_ref) {
+                                var location = _ref.location,
+                                    match = _ref.match;
+                                return _react2.default.createElement(_HotelDetails2.default, { isAuthenticated: _this3.state.isAuthenticated, params: match.params });
+                            } }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/report', component: _Report2.default })
+                    )
+                );
+            }
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'container' },
+                app
+            );
+        }
+    }]);
+
+    return App;
 }(_react2.default.Component);
 
 exports.default = App;
@@ -41602,7 +41618,7 @@ var _createTransitionManager = __webpack_require__(20);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(33);
+var _DOMUtils = __webpack_require__(34);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41979,7 +41995,7 @@ var _createTransitionManager = __webpack_require__(20);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(33);
+var _DOMUtils = __webpack_require__(34);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42545,8 +42561,8 @@ exports.default = createMemoryHistory;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Link__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Link__ = __webpack_require__(35);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -43318,7 +43334,7 @@ Redirect.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(38);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -43622,7 +43638,7 @@ var createBrowserHistory = function createBrowserHistory() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(38);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -44431,7 +44447,7 @@ Switch.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(37);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -44623,12 +44639,6 @@ var HotelListings = function (_React$Component) {
 		value: function render() {
 			var _this4 = this;
 
-			var inputFields = null;
-
-			if (this.props.isAuthenticated) {
-				inputFields = _react2.default.createElement(_HotelForm2.default, { updateHotels: this.updateHotels });
-			}
-
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -44686,10 +44696,10 @@ var HotelListings = function (_React$Component) {
 					return _react2.default.createElement(
 						'div',
 						{ key: hotel.hotelid },
-						_react2.default.createElement(_HotelListing2.default, { details: hotel, updateHotels: _this4.updateHotels, isAuthenticated: _this4.props.isAuthenticated })
+						_react2.default.createElement(_HotelListing2.default, { details: hotel, updateHotels: _this4.updateHotels })
 					);
 				}),
-				inputFields
+				_react2.default.createElement(_HotelForm2.default, { updateHotels: this.updateHotels })
 			);
 		}
 	}]);
@@ -44772,11 +44782,6 @@ var HotelListing = function (_React$Component) {
             var _this3 = this;
 
             var deleteHotel = null;
-            if (this.props.isAuthenticated) {
-                deleteHotel = _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove hotelDelete', id: this.props.details.hotelid, onClick: function onClick() {
-                        return _this3.deleteBooking();
-                    } });
-            }
 
             return _react2.default.createElement(
                 'div',
@@ -44833,7 +44838,9 @@ var HotelListing = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'col-sm-1' },
-                    deleteHotel
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove hotelDelete', id: this.props.details.hotelid, onClick: function onClick() {
+                            return _this3.deleteBooking();
+                        } })
                 )
             );
         }
@@ -44861,7 +44868,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _validate = __webpack_require__(38);
+var _validate = __webpack_require__(39);
 
 var _validate2 = _interopRequireDefault(_validate);
 
@@ -45288,7 +45295,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _universalCookie = __webpack_require__(42);
+var _universalCookie = __webpack_require__(25);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -45320,40 +45327,15 @@ var Nav = function (_React$Component) {
 			search: ""
 		};
 
-		_this.doLogin = _this.doLogin.bind(_this);
 		_this.doLogout = _this.doLogout.bind(_this);
 		_this.doSearch = _this.doSearch.bind(_this);
 		return _this;
 	}
 
 	_createClass(Nav, [{
-		key: 'doLogin',
-		value: function doLogin() {
-			var _this2 = this;
-
-			fetch('http://' + window.location.hostname + ':3004/auth', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(this.state)
-			}).then(function (res) {
-				return res.json();
-			}).then(function (res) {
-				_this2.props.setAuthenticate(true);
-
-				var cookies = new _universalCookie2.default();
-				cookies.set('token', res.token, { path: '/' });
-			}).catch(function (e) {
-				console.log("Failed to authenticate");
-				console.log(e);
-			});
-		}
-	}, {
 		key: 'doLogout',
 		value: function doLogout() {
-			var _this3 = this;
+			var _this2 = this;
 
 			fetch('http://' + window.location.hostname + ':3004/logout', {
 				method: 'POST',
@@ -45364,7 +45346,7 @@ var Nav = function (_React$Component) {
 				body: JSON.stringify(this.state)
 			}).then(function (res) {
 				if (res.status == 200) {
-					_this3.props.setAuthenticate(false);
+					_this2.props.setAuthenticate(false);
 
 					var cookies = new _universalCookie2.default();
 					cookies.remove('token');
@@ -45392,30 +45374,7 @@ var Nav = function (_React$Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var _this4 = this;
-
-			var loginState = null;
-			if (this.props.isAuthenticated) {
-				loginState = _react2.default.createElement(
-					'li',
-					{ id: 'logout' },
-					_react2.default.createElement(
-						'a',
-						{ href: '#', id: 'logout', onClick: this.doLogout },
-						'Logout'
-					)
-				);
-			} else {
-				loginState = _react2.default.createElement(
-					'li',
-					{ id: 'login' },
-					_react2.default.createElement(
-						'a',
-						{ href: '#', 'data-toggle': 'modal', 'data-target': '#loginModal' },
-						'Login'
-					)
-				);
-			}
+			var _this3 = this;
 
 			return _react2.default.createElement(
 				'nav',
@@ -45453,7 +45412,15 @@ var Nav = function (_React$Component) {
 								'Report'
 							)
 						),
-						loginState,
+						_react2.default.createElement(
+							'li',
+							{ id: 'logout' },
+							_react2.default.createElement(
+								'a',
+								{ href: '#', id: 'logout', onClick: this.doLogout },
+								'Logout'
+							)
+						),
 						_react2.default.createElement(
 							'li',
 							null,
@@ -45467,76 +45434,8 @@ var Nav = function (_React$Component) {
 							'li',
 							null,
 							_react2.default.createElement('input', { type: 'text', id: 'search', defaultValue: this.props.location.search.split('=')[1], onKeyPress: this.doSearch, onChange: function onChange(val) {
-									return _this4.setState({ search: val.target.value });
+									return _this3.setState({ search: val.target.value });
 								} })
-						)
-					)
-				),
-				_react2.default.createElement(
-					'div',
-					{ id: 'loginModal', className: 'modal fade', role: 'dialog' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'modal-dialog' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'modal-content' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'modal-header' },
-								_react2.default.createElement(
-									'button',
-									{ type: 'button', className: 'close', 'data-dismiss': 'modal' },
-									'\xD7'
-								),
-								_react2.default.createElement(
-									'h4',
-									{ className: 'modal-title' },
-									'Login'
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'modal-body' },
-								_react2.default.createElement(
-									'p',
-									null,
-									_react2.default.createElement(
-										'label',
-										{ htmlFor: 'username' },
-										'Username '
-									),
-									_react2.default.createElement('input', { type: 'text', id: 'username', onChange: function onChange(val) {
-											return _this4.setState({ username: val.target.value });
-										} })
-								),
-								_react2.default.createElement(
-									'p',
-									null,
-									_react2.default.createElement(
-										'label',
-										{ htmlFor: 'password' },
-										'Password '
-									),
-									_react2.default.createElement('input', { type: 'password', id: 'password', onChange: function onChange(val) {
-											return _this4.setState({ password: val.target.value });
-										} })
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'modal-footer' },
-								_react2.default.createElement(
-									'button',
-									{ type: 'button', className: 'btn btn-default', id: 'doLogin', 'data-dismiss': 'modal', onClick: this.doLogin },
-									'Login'
-								),
-								_react2.default.createElement(
-									'button',
-									{ type: 'button', className: 'btn btn-default', 'data-dismiss': 'modal' },
-									'Close'
-								)
-							)
 						)
 					)
 				)
@@ -45950,11 +45849,167 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _BookingListings = __webpack_require__(219);
+var _universalCookie = __webpack_require__(25);
+
+var _universalCookie2 = _interopRequireDefault(_universalCookie);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Login = function (_React$Component) {
+    _inherits(Login, _React$Component);
+
+    function Login() {
+        _classCallCheck(this, Login);
+
+        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
+
+        _this.doLogin = _this.doLogin.bind(_this);
+        return _this;
+    }
+
+    _createClass(Login, [{
+        key: 'doLogin',
+        value: function doLogin() {
+            var _this2 = this;
+
+            fetch('http://' + window.location.hostname + ':3004/auth', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.state)
+            }).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this2.props.setAuthenticate(true);
+
+                var cookies = new _universalCookie2.default();
+                cookies.set('token', res.token, { path: '/' });
+            }).catch(function (e) {
+                console.log("Failed to authenticate");
+                console.log(e);
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
+
+            return _react2.default.createElement(
+                'div',
+                { style: { marginTop: "20%" } },
+                _react2.default.createElement(
+                    'div',
+                    { 'class': 'row' },
+                    _react2.default.createElement('div', { className: 'col-sm-2' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-sm-8', style: { textAlign: "center" } },
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            'Welcome to Restful-booker-platform'
+                        )
+                    ),
+                    _react2.default.createElement('div', { className: 'col-sm-2' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { 'class': 'row' },
+                    _react2.default.createElement('div', { className: 'col-sm-4' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-sm-4' },
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                'label',
+                                { htmlFor: 'username' },
+                                'Username '
+                            ),
+                            _react2.default.createElement('input', { type: 'text', id: 'username', onChange: function onChange(val) {
+                                    return _this3.setState({ username: val.target.value });
+                                } })
+                        )
+                    ),
+                    _react2.default.createElement('div', { className: 'col-sm-4' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { 'class': 'row' },
+                    _react2.default.createElement('div', { className: 'col-sm-4' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-sm-4' },
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                'label',
+                                { htmlFor: 'password' },
+                                'Password '
+                            ),
+                            _react2.default.createElement('input', { type: 'password', id: 'password', onChange: function onChange(val) {
+                                    return _this3.setState({ password: val.target.value });
+                                } })
+                        )
+                    ),
+                    _react2.default.createElement('div', { className: 'col-sm-4' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { 'class': 'row' },
+                    _react2.default.createElement('div', { className: 'col-sm-7' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-sm-1' },
+                        _react2.default.createElement(
+                            'button',
+                            { type: 'button', style: { marginLeft: "9px" }, className: 'btn btn-default', id: 'doLogin', 'data-dismiss': 'modal', onClick: this.doLogin },
+                            'Login'
+                        )
+                    ),
+                    _react2.default.createElement('div', { className: 'col-sm-4' })
+                )
+            );
+        }
+    }]);
+
+    return Login;
+}(_react2.default.Component);
+
+exports.default = Login;
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _BookingListings = __webpack_require__(220);
 
 var _BookingListings2 = _interopRequireDefault(_BookingListings);
 
-var _BookingForm = __webpack_require__(231);
+var _BookingForm = __webpack_require__(232);
 
 var _BookingForm2 = _interopRequireDefault(_BookingForm);
 
@@ -46060,14 +46115,8 @@ var HotelDetails = function (_React$Component) {
         value: function render() {
             var _this4 = this;
 
-            var editButton = null;
             var hotelSummary = null;
             var bookings = null;
-            var form = null;
-
-            if (this.props.isAuthenticated == true) {
-                editButton = _react2.default.createElement('span', { className: 'glyphicon glyphicon-pencil hotelEdit', onClick: this.enableEdit, style: { marginLeft: "5px", fontSize: 0.5 + "em" } });
-            }
 
             if (this.state.edit == true) {
                 hotelSummary = _react2.default.createElement(
@@ -46147,7 +46196,8 @@ var HotelDetails = function (_React$Component) {
                             'h2',
                             null,
                             this.state.details.name,
-                            editButton
+                            ' ',
+                            _react2.default.createElement('span', { className: 'glyphicon glyphicon-pencil hotelEdit', onClick: this.enableEdit, style: { marginLeft: "5px", fontSize: 0.5 + "em" } })
                         ),
                         _react2.default.createElement(
                             'p',
@@ -46211,11 +46261,7 @@ var HotelDetails = function (_React$Component) {
             }
 
             if (this.state.details.bookings) {
-                bookings = _react2.default.createElement(_BookingListings2.default, { fetchHotelDetails: this.fetchHotelDetails, hotelid: this.props.params.id, bookings: this.state.details.bookings, isAuthenticated: this.props.isAuthenticated });
-            }
-
-            if (this.props.isAuthenticated) {
-                form = _react2.default.createElement(_BookingForm2.default, { fetchHotelDetails: this.fetchHotelDetails, hotelid: this.props.params.id });
+                bookings = _react2.default.createElement(_BookingListings2.default, { fetchHotelDetails: this.fetchHotelDetails, hotelid: this.props.params.id, bookings: this.state.details.bookings });
             }
 
             return _react2.default.createElement(
@@ -46290,7 +46336,7 @@ var HotelDetails = function (_React$Component) {
                     _react2.default.createElement('div', { className: 'col-sm-1' })
                 ),
                 bookings,
-                form
+                _react2.default.createElement(_BookingForm2.default, { fetchHotelDetails: this.fetchHotelDetails, hotelid: this.props.params.id })
             );
         }
     }]);
@@ -46301,7 +46347,7 @@ var HotelDetails = function (_React$Component) {
 exports.default = HotelDetails;
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46317,7 +46363,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _BookingListing = __webpack_require__(220);
+var _BookingListing = __webpack_require__(221);
 
 var _BookingListing2 = _interopRequireDefault(_BookingListing);
 
@@ -46350,7 +46396,7 @@ var BookingListings = function (_React$Component) {
                     return _react2.default.createElement(
                         'div',
                         { key: booking.bookingid },
-                        _react2.default.createElement(_BookingListing2.default, { booking: booking, isAuthenticated: _this2.props.isAuthenticated, fetchHotelDetails: _this2.props.fetchHotelDetails })
+                        _react2.default.createElement(_BookingListing2.default, { booking: booking, fetchHotelDetails: _this2.props.fetchHotelDetails })
                     );
                 })
             );
@@ -46363,7 +46409,7 @@ var BookingListings = function (_React$Component) {
 exports.default = BookingListings;
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46501,22 +46547,9 @@ var BookingListing = function (_React$Component) {
         value: function render() {
             var _this4 = this;
 
-            var buttons = null;
             var booking = null;
 
-            if (this.props.isAuthenticated) {
-                buttons = _react2.default.createElement(
-                    'div',
-                    { className: 'col-sm-1' },
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-pencil bookingEdit', onClick: this.enableEdit, style: { paddingRight: 10 + "px" } }),
-                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-trash bookingDelete', onClick: this.doDelete })
-                );
-            } else {
-                buttons = _react2.default.createElement('div', { className: 'col-sm-1' });
-            }
-
             if (this.state.allowEdit) {
-
                 booking = _react2.default.createElement(
                     'div',
                     null,
@@ -46636,7 +46669,12 @@ var BookingListing = function (_React$Component) {
                             this.props.booking.bookingdates.checkout.split('T')[0]
                         )
                     ),
-                    buttons
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-sm-1' },
+                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-pencil bookingEdit', onClick: this.enableEdit, style: { paddingRight: 10 + "px" } }),
+                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-trash bookingDelete', onClick: this.doDelete })
+                    )
                 );
             }
 
@@ -46654,7 +46692,7 @@ var BookingListing = function (_React$Component) {
 exports.default = BookingListing;
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -46709,7 +46747,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47068,7 +47106,7 @@ function onClickOutsideHOC(WrappedComponent, config) {
 
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -47331,10 +47369,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 223;
+webpackContext.id = 224;
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47344,7 +47382,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Manager = __webpack_require__(225);
+var _Manager = __webpack_require__(226);
 
 Object.defineProperty(exports, 'Manager', {
   enumerable: true,
@@ -47353,7 +47391,7 @@ Object.defineProperty(exports, 'Manager', {
   }
 });
 
-var _Target = __webpack_require__(226);
+var _Target = __webpack_require__(227);
 
 Object.defineProperty(exports, 'Target', {
   enumerable: true,
@@ -47362,7 +47400,7 @@ Object.defineProperty(exports, 'Target', {
   }
 });
 
-var _Popper = __webpack_require__(227);
+var _Popper = __webpack_require__(228);
 
 Object.defineProperty(exports, 'Popper', {
   enumerable: true,
@@ -47371,7 +47409,7 @@ Object.defineProperty(exports, 'Popper', {
   }
 });
 
-var _Arrow = __webpack_require__(230);
+var _Arrow = __webpack_require__(231);
 
 Object.defineProperty(exports, 'Arrow', {
   enumerable: true,
@@ -47383,7 +47421,7 @@ Object.defineProperty(exports, 'Arrow', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47474,7 +47512,7 @@ Manager.defaultProps = {
 exports.default = Manager;
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47541,7 +47579,7 @@ Target.propTypes = {
 exports.default = Target;
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47561,7 +47599,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _popper = __webpack_require__(228);
+var _popper = __webpack_require__(229);
 
 var _popper2 = _interopRequireDefault(_popper);
 
@@ -47790,7 +47828,7 @@ Popper.defaultProps = {
 exports.default = Popper;
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50233,10 +50271,10 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(229)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(230)))
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports) {
 
 var g;
@@ -50263,7 +50301,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50336,7 +50374,7 @@ Arrow.propTypes = {
 exports.default = Arrow;
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50360,11 +50398,11 @@ var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _validate = __webpack_require__(38);
+var _validate = __webpack_require__(39);
 
 var _validate2 = _interopRequireDefault(_validate);
 
-__webpack_require__(232);
+__webpack_require__(233);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50624,11 +50662,11 @@ var BookingForm = function (_React$Component) {
 exports.default = BookingForm;
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(233);
+var content = __webpack_require__(234);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -50674,7 +50712,7 @@ if(false) {
 }
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(166)(false);
@@ -50688,7 +50726,7 @@ exports.push([module.i, ".react-datepicker-popper[data-placement^=\"bottom\"] .r
 
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports) {
 
 
@@ -50783,7 +50821,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50807,7 +50845,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var BarChart = __webpack_require__(236).Bar;
+var BarChart = __webpack_require__(237).Bar;
 
 var Report = function (_React$Component) {
     _inherits(Report, _React$Component);
@@ -50868,22 +50906,22 @@ var Report = function (_React$Component) {
 exports.default = Report;
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  Bar: __webpack_require__(237),
-  Doughnut: __webpack_require__(242),
-  Line: __webpack_require__(243),
-  Pie: __webpack_require__(244),
-  PolarArea: __webpack_require__(245),
-  Radar: __webpack_require__(246),
+  Bar: __webpack_require__(238),
+  Doughnut: __webpack_require__(243),
+  Line: __webpack_require__(244),
+  Pie: __webpack_require__(245),
+  PolarArea: __webpack_require__(246),
+  Radar: __webpack_require__(247),
   createClass: __webpack_require__(8).createClass
 };
 
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var vars = __webpack_require__(8);
@@ -50892,7 +50930,7 @@ module.exports = vars.createClass('Bar', ['getBarsAtEvent']);
 
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50907,7 +50945,7 @@ module.exports = vars.createClass('Bar', ['getBarsAtEvent']);
 
 
 var React = __webpack_require__(1);
-var factory = __webpack_require__(239);
+var factory = __webpack_require__(240);
 
 if (typeof React === 'undefined') {
   throw Error(
@@ -50927,7 +50965,7 @@ module.exports = factory(
 
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51861,7 +51899,7 @@ module.exports = factory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -52175,7 +52213,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 			//Method for warning of errors
 			if (window.console && typeof window.console.warn === "function") console.warn(str);
 		},
-		amd = helpers.amd = ("function" === 'function' && __webpack_require__(241)),
+		amd = helpers.amd = ("function" === 'function' && __webpack_require__(242)),
 		//-- Math methods
 		isNumber = helpers.isNumber = function(n){
 			return !isNaN(parseFloat(n)) && isFinite(n);
@@ -55604,7 +55642,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -55613,7 +55651,7 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var vars = __webpack_require__(8);
@@ -55622,7 +55660,7 @@ module.exports = vars.createClass('Doughnut', ['getSegmentsAtEvent']);
 
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var vars = __webpack_require__(8);
@@ -55631,7 +55669,7 @@ module.exports = vars.createClass('Line', ['getPointsAtEvent']);
 
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var vars = __webpack_require__(8);
@@ -55640,7 +55678,7 @@ module.exports = vars.createClass('Pie', ['getSegmentsAtEvent']);
 
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var vars = __webpack_require__(8);
@@ -55649,7 +55687,7 @@ module.exports = vars.createClass('PolarArea', ['getSegmentsAtEvent']);
 
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var vars = __webpack_require__(8);
@@ -55658,11 +55696,11 @@ module.exports = vars.createClass('Radar', ['getPointsAtEvent']);
 
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(248);
+var content = __webpack_require__(249);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -55708,7 +55746,7 @@ if(false) {
 }
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(166)(false);
