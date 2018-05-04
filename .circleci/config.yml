@@ -18,16 +18,16 @@ jobs:
       - checkout
 
       - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "pom.xml" }}
-        # fallback to using the latest cache if no exact match is found
-        - v1-dependencies-
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run: mvn package
       - save_cache:
-        paths:
-          - ~/.m2
-        key: v1-dependencies-{{ checksum "pom.xml" }}
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
       - run: mvn install
 
