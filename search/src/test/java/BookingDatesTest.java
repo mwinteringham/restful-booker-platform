@@ -1,6 +1,8 @@
 import model.BookingDates;
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -25,8 +27,11 @@ public class BookingDatesTest {
         // Finally we assertThat the correct date and dateformat can be retrieved by
         // using hamcrest. We assertThat the checkin/out dates match expected strings
         // in the second parameter
-        assertThat(bookingDates.getCheckin().toString(), is("Thu Feb 01 00:00:00 GMT 2018"));
-        assertThat(bookingDates.getCheckout().toString(), is("Fri Feb 02 00:00:00 GMT 2018"));
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY/MM/dd");
+
+        assertThat(dateFormat.format(bookingDates.getCheckin()), is("2018/02/01"));
+        assertThat(dateFormat.format(bookingDates.getCheckout()), is("2018/02/02"));
     }
 
 }

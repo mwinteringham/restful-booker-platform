@@ -9,7 +9,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8u151-jdk-node-browsers
 
-    working_directory: ~/repo/auth
+    working_directory: ~/repo
 
     environment:
         MAVEN_OPTS: -Xmx3200m
