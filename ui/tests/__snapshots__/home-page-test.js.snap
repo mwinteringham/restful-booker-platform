@@ -64,5 +64,8 @@ exports[`Hotels list component 1`] = `
       updateHotels={[Function]}
     />
   </div>
+  <HotelForm
+    updateHotels={[Function]}
+  />
 </div>
 `;
