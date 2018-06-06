@@ -9,6 +9,8 @@ import java.util.Date;
 public class Booking {
 
     @JsonProperty
+    private int bookingid;
+    @JsonProperty
     private int hotelid;
     @JsonProperty
     private String firstname;
@@ -21,22 +23,14 @@ public class Booking {
     @JsonProperty(value = "bookingdates")
     private BookingDates bookingDates;
 
-    public Booking(int hotelid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
+    public Booking(int bookingid, int hotelid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
+        this.bookingid = bookingid;
         this.hotelid = hotelid;
         this.firstname = firstname;
         this.lastname = lastname;
         this.totalprice = totalprice;
         this.depositpaid = depositpaid;
         this.bookingDates = bookingDates;
-    }
-
-    public Booking(ResultSet result) throws SQLException {
-        this.hotelid = result.getInt("hotelid");
-        this.firstname = result.getString("firstname");
-        this.lastname = result.getString("lastname");
-        this.totalprice = result.getInt("totalprice");
-        this.depositpaid = result.getBoolean("depositpaid");
-        this.bookingDates = new BookingDates(result.getDate("checkin"), result.getDate("checkout"));
     }
 
     public Booking() {
@@ -104,6 +98,7 @@ public class Booking {
 
     public static class BookingBuilder {
 
+        private int bookingid;
         private int hotelid;
         private String firstname;
         private String lastname;
@@ -111,6 +106,12 @@ public class Booking {
         private boolean depositpaid;
         private Date checkin;
         private Date checkout;
+
+        public BookingBuilder setBookingId(int bookingid){
+            this.bookingid = bookingid;
+
+            return this;
+        }
 
         public BookingBuilder setHotelid(int hotelid){
             this.hotelid = hotelid;
@@ -157,7 +158,7 @@ public class Booking {
         public Booking build(){
             BookingDates bookingDates = new BookingDates(checkin, checkout);
 
-            return new Booking(hotelid, firstname, lastname, totalprice, depositpaid, bookingDates);
+            return new Booking(bookingid, hotelid, firstname, lastname, totalprice, depositpaid, bookingDates);
         }
     }
 }

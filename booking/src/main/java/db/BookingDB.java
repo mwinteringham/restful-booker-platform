@@ -2,26 +2,31 @@ package db;
 
 import model.Booking;
 import model.CreatedBooking;
+import org.h2.jdbcx.JdbcDataSource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookingDB {
 
     private Connection connection;
 
     public BookingDB() throws SQLException {
-        String host;
+        JdbcDataSource ds = new JdbcDataSource();
+        ds.setURL("jdbc:h2:mem:");
+        ds.setUser("booking");
+        ds.setPassword("booking");
+        connection = ds.getConnection();
 
-        if(System.getenv("mysqlDomain") == null){
-            host = "localhost";
-        } else {
-            host = System.getenv("mysqlDomain");
-        }
+        String prepareDb = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, hotelid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
+        connection.prepareStatement(prepareDb).executeUpdate();
 
-        connection = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/rbp?user=root&password=password");
+        String injectBooking = "INSERT INTO BOOKINGS(hotelid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(1,'James','Dean',100,true,'2018-02-26','2018-02-26');";
+        connection.prepareStatement(injectBooking).executeUpdate();
     }
 
     public CreatedBooking create(Booking booking) throws SQLException {
@@ -43,6 +48,30 @@ public class BookingDB {
         } else {
             return null;
         }
+    }
+
+    public List<Booking> queryBookingsById(String hotelid) throws SQLException {
+        List<Booking> listToReturn = new ArrayList<Booking>();
+        String sql = "SELECT * FROM BOOKINGS WHERE hotelid = " + hotelid;
+
+        ResultSet results = connection.prepareStatement(sql).executeQuery();
+        while(results.next()){
+            listToReturn.add(new Booking(results));
+        }
+
+        return listToReturn;
+    }
+
+    public List<Booking> queryBookingsByName(String keyword) throws SQLException {
+        List<Booking> listToReturn = new ArrayList<Booking>();
+        String sql = "SELECT * FROM BOOKINGS WHERE firstname = '" + keyword + "' OR lastname = '" + keyword + "';";
+
+        ResultSet results = connection.prepareStatement(sql).executeQuery();
+        while(results.next()){
+            listToReturn.add(new Booking(results));
+        }
+
+        return listToReturn;
     }
 
     public Booking query(int id) throws SQLException {

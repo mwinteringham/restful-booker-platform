@@ -1,15 +1,13 @@
 FROM maven:3.5.2-jdk-8-alpine
 
-ADD . /usr/local/auth
+ADD . /usr/local/search
 
-WORKDIR /usr/local/auth
+WORKDIR /usr/local/search
 
-COPY src ./
-COPY pom.xml ./
+COPY target ./
 
 ENV authDomain=auth
-ENV mysqlDomain=mysql
-
-RUN mvn clean package
+ENV bookingDomain=booking
+ENV hotelDomain=hotel
 
 ENTRYPOINT java -jar target/restful-booker-platform-search-1.0-SNAPSHOT.jar -D

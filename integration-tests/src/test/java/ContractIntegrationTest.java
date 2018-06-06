@@ -1,14 +1,9 @@
 import api.BookingApi;
-import api.BookingApplication;
 import com.jayway.restassured.response.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ApplicationContext;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,28 +12,6 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class ContractIntegrationTest {
-
-    // We need to ensure that our API is up and running so we will
-    // create an ApplicationContexts to startup and teardown
-    private ApplicationContext bookingApp;
-
-    // The @Before annotation means that this method will be run before
-    // the test is run
-    @Before
-    public void setup(){
-        // First we start up the Booking API. By importing the BookingApplication
-        // class from the Booking module to run.
-        System.setProperty("server.port", "3000");
-        bookingApp = SpringApplication.run(BookingApplication.class);
-    }
-
-    // The @After annotation means that this method will be run after
-    // the test is run
-    @After
-    public void teardown(){
-        // We call exit on the end of the test to close the API down
-        SpringApplication.exit(bookingApp);
-    }
 
     // We add the @Test annotation so that when JUnit runs it knows which
     // methods to run as tests

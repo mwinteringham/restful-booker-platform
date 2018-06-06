@@ -7,11 +7,19 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
-public class Auth {
+public class AuthRequests {
 
-    final static String uri = "http://" + System.getenv("authDomain") + ":3004/validate";
+    private String host;
 
-    public static boolean postCheckAuth(String tokenValue){
+    public AuthRequests() {
+        if(System.getenv("authDomain") == null){
+            host = "http://localhost:3004/validate";
+        } else {
+            host = "http://" + System.getenv("authDomain") + ":3004/validate";
+        }
+    }
+
+    public boolean postCheckAuth(String tokenValue){
         Token token = new Token(tokenValue);
 
         RestTemplate restTemplate = new RestTemplate();
@@ -23,7 +31,7 @@ public class Auth {
         HttpEntity<Token> httpEntity = new HttpEntity<Token>(token, requestHeaders);
 
         try{
-            ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(host, HttpMethod.POST, httpEntity, String.class);
             if(response.getStatusCodeValue() == 200){
                 return true;
             } else {

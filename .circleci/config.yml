@@ -4,35 +4,325 @@
 #
 version: 2
 jobs:
+  checkout_code:
+
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
+
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/
+
   run_auth_build:
 
     docker:
       - image: circleci/openjdk:8u151-jdk-node-browsers
 
-    working_directory: ~/project/auth
+    environment:
+        MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: mvn package
+          working_directory: auth
+      - run:
+          command: mvn install
+          working_directory: auth
+      - save_cache:
+          paths:
+            - auth/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-auth
+
+  run_booking_build:
+
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
 
     environment:
         MAVEN_OPTS: -Xmx3200m
 
     steps:
-      - checkout
-
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "pom.xml" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: mvn package
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: mvn clean install
+          working_directory: booking
       - save_cache:
           paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
+            - booking/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
 
-      - run: mvn install
+  run_report_build:
+
+      docker:
+        - image: circleci/openjdk:8u151-jdk-node-browsers
+
+      environment:
+          MAVEN_OPTS: -Xmx3200m
+
+      steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            command: mvn clean install
+            working_directory: report
+        - save_cache:
+            paths:
+              - report/
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
+
+  run_hotel_build:
+
+        docker:
+          - image: circleci/openjdk:8u151-jdk-node-browsers
+
+        environment:
+            MAVEN_OPTS: -Xmx3200m
+
+        steps:
+          - restore_cache:
+              key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          - run:
+              command: mvn clean install
+              working_directory: hotel
+          - save_cache:
+              paths:
+                - hotel/
+              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-hotel
+
+  run_search_build:
+
+          docker:
+            - image: circleci/openjdk:8u151-jdk-node-browsers
+
+          environment:
+              MAVEN_OPTS: -Xmx3200m
+
+          steps:
+            - restore_cache:
+                key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+            - run:
+                command: mvn clean install
+                working_directory: search
+            - save_cache:
+                paths:
+                  - search/
+                key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
+
+  run_ui_tests:
+
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            npm install
+            npm test
+          working_directory: ui
+      - save_cache:
+          paths:
+            - search/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
+
+  run_integration_tests:
+
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
+
+    environment:
+        MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-auth
+      - restore_cache:
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
+      - restore_cache:
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
+      - restore_cache:
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-hotel
+      - restore_cache:
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
+
+      - run:
+          command: bash start.sh
+          working_directory: integration-tests
+
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+          paths:
+            - ~/
+
+
+  build_auth_docker_image:
+
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run:
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker build -t mwinteringham/restfulbookerplatform_auth:latest .
+            docker push mwinteringham/restfulbookerplatform_auth:latest
+          working_directory: auth
+
+  build_booking_docker_image:
+
+      docker:
+        - image: circleci/openjdk:8u151-jdk-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+
+        - setup_remote_docker:
+            docker_layer_caching: true
+
+        - run:
+            command: |
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker build -t mwinteringham/restfulbookerplatform_booking:latest .
+              docker push mwinteringham/restfulbookerplatform_booking:latest
+            working_directory: booking
+
+  build_report_docker_image:
+
+      docker:
+        - image: circleci/openjdk:8u151-jdk-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+
+        - setup_remote_docker:
+            docker_layer_caching: true
+
+        - run:
+            command: |
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker build -t mwinteringham/restfulbookerplatform_report:latest .
+              docker push mwinteringham/restfulbookerplatform_report:latest
+            working_directory: report
+
+  build_hotel_docker_image:
+
+      docker:
+        - image: circleci/openjdk:8u151-jdk-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+
+        - setup_remote_docker:
+            docker_layer_caching: true
+
+        - run:
+            command: |
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker build -t mwinteringham/restfulbookerplatform_hotel:latest .
+              docker push mwinteringham/restfulbookerplatform_hotel:latest
+            working_directory: hotel
+
+  build_search_docker_image:
+
+      docker:
+        - image: circleci/openjdk:8u151-jdk-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+
+        - setup_remote_docker:
+            docker_layer_caching: true
+
+        - run:
+            command: |
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker build -t mwinteringham/restfulbookerplatform_search:latest .
+              docker push mwinteringham/restfulbookerplatform_search:latest
+            working_directory: search
+
+  build_ui_docker_image:
+
+        docker:
+          - image: circleci/openjdk:8u151-jdk-node-browsers
+
+        steps:
+          - restore_cache:
+              key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+
+          - setup_remote_docker:
+              docker_layer_caching: true
+
+          - run:
+              command: |
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_ui:latest .
+                docker push mwinteringham/restfulbookerplatform_ui:latest
+              working_directory: ui
 
 workflows:
   version: 2
-  build_and_test:
+  build-test-and-deploy:
     jobs:
-      - run_auth_build
+      - checkout_code
+      - run_auth_build:
+          requires:
+            - checkout_code
+      - run_booking_build:
+          requires:
+            - checkout_code
+      - run_report_build:
+          requires:
+            - checkout_code
+      - run_hotel_build:
+          requires:
+            - checkout_code
+      - run_search_build:
+          requires:
+            - checkout_code
+      - run_ui_tests:
+          requires:
+            - checkout_code
+      - run_integration_tests:
+          requires:
+            - run_auth_build
+            - run_booking_build
+            - run_report_build
+            - run_hotel_build
+            - run_search_build
+      - build_auth_docker_image:
+          requires:
+            - run_integration_tests
+      - build_booking_docker_image:
+          requires:
+            - run_integration_tests
+      - build_report_docker_image:
+          requires:
+            - run_integration_tests
+      - build_hotel_docker_image:
+          requires:
+            - run_integration_tests
+      - build_search_docker_image:
+          requires:
+            - run_integration_tests
+      - build_ui_docker_image:
+          requires:
+            - run_integration_tests

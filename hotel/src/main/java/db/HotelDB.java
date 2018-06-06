@@ -2,6 +2,7 @@ package db;
 
 import model.CreatedHotel;
 import model.Hotel;
+import org.h2.jdbcx.JdbcDataSource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,15 +16,17 @@ public class HotelDB {
     private Connection connection;
 
     public HotelDB() throws SQLException {
-        String host;
+        JdbcDataSource ds = new JdbcDataSource();
+        ds.setURL("jdbc:h2:mem:");
+        ds.setUser("hotel");
+        ds.setPassword("hotel");
+        connection = ds.getConnection();
 
-        if(System.getenv("mysqlDomain") == null){
-            host = "localhost";
-        } else {
-            host = System.getenv("mysqlDomain");
-        }
+        String prepareDb = "CREATE table HOTELS ( hotelid int NOT NULL AUTO_INCREMENT, name varchar(255), address varchar(255), regdate Date, contactName varchar(255), contactPhone varchar(255), contactEmail varchar(255), primary key (hotelid));";
+        connection.prepareStatement(prepareDb).executeUpdate();
 
-        connection = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/rbp?user=root&password=password");
+        String injectBooking = "INSERT INTO HOTELS (name, address, regdate, contactName, contactPhone, contactEmail) VALUES('Hilton', '52 The Street, City', '2018-01-01', 'Mark', '01612829348', 'mark@hilton.com');";
+        connection.prepareStatement(injectBooking).executeUpdate();
     }
 
     public CreatedHotel create(Hotel hotel) throws SQLException {
@@ -79,6 +82,18 @@ public class HotelDB {
         } else {
             return null;
         }
+    }
+
+    public List<Hotel> searchHotels(String keyword) throws SQLException {
+        List<Hotel> listToReturn = new ArrayList<Hotel>();
+        String sql = "SELECT * FROM HOTELS WHERE name = '" + keyword + "';";
+
+        ResultSet results = connection.prepareStatement(sql).executeQuery();
+        while(results.next()){
+            listToReturn.add(new Hotel(results));
+        }
+
+        return listToReturn;
     }
 
     public List<Hotel> queryHotels() throws SQLException {

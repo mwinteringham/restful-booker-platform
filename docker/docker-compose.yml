@@ -1,42 +1,33 @@
 version: '3.4'
 services:
-  mysql:
-    image: mysql
-    command: mysqld --character-set-server=latin1 --collation-server=latin1_swedish_ci
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-    volumes:
-      - ./db/:/docker-entrypoint-initdb.d
   auth:
-    build: ./auth
+    build: ../auth
     ports:
       - "3004:3004"
     restart: always
   search:
-    build: ./search
+    build: ../search
     ports:
       - "3002:3002"
     restart: always
   booking:
     build: 
-      context: ./booking
+      context: ../booking
     ports:
       - "3000:3000"
     restart: always
   hotel:
-    build: ./hotel
+    build: ../hotel
     ports:
       - "3001:3001"
     restart: always
   report:
-    build: ./report
+    build: ../report
     ports:
       - "3005:3005"
     restart: always
   ui:
-    build: ./ui
+    build: ../ui
     ports:
       - "3003:3003"
       - "9003:9003"

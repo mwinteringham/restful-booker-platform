@@ -4,9 +4,6 @@ ADD . /usr/local/auth
 
 WORKDIR /usr/local/auth
 
-COPY src ./
-COPY pom.xml ./
+COPY target ./
 
-RUN mvn clean package
-
-ENTRYPOINT java -jar target/restful-booker-platform-auth-1.0-SNAPSHOT.jar
+ENTRYPOINT java -jar restful-booker-platform-auth-1.0-SNAPSHOT.jar
