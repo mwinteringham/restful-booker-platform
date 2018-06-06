@@ -1,33 +1,33 @@
 version: '3.4'
 services:
   auth:
-    build: ./auth
+    build: ../auth
     ports:
       - "3004:3004"
     restart: always
   search:
-    build: ./search
+    build: ../search
     ports:
       - "3002:3002"
     restart: always
   booking:
     build: 
-      context: ./booking
+      context: ../booking
     ports:
       - "3000:3000"
     restart: always
   hotel:
-    build: ./hotel
+    build: ../hotel
     ports:
       - "3001:3001"
     restart: always
   report:
-    build: ./report
+    build: ../report
     ports:
       - "3005:3005"
     restart: always
   ui:
-    build: ./ui
+    build: ../ui
     ports:
       - "3003:3003"
       - "9003:9003"
