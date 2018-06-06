@@ -4,20 +4,16 @@ A platform of web services that form a Hotel booking system for training others 
 ## Requirements
 RBP is currently known to work with the following requirements:
 
-### Production
-- Docker 17.12.0
-- Docker Compose 1.18.0
-
 ### Development
 - JDK 1.8
 - Maven 3.3.9
-- Node 6.10.3
+- Node 8.11.2
 - NPM 3.3.9
 
 ## Installation
 
 ### Production
-You will require Docker and Docker-compose to run RBP in production mode (as in none of the APIs running standalone). The following steps will guide you to getting setup:
+You will require Java SDK 1.6, Maven and Node/Npm installed and available in your terminal to run RBP. To get started follow these instructions:
 
 1. Clone/Download the repository
 2. Navigate into the restful-booker-platform root folder
