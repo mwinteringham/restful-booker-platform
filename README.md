@@ -1,4 +1,4 @@
-# restful-booker-platform
+# restful-booker-platform [![CircleCI](https://circleci.com/gh/mwinteringham/restful-booker-platform.svg?style=svg)](https://circleci.com/gh/mwinteringham/restful-booker-platform)
 A platform of web services that form a Hotel booking system for training others on how to explore and test web service platforms as well as strategise and implement automation in testing strategies.
 
 ## Requirements
@@ -21,9 +21,8 @@ You will require Docker and Docker-compose to run RBP in production mode (as in 
 
 1. Clone/Download the repository
 2. Navigate into the restful-booker-platform root folder
-3. Run ```docker-compose build``` to generate images
-4. Run ```docker-compose up``` to start the platform
-5. Navigate to http://localhost:3003 to access the site
+3. Run either ```local_run.sh``` or ```local_run.cmd``` depending on your OS to build RBP and get it running (It may take a while on the first run as it downloads dependencies)
+4. Navigate to http://localhost:3003 to access the site
 
 #### Login
 The user login details are:
