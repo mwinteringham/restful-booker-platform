@@ -4,11 +4,8 @@ ADD . /usr/local/report
 
 WORKDIR /usr/local/report
 
-COPY src ./
-COPY pom.xml ./
+COPY target ./
 
 ENV mysqlDomain=mysql
-
-RUN mvn clean package
 
 ENTRYPOINT java -jar target/restful-booker-platform-report-1.0-SNAPSHOT.jar -D
