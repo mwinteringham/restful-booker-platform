@@ -1,14 +1,5 @@
 version: '3.4'
 services:
-  mysql:
-    image: mysql
-    command: mysqld --character-set-server=latin1 --collation-server=latin1_swedish_ci
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-    volumes:
-      - ./db/:/docker-entrypoint-initdb.d
   auth:
     build: ./auth
     ports:

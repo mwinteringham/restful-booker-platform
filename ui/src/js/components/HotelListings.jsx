@@ -18,7 +18,7 @@ export default class HotelListings extends React.Component {
 		fetch('http://' + window.location.hostname + ':3001/hotel')
 			.then(res => res.json())
 			.then(body => {
-				this.setState({hotels : body});
+				this.setState({hotels : body.hotels});
 			});
 	}
 
@@ -26,7 +26,7 @@ export default class HotelListings extends React.Component {
 		fetch('http://' + window.location.hostname + ':3001/hotel')
 			.then(res => res.json())
 			.then(body => {
-				this.setState({hotels : body});
+				this.setState({hotels : body.hotels});
 			});
 	}
 

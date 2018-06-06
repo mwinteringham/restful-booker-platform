@@ -6,6 +6,6 @@ WORKDIR /usr/local/report
 
 COPY target ./
 
-ENV mysqlDomain=mysql
+ENV hotelDomain=hotel
 
 ENTRYPOINT java -jar target/restful-booker-platform-report-1.0-SNAPSHOT.jar -D

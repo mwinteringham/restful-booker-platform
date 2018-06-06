@@ -9,6 +9,8 @@ import java.util.Date;
 public class Booking {
 
     @JsonProperty
+    private int bookingid;
+    @JsonProperty
     private int hotelid;
     @JsonProperty
     private String firstname;
@@ -21,7 +23,8 @@ public class Booking {
     @JsonProperty(value = "bookingdates")
     private BookingDates bookingDates;
 
-    public Booking(int hotelid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
+    public Booking(int bookingid, int hotelid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
+        this.bookingid = bookingid;
         this.hotelid = hotelid;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -31,6 +34,7 @@ public class Booking {
     }
 
     public Booking(ResultSet result) throws SQLException {
+        this.bookingid = result.getInt("bookingid");
         this.hotelid = result.getInt("hotelid");
         this.firstname = result.getString("firstname");
         this.lastname = result.getString("lastname");
@@ -66,6 +70,10 @@ public class Booking {
         return hotelid;
     }
 
+    public int getBookingid() {
+        return bookingid;
+    }
+
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
@@ -88,6 +96,10 @@ public class Booking {
 
     public void setHotelid(int hotelId) {
         this.hotelid = hotelId;
+    }
+
+    public void setBookingid(int bookingid) {
+        this.bookingid = bookingid;
     }
 
     @Override
@@ -157,7 +169,7 @@ public class Booking {
         public Booking build(){
             BookingDates bookingDates = new BookingDates(checkin, checkout);
 
-            return new Booking(hotelid, firstname, lastname, totalprice, depositpaid, bookingDates);
+            return new Booking(0, hotelid, firstname, lastname, totalprice, depositpaid, bookingDates);
         }
     }
 }

@@ -7,6 +7,7 @@ WORKDIR /usr/local/search
 COPY target ./
 
 ENV authDomain=auth
-ENV mysqlDomain=mysql
+ENV bookingDomain=booking
+ENV hotelDomain=hotel
 
 ENTRYPOINT java -jar target/restful-booker-platform-search-1.0-SNAPSHOT.jar -D

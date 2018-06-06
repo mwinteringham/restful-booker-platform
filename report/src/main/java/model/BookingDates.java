@@ -1,6 +1,5 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -8,11 +7,9 @@ import java.util.Date;
 public class BookingDates {
 
     @JsonProperty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", locale = "en_GB", timezone="UTC")
     private Date checkin;
 
     @JsonProperty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", locale = "en_GB", timezone="UTC")
     private Date checkout;
 
     public BookingDates() {
