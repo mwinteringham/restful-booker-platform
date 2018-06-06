@@ -10,7 +10,7 @@
         <module>booking</module>
         <module>hotel</module>
         <module>search</module>
-        <module>ui</module>
         <module>report</module>
+        <module>ui</module>
     </modules>
 </project>

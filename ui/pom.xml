@@ -21,7 +21,7 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v6.10.3</nodeVersion>
+                            <nodeVersion>v9.11.1</nodeVersion>
                             <npmVersion>3.10.10</npmVersion>
                         </configuration>
                         <phase>test</phase>
@@ -47,6 +47,17 @@
                             <arguments>test</arguments>
                         </configuration>
                         <phase>test</phase>
+                    </execution>
+
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                        <phase>install</phase>
                     </execution>
 
                 </executions>
