@@ -136,13 +136,6 @@ jobs:
 
     docker:
       - image: circleci/openjdk:8u151-jdk-node-browsers
-        environment:
-          - MYSQL_DATABASE: "rbp"
-          - MYSQL_HOST: "127.0.0.1"
-      - image: circleci/mysql:5.7
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: 'password'
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -160,12 +153,6 @@ jobs:
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-hotel
       - restore_cache:
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
-
-      - run:
-          command: |
-            dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-            sudo apt-get install mysql-client
-            mysql -h 127.0.0.1 -u root -ppassword < db/setup.sql
 
       - run:
           command: bash start.sh
