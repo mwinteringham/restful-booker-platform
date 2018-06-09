@@ -25,6 +25,14 @@ The user login details are:
 * Username: admin
 * Password: password
 
+#### Database access
+
+RBP uses h2 in-memory databases for ease of deployment. However, the databases have been setup with TCP access, meaning you can use a SQL client that supports h2 SQL to connect.
+
+You can either connect to the Booking database on port ```9090``` or the Hotel database on port ```9091```.
+
+**Please note: These DBs are vulnerable to remote connection, this means you should avoid deploying RBP onto a public server until a more robust strategy is in place**
+
 ### Development
 
 #### Java APIs

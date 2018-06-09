@@ -3,6 +3,7 @@ package db;
 import model.Booking;
 import model.CreatedBooking;
 import org.h2.jdbcx.JdbcDataSource;
+import org.h2.tools.Server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,10 +18,12 @@ public class BookingDB {
 
     public BookingDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
-        ds.setURL("jdbc:h2:mem:");
-        ds.setUser("booking");
-        ds.setPassword("booking");
+        ds.setURL("jdbc:h2:mem:rbp");
+        ds.setUser("user");
+        ds.setPassword("password");
         connection = ds.getConnection();
+
+        Server server = Server.createTcpServer("-tcpPort", "9090").start();
 
         String prepareDb = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, hotelid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
         connection.prepareStatement(prepareDb).executeUpdate();
