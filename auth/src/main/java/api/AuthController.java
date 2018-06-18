@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @CrossOrigin()
-    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<Token> createToken(@RequestBody Auth auth) {
         if(auth.getUsername().equals("admin") && auth.getPassword().equals("password")){
             return ResponseEntity.ok(new Token(Tokens.create()));

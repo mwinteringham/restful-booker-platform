@@ -19,7 +19,7 @@ public class AuthApi {
                 .contentType(ContentType.JSON)
                 .body(payload)
                .when()
-                .post(baseUrl + "/auth");
+                .post(baseUrl + "/login");
     }
 
 }
