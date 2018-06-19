@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
+import { API_ROOT } from '../api-config';
 
 export default class Login extends React.Component {
 
@@ -10,7 +11,7 @@ export default class Login extends React.Component {
     }
 
     doLogin() {
-        fetch('http://' + window.location.hostname + ':3004/auth', {
+        fetch(API_ROOT.auth + '/login', {
           method: 'POST',
           headers: {
               'Accept': 'application/json',

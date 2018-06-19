@@ -2,12 +2,12 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import HotelListings from './HotelListings.jsx';
 import Search from './Search.jsx';
-import Footer from './Footer.jsx';
 import Nav from './Nav.jsx';
 import Login from './Login.jsx'
 import HotelDetails from './HotelDetails.jsx';
 import Report from './Report.jsx';
 import Cookies from 'universal-cookie';
+import { API_ROOT } from '../api-config';
 
 export default class App extends React.Component {
 
@@ -24,7 +24,7 @@ export default class App extends React.Component {
     componentDidMount(){
         const cookies = new Cookies();
 
-        fetch('http://' + window.location.hostname + ':3004/validate', {
+        fetch(API_ROOT.auth + '/validate', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

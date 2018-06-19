@@ -2,6 +2,7 @@ import React from 'react';
 import Cookies from 'universal-cookie';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { API_ROOT } from '../api-config';
 
 class Nav extends React.Component {
 
@@ -18,7 +19,7 @@ class Nav extends React.Component {
     }
 	
 	doLogout(){
-		fetch('http://' + window.location.hostname + ':3004/logout', {
+		fetch(API_ROOT.auth + '/logout', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
