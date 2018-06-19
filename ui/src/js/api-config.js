@@ -2,7 +2,7 @@ let backendHost;
 
 const hostname = window && window.location && window.location.hostname;
 
-if(hostname === 'realsite.com') {
+if(hostname === 'rbp.info') {
   backendHost = {
     auth : "http://" + window.location.hostname + "/auth"
   }
