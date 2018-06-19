@@ -1,6 +1,7 @@
 import React from 'react';
 import BookingListings from './BookingListings.jsx';
 import Form from './BookingForm.jsx';
+import { API_ROOT } from '../api-config';
 
 export default class HotelDetails extends React.Component {
 
@@ -44,7 +45,7 @@ export default class HotelDetails extends React.Component {
     }
 
     doEdit(){
-        fetch('http://' + window.location.hostname + ':3001/hotel/' + this.props.params.id, {
+        fetch(API_ROOT.hotel + '/hotel/' + this.props.params.id, {
 			method: 'PUT',
 			headers: {
 				'Accept': 'application/json',
@@ -62,7 +63,7 @@ export default class HotelDetails extends React.Component {
     }
 
     fetchHotelDetails() {
-        fetch('http://' + window.location.hostname + ':3001/hotel/' + this.props.params.id, {
+        fetch(API_ROOT.hotel + '/hotel/' + this.props.params.id, {
             headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'

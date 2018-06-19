@@ -1,15 +1,5 @@
 version: '3.4'
 services:
-  auth:
-    build: ../auth
-    ports:
-      - "3004:3004"
-    restart: always
-  search:
-    build: ../search
-    ports:
-      - "3002:3002"
-    restart: always
   booking:
     build: 
       context: ../booking
@@ -21,14 +11,24 @@ services:
     ports:
       - "3001:3001"
     restart: always
-  report:
-    build: ../report
+  search:
+    build: ../search
     ports:
-      - "3005:3005"
+      - "3002:3002"
     restart: always
   ui:
     build: ../ui
     ports:
       - "3003:3003"
       - "9003:9003"
+    restart: always        
+  auth:
+    build: ../auth
+    ports:
+      - "3004:3004"
+    restart: always
+  report:
+    build: ../report
+    ports:
+      - "3005:3005"
     restart: always

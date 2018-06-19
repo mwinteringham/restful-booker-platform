@@ -6294,7 +6294,9 @@ var backendHost = void 0;
 
 var hostname = window && window.location && window.location.hostname;
 
-if (hostname === 'realsite.com') {
+console.log(hostname);
+
+if (hostname === 'rbp.info') {
   backendHost = {
     auth: "http://" + window.location.hostname + "/auth"
   };

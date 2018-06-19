@@ -1,5 +1,6 @@
 import React from 'react';
 import validate from 'validate.js';
+import { API_ROOT } from '../api-config';
 
 const constraints = {
     name : {
@@ -79,7 +80,7 @@ export default class HotelForm extends React.Component {
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
-            fetch('http://' + window.location.hostname + ':3001/hotel', {
+            fetch(API_ROOT.hotel + '/hotel', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

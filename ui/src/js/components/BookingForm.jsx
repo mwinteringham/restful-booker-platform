@@ -2,6 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import validate from 'validate.js';
+import { API_ROOT } from '../api-config';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -110,7 +111,7 @@ export default class BookingForm extends React.Component {
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
-            fetch('http://' + window.location.hostname + ':3000/booking', {
+            fetch(API_ROOT.auth + '/booking', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

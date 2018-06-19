@@ -2,6 +2,7 @@ import React from 'react';
 import fetch from 'node-fetch';
 import HotelListing from './HotelListing.jsx';
 import HotelForm from './HotelForm.jsx';
+import { API_ROOT } from '../api-config';
 
 export default class HotelListings extends React.Component {
 
@@ -15,7 +16,7 @@ export default class HotelListings extends React.Component {
     }
     
     componentDidMount() {
-		fetch('http://' + window.location.hostname + ':3001/hotel')
+		fetch(API_ROOT.hotel + '/hotel')
 			.then(res => res.json())
 			.then(body => {
 				this.setState({hotels : body.hotels});
@@ -23,7 +24,7 @@ export default class HotelListings extends React.Component {
 	}
 
 	updateHotels() {
-		fetch('http://' + window.location.hostname + ':3001/hotel')
+		fetch(API_ROOT.hotel + '/hotel')
 			.then(res => res.json())
 			.then(body => {
 				this.setState({hotels : body.hotels});
