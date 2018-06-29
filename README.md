@@ -29,14 +29,14 @@ The user login details are:
 
 RBP uses h2 in-memory databases for ease of deployment. However, the databases have been setup with TCP access, meaning you can use a SQL client that supports h2 SQL to connect.
 
-You can either connect to the Booking database on port ```9090``` or the Hotel database on port ```9091```.
+You can either connect to the Booking database on port ```9090``` or the Room database on port ```9091```.
 
 **Please note: These DBs are vulnerable to remote connection, this means you should avoid deploying RBP onto a public server until a more robust strategy is in place**
 
 ### Development
 
 #### Java APIs
-For the Java APIs these can be run via Maven. You have the choice to navigating to the root folder and running ```mvn clean package``` to run tests and build a JAR. The other option is to run the application via your IDE and running hotel/src/main/java/api/Application.java to start up the API inside your IDE for debugging.
+For the Java APIs these can be run via Maven. You have the choice to navigating to the root folder and running ```mvn clean package``` to run tests and build a JAR. The other option is to run the application via your IDE and running room/src/main/java/api/Application.java to start up the API inside your IDE for debugging.
 
 #### Node Frontend
 For the node UI API you will need to run the following:
