@@ -1,6 +1,6 @@
 # Restful-booker-search
 
-Search is responsible for searching for hotels and bookings that match a specific keyword.
+Search is responsible for searching for rooms and bookings that match a specific keyword.
 
 ## Building
 

@@ -16,8 +16,8 @@ services:
     ports:
       - "3000:3000"
     restart: always
-  hotel:
-    build: ../hotel
+  room:
+    build: ../room
     ports:
       - "3001:3001"
     restart: always

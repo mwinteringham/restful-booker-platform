@@ -61,7 +61,7 @@ export default class BookingForm extends React.Component {
 
         this.state = {
             newbooking : {
-                hotelid: null,
+                roomid: null,
                 firstname: "",
                 lastname: "",
                 totalprice: "",
@@ -81,7 +81,7 @@ export default class BookingForm extends React.Component {
 
     componentDidMount(){
         let currentState = this.state;
-        currentState.newbooking.hotelid = this.props.hotelid;
+        currentState.newbooking.roomid = this.props.roomid;
 
         this.setState({newbooking : currentState.newbooking});
     }
@@ -121,7 +121,7 @@ export default class BookingForm extends React.Component {
             })
             .then(res => {
                 if(res.status == 200){
-                    this.props.fetchHotelDetails();
+                    this.props.fetchRoomDetails();
 
                     document.getElementById("firstname").value = '';
                     document.getElementById("lastname").value = '';
@@ -130,7 +130,7 @@ export default class BookingForm extends React.Component {
 
                     this.setState({
                         newbooking: {
-                            hotelid : this.props.hotelid,
+                            roomid : this.props.roomid,
                             firstname: "",
                             lastname: "",
                             totalprice: "",

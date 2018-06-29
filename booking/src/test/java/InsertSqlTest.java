@@ -2,7 +2,6 @@ import db.InsertSql;
 import model.Booking;
 import org.junit.Test;
 
-import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -19,7 +18,7 @@ public class InsertSqlTest {
         // We first need to create a booking object to use later
         // we can use the bookings builder pattern to create it
         Booking booking = new Booking.BookingBuilder()
-                                    .setHotelid(1)
+                                    .setRoomid(1)
                                     .setFirstname("Mark")
                                     .setLastname("Winteringham")
                                     .setTotalprice(100)
@@ -39,7 +38,7 @@ public class InsertSqlTest {
 
         // We finally use hamcrest to assertThat the created sql
         // is the same as the expected SQL in the second parameter
-        assertThat(sqlStatement, is("INSERT INTO BOOKINGS(hotelid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(1,'Mark','Winteringham',100,true,'2013-01-31','2013-01-31');"));
+        assertThat(sqlStatement, is("INSERT INTO BOOKINGS(roomid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(1,'Mark','Winteringham',100,true,'2013-01-31','2013-01-31');"));
     }
 
 }

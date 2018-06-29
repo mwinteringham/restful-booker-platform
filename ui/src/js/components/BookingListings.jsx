@@ -11,7 +11,7 @@ export default class BookingListings extends React.Component {
         return(
             <div>
                 {this.props.bookings.map((booking, index) => {
-                    return <div key={booking.bookingid}><BookingListing booking={booking} fetchHotelDetails={this.props.fetchHotelDetails} /></div>
+                    return <div key={booking.bookingid}><BookingListing booking={booking} fetchRoomDetails={this.props.fetchRoomDetails} /></div>
                 })}
             </div>
         )

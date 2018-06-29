@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class InsertSql {
 
-    private int hotelid;
+    private int roomid;
     private String firstname;
     private String lastname;
     private int totalprice;
@@ -17,7 +17,7 @@ public class InsertSql {
     private SimpleDateFormat dateFormat;
 
     public InsertSql(Booking booking) {
-        this.hotelid = booking.getHotelid();
+        this.roomid = booking.getRoomid();
         this.firstname = booking.getFirstname();
         this.lastname = booking.getLastname();
         this.totalprice = booking.getTotalprice();
@@ -29,8 +29,8 @@ public class InsertSql {
     }
 
     public String buildSql(){
-        return "INSERT INTO BOOKINGS(hotelid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(" +
-                hotelid + "," +
+        return "INSERT INTO BOOKINGS(roomid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(" +
+                roomid + "," +
                 "'" + firstname + "'," +
                 "'" + lastname + "'," +
                 totalprice + "," +

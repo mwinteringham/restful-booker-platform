@@ -2,8 +2,6 @@ package payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 public class Booking {
@@ -11,7 +9,7 @@ public class Booking {
     @JsonProperty
     private int bookingid;
     @JsonProperty
-    private int hotelid;
+    private int roomid;
     @JsonProperty
     private String firstname;
     @JsonProperty
@@ -23,9 +21,9 @@ public class Booking {
     @JsonProperty(value = "bookingdates")
     private BookingDates bookingDates;
 
-    public Booking(int bookingid, int hotelid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
+    public Booking(int bookingid, int roomid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
         this.bookingid = bookingid;
-        this.hotelid = hotelid;
+        this.roomid = roomid;
         this.firstname = firstname;
         this.lastname = lastname;
         this.totalprice = totalprice;
@@ -56,8 +54,8 @@ public class Booking {
         return bookingDates;
     }
 
-    public int getHotelid() {
-        return hotelid;
+    public int getRoomid() {
+        return roomid;
     }
 
     public void setFirstname(String firstname) {
@@ -80,14 +78,14 @@ public class Booking {
         this.bookingDates = bookingDates;
     }
 
-    public void setHotelid(int hotelId) {
-        this.hotelid = hotelId;
+    public void setRoomid(int hotelId) {
+        this.roomid = hotelId;
     }
 
     @Override
     public String toString() {
         return "Booking{" +
-                "hotelid=" + hotelid +
+                "roomid=" + roomid +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", totalprice=" + totalprice +

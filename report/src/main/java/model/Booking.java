@@ -10,7 +10,7 @@ public class Booking {
     @JsonProperty
     private int bookingid;
     @JsonProperty
-    private int hotelid;
+    private int roomid;
     @JsonProperty
     private String firstname;
     @JsonProperty
@@ -24,7 +24,7 @@ public class Booking {
 
     public Booking(ResultSet result) throws SQLException {
         this.bookingid = result.getInt("bookingid");
-        this.hotelid = result.getInt("hotelid");
+        this.roomid = result.getInt("roomid");
         this.firstname = result.getString("firstname");
         this.lastname = result.getString("lastname");
         this.totalprice = result.getInt("totalprice");
@@ -55,8 +55,8 @@ public class Booking {
         return bookingDates;
     }
 
-    public int getHotelid() {
-        return hotelid;
+    public int getRoomid() {
+        return roomid;
     }
 
     public void setFirstname(String firstname) {
@@ -79,8 +79,8 @@ public class Booking {
         this.bookingDates = bookingDates;
     }
 
-    public void setHotelid(int hotelId) {
-        this.hotelid = hotelId;
+    public void setRoomid(int roomId) {
+        this.roomid = roomId;
     }
 
 }

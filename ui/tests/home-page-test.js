@@ -1,5 +1,5 @@
 import React from 'react';
-import HotelListings from '../src/js/components/HotelListings.jsx';
+import HotelListings from '../src/js/components/RoomListings.jsx';
 
 // We first declare our test by using Jests test function and provide it
 // with a name and then an anonymous function which will run our test
@@ -7,15 +7,12 @@ test('Hotels list component', () => {
     // Our component we want to test requires data so we create
     // our object to pass later
     const hotelPayload = {
-        "hotelid": 1,
-        "name": "Hilton",
-        "address": "123 The Street",
-        "regdate": "2018-02-20T22:47:38.176Z",
-        "contact": {
-            "name": "Mark Winteringham",
-            "phone": "07411222473",
-            "email": "mark@hilton.com"
-        }
+        "roomid": 1,
+        "roomNumber": 101,
+        "type": "Single",
+        "beds": 2,
+        "accessible": true,
+        "details": "WiFi, TV, Mini-bar"
     }
 
     // Next we create our component that we want to check. By using

@@ -6,66 +6,46 @@ exports[`Hotels list component 1`] = `
     className="row"
   >
     <div
-      className="col-sm-2 rowHeader"
+      className="col-sm-1 rowHeader"
     >
       <p>
-        Hotel name
-      </p>
-    </div>
-    <div
-      className="col-sm-3 rowHeader"
-    >
-      <p>
-        Address
+        Room #
       </p>
     </div>
     <div
       className="col-sm-2 rowHeader"
     >
       <p>
-        Owner
+        Type
       </p>
     </div>
     <div
-      className="col-sm-2 rowHeader"
+      className="col-sm-1 rowHeader"
     >
       <p>
-        Phone number
+        Beds
       </p>
     </div>
     <div
-      className="col-sm-2 rowHeader"
+      className="col-sm-1 rowHeader"
     >
       <p>
-        Email
+        Access?
+      </p>
+    </div>
+    <div
+      className="col-sm-6 rowHeader"
+    >
+      <p>
+        Room details
       </p>
     </div>
     <div
       className="col-sm-1"
     />
   </div>
-  <div
-    key="1"
-  >
-    <HotelListing
-      details={
-        Object {
-          "address": "123 The Street",
-          "contact": Object {
-            "email": "mark@hilton.com",
-            "name": "Mark Winteringham",
-            "phone": "07411222473",
-          },
-          "hotelid": 1,
-          "name": "Hilton",
-          "regdate": "2018-02-20T22:47:38.176Z",
-        }
-      }
-      updateHotels={[Function]}
-    />
-  </div>
-  <HotelForm
-    updateHotels={[Function]}
+  <RoomForm
+    updateRooms={[Function]}
   />
 </div>
 `;
