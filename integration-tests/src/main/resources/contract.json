@@ -1,6 +1,6 @@
 {
   "bookingid": 1,
-  "hotelid": 1,
+  "roomid": 1,
   "firstname": "James",
   "lastname": "Dean",
   "totalprice": 100,

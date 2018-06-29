@@ -1,11 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
-import HotelListings from './HotelListings.jsx';
+import RoomListings from './RoomListings.jsx';
 import Search from './Search.jsx';
-import Footer from './Footer.jsx';
 import Nav from './Nav.jsx';
 import Login from './Login.jsx'
-import HotelDetails from './HotelDetails.jsx';
+import RoomDetails from './RoomDetails.jsx';
 import Report from './Report.jsx';
 import Cookies from 'universal-cookie';
 
@@ -54,10 +53,10 @@ export default class App extends React.Component {
             app = <div>
                     <Nav setAuthenticate={this.setAuthenticate} />
                     <Switch>
-                        <Route exact path='/' render={(props) => <HotelListings {...props} />} />
+                        <Route exact path='/' render={(props) => <RoomListings {...props} />} />
                         <Route exact path='/search' component={Search} {...this.props}/>
-                        <Route exact path='/hotel/:id' render={({ location, match }) => (
-                            <HotelDetails isAuthenticated={this.state.isAuthenticated} params={match.params}/>
+                        <Route exact path='/room/:id' render={({ location, match }) => (
+                            <RoomDetails isAuthenticated={this.state.isAuthenticated} params={match.params}/>
                         )} />
                         <Route exact path='/report' component={Report} />
                     </Switch>

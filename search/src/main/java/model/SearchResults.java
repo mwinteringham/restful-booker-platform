@@ -9,15 +9,11 @@ public class SearchResults {
     @JsonProperty
     private List<Booking> bookings;
 
-    @JsonProperty
-    private List<Room> rooms;
-
     public SearchResults() {
     }
 
-    public SearchResults(List<Booking> bookings, List<Room> rooms) {
+    public SearchResults(List<Booking> bookings) {
         this.bookings = bookings;
-        this.rooms = rooms;
     }
 
     public List<Booking> getBookings() {
@@ -28,11 +24,4 @@ public class SearchResults {
         this.bookings = bookings;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
 }

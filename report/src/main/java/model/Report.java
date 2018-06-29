@@ -7,7 +7,7 @@ import java.util.List;
 public class Report {
 
     @JsonProperty
-    private List<String> rooms;
+    private int[] rooms;
 
     @JsonProperty
     private int[] totals;
@@ -15,16 +15,16 @@ public class Report {
     public Report() {
     }
 
-    public Report(List<String> rooms, int[] totals) {
+    public Report(int[] rooms, int[] totals) {
         this.rooms = rooms;
         this.totals = totals;
     }
 
-    public List<String> getRooms() {
+    public int[] getRooms() {
         return rooms;
     }
 
-    public void setRooms(List<String> rooms) {
+    public void setRooms(int[] rooms) {
         this.rooms = rooms;
     }
 

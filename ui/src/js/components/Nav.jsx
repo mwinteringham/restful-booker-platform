@@ -57,7 +57,7 @@ class Nav extends React.Component {
 			<nav className="navbar navbar-default">
 				<div className="container-fluid"> 
 					<div className="navbar-header"> 
-					<a className="navbar-brand" href="/">Hotel Management Platform</a> 
+					<a className="navbar-brand" href="/">Shady Meadows - Booking Management</a> 
 					</div> 
 					<ul className="nav navbar-nav"> 
 					<li><Link to="/">Home</Link></li>

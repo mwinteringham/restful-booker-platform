@@ -33,7 +33,7 @@ export default class BookingListing extends React.Component {
         })
         .then(res => {
             if(res.status == 202){
-                this.props.fetchHotelDetails();
+                this.props.fetchRoomDetails();
             }
         })
         .catch(e => console.log(e))
@@ -60,7 +60,7 @@ export default class BookingListing extends React.Component {
         .then(res => res.json())
         .then(res => {
             this.setState({allowEdit : false});
-            this.props.fetchHotelDetails();
+            this.props.fetchRoomDetails();
         })
         .catch(e => console.log(e));
     }
@@ -124,7 +124,7 @@ export default class BookingListing extends React.Component {
         }
 
         return(
-            <div className={"row detail booking-" + this.props.booking.hotelid}>
+            <div className={"row detail booking-" + this.props.booking.roomid}>
                 {booking}
             </div>
         )
