@@ -1,12 +1,12 @@
 package api;
 
 import model.Booking;
-import model.Hotel;
+import model.Room;
 import model.SearchResults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import requests.BookingRequests;
-import requests.HotelRequests;
+import requests.RoomRequests;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,21 +16,21 @@ import java.util.Optional;
 public class SearchController {
 
     private BookingRequests requestBooking;
-    private HotelRequests requestHotel;
+    private RoomRequests requestRoom;
 
     public SearchController() throws SQLException {
         requestBooking = new BookingRequests();
-        requestHotel = new HotelRequests();
+        requestRoom = new RoomRequests();
     }
 
     @CrossOrigin(value = "*")
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ResponseEntity<SearchResults> getHotels(@RequestParam("keyword") Optional<String> keyword) throws SQLException {
+    public ResponseEntity<SearchResults> getSearchResults(@RequestParam("keyword") Optional<String> keyword) throws SQLException {
         if(keyword.isPresent()){
             List<Booking> bookings = requestBooking.searchForBookings(keyword.get()).getBody().getBookings();
-            List<Hotel> hotels = requestHotel.searchForHotels(keyword.get()).getBody().getHotels();
+            List<Room> rooms = requestRoom.searchForRooms(keyword.get()).getBody().getRooms();
 
-            return ResponseEntity.ok(new SearchResults(bookings, hotels));
+            return ResponseEntity.ok(new SearchResults(bookings, rooms));
         }
 
         return ResponseEntity.ok().build();

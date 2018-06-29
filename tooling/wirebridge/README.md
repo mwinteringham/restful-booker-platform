@@ -2,7 +2,7 @@
 
 Wirebridge is a configurable API that helps teams abstract complex data creation tasks behind programmable HTTP requests.
 
-It is currently being used with RBP as means to quickly create bookings and hotels. To find out more on how to create mappings for Wirebridge, check out its README [https://github.com/mwinteringham/wirebridge](https://github.com/mwinteringham/wirebridge)
+It is currently being used with RBP as means to quickly create bookings and rooms. To find out more on how to create mappings for Wirebridge, check out its README [https://github.com/mwinteringham/wirebridge](https://github.com/mwinteringham/wirebridge)
 
 ## Setting up
 

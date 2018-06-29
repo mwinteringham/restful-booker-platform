@@ -8,6 +8,6 @@ COPY target ./
 
 ENV authDomain=auth
 ENV bookingDomain=booking
-ENV hotelDomain=hotel
+ENV roomDomain=room
 
 ENTRYPOINT java -jar target/restful-booker-platform-search-1.0-SNAPSHOT.jar -D

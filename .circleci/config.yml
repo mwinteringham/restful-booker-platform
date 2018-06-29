@@ -76,7 +76,7 @@ jobs:
               - report/
             key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
 
-  run_hotel_build:
+  run_room_build:
 
         docker:
           - image: circleci/openjdk:8u151-jdk-node-browsers
@@ -89,11 +89,11 @@ jobs:
               key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           - run:
               command: mvn clean install
-              working_directory: hotel
+              working_directory: room
           - save_cache:
               paths:
-                - hotel/
-              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-hotel
+                - room/
+              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
 
   run_search_build:
 
@@ -150,7 +150,7 @@ jobs:
       - restore_cache:
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
       - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-hotel
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
       - restore_cache:
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
 
@@ -221,7 +221,7 @@ jobs:
               docker push mwinteringham/restfulbookerplatform_report:latest
             working_directory: report
 
-  build_hotel_docker_image:
+  build_room_docker_image:
 
       docker:
         - image: circleci/openjdk:8u151-jdk-node-browsers
@@ -236,9 +236,9 @@ jobs:
         - run:
             command: |
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_hotel:latest .
-              docker push mwinteringham/restfulbookerplatform_hotel:latest
-            working_directory: hotel
+              docker build -t mwinteringham/restfulbookerplatform_room:latest .
+              docker push mwinteringham/restfulbookerplatform_room:latest
+            working_directory: room
 
   build_search_docker_image:
 
@@ -292,7 +292,7 @@ workflows:
       - run_report_build:
           requires:
             - checkout_code
-      - run_hotel_build:
+      - run_room_build:
           requires:
             - checkout_code
       - run_search_build:
@@ -306,7 +306,7 @@ workflows:
             - run_auth_build
             - run_booking_build
             - run_report_build
-            - run_hotel_build
+            - run_room_build
             - run_search_build
       - build_auth_docker_image:
           requires:
@@ -317,7 +317,7 @@ workflows:
       - build_report_docker_image:
           requires:
             - run_integration_tests
-      - build_hotel_docker_image:
+      - build_room_docker_image:
           requires:
             - run_integration_tests
       - build_search_docker_image:

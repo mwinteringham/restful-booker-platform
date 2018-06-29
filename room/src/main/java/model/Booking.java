@@ -79,8 +79,8 @@ public class Booking {
         this.bookingDates = bookingDates;
     }
 
-    public void setRoomid(int roomId) {
-        this.roomid = roomId;
+    public void setRoomid(int roomid) {
+        this.roomid = roomid;
     }
 
 }
