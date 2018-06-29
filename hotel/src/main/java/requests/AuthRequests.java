@@ -28,15 +28,12 @@ public class AuthRequests {
         requestHeaders.setContentType(MediaType.APPLICATION_JSON);
         requestHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
-        HttpEntity<Token> httpEntity = new HttpEntity<Token>(token, requestHeaders);
+        HttpEntity<Token> httpEntity = new HttpEntity<>(token, requestHeaders);
 
         try{
             ResponseEntity<String> response = restTemplate.exchange(host, HttpMethod.POST, httpEntity, String.class);
-            if(response.getStatusCodeValue() == 200){
-                return true;
-            } else {
-                return false;
-            }
+
+            return response.getStatusCodeValue() == 200;
         } catch (HttpClientErrorException e){
             return false;
         }

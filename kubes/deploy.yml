@@ -1,0 +1,252 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-booking
+spec:
+  selector:
+    matchLabels:
+      run: rbp-booking
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-booking
+    spec:
+      containers:
+        - name: rbp-booking
+          image: mwinteringham/restfulbookerplatform_booking
+          ports:
+            - containerPort: 3000
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-hotel
+spec:
+  selector:
+    matchLabels:
+      run: rbp-hotel
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-hotel
+    spec:
+      containers:
+        - name: rbp-hotel
+          image: mwinteringham/restfulbookerplatform_hotel
+          ports:
+            - containerPort: 3001
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-search
+spec:
+  selector:
+    matchLabels:
+      run: rbp-search
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-search
+    spec:
+      containers:
+        - name: rbp-search
+          image: mwinteringham/restfulbookerplatform_search
+          ports:
+            - containerPort: 3002
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-ui
+spec:
+  selector:
+    matchLabels:
+      run: rbp-ui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-ui
+    spec:
+      containers:
+        - name: rbp-ui
+          image: mwinteringham/restfulbookerplatform_ui
+          ports:
+            - containerPort: 3003
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-auth
+spec:
+  selector:
+    matchLabels:
+      run: rbp-auth
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-auth
+    spec:
+      containers:
+        - name: rbp-auth
+          image: mwinteringham/restfulbookerplatform_auth
+          ports:
+            - containerPort: 3004
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-report
+spec:
+  selector:
+    matchLabels:
+      run: rbp-report
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-report
+    spec:
+      containers:
+        - name: rbp-report
+          image: mwinteringham/restfulbookerplatform_report
+          ports:
+            - containerPort: 3005
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-booking
+  labels:
+    app: rbp-booking
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      protocol: TCP
+      nodePort: 32147
+      targetPort: 3000
+  selector:
+    run: rbp-booking
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-hotel
+  labels:
+    app: rbp-hotel
+spec:
+  type: NodePort
+  ports:
+    - port: 3001
+      protocol: TCP
+      nodePort: 32148
+      targetPort: 3001
+  selector:
+    run: rbp-hotel
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-search
+  labels:
+    app: rbp-search
+spec:
+  type: NodePort
+  ports:
+    - port: 3002
+      protocol: TCP
+      nodePort: 32149
+      targetPort: 3002
+  selector:
+    run: rbp-search
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-ui
+  labels:
+    app: rbp-ui
+spec:
+  type: NodePort
+  ports:
+    - port: 3003
+      protocol: TCP
+      nodePort: 32150
+      targetPort: 3003
+  selector:
+    run: rbp-ui
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-auth
+  labels:
+    app: rbp-auth
+spec:
+  type: NodePort
+  ports:
+    - port: 3004
+      protocol: TCP
+      nodePort: 32151
+      targetPort: 3004
+  selector:
+    run: rbp-auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-report
+  labels:
+    app: rbp-report
+spec:
+  type: NodePort
+  ports:
+    - port: 3005
+      protocol: TCP
+      nodePort: 32152
+      targetPort: 3005
+  selector:
+    run: rbp-report
+---  
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rbp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: rbp.info
+    http:
+      paths:
+      - path: /booking
+        backend:
+          serviceName: rbp-booking
+          servicePort: 3000
+      - path: /hotel
+        backend:
+          serviceName: rbp-hotel
+          servicePort: 3001
+      - path: /search
+        backend:
+          serviceName: rbp-search
+          servicePort: 3002
+      - path: /
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003          
+      - path: /auth
+        backend:
+          serviceName: rbp-auth
+          servicePort: 3004
+      - path: /report
+        backend:
+          serviceName: rbp-report
+          servicePort: 3005

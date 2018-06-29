@@ -6,6 +6,7 @@ WORKDIR /usr/local/booking
 
 COPY target ./
 
-ENV authDomain=auth
+# Can this be overridden?
+ENV authDomain=rbp.info/auth
 
 ENTRYPOINT java -jar target/restful-booker-platform-booking-1.0-SNAPSHOT.jar -D
