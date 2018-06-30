@@ -1,36 +1,35 @@
 version: '3.4'
 services:
   booking:
-    build:
-      context: ../booking
+    image: mwinteringham/restfulbookerplatform_booking
     ports:
       - "3000:3000"
       - "9090:9090"
     restart: always
   room:
-    build: ../room
+    image: mwinteringham/restfulbookerplatform_room
     ports:
       - "3001:3001"
       - "9091:9091"
     restart: always
   search:
-    build: ../search
+    image: mwinteringham/restfulbookerplatform_search
     ports:
       - "3002:3002"
     restart: always
   ui:
-    build: ../ui
+    image: mwinteringham/restfulbookerplatform_ui
     ports:
       - "3003:3003"
       - "9003:9003"
     restart: always
   auth:
-    build: ../auth
+    image: mwinteringham/restfulbookerplatform_auth
     ports:
       - "3004:3004"
     restart: always
   report:
-    build: ../report
+    image: mwinteringham/restfulbookerplatform_report
     ports:
       - "3005:3005"
     restart: always
