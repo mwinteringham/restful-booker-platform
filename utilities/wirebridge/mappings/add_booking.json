@@ -1,0 +1,11 @@
+{
+  "request" : {
+    "method" : "POST",
+    "path" : "/booking",
+    "parameters" : ["roomid", "firstname", "lastname", "totalprice", "depositpaid", "checkin", "checkout"]
+  },
+  "sql" : {
+    "database" : "h2-booking",
+    "query" : "INSERT INTO BOOKINGS(roomid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(${roomid}, ${firstname}, ${lastname}, ${totalprice}, ${depositpaid}, ${checkin}, ${checkout});"
+  }
+}

@@ -33,3 +33,8 @@ services:
     ports:
       - "3005:3005"
     restart: always
+  utilities:
+    build: ../utilities/wirebridge
+    ports:
+      - "8080:8080"
+    restart: always

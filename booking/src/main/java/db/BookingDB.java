@@ -23,7 +23,7 @@ public class BookingDB {
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        Server server = Server.createTcpServer("-tcpPort", "9090").start();
+        Server server = Server.createTcpServer("-tcpPort", "9090", "-tcpAllowOthers").start();
 
         String prepareDb = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
         connection.prepareStatement(prepareDb).executeUpdate();

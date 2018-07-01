@@ -21,7 +21,7 @@ public class RoomDB {
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        Server server = Server.createTcpServer("-tcpPort", "9091").start();
+        Server server = Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
 
         String prepareDb = "CREATE table ROOMS ( roomid int NOT NULL AUTO_INCREMENT," +
                            " room_number int," +
