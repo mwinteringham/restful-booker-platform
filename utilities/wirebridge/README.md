@@ -14,6 +14,6 @@ You will see logging to show that Wirebridge is up and running.
 
 ## Using Wirebridge
 
-Wirebridge has been configured with two mappings that you can make HTTP requests against to create a single Hotel or a single Booking per API call.
+Wirebridge has been configured with two mappings that you can make HTTP requests against to create a single Room or a single Booking per API call.
 
 You can download the HTTP requests as a Postman collection here: [https://www.getpostman.com/collections/5805c3bde8c38353bea9](https://www.getpostman.com/collections/5805c3bde8c38353bea9)

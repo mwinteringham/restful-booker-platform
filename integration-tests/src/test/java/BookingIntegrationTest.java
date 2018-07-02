@@ -63,6 +63,6 @@ public class BookingIntegrationTest {
 //
 //    Check each service integrates and read / writes to the MySQL service
 //    Check each service integrates with the Auth web service
-//    Check hotel and booking services integrate with one another
+//    Check room and booking services integrate with one another
 
 }

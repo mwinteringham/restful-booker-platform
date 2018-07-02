@@ -78,8 +78,8 @@ public class Booking {
         this.bookingDates = bookingDates;
     }
 
-    public void setRoomid(int hotelId) {
-        this.roomid = hotelId;
+    public void setRoomid(int roomId) {
+        this.roomid = roomId;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Booking {
     public static class BookingBuilder {
 
         private int bookingid;
-        private int hotelid;
+        private int roomid;
         private String firstname;
         private String lastname;
         private int totalprice;
@@ -111,8 +111,8 @@ public class Booking {
             return this;
         }
 
-        public BookingBuilder setHotelid(int hotelid){
-            this.hotelid = hotelid;
+        public BookingBuilder setRoomid(int roomid){
+            this.roomid = roomid;
 
             return this;
         }
@@ -156,7 +156,7 @@ public class Booking {
         public Booking build(){
             BookingDates bookingDates = new BookingDates(checkin, checkout);
 
-            return new Booking(bookingid, hotelid, firstname, lastname, totalprice, depositpaid, bookingDates);
+            return new Booking(bookingid, roomid, firstname, lastname, totalprice, depositpaid, bookingDates);
         }
     }
 }

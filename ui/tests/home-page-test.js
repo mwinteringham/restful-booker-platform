@@ -1,12 +1,12 @@
 import React from 'react';
-import HotelListings from '../src/js/components/RoomListings.jsx';
+import RoomListings from '../src/js/components/RoomListings.jsx';
 
 // We first declare our test by using Jests test function and provide it
 // with a name and then an anonymous function which will run our test
-test('Hotels list component', () => {
+test('Rooms list component', () => {
     // Our component we want to test requires data so we create
     // our object to pass later
-    const hotelPayload = {
+    const roomPayload = {
         "roomid": 1,
         "roomNumber": 101,
         "type": "Single",
@@ -19,20 +19,20 @@ test('Hotels list component', () => {
     // enzymes shallow function and passing it the React component
     // we want to create, Enzyme will create a headless DOM and render
     // the React component inside.
-    const hotels = shallow(
-        <HotelListings />
+    const rooms = shallow(
+        <RoomListings />
     );
 
     // Now that we have a rendered React component, we can call it's
     // internal functions. We call setState and pass it our data to 
     // update it's internal state. The component will then process that
     // data and do something with it.
-    hotels.setState({hotels : [hotelPayload]});
+    rooms.setState({rooms : [roomPayload]});
 
     // We then compare what the component has done to a previously saved
     // state that lives in the __snapshots__ folder. If anything has changed
     // it will raise an alert.
-    expect(hotels).toMatchSnapshot();
+    expect(rooms).toMatchSnapshot();
 });
 
 // Check suggestions...

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Hotels list component 1`] = `
+exports[`Rooms list component 1`] = `
 <div>
   <div
     className="row"
@@ -42,6 +42,23 @@ exports[`Hotels list component 1`] = `
     </div>
     <div
       className="col-sm-1"
+    />
+  </div>
+  <div
+    key="1"
+  >
+    <RoomListing
+      details={
+        Object {
+          "accessible": true,
+          "beds": 2,
+          "details": "WiFi, TV, Mini-bar",
+          "roomNumber": 101,
+          "roomid": 1,
+          "type": "Single",
+        }
+      }
+      updateRooms={[Function]}
     />
   </div>
   <RoomForm

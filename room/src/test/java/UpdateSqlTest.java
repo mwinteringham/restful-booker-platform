@@ -14,7 +14,7 @@ public class UpdateSqlTest {
     // what it is checking
     public void testCreatingUpdateSql(){
         // We need to create our object that will be used to create our sql. We start
-        // by creating a Contact object so that we can then add that to hotel object
+        // by creating a Contact object so that we can then add that to room object
         Room room = new Room(101, "Twin", 2, false , "Detail, Detail, Detail");
 
         // We then create a new UpdateSql object and pass it our
