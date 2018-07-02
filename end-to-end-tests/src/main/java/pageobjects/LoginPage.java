@@ -22,8 +22,6 @@ public class LoginPage extends BasePage
     public LoginPage(WebDriver driver)
     {
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginModal")));
     }
 
     public LoginPage PopulateUsername(String username)
@@ -38,10 +36,10 @@ public class LoginPage extends BasePage
         return this;
     }
 
-    public HotelListingPage ClickLogin()
+    public RoomListingPage ClickLogin()
     {
         btnLogin.click();
-        return new HotelListingPage(driver);
+        return new RoomListingPage(driver);
     }
 
 }
