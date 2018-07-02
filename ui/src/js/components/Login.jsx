@@ -7,6 +7,10 @@ export default class Login extends React.Component {
         super();
 
         this.doLogin = this.doLogin.bind(this);
+
+        this.state = {
+            error : false
+        }
     }
 
     doLogin() {
@@ -18,12 +22,15 @@ export default class Login extends React.Component {
           },
           body : JSON.stringify(this.state)
         })
-        .then(res=>res.json())
         .then(res => {
-          this.props.setAuthenticate(true);
+            if(res.status == 200){
+                this.props.setAuthenticate(true);
           
-          const cookies = new Cookies();
-          cookies.set('token', res.token, { path: '/' });
+                const cookies = new Cookies();
+                cookies.set('token', res.json().token, { path: '/' });
+            } else {
+                this.setState({ error : true });
+            }
         })
         .catch(e => {
           console.log("Failed to authenticate");
@@ -31,7 +38,13 @@ export default class Login extends React.Component {
         })
     }
 
-    render(){        
+    render(){   
+        let borderColor = "grey";
+
+        if(this.state.error){
+            borderColor = "red";
+        }
+
         return(<div style={{marginTop: "20%"}}>
                 <div className="row">
                     <div className="col-sm-2"></div>
@@ -43,14 +56,14 @@ export default class Login extends React.Component {
                 <div className="row">
                     <div className="col-sm-4"></div>
                     <div className="col-sm-4">
-                        <p><label htmlFor="username">Username </label><input type="text" id="username" onChange={val => this.setState({username : val.target.value})}/></p> 
+                        <p><label htmlFor="username">Username </label><input type="text" id="username" style={{border : "1px solid " + borderColor}} onChange={val => this.setState({username : val.target.value})}/></p> 
                     </div>
                     <div className="col-sm-4"></div>
                 </div>
                 <div className="row">
                     <div className="col-sm-4"></div>
                     <div className="col-sm-4">
-                        <p><label htmlFor="password">Password </label><input type="password" id="password" onChange={val => this.setState({password : val.target.value})}/></p> 
+                        <p><label htmlFor="password">Password </label><input type="password" id="password" style={{border : "1px solid " + borderColor}} onChange={val => this.setState({password : val.target.value})}/></p> 
                     </div>
                     <div className="col-sm-4"></div>
                 </div>

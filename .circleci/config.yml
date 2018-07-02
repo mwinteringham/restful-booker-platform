@@ -126,6 +126,7 @@ jobs:
           command: |
             npm install
             npm test
+            npm run build
           working_directory: ui
       - save_cache:
           paths:
