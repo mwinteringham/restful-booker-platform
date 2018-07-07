@@ -30,7 +30,7 @@ exports[`Rooms list component 1`] = `
       className="col-sm-1 rowHeader"
     >
       <p>
-        Access?
+        Accessible
       </p>
     </div>
     <div

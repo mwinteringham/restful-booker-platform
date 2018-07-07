@@ -46105,7 +46105,7 @@ var RoomListings = function (_React$Component) {
 						_react2.default.createElement(
 							'p',
 							null,
-							'Access?'
+							'Accessible'
 						)
 					),
 					_react2.default.createElement(
@@ -47252,6 +47252,10 @@ var Login = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
 
         _this.doLogin = _this.doLogin.bind(_this);
+
+        _this.state = {
+            error: false
+        };
         return _this;
     }
 
@@ -47268,11 +47272,16 @@ var Login = function (_React$Component) {
                 },
                 body: JSON.stringify(this.state)
             }).then(function (res) {
-                if (res.status == 200) {
+                return res.json();
+            }).then(function (res) {
+
+                if (typeof res.token !== 'undefined') {
                     _this2.props.setAuthenticate(true);
 
                     var cookies = new _universalCookie2.default();
-                    cookies.set('token', res.json().token, { path: '/' });
+                    cookies.set('token', res.token, { path: '/' });
+                } else {
+                    _this2.setState({ error: true });
                 }
             }).catch(function (e) {
                 console.log("Failed to authenticate");
@@ -47283,6 +47292,12 @@ var Login = function (_React$Component) {
         key: 'render',
         value: function render() {
             var _this3 = this;
+
+            var borderColor = "grey";
+
+            if (this.state.error) {
+                borderColor = "red";
+            }
 
             return _react2.default.createElement(
                 'div',
@@ -47305,63 +47320,67 @@ var Login = function (_React$Component) {
                     _react2.default.createElement('div', { className: 'col-sm-2' })
                 ),
                 _react2.default.createElement(
-                    'div',
-                    { className: 'row' },
-                    _react2.default.createElement('div', { className: 'col-sm-4' }),
+                    'form',
+                    null,
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-sm-4' },
+                        { className: 'row' },
+                        _react2.default.createElement('div', { className: 'col-sm-4' }),
                         _react2.default.createElement(
-                            'p',
-                            null,
+                            'div',
+                            { className: 'col-sm-4' },
                             _react2.default.createElement(
-                                'label',
-                                { htmlFor: 'username' },
-                                'Username '
-                            ),
-                            _react2.default.createElement('input', { type: 'text', id: 'username', onChange: function onChange(val) {
-                                    return _this3.setState({ username: val.target.value });
-                                } })
-                        )
+                                'p',
+                                null,
+                                _react2.default.createElement(
+                                    'label',
+                                    { htmlFor: 'username' },
+                                    'Username '
+                                ),
+                                _react2.default.createElement('input', { type: 'text', id: 'username', style: { border: "1px solid " + borderColor }, onChange: function onChange(val) {
+                                        return _this3.setState({ username: val.target.value });
+                                    } })
+                            )
+                        ),
+                        _react2.default.createElement('div', { className: 'col-sm-4' })
                     ),
-                    _react2.default.createElement('div', { className: 'col-sm-4' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row' },
-                    _react2.default.createElement('div', { className: 'col-sm-4' }),
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-sm-4' },
+                        { className: 'row' },
+                        _react2.default.createElement('div', { className: 'col-sm-4' }),
                         _react2.default.createElement(
-                            'p',
-                            null,
+                            'div',
+                            { className: 'col-sm-4' },
                             _react2.default.createElement(
-                                'label',
-                                { htmlFor: 'password' },
-                                'Password '
-                            ),
-                            _react2.default.createElement('input', { type: 'password', id: 'password', onChange: function onChange(val) {
-                                    return _this3.setState({ password: val.target.value });
-                                } })
-                        )
+                                'p',
+                                null,
+                                _react2.default.createElement(
+                                    'label',
+                                    { htmlFor: 'password' },
+                                    'Password '
+                                ),
+                                _react2.default.createElement('input', { type: 'password', id: 'password', style: { border: "1px solid " + borderColor }, onChange: function onChange(val) {
+                                        return _this3.setState({ password: val.target.value });
+                                    } })
+                            )
+                        ),
+                        _react2.default.createElement('div', { className: 'col-sm-4' })
                     ),
-                    _react2.default.createElement('div', { className: 'col-sm-4' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row' },
-                    _react2.default.createElement('div', { className: 'col-sm-7' }),
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-sm-1' },
+                        { className: 'row' },
+                        _react2.default.createElement('div', { className: 'col-sm-7' }),
                         _react2.default.createElement(
-                            'button',
-                            { type: 'button', style: { marginLeft: "9px" }, className: 'btn btn-default', id: 'doLogin', 'data-dismiss': 'modal', onClick: this.doLogin },
-                            'Login'
-                        )
-                    ),
-                    _react2.default.createElement('div', { className: 'col-sm-4' })
+                            'div',
+                            { className: 'col-sm-1' },
+                            _react2.default.createElement(
+                                'button',
+                                { type: 'button', style: { marginLeft: "9px" }, className: 'btn btn-default', id: 'doLogin', 'data-dismiss': 'modal', onClick: this.doLogin },
+                                'Login'
+                            )
+                        ),
+                        _react2.default.createElement('div', { className: 'col-sm-4' })
+                    )
                 )
             );
         }

@@ -22,12 +22,14 @@ export default class Login extends React.Component {
           },
           body : JSON.stringify(this.state)
         })
+        .then(res => res.json())
         .then(res => {
-            if(res.status == 200){
+            
+            if(typeof(res.token) !== 'undefined'){
                 this.props.setAuthenticate(true);
-          
+            
                 const cookies = new Cookies();
-                cookies.set('token', res.json().token, { path: '/' });
+                cookies.set('token', res.token, { path: '/' });
             } else {
                 this.setState({ error : true });
             }
