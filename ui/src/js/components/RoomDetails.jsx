@@ -2,53 +2,7 @@ import React from 'react';
 import BookingListings from './BookingListings.jsx';
 import Form from './BookingForm.jsx';
 import validate from 'validate.js';
-
-const constraints = {
-    "roomNumber": {
-        presence: true,
-        numericality: {
-            onlyInteger: true,
-            greaterThan: 0,
-            lessThanOrEqualTo: 999
-        }
-    },
-    "type": {
-        presence: true,
-        format: {
-            pattern: "Single|Twin|Family|Suite",
-            flags: "i",
-            message: "can only contain the room options Single, Twin, Family, Suite"
-        }        
-    }, 
-    "beds": {
-        presence: true,
-        numericality: {
-            onlyInteger: true,
-            greaterThan: 0,
-            lessThanOrEqualTo: 10
-        }
-    },
-    "accessible": {
-        presence: true,
-        format: {
-            pattern: "true|false",
-            flags: "i",
-            message: "can only contain be true or false"
-        }
-    },
-    "details": {
-        presence: true,
-        length: {
-            maximum: 2000,
-            minimum: 1
-        },
-        format: {
-            pattern: "[ ,-A-Za-z0-9]+",
-            flags: "i",
-            message: "can only contain A-Z, a-z and 0-9"
-        }        
-    }
-}
+import { constraints } from '../libs/ValidateRules.js'
 
 export default class RoomDetails extends React.Component {
 
@@ -127,7 +81,7 @@ export default class RoomDetails extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            this.setState({orgRoom : res})
+            this.setState({orgRoom : res, editRoom : res})
         })
         .catch(e => console.log(e));
     }
@@ -171,7 +125,7 @@ export default class RoomDetails extends React.Component {
                                 <h2>Room: {this.state.orgRoom.roomNumber} <span className="glyphicon glyphicon-pencil roomEdit" onClick={this.enableEdit} style={{marginLeft: "5px", fontSize: 0.5 + "em"}} ></span></h2>
                                 <p>Type: <span>{this.state.orgRoom.type}</span></p>
                                 <p>Beds: <span>{this.state.orgRoom.beds}</span></p>
-                                <p>Accessible: <span>{this.state.orgRoom.accessible}</span></p>
+                                <p>Accessible: <span>{this.state.orgRoom.accessible.toString()}</span></p>
                             </div>
                                 <div className="col-sm-6">
                                     <p style={{marginTop: "63px"}}>Details: <span>{this.state.orgRoom.details}</span></p>

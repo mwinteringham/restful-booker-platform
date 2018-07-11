@@ -73,7 +73,7 @@ export default class Login extends React.Component {
                     <div className="row">
                         <div className="col-sm-7"></div>
                         <div className="col-sm-1">
-                            <button type="button" style={{marginLeft : "9px"}} className="btn btn-default" id="doLogin" data-dismiss="modal" onClick={this.doLogin}>Login</button>
+                            <button type="submit" style={{marginLeft : "9px"}} className="btn btn-default" id="doLogin" data-dismiss="modal" onClick={this.doLogin}>Login</button>
                         </div>
                         <div className="col-sm-4"></div>
                     </div>
