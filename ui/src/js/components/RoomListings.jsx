@@ -5,21 +5,17 @@ import RoomForm from './RoomForm.jsx';
 
 export default class RoomListings extends React.Component {
 
-    constructor() {
+  constructor() {
         super();
 		this.state = {
 			rooms : []
 		};
 		
 		this.updateRooms = this.updateRooms.bind(this);
-    }
+  }
     
-    componentDidMount() {
-		fetch('http://' + window.location.hostname + ':3001/room')
-			.then(res => res.json())
-			.then(body => {
-				this.setState({rooms : body.rooms});
-			});
+	componentDidMount() {
+		this.updateRooms();
 	}
 
 	updateRooms() {

@@ -46042,6 +46042,11 @@ var RoomListings = function (_React$Component) {
 	_createClass(RoomListings, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
+			this.updateRooms();
+		}
+	}, {
+		key: 'updateRooms',
+		value: function updateRooms() {
 			var _this2 = this;
 
 			(0, _nodeFetch2.default)('http://' + window.location.hostname + ':3001/room').then(function (res) {
@@ -46051,20 +46056,9 @@ var RoomListings = function (_React$Component) {
 			});
 		}
 	}, {
-		key: 'updateRooms',
-		value: function updateRooms() {
-			var _this3 = this;
-
-			(0, _nodeFetch2.default)('http://' + window.location.hostname + ':3001/room').then(function (res) {
-				return res.json();
-			}).then(function (body) {
-				_this3.setState({ rooms: body.rooms });
-			});
-		}
-	}, {
 		key: 'render',
 		value: function render() {
-			var _this4 = this;
+			var _this3 = this;
 
 			return _react2.default.createElement(
 				'div',
@@ -46123,7 +46117,7 @@ var RoomListings = function (_React$Component) {
 					return _react2.default.createElement(
 						'div',
 						{ key: room.roomid },
-						_react2.default.createElement(_RoomListing2.default, { details: room, updateRooms: _this4.updateRooms })
+						_react2.default.createElement(_RoomListing2.default, { details: room, updateRooms: _this3.updateRooms })
 					);
 				}),
 				_react2.default.createElement(_RoomForm2.default, { updateRooms: this.updateRooms })
