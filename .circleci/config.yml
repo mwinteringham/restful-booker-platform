@@ -140,7 +140,7 @@ jobs:
 
     steps:
       - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-auth
 
       - setup_remote_docker:
           docker_layer_caching: true
@@ -159,7 +159,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-booking
 
         - setup_remote_docker:
             docker_layer_caching: true
@@ -178,7 +178,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-report
 
         - setup_remote_docker:
             docker_layer_caching: true
@@ -197,7 +197,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-room
 
         - setup_remote_docker:
             docker_layer_caching: true
@@ -216,7 +216,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-search
 
         - setup_remote_docker:
             docker_layer_caching: true
@@ -235,7 +235,7 @@ jobs:
 
         steps:
           - restore_cache:
-              key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+              key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-ui
 
           - setup_remote_docker:
               docker_layer_caching: true
