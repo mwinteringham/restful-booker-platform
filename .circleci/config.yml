@@ -59,60 +59,60 @@ jobs:
 
   run_report_build:
 
-      docker:
-        - image: circleci/openjdk:8u151-jdk-node-browsers
+		docker:
+			- image: circleci/openjdk:8u151-jdk-node-browsers
 
-      environment:
-          MAVEN_OPTS: -Xmx3200m
+		environment:
+				MAVEN_OPTS: -Xmx3200m
 
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            command: mvn clean install
-            working_directory: report
-        - save_cache:
-            paths:
-              - report/
-            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
+		steps:
+			- restore_cache:
+					key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+			- run:
+					command: mvn clean install
+					working_directory: report
+			- save_cache:
+					paths:
+						- report/
+					key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
 
   run_room_build:
 
-        docker:
-          - image: circleci/openjdk:8u151-jdk-node-browsers
+		docker:
+			- image: circleci/openjdk:8u151-jdk-node-browsers
 
-        environment:
-            MAVEN_OPTS: -Xmx3200m
+		environment:
+				MAVEN_OPTS: -Xmx3200m
 
-        steps:
-          - restore_cache:
-              key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          - run:
-              command: mvn clean install
-              working_directory: room
-          - save_cache:
-              paths:
-                - room/
-              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
+		steps:
+			- restore_cache:
+					key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+			- run:
+					command: mvn clean install
+					working_directory: room
+			- save_cache:
+					paths:
+						- room/
+					key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
 
   run_search_build:
 
-          docker:
-            - image: circleci/openjdk:8u151-jdk-node-browsers
+		docker:
+			- image: circleci/openjdk:8u151-jdk-node-browsers
 
-          environment:
-              MAVEN_OPTS: -Xmx3200m
+		environment:
+				MAVEN_OPTS: -Xmx3200m
 
-          steps:
-            - restore_cache:
-                key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-            - run:
-                command: mvn clean install
-                working_directory: search
-            - save_cache:
-                paths:
-                  - search/
-                key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
+		steps:
+			- restore_cache:
+					key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+			- run:
+					command: mvn clean install
+					working_directory: search
+			- save_cache:
+					paths:
+						- search/
+					key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
 
   run_ui_tests:
 
@@ -130,7 +130,7 @@ jobs:
           working_directory: ui
       - save_cache:
           paths:
-            - search/
+            - ui/
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
 
   build_auth_docker_image:
@@ -154,98 +154,98 @@ jobs:
 
   build_booking_docker_image:
 
-      docker:
-        - image: circleci/openjdk:8u151-jdk-node-browsers
+		docker:
+			- image: circleci/openjdk:8u151-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
+		steps:
+			- restore_cache:
+					key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
 
-        - setup_remote_docker:
-            docker_layer_caching: true
+			- setup_remote_docker:
+					docker_layer_caching: true
 
-        - run:
-            command: |
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_booking:latest .
-              docker push mwinteringham/restfulbookerplatform_booking:latest
-            working_directory: booking
+			- run:
+					command: |
+						docker login -u $DOCKER_USER -p $DOCKER_PASS
+						docker build -t mwinteringham/restfulbookerplatform_booking:latest .
+						docker push mwinteringham/restfulbookerplatform_booking:latest
+					working_directory: booking
 
   build_report_docker_image:
 
-      docker:
-        - image: circleci/openjdk:8u151-jdk-node-browsers
+		docker:
+			- image: circleci/openjdk:8u151-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
+		steps:
+			- restore_cache:
+					key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
 
-        - setup_remote_docker:
-            docker_layer_caching: true
+			- setup_remote_docker:
+					docker_layer_caching: true
 
-        - run:
-            command: |
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_report:latest .
-              docker push mwinteringham/restfulbookerplatform_report:latest
-            working_directory: report
+			- run:
+					command: |
+						docker login -u $DOCKER_USER -p $DOCKER_PASS
+						docker build -t mwinteringham/restfulbookerplatform_report:latest .
+						docker push mwinteringham/restfulbookerplatform_report:latest
+					working_directory: report
 
   build_room_docker_image:
 
-      docker:
-        - image: circleci/openjdk:8u151-jdk-node-browsers
+		docker:
+			- image: circleci/openjdk:8u151-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
+		steps:
+			- restore_cache:
+					key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
 
-        - setup_remote_docker:
-            docker_layer_caching: true
+			- setup_remote_docker:
+					docker_layer_caching: true
 
-        - run:
-            command: |
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_room:latest .
-              docker push mwinteringham/restfulbookerplatform_room:latest
-            working_directory: room
+			- run:
+					command: |
+						docker login -u $DOCKER_USER -p $DOCKER_PASS
+						docker build -t mwinteringham/restfulbookerplatform_room:latest .
+						docker push mwinteringham/restfulbookerplatform_room:latest
+					working_directory: room
 
   build_search_docker_image:
 
-      docker:
-        - image: circleci/openjdk:8u151-jdk-node-browsers
+		docker:
+			- image: circleci/openjdk:8u151-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
+		steps:
+			- restore_cache:
+					key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
 
-        - setup_remote_docker:
-            docker_layer_caching: true
+			- setup_remote_docker:
+					docker_layer_caching: true
 
-        - run:
-            command: |
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_search:latest .
-              docker push mwinteringham/restfulbookerplatform_search:latest
-            working_directory: search
+			- run:
+					command: |
+						docker login -u $DOCKER_USER -p $DOCKER_PASS
+						docker build -t mwinteringham/restfulbookerplatform_search:latest .
+						docker push mwinteringham/restfulbookerplatform_search:latest
+					working_directory: search
 
   build_ui_docker_image:
 
-        docker:
-          - image: circleci/openjdk:8u151-jdk-node-browsers
+		docker:
+			- image: circleci/openjdk:8u151-jdk-node-browsers
 
-        steps:
-          - restore_cache:
-              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
+		steps:
+			- restore_cache:
+					key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
 
-          - setup_remote_docker:
-              docker_layer_caching: true
+			- setup_remote_docker:
+					docker_layer_caching: true
 
-          - run:
-              command: |
-                docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_ui:latest .
-                docker push mwinteringham/restfulbookerplatform_ui:latest
-              working_directory: ui
+			- run:
+					command: |
+						docker login -u $DOCKER_USER -p $DOCKER_PASS
+						docker build -t mwinteringham/restfulbookerplatform_ui:latest .
+						docker push mwinteringham/restfulbookerplatform_ui:latest
+					working_directory: ui
 
 workflows:
   version: 2
