@@ -22,20 +22,20 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: rbp-hotel
+  name: rbp-room
 spec:
   selector:
     matchLabels:
-      run: rbp-hotel
+      run: rbp-room
   replicas: 1
   template:
     metadata:
       labels:
-        run: rbp-hotel
+        run: rbp-room
     spec:
       containers:
-        - name: rbp-hotel
-          image: mwinteringham/restfulbookerplatform_hotel
+        - name: rbp-room
+          image: mwinteringham/restfulbookerplatform_room
           ports:
             - containerPort: 3001
 ---
@@ -138,9 +138,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rbp-hotel
+  name: rbp-room
   labels:
-    app: rbp-hotel
+    app: rbp-room
 spec:
   type: NodePort
   ports:
@@ -149,7 +149,7 @@ spec:
       nodePort: 32148
       targetPort: 3001
   selector:
-    run: rbp-hotel
+    run: rbp-room
 ---
 apiVersion: v1
 kind: Service
@@ -230,9 +230,9 @@ spec:
         backend:
           serviceName: rbp-booking
           servicePort: 3000
-      - path: /hotel
+      - path: /room
         backend:
-          serviceName: rbp-hotel
+          serviceName: rbp-room
           servicePort: 3001
       - path: /search
         backend:
