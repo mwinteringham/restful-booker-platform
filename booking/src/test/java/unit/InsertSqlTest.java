@@ -1,3 +1,5 @@
+package unit;
+
 import db.InsertSql;
 import model.Booking;
 import org.junit.Test;
