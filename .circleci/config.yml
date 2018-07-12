@@ -59,60 +59,60 @@ jobs:
 
   run_report_build:
 
-      docker:
-        - image: circleci/openjdk:8u151-jdk-node-browsers
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
 
-      environment:
-          MAVEN_OPTS: -Xmx3200m
+    environment:
+        MAVEN_OPTS: -Xmx3200m
 
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            command: mvn clean install
-            working_directory: report
-        - save_cache:
-            paths:
-              - report/
-            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: mvn clean install
+          working_directory: report
+      - save_cache:
+          paths:
+            - report/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
 
   run_room_build:
 
-        docker:
-          - image: circleci/openjdk:8u151-jdk-node-browsers
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
 
-        environment:
-            MAVEN_OPTS: -Xmx3200m
+    environment:
+        MAVEN_OPTS: -Xmx3200m
 
-        steps:
-          - restore_cache:
-              key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          - run:
-              command: mvn clean install
-              working_directory: room
-          - save_cache:
-              paths:
-                - room/
-              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: mvn clean install
+          working_directory: room
+      - save_cache:
+          paths:
+            - room/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
 
   run_search_build:
 
-          docker:
-            - image: circleci/openjdk:8u151-jdk-node-browsers
+    docker:
+      - image: circleci/openjdk:8u151-jdk-node-browsers
 
-          environment:
-              MAVEN_OPTS: -Xmx3200m
+    environment:
+        MAVEN_OPTS: -Xmx3200m
 
-          steps:
-            - restore_cache:
-                key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-            - run:
-                command: mvn clean install
-                working_directory: search
-            - save_cache:
-                paths:
-                  - search/
-                key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: mvn clean install
+          working_directory: search
+      - save_cache:
+          paths:
+            - search/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
 
   run_ui_tests:
 
@@ -130,40 +130,8 @@ jobs:
           working_directory: ui
       - save_cache:
           paths:
-            - search/
+            - ui/
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
-
-  run_integration_tests:
-
-    docker:
-      - image: circleci/openjdk:8u151-jdk-node-browsers
-
-    environment:
-        MAVEN_OPTS: -Xmx3200m
-
-    steps:
-      - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-auth
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
-
-      - run:
-          command: bash start.sh
-          working_directory: integration-tests
-
-      - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
-          paths:
-            - ~/
-
 
   build_auth_docker_image:
 
@@ -172,7 +140,7 @@ jobs:
 
     steps:
       - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-auth
 
       - setup_remote_docker:
           docker_layer_caching: true
@@ -191,7 +159,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
 
         - setup_remote_docker:
             docker_layer_caching: true
@@ -210,7 +178,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
 
         - setup_remote_docker:
             docker_layer_caching: true
@@ -229,7 +197,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
 
         - setup_remote_docker:
             docker_layer_caching: true
@@ -248,7 +216,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
 
         - setup_remote_docker:
             docker_layer_caching: true
@@ -267,7 +235,7 @@ jobs:
 
         steps:
           - restore_cache:
-              key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
+              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
 
           - setup_remote_docker:
               docker_layer_caching: true
@@ -302,28 +270,21 @@ workflows:
       - run_ui_tests:
           requires:
             - checkout_code
-      - run_integration_tests:
-          requires:
-            - run_auth_build
-            - run_booking_build
-            - run_report_build
-            - run_room_build
-            - run_search_build
       - build_auth_docker_image:
           requires:
-            - run_integration_tests
+            - run_auth_build
       - build_booking_docker_image:
           requires:
-            - run_integration_tests
+            - run_booking_build
       - build_report_docker_image:
           requires:
-            - run_integration_tests
+            - run_report_build
       - build_room_docker_image:
           requires:
-            - run_integration_tests
+            - run_room_build
       - build_search_docker_image:
           requires:
-            - run_integration_tests
+            - run_search_build
       - build_ui_docker_image:
           requires:
-            - run_integration_tests
+            - run_ui_tests
