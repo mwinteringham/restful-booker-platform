@@ -133,38 +133,6 @@ jobs:
             - search/
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
 
-  run_integration_tests:
-
-    docker:
-      - image: circleci/openjdk:8u151-jdk-node-browsers
-
-    environment:
-        MAVEN_OPTS: -Xmx3200m
-
-    steps:
-      - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-auth
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
-      - restore_cache:
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
-
-      - run:
-          command: bash start.sh
-          working_directory: integration-tests
-
-      - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}-1
-          paths:
-            - ~/
-
-
   build_auth_docker_image:
 
     docker:
@@ -302,28 +270,21 @@ workflows:
       - run_ui_tests:
           requires:
             - checkout_code
-      - run_integration_tests:
-          requires:
-            - run_auth_build
-            - run_booking_build
-            - run_report_build
-            - run_room_build
-            - run_search_build
       - build_auth_docker_image:
           requires:
-            - run_integration_tests
+            - run_auth_build
       - build_booking_docker_image:
           requires:
-            - run_integration_tests
+            - run_booking_build
       - build_report_docker_image:
           requires:
-            - run_integration_tests
+            - run_report_build
       - build_room_docker_image:
           requires:
-            - run_integration_tests
+            - run_room_build
       - build_search_docker_image:
           requires:
-            - run_integration_tests
+            - run_search_build
       - build_ui_docker_image:
           requires:
-            - run_integration_tests
+            - run_ui_tests
