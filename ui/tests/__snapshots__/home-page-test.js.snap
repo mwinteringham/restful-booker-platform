@@ -1,43 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Hotels list component 1`] = `
+exports[`Rooms list component 1`] = `
 <div>
   <div
     className="row"
   >
     <div
-      className="col-sm-2 rowHeader"
+      className="col-sm-1 rowHeader"
     >
       <p>
-        Hotel name
-      </p>
-    </div>
-    <div
-      className="col-sm-3 rowHeader"
-    >
-      <p>
-        Address
+        Room #
       </p>
     </div>
     <div
       className="col-sm-2 rowHeader"
     >
       <p>
-        Owner
+        Type
       </p>
     </div>
     <div
-      className="col-sm-2 rowHeader"
+      className="col-sm-1 rowHeader"
     >
       <p>
-        Phone number
+        Beds
       </p>
     </div>
     <div
-      className="col-sm-2 rowHeader"
+      className="col-sm-1 rowHeader"
     >
       <p>
-        Email
+        Accessible
+      </p>
+    </div>
+    <div
+      className="col-sm-6 rowHeader"
+    >
+      <p>
+        Room details
       </p>
     </div>
     <div
@@ -47,25 +47,22 @@ exports[`Hotels list component 1`] = `
   <div
     key="1"
   >
-    <HotelListing
+    <RoomListing
       details={
         Object {
-          "address": "123 The Street",
-          "contact": Object {
-            "email": "mark@hilton.com",
-            "name": "Mark Winteringham",
-            "phone": "07411222473",
-          },
-          "hotelid": 1,
-          "name": "Hilton",
-          "regdate": "2018-02-20T22:47:38.176Z",
+          "accessible": true,
+          "beds": 2,
+          "details": "WiFi, TV, Mini-bar",
+          "roomNumber": 101,
+          "roomid": 1,
+          "type": "Single",
         }
       }
-      updateHotels={[Function]}
+      updateRooms={[Function]}
     />
   </div>
-  <HotelForm
-    updateHotels={[Function]}
+  <RoomForm
+    updateRooms={[Function]}
   />
 </div>
 `;

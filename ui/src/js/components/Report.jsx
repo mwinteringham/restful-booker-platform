@@ -22,7 +22,7 @@ export default class Report extends React.Component {
 		.then(res => res.json())
         .then(body => {
             this.setState({ data : {
-                labels: body.hotels,
+                labels: body.rooms,
                 datasets: [
                     {
                         label: "Total price",

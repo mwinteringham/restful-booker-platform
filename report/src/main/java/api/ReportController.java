@@ -1,49 +1,50 @@
 package api;
 
 import model.Booking;
-import model.Hotel;
 import model.Report;
+import model.Room;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import requests.HotelRequests;
+import requests.RoomRequests;
+
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class ReportController {
 
-    private HotelRequests hotelRequests;
+    private RoomRequests roomRequests;
 
     public ReportController() throws SQLException {
-        hotelRequests = new HotelRequests();
+        roomRequests = new RoomRequests();
     }
 
     @CrossOrigin
     @RequestMapping(value = "/report", method = RequestMethod.GET)
     public Report createBooking() throws SQLException {
-        List<String> hotelNames = new ArrayList<>();
-        List<Hotel> hotels = hotelRequests.searchForHotels().getBody().getHotels();
-        int[] totals = new int[hotels.size()];
+        List<Room> rooms = roomRequests.searchForRooms().getBody().getRooms();
+
+        int[] roomNumbers = new int[rooms.size()];
+        int[] totals = new int[rooms.size()];
         int count = 0;
 
-        for(Hotel h : hotels){
+        for(Room h : rooms){
             int total = 0;
-            List<Booking> hotelBookings = hotelRequests.searchForSpecificHotel(Integer.toString(h.getHotelid())).getBody().getBookings();
+            List<Booking> roomBookings = roomRequests.searchForSpecificRoom(Integer.toString(h.getRoomid())).getBody().getBookings();
 
-            for(Booking b : hotelBookings){
+            for(Booking b : roomBookings){
                 total += b.getTotalprice();
             }
 
-            hotelNames.add(h.getName());
+            roomNumbers[count] = h.getRoomNumber();
             totals[count] = total;
             count++;
         }
 
-        return new Report(hotelNames, totals);
+        return new Report(roomNumbers, totals);
     }
 
 }

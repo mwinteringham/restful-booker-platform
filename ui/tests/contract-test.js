@@ -1,10 +1,10 @@
 import React from 'react';
 import BookingListing from '../src/js/components/BookingListing.jsx';
-import contract from '../../integration-tests/src/main/resources/contract.json';
+import contract from '../../booking/src/test/resources/contract.json';
 
 // We first declare our test by using Jests test function and provide it
 // with a name and then an anonymous function which will run our test
-test('Hotels list component', () => {
+test('Rooms list component', () => {
 
     // First we create our component that we want to check. By using
     // enzymes shallow function and passing it the React component

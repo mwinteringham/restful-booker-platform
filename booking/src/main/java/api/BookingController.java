@@ -25,9 +25,9 @@ public class BookingController {
 
     @CrossOrigin
     @RequestMapping(value = "/booking", method = RequestMethod.GET)
-    public ResponseEntity<BookingResults> getHotels(@RequestParam("hotelid") Optional<String> hotelid, @RequestParam("keyword") Optional<String> keyword) throws SQLException {
-        if(hotelid.isPresent()){
-            BookingResults searchResults = new BookingResults(bookingDB.queryBookingsById(hotelid.get()));
+    public ResponseEntity<BookingResults> getBookings(@RequestParam("roomid") Optional<String> roomid, @RequestParam("keyword") Optional<String> keyword) throws SQLException {
+        if(roomid.isPresent()){
+            BookingResults searchResults = new BookingResults(bookingDB.queryBookingsById(roomid.get()));
             return ResponseEntity.ok(searchResults);
         }
 

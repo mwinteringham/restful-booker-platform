@@ -1,0 +1,17 @@
+{
+  "databases" : [{
+    "name" : "h2-booking",
+    "host" : "booking:9090",
+    "database" : "mem:rbp",
+    "username" : "user",
+    "password" : "password",
+    "driver" : "jdbc:h2:tcp"
+  },{
+    "name" : "h2-room",
+    "host" : "room:9091",
+    "database" : "mem:rbp",
+    "username" : "user",
+    "password" : "password",
+    "driver" : "jdbc:h2:tcp"
+  }]
+}

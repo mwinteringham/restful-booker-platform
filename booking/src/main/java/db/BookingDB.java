@@ -23,12 +23,12 @@ public class BookingDB {
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        Server server = Server.createTcpServer("-tcpPort", "9090").start();
+        Server server = Server.createTcpServer("-tcpPort", "9090", "-tcpAllowOthers").start();
 
-        String prepareDb = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, hotelid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
+        String prepareDb = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
         connection.prepareStatement(prepareDb).executeUpdate();
 
-        String injectBooking = "INSERT INTO BOOKINGS(hotelid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(1,'James','Dean',100,true,'2018-02-26','2018-02-26');";
+        String injectBooking = "INSERT INTO BOOKINGS(roomid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(1,'James','Dean',100,true,'2018-02-26','2018-02-26');";
         connection.prepareStatement(injectBooking).executeUpdate();
     }
 
@@ -53,9 +53,9 @@ public class BookingDB {
         }
     }
 
-    public List<Booking> queryBookingsById(String hotelid) throws SQLException {
+    public List<Booking> queryBookingsById(String roomid) throws SQLException {
         List<Booking> listToReturn = new ArrayList<Booking>();
-        String sql = "SELECT * FROM BOOKINGS WHERE hotelid = " + hotelid;
+        String sql = "SELECT * FROM BOOKINGS WHERE roomid = " + roomid;
 
         ResultSet results = connection.prepareStatement(sql).executeQuery();
         while(results.next()){

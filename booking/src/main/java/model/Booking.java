@@ -11,7 +11,7 @@ public class Booking {
     @JsonProperty
     private int bookingid;
     @JsonProperty
-    private int hotelid;
+    private int roomid;
     @JsonProperty
     private String firstname;
     @JsonProperty
@@ -23,9 +23,9 @@ public class Booking {
     @JsonProperty(value = "bookingdates")
     private BookingDates bookingDates;
 
-    public Booking(int bookingid, int hotelid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
+    public Booking(int bookingid, int roomid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
         this.bookingid = bookingid;
-        this.hotelid = hotelid;
+        this.roomid = roomid;
         this.firstname = firstname;
         this.lastname = lastname;
         this.totalprice = totalprice;
@@ -35,7 +35,7 @@ public class Booking {
 
     public Booking(ResultSet result) throws SQLException {
         this.bookingid = result.getInt("bookingid");
-        this.hotelid = result.getInt("hotelid");
+        this.roomid = result.getInt("roomid");
         this.firstname = result.getString("firstname");
         this.lastname = result.getString("lastname");
         this.totalprice = result.getInt("totalprice");
@@ -66,8 +66,8 @@ public class Booking {
         return bookingDates;
     }
 
-    public int getHotelid() {
-        return hotelid;
+    public int getRoomid() {
+        return roomid;
     }
 
     public int getBookingid() {
@@ -94,8 +94,8 @@ public class Booking {
         this.bookingDates = bookingDates;
     }
 
-    public void setHotelid(int hotelId) {
-        this.hotelid = hotelId;
+    public void setRoomid(int roomid) {
+        this.roomid = roomid;
     }
 
     public void setBookingid(int bookingid) {
@@ -105,7 +105,7 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking{" +
-                "hotelid=" + hotelid +
+                "roomid=" + roomid +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", totalprice=" + totalprice +
@@ -116,7 +116,7 @@ public class Booking {
 
     public static class BookingBuilder {
 
-        private int hotelid;
+        private int roomid;
         private String firstname;
         private String lastname;
         private int totalprice;
@@ -124,8 +124,8 @@ public class Booking {
         private Date checkin;
         private Date checkout;
 
-        public BookingBuilder setHotelid(int hotelid){
-            this.hotelid = hotelid;
+        public BookingBuilder setRoomid(int roomid){
+            this.roomid = roomid;
 
             return this;
         }
@@ -169,7 +169,7 @@ public class Booking {
         public Booking build(){
             BookingDates bookingDates = new BookingDates(checkin, checkout);
 
-            return new Booking(0, hotelid, firstname, lastname, totalprice, depositpaid, bookingDates);
+            return new Booking(0, roomid, firstname, lastname, totalprice, depositpaid, bookingDates);
         }
     }
 }
