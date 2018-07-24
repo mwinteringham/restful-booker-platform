@@ -6,6 +6,6 @@ WORKDIR /usr/local/report
 
 COPY target ./
 
-ENV roomDomain=room
+ENV roomDomain=rbp-room
 
 ENTRYPOINT java -jar target/restful-booker-platform-report-1.0-SNAPSHOT.jar -D
