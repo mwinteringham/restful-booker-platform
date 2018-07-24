@@ -10,7 +10,7 @@ export default class RoomListing extends React.Component {
     }
 
     deleteRoom(){
-        fetch('http://' + window.location.hostname + ':3001/room/' + this.props.details.roomid, {
+        fetch(API_ROOT.room + '/room/' + this.props.details.roomid, {
             method: 'DELETE',
             credentials: 'include'
         })

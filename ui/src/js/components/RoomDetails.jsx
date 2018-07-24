@@ -53,7 +53,7 @@ export default class RoomDetails extends React.Component {
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
-            fetch('http://' + window.location.hostname + ':3001/room/' + this.props.params.id, {
+            fetch(API_ROOT.room + '/room/' + this.props.params.id, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -73,7 +73,7 @@ export default class RoomDetails extends React.Component {
     }
 
     fetchRoomDetails() {
-        fetch('http://' + window.location.hostname + ':3001/room/' + this.props.params.id, {
+        fetch(API_ROOT.room + '/room/' + this.props.params.id, {
             headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'

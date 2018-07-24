@@ -19,7 +19,7 @@ export default class RoomListings extends React.Component {
 	}
 
 	updateRooms() {
-		fetch('http://' + window.location.hostname + ':3001/room')
+		fetch(API_ROOT.auth + '/room')
 			.then(res => res.json())
 			.then(body => {
 				this.setState({rooms : body.rooms});

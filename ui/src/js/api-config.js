@@ -5,7 +5,7 @@ const hostname = window && window.location && window.location.hostname;
 if(hostname === 'rbp.info') {
   backendHost = {
     booking : "http://" + window.location.hostname + "/booking",
-    hotel : "http://" + window.location.hostname + "/hotel",
+    room : "http://" + window.location.hostname + "/room",
     search : "http://" + window.location.hostname + "/search",
     auth : "http://" + window.location.hostname + "/auth",
     report : "http://" + window.location.hostname + "/report",
@@ -13,7 +13,7 @@ if(hostname === 'rbp.info') {
 } else {
   backendHost = {
     booking : "http://" + window.location.hostname + ":3000",
-    hotel : "http://" + window.location.hostname + ":3001",
+    room : "http://" + window.location.hostname + ":3001",
     search : "http://" + window.location.hostname + ":3002",
     auth : "http://" + window.location.hostname + ":3004",
     report : "http://" + window.location.hostname + ":3005"

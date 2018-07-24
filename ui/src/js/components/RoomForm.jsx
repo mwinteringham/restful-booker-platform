@@ -27,7 +27,7 @@ export default class RoomForm extends React.Component {
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
-            fetch('http://' + window.location.hostname + ':3001/room', {
+            fetch(API_ROOT.auth + '/room', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
