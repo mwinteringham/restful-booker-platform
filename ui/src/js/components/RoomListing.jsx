@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { API_ROOT } from '../api-config';
 
 export default class RoomListing extends React.Component {
 

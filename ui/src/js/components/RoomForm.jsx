@@ -1,6 +1,7 @@
 import React from 'react';
 import validate from 'validate.js';
 import { constraints } from '../libs/ValidateRules.js'
+import { API_ROOT } from '../api-config';
 
 export default class RoomForm extends React.Component {
 

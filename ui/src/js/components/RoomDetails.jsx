@@ -3,6 +3,7 @@ import BookingListings from './BookingListings.jsx';
 import Form from './BookingForm.jsx';
 import validate from 'validate.js';
 import { constraints } from '../libs/ValidateRules.js'
+import { API_ROOT } from '../api-config';
 
 export default class RoomDetails extends React.Component {
 

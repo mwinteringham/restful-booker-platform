@@ -1,4 +1,4 @@
-FROM maven:3.5.2-jdk-8-alpine
+FROM openjdk:8-jre-alpine
 
 ADD . /usr/local/auth
 

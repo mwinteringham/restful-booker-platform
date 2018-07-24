@@ -2,6 +2,7 @@ import React from 'react';
 import fetch from 'node-fetch';
 import RoomListing from './RoomListing.jsx';
 import RoomForm from './RoomForm.jsx';
+import { API_ROOT } from '../api-config';
 
 export default class RoomListings extends React.Component {
 
