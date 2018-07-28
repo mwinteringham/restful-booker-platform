@@ -18,6 +18,13 @@ spec:
           image: mwinteringham/restfulbookerplatform_booking
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              memory: "768Mi"
+              cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -38,6 +45,13 @@ spec:
           image: mwinteringham/restfulbookerplatform_room
           ports:
             - containerPort: 3001
+          resources:
+            requests:
+              memory: "768Mi"
+              cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -78,6 +92,13 @@ spec:
           image: mwinteringham/restfulbookerplatform_ui
           ports:
             - containerPort: 3003
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -98,6 +119,13 @@ spec:
           image: mwinteringham/restfulbookerplatform_auth
           ports:
             - containerPort: 3004
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -118,6 +146,13 @@ spec:
           image: mwinteringham/restfulbookerplatform_report
           ports:
             - containerPort: 3005
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
