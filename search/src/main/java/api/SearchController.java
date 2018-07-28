@@ -2,6 +2,7 @@ package api;
 
 import model.Booking;
 import model.SearchResults;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import requests.BookingRequests;
@@ -29,6 +30,12 @@ public class SearchController {
         }
 
         return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity ping(){
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

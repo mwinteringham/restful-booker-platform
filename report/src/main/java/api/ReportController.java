@@ -3,6 +3,8 @@ package api;
 import model.Booking;
 import model.Report;
 import model.Room;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +47,12 @@ public class ReportController {
         }
 
         return new Report(roomNumbers, totals);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity ping(){
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
