@@ -39,7 +39,7 @@ public class AuthController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
     public ResponseEntity ping(){
         return ResponseEntity.status(HttpStatus.OK).build();
     }
