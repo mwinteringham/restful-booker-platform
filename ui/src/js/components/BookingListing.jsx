@@ -49,7 +49,7 @@ export default class BookingListing extends React.Component {
     }
 
     doEdit(){
-        fetch(API_ROOT.auth + '/booking/' + this.props.booking.bookingid, {
+        fetch(API_ROOT.booking + '/booking/' + this.props.booking.bookingid, {
 			method: 'PUT',
 			headers: {
 				'Accept': 'application/json',
