@@ -23,7 +23,7 @@ public class SwaggerConfig {
     }
 
     private Predicate<String> postPaths() {
-        return or(regex("\\/(login|validate|logout)"));
+        return or(regex("\\/auth/(login|validate|logout)"));
     }
 
     private ApiInfo apiInfo() {
