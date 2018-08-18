@@ -15,7 +15,7 @@ public class AuthRequests {
         if(System.getenv("authDomain") == null){
             host = "http://localhost:3004";
         } else {
-            host = "http://" + System.getenv("authDomain");
+            host = "http://" + System.getenv("authDomain") + ":3004";
         }
     }
 
