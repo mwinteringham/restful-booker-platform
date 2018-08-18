@@ -81,4 +81,10 @@ public class RoomController {
         }
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/health", method = RequestMethod.GET)
+    public ResponseEntity ping(){
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 }
