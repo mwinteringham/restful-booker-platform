@@ -40,7 +40,7 @@ public class IntegrationTest {
     // We give the before hook a clear name to ensure that it is descriptive in what it is checking
     public void setupWiremock(){
         // Configure Wiremock for the Auth service to send a positive validate response
-        stubFor(post("/validate")
+        stubFor(post("/auth/validate")
                 .withRequestBody(equalToJson("{ \"token\": \"abc123\" }"))
                 .willReturn(aResponse().withStatus(200)));
     }

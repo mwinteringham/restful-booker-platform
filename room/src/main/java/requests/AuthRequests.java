@@ -13,9 +13,9 @@ public class AuthRequests {
 
     public AuthRequests() {
         if(System.getenv("authDomain") == null){
-            host = "http://localhost:3004/validate";
+            host = "http://localhost:3004";
         } else {
-            host = "http://" + System.getenv("authDomain") + ":3004/validate";
+            host = "http://" + System.getenv("authDomain");
         }
     }
 
@@ -31,8 +31,7 @@ public class AuthRequests {
         HttpEntity<Token> httpEntity = new HttpEntity<>(token, requestHeaders);
 
         try{
-            ResponseEntity<String> response = restTemplate.exchange(host, HttpMethod.POST, httpEntity, String.class);
-
+            ResponseEntity<String> response = restTemplate.exchange(host + "/auth/validate", HttpMethod.POST, httpEntity, String.class);
             return response.getStatusCodeValue() == 200;
         } catch (HttpClientErrorException e){
             return false;
