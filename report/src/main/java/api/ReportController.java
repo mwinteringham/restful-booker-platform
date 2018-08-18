@@ -49,10 +49,4 @@ public class ReportController {
         return new Report(roomNumbers, totals);
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity ping(){
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
 }
