@@ -21,7 +21,7 @@ public class AuthController {
     }
 
     @CrossOrigin()
-    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    @RequestMapping(value = "/auth/validate", method = RequestMethod.POST)
     public ResponseEntity<Token> validateToken(@RequestBody Token token) {
         if(Tokens.verify(token.getToken())){
             return ResponseEntity.status(HttpStatus.OK).build();
