@@ -5,7 +5,7 @@ const hostname = window && window.location && window.location.hostname;
 if(hostname === 'rbp.info') {
   backendHost = {
     booking : "http://" + window.location.hostname + "/booking",
-    room : "http://" + window.location.hostname + "/room",
+    room : "http://" + window.location.hostname + "/",
     search : "http://" + window.location.hostname + "/search",
     auth : "http://" + window.location.hostname + "/auth",
     report : "http://" + window.location.hostname + "/report",
