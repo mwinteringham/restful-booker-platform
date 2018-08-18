@@ -25,6 +25,15 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "1000m"
+          readinessProbe:
+            httpGet:
+              port: 3000
+              path: /health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -52,6 +61,15 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "1000m"
+          readinessProbe:
+            httpGet:
+              port: 3001
+              path: /health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -72,6 +90,15 @@ spec:
           image: mwinteringham/restfulbookerplatform_search
           ports:
             - containerPort: 3002
+          readinessProbe:
+            httpGet:
+              port: 3002
+              path: /search
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -126,6 +153,15 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "500m"
+          readinessProbe:
+            httpGet:
+              port: 3004
+              path: /auth
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -153,6 +189,15 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "500m"
+          readinessProbe:
+            httpGet:
+              port: 3005
+              path: /report
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
 ---
 apiVersion: v1
 kind: Service
@@ -254,13 +299,15 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: rbp-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: rbp.info
     http:
       paths:
+      - path: /booking/*
+        backend:
+          serviceName: rbp-booking
+          servicePort: 3000
       - path: /booking
         backend:
           serviceName: rbp-booking
@@ -269,15 +316,15 @@ spec:
         backend:
           serviceName: rbp-room
           servicePort: 3001
+      - path: /room/*
+        backend:
+          serviceName: rbp-room
+          servicePort: 3001
       - path: /search
         backend:
           serviceName: rbp-search
-          servicePort: 3002
-      - path: /
-        backend:
-          serviceName: rbp-ui
-          servicePort: 3003          
-      - path: /auth
+          servicePort: 3002      
+      - path: /auth/*
         backend:
           serviceName: rbp-auth
           servicePort: 3004
@@ -285,3 +332,11 @@ spec:
         backend:
           serviceName: rbp-report
           servicePort: 3005
+      - path: /
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003
+      - path: /js/*
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003
