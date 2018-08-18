@@ -6,9 +6,9 @@ if(hostname === 'rbp.info') {
   backendHost = {
     booking : "http://" + window.location.hostname,
     room : "http://" + window.location.hostname,
-    search : "http://" + window.location.hostname + "/search",
+    search : "http://" + window.location.hostname,
     auth : "http://" + window.location.hostname + "/auth",
-    report : "http://" + window.location.hostname + "/report",
+    report : "http://" + window.location.hostname,
   }
 } else {
   backendHost = {
