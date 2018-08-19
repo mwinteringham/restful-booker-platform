@@ -10,9 +10,9 @@ public class BookingRequests {
 
     public BookingRequests() {
         if(System.getenv("bookingDomain") == null){
-            host = "http://localhost:3000/booking";
+            host = "http://localhost:3000/booking/";
         } else {
-            host = "http://" + System.getenv("bookingDomain") + ":3000/booking";
+            host = "http://" + System.getenv("bookingDomain") + ":3000/booking/";
         }
     }
 

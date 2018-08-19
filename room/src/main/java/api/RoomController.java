@@ -27,7 +27,7 @@ public class RoomController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/room", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<Rooms> getRooms(@RequestParam("keyword") Optional<String> keyword) throws SQLException {
         if(keyword.isPresent()){
             return ResponseEntity.ok(new Rooms(roomDB.searchRooms(keyword.get())));
@@ -37,7 +37,7 @@ public class RoomController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/room", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<Room> createRoom(@RequestBody Room room, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             Room body = roomDB.create(room);
@@ -48,7 +48,7 @@ public class RoomController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/room/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Room getRoom(@PathVariable(value = "id") int id) throws SQLException {
         Room queriedRoom = roomDB.query(id);
         List<model.Booking> results = bookingRequest.searchForBookings(queriedRoom.getRoomid()).getBody().getBookings();
@@ -58,7 +58,7 @@ public class RoomController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/room/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteRoom(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             if(roomDB.delete(id)){
@@ -72,19 +72,13 @@ public class RoomController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/room/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Room> updateRoom(@RequestBody Room booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             return ResponseEntity.ok(roomDB.update(id, booking));
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/health", method = RequestMethod.GET)
-    public ResponseEntity ping(){
-        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

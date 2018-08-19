@@ -21,7 +21,7 @@ public class SearchController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<SearchResults> getSearchResults(@RequestParam("keyword") Optional<String> keyword) throws SQLException {
         if(keyword.isPresent()){
             List<Booking> bookings = requestBooking.searchForBookings(keyword.get()).getBody().getBookings();
