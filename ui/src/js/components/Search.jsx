@@ -26,7 +26,7 @@ export default class Search extends React.Component {
 	}
 
 	doSearch() {
-		fetch(API_ROOT.search + '/search' + this.props.location.search, {
+		fetch(API_ROOT.search + '/search/' + this.props.location.search, {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
