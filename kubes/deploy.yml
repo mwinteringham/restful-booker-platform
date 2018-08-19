@@ -308,19 +308,11 @@ spec:
         backend:
           serviceName: rbp-booking
           servicePort: 3000
-      - path: /booking
-        backend:
-          serviceName: rbp-booking
-          servicePort: 3000
-      - path: /room
-        backend:
-          serviceName: rbp-room
-          servicePort: 3001
       - path: /room/*
         backend:
           serviceName: rbp-room
           servicePort: 3001
-      - path: /search
+      - path: /search/*
         backend:
           serviceName: rbp-search
           servicePort: 3002      
@@ -328,7 +320,7 @@ spec:
         backend:
           serviceName: rbp-auth
           servicePort: 3004
-      - path: /report
+      - path: /report/*
         backend:
           serviceName: rbp-report
           servicePort: 3005
