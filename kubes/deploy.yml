@@ -64,7 +64,7 @@ spec:
           readinessProbe:
             httpGet:
               port: 3001
-              path: /health
+              path: /booking/health
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 4

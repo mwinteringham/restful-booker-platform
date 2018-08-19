@@ -71,7 +71,7 @@ public class IntegrationTest {
                                     .contentType(ContentType.JSON)
                                     .body(bookingPayload)
                                    .when()
-                                    .post("http://localhost:3000/booking");
+                                    .post("http://localhost:3000/booking/");
 
         // Once we get a response we extract the body and map it to CreatedBooking
         CreatedBooking response = bookingResponse.as(CreatedBooking.class);

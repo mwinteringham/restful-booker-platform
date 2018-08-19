@@ -24,7 +24,7 @@ public class BookingController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/booking", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<BookingResults> getBookings(@RequestParam("roomid") Optional<String> roomid, @RequestParam("keyword") Optional<String> keyword) throws SQLException {
         if(roomid.isPresent()){
             BookingResults searchResults = new BookingResults(bookingDB.queryBookingsById(roomid.get()));
@@ -40,7 +40,7 @@ public class BookingController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/booking", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<CreatedBooking> createBooking(@RequestBody Booking booking, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
             CreatedBooking body = bookingDB.create(booking);
@@ -51,13 +51,13 @@ public class BookingController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/booking/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Booking getBooking(@PathVariable(value = "id") int id) throws SQLException {
         return bookingDB.query(id);
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/booking/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteBooking(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
             if(bookingDB.delete(id)){
@@ -71,19 +71,13 @@ public class BookingController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/booking/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<CreatedBooking> updateBooking(@RequestBody Booking booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
             return ResponseEntity.ok(bookingDB.update(id, booking));
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/health", method = RequestMethod.GET)
-    public ResponseEntity ping(){
-        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
