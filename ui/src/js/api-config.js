@@ -4,11 +4,11 @@ const hostname = window && window.location && window.location.hostname;
 
 if(hostname === 'automationintesting.online') {
   backendHost = {
-    booking : "http://" + window.location.hostname,
-    room : "http://" + window.location.hostname,
-    search : "http://" + window.location.hostname,
-    auth : "http://" + window.location.hostname + "/auth",
-    report : "http://" + window.location.hostname,
+    booking : "https://" + window.location.hostname,
+    room : "https://" + window.location.hostname,
+    search : "https://" + window.location.hostname,
+    auth : "https://" + window.location.hostname + "/auth",
+    report : "https://" + window.location.hostname,
   }
 } else {
   backendHost = {
