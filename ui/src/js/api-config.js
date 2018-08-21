@@ -2,7 +2,7 @@ let backendHost;
 
 const hostname = window && window.location && window.location.hostname;
 
-if(hostname === 'rbp.info') {
+if(hostname === 'automationintesting.online') {
   backendHost = {
     booking : "http://" + window.location.hostname,
     room : "http://" + window.location.hostname,

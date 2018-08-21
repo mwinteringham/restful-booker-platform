@@ -301,7 +301,7 @@ metadata:
   name: rbp-ingress
 spec:
   rules:
-  - host: rbp.info
+  - host: automationintesting.online
     http:
       paths:
       - path: /booking/*
