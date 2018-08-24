@@ -10,4 +10,4 @@ ENV authDomain=rbp-auth
 ENV bookingDomain=rbp-booking
 ENV roomDomain=rbp-room
 
-ENTRYPOINT java -jar target/restful-booker-platform-search-1.0-SNAPSHOT.jar -D
+ENTRYPOINT java -jar -Dspring.profiles.active=prod target/restful-booker-platform-search-1.0-SNAPSHOT.jar -D

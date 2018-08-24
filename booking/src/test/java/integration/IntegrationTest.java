@@ -2,7 +2,6 @@ package integration;
 
 import api.BookingApplication;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.Booking;
@@ -11,8 +10,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.GregorianCalendar;
@@ -27,6 +26,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 // and run the app.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookingApplication.class)
+@ActiveProfiles("dev")
 public class IntegrationTest {
 
     // Booking relies on an Auth service so we add the JUnit rule to setup Wiremock which

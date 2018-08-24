@@ -28,7 +28,7 @@ spec:
           readinessProbe:
             httpGet:
               port: 3000
-              path: /booking/health
+              path: /booking/actuator/health
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 4
@@ -64,7 +64,7 @@ spec:
           readinessProbe:
             httpGet:
               port: 3001
-              path: /room/health
+              path: /room/actuator/health
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 4
@@ -93,7 +93,7 @@ spec:
           readinessProbe:
             httpGet:
               port: 3002
-              path: /search/health
+              path: /search/actuator/health
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 4
@@ -156,7 +156,7 @@ spec:
           readinessProbe:
             httpGet:
               port: 3004
-              path: /auth/health
+              path: /auth/actuator/health
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 4
@@ -192,7 +192,7 @@ spec:
           readinessProbe:
             httpGet:
               port: 3005
-              path: /report/health
+              path: /report/actuator/health
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 4

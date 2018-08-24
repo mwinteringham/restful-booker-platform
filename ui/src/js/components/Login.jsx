@@ -25,7 +25,6 @@ export default class Login extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            console.log("- " + res.token)
             if(typeof(res.token) !== 'undefined'){
                 const cookies = new Cookies();
                 cookies.set('token', res.token, { path: '/' });
