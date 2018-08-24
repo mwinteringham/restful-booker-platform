@@ -48,7 +48,7 @@ public class RoomController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
     public Room getRoom(@PathVariable(value = "id") int id) throws SQLException {
         Room queriedRoom = roomDB.query(id);
         List<model.Booking> results = bookingRequest.searchForBookings(queriedRoom.getRoomid()).getBody().getBookings();
@@ -58,7 +58,7 @@ public class RoomController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.DELETE)
     public ResponseEntity deleteRoom(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             if(roomDB.delete(id)){
@@ -72,7 +72,7 @@ public class RoomController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.PUT)
     public ResponseEntity<Room> updateRoom(@RequestBody Room booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             return ResponseEntity.ok(roomDB.update(id, booking));

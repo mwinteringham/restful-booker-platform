@@ -51,13 +51,13 @@ public class BookingController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
     public Booking getBooking(@PathVariable(value = "id") int id) throws SQLException {
         return bookingDB.query(id);
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.DELETE)
     public ResponseEntity deleteBooking(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
             if(bookingDB.delete(id)){
@@ -71,7 +71,7 @@ public class BookingController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.PUT)
     public ResponseEntity<CreatedBooking> updateBooking(@RequestBody Booking booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
             return ResponseEntity.ok(bookingDB.update(id, booking));

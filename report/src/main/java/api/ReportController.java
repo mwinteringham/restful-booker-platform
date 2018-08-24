@@ -26,7 +26,7 @@ public class ReportController {
 
     @CrossOrigin
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Report createBooking() throws SQLException {
+    public Report returnReport() throws SQLException {
         List<Room> rooms = roomRequests.searchForRooms().getBody().getRooms();
 
         int[] roomNumbers = new int[rooms.size()];
