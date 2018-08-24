@@ -27,8 +27,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("RestfulBooker Search service")
-                .description("Search service for Restful Booker. An application for teaching Automation in Testing")
-                .contact("https://automationintesting.com/")
+                .description("Search service for Restful Booker. An application for teaching Automation in Testing. https://automationintesting.com/")
                 .license("MIT")
                 .licenseUrl("https://opensource.org/licenses/MIT")
                 .version("1.0")

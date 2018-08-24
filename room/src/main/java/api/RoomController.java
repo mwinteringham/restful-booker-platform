@@ -3,9 +3,13 @@ package api;
 import db.RoomDB;
 import model.Room;
 import model.Rooms;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import requests.AuthRequests;
 import requests.BookingRequests;
 
@@ -20,13 +24,28 @@ public class RoomController {
     private AuthRequests authRequest;
     private BookingRequests bookingRequest;
 
+    @Value("${cors.origin}")
+    private String originHost;
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/*")
+                        .allowedMethods("GET", "POST", "DELETE", "PUT")
+                        .allowedOrigins(originHost)
+                        .allowCredentials(true);
+            }
+        };
+    }
+
     public RoomController() throws SQLException {
         roomDB = new RoomDB();
         authRequest = new AuthRequests();
         bookingRequest = new BookingRequests();
     }
 
-    @CrossOrigin(value = "*")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<Rooms> getRooms(@RequestParam("keyword") Optional<String> keyword) throws SQLException {
         if(keyword.isPresent()){
@@ -36,7 +55,6 @@ public class RoomController {
         }
     }
 
-    @CrossOrigin(value = "*")
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<Room> createRoom(@RequestBody Room room, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
@@ -47,7 +65,6 @@ public class RoomController {
         }
     }
 
-    @CrossOrigin(value = "*")
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
     public Room getRoom(@PathVariable(value = "id") int id) throws SQLException {
         Room queriedRoom = roomDB.query(id);
@@ -57,7 +74,6 @@ public class RoomController {
         return queriedRoom;
     }
 
-    @CrossOrigin(value = "*")
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.DELETE)
     public ResponseEntity deleteRoom(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
@@ -71,7 +87,6 @@ public class RoomController {
         }
     }
 
-    @CrossOrigin(value = "*")
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.PUT)
     public ResponseEntity<Room> updateRoom(@RequestBody Room booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
