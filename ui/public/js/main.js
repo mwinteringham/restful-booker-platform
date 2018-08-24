@@ -4955,20 +4955,20 @@ var backendHost = void 0;
 
 var hostname = window && window.location && window.location.hostname;
 
-if (hostname === 'rbp.info') {
+if (hostname === 'automationintesting.online') {
   backendHost = {
-    booking: "http://" + window.location.hostname + "/booking",
-    room: "http://" + window.location.hostname + "/room",
-    search: "http://" + window.location.hostname + "/search",
-    auth: "http://" + window.location.hostname + "/auth",
-    report: "http://" + window.location.hostname + "/report"
+    booking: "https://" + window.location.hostname,
+    room: "https://" + window.location.hostname,
+    search: "https://" + window.location.hostname,
+    auth: "https://" + window.location.hostname + "/auth",
+    report: "https://" + window.location.hostname
   };
 } else {
   backendHost = {
     booking: "http://" + window.location.hostname + ":3000",
     room: "http://" + window.location.hostname + ":3001",
     search: "http://" + window.location.hostname + ":3002",
-    auth: "http://" + window.location.hostname + ":3004",
+    auth: "http://" + window.location.hostname + ":3004/auth",
     report: "http://" + window.location.hostname + ":3005"
   };
 }
@@ -46151,7 +46151,7 @@ var RoomListings = function (_React$Component) {
 		value: function updateRooms() {
 			var _this2 = this;
 
-			(0, _nodeFetch2.default)(_apiConfig.API_ROOT.room + '/room').then(function (res) {
+			(0, _nodeFetch2.default)(_apiConfig.API_ROOT.room + '/room/').then(function (res) {
 				return res.json();
 			}).then(function (body) {
 				_this2.setState({ rooms: body.rooms });
@@ -46441,7 +46441,7 @@ var RoomForm = function (_React$Component) {
             if (vErrors != null) {
                 this.setState({ errors: vErrors });
             } else {
-                fetch(_apiConfig.API_ROOT.room + '/room', {
+                fetch(_apiConfig.API_ROOT.room + '/room/', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -46616,7 +46616,7 @@ var Search = function (_React$Component) {
 		value: function doSearch() {
 			var _this2 = this;
 
-			fetch(_apiConfig.API_ROOT.search + '/search' + this.props.location.search, {
+			fetch(_apiConfig.API_ROOT.search + '/search/' + this.props.location.search, {
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
@@ -47335,11 +47335,12 @@ var Login = function (_React$Component) {
             }).then(function (res) {
                 return res.json();
             }).then(function (res) {
+                console.log("- " + res.token);
                 if (typeof res.token !== 'undefined') {
-                    _this2.props.setAuthenticate(true);
-
                     var cookies = new _universalCookie2.default();
                     cookies.set('token', res.token, { path: '/' });
+
+                    _this2.props.setAuthenticate(true);
                 } else {
                     _this2.setState({ error: true });
                 }
@@ -47381,7 +47382,7 @@ var Login = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'form',
-                    { onSubmit: this.doLogin },
+                    null,
                     _react2.default.createElement(
                         'div',
                         { className: 'row' },
@@ -47435,7 +47436,7 @@ var Login = function (_React$Component) {
                             { className: 'col-sm-1' },
                             _react2.default.createElement(
                                 'button',
-                                { type: 'submit', style: { marginLeft: "9px" }, className: 'btn btn-default', id: 'doLogin', 'data-dismiss': 'modal' },
+                                { type: 'button', style: { marginLeft: "9px" }, className: 'btn btn-default', id: 'doLogin', onClick: this.doLogin },
                                 'Login'
                             )
                         ),
@@ -47980,7 +47981,7 @@ var BookingListing = function (_React$Component) {
         value: function doEdit() {
             var _this3 = this;
 
-            fetch(_apiConfig.API_ROOT.auth + '/booking/' + this.props.booking.bookingid, {
+            fetch(_apiConfig.API_ROOT.booking + '/booking/' + this.props.booking.bookingid, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -52052,7 +52053,7 @@ var BookingForm = function (_React$Component) {
             if (vErrors != null) {
                 this.setState({ errors: vErrors });
             } else {
-                fetch(_apiConfig.API_ROOT.auth + '/booking', {
+                fetch(_apiConfig.API_ROOT.booking + '/booking/', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -52397,7 +52398,7 @@ var Report = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            fetch(_apiConfig.API_ROOT.report + '/report').then(function (res) {
+            fetch(_apiConfig.API_ROOT.report + '/report/').then(function (res) {
                 return res.json();
             }).then(function (body) {
                 _this2.setState({ data: {

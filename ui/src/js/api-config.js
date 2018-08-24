@@ -15,7 +15,7 @@ if(hostname === 'automationintesting.online') {
     booking : "http://" + window.location.hostname + ":3000",
     room : "http://" + window.location.hostname + ":3001",
     search : "http://" + window.location.hostname + ":3002",
-    auth : "http://" + window.location.hostname + ":3004",
+    auth : "http://" + window.location.hostname + ":3004/auth",
     report : "http://" + window.location.hostname + ":3005"
   }  
 }
