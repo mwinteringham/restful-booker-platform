@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "POST",
-    "url": "/validate"
+    "url": "/auth/validate"
   },
   "response": {
     "status": 200,

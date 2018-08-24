@@ -40,7 +40,7 @@ public class IntegrationTest {
     // We give the before hook a clear name to ensure that it is descriptive in what it is checking
     public void setupWiremock(){
         // Configure Wiremock for the Auth service to send a positive validate response
-        stubFor(post("/validate")
+        stubFor(post("/auth/validate")
                 .withRequestBody(equalToJson("{ \"token\": \"abc123\" }"))
                 .willReturn(aResponse().withStatus(200)));
     }
@@ -71,7 +71,7 @@ public class IntegrationTest {
                                     .contentType(ContentType.JSON)
                                     .body(bookingPayload)
                                    .when()
-                                    .post("http://localhost:3000/booking");
+                                    .post("http://localhost:3000/booking/");
 
         // Once we get a response we extract the body and map it to CreatedBooking
         CreatedBooking response = bookingResponse.as(CreatedBooking.class);

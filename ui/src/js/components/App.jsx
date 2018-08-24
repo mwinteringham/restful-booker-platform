@@ -7,6 +7,7 @@ import Login from './Login.jsx'
 import RoomDetails from './RoomDetails.jsx';
 import Report from './Report.jsx';
 import Cookies from 'universal-cookie';
+import { API_ROOT } from '../api-config';
 
 export default class App extends React.Component {
 
@@ -23,7 +24,7 @@ export default class App extends React.Component {
     componentDidMount(){
         const cookies = new Cookies();
 
-        fetch('http://' + window.location.hostname + ':3004/validate', {
+        fetch(API_ROOT.auth + '/validate', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

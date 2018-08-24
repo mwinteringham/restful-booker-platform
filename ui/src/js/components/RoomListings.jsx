@@ -2,6 +2,7 @@ import React from 'react';
 import fetch from 'node-fetch';
 import RoomListing from './RoomListing.jsx';
 import RoomForm from './RoomForm.jsx';
+import { API_ROOT } from '../api-config';
 
 export default class RoomListings extends React.Component {
 
@@ -19,7 +20,7 @@ export default class RoomListings extends React.Component {
 	}
 
 	updateRooms() {
-		fetch('http://' + window.location.hostname + ':3001/room')
+		fetch(API_ROOT.room + '/room/')
 			.then(res => res.json())
 			.then(body => {
 				this.setState({rooms : body.rooms});

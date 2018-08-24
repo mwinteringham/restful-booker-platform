@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { API_ROOT } from '../api-config';
 
 export default class RoomListing extends React.Component {
 
@@ -10,7 +11,7 @@ export default class RoomListing extends React.Component {
     }
 
     deleteRoom(){
-        fetch('http://' + window.location.hostname + ':3001/room/' + this.props.details.roomid, {
+        fetch(API_ROOT.room + '/room/' + this.props.details.roomid, {
             method: 'DELETE',
             credentials: 'include'
         })

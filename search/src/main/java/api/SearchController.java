@@ -2,6 +2,7 @@ package api;
 
 import model.Booking;
 import model.SearchResults;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import requests.BookingRequests;
@@ -20,7 +21,7 @@ public class SearchController {
     }
 
     @CrossOrigin(value = "*")
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<SearchResults> getSearchResults(@RequestParam("keyword") Optional<String> keyword) throws SQLException {
         if(keyword.isPresent()){
             List<Booking> bookings = requestBooking.searchForBookings(keyword.get()).getBody().getBookings();

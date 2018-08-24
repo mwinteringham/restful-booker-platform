@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { API_ROOT } from '../api-config';
 
 export default class Search extends React.Component {
 
@@ -25,7 +26,7 @@ export default class Search extends React.Component {
 	}
 
 	doSearch() {
-		fetch('http://' + window.location.hostname + ':3002/search' + this.props.location.search, {
+		fetch(API_ROOT.search + '/search/' + this.props.location.search, {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'

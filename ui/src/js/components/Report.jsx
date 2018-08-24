@@ -1,5 +1,6 @@
 import React from 'react';
 var BarChart = require("react-chartjs").Bar;
+import { API_ROOT } from '../api-config';
 
 export default class Report extends React.Component {
 
@@ -17,7 +18,7 @@ export default class Report extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://' + window.location.hostname + ':3005/report')
+        fetch(API_ROOT.report + '/report/')
 		.then(res => res.json())
         .then(body => {
             this.setState({ data : {

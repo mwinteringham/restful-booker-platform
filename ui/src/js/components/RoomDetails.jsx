@@ -3,6 +3,7 @@ import BookingListings from './BookingListings.jsx';
 import Form from './BookingForm.jsx';
 import validate from 'validate.js';
 import { constraints } from '../libs/ValidateRules.js'
+import { API_ROOT } from '../api-config';
 
 export default class RoomDetails extends React.Component {
 
@@ -53,7 +54,7 @@ export default class RoomDetails extends React.Component {
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
-            fetch('http://' + window.location.hostname + ':3001/room/' + this.props.params.id, {
+            fetch(API_ROOT.room + '/room/' + this.props.params.id, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -73,7 +74,7 @@ export default class RoomDetails extends React.Component {
     }
 
     fetchRoomDetails() {
-        fetch('http://' + window.location.hostname + ':3001/room/' + this.props.params.id, {
+        fetch(API_ROOT.room + '/room/' + this.props.params.id, {
             headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'

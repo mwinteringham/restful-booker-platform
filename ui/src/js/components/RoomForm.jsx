@@ -1,6 +1,7 @@
 import React from 'react';
 import validate from 'validate.js';
 import { constraints } from '../libs/ValidateRules.js'
+import { API_ROOT } from '../api-config';
 
 export default class RoomForm extends React.Component {
 
@@ -27,7 +28,7 @@ export default class RoomForm extends React.Component {
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
-            fetch('http://' + window.location.hostname + ':3001/room', {
+            fetch(API_ROOT.room + '/room/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

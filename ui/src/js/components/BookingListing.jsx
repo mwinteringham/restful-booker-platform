@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import { API_ROOT } from '../api-config';
 
 export default class BookingListing extends React.Component {
 
@@ -27,7 +28,7 @@ export default class BookingListing extends React.Component {
     }
 
     doDelete(){
-        fetch('http://' + window.location.hostname + ':3000/booking/' + this.props.booking.bookingid, {
+        fetch(API_ROOT.booking + '/booking/' + this.props.booking.bookingid, {
 			method: 'DELETE',
 			credentials: 'include',
         })
@@ -48,7 +49,7 @@ export default class BookingListing extends React.Component {
     }
 
     doEdit(){
-        fetch('http://' + window.location.hostname + ':3000/booking/' + this.props.booking.bookingid, {
+        fetch(API_ROOT.booking + '/booking/' + this.props.booking.bookingid, {
 			method: 'PUT',
 			headers: {
 				'Accept': 'application/json',

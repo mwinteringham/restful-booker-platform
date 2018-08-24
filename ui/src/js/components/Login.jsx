@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
+import { API_ROOT } from '../api-config';
 
 export default class Login extends React.Component {
 
@@ -14,7 +15,7 @@ export default class Login extends React.Component {
     }
 
     doLogin() {
-        fetch('http://' + window.location.hostname + ':3004/auth', {
+        fetch(API_ROOT.auth + '/login', {
           method: 'POST',
           headers: {
               'Accept': 'application/json',
@@ -24,12 +25,12 @@ export default class Login extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            
+            console.log("- " + res.token)
             if(typeof(res.token) !== 'undefined'){
-                this.props.setAuthenticate(true);
-            
                 const cookies = new Cookies();
                 cookies.set('token', res.token, { path: '/' });
+
+                this.props.setAuthenticate(true);
             } else {
                 this.setState({ error : true });
             }
@@ -73,7 +74,7 @@ export default class Login extends React.Component {
                     <div className="row">
                         <div className="col-sm-7"></div>
                         <div className="col-sm-1">
-                            <button type="submit" style={{marginLeft : "9px"}} className="btn btn-default" id="doLogin" data-dismiss="modal" onClick={this.doLogin}>Login</button>
+                            <button type="button" style={{marginLeft : "9px"}} className="btn btn-default" id="doLogin" onClick={this.doLogin}>Login</button>
                         </div>
                         <div className="col-sm-4"></div>
                     </div>
