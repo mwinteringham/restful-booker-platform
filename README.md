@@ -52,10 +52,10 @@ Logging and documentation is available for each of the services on their own sep
 
 ### Java APIs
 
-Logging for that API can be found on the endpoint /<name-of-service>/actuator/logfile. For example:
+Logging for that API can be found on the endpoint /{name-of-service}/actuator/logfile. For example:
 
 ```/auth/actuator/logfile```
 
-API documentation exists at /<name-of-service>/swagger-ui.html. For example:
+API documentation exists at /{name-of-service}/swagger-ui.html. For example:
 
 ```/auth/swagger-ui.html```
