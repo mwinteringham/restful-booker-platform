@@ -3,6 +3,7 @@
 **/npm-debug.log
 *.log
 **/node
+*.gz
 
 # IntelliJ
 .idea

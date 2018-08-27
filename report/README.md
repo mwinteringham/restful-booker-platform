@@ -12,4 +12,4 @@ To run the API, ensure that you have first built it and then run ```java -jar ta
 
 ## Documentation
 
-To access this API's endpoint documentation, head to ```http://localhost:3005/swagger-ui.html```. You can also find out the health of the application by accessing ```http://localhost:3005/health```. Finally to access the APIs logfiles, head to ```http://localhost:3005/logfile```
+To access this API's endpoint documentation, head to ```http://localhost:3005/report/swagger-ui.html```. You can also find out the health of the application by accessing ```http://localhost:3005/report/actuator/health```. Finally to access the APIs logfiles, head to ```http://localhost:3005/report/actuator/logfile```

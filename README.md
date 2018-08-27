@@ -7,25 +7,24 @@ RBP is currently known to work with the following requirements:
 ### Development
 - JDK 1.8
 - Maven 3.3.9
-- Node 8.11.2
-- NPM 3.3.9
+- Node 8.11.4
+- NPM 5.6.0
 
-## Installation
+## Running locally
 
-### Production
-You will require Java SDK 1.6, Maven and Node/Npm installed and available in your terminal to run RBP. To get started follow these instructions:
+You will require Java SDK 1.8, Maven and Node/Npm installed and available in your terminal to run RBP. To get started follow these instructions:
 
 1. Clone/Download the repository
 2. Navigate into the restful-booker-platform root folder
 3. Run either ```local_run.sh``` or ```local_run.cmd``` depending on your OS to build RBP and get it running (It may take a while on the first run as it downloads dependencies)
 4. Navigate to http://localhost:3003 to access the site
 
-#### Login
+### Login
 The user login details are:
 * Username: admin
 * Password: password
 
-#### Database access
+### Database access
 
 RBP uses h2 in-memory databases for ease of deployment. However, the databases have been setup with TCP access, meaning you can use a SQL client that supports h2 SQL to connect.
 
@@ -36,6 +35,7 @@ You can either connect to the Booking database on port ```9090``` or the Room da
 ### Development
 
 #### Java APIs
+
 For the Java APIs these can be run via Maven. You have the choice to navigating to the root folder and running ```mvn clean package``` to run tests and build a JAR. The other option is to run the application via your IDE and running room/src/main/java/api/Application.java to start up the API inside your IDE for debugging.
 
 #### Node Frontend
@@ -52,10 +52,10 @@ Logging and documentation is available for each of the services on their own sep
 
 ### Java APIs
 
-Logging for that API can be found on the endpoint /logfile
-API documentation exists at /swagger-ui.html
+Logging for that API can be found on the endpoint /<name-of-service>/actuator/logfile. For example:
 
-### Node APIs
+```/auth/actuator/logfile```
 
-Logging for the UI API exists on port 9003. Update the port to 9003 and the logging will appear.
-There is no Swagger documentation for the UI.
+API documentation exists at /<name-of-service>/swagger-ui.html. For example:
+
+```/auth/swagger-ui.html```
