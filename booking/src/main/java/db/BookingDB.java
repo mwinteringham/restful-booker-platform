@@ -136,5 +136,9 @@ public class BookingDB {
         PreparedStatement ps = connection.prepareStatement(DELETE_ALL_BOOKINGS);
 
         ps.executeUpdate();
+
+        PreparedStatement resetPs = connection.prepareStatement("ALTER TABLE BOOKINGS ALTER COLUMN bookingid RESTART WITH 1");
+
+        resetPs.execute();
     }
 }

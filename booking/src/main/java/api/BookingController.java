@@ -4,17 +4,25 @@ import db.BookingDB;
 import model.Booking;
 import model.BookingResults;
 import model.CreatedBooking;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import requests.AuthRequests;
+import utils.DatabaseScheduler;
 
 import java.sql.SQLException;
+import java.time.Instant;
+import java.util.GregorianCalendar;
 import java.util.Optional;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class BookingController {
@@ -25,8 +33,15 @@ public class BookingController {
     @Value("${cors.origin}")
     private String originHost;
 
+    @Value("${database.schedule}")
+    private boolean schedule;
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
+        if(schedule){
+            DatabaseScheduler.setupScheduler(bookingDB);
+        }
+
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
