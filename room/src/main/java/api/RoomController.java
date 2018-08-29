@@ -48,11 +48,7 @@ public class RoomController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<Rooms> getRooms(@RequestParam("keyword") Optional<String> keyword) throws SQLException {
-        if(keyword.isPresent()){
-            return ResponseEntity.ok(new Rooms(roomDB.searchRooms(keyword.get())));
-        } else {
-            return ResponseEntity.ok(new Rooms(roomDB.queryRooms()));
-        }
+        return ResponseEntity.ok(new Rooms(roomDB.queryRooms()));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)

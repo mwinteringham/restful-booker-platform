@@ -99,4 +99,17 @@ public class Room {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomid=" + roomid +
+                ", roomNumber=" + roomNumber +
+                ", type='" + type + '\'' +
+                ", beds=" + beds +
+                ", accessible=" + accessible +
+                ", details='" + details + '\'' +
+                ", bookings=" + bookings +
+                '}';
+    }
 }

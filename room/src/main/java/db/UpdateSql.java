@@ -2,35 +2,30 @@ package db;
 
 import model.Room;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UpdateSql {
 
-    private int id;
-    private int roomNumber;
-    private String type;
-    private int beds;
-    private boolean accessible;
-    private String details;
+    private PreparedStatement preparedStatement;
 
+    UpdateSql(Connection connection, int id, Room room) throws SQLException {
+        String UPDATE_ROOM = "UPDATE ROOMS SET room_number = ?, type = ?, beds = ?, accessible = ?, details = ? WHERE roomid = ?";
 
-    public UpdateSql(int id, Room room) {
-        this.id = id;
-        this.roomNumber = room.getRoomNumber();
-        this.type = room.getType();
-        this.beds = room.getBeds();
-        this.accessible = room.isAccessible();
-        this.details = room.getDetails();
+        preparedStatement = connection.prepareStatement(UPDATE_ROOM);
+        preparedStatement.setInt(1, room.getRoomNumber());
+        preparedStatement.setString(2, room.getType());
+        preparedStatement.setInt(3, room.getBeds());
+        preparedStatement.setBoolean(4, room.isAccessible());
+        preparedStatement.setString(5, room.getDetails());
+        preparedStatement.setInt(6, id);
     }
 
-    public String buildSql(){
-        return "UPDATE ROOMS SET "
-                + "room_number='" + roomNumber + "',"
-                + "type='" + type + "',"
-                + "beds='" + beds + "',"
-                + "accessible='" + accessible + "',"
-                + "details='" + details + "' WHERE roomid=" + id;
+    public PreparedStatement getPreparedStatement() {
+        return preparedStatement;
     }
 
 }

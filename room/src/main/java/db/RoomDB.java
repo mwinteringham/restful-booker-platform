@@ -5,6 +5,7 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +14,10 @@ import java.util.List;
 public class RoomDB {
 
     private Connection connection;
+    private final String SELECT_ROOMS = "SELECT * FROM ROOMS";
+    private final String SELECT_BY_ROOMID = "SELECT * FROM ROOMS WHERE roomid = ?";
+    private final String DELETE_BY_ROOMID = "DELETE FROM ROOMS WHERE roomid = ?";
+    private final String DELETE_ROOMS = "DELETE FROM ROOMS";
 
     public RoomDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -32,22 +37,26 @@ public class RoomDB {
                            " primary key (roomid));";
         connection.prepareStatement(prepareDb).executeUpdate();
 
-        String injectBooking = "INSERT INTO ROOMS (room_number, type, beds, accessible, details) " +
-                               "VALUES(101, 'Twin', 2, false, 'WiFi, TV, Mini-bar');";
-        connection.prepareStatement(injectBooking).executeUpdate();
+        Room room = new Room(101, "Twin", 2, false , "Wifi, TV, Mini-bar");
+
+        InsertSql insertSql = new InsertSql(connection, room);
+        PreparedStatement createBooking = insertSql.getPreparedStatement();
+
+        createBooking.executeUpdate();
     }
 
     public Room create(Room room) throws SQLException {
-        InsertSql insertSql = new InsertSql(room);
-        String sql = insertSql.buildSql();
+        InsertSql insertSql = new InsertSql(connection, room);
+        PreparedStatement createPs = insertSql.getPreparedStatement();
 
-        if(connection.prepareStatement(sql).executeUpdate() > 0){
+        if(createPs.executeUpdate() > 0){
             ResultSet lastInsertId = connection.prepareStatement("SELECT LAST_INSERT_ID()").executeQuery();
             lastInsertId.next();
 
-            String querySql = "SELECT * FROM ROOMS WHERE roomid='" + lastInsertId.getInt("LAST_INSERT_ID()") + "'";
+            PreparedStatement ps = connection.prepareStatement(SELECT_BY_ROOMID);
+            ps.setInt(1, lastInsertId.getInt("LAST_INSERT_ID()"));
 
-            ResultSet result = connection.prepareStatement(querySql).executeQuery();
+            ResultSet result = ps.executeQuery();
             result.next();
 
             Room createdRoom = new Room(result);
@@ -60,29 +69,32 @@ public class RoomDB {
     }
 
     public Room query(int id) throws SQLException {
-        String sql = "SELECT * FROM ROOMS WHERE roomid='" + id + "'";
+        PreparedStatement ps = connection.prepareStatement(SELECT_BY_ROOMID);
+        ps.setInt(1, id);
 
-        ResultSet result = connection.prepareStatement(sql).executeQuery();
+        ResultSet result = ps.executeQuery();
         result.next();
 
         return new Room(result);
     }
 
     public Boolean delete(int bookingid) throws SQLException {
-        String sql = "DELETE FROM ROOMS WHERE roomid='" + bookingid + "'";
+        PreparedStatement ps = connection.prepareStatement(DELETE_BY_ROOMID);
+        ps.setInt(1, bookingid);
 
-        int resultSet = connection.prepareStatement(sql).executeUpdate();
+        int resultSet = ps.executeUpdate();
         return resultSet == 1;
     }
 
     public Room update(int id, Room room) throws SQLException {
-        UpdateSql updateSql = new UpdateSql(id, room);
-        String sql = updateSql.buildSql();
+        UpdateSql updateSql = new UpdateSql(connection, id, room);
+        PreparedStatement updatePs = updateSql.getPreparedStatement();
 
-        if(connection.prepareStatement(sql).executeUpdate() > 0){
-            String querySql = "SELECT * FROM ROOMS WHERE roomid='" + id + "'";
+        if(updatePs.executeUpdate() > 0){
+            PreparedStatement ps = connection.prepareStatement(SELECT_BY_ROOMID);
+            ps.setInt(1, id);
 
-            ResultSet result = connection.prepareStatement(querySql).executeQuery();
+            ResultSet result = ps.executeQuery();
             result.next();
 
             Room createdRoom = new Room(result);
@@ -94,11 +106,12 @@ public class RoomDB {
         }
     }
 
-    public List<Room> searchRooms(String keyword) throws SQLException {
+    public List<Room> queryRooms() throws SQLException {
         List<Room> listToReturn = new ArrayList<Room>();
-        String sql = "SELECT * FROM ROOMS WHERE name = '" + keyword + "';";
 
-        ResultSet results = connection.prepareStatement(sql).executeQuery();
+        PreparedStatement ps = connection.prepareStatement(SELECT_ROOMS);
+
+        ResultSet results = ps.executeQuery();
         while(results.next()){
             listToReturn.add(new Room(results));
         }
@@ -106,15 +119,9 @@ public class RoomDB {
         return listToReturn;
     }
 
-    public List<Room> queryRooms() throws SQLException {
-        List<Room> listToReturn = new ArrayList<Room>();
-        String sql = "SELECT * FROM ROOMS";
+    public void resetDB() throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(DELETE_ROOMS);
 
-        ResultSet results = connection.prepareStatement(sql).executeQuery();
-        while(results.next()){
-            listToReturn.add(new Room(results));
-        }
-
-        return listToReturn;
+        ps.executeUpdate();
     }
 }
