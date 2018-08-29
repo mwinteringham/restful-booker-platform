@@ -2,39 +2,33 @@ package db;
 
 import model.Booking;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UpdateSql {
 
-    private int id;
-    private String firstname;
-    private String lastname;
-    private int totalprice;
-    private boolean depositpaid;
-    private Date checkin;
-    private Date checkout;
-    private SimpleDateFormat dateFormat;
+    private PreparedStatement preparedStatement;
 
-    UpdateSql(int id, Booking booking) {
-        this.id = id;
-        this.firstname = booking.getFirstname();
-        this.lastname = booking.getLastname();
-        this.totalprice = booking.getTotalprice();
-        this.depositpaid = booking.isDepositpaid();
-        this.checkin = booking.getBookingDates().getCheckin();
-        this.checkout = booking.getBookingDates().getCheckout();
+    UpdateSql(Connection connection, int id, Booking booking) throws SQLException {
+        final String UPDATE_SQL = "UPDATE BOOKINGS SET firstname= ?, lastname = ?, totalprice = ?, depositpaid = ?, checkin = ?, checkout = ? WHERE bookingid = ?";
 
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        preparedStatement = connection.prepareStatement(UPDATE_SQL);
+        preparedStatement.setString(1, booking.getFirstname());
+        preparedStatement.setString(2, booking.getLastname());
+        preparedStatement.setInt(3, booking.getTotalprice());
+        preparedStatement.setBoolean(4, booking.isDepositpaid());
+        preparedStatement.setString(5, dateFormat.format(booking.getBookingDates().getCheckin()));
+        preparedStatement.setString(6, dateFormat.format(booking.getBookingDates().getCheckout()));
+        preparedStatement.setInt(7, id);
     }
 
-    public String buildSql(){
-        return "UPDATE BOOKINGS SET "
-                + "firstname='" + firstname + "',"
-                + "lastname='" + lastname + "',"
-                + "totalprice=" + totalprice + ","
-                + "depositpaid=" + depositpaid + ","
-                + "checkin='" + dateFormat.format(checkin) + "',"
-                + "checkout='" + dateFormat.format(checkout) + "' WHERE bookingid=" + id;
+    public PreparedStatement getPreparedStatement() {
+        return preparedStatement;
     }
+
 }

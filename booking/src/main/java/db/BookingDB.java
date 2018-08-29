@@ -5,16 +5,20 @@ import model.CreatedBooking;
 import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class BookingDB {
 
     private Connection connection;
+
+    private final String CREATE_DB = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
+    private final String SELECT_BY_BOOKINGID = "SELECT * FROM BOOKINGS WHERE bookingid=?";
+    private final String DELETE_BY_ID = "DELETE FROM BOOKINGS WHERE bookingid = ?" ;
+    private final String SELECT_BY_NAME = "SELECT * FROM BOOKINGS WHERE firstname = ? OR lastname = ?;";
+    private final String DELETE_ALL_BOOKINGS = "DELETE FROM BOOKINGS";
 
     public BookingDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -25,24 +29,35 @@ public class BookingDB {
 
         Server server = Server.createTcpServer("-tcpPort", "9090", "-tcpAllowOthers").start();
 
-        String prepareDb = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
-        connection.prepareStatement(prepareDb).executeUpdate();
+        connection.prepareStatement(CREATE_DB).executeUpdate();
 
-        String injectBooking = "INSERT INTO BOOKINGS(roomid, firstname, lastname, totalprice, depositpaid, checkin, checkout) VALUES(1,'James','Dean',100,true,'2018-02-26','2018-02-26');";
-        connection.prepareStatement(injectBooking).executeUpdate();
+        Booking booking = new Booking.BookingBuilder()
+                .setRoomid(1)
+                .setFirstname("James")
+                .setLastname("Dean")
+                .setTotalprice(100)
+                .setDepositpaid(true)
+                .setCheckin(new GregorianCalendar(2018,1,26).getTime())
+                .setCheckout(new GregorianCalendar(2018,1,26).getTime())
+                .build();
+
+        InsertSql insertSql = new InsertSql(connection, booking);
+        insertSql.getPreparedStatement().executeUpdate();
     }
 
     public CreatedBooking create(Booking booking) throws SQLException {
-        InsertSql insertSql = new InsertSql(booking);
-        String sql = insertSql.buildSql();
+        InsertSql insertSql = new InsertSql(connection, booking);
 
-        if(connection.prepareStatement(sql).executeUpdate() > 0){
+        PreparedStatement createPs = insertSql.getPreparedStatement();
+
+        if(createPs.executeUpdate() > 0){
             ResultSet lastInsertId = connection.prepareStatement("SELECT LAST_INSERT_ID()").executeQuery();
             lastInsertId.next();
 
-            String querySql = "SELECT * FROM BOOKINGS WHERE bookingid='" + lastInsertId.getInt("LAST_INSERT_ID()") + "'";
+            PreparedStatement ps = connection.prepareStatement(SELECT_BY_BOOKINGID);
+            ps.setInt(1, lastInsertId.getInt("LAST_INSERT_ID()") );
 
-            ResultSet result = connection.prepareStatement(querySql).executeQuery();
+            ResultSet result = ps.executeQuery();
             result.next();
 
             Booking createdBooking = new Booking(result);
@@ -67,9 +82,12 @@ public class BookingDB {
 
     public List<Booking> queryBookingsByName(String keyword) throws SQLException {
         List<Booking> listToReturn = new ArrayList<Booking>();
-        String sql = "SELECT * FROM BOOKINGS WHERE firstname = '" + keyword + "' OR lastname = '" + keyword + "';";
 
-        ResultSet results = connection.prepareStatement(sql).executeQuery();
+        PreparedStatement ps = connection.prepareStatement(SELECT_BY_NAME);
+        ps.setString(1, keyword);
+        ps.setString(2, keyword);
+
+        ResultSet results = ps.executeQuery();
         while(results.next()){
             listToReturn.add(new Booking(results));
         }
@@ -78,29 +96,32 @@ public class BookingDB {
     }
 
     public Booking query(int id) throws SQLException {
-        String sql = "SELECT * FROM BOOKINGS WHERE bookingid='" + id + "'";
+        PreparedStatement ps = connection.prepareStatement(SELECT_BY_BOOKINGID);
+        ps.setInt(1, id);
 
-        ResultSet result = connection.prepareStatement(sql).executeQuery();
+        ResultSet result = ps.executeQuery();
         result.next();
 
         return new Booking(result);
     }
 
     public Boolean delete(int bookingid) throws SQLException {
-        String sql = "DELETE FROM BOOKINGS WHERE bookingid='" + bookingid + "'";
+        PreparedStatement ps = connection.prepareStatement(DELETE_BY_ID);
+        ps.setInt(1, bookingid);
 
-        int resultSet = connection.prepareStatement(sql).executeUpdate();
+        int resultSet = ps.executeUpdate();
         return resultSet == 1;
     }
 
     public CreatedBooking update(int id, Booking booking) throws SQLException {
-        UpdateSql updateSql = new UpdateSql(id, booking);
-        String sql = updateSql.buildSql();
+        UpdateSql updateSql = new UpdateSql(connection, id, booking);
+        PreparedStatement updatePs = updateSql.getPreparedStatement();
 
-        if(connection.prepareStatement(sql).executeUpdate() > 0){
-            String querySql = "SELECT * FROM BOOKINGS WHERE bookingid='" + id + "'";
+        if(updatePs.executeUpdate() > 0){
+            PreparedStatement ps = connection.prepareStatement(SELECT_BY_BOOKINGID);
+            ps.setInt(1, id);
 
-            ResultSet result = connection.prepareStatement(querySql).executeQuery();
+            ResultSet result = ps.executeQuery();
             result.next();
 
             Booking createdBooking = new Booking(result);
@@ -109,5 +130,11 @@ public class BookingDB {
         } else {
             return null;
         }
+    }
+
+    public void resetDB() throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(DELETE_ALL_BOOKINGS);
+
+        ps.executeUpdate();
     }
 }
