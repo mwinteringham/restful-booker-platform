@@ -17,7 +17,7 @@ public class RoomDB {
     private final String SELECT_ROOMS = "SELECT * FROM ROOMS";
     private final String SELECT_BY_ROOMID = "SELECT * FROM ROOMS WHERE roomid = ?";
     private final String DELETE_BY_ROOMID = "DELETE FROM ROOMS WHERE roomid = ?";
-    private final String DELETE_ROOMS = "DELETE FROM ROOMS";
+    private final String DELETE_ALL_ROOMS = "DELETE FROM ROOMS";
 
     public RoomDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -120,8 +120,12 @@ public class RoomDB {
     }
 
     public void resetDB() throws SQLException {
-        PreparedStatement ps = connection.prepareStatement(DELETE_ROOMS);
+        PreparedStatement ps = connection.prepareStatement(DELETE_ALL_ROOMS);
 
         ps.executeUpdate();
+
+        PreparedStatement resetPs = connection.prepareStatement("ALTER TABLE ROOMS ALTER COLUMN roomid RESTART WITH 1");
+
+        resetPs.execute();
     }
 }

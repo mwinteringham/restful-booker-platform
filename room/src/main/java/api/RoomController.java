@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import requests.AuthRequests;
 import requests.BookingRequests;
+import utils.DatabaseScheduler;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -27,8 +28,15 @@ public class RoomController {
     @Value("${cors.origin}")
     private String originHost;
 
+    @Value("${database.schedule}")
+    private boolean schedule;
+
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public WebMvcConfigurer configurer() {
+        if(schedule){
+            DatabaseScheduler.setupScheduler(roomDB);
+        }
+
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {

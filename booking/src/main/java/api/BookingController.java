@@ -37,7 +37,7 @@ public class BookingController {
     private boolean schedule;
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public WebMvcConfigurer configurer() {
         if(schedule){
             DatabaseScheduler.setupScheduler(bookingDB);
         }
