@@ -8,4 +8,4 @@ RUN npm install
 RUN npm install frontail -g
 RUN touch ui.log
 
-ENTRYPOINT sleep 5 && npm start & frontail -t dark -p 9003 ui.log
+ENTRYPOINT sleep 5 && npm run production & frontail -t dark -p 9003 ui.log

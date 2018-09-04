@@ -2,7 +2,7 @@ let backendHost;
 
 const hostname = window && window.location && window.location.hostname;
 
-if(hostname === 'automationintesting.online') {
+if(process.env.NODE_ENV === 'production'){
   backendHost = {
     booking : "https://" + window.location.hostname,
     room : "https://" + window.location.hostname,
