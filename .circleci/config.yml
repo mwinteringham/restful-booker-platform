@@ -306,7 +306,7 @@ jobs:
 
           - run:
               command: |
-                if [ -f ~/tmp/ui.txt ]; then
+                if [ -f ~/project/ui/public/js/main.js ]; then
                   echo "[BUILDING] UI"
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
                   docker build -t mwinteringham/restfulbookerplatform_ui:latest .
