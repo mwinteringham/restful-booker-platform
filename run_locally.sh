@@ -2,7 +2,13 @@
 
 mvn clean install
 
+cd ui
+npm install
+npm build
+
 trap "kill 0" EXIT
+
+cd ..
 
 java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platform-auth-*-SNAPSHOT.jar &
 java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-*-SNAPSHOT.jar &
