@@ -36,8 +36,6 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            ls -al ~/tmp
-
             if [ -f ~/tmp/auth.txt ]; then
               echo "[BUILDING] Auth"
               mvn clean install
@@ -62,7 +60,13 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          command: mvn clean install
+          command: |
+            if [ -f ~/tmp/booking.txt ]; then
+              echo "[BUILDING] Booking"
+              mvn clean install
+            else
+              echo "[SKIPPING] Booking"
+            fi
           working_directory: booking
       - save_cache:
           paths:
@@ -81,7 +85,13 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          command: mvn clean install
+          command: |
+            if [ -f ~/tmp/report.txt ]; then
+              echo "[BUILDING] Report"
+              mvn clean install
+            else
+              echo "[SKIPPING] Report"
+            fi
           working_directory: report
       - save_cache:
           paths:
@@ -100,7 +110,13 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          command: mvn clean install
+          command: |
+            if [ -f ~/tmp/room.txt ]; then
+              echo "[BUILDING] Room"
+              mvn clean install
+            else
+              echo "[SKIPPING] Room"
+            fi
           working_directory: room
       - save_cache:
           paths:
@@ -119,7 +135,13 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          command: mvn clean install
+          command: |
+            if [ -f ~/tmp/search.txt ]; then
+              echo "[BUILDING] Search"
+              mvn clean install
+            else
+              echo "[SKIPPING] Search"
+            fi
           working_directory: search
       - save_cache:
           paths:
@@ -136,9 +158,14 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            npm install
-            npm test
-            npm run build
+            if [ -f ~/tmp/ui.txt ]; then
+              echo "[BUILDING] UI"
+              npm install
+              npm test
+              npm run build
+            else
+              echo "[SKIPPING] UI"
+            fi
           working_directory: ui
       - save_cache:
           paths:
@@ -159,9 +186,14 @@ jobs:
 
       - run:
           command: |
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker build -t mwinteringham/restfulbookerplatform_auth:latest .
-            docker push mwinteringham/restfulbookerplatform_auth:latest
+            if [ -f ~/tmp/auth.txt ]; then
+              echo "[BUILDING] Auth"
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker build -t mwinteringham/restfulbookerplatform_auth:latest .
+              docker push mwinteringham/restfulbookerplatform_auth:latest
+            else
+              echo "[SKIPPING] Auth"
+            fi
           working_directory: auth
 
   build_booking_docker_image:
@@ -178,9 +210,14 @@ jobs:
 
         - run:
             command: |
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_booking:latest .
-              docker push mwinteringham/restfulbookerplatform_booking:latest
+              if [ -f ~/tmp/booking.txt ]; then
+                echo "[BUILDING] Booking"
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_booking:latest .
+                docker push mwinteringham/restfulbookerplatform_booking:latest
+              else
+                echo "[SKIPPING] Booking"
+              fi
             working_directory: booking
 
   build_report_docker_image:
@@ -197,9 +234,14 @@ jobs:
 
         - run:
             command: |
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_report:latest .
-              docker push mwinteringham/restfulbookerplatform_report:latest
+              if [ -f ~/tmp/report.txt ]; then
+                echo "[BUILDING] Report"
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_report:latest .
+                docker push mwinteringham/restfulbookerplatform_report:latest
+              else
+                echo "[SKIPPING] Report"
+              fi
             working_directory: report
 
   build_room_docker_image:
@@ -216,9 +258,14 @@ jobs:
 
         - run:
             command: |
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_room:latest .
-              docker push mwinteringham/restfulbookerplatform_room:latest
+              if [ -f ~/tmp/room.txt ]; then
+                echo "[BUILDING] Room"
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_room:latest .
+                docker push mwinteringham/restfulbookerplatform_room:latest
+              else
+                echo "[SKIPPING] Room"
+              fi
             working_directory: room
 
   build_search_docker_image:
@@ -235,9 +282,14 @@ jobs:
 
         - run:
             command: |
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_search:latest .
-              docker push mwinteringham/restfulbookerplatform_search:latest
+              if [ -f ~/tmp/search.txt ]; then
+                echo "[BUILDING] Search"
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_search:latest .
+                docker push mwinteringham/restfulbookerplatform_search:latest
+              else
+                echo "[SKIPPING] Search"
+              fi
             working_directory: search
 
   build_ui_docker_image:
@@ -254,9 +306,14 @@ jobs:
 
           - run:
               command: |
-                docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_ui:latest .
-                docker push mwinteringham/restfulbookerplatform_ui:latest
+                if [ -f ~/tmp/ui.txt ]; then
+                  echo "[BUILDING] UI"
+                  docker login -u $DOCKER_USER -p $DOCKER_PASS
+                  docker build -t mwinteringham/restfulbookerplatform_ui:latest .
+                  docker push mwinteringham/restfulbookerplatform_ui:latest
+                else
+                  echo "[SKIPPING] UI"
+                fi
               working_directory: ui
 
 workflows:
