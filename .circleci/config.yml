@@ -186,7 +186,7 @@ jobs:
 
       - run:
           command: |
-            if [ -f ~/tmp/auth.txt ]; then
+            if [ -f ~/project/search/target/restful-booker-platform-auth-*-SNAPSHOT.jar ]; then
               echo "[BUILDING] Auth"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker build -t mwinteringham/restfulbookerplatform_auth:latest .
@@ -210,7 +210,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/tmp/booking.txt ]; then
+              if [ -f ~/project/search/target/restful-booker-platform-booking-*-SNAPSHOT.jar ]; then
                 echo "[BUILDING] Booking"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_booking:latest .
@@ -234,7 +234,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/tmp/report.txt ]; then
+              if [ -f ~/project/search/target/restful-booker-platform-report-*-SNAPSHOT.jar ]; then
                 echo "[BUILDING] Report"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_report:latest .
@@ -258,7 +258,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/tmp/room.txt ]; then
+              if [ -f ~/project/search/target/restful-booker-platform-room-*-SNAPSHOT.jar ]; then
                 echo "[BUILDING] Room"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_room:latest .
@@ -282,7 +282,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/tmp/search.txt ]; then
+              if [ -f ~/project/search/target/restful-booker-platform-search-*-SNAPSHOT.jar ]; then
                 echo "[BUILDING] Search"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_search:latest .
