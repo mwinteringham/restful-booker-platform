@@ -11,6 +11,11 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          command: |
+            for folder in `git log --format="" --name-only ${CIRCLE_COMPARE_URL##http*/} | cut -d"/" -f1 | sort -u`; do
+              echo "contents in $folder were modified"
+            done
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
