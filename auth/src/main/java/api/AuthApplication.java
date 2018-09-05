@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan()
 public class AuthApplication {
 
+    // Testing the lookup by making a change in search
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class, args);
     }
