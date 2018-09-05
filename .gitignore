@@ -11,3 +11,6 @@
 
 # Java
 target/
+
+# ui
+ui/public/js
