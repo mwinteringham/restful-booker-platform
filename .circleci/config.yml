@@ -13,8 +13,10 @@ jobs:
       - checkout
       - run:
           command: |
+            mkdir ~/tmp
             for folder in `git log --format="" --name-only ${CIRCLE_COMPARE_URL##http*/} | cut -d"/" -f1 | sort -u`; do
-              echo "contents in $folder were modified"
+              echo "$folder will be built in this run"
+              touch ~/tmp/$folder.txt
             done
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
@@ -33,10 +35,15 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          command: mvn package
-          working_directory: auth
-      - run:
-          command: mvn install
+          command: |
+            ls -al ~/tmp
+            
+            if [ -f "~/tmp/auth.txt" ]; then
+              echo "[BUILDING] Auth
+              mvn clean install
+            else
+              echo "[SKIPPING] Auth"
+            fi
           working_directory: auth
       - save_cache:
           paths:
