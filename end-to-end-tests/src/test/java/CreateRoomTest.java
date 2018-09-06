@@ -7,7 +7,7 @@ import org.junit.Test;
 import pageobjects.LoginPage;
 import pageobjects.RoomListingPage;
 
-public class CreateRoomTests extends TestSetup
+public class CreateRoomTest extends TestSetup
 {
     @Test
     public void CreateNewRoom() throws InterruptedException

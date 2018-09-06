@@ -21,7 +21,7 @@ public class DriverFactory
         }
         else if (OS.contains("mac"))
         {
-            String pathToChromeDriver = System.getProperty("user.dir") + "/end-to-end-tests/chromedrivers/mac/chromedriver";
+            String pathToChromeDriver = System.getProperty("user.dir") + "/chromedrivers/mac/chromedriver";
             System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
         }
 
