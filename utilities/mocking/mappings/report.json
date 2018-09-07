@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/report/"
+  },
+  "response": {
+    "status": 200,
+    "headers" : {
+      "Vary": "Origin",
+      "Vary": "Access-Control-Request-Method",
+      "Vary": "Access-Control-Request-Headers",
+      "Access-Control-Allow-Origin": "http://localhost:3003",
+      "Access-Control-Allow-Credentials": "true",
+      "Content-Type": "application/json;charset=UTF-8",
+      "Transfer-Encoding": "chunked"
+
+    },
+    "body": "{\"rooms\":[101], \"totals\":[100]}"
+  }
+}
