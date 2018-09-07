@@ -4,7 +4,7 @@ mvn clean install
 
 cd ui
 npm install
-npm build
+npm run build
 
 trap "kill 0" EXIT
 
