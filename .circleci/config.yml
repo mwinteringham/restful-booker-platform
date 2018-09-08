@@ -158,17 +158,13 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-#            if [ -f ~/tmp/ui.txt ]; then
-              echo "[BUILDING] UI"
-              npm install
-              npm test
-              npm run build
-              cd ..
-              cd api
-              mvn install
-#            else
-#              echo "[SKIPPING] UI"
-#            fi
+            echo "[BUILDING] UI"
+            npm install
+            npm test
+            npm run build
+            cd ..
+            cd api
+            mvn install
           working_directory: ui/js
       - save_cache:
           paths:
