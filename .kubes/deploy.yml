@@ -90,6 +90,13 @@ spec:
           image: mwinteringham/restfulbookerplatform_search
           ports:
             - containerPort: 3002
+          resources:
+            requests:
+              memory: "768Mi"
+              cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
           readinessProbe:
             httpGet:
               port: 3002
@@ -126,6 +133,15 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "500m"
+          readinessProbe:
+            httpGet:
+              port: 3003
+              path: /actuator/health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -329,6 +345,10 @@ spec:
           serviceName: rbp-ui
           servicePort: 3003
       - path: /js/*
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003
+      - path: /actuator/*
         backend:
           serviceName: rbp-ui
           servicePort: 3003
