@@ -1,11 +1,9 @@
-FROM node:9
+FROM openjdk:8-jre-alpine
 
-ADD ./ /usr/local/ui
+ADD . /usr/local/ui
 
 WORKDIR /usr/local/ui
 
-RUN npm install
-RUN npm install frontail -g
-RUN touch ui.log
+COPY api/target ./
 
-ENTRYPOINT sleep 5 && npm run production & frontail -t dark -p 9003 ui.log
+ENTRYPOINT java -jar -Dspring.profiles.active=prod restful-booker-platform-ui-1.0-SNAPSHOT.jar

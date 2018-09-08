@@ -1,9 +1,14 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+
+const PATHS = {
+  build: path.join(__dirname, '..', 'api', 'target', 'classes', 'public')
+};
+
 module.exports = {
   entry: ["./src/js/index.js"],
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: PATHS.build,
     filename: "js/[name].js"
   },
   devServer: {

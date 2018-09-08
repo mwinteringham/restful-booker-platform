@@ -2,13 +2,10 @@
   "name": "ui",
   "version": "1.0.0",
   "description": "React based UI interface",
-  "main": "app.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "webpack",
-    "start": "node ./bin/www > ui.log",
-    "production": "NODE_ENV=production node ./bin/www > ui.log"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -25,16 +22,12 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "body-parser": "~1.18.3",
     "chart.js": "^1.1.1",
-    "cookie-parser": "~1.4.3",
     "css-loader": "^1.0.0",
     "debug": "~3.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
-    "express": "~4.16.3",
-    "express-xml-bodyparser": "^0.3.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.5.0",
