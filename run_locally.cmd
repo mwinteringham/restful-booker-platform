@@ -10,31 +10,36 @@ echo:
 where java >nul 2>nul
 if %errorlevel%==1 (
     @echo Java Runtime not found in path.
-    exit
+    pause>nul
 )
 
 where javac >nul 2>nul
 if %errorlevel%==1 (
     @echo Java SDK not found in path.
-    exit
+    pause>nul
 )
 
 where mvn >nul 2>nul
 if %errorlevel%==1 (
     @echo Maven not found in path.
-    exit
+    pause>nul
+)
+
+if "%JAVA_HOME%"=="" (
+    @echo JAVA_HOME is not set
+    pause>nul
 )
 
 where node >nul 2>nul
 if %errorlevel%==1 (
     @echo Node not found in path.
-    exit
+    pause>nul
 )
 
 where npm >nul 2>nul
 if %errorlevel%==1 (
     @echo NPM not found in path.
-    exit
+    pause>nul
 )
 
 call mvn clean
