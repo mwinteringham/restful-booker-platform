@@ -1,6 +1,6 @@
 import React from 'react';
 import BookingListing from '../src/js/components/BookingListing.jsx';
-import contract from '../../booking/src/test/resources/contract.json';
+import contract from '../../../booking/src/test/resources/contract.json';
 
 // We first declare our test by using Jests test function and provide it
 // with a name and then an anonymous function which will run our test
