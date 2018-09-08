@@ -158,7 +158,7 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-#            if [ -f ~/tmp/ui.txt ]; then a
+#            if [ -f ~/tmp/ui.txt ]; then
               echo "[BUILDING] UI"
               npm install
               npm test

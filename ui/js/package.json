@@ -2,12 +2,10 @@
   "name": "ui",
   "version": "1.0.0",
   "description": "React based UI interface",
-  "main": "app.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "webpack",
-    "production": "NODE_ENV=production node ./bin/www > ui.log"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
