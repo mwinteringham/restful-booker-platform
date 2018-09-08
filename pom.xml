@@ -11,5 +11,6 @@
         <module>room</module>
         <module>search</module>
         <module>report</module>
+        <module>ui/api</module>
     </modules>
 </project>

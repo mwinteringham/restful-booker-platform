@@ -163,6 +163,9 @@ jobs:
               npm install
               npm test
               npm run build
+              cd ..
+              cd api
+              mvn install
             else
               echo "[SKIPPING] UI"
             fi
@@ -306,7 +309,7 @@ jobs:
 
           - run:
               command: |
-                if [ -f ~/project/ui/public/js/main.js ]; then
+                if [ -f ~/project/ui/api/target/restful-booker-platform-ui-*-SNAPSHOT.jar ]; then
                   echo "[BUILDING] UI"
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
                   docker build -t mwinteringham/restfulbookerplatform_ui:latest .

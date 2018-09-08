@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const PATHS = {
-  build: path.join(__dirname, '..', 'ui', 'target', 'classes', 'public')
+  build: path.join(__dirname, '..', 'api', 'target', 'classes', 'public')
 };
 
 module.exports = {
