@@ -22,6 +22,11 @@ if ! type -p mvn; then
     exit
 fi
 
+if [[ -z "${JAVA_HOME}" ]]; then
+  echo "JAVA_HOME is not set"
+  exit
+fi
+
 if ! type -p node; then
     echo "Node not found in path."
     exit
