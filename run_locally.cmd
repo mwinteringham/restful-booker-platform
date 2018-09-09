@@ -9,36 +9,55 @@ echo:
 
 where java >nul 2>nul
 if %errorlevel%==1 (
-    @echo Java Runtime not found in path.
-    pause>nul
+    @echo The Java Runtime Environment is missing. To learn how to install it please visit:
+    @echo https://automationintesting.com/setup/settingupjava\n
+    @echo:
+    @echo Press CTRL+C to quit
+    exit
 )
 
 where javac >nul 2>nul
 if %errorlevel%==1 (
-    @echo Java SDK not found in path.
-    pause>nul
+    @echo The Java Development Kit is missing. To learn how to install it please visit:
+    @echo https://automationintesting.com/setup/settingupjava\n
+    @echo:
+    @echo Press CTRL+C to quit
+    exit
 )
 
 where mvn >nul 2>nul
 if %errorlevel%==1 (
-    @echo Maven not found in path.
+    @echo Maven is missing. To learn how to install it please visit:
+    @echo https://automationintesting.com/setup/settingupmaven\n
+    @echo:
+    @echo Press CTRL+C to quit
     pause>nul
 )
 
 if "%JAVA_HOME%"=="" (
-    @echo JAVA_HOME is not set
+    @echo JAVA_HOME is not set. To learn how to set it please visit:
+    @echo https://automationintesting.com/setup/settingupmaven\n
+    @echo:
+    @echo Press CTRL+C to quit
     pause>nul
+    exit
 )
 
 where node >nul 2>nul
 if %errorlevel%==1 (
-    @echo Node not found in path.
+    @echo Node is missing. To learn how to install it please visit:
+    @echo https://automationintesting.com/setup/settingupnode\n
+    @echo:
+    @echo Press CTRL+C to quit
     pause>nul
 )
 
 where npm >nul 2>nul
 if %errorlevel%==1 (
-    @echo NPM not found in path.
+    @echo Npm is missing. To learn how to install it please visit:
+    @echo https://automationintesting.com/setup/settingupmaven\n
+    @echo:
+    @echo Press CTRL+C to quit
     pause>nul
 )
 

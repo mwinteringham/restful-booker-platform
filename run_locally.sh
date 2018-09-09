@@ -8,32 +8,38 @@ printf "####### RESTFUL-BOOKER-PLATFORM #######
 
 
 if ! type -p java; then
-    echo "Java Runtime not found in path."
+    printf "The Java Runtime Environment is missing. To learn how to install it please visit:
+    https://automationintesting.com/setup/settingupjava\n"
     exit
 fi
 
 if ! type -p javac; then
-    echo "Java Runtime not found in path."
+    printf "The Java Development Kit is missing. To learn how to install it please visit:
+    https://automationintesting.com/setup/settingupjava\n"
     exit
 fi
 
 if ! type -p mvn; then
-    echo "Maven not found in path."
+    printf "Maven is missing. To learn how to install it please visit:
+    https://automationintesting.com/setup/settingupmaven\n"
     exit
 fi
 
 if [[ -z "${JAVA_HOME}" ]]; then
-  echo "JAVA_HOME is not set"
+  printf "JAVA_HOME has not been set. To learn how to set it please visit:
+    https://automationintesting.com/setup/settingupmaven\n"
   exit
 fi
 
 if ! type -p node; then
-    echo "Node not found in path."
+    printf "Node is missing. To learn how to install it please visit:
+    https://automationintesting.com/setup/settingupnode\n"
     exit
 fi
 
 if ! type -p npm; then
-    echo "NPM not found in path."
+    printf "Npm is missing. To learn how to install it please visit:
+    https://automationintesting.com/setup/settingupnode\n"
     exit
 fi
 
