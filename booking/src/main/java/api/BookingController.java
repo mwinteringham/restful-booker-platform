@@ -33,12 +33,9 @@ public class BookingController {
     @Value("${cors.origin}")
     private String originHost;
 
-    @Value("${database.schedule}")
-    private boolean schedule;
-
     @Bean
     public WebMvcConfigurer configurer() {
-        if(schedule){
+        if(System.getenv("refresh").equals("true")){
             DatabaseScheduler.setupScheduler(bookingDB);
         }
 

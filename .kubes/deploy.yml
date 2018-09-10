@@ -16,6 +16,9 @@ spec:
       containers:
         - name: rbp-booking
           image: mwinteringham/restfulbookerplatform_booking
+          env:
+          - name: refresh
+            value: "true"
           ports:
             - containerPort: 3000
           resources:
@@ -52,6 +55,9 @@ spec:
       containers:
         - name: rbp-room
           image: mwinteringham/restfulbookerplatform_room
+          env:
+          - name: refresh
+            value: "true"
           ports:
             - containerPort: 3001
           resources:
