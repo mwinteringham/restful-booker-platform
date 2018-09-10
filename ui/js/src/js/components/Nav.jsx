@@ -61,7 +61,7 @@ class Nav extends React.Component {
 					<a className="navbar-brand" href="/">Shady Meadows - Booking Management</a> 
 					</div> 
 					<ul className="nav navbar-nav"> 
-					<li><Link to="/">Home</Link></li>
+					<li><Link to="/">Rooms</Link></li>
 					<li><Link to="/report">Report</Link></li> 
 					<li id="logout"><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
 					<li><a href="#">Search:</a></li> 
