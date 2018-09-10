@@ -35,7 +35,7 @@ public class BookingController {
 
     @Bean
     public WebMvcConfigurer configurer() {
-        if(System.getenv("refresh").equals("true")){
+        if("true".equals(System.getenv("refresh"))){
             DatabaseScheduler.setupScheduler(bookingDB);
         }
 

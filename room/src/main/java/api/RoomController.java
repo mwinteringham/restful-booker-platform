@@ -30,7 +30,7 @@ public class RoomController {
 
     @Bean
     public WebMvcConfigurer configurer() {
-        if(System.getenv("refresh").equals("true")){
+        if("true".equals(System.getenv("refresh"))){
             DatabaseScheduler.setupScheduler(roomDB);
         }
 
