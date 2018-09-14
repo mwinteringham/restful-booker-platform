@@ -15,10 +15,13 @@ spec:
     spec:
       containers:
         - name: rbp-booking
-          image: mwinteringham/restfulbookerplatform_booking
+          image: mwinteringham/restfulbookerplatform_booking:latest
+          imagePullPolicy: Always
           env:
           - name: refresh
             value: "true"
+          - name: cors
+            value: "https://automationintesting.online"
           ports:
             - containerPort: 3000
           resources:
@@ -54,10 +57,13 @@ spec:
     spec:
       containers:
         - name: rbp-room
-          image: mwinteringham/restfulbookerplatform_room
+          image: mwinteringham/restfulbookerplatform_room:latest
+          imagePullPolicy: Always
           env:
           - name: refresh
             value: "true"
+          - name: cors
+            value: "https://automationintesting.online"
           ports:
             - containerPort: 3001
           resources:
@@ -93,7 +99,11 @@ spec:
     spec:
       containers:
         - name: rbp-search
-          image: mwinteringham/restfulbookerplatform_search
+          image: mwinteringham/restfulbookerplatform_search:latest
+          imagePullPolicy: Always
+          env:
+          - name: cors
+            value: "https://automationintesting.online"
           ports:
             - containerPort: 3002
           resources:
@@ -129,7 +139,8 @@ spec:
     spec:
       containers:
         - name: rbp-ui
-          image: mwinteringham/restfulbookerplatform_ui
+          image: mwinteringham/restfulbookerplatform_ui:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3003
           resources:
@@ -165,7 +176,11 @@ spec:
     spec:
       containers:
         - name: rbp-auth
-          image: mwinteringham/restfulbookerplatform_auth
+          image: mwinteringham/restfulbookerplatform_auth:latest
+          imagePullPolicy: Always
+          env:
+          - name: cors
+            value: "https://automationintesting.online"
           ports:
             - containerPort: 3004
           resources:
@@ -201,7 +216,11 @@ spec:
     spec:
       containers:
         - name: rbp-report
-          image: mwinteringham/restfulbookerplatform_report
+          image: mwinteringham/restfulbookerplatform_report:latest
+          imagePullPolicy: Always
+          env:
+          - name: cors
+            value: "https://automationintesting.online"
           ports:
             - containerPort: 3005
           resources:
