@@ -24,14 +24,17 @@ public class ReportController {
 
     private RoomRequests roomRequests;
 
-    @Value("${cors.origin}")
-    private String originHost;
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                String originHost = "http://localhost:3003";
+
+                if(System.getenv("cors") != null){
+                    originHost = System.getenv("cors");
+                }
+
                 registry.addMapping("/*")
                         .allowedOrigins(originHost)
                         .allowCredentials(true);
