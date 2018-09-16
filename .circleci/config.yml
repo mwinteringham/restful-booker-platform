@@ -345,82 +345,117 @@ jobs:
   deploy_booking_docker_image:
 
       docker:
-      - image: google/cloud-sdk
+        - image: google/cloud-sdk
 
       steps:
-      - run:
-          name: Store Service Account
-          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-      - run: |
-          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-          kubectl delete pod $(kubectl get pods | awk '/rbp-booking/ {print $1;exit}')
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Store Service Account
+            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - run: |
+            if [ -f /home/circleci/tmp/booking.txt ]; then
+              echo "[DEPLOYING] Booking"
+              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+              kubectl delete pod $(kubectl get pods | awk '/rbp-booking/ {print $1;exit}')
+            else
+              echo "[SKIPPING] Booking"
+            fi
 
   deploy_report_docker_image:
 
       docker:
-      - image: google/cloud-sdk
+        - image: google/cloud-sdk
 
       steps:
-      - run:
-          name: Store Service Account
-          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-      - run: |
-          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-          kubectl delete pod $(kubectl get pods | awk '/rbp-report/ {print $1;exit}')
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Store Service Account
+            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - run: |
+            if [ -f /home/circleci/tmp/report.txt ]; then
+              echo "[DEPLOYING] Report"
+              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+              kubectl delete pod $(kubectl get pods | awk '/rbp-report/ {print $1;exit}')
+            else
+              echo "[SKIPPING] Report"
+            fi
 
   deploy_room_docker_image:
 
       docker:
-      - image: google/cloud-sdk
+        - image: google/cloud-sdk
 
       steps:
-      - run:
-          name: Store Service Account
-          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-      - run: |
-          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-          kubectl delete pod $(kubectl get pods | awk '/rbp-room/ {print $1;exit}')
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Store Service Account
+            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - run: |
+            if [ -f /home/circleci/tmp/room.txt ]; then
+              echo "[DEPLOYING] Room"
+              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+              kubectl delete pod $(kubectl get pods | awk '/rbp-room/ {print $1;exit}')
+            else
+              echo "[SKIPPING] Room"
+            fi
 
   deploy_search_docker_image:
 
       docker:
-      - image: google/cloud-sdk
+        - image: google/cloud-sdk
 
       steps:
-      - run:
-          name: Store Service Account
-          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-      - run: |
-          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-          kubectl delete pod $(kubectl get pods | awk '/rbp-search/ {print $1;exit}')
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Store Service Account
+            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - run: |
+            if [ -f /home/circleci/tmp/search.txt ]; then
+              echo "[DEPLOYING] Search"
+              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+              kubectl delete pod $(kubectl get pods | awk '/rbp-search/ {print $1;exit}')
+            else
+              echo "[SKIPPING] Search"
+            fi
 
   deploy_ui_docker_image:
 
       docker:
-      - image: google/cloud-sdk
+        - image: google/cloud-sdk
 
       steps:
-      - run:
-          name: Store Service Account
-          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-      - run: |
-          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-          kubectl delete pod $(kubectl get pods | awk '/rbp-ui/ {print $1;exit}')
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Store Service Account
+            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - run: |
+            if [ -f /home/circleci/tmp/ui.txt ]; then
+              echo "[DEPLOYING] UI"
+              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+              kubectl delete pod $(kubectl get pods | awk '/rbp-ui/ {print $1;exit}')
+            else
+              echo "[SKIPPING] UI"
+            fi
 
 workflows:
   version: 2
@@ -466,8 +501,18 @@ workflows:
       - deploy_auth_docker_image:
           requires:
             - build_auth_docker_image
-#    - deploy_booking_docker_image
-#    - deploy_report_docker_image
-#    - deploy_room_docker_image
-#    - deploy_search_docker_image
-#    - deploy_ui_docker_image
+      - deploy_booking_docker_image
+          requires:
+            - build_booking_docker_image
+      - deploy_report_docker_image
+          requires:
+            - build_report_docker_image
+      - deploy_room_docker_image
+          requires:
+            - build_room_docker_image
+      - deploy_search_docker_image
+          requires:
+            - build_search_docker_image
+      - deploy_ui_docker_image
+          requires:
+            - build_ui_docker_image
