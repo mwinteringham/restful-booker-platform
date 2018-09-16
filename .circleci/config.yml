@@ -325,15 +325,22 @@ jobs:
         - image: google/cloud-sdk
 
       steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
         - run:
             name: Store Service Account
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run: |
-            gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-            gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-            kubectl delete pod $(kubectl get pods | awk '/rbp-auth/ {print $1;exit}')
+            if [ -f ~/tmp/auth.txt ]; then
+              echo "[DEPLOYING] Auth"
+              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+              kubectl delete pod $(kubectl get pods | awk '/rbp-auth/ {print $1;exit}')
+            else
+              echo "[SKIPPING] Auth"
+            fi
 
   deploy_booking_docker_image:
 
@@ -419,12 +426,6 @@ workflows:
   version: 2
   build-test-and-deploy:
     jobs:
-      - deploy_auth_docker_image
-      - deploy_booking_docker_image
-      - deploy_report_docker_image
-      - deploy_room_docker_image
-      - deploy_search_docker_image
-      - deploy_ui_docker_image
 #      - checkout_code
 #      - run_auth_build:
 #          requires:
@@ -462,3 +463,9 @@ workflows:
 #      - build_ui_docker_image:
 #          requires:
 #            - run_ui_tests
+    - deploy_auth_docker_image
+#    - deploy_booking_docker_image
+#    - deploy_report_docker_image
+#    - deploy_room_docker_image
+#    - deploy_search_docker_image
+#    - deploy_ui_docker_image
