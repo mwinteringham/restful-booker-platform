@@ -186,10 +186,10 @@ jobs:
 
       - setup_remote_docker:
           docker_layer_caching: true
-
       - run:
           command: |
-            if [ -f ~/project/auth/target/restful-booker-platform-auth-*-SNAPSHOT.jar ]; then
+            echo $CIRCLE_BRANCH
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[BUILDING] Auth"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker build -t mwinteringham/restfulbookerplatform_auth:latest .
@@ -213,7 +213,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/booking/target/restful-booker-platform-booking-*-SNAPSHOT.jar ]; then
+              if [ -f ~/project/booking/target/restful-booker-platform-booking-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                 echo "[BUILDING] Booking"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_booking:latest .
@@ -237,7 +237,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/report/target/restful-booker-platform-report-*-SNAPSHOT.jar ]; then
+              if [ -f ~/project/report/target/restful-booker-platform-report-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                 echo "[BUILDING] Report"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_report:latest .
@@ -261,7 +261,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/room/target/restful-booker-platform-room-*-SNAPSHOT.jar ]; then
+              if [ -f ~/project/room/target/restful-booker-platform-room-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                 echo "[BUILDING] Room"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_room:latest .
@@ -285,7 +285,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/search/target/restful-booker-platform-search-*-SNAPSHOT.jar ]; then
+              if [ -f ~/project/search/target/restful-booker-platform-search-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                 echo "[BUILDING] Search"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_search:latest .
@@ -309,7 +309,7 @@ jobs:
 
           - run:
               command: |
-                if [ -f ~/project/ui/api/target/restful-booker-platform-ui-*-SNAPSHOT.jar ]; then
+                if [ -f ~/project/ui/api/target/restful-booker-platform-ui-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                   echo "[BUILDING] UI"
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
                   docker build -t mwinteringham/restfulbookerplatform_ui:latest .
@@ -331,7 +331,7 @@ jobs:
             name: Store Service Account
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run: |
-            if [ -f /home/circleci/tmp/auth.txt ]; then
+            if [ -f /home/circleci/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[DEPLOYING] Auth"
               gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
               gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
@@ -354,7 +354,7 @@ jobs:
             name: Store Service Account
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run: |
-            if [ -f /home/circleci/tmp/booking.txt ]; then
+            if [ -f /home/circleci/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[DEPLOYING] Booking"
               gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
               gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
@@ -377,7 +377,7 @@ jobs:
             name: Store Service Account
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run: |
-            if [ -f /home/circleci/tmp/report.txt ]; then
+            if [ -f /home/circleci/tmp/report.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[DEPLOYING] Report"
               gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
               gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
@@ -400,7 +400,7 @@ jobs:
             name: Store Service Account
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run: |
-            if [ -f /home/circleci/tmp/room.txt ]; then
+            if [ -f /home/circleci/tmp/room.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[DEPLOYING] Room"
               gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
               gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
@@ -423,7 +423,7 @@ jobs:
             name: Store Service Account
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run: |
-            if [ -f /home/circleci/tmp/search.txt ]; then
+            if [ -f /home/circleci/tmp/search.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[DEPLOYING] Search"
               gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
               gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
@@ -446,7 +446,7 @@ jobs:
             name: Store Service Account
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run: |
-            if [ -f /home/circleci/tmp/ui.txt ]; then
+            if [ -f /home/circleci/tmp/ui.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[DEPLOYING] UI"
               gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
               gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
