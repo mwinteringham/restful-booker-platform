@@ -49,7 +49,7 @@ public class DatabaseSchedulerTest extends BaseTest {
     @Test
     public void testRunnerTrashedDB() throws SQLException, InterruptedException {
         // Set necessary env var for test
-        environmentVariables.set("dbRefresh", "1");
+        environmentVariables.set("dbRefresh", "10");
 
         // Create booking database to set
         List<Booking> bookings = setupRunAndCountScheduler();
@@ -99,7 +99,7 @@ public class DatabaseSchedulerTest extends BaseTest {
         databaseScheduler.startScheduler(bookingDB, TimeUnit.SECONDS);
 
         // Wait for a couple of seconds to allow the runnable to process
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         // Query current booking count
         return bookingDB.queryBookingsById("1");

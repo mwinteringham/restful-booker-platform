@@ -48,7 +48,7 @@ public class DatabaseSchedulerTest extends BaseTest {
     @Test
     public void testRunnerTrashedDB() throws SQLException, InterruptedException {
         // Set necessary env var for test
-        environmentVariables.set("dbRefresh", "1");
+        environmentVariables.set("dbRefresh", "10");
 
         // Create room database to set
         List<Room> rooms = setupRunAndCountScheduler();
