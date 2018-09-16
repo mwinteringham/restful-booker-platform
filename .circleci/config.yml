@@ -333,7 +333,7 @@ jobs:
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
             gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
             gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-            kubectl get pods
+            kubectl delete pod $(kubectl get pods | awk '/rbp-auth/ {print $1;exit}')
 
 workflows:
   version: 2
