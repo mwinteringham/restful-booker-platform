@@ -1,3 +1,5 @@
+package com.automationintesting;
+
 import auth.Tokens;
 import org.junit.Test;
 
