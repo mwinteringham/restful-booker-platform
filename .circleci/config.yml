@@ -335,11 +335,96 @@ jobs:
             gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
             kubectl delete pod $(kubectl get pods | awk '/rbp-auth/ {print $1;exit}')
 
+  deploy_booking_docker_image:
+
+      docker:
+      - image: google/cloud-sdk
+
+      steps:
+      - run:
+          name: Store Service Account
+          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+      - run: |
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+          kubectl delete pod $(kubectl get pods | awk '/rbp-booking/ {print $1;exit}')
+
+  deploy_report_docker_image:
+
+      docker:
+      - image: google/cloud-sdk
+
+      steps:
+      - run:
+          name: Store Service Account
+          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+      - run: |
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+          kubectl delete pod $(kubectl get pods | awk '/rbp-report/ {print $1;exit}')
+
+  deploy_room_docker_image:
+
+      docker:
+      - image: google/cloud-sdk
+
+      steps:
+      - run:
+          name: Store Service Account
+          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+      - run: |
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+          kubectl delete pod $(kubectl get pods | awk '/rbp-room/ {print $1;exit}')
+
+  deploy_search_docker_image:
+
+      docker:
+      - image: google/cloud-sdk
+
+      steps:
+      - run:
+          name: Store Service Account
+          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+      - run: |
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+          kubectl delete pod $(kubectl get pods | awk '/rbp-search/ {print $1;exit}')
+
+  deploy_ui_docker_image:
+
+      docker:
+      - image: google/cloud-sdk
+
+      steps:
+      - run:
+          name: Store Service Account
+          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+      - run: |
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
+          kubectl delete pod $(kubectl get pods | awk '/rbp-ui/ {print $1;exit}')
+
 workflows:
   version: 2
   build-test-and-deploy:
     jobs:
       - deploy_auth_docker_image
+      - deploy_booking_docker_image
+      - deploy_report_docker_image
+      - deploy_room_docker_image
+      - deploy_search_docker_image
+      - deploy_ui_docker_image
 #      - checkout_code
 #      - run_auth_build:
 #          requires:
