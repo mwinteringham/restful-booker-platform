@@ -501,18 +501,18 @@ workflows:
       - deploy_auth_docker_image:
           requires:
             - build_auth_docker_image
-      - deploy_booking_docker_image
+      - deploy_booking_docker_image:
           requires:
             - build_booking_docker_image
-      - deploy_report_docker_image
+      - deploy_report_docker_image:
           requires:
             - build_report_docker_image
-      - deploy_room_docker_image
+      - deploy_room_docker_image:
           requires:
             - build_room_docker_image
-      - deploy_search_docker_image
+      - deploy_search_docker_image:
           requires:
             - build_search_docker_image
-      - deploy_ui_docker_image
+      - deploy_ui_docker_image:
           requires:
             - build_ui_docker_image
