@@ -30,7 +30,7 @@
     "enzyme-to-json": "^3.3.3",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "jest": "^23.5.0",
+    "jest": "^23.6.0",
     "moment": "^2.22.1",
     "morgan": "^1.9.0",
     "node-fetch": "^2.1.2",
