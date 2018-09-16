@@ -80,7 +80,7 @@ public class DatabaseSchedulerTest extends BaseTest {
         databaseScheduler.startScheduler(roomDB, TimeUnit.SECONDS);
 
         // Wait for a couple of seconds to allow the runnable to process
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         // Query current room count
         return roomDB.queryRooms();
