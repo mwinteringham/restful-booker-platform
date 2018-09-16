@@ -1,4 +1,4 @@
-package integration;
+package com.automationintesting.integration;
 
 import api.BookingApplication;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;

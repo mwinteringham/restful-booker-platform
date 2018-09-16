@@ -1,4 +1,4 @@
-package integration;
+package com.automationintesting.integration;
 
 import api.BookingApplication;
 import io.restassured.response.Response;

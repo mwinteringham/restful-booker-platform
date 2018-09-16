@@ -11,25 +11,48 @@ import java.util.concurrent.TimeUnit;
 
 public class DatabaseScheduler {
 
-    static Logger logger = LoggerFactory.getLogger(DatabaseScheduler.class);
+    private Logger logger = LoggerFactory.getLogger(DatabaseScheduler.class);
+    private int resetCount;
+    private boolean stop;
 
-    public static void setupScheduler(RoomDB roomDB){
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-
-        Runnable r = () -> {
-            try {
-                logger.info("Resetting database");
-                roomDB.resetDB();
-
-                Room room = new Room(101, "Twin", 2, false , "Wifi, TV, Mini-bar");
-
-                roomDB.create(room);
-            } catch ( Exception e ) {
-                logger.error("Scheduler failed " + e.getMessage());
-            }
-        };
-
-        executor.scheduleAtFixedRate ( r , 0L , 10L , TimeUnit.MINUTES );
+    public DatabaseScheduler() {
+        if(System.getenv("dbRefresh") == null){
+            this.resetCount = 0;
+        } else {
+            this.resetCount = Integer.parseInt(System.getenv("dbRefresh"));
+        }
     }
 
+    public void startScheduler(RoomDB roomDB, TimeUnit timeUnit){
+        if(resetCount > 0){
+            ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+            Runnable r = () -> {
+                if(!stop){
+                    try {
+                        logger.info("Resetting database");
+                        roomDB.resetDB();
+
+                        Room room = new Room(101, "Twin", 2, false , "Wifi, TV, Mini-bar");
+
+                        roomDB.create(room);
+                    } catch ( Exception e ) {
+                        logger.error("Scheduler failed " + e.getMessage());
+                    }
+                }
+            };
+
+            executor.scheduleAtFixedRate ( r , 0L , resetCount , timeUnit );
+        } else {
+            logger.info("No env var was set for DB refresh (or set as 0) so not running DB reset");
+        }
+    }
+
+    public int getResetCount() {
+        return resetCount;
+    }
+
+    public void stepScheduler() {
+        stop = true;
+    }
 }

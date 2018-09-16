@@ -18,8 +18,8 @@ spec:
           image: mwinteringham/restfulbookerplatform_booking:latest
           imagePullPolicy: Always
           env:
-          - name: refresh
-            value: "true"
+          - name: dbRefresh
+            value: "10"
           - name: cors
             value: "https://automationintesting.online"
           ports:
@@ -60,8 +60,8 @@ spec:
           image: mwinteringham/restfulbookerplatform_room:latest
           imagePullPolicy: Always
           env:
-          - name: refresh
-            value: "true"
+          - name: dbRefresh
+            value: "10"
           - name: cors
             value: "https://automationintesting.online"
           ports:

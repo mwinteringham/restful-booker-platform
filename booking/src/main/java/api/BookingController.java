@@ -32,9 +32,8 @@ public class BookingController {
 
     @Bean
     public WebMvcConfigurer configurer() {
-        if("true".equals(System.getenv("refresh"))){
-            DatabaseScheduler.setupScheduler(bookingDB);
-        }
+        DatabaseScheduler databaseScheduler = new DatabaseScheduler();
+        databaseScheduler.startScheduler(bookingDB, TimeUnit.MINUTES);
 
         return new WebMvcConfigurer() {
             @Override

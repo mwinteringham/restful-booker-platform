@@ -1,8 +1,8 @@
-import db.RoomDB;
-import db.UpdateSql;
+package com.automationintesting.unit.examples;
+
+import com.automationintesting.unit.BaseTest;
 import model.Room;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -11,21 +11,11 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SqlTest {
+public class SqlTest extends BaseTest {
 
     // We need to create a couple of private variables that
     // we will use across multiple tests
-    private static RoomDB roomDB;
     private int currentRoomId;
-
-    // The @BeforeClass annotation means run whatever code is in
-    // this method before running any of the tests. Notice how it
-    // is set as static. @BeforeClass annotated methods are always
-    // static
-    @BeforeClass
-    public static void createRoomBD() throws SQLException {
-        roomDB = new RoomDB();
-    }
 
     // The @Before annotation means run whatever code is in this
     // method before each test starts to run. This is useful when

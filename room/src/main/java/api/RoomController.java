@@ -3,7 +3,6 @@ package api;
 import db.RoomDB;
 import model.Room;
 import model.Rooms;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ import utils.DatabaseScheduler;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class RoomController {
@@ -27,9 +27,8 @@ public class RoomController {
 
     @Bean
     public WebMvcConfigurer configurer() {
-        if("true".equals(System.getenv("refresh"))){
-            DatabaseScheduler.setupScheduler(roomDB);
-        }
+        DatabaseScheduler databaseScheduler = new DatabaseScheduler();
+        databaseScheduler.startScheduler(roomDB, TimeUnit.MINUTES);
 
         return new WebMvcConfigurer() {
             @Override

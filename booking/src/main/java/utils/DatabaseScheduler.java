@@ -14,33 +14,56 @@ import java.util.concurrent.TimeUnit;
 
 public class DatabaseScheduler {
 
-    static Logger logger = LoggerFactory.getLogger(DatabaseScheduler.class);
+    private Logger logger = LoggerFactory.getLogger(DatabaseScheduler.class);
+    private int resetCount;
+    private boolean stop;
 
-    public static void setupScheduler(BookingDB bookingDB){
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-
-        Runnable r = () -> {
-            try {
-                logger.info("Resetting database");
-                bookingDB.resetDB();
-
-                Booking booking = new Booking.BookingBuilder()
-                        .setRoomid(1)
-                        .setFirstname("James")
-                        .setLastname("Dean")
-                        .setTotalprice(100)
-                        .setDepositpaid(true)
-                        .setCheckin(new GregorianCalendar(2018,1,26).getTime())
-                        .setCheckout(new GregorianCalendar(2018,1,26).getTime())
-                        .build();
-
-                bookingDB.create(booking);
-            } catch ( Exception e ) {
-                logger.error("Scheduler failed " + e.getMessage());
-            }
-        };
-
-        executor.scheduleAtFixedRate ( r , 0L , 10L , TimeUnit.MINUTES );
+    public DatabaseScheduler() {
+        if(System.getenv("dbRefresh") == null){
+            this.resetCount = 0;
+        } else {
+            this.resetCount = Integer.parseInt(System.getenv("dbRefresh"));
+        }
     }
 
+    public void startScheduler(BookingDB bookingDB, TimeUnit timeUnit){
+        if(resetCount > 0){
+            ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+            Runnable r = () -> {
+                if(!stop){
+                    try {
+                        logger.info("Resetting database");
+                        bookingDB.resetDB();
+
+                        Booking booking = new Booking.BookingBuilder()
+                                .setRoomid(1)
+                                .setFirstname("James")
+                                .setLastname("Dean")
+                                .setTotalprice(100)
+                                .setDepositpaid(true)
+                                .setCheckin(new GregorianCalendar(2018,1,26).getTime())
+                                .setCheckout(new GregorianCalendar(2018,1,26).getTime())
+                                .build();
+
+                        bookingDB.create(booking);
+                    } catch ( Exception e ) {
+                        logger.error("Scheduler failed " + e.getMessage());
+                    }
+                }
+            };
+
+            executor.scheduleAtFixedRate ( r , 0L , resetCount , timeUnit );
+        } else {
+            logger.info("No env var was set for DB refresh (or set as 0) so not running DB reset");
+        }
+    }
+
+    public int getResetCount() {
+        return resetCount;
+    }
+
+    public void stepScheduler() {
+        stop = true;
+    }
 }

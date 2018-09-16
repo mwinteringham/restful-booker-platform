@@ -1,8 +1,10 @@
-package unit;
+package com.automationintesting.unit.examples;
 
+import com.automationintesting.unit.BaseTest;
 import db.BookingDB;
 import model.Booking;
 import model.CreatedBooking;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,23 +16,13 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SqlTest {
+// This test class extends the class BaseTest meaning we can inherit
+// an instance of BookingDB to use in this class
+public class SqlTest extends BaseTest {
 
     // We need to create a couple of private variables that
     // we will use across multiple tests
-    private static BookingDB bookingDB;
     private int currentBookingId;
-
-    // The @BeforeClass annotation means run whatever code is in
-    // this method before running any of the tests. Notice how it
-    // is set as static. @BeforeClass annotated methods are always
-    // static
-    @BeforeClass
-    public static void createBookingDb() throws SQLException {
-        // We first need to instantiate a BookingDB object
-        // to use in our tests
-        bookingDB = new BookingDB();
-    }
 
     // The @Before annotation means run whatever code is in this
     // method before each test starts to run. This is useful when
