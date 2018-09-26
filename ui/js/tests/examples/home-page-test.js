@@ -1,5 +1,5 @@
 import React from 'react';
-import RoomListings from '../src/js/components/RoomListings.jsx';
+import RoomListings from '../../src/js/components/RoomListings.jsx';
 
 // We first declare our test by using Jests test function and provide it
 // with a name and then an anonymous function which will run our test

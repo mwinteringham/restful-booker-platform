@@ -1,6 +1,7 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import { API_ROOT } from '../api-config';
+import 'isomorphic-fetch';
 
 export default class Login extends React.Component {
 
@@ -21,7 +22,10 @@ export default class Login extends React.Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
           },
-          body : JSON.stringify(this.state)
+          body : JSON.stringify({
+              username: this.state.username,
+              password: this.state.password,
+            })
         })
         .then(res => res.json())
         .then(res => {

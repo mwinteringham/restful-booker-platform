@@ -33,6 +33,7 @@
     "jest": "^23.6.0",
     "moment": "^2.22.1",
     "morgan": "^1.9.0",
+    "nock": "^10.0.0",
     "node-fetch": "^2.1.2",
     "node-sass": "^4.9.3",
     "query-string": "^6.1.0",
