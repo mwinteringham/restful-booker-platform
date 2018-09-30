@@ -6,6 +6,7 @@ import Nav from './Nav.jsx';
 import Login from './Login.jsx'
 import RoomDetails from './RoomDetails.jsx';
 import Report from './Report.jsx';
+import Welcome from './Welcome.jsx';
 import Cookies from 'universal-cookie';
 import { API_ROOT } from '../api-config';
 
@@ -15,10 +16,12 @@ export default class App extends React.Component {
         super();
 
         this.state = {
-            isAuthenticated : false
+            isAuthenticated : false,
+            showWelcome : true
         }
         
         this.setAuthenticate = this.setAuthenticate.bind(this);
+        this.setWelcome = this.setWelcome.bind(this);
     }
 
     componentDidMount(){
@@ -41,15 +44,32 @@ export default class App extends React.Component {
 
     setAuthenticate(e){
         this.setState({
-            isAuthenticated : e
+            isAuthenticated : e,
+            showWelcome : this.state.showWelcome
+        });
+    }
+
+    setWelcome(e){
+        this.setState({
+            isAuthenticated : this.state.isAuthenticated,
+            showWelcome : e
         });
     }
 
     render() {
         let app = null;
+        let welcome = null;
+
+        if(this.state.showWelcome){
+            welcome = <div>
+                <Welcome setWelcome={this.setWelcome} />
+            </div>
+        }
 
         if(!this.state.isAuthenticated){
-            app = <Login setAuthenticate={this.setAuthenticate}/>
+            app = <div>                
+                    <Login setAuthenticate={this.setAuthenticate}/>
+                 </div>
         } else {
             app = <div>
                     <Nav setAuthenticate={this.setAuthenticate} />
@@ -66,6 +86,7 @@ export default class App extends React.Component {
 
         return(
             <div className="container">
+                {welcome}
                 {app}
             </div>
         );

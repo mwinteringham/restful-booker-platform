@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Clicking on close button closes modal 1`] = `
+<App>
+  <div
+    className="container"
+  >
+    <div>
+      <Login
+        setAuthenticate={[Function]}
+      >
+        <div
+          style={
+            Object {
+              "marginTop": "20%",
+            }
+          }
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-sm-2"
+            />
+            <div
+              className="col-sm-8"
+              style={
+                Object {
+                  "textAlign": "center",
+                }
+              }
+            >
+              <h2>
+                Welcome to the Shady Meadows 
+                <br />
+                 booking management system
+              </h2>
+            </div>
+            <div
+              className="col-sm-2"
+            />
+          </div>
+          <form>
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-4"
+              />
+              <div
+                className="col-sm-4"
+              >
+                <p>
+                  <label
+                    htmlFor="username"
+                  >
+                    Username 
+                  </label>
+                  <input
+                    id="username"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "border": "1px solid grey",
+                      }
+                    }
+                    type="text"
+                  />
+                </p>
+              </div>
+              <div
+                className="col-sm-4"
+              />
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-4"
+              />
+              <div
+                className="col-sm-4"
+              >
+                <p>
+                  <label
+                    htmlFor="password"
+                  >
+                    Password 
+                  </label>
+                  <input
+                    id="password"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "border": "1px solid grey",
+                      }
+                    }
+                    type="password"
+                  />
+                </p>
+              </div>
+              <div
+                className="col-sm-4"
+              />
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-7"
+              />
+              <div
+                className="col-sm-1"
+              >
+                <button
+                  className="btn btn-default"
+                  id="doLogin"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "marginLeft": "9px",
+                    }
+                  }
+                  type="button"
+                >
+                  Login
+                </button>
+              </div>
+              <div
+                className="col-sm-4"
+              />
+            </div>
+          </form>
+        </div>
+      </Login>
+    </div>
+  </div>
+</App>
+`;
+
+exports[`Welcome component appears on initial visit 1`] = `
+<div
+  className="container"
+>
+  <div>
+    <Welcome
+      setWelcome={[Function]}
+    />
+  </div>
+  <div>
+    <Login
+      setAuthenticate={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`Welcome component contains correct details 1`] = `
+<Popup
+  arrow={true}
+  arrowStyle={Object {}}
+  className=""
+  closeOnDocumentClick={false}
+  closeOnEscape={false}
+  contentStyle={Object {}}
+  defaultOpen={true}
+  keepTooltipInside={false}
+  lockScroll={false}
+  modal={true}
+  mouseEnterDelay={100}
+  mouseLeaveDelay={100}
+  offsetX={0}
+  offsetY={0}
+  on={
+    Array [
+      "click",
+    ]
+  }
+  onClose={[Function]}
+  onOpen={[Function]}
+  open={false}
+  overlayStyle={Object {}}
+  position="bottom center"
+  trigger={null}
+>
+  <div
+    className="modal-body welcome"
+  >
+    <div
+      className="container-fluid"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-1"
+        />
+        <div
+          className="col-md-10 content"
+        >
+          <h2>
+            Welcome to Shady Meadows Booking Manager
+          </h2>
+          <p>
+            Shady Meadows Booking Manager is a free to use booking manager that allows you to practise your testing and automation skills.
+          </p>
+        </div>
+        <div
+          className="col-md-1"
+        />
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-4"
+        />
+        <div>
+          <div
+            className="col-sm-3"
+          />
+          <div
+            className="col-sm-1"
+          >
+            <button
+              id="next"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "block",
+                  "margin": "0 auto",
+                }
+              }
+            >
+              Next
+            </button>
+          </div>
+        </div>
+        <div
+          className="col-md-4"
+        />
+      </div>
+    </div>
+  </div>
+</Popup>
+`;
+
+exports[`Welcome component doesnt appear after close 1`] = `
+<div
+  className="container"
+>
+  <div>
+    <Welcome
+      setWelcome={[Function]}
+    />
+  </div>
+  <div>
+    <Login
+      setAuthenticate={[Function]}
+    />
+  </div>
+</div>
+`;
