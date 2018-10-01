@@ -198,12 +198,15 @@ exports[`Welcome component contains correct details 1`] = `
         <div
           className="col-md-10 content"
         >
+          <br />
           <h2>
             Welcome to Shady Meadows Booking Manager
           </h2>
-          <p>
-            Shady Meadows Booking Manager is a free to use booking manager that allows you to practise your testing and automation skills.
-          </p>
+          <br />
+          <br />
+          <h4>
+            Your one stop shop to practise Software Testing!
+          </h4>
         </div>
         <div
           className="col-md-1"

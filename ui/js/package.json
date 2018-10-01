@@ -30,6 +30,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
+    "file-loader": "^2.0.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
@@ -49,6 +50,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.22.1",
     "universal-cookie": "^3.0.4",
+    "url-loader": "^1.1.1",
     "validate.js": "^0.12.0",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
@@ -66,6 +68,7 @@
       "enzyme-to-json/serializer"
     ],
     "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     }
   }
