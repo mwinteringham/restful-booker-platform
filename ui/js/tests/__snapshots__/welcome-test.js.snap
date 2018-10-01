@@ -253,11 +253,6 @@ exports[`Welcome component doesnt appear after close 1`] = `
   className="container"
 >
   <div>
-    <Welcome
-      setWelcome={[Function]}
-    />
-  </div>
-  <div>
     <Login
       setAuthenticate={[Function]}
     />

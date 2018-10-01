@@ -8,7 +8,7 @@ import RoomDetails from './RoomDetails.jsx';
 import Report from './Report.jsx';
 import Welcome from './Welcome.jsx';
 import Cookies from 'universal-cookie';
-import { API_ROOT } from '../api-config';
+import { API_ROOT, SHOW_WELCOME } from '../api-config';
 
 export default class App extends React.Component {
 
@@ -17,7 +17,7 @@ export default class App extends React.Component {
 
         this.state = {
             isAuthenticated : false,
-            showWelcome : true
+            showWelcome : false
         }
         
         this.setAuthenticate = this.setAuthenticate.bind(this);
@@ -26,6 +26,13 @@ export default class App extends React.Component {
 
     componentDidMount(){
         const cookies = new Cookies();
+
+        if(typeof cookies.get('welcome') === 'undefined' && SHOW_WELCOME){
+           this.setState({
+                isAuthenticated : this.state.isAuthenticated,
+                showWelcome : true
+            })
+        }
 
         fetch(API_ROOT.auth + '/validate', {
                 method: 'POST',
@@ -37,7 +44,10 @@ export default class App extends React.Component {
             })
             .then(res => {
                 if(res.status == 200){
-                    this.setState({isAuthenticated: true});
+                    this.setState({
+                        isAuthenticated : this.state.isAuthenticated,
+                        showWelcome : true
+                    });
                 }
             })
     }

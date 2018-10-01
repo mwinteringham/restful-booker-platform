@@ -1,4 +1,5 @@
 let backendHost;
+let welcome;
 
 const hostname = window && window.location && window.location.hostname;
 
@@ -10,6 +11,8 @@ if(hostname !== 'localhost') {
     auth : "https://" + window.location.hostname + "/auth",
     report : "https://" + window.location.hostname,
   }
+
+  welcome = true;
 } else {
   backendHost = {
     booking : "http://" + window.location.hostname + ":3000",
@@ -17,7 +20,10 @@ if(hostname !== 'localhost') {
     search : "http://" + window.location.hostname + ":3002",
     auth : "http://" + window.location.hostname + ":3004/auth",
     report : "http://" + window.location.hostname + ":3005"
-  }  
+  }
+
+  welcome = false;
 }
 
 export const API_ROOT = backendHost;
+export const SHOW_WELCOME = welcome;

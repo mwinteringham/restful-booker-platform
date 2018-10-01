@@ -1,5 +1,6 @@
 import React from 'react';
 import Popup from "reactjs-popup";
+import Cookies from 'universal-cookie';
 import glassIcon from '../../images/glass.png';
 import bracketsIcon from '../../images/brackets.png';
 import blockIcon from '../../images/block.png';
@@ -36,6 +37,9 @@ export default class Welcome extends React.Component {
     }
 
     closeModal(){
+        const cookies = new Cookies();
+        cookies.set('welcome', true, { path: '/' });
+
         this.props.setWelcome(false);
     }
 

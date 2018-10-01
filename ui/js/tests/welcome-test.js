@@ -22,6 +22,10 @@ test('Welcome component appears on initial visit', () => {
         <App />
     )
 
+    appComponent.setState({
+        showWelcome : true
+    })
+
     expect(appComponent).toMatchSnapshot();
 });
 
@@ -30,7 +34,9 @@ test('Welcome component doesnt appear after close', () => {
         <App />
     )
 
-    appComponent.instance().setWelcome(false);
+    appComponent.setState({
+        showWelcome : false
+    })
 
     expect(appComponent).toMatchSnapshot();
 });
@@ -39,6 +45,10 @@ test('Clicking on close button closes modal', () => {
     const appComponent = mount(
         <App />
     )
+
+    appComponent.setState({
+        showWelcome : true
+    })
 
     appComponent.find('Welcome').instance().setState({
         page : 4
