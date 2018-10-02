@@ -2,11 +2,15 @@
 
 Booking is responsible for creating, reading, updating and deleting booking data from the database to share with other services.
 
-## Building
+## Running the checks
+
+To only run the checks run ```mvn clean test```
+
+## Building the API
 
 To build this API run ```mvn clean package``` this will run the tests and then create a .JAR file that can be run.
 
-## Running
+## Running the API
 
 The Booking API takes the following environment variables:
 

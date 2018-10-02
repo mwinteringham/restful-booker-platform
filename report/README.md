@@ -2,11 +2,15 @@
 
 Report is responsible for collating information about the different rooms and the total price each room has made in bookings.
 
-## Building
+## Running the checks
+
+To only run the checks run ```mvn clean test```
+
+## Building the API
 
 To build this API run ```mvn clean package``` this will run the tests and then create a .JAR file that can be run.
 
-## Running
+## Running the API
 
 The Report API takes the following environment variables:
 

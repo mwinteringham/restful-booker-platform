@@ -2,11 +2,15 @@
 
 Room is responsible for creating, reading, updating and deleting room data from the database to share with other services.
 
-## Building
+## Running the checks
+
+To only run the checks run ```mvn clean test```
+
+## Building the API
 
 To build this API run ```mvn clean package``` this will run the tests and then create a .JAR file that can be run.
 
-## Running
+## Running the API
 
 The Room API takes the following environment variables:
 
