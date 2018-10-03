@@ -369,6 +369,10 @@ spec:
         backend:
           serviceName: rbp-ui
           servicePort: 3003
+      - path: /images/*
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003
       - path: /actuator/*
         backend:
           serviceName: rbp-ui
