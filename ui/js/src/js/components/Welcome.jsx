@@ -60,7 +60,7 @@ export default class Welcome extends React.Component {
 
                 buttons = <div>
                             <div className="col-sm-4"></div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
@@ -74,11 +74,11 @@ export default class Welcome extends React.Component {
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
                             </div>
                             <div className="col-sm-2"></div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
@@ -93,11 +93,11 @@ export default class Welcome extends React.Component {
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
                             </div>
                             <div className="col-sm-2"></div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
@@ -111,11 +111,11 @@ export default class Welcome extends React.Component {
                         </div>
 
                 buttons = <div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
                             </div>
                             <div className="col-sm-2"></div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>                
@@ -135,11 +135,11 @@ export default class Welcome extends React.Component {
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="prev"  className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
                             </div>
                             <div className="col-sm-2"></div>
-                            <div className="col-sm-2">
+                            <div className="col-sm-2 text-center">
                                 <button id="closeModal" className="btn btn-success" onClick={this.closeModal}>Close</button>
                             </div>
                           </div>
@@ -155,7 +155,7 @@ export default class Welcome extends React.Component {
                             {content}
                             <div className="col-sm-1"></div>
                         </div>
-                        <div className="row">
+                        <div className="row justify-content-center">
                             <div className="col-sm-3"></div>
                                 {buttons}
                             <div className="col-sm-3"></div>

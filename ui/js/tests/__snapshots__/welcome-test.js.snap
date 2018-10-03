@@ -214,7 +214,7 @@ exports[`Welcome component contains correct details 1`] = `
         />
       </div>
       <div
-        className="row"
+        className="row justify-content-center"
       >
         <div
           className="col-sm-3"
@@ -224,7 +224,7 @@ exports[`Welcome component contains correct details 1`] = `
             className="col-sm-4"
           />
           <div
-            className="col-sm-2"
+            className="col-sm-2 text-center"
           >
             <button
               className="btn btn-primary"
