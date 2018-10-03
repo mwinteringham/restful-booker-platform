@@ -2,11 +2,15 @@
 
 Auth is responsbile for creating, verifying and destroying tokens that are used by other services to check whether they are able to create, update or delete content.
 
-## Building
+## Running the checks
+
+To only run the checks run ```mvn clean test```
+
+## Building the API
 
 To build this API run ```mvn clean package``` this will run the tests and then create a .JAR file that can be run.
 
-## Running
+## Running the API
 
 The Auth API takes the following environment variables:
 

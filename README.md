@@ -4,7 +4,6 @@ A platform of web services that form a Hotel booking system for training others 
 ## Requirements
 RBP is currently known to work with the following requirements:
 
-### Development
 - JDK 1.8
 - Maven 3.3.9
 - Node 8.12.0
@@ -30,32 +29,8 @@ RBP uses h2 in-memory databases for ease of deployment. However, the databases h
 
 You can either connect to the Booking database on port ```9090``` or the Room database on port ```9091```.
 
-**Please note: These DBs are vulnerable to remote connection, this means you should avoid deploying RBP onto a public server until a more robust strategy is in place**
+**Please note: DB connections are only available in local deployments**
 
 ### Development
 
-#### Java APIs
-
-For the Java APIs these can be run via Maven. You have the choice to navigating to the root folder and running ```mvn clean package``` to run tests and build a JAR. The other option is to run the application via your IDE and running room/src/main/java/api/Application.java to start up the API inside your IDE for debugging.
-
-#### Node Frontend
-For the node UI API you will need to run the following:
-
-1. Navigate to root ```/ui``` folder
-2. Run ```npm install``` to download necessary dependencies
-3. Run ```npm start``` to run the UI API
-4. Alternatively run ```npm test``` to run Jest tests
-
-## Logging and documentation
-
-Logging and documentation is available for each of the services on their own separate endpoints.
-
-### Java APIs
-
-Logging for that API can be found on the endpoint /{name-of-service}/actuator/logfile. For example:
-
-```/auth/actuator/logfile```
-
-API documentation exists at /{name-of-service}/swagger-ui.html. For example:
-
-```/auth/swagger-ui.html```
+The details on running checks, building APIs and additional details on documentation for development are found in READMEs inside each of the API folders.

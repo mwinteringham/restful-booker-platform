@@ -2,11 +2,15 @@
 
 Search is responsible for searching for rooms and bookings that match a specific keyword.
 
-## Building
+## Running the checks
 
-To build this API run ```mvn clean package``` this will run the tests and then create a .JAR file that can be run.
+To only run the checks run ```mvn clean test```
 
-## Running
+## Building the API
+
+To build this API run ```mvn clean install``` this will run the tests and then create a .JAR file that can be run.
+
+## Running the API
 
 To run the API, ensure that you have first built it and then run ```java -jar target/restful-booker-platform-search-1.0-SNAPSHOT.jar```. This will start up the API, allowing you to access it's endpoints.
 
