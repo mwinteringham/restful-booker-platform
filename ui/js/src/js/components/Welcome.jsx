@@ -49,7 +49,8 @@ export default class Welcome extends React.Component {
 
         switch(this.state.page){
             case 0:
-                content = <div className="col-md-10 content">
+                content = <div className="col-sm-10 content">
+                            <br />
                             <br />
                             <h2>Welcome to Shady Meadows Booking Manager</h2>
                             <br />
@@ -58,14 +59,14 @@ export default class Welcome extends React.Component {
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-3"></div>
-                            <div className="col-sm-1">
-                                <button id="next" style={{margin : "0 auto", display : "block" }} onClick={this.increasePage}>Next</button>
+                            <div className="col-sm-4"></div>
+                            <div className="col-sm-2">
+                                <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
                 break;
             case 1: 
-                content = <div className="col-md-10 content">
+                content = <div className="col-sm-10 content">
                             <br />
                             <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={glassIcon} alt="Magnifying glass" />
                             <br />
@@ -73,17 +74,17 @@ export default class Welcome extends React.Component {
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-1">
-                                <button id="prev" style={{margin : "0 auto", display : "block" }} onClick={this.decreasePage}>Prev</button>
+                            <div className="col-sm-2">
+                                <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
                             </div>
                             <div className="col-sm-2"></div>
-                            <div className="col-sm-1">
-                                <button id="next" style={{margin : "0 auto", display : "block" }} onClick={this.increasePage}>Next</button>
+                            <div className="col-sm-2">
+                                <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
                 break;
             case 2:
-                content = <div className="col-md-10 content">
+                content = <div className="col-sm-10 content">
                             <br />
                             <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={bracketsIcon} alt="Brackets" />
                             <br />
@@ -92,17 +93,17 @@ export default class Welcome extends React.Component {
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-1">
-                                <button id="prev" style={{margin : "0 auto", display : "block" }} onClick={this.decreasePage}>Prev</button>
+                            <div className="col-sm-2">
+                                <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
                             </div>
                             <div className="col-sm-2"></div>
-                            <div className="col-sm-1">
-                                <button id="next" style={{margin : "0 auto", display : "block" }} onClick={this.increasePage}>Next</button>
+                            <div className="col-sm-2">
+                                <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
                 break;
             case 3:
-                content = <div className="col-md-10 content">
+                content = <div className="col-sm-10 content">
                             <br />
                             <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={blockIcon} alt="Building blocks" />
                             <br />
@@ -110,17 +111,17 @@ export default class Welcome extends React.Component {
                         </div>
 
                 buttons = <div>
-                            <div className="col-sm-1">
-                                <button id="prev" style={{margin : "0 auto", display : "block" }} onClick={this.decreasePage}>Prev</button>
+                            <div className="col-sm-2">
+                                <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
                             </div>
                             <div className="col-sm-2"></div>
-                            <div className="col-sm-1">
-                                <button id="next" style={{margin : "0 auto", display : "block" }} onClick={this.increasePage}>Next</button>
+                            <div className="col-sm-2">
+                                <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>                
                 break;
             case 4:
-                content = <div className="col-md-10 content">
+                content = <div className="col-sm-10 content">
                             <br />
                             <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={goArrowIcon} alt="Go arrow" />
                             <br />
@@ -134,12 +135,12 @@ export default class Welcome extends React.Component {
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-1">
-                                <button id="prev" style={{margin : "0 auto", display : "block" }} onClick={this.decreasePage}>Prev</button>
+                            <div className="col-sm-2">
+                                <button id="prev"  className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
                             </div>
                             <div className="col-sm-2"></div>
-                            <div className="col-sm-1">
-                                <button id="closeModal" style={{margin : "0 auto", display : "block" }} onClick={this.closeModal}>Close</button>
+                            <div className="col-sm-2">
+                                <button id="closeModal" className="btn btn-success" onClick={this.closeModal}>Close</button>
                             </div>
                           </div>
                 break;
@@ -150,14 +151,14 @@ export default class Welcome extends React.Component {
                 <div className="modal-body welcome">
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-md-1"></div>
+                            <div className="col-sm-1"></div>
                             {content}
-                            <div className="col-md-1"></div>
+                            <div className="col-sm-1"></div>
                         </div>
                         <div className="row">
-                            <div className="col-md-4"></div>
+                            <div className="col-sm-3"></div>
                                 {buttons}
-                            <div className="col-md-4"></div>
+                            <div className="col-sm-3"></div>
                         </div>
                     </div>
                 </div>
