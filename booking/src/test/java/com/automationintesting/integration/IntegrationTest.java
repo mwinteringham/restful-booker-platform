@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -55,14 +56,19 @@ public class IntegrationTest {
         // exists but it won't process whether it is valid or not.
         String token = "abc123";
 
+        // We want to create a couple of date objects that we are going to us in our bookingPayload
+        // and then again in the assertion to make sure they were processed correctly.
+        Date checkindate = new GregorianCalendar(2018,1,1).getTime();
+        Date checkoutdate = new GregorianCalendar(2018,1,2).getTime();
+
         // We next create our booking payload to send to the Booking webservice
         Booking bookingPayload = new Booking.BookingBuilder()
                                             .setFirstname("Mark")
                                             .setLastname("Winteringham")
                                             .setTotalprice(200)
                                             .setDepositpaid(true)
-                                            .setCheckin(new GregorianCalendar(2018,1,1).getTime())
-                                            .setCheckout(new GregorianCalendar(2018,1,2).getTime())
+                                            .setCheckin(checkindate)
+                                            .setCheckout(checkoutdate)
                                             .build();
 
         // We then send our request to the Booking webservice to create our booking
@@ -81,8 +87,8 @@ public class IntegrationTest {
         assertThat(response.getBooking().getLastname(), is("Winteringham"));
         assertThat(response.getBooking().getTotalprice(), is(200));
         assertThat(response.getBooking().isDepositpaid(), is(true));
-        assertThat(response.getBooking().getBookingDates().getCheckin().toString(), containsString("Thu Feb 01"));
-        assertThat(response.getBooking().getBookingDates().getCheckout().toString(), containsString("Fri Feb 02"));
+        assertThat(response.getBooking().getBookingDates().getCheckin(), is(checkindate));
+        assertThat(response.getBooking().getBookingDates().getCheckout(), is(checkoutdate));
     }
 
 
