@@ -193,11 +193,12 @@ exports[`Welcome component contains correct details 1`] = `
         className="row"
       >
         <div
-          className="col-md-1"
+          className="col-sm-1"
         />
         <div
-          className="col-md-10 content"
+          className="col-sm-10 content"
         >
+          <br />
           <br />
           <h2>
             Welcome to Shady Meadows Booking Manager
@@ -209,38 +210,33 @@ exports[`Welcome component contains correct details 1`] = `
           </h4>
         </div>
         <div
-          className="col-md-1"
+          className="col-sm-1"
         />
       </div>
       <div
         className="row"
       >
         <div
-          className="col-md-4"
+          className="col-sm-3"
         />
         <div>
           <div
-            className="col-sm-3"
+            className="col-sm-4"
           />
           <div
-            className="col-sm-1"
+            className="col-sm-2"
           >
             <button
+              className="btn btn-primary"
               id="next"
               onClick={[Function]}
-              style={
-                Object {
-                  "display": "block",
-                  "margin": "0 auto",
-                }
-              }
             >
               Next
             </button>
           </div>
         </div>
         <div
-          className="col-md-4"
+          className="col-sm-3"
         />
       </div>
     </div>
