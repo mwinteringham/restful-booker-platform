@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component is created 1`] = `
+<div
+  style={
+    Object {
+      "marginTop": "20%",
+    }
+  }
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-2"
+    />
+    <div
+      className="col-sm-8"
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <h2>
+        Welcome to the Shady Meadows 
+        <br />
+         booking management system
+      </h2>
+    </div>
+    <div
+      className="col-sm-2"
+    />
+  </div>
+  <form>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-4"
+      />
+      <div
+        className="col-sm-4"
+      >
+        <p>
+          <label
+            htmlFor="username"
+          >
+            Username 
+          </label>
+          <input
+            id="username"
+            onChange={[Function]}
+            style={
+              Object {
+                "border": "1px solid grey",
+              }
+            }
+            type="text"
+          />
+        </p>
+      </div>
+      <div
+        className="col-sm-4"
+      />
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-4"
+      />
+      <div
+        className="col-sm-4"
+      >
+        <p>
+          <label
+            htmlFor="password"
+          >
+            Password 
+          </label>
+          <input
+            id="password"
+            onChange={[Function]}
+            style={
+              Object {
+                "border": "1px solid grey",
+              }
+            }
+            type="password"
+          />
+        </p>
+      </div>
+      <div
+        className="col-sm-4"
+      />
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-7"
+      />
+      <div
+        className="col-sm-1"
+      >
+        <button
+          className="btn btn-default"
+          id="doLogin"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": "9px",
+            }
+          }
+          type="button"
+        >
+          Login
+        </button>
+      </div>
+      <div
+        className="col-sm-4"
+      />
+    </div>
+  </form>
+</div>
+`;
