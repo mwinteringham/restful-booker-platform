@@ -35,63 +35,49 @@ public class RoomListingPage extends BasePage
 
     private String lblRoomNumber = "room";
 
-    public RoomListingPage(WebDriver driver)
-    {
+    public RoomListingPage(WebDriver driver){
         super(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.col-sm-2.rowHeader")));
     }
 
-    public RoomListingPage PopulateRoomNumber(String roomNumber) throws InterruptedException
-    {
+    public void populateRoomNumber(String roomNumber) throws InterruptedException {
         txtRoomNumber.sendKeys(roomNumber);
         Thread.sleep(200);
-        return this;
     }
 
-    public RoomListingPage PopulateType(String type) throws InterruptedException
-    {
+    public void populateType(String type) throws InterruptedException {
         txtType.sendKeys(type);
         Thread.sleep(200);
-        return this;
     }
 
-    public RoomListingPage PopulateBeds(String beds) throws InterruptedException
-    {
+    public void populateBeds(String beds) throws InterruptedException {
         txtBeds.sendKeys(beds);
         Thread.sleep(200);
-        return this;
     }
 
-    public RoomListingPage PopulateAccessible(String accessible) throws InterruptedException
-    {
+    public void populateAccessible(String accessible) throws InterruptedException {
         txtAccessible.sendKeys(accessible);
         Thread.sleep(200);
-        return this;
     }
 
-    public RoomListingPage PopulateDetails(String details) throws InterruptedException
-    {
+    public void populateDetails(String details) throws InterruptedException {
         txtDetails.sendKeys(details);
         Thread.sleep(200);
-        return this;
     }
 
-    public RoomListingPage ClickCreateRoom() throws InterruptedException
-    {
+    public void clickCreateRoom() throws InterruptedException {
         Thread.sleep(200);
         btnCreate.click();
         Thread.sleep(200);
-        return new RoomListingPage(driver);
     }
 
-    public String ReadRoomNumber(int index)
-    {
-        return driver.findElement(By.id(lblRoomNumber +index)).getText();
-    }
-
-    public int RoomCount()
+    public int roomCount()
     {
         return lstRooms.size();
+    }
+
+    public void clickFirstRoom() {
+        lstRooms.get(0).click();
     }
 }

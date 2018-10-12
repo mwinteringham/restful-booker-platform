@@ -62,7 +62,7 @@ class Nav extends React.Component {
 					</div> 
 					<ul className="nav navbar-nav"> 
 					<li><Link to="/">Rooms</Link></li>
-					<li><Link to="/report">Report</Link></li> 
+					<li><Link id="reportLink" to="/report">Report</Link></li>
 					<li id="logout"><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
 					<li><a href="#">Search:</a></li> 
 					<li><input type="text" id="search" defaultValue={this.props.location.search.split('=')[1]} onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 

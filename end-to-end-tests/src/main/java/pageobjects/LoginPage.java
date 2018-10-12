@@ -24,19 +24,19 @@ public class LoginPage extends BasePage
         super(driver);
     }
 
-    public LoginPage PopulateUsername(String username)
+    public LoginPage populateUsername(String username)
     {
         txtUsername.sendKeys(username);
         return this;
     }
 
-    public LoginPage PopulatePassword(String password)
+    public LoginPage populatePassword(String password)
     {
         txtPassword.sendKeys(password);
         return this;
     }
 
-    public RoomListingPage ClickLogin()
+    public RoomListingPage clickLogin()
     {
         btnLogin.click();
         return new RoomListingPage(driver);
