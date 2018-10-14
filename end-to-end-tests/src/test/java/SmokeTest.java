@@ -7,16 +7,14 @@ import pageobjects.*;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SmokeTest extends TestSetup {
 
     @Before
     public void logIntoApplication(){
-        driver.navigate().to(baseUrl);
+        navigateToApplication();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.populateUsername("admin");

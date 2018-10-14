@@ -72,8 +72,8 @@ public class RoomListingPage extends BasePage
         Thread.sleep(200);
     }
 
-    public int roomCount()
-    {
+    public int roomCount() throws InterruptedException {
+        Thread.sleep(1000);
         return lstRooms.size();
     }
 

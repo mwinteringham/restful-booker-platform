@@ -49,7 +49,8 @@ public class RoomPage extends BasePage {
         Thread.sleep(200);
     }
 
-    public int getBookingCount() {
+    public int getBookingCount() throws InterruptedException {
+        Thread.sleep(1000);
         return lstBookings.size();
     }
 
