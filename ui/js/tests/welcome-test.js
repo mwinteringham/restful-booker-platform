@@ -2,6 +2,7 @@ import React from 'react';
 import Welcome from '../src/js/components/Welcome.jsx';
 import App from '../src/js/components/App.jsx';
 import nock from 'nock';
+import { mountWrap } from './helpers/routerWrapper.js';
 
 beforeEach(() => {
     nock('http://localhost:3004')
@@ -42,7 +43,7 @@ test('Welcome component doesnt appear after close', () => {
 });
 
 test('Clicking on close button closes modal', () => {
-    const appComponent = mount(
+    const appComponent = mountWrap(
         <App />
     )
 

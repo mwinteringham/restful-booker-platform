@@ -9,6 +9,8 @@ import Report from './Report.jsx';
 import Welcome from './Welcome.jsx';
 import Cookies from 'universal-cookie';
 import { API_ROOT, SHOW_WELCOME } from '../api-config';
+import CookiePolicy from './CookiePolicy.jsx';
+import PrivacyPolicy from './PrivacyPolicy.jsx';
 
 export default class App extends React.Component {
 
@@ -74,12 +76,15 @@ export default class App extends React.Component {
         }
 
         if(!this.state.isAuthenticated){
-            app = <div>                
-                    <Login setAuthenticate={this.setAuthenticate}/>
+            app = <div>
+                    <Switch>
+                        <Route exact path='/' render={() => <Login setAuthenticate={this.setAuthenticate} />} />
+                        <Route exact path='/cookie' component={CookiePolicy} />
+                        <Route exact path='/privacy' component={PrivacyPolicy} />
+                    </Switch>
                  </div>
         } else {
             app = <div>
-                    <Nav setAuthenticate={this.setAuthenticate} />
                     <Switch>
                         <Route exact path='/' render={(props) => <RoomListings {...props} />} />
                         <Route exact path='/search' component={Search} {...this.props}/>
@@ -87,12 +92,15 @@ export default class App extends React.Component {
                             <RoomDetails isAuthenticated={this.state.isAuthenticated} params={match.params}/>
                         )} />
                         <Route exact path='/report' component={Report} />
+                        <Route exact path='/cookie' component={CookiePolicy} />
+                        <Route exact path='/privacy' component={PrivacyPolicy} />
                     </Switch>
                 </div>
         }
 
         return(
             <div className="container">
+                <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />               
                 {welcome}
                 {app}
             </div>

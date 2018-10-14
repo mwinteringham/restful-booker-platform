@@ -59,14 +59,16 @@ class Nav extends React.Component {
 				<div className="container-fluid"> 
 					<div className="navbar-header"> 
 					<a className="navbar-brand" href="/">Shady Meadows - Booking Management</a> 
-					</div> 
-					<ul className="nav navbar-nav"> 
-					<li><Link to="/">Rooms</Link></li>
-					<li><Link id="reportLink" to="/report">Report</Link></li>
-					<li id="logout"><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
-					<li><a href="#">Search:</a></li> 
-					<li><input type="text" id="search" defaultValue={this.props.location.search.split('=')[1]} onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 
-					</ul> 
+					</div>
+					{this.props.isAuthenticated && (
+						<ul className="nav navbar-nav"> 
+							<li><Link to="/">Rooms</Link></li>
+							<li><Link id="reportLink" to="/report">Report</Link></li>
+							<li id="logout"><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
+							<li><a href="#">Search:</a></li> 
+							<li><input type="text" id="search" defaultValue={this.props.location.search.split('=')[1]} onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 
+						</ul> 
+					)}
 				</div> 
 			</nav>
       );

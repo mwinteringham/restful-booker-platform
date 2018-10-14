@@ -51,7 +51,7 @@ export default class Login extends React.Component {
             borderColor = "red";
         }
 
-        return(<div style={{marginTop: "20%"}}>
+        return(<div style={{marginTop: "15%"}}>
                 <div className="row">
                     <div className="col-sm-2"></div>
                     <div className="col-sm-8" style={{textAlign : "center"}}>

@@ -5,134 +5,62 @@ exports[`Clicking on close button closes modal 1`] = `
   <div
     className="container"
   >
-    <div>
-      <Login
-        setAuthenticate={[Function]}
+    <withRouter(Nav)
+      isAuthenticated={false}
+      setAuthenticate={[Function]}
+    >
+      <Route
+        render={[Function]}
       >
-        <div
-          style={
+        <Nav
+          history={
             Object {
-              "marginTop": "20%",
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
             }
           }
+          isAuthenticated={false}
+          location={Object {}}
+          match={Object {}}
+          setAuthenticate={[Function]}
         >
-          <div
-            className="row"
+          <nav
+            className="navbar navbar-default"
           >
             <div
-              className="col-sm-2"
-            />
-            <div
-              className="col-sm-8"
-              style={
-                Object {
-                  "textAlign": "center",
-                }
-              }
-            >
-              <h2>
-                Welcome to the Shady Meadows 
-                <br />
-                 booking management system
-              </h2>
-            </div>
-            <div
-              className="col-sm-2"
-            />
-          </div>
-          <form>
-            <div
-              className="row"
+              className="container-fluid"
             >
               <div
-                className="col-sm-4"
-              />
-              <div
-                className="col-sm-4"
+                className="navbar-header"
               >
-                <p>
-                  <label
-                    htmlFor="username"
-                  >
-                    Username 
-                  </label>
-                  <input
-                    id="username"
-                    onChange={[Function]}
-                    style={
-                      Object {
-                        "border": "1px solid grey",
-                      }
-                    }
-                    type="text"
-                  />
-                </p>
-              </div>
-              <div
-                className="col-sm-4"
-              />
-            </div>
-            <div
-              className="row"
-            >
-              <div
-                className="col-sm-4"
-              />
-              <div
-                className="col-sm-4"
-              >
-                <p>
-                  <label
-                    htmlFor="password"
-                  >
-                    Password 
-                  </label>
-                  <input
-                    id="password"
-                    onChange={[Function]}
-                    style={
-                      Object {
-                        "border": "1px solid grey",
-                      }
-                    }
-                    type="password"
-                  />
-                </p>
-              </div>
-              <div
-                className="col-sm-4"
-              />
-            </div>
-            <div
-              className="row"
-            >
-              <div
-                className="col-sm-7"
-              />
-              <div
-                className="col-sm-1"
-              >
-                <button
-                  className="btn btn-default"
-                  id="doLogin"
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "marginLeft": "9px",
-                    }
-                  }
-                  type="button"
+                <a
+                  className="navbar-brand"
+                  href="/"
                 >
-                  Login
-                </button>
+                  Shady Meadows - Booking Management
+                </a>
               </div>
-              <div
-                className="col-sm-4"
-              />
             </div>
-          </form>
-        </div>
-      </Login>
+          </nav>
+        </Nav>
+      </Route>
+    </withRouter(Nav)>
+    <div>
+      <Switch />
     </div>
   </div>
 </App>
@@ -142,15 +70,33 @@ exports[`Welcome component appears on initial visit 1`] = `
 <div
   className="container"
 >
+  <withRouter(Nav)
+    isAuthenticated={false}
+    setAuthenticate={[Function]}
+  />
   <div>
     <Welcome
       setWelcome={[Function]}
     />
   </div>
   <div>
-    <Login
-      setAuthenticate={[Function]}
-    />
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+        render={[Function]}
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/cookie"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/privacy"
+      />
+    </Switch>
   </div>
 </div>
 `;
@@ -248,10 +194,28 @@ exports[`Welcome component doesnt appear after close 1`] = `
 <div
   className="container"
 >
+  <withRouter(Nav)
+    isAuthenticated={false}
+    setAuthenticate={[Function]}
+  />
   <div>
-    <Login
-      setAuthenticate={[Function]}
-    />
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+        render={[Function]}
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/cookie"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/privacy"
+      />
+    </Switch>
   </div>
 </div>
 `;

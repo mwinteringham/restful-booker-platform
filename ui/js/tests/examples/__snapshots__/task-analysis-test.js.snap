@@ -4,7 +4,7 @@ exports[`Login component is created 1`] = `
 <div
   style={
     Object {
-      "marginTop": "20%",
+      "marginTop": "15%",
     }
   }
 >

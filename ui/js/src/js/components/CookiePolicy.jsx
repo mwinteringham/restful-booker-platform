@@ -26,9 +26,11 @@ export default class CookiePolicy extends React.Component {
                 <p>Automation in Testing Online uses cookies for:</p>
     
                 <table>
+                    <tbody>
                     <tr><th>Category of Use</th><th>Description</th></tr>
                     <tr><td>Security</td><td>We use cookies to enable and support our security features, for example: to authenticate Members, prevent fraudulent use of login credentials, and protect Member data from unauthorized parties.</td></tr>
                     <tr><td>Session State</td><td>We collect information about how our Users and Members use and interact with the Site. This may include the pages Members visit most often and when and where Members get error messages. We use these “session state cookies” to help us improve our Site and Services. Blocking or deleting these cookies will not prevent the Site from working. Analytics These cookies help us learn how our Site performs in different locations. We use cookies to understand and improve our Services and features.</td></tr>
+                    </tbody>
                 </table>
                         
                 <h2>What third-party cookies does ​Automation in Testing Online use?</h2>
@@ -36,9 +38,9 @@ export default class CookiePolicy extends React.Component {
                 <p>Trusted partners like Cloudflare, and analytics companies like Google Analytics may also place cookies on your device. Please read our partners' privacy policies (linked below) to ensure that you're comfortable with how they use cookies. We've also provided links to opt out of their services, if you'd like.</p>
     
                 <ul>
-                    <li><a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a></li>
-                    <li><a href="https://policies.google.com/privacy?hl=en">Google Analytics</a></li>
-                    <li><a href="https://tools.google.com/dlpage/gaoptout?hl=en">Google Analytics Opt-Out</a></li>
+                    <li><a href="https://www.cloudflare.com/privacypolicy/" target="_blank">Cloudflare</a></li>
+                    <li><a href="https://policies.google.com/privacy?hl=en" target="_blank">Google Analytics</a></li>
+                    <li><a href="https://tools.google.com/dlpage/gaoptout?hl=en" target="_blank">Google Analytics Opt-Out</a></li>
                 </ul>
     
                 <h2>What should you do if you don’t want cookies to be set?</h2>
@@ -48,6 +50,7 @@ export default class CookiePolicy extends React.Component {
                 <p>If you want to restrict or block the cookies that are set by our Site, or any other site, you can do so through your browser setting. The ‘Help’ function in your browser should explain how. Alternatively, you can visit www.aboutcookies.org, which contains comprehensive information on how to do this on a wide variety of browsers. You will find general information about cookies and details on how to delete cookies from your machine.</p>
     
                 <p>To opt-out of third-parties collecting any data regarding your interaction on our Site, please refer to their websites for further information.</p>
+                <br />
             </div>
         )
     }
