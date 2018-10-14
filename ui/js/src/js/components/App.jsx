@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import RoomListings from './RoomListings.jsx';
 import Search from './Search.jsx';
 import Nav from './Nav.jsx';
@@ -44,10 +44,7 @@ export default class App extends React.Component {
             })
             .then(res => {
                 if(res.status == 200){
-                    this.setState({
-                        isAuthenticated : this.state.isAuthenticated,
-                        showWelcome : true
-                    });
+                    this.setAuthenticate(true);
                 }
             })
     }

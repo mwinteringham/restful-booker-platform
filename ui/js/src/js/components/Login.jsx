@@ -17,14 +17,14 @@ export default class Login extends React.Component {
 
     doLogin() {
         fetch(API_ROOT.auth + '/login', {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-          },
-          body : JSON.stringify({
-              username: this.state.username,
-              password: this.state.password,
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify({
+                username: this.state.username,
+                password: this.state.password,
             })
         })
         .then(res => res.json())
@@ -77,7 +77,7 @@ export default class Login extends React.Component {
                     <div className="row">
                         <div className="col-sm-7"></div>
                         <div className="col-sm-1">
-                            <button type="button" style={{marginLeft : "9px"}} className="btn btn-default" id="doLogin" onClick={this.doLogin}>Login</button>
+                            <button type="button" style={{marginLeft : "9px"}} id="submit" className="btn btn-default" id="doLogin" onClick={this.doLogin}>Login</button>
                         </div>
                         <div className="col-sm-4"></div>
                     </div>

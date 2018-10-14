@@ -1,4 +1,4 @@
-package com.automationintesting;
+package com.automationintesting.unit.taskanalysis;
 
 import auth.Tokens;
 import org.junit.Test;

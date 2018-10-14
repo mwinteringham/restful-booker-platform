@@ -3,7 +3,6 @@ package api;
 import auth.Tokens;
 import model.Auth;
 import model.Token;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
