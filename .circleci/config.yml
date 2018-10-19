@@ -478,60 +478,65 @@ workflows:
   build-test-and-deploy:
     jobs:
       - checkout_code
-      - run_e2e_checks:
+      - run_auth_build:
           requires:
             - checkout_code
-#      - run_auth_build:
-#          requires:
-#            - checkout_code
-#      - run_booking_build:
-#          requires:
-#            - checkout_code
-#      - run_report_build:
-#          requires:
-#            - checkout_code
-#      - run_room_build:
-#          requires:
-#            - checkout_code
-#      - run_search_build:
-#          requires:
-#            - checkout_code
-#      - run_ui_tests:
-#          requires:
-#            - checkout_code
-#      - build_auth_docker_image:
-#          requires:
-#            - run_auth_build
-#      - build_booking_docker_image:
-#          requires:
-#            - run_booking_build
-#      - build_report_docker_image:
-#          requires:
-#            - run_report_build
-#      - build_room_docker_image:
-#          requires:
-#            - run_room_build
-#      - build_search_docker_image:
-#          requires:
-#            - run_search_build
-#      - build_ui_docker_image:
-#          requires:
-#            - run_ui_tests
-#      - deploy_auth_docker_image:
-#          requires:
-#            - build_auth_docker_image
-#      - deploy_booking_docker_image:
-#          requires:
-#            - build_booking_docker_image
-#      - deploy_report_docker_image:
-#          requires:
-#            - build_report_docker_image
-#      - deploy_room_docker_image:
-#          requires:
-#            - build_room_docker_image
-#      - deploy_search_docker_image:
-#          requires:
-#            - build_search_docker_image
-#      - deploy_ui_docker_image:
-#          requires:
-#            - build_ui_docker_image
+      - run_booking_build:
+          requires:
+            - checkout_code
+      - run_report_build:
+          requires:
+            - checkout_code
+      - run_room_build:
+          requires:
+            - checkout_code
+      - run_search_build:
+          requires:
+            - checkout_code
+      - run_ui_tests:
+          requires:
+            - checkout_code
+      - build_auth_docker_image:
+          requires:
+            - run_auth_build
+      - build_booking_docker_image:
+          requires:
+            - run_booking_build
+      - build_report_docker_image:
+          requires:
+            - run_report_build
+      - build_room_docker_image:
+          requires:
+            - run_room_build
+      - build_search_docker_image:
+          requires:
+            - run_search_build
+      - build_ui_docker_image:
+          requires:
+            - run_ui_tests
+      - deploy_auth_docker_image:
+          requires:
+            - build_auth_docker_image
+      - deploy_booking_docker_image:
+          requires:
+            - build_booking_docker_image
+      - deploy_report_docker_image:
+          requires:
+            - build_report_docker_image
+      - deploy_room_docker_image:
+          requires:
+            - build_room_docker_image
+      - deploy_search_docker_image:
+          requires:
+            - build_search_docker_image
+      - deploy_ui_docker_image:
+          requires:
+            - build_ui_docker_image
+      - run_e2e_checks:
+          requires:
+            - deploy_auth_docker_image
+            - deploy_booking_docker_image
+            - deploy_report_docker_image
+            - deploy_room_docker_image
+            - deploy_search_docker_image
+            - deploy_ui_docker_image
