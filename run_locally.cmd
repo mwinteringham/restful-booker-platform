@@ -92,6 +92,7 @@ echo ####### RESTFUL-BOOKER-PLATFORM #######
 echo ####                               ####
 echo ####    STARTING APPLICATION...    ####
 echo ####                               ####
+echo #######################################
 
 START /B java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platform-auth-1.0-SNAPSHOT.jar > auth.log
 START /B java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-1.0-SNAPSHOT.jar > booking.log
@@ -100,7 +101,23 @@ START /B java -jar -Dspring.profiles.active=dev report/target/restful-booker-pla
 START /B java -jar -Dspring.profiles.active=dev search/target/restful-booker-platform-search-1.0-SNAPSHOT.jar > search.log
 START /B java -jar -Dspring.profiles.active=dev ui/api/target/restful-booker-platform-ui-1.0-SNAPSHOT.jar > ui.log
 
-echo ####      APPLICATION STARTED      ####
+call node .utilities/monitor/local_monitor.js
+
+echo:
+echo ####### RESTFUL-BOOKER-PLATFORM #######
+echo ####                               ####
+echo ####    RUNNING E2E CHECKS         ####
+echo ####                               ####
+echo #######################################
+
+cd end-to-end-tests
+
+call mvn clean test
+
+echo:
+echo ####### RESTFUL-BOOKER-PLATFORM #######
+echo ####                               ####
+echo ####      APPLICATION READY        ####
 echo ####                               ####
 echo ####         Available at:         ####
 echo ####     http://localhost:3003     ####

@@ -13,18 +13,19 @@ public class DriverFactory
     }
 
     private WebDriver generateDriver(){
+        String classLocation = DriverFactory.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String pathToChromeDriver = "";
 
-        if(OS.contains("win"))
-        {
-            String pathToChromeDriver = System.getProperty("user.dir") + "/end-to-end-tests/chromedrivers/windows/chromedriver.exe";
-            System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
+        if(OS.contains("win")) {
+//            pathToChromeDriver = System.getProperty("user.dir") + "/end-to-end-tests/chromedrivers/windows/chromedriver.exe";
+            pathToChromeDriver = classLocation + "../..//chromedrivers/windows/chromedriver.exe";
         }
-        else if (OS.contains("mac"))
-        {
-            String pathToChromeDriver = System.getProperty("user.dir") + "/end-to-end-tests/chromedrivers/mac/chromedriver";
-            System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
+        else if (OS.contains("mac")) {
+//            pathToChromeDriver = System.getProperty("user.dir") + "/end-to-end-tests/chromedrivers/mac/chromedriver";
+            pathToChromeDriver = classLocation + "../..//chromedrivers/mac/chromedriver";
         }
 
+        System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
         return new ChromeDriver();
     }
 }

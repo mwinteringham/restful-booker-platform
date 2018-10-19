@@ -68,7 +68,8 @@ mvn install
 printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
 ####    STARTING APPLICATION...    ####
-####                               ####\n"
+####                               ####
+#######################################\n"
 
 trap "kill 0" EXIT
 
@@ -79,7 +80,21 @@ java -jar -Dspring.profiles.active=dev report/target/restful-booker-platform-rep
 java -jar -Dspring.profiles.active=dev search/target/restful-booker-platform-search-*-SNAPSHOT.jar > search.log &
 java -jar -Dspring.profiles.active=dev ui/api/target/restful-booker-platform-ui-*-SNAPSHOT.jar > ui.log &
 
-printf "####      APPLICATION STARTED      ####
+node .utilities/monitor/local_monitor.js
+
+printf "\n####### RESTFUL-BOOKER-PLATFORM #######
+####                               ####
+####    RUNNING E2E CHECKS         ####
+####                               ####
+#######################################\n"
+
+cd end-to-end-tests
+
+mvn clean test
+
+printf "\n####### RESTFUL-BOOKER-PLATFORM #######
+####                               ####
+####      APPLICATION READY        ####
 ####                               ####
 ####         Available at:         ####
 ####     http://localhost:3003     ####
