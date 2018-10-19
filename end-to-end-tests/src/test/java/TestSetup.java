@@ -22,7 +22,7 @@ public class TestSetup {
     }
 
     void navigateToApplication(){
-        if(System.getenv("target") != null && System.getenv("target").equals("production")){
+        if(System.getenv("TARGET") != null && System.getenv("TARGET").equals("production")){
             // We load the production page up initially to gain access to the site before
             // adding in the cookie to disabled the welcome popup. We finally have to refresh
             // the page to ensure the cookie is read and the popup is disabled.
