@@ -13,10 +13,10 @@ public class DriverFactory
     private static String OS = System.getProperty("os.name").toLowerCase();
 
     public WebDriver create() {
-        if(System.getenv("browser") != null){
-            if(System.getenv("browser").equals("chrome")){
+        if(System.getenv("BROWSER") != null){
+            if(System.getenv("BROWSER").equals("chrome")){
                 return prepareChromeDriver();
-            } else if (System.getenv("browser").equals("remote")){
+            } else if (System.getenv("BROWSER").equals("remote")){
                 return prepareRemoteDriver();
             } else {
                 System.out.println("WARN: Browser option '" + System.getenv("browser") + "' not recognised. Falling back to ChromeDriver");
@@ -44,15 +44,15 @@ public class DriverFactory
     }
 
     private WebDriver prepareRemoteDriver(){
-        if(System.getenv("sauce_username") == null){
+        if(System.getenv("SAUCE_USERNAME") == null){
             throw new RuntimeException("To use remote driver a Sauce lab account is required. Please assign your Sauce labs account name to the environmental variable 'sauce_username'");
         }
 
-        if(System.getenv("sauce_access_key") == null){
+        if(System.getenv("SAUCE_ACCESS_KEY") == null){
             throw new RuntimeException("To use remote driver a Sauce lab account is required. Please assign your Sauce labs access key to the environmental variable 'sauce_access_key'");
         }
 
-        String URL = "http://" + System.getenv("sauce_username") + ":" + System.getenv("sauce_access_key") + "@ondemand.saucelabs.com:80/wd/hub";
+        String URL = "http://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com:80/wd/hub";
 
         ChromeOptions chromeOptions = new ChromeOptions();
 

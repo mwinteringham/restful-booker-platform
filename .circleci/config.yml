@@ -471,7 +471,9 @@ jobs:
       - run:
           command: mvn clean test
           working_directory: end-to-end-tests
-
+          environment:
+            TARGET: production
+            BROWSER: remote
 
 workflows:
   version: 2
