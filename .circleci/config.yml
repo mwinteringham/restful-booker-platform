@@ -179,6 +179,8 @@ jobs:
               echo "[SKIPPING] UI"
             fi
           working_directory: ui/js
+          environment:
+            BROWSER: remote
       - save_cache:
           paths:
             - ui/

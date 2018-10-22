@@ -19,12 +19,12 @@ public class DriverFactory {
             } else if (System.getenv("BROWSER").equals("remote")){
                 return prepareRemoteDriver();
             } else {
-                System.out.println("WARN: Browser option '" + System.getenv("browser") + "' not recognised. Falling back to ChromeDriver");
+                System.out.println("WARN: Browser option '" + System.getenv("BROWSER") + "' not recognised. Falling back to ChromeDriver");
                 return prepareChromeDriver();
             }
         }
 
-        System.out.println("WARN: No browser option detected. Defaulting to ChromeDriver but if you want to use a different browser please assign a browser to the env var 'browser'.");
+        System.out.println("WARN: No browser option detected. Defaulting to ChromeDriver but if you want to use a different browser please assign a browser to the env var 'BROWSER'.");
         return prepareChromeDriver();
     }
 
