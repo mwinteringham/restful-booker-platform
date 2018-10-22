@@ -63,7 +63,14 @@ printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 
 cd ../..
 
-mvn install
+
+if [[ -z "${APPLITOOLS_API_KEY}" ]]; then
+  printf "Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks"
+  mvn install -Dvisual.skip.test=true
+else
+  mvn install
+fi
+
 
 printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####

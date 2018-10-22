@@ -87,6 +87,14 @@ cd ../..
 
 call mvn install
 
+if "%APPLITOOLS_API_KEY%"=="" (
+    @echo Skipping visual checks because no applitools api key has been set.
+    @echo Assign a key to APPLITOOLS_API_KEY to run visual checks
+    mvn install -Dvisual.skip.test=true
+) else (
+    mvn install
+}
+
 echo:
 echo ####### RESTFUL-BOOKER-PLATFORM #######
 echo ####                               ####

@@ -22,13 +22,17 @@ Once built run ```java -jar target/restful-booker-platform-ui-1.0-SNAPSHOT.jar``
 
 ## Running checks
 
-As the API only serves the frontend assets there are no checks in the ```api``` folder. However, the ```js``` folder contains tests for individual UI components.
+### JS module 
 
-To run the ```js``` checks you will need to install Jest globally:
+To run the ```js``` checks you will need to install Jest globally ```npm install jest -g``` before running either ```npm test``` or ```jest```
 
-```npm install jest -g```
+### API module
 
-With Jest installed navigate to the ```js``` folder and run ```jest``` or ```jest path/to/file.js``` to execute the checks
+The ```api``` module contains visual checks that use [Applitools](https://applitools.com/) to run the visual checking. Therefore you will need to set the following environmental variable with your [Applitools](https://applitools.com/) API key:
+
+```APPLITOOLS_API_KEY = MY_API_KEY_ABC123```
+
+With that set you can then run ```mvn verify```
 
 ## Documentation
 
