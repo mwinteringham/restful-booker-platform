@@ -14,13 +14,14 @@ public class DriverFactory {
 
     public WebDriver create() {
         if(System.getenv("BROWSER") != null){
-            if(System.getenv("BROWSER").equals("chrome")){
-                return prepareChromeDriver();
-            } else if (System.getenv("BROWSER").equals("remote")){
-                return prepareRemoteDriver();
-            } else {
-                System.out.println("WARN: Browser option '" + System.getenv("BROWSER") + "' not recognised. Falling back to ChromeDriver");
-                return prepareChromeDriver();
+            switch (System.getenv("BROWSER")) {
+                case "chrome":
+                    return prepareChromeDriver();
+                case "remote":
+                    return prepareRemoteDriver();
+                default:
+                    System.out.println("WARN: Browser option '" + System.getenv("BROWSER") + "' not recognised. Falling back to ChromeDriver");
+                    return prepareChromeDriver();
             }
         }
 
@@ -34,8 +35,7 @@ public class DriverFactory {
 
         if(OS.contains("win")) {
             pathToChromeDriver = classLocation + "../../chromedrivers/windows/chromedriver.exe";
-        }
-        else if (OS.contains("mac")) {
+        } else if (OS.contains("mac")) {
             pathToChromeDriver = classLocation + "../../chromedrivers/mac/chromedriver";
         }
 
