@@ -57,6 +57,7 @@
                         <include>**/AuthVisualTest.java</include>
                         <include>**/RoomVisualTest.java</include>
                     </includes>
+                    <skipITs>${visual.skip.test}</skipITs>
                 </configuration>
             </plugin>
         </plugins>
