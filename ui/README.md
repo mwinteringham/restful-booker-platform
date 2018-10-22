@@ -1,4 +1,4 @@
-# Restful-booker-ui
+# Restful-Booker-Ui
 
 The UI is responsible for serving the UI assets to a browser to give users easy access to the restful-booker-platform.
 
