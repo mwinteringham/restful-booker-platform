@@ -44,7 +44,7 @@ public class RoomVisualTest extends TestSetup {
                         .withHeader("Access-Control-Allow-Origin", "http://localhost:3003")
                         .withBody("{\"rooms\":[{\"roomid\":1,\"roomNumber\":101,\"type\":\"Twin\",\"beds\":2,\"accessible\":false,\"details\":\"Wifi, TV, Mini-bar\"}]}")));
 
-        eyes.open(driver, "RBP","Room List Visual Test", new RectangleSize(1400, 600));
+        eyes.open(driver, "RBP","Room List Visual Test", new RectangleSize(1400, 700));
 
         driver.navigate().to("http://localhost:3003/");
 

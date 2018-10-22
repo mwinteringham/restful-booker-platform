@@ -55,6 +55,7 @@ public class DriverFactory {
         String URL = "http://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com:80/wd/hub";
 
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setCapability("screenResolution", "1440x900");
 
         try {
             return new RemoteWebDriver(new URL(URL), chromeOptions);
