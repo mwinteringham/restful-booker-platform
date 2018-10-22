@@ -157,6 +157,15 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
+          name: Install Sauce Labs and Set Up Tunnel
+          background: true
+          command: |
+            curl https://saucelabs.com/downloads/sc-4.4.12-linux.tar.gz -o saucelabs.tar.gz
+            tar -xzf saucelabs.tar.gz
+            cd sc-*
+            bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY}
+            wget --retry-connrefused --no-check-certificate -T 60 localhost:4445  # wait for app to be ready
+      - run:
           command: |
             if [ -f ~/tmp/ui.txt ]; then
               echo "[BUILDING] UI"
