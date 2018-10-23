@@ -25,10 +25,9 @@ public class BaseTest {
         // First we check if a DB is already open by seeing if
         // dbOpen is set to true. If it's not, create a new BookingDB
         if(!dbOpen){
-            bookingDB = new BookingDB();
+            bookingDB = new BookingDB(false);
             dbOpen = true;
         }
-
     }
 
 }

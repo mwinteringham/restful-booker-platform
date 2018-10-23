@@ -1,4 +1,4 @@
-package com.automationintesting.integration;
+package com.automationintesting.integration.examples;
 
 import api.BookingApplication;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -28,7 +28,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookingApplication.class)
 @ActiveProfiles("dev")
-public class IntegrationTest {
+public class IntegrationIT {
 
     // Booking relies on an Auth service so we add the JUnit rule to setup Wiremock which
     // will mock the behaviour of the Auth service, rather than stand up an Auth service
@@ -58,8 +58,8 @@ public class IntegrationTest {
 
         // We want to create a couple of date objects that we are going to us in our bookingPayload
         // and then again in the assertion to make sure they were processed correctly.
-        Date checkindate = new GregorianCalendar(2018,1,1).getTime();
-        Date checkoutdate = new GregorianCalendar(2018,1,2).getTime();
+        Date checkindate = new GregorianCalendar(1990,1,1).getTime();
+        Date checkoutdate = new GregorianCalendar(1990,1,2).getTime();
 
         // We next create our booking payload to send to the Booking webservice
         Booking bookingPayload = new Booking.BookingBuilder()

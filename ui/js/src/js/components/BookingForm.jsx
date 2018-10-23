@@ -143,6 +143,10 @@ export default class BookingForm extends React.Component {
                         },
                         errors : {}
                     })
+                } else if (res.status == 409){
+                    this.setState({errors : {
+                        dateconflict : ["The room is already booked for one or more of the dates that you have selected."]
+                    }});
                 }
             })
             .catch(e => console.log(e))

@@ -1,4 +1,4 @@
-package com.automationintesting.integration;
+package com.automationintesting.integration.examples;
 
 import api.BookingApplication;
 import io.restassured.response.Response;
@@ -24,7 +24,7 @@ import static io.restassured.RestAssured.given;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookingApplication.class)
 @ActiveProfiles("dev")
-public class ContractTest {
+public class ContractIT {
 
     // We add the @Test annotation so that when JUnit runs it knows which
     // methods to run as tests
