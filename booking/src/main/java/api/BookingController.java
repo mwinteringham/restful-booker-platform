@@ -53,7 +53,7 @@ public class BookingController {
     }
 
     public BookingController() throws SQLException {
-        bookingDB = new BookingDB();
+        bookingDB = new BookingDB(true);
         authRequests = new AuthRequests();
     }
 
@@ -75,8 +75,12 @@ public class BookingController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<CreatedBooking> createBooking(@RequestBody Booking booking, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
-            CreatedBooking body = bookingDB.create(booking);
-            return ResponseEntity.ok(body);
+            if(bookingDB.checkForBookingConflict(booking)){
+                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            } else {
+                CreatedBooking body = bookingDB.create(booking);
+                return ResponseEntity.ok(body);
+            }
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }

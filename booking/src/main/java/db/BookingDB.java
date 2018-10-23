@@ -6,6 +6,8 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -19,15 +21,18 @@ public class BookingDB {
     private final String DELETE_BY_ID = "DELETE FROM BOOKINGS WHERE bookingid = ?" ;
     private final String SELECT_BY_NAME = "SELECT * FROM BOOKINGS WHERE firstname = ? OR lastname = ?;";
     private final String DELETE_ALL_BOOKINGS = "DELETE FROM BOOKINGS";
+    private final String SELECT_DATE_CONFLICTS = "SELECT COUNT(1) FROM BOOKINGS where (checkin BETWEEN ? AND ?) OR (checkout BETWEEN ? AND ?) OR (checkin <= ? AND checkout >= ?)";
 
-    public BookingDB() throws SQLException {
+    public BookingDB(boolean enableServer) throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
         ds.setURL("jdbc:h2:mem:rbp");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        Server server = Server.createTcpServer("-tcpPort", "9090", "-tcpAllowOthers").start();
+        if (enableServer) {
+            Server server = Server.createTcpServer("-tcpPort", "9090", "-tcpAllowOthers").start();
+        }
 
         connection.prepareStatement(CREATE_DB).executeUpdate();
 
@@ -140,5 +145,22 @@ public class BookingDB {
         PreparedStatement resetPs = connection.prepareStatement("ALTER TABLE BOOKINGS ALTER COLUMN bookingid RESTART WITH 1");
 
         resetPs.execute();
+    }
+
+    public Boolean checkForBookingConflict(Booking bookingToCheck) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(SELECT_DATE_CONFLICTS);
+
+        for(int i = 1; i <= 6; i++){
+            if (i % 2 == 0){
+                ps.setDate(i, new Date(bookingToCheck.getBookingDates().getCheckout().getTime()));
+            } else {
+                ps.setDate(i, new Date(bookingToCheck.getBookingDates().getCheckin().getTime()));
+            }
+        }
+
+        ResultSet result = ps.executeQuery();
+        result.next();
+
+        return result.getInt("COUNT(1)") > 0;
     }
 }

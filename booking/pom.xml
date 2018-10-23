@@ -34,11 +34,6 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/integration/*.java</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -51,11 +46,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <includes>
-                        <include>**/integration/*.java</include>
-                    </includes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
