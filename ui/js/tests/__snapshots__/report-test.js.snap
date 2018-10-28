@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Multiple reports can be created in the Report component 1`] = `
+<div
+  style={
+    Object {
+      "paddingBottom": "30px",
+    }
+  }
+>
+  <h2
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <button
+      className="btn btn-light"
+      id="lastYear"
+      onClick={[Function]}
+    >
+       &lt; 
+    </button>
+     
+    2018
+     
+    <button
+      className="btn btn-light"
+      id="nextYear"
+      onClick={[Function]}
+    >
+       &gt; 
+    </button>
+  </h2>
+  <div
+    key="101"
+  >
+    <RoomReport
+      roomReport={
+        Object {
+          "room": "101",
+          "values": Array [
+            Object {
+              "date": "2018-01-01",
+            },
+            Object {
+              "date": "2018-01-02",
+            },
+            Object {
+              "date": "2019-02-01",
+            },
+          ],
+        }
+      }
+      year={2018}
+    />
+  </div>
+  <div
+    key="102"
+  >
+    <RoomReport
+      roomReport={
+        Object {
+          "room": "102",
+          "values": Array [
+            Object {
+              "date": "2018-01-01",
+            },
+            Object {
+              "date": "2018-01-02",
+            },
+            Object {
+              "date": "2018-02-01",
+            },
+          ],
+        }
+      }
+      year={2018}
+    />
+  </div>
+</div>
+`;
+
+exports[`Report for individual room renders 1`] = `
+<div>
+  <h3>
+    Room: 
+    101
+  </h3>
+  <CalendarHeatmap
+    classForValue={[Function]}
+    endDate={2018-12-31T00:00:00.000Z}
+    gutterSize={1}
+    horizontal={true}
+    monthLabels={
+      Array [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ]
+    }
+    numDays={null}
+    onClick={null}
+    onMouseLeave={null}
+    onMouseOver={null}
+    showMonthLabels={true}
+    showOutOfRangeDays={false}
+    showWeekdayLabels={false}
+    startDate={2017-12-31T00:00:00.000Z}
+    titleForValue={[Function]}
+    tooltipDataAttrs={[Function]}
+    transformDayElement={null}
+    values={
+      Array [
+        Object {
+          "date": "2018-01-01",
+        },
+        Object {
+          "date": "2018-01-02",
+        },
+        Object {
+          "date": "2019-02-01",
+        },
+      ]
+    }
+    weekdayLabels={
+      Array [
+        "",
+        "Mon",
+        "",
+        "Wed",
+        "",
+        "Fri",
+        "",
+      ]
+    }
+  />
+  <ReactTooltip
+    effect="float"
+    insecure={true}
+    place="top"
+    resizeHide={true}
+    type="dark"
+    wrapper="div"
+  />
+</div>
+`;
