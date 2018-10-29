@@ -3,6 +3,7 @@ package model.report;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RoomReportDate {
@@ -25,8 +26,10 @@ public class RoomReportDate {
 
     @Override
     public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
         return "RoomReportDate{" +
-                "date=" + date +
+                "date=" + dateFormat.format(date) +
                 '}';
     }
 }
