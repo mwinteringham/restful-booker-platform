@@ -1,7 +1,7 @@
 package requests;
 
-import model.Room;
-import model.RoomSearchResults;
+import model.room.Room;
+import model.room.Rooms;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,10 +17,10 @@ public class RoomRequests {
         }
     }
 
-    public ResponseEntity<RoomSearchResults> searchForRooms(){
+    public ResponseEntity<Rooms> searchForRooms(){
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.getForEntity(host, RoomSearchResults.class);
+        return restTemplate.getForEntity(host, Rooms.class);
     }
 
     public ResponseEntity<Room> searchForSpecificRoom(String id){

@@ -1,0 +1,1 @@
+[RoomReportDate{date=Mon Jan 01 00:00:00 GMT 2018}, RoomReportDate{date=Tue Jan 02 00:00:00 GMT 2018}, RoomReportDate{date=Wed Jan 03 00:00:00 GMT 2018}, RoomReportDate{date=Thu Jan 04 00:00:00 GMT 2018}, RoomReportDate{date=Fri Jan 05 00:00:00 GMT 2018}]

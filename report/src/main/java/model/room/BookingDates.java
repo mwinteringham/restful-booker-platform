@@ -1,4 +1,4 @@
-package model;
+package model.room;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

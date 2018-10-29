@@ -1,4 +1,4 @@
-package model;
+package model.room;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -83,4 +83,16 @@ public class Booking {
         this.roomid = roomId;
     }
 
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingid=" + bookingid +
+                ", roomid=" + roomid +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", totalprice=" + totalprice +
+                ", depositpaid=" + depositpaid +
+                ", bookingDates=" + bookingDates +
+                '}';
+    }
 }
