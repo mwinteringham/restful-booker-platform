@@ -1,10 +1,9 @@
-package model;
+package model.room;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 public class Room {
@@ -98,5 +97,29 @@ public class Room {
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    @Override
+    public String toString() {
+        if(bookings == null){
+            return "Room{" +
+                    "roomid=" + roomid +
+                    ", roomNumber=" + roomNumber +
+                    ", type='" + type + '\'' +
+                    ", beds=" + beds +
+                    ", accessible=" + accessible +
+                    ", details='" + details +
+                    '}';
+        } else {
+            return "Room{" +
+                    "roomid=" + roomid +
+                    ", roomNumber=" + roomNumber +
+                    ", type='" + type + '\'' +
+                    ", beds=" + beds +
+                    ", accessible=" + accessible +
+                    ", details='" + details + '\'' +
+                    ", bookings=" + bookings.toString() +
+                    '}';
+        }
     }
 }

@@ -21,7 +21,7 @@ public class BookingDB {
     private final String DELETE_BY_ID = "DELETE FROM BOOKINGS WHERE bookingid = ?" ;
     private final String SELECT_BY_NAME = "SELECT * FROM BOOKINGS WHERE firstname = ? OR lastname = ?;";
     private final String DELETE_ALL_BOOKINGS = "DELETE FROM BOOKINGS";
-    private final String SELECT_DATE_CONFLICTS = "SELECT COUNT(1) FROM BOOKINGS where (checkin BETWEEN ? AND ?) OR (checkout BETWEEN ? AND ?) OR (checkin <= ? AND checkout >= ?)";
+    private final String SELECT_DATE_CONFLICTS = "SELECT COUNT(1) FROM BOOKINGS WHERE ((checkin BETWEEN ? AND ?) OR (checkout BETWEEN ? AND ?) OR (checkin <= ? AND checkout >= ?)) AND (roomid = ?)";
 
     public BookingDB(boolean enableServer) throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -157,6 +157,8 @@ public class BookingDB {
                 ps.setDate(i, new Date(bookingToCheck.getBookingDates().getCheckin().getTime()));
             }
         }
+
+        ps.setInt(7, bookingToCheck.getRoomid());
 
         ResultSet result = ps.executeQuery();
         result.next();
