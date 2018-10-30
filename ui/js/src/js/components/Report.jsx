@@ -1,6 +1,7 @@
 import React from 'react';
 import RoomReport from './RoomReport.jsx';
 import { API_ROOT } from '../api-config';
+const fetch = require('node-fetch')
 
 export default class Report extends React.Component {
 
