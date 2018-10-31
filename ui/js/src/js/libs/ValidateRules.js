@@ -8,7 +8,7 @@ validate.validators.customBool = (value, options, key, attributes) => {
     }
 }
 
-exports.constraints = {
+let rules = {
     "roomNumber": {
         presence: true,
         numericality: {
@@ -50,3 +50,5 @@ exports.constraints = {
         }        
     }
 }
+
+export const constraints = rules;

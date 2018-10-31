@@ -9,9 +9,7 @@ exports[`Clicking on close button closes modal 1`] = `
       isAuthenticated={false}
       setAuthenticate={[Function]}
     >
-      <Route
-        render={[Function]}
-      >
+      <Route>
         <Nav
           history={
             Object {
@@ -110,6 +108,7 @@ exports[`Welcome component contains correct details 1`] = `
   closeOnEscape={false}
   contentStyle={Object {}}
   defaultOpen={true}
+  disabled={false}
   keepTooltipInside={false}
   lockScroll={false}
   modal={true}

@@ -1,16 +1,19 @@
-import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom'
-import RoomListings from './RoomListings.jsx';
+import React, { Suspense } from 'react';
+import { Route, Switch } from 'react-router-dom'
+import { API_ROOT, SHOW_WELCOME } from '../api-config';
+
 import Search from './Search.jsx';
 import Nav from './Nav.jsx';
 import Login from './Login.jsx'
-import RoomDetails from './RoomDetails.jsx';
 import Report from './Report.jsx';
 import Welcome from './Welcome.jsx';
 import Cookies from 'universal-cookie';
-import { API_ROOT, SHOW_WELCOME } from '../api-config';
 import CookiePolicy from './CookiePolicy.jsx';
 import PrivacyPolicy from './PrivacyPolicy.jsx';
+import Loading from './Loading.jsx';
+
+const RoomListings = React.lazy(() => import('./RoomListings.jsx'));
+const RoomDetails = React.lazy(() => import('./RoomDetails.jsx'));
 
 export default class App extends React.Component {
 
@@ -86,10 +89,16 @@ export default class App extends React.Component {
         } else {
             app = <div>
                     <Switch>
-                        <Route exact path='/' render={(props) => <RoomListings {...props} />} />
+                        <Route exact path='/' render={(props) => (
+                            <Suspense fallback={<Loading />}>
+                                <RoomListings {...props} />
+                            </Suspense>
+                        )} />
                         <Route exact path='/search' component={Search} {...this.props}/>
                         <Route exact path='/room/:id' render={({ location, match }) => (
-                            <RoomDetails isAuthenticated={this.state.isAuthenticated} params={match.params}/>
+                            <Suspense fallback={<Loading />}>
+                                <RoomDetails params={match.params}/>
+                            </Suspense>
                         )} />
                         <Route exact path='/report' component={Report} />
                         <Route exact path='/cookie' component={CookiePolicy} />
