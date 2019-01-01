@@ -30,7 +30,7 @@ To run the ```js``` checks you will need to install Jest globally ```npm install
 
 The ```api``` module contains visual checks that use [Applitools](https://applitools.com/) to run the visual checking. Therefore you will need to set the following environmental variable with your [Applitools](https://applitools.com/) API key:
 
-```APPLITOOLS_API_KEY = MY_API_KEY_ABC123```
+```APPLITOOLS_API_KEY = MY_API_KEY_ABC1234```
 
 With that set you can then run ```mvn verify```
 
