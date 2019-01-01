@@ -86,46 +86,6 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: rbp-search
-spec:
-  selector:
-    matchLabels:
-      run: rbp-search
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        run: rbp-search
-    spec:
-      containers:
-        - name: rbp-search
-          image: mwinteringham/restfulbookerplatform_search:latest
-          imagePullPolicy: Always
-          env:
-          - name: cors
-            value: "https://automationintesting.online"
-          ports:
-            - containerPort: 3002
-          resources:
-            requests:
-              memory: "768Mi"
-              cpu: "500m"
-            limits:
-              memory: "1024Mi"
-              cpu: "1000m"
-          readinessProbe:
-            httpGet:
-              port: 3002
-              path: /search/actuator/health
-            initialDelaySeconds: 1
-            periodSeconds: 5
-            timeoutSeconds: 4
-            successThreshold: 2
-            failureThreshold: 3
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
   name: rbp-ui
 spec:
   selector:
@@ -275,22 +235,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rbp-search
-  labels:
-    app: rbp-search
-spec:
-  type: NodePort
-  ports:
-    - port: 3002
-      protocol: TCP
-      nodePort: 32149
-      targetPort: 3002
-  selector:
-    run: rbp-search
----
-apiVersion: v1
-kind: Service
-metadata:
   name: rbp-ui
   labels:
     app: rbp-ui
@@ -353,10 +297,6 @@ spec:
         backend:
           serviceName: rbp-room
           servicePort: 3001
-      - path: /search/*
-        backend:
-          serviceName: rbp-search
-          servicePort: 3002      
       - path: /auth/*
         backend:
           serviceName: rbp-auth

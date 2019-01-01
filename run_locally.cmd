@@ -106,7 +106,6 @@ START /B java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platf
 START /B java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-1.0-SNAPSHOT.jar > booking.log
 START /B java -jar -Dspring.profiles.active=dev room/target/restful-booker-platform-room-1.0-SNAPSHOT.jar > room.log
 START /B java -jar -Dspring.profiles.active=dev report/target/restful-booker-platform-report-1.0-SNAPSHOT.jar > report.log
-START /B java -jar -Dspring.profiles.active=dev search/target/restful-booker-platform-search-1.0-SNAPSHOT.jar > search.log
 START /B java -jar -Dspring.profiles.active=dev ui/api/target/restful-booker-platform-ui-1.0-SNAPSHOT.jar > ui.log
 
 call node .utilities/monitor/local_monitor.js

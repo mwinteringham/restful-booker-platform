@@ -123,31 +123,6 @@ jobs:
             - room/
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
 
-  run_search_build:
-
-    docker:
-      - image: circleci/openjdk:8u151-jdk-node-browsers
-
-    environment:
-        MAVEN_OPTS: -Xmx3200m
-
-    steps:
-      - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          command: |
-            if [ -f ~/tmp/search.txt ]; then
-              echo "[BUILDING] Search"
-              mvn clean install
-            else
-              echo "[SKIPPING] Search"
-            fi
-          working_directory: search
-      - save_cache:
-          paths:
-            - search/
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
-
   run_ui_tests:
 
     docker:
@@ -282,30 +257,6 @@ jobs:
               fi
             working_directory: room
 
-  build_search_docker_image:
-
-      docker:
-        - image: circleci/openjdk:8u151-jdk-node-browsers
-
-      steps:
-        - restore_cache:
-            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-search
-
-        - setup_remote_docker:
-            docker_layer_caching: true
-
-        - run:
-            command: |
-              if [ -f ~/project/search/target/restful-booker-platform-search-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
-                echo "[BUILDING] Search"
-                docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_search:latest .
-                docker push mwinteringham/restfulbookerplatform_search:latest
-              else
-                echo "[SKIPPING] Search"
-              fi
-            working_directory: search
-
   build_ui_docker_image:
 
         docker:
@@ -422,29 +373,6 @@ jobs:
               echo "[SKIPPING] Room"
             fi
 
-  deploy_search_docker_image:
-
-      docker:
-        - image: google/cloud-sdk
-
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            name: Store Service Account
-            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-        - run: |
-            if [ -f /home/circleci/tmp/search.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-              echo "[DEPLOYING] Search"
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-              kubectl delete pod $(kubectl get pods | awk '/rbp-search/ {print $1;exit}')
-            else
-              echo "[SKIPPING] Search"
-            fi
-
   deploy_ui_docker_image:
 
       docker:
@@ -503,9 +431,6 @@ workflows:
       - run_room_build:
           requires:
             - checkout_code
-      - run_search_build:
-          requires:
-            - checkout_code
       - run_ui_tests:
           requires:
             - checkout_code
@@ -521,9 +446,6 @@ workflows:
       - build_room_docker_image:
           requires:
             - run_room_build
-      - build_search_docker_image:
-          requires:
-            - run_search_build
       - build_ui_docker_image:
           requires:
             - run_ui_tests
@@ -539,9 +461,6 @@ workflows:
       - deploy_room_docker_image:
           requires:
             - build_room_docker_image
-      - deploy_search_docker_image:
-          requires:
-            - build_search_docker_image
       - deploy_ui_docker_image:
           requires:
             - build_ui_docker_image
@@ -551,5 +470,4 @@ workflows:
             - deploy_booking_docker_image
             - deploy_report_docker_image
             - deploy_room_docker_image
-            - deploy_search_docker_image
             - deploy_ui_docker_image

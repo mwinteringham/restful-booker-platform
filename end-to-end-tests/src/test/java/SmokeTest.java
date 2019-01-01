@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import pageobjects.*;
 
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -66,18 +64,6 @@ public class SmokeTest extends TestSetup {
         int currentBookingCount = roomPage.getBookingCount();
 
         assertThat(currentBookingCount, is(initialBookingCount + 1));
-    }
-
-    @Test
-    public void searchSmokeTest(){
-        NavPage navPage = new NavPage(driver);
-        navPage.populateSearch("James");
-        navPage.submitSearch();
-
-        SearchPage searchPage = new SearchPage(driver);
-        List<WebElement> searchResults = searchPage.getSearchResults();
-
-        assertThat(searchResults.size(), is(1));
     }
 
     @Test

@@ -84,7 +84,6 @@ java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platform-auth-
 java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-*-SNAPSHOT.jar > booking.log &
 java -jar -Dspring.profiles.active=dev room/target/restful-booker-platform-room-*-SNAPSHOT.jar > room.log &
 java -jar -Dspring.profiles.active=dev report/target/restful-booker-platform-report-*-SNAPSHOT.jar > report.log &
-java -jar -Dspring.profiles.active=dev search/target/restful-booker-platform-search-*-SNAPSHOT.jar > search.log &
 java -jar -Dspring.profiles.active=dev ui/api/target/restful-booker-platform-ui-*-SNAPSHOT.jar > ui.log &
 
 node .utilities/monitor/local_monitor.js

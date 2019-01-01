@@ -7,7 +7,6 @@ if(hostname !== 'localhost') {
   backendHost = {
     booking : "https://" + window.location.hostname,
     room : "https://" + window.location.hostname,
-    search : "https://" + window.location.hostname,
     auth : "https://" + window.location.hostname + "/auth",
     report : "https://" + window.location.hostname,
   }
@@ -17,7 +16,6 @@ if(hostname !== 'localhost') {
   backendHost = {
     booking : "http://" + window.location.hostname + ":3000",
     room : "http://" + window.location.hostname + ":3001",
-    search : "http://" + window.location.hostname + ":3002",
     auth : "http://" + window.location.hostname + ":3004/auth",
     report : "http://" + window.location.hostname + ":3005"
   }

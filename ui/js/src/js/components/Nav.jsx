@@ -11,11 +11,9 @@ class Nav extends React.Component {
         this.state = {
           username : "",
 		  password : "",
-		  search : ""
 		}
 		
 		this.doLogout = this.doLogout.bind(this);
-		this.doSearch = this.doSearch.bind(this);
     }
 	
 	doLogout(){
@@ -37,22 +35,6 @@ class Nav extends React.Component {
 		})
 	}
 
-	doSearch(event){
-		if(event.key == 'Enter'){
-			document.getElementById("search").value = '';
-
-			const { history } = this.props;
-			
-			if(history.location.pathname == '/search'){
-				history.push({
-					search: '?keyword=' + this.state.search
-				})
-			} else {
-				history.push('/search?keyword=' + this.state.search)
-			}
-		}
-	}
-
 	render() {
     	return(
 			<nav className="navbar navbar-default">
@@ -65,8 +47,6 @@ class Nav extends React.Component {
 							<li><Link to="/">Rooms</Link></li>
 							<li><Link id="reportLink" to="/report">Report</Link></li>
 							<li id="logout"><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
-							<li><a href="#">Search:</a></li> 
-							<li><input type="text" id="search" defaultValue={this.props.location.search.split('=')[1]} onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 
 						</ul> 
 					)}
 				</div> 

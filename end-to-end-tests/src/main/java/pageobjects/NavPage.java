@@ -1,6 +1,5 @@
 package pageobjects;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,14 +22,6 @@ public class NavPage extends BasePage {
 
     public WebElement getDivNavBar() {
         return divNavBar;
-    }
-
-    public void populateSearch(String keyword) {
-        inputSearchTerm.sendKeys(keyword);
-    }
-
-    public void submitSearch() {
-        inputSearchTerm.sendKeys(Keys.RETURN);
     }
 
     public void clickReport() {

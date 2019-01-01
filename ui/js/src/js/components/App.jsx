@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import { API_ROOT, SHOW_WELCOME } from '../api-config';
 
-import Search from './Search.jsx';
 import Nav from './Nav.jsx';
 import Login from './Login.jsx'
 import Report from './Report.jsx';
@@ -94,7 +93,6 @@ export default class App extends React.Component {
                                 <RoomListings {...props} />
                             </Suspense>
                         )} />
-                        <Route exact path='/search' component={Search} {...this.props}/>
                         <Route exact path='/room/:id' render={({ location, match }) => (
                             <Suspense fallback={<Loading />}>
                                 <RoomDetails params={match.params}/>
