@@ -40,13 +40,13 @@ class Nav extends React.Component {
 			<nav className="navbar navbar-default">
 				<div className="container-fluid"> 
 					<div className="navbar-header"> 
-					<a className="navbar-brand" href="/">Shady Meadows - Booking Management</a> 
+					<a className="navbar-brand" href="/admin/">Shady Meadows - Booking Management</a> 
 					</div>
 					{this.props.isAuthenticated && (
 						<ul className="nav navbar-nav"> 
-							<li><Link to="/">Rooms</Link></li>
-							<li><Link id="reportLink" to="/report">Report</Link></li>
-							<li id="logout"><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
+							<li><Link to="/admin/">Rooms</Link></li>
+							<li><Link id="reportLink" to="/admin/report">Report</Link></li>
+							<li id="logout"><a href="#/admin/" id="logout" onClick={this.doLogout}>Logout</a></li>
 						</ul> 
 					)}
 				</div> 

@@ -10,6 +10,7 @@ import Cookies from 'universal-cookie';
 import CookiePolicy from './CookiePolicy.jsx';
 import PrivacyPolicy from './PrivacyPolicy.jsx';
 import Loading from './Loading.jsx';
+import Home from './Home.jsx';
 
 const RoomListings = React.lazy(() => import('./RoomListings.jsx'));
 const RoomDetails = React.lazy(() => import('./RoomDetails.jsx'));
@@ -68,7 +69,6 @@ export default class App extends React.Component {
     }
 
     render() {
-        let app = null;
         let welcome = null;
 
         if(this.state.showWelcome){
@@ -77,39 +77,44 @@ export default class App extends React.Component {
             </div>
         }
 
-        if(!this.state.isAuthenticated){
-            app = <div>
+        return(
+            <div className="container">
+                {welcome}
+                <div>
                     <Switch>
-                        <Route exact path='/' render={() => <Login setAuthenticate={this.setAuthenticate} />} />
-                        <Route exact path='/cookie' component={CookiePolicy} />
-                        <Route exact path='/privacy' component={PrivacyPolicy} />
-                    </Switch>
-                 </div>
-        } else {
-            app = <div>
-                    <Switch>
-                        <Route exact path='/' render={(props) => (
-                            <Suspense fallback={<Loading />}>
-                                <RoomListings {...props} />
-                            </Suspense>
+                        <Route path='/admin/' render={() => (
+                            <div>
+                                <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
+                                {this.state.isAuthenticated ? (
+                                    <div>
+                                        <Route exact path='/admin/' render={(props) => (
+                                            <div>
+                                                <Suspense fallback={<Loading />}>
+                                                    <RoomListings {...props} />
+                                                </Suspense>
+                                            </div>
+                                        )} />
+                                        <Route exact path='/admin/room/:id' render={({ location, match }) => (
+                                            <div>
+                                                <Suspense fallback={<Loading />}>
+                                                    <RoomDetails params={match.params}/>
+                                                </Suspense>
+                                            </div>
+                                        )} />
+                                        <Route exact path='/admin/report' component={Report} />
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <Login setAuthenticate={this.setAuthenticate} />
+                                    </div>
+                                )}
+                            </div>
                         )} />
-                        <Route exact path='/room/:id' render={({ location, match }) => (
-                            <Suspense fallback={<Loading />}>
-                                <RoomDetails params={match.params}/>
-                            </Suspense>
-                        )} />
-                        <Route exact path='/report' component={Report} />
+                        <Route exact path='/' component={Home} />
                         <Route exact path='/cookie' component={CookiePolicy} />
                         <Route exact path='/privacy' component={PrivacyPolicy} />
                     </Switch>
                 </div>
-        }
-
-        return(
-            <div className="container">
-                <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />               
-                {welcome}
-                {app}
             </div>
         );
     }

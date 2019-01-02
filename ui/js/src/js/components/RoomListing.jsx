@@ -25,7 +25,7 @@ export default class RoomListing extends React.Component {
     render() {
         return(
             <div data-type="room" id={"room"+ this.props.details.roomid} className="row detail">
-                <Link to={"/room/" + this.props.details.roomid}>
+                <Link to={"/admin/room/" + this.props.details.roomid}>
                     <div className="col-sm-1"><p id={"roomNumber"+ this.props.details.roomNumber}>{this.props.details.roomNumber}</p></div>
                     <div className="col-sm-2"><p id={"type"+ this.props.details.type}>{this.props.details.type}</p></div>
                     <div className="col-sm-1"><p id={"beds"+ this.props.details.beds}>{this.props.details.beds}</p></div>
