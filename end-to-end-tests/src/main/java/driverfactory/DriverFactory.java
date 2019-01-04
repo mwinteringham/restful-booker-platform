@@ -3,6 +3,7 @@ package driverfactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -54,10 +55,10 @@ public class DriverFactory
 
         String URL = "http://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com:80/wd/hub";
 
-        ChromeOptions chromeOptions = new ChromeOptions();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
 
         try {
-            return new RemoteWebDriver(new URL(URL), chromeOptions);
+            return new RemoteWebDriver(new URL(URL), firefoxOptions);
         } catch (MalformedURLException e) {
             throw new RuntimeException("WARN: An error occurred attempting to create a remote driver connection. See the following error: " + e);
         }
