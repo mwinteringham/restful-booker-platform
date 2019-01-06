@@ -6,7 +6,7 @@ RBP is currently known to work with the following requirements:
 
 - JDK 1.8
 - Maven 3.3.9
-- Node 8.12.0
+- Node 10.15.0
 - NPM 6.4.1
 
 ## Running locally

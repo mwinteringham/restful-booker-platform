@@ -1,8 +1,6 @@
 import React from 'react';
-import { css } from 'react-emotion';
-// First way to import
+import { css } from 'emotion';
 import { ClipLoader } from 'react-spinners';
-import Popup from 'reactjs-popup';
 
 const override = css`
     display: block;
