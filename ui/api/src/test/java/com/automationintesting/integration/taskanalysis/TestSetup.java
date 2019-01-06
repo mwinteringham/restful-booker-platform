@@ -45,8 +45,6 @@ public class TestSetup {
         eyes.close();
 
         driver.quit();
-
-        eyes.abortIfNotClosed();
     }
 
 }
