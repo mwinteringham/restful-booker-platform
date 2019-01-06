@@ -178,8 +178,8 @@ export default class BookingForm extends React.Component {
                             <option value="true">true</option>
                         </select>
                     </div>
-                    <div className="col-sm-2"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkin)} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
-                    <div className="col-sm-2"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkout)}  onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
+                    <div className="col-sm-2"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkin).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
+                    <div className="col-sm-2"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkout).toDate()}  onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
                     <div className="col-sm-1"><input type="button" id="createBooking" value="Create" onClick={this.createBooking}/></div>
                 </div>
                 {errors}
