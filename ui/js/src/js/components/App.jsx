@@ -10,7 +10,8 @@ import Cookies from 'universal-cookie';
 import CookiePolicy from './CookiePolicy.jsx';
 import PrivacyPolicy from './PrivacyPolicy.jsx';
 import Loading from './Loading.jsx';
-import Home from './Home.jsx';
+import Home from './Home/Home.jsx';
+import Footer from './Footer.jsx';
 
 const RoomListings = React.lazy(() => import('./RoomListings.jsx'));
 const RoomDetails = React.lazy(() => import('./RoomDetails.jsx'));
@@ -78,43 +79,48 @@ export default class App extends React.Component {
         }
 
         return(
-            <div className="container">
-                {welcome}
-                <div>
-                    <Switch>
-                        <Route path='/admin/' render={() => (
-                            <div>
-                                <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
-                                {this.state.isAuthenticated ? (
-                                    <div>
-                                        <Route exact path='/admin/' render={(props) => (
-                                            <div>
-                                                <Suspense fallback={<Loading />}>
-                                                    <RoomListings {...props} />
-                                                </Suspense>
-                                            </div>
-                                        )} />
-                                        <Route exact path='/admin/room/:id' render={({ location, match }) => (
-                                            <div>
-                                                <Suspense fallback={<Loading />}>
-                                                    <RoomDetails params={match.params}/>
-                                                </Suspense>
-                                            </div>
-                                        )} />
-                                        <Route exact path='/admin/report' component={Report} />
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <Login setAuthenticate={this.setAuthenticate} />
-                                    </div>
-                                )}
-                            </div>
-                        )} />
-                        <Route exact path='/' component={Home} />
-                        <Route exact path='/cookie' component={CookiePolicy} />
-                        <Route exact path='/privacy' component={PrivacyPolicy} />
-                    </Switch>
+            <div>
+                <div className="container">
+                    {welcome}
+                    <div>
+                        <Switch>
+                            <Route path='/admin/' render={() => (
+                                <div>
+                                    <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
+                                    {this.state.isAuthenticated ? (
+                                        <div>
+                                            <Route exact path='/admin/' render={(props) => (
+                                                <div>
+                                                    <Suspense fallback={<Loading />}>
+                                                        <RoomListings {...props} />
+                                                    </Suspense>
+                                                </div>
+                                            )} />
+                                            <Route exact path='/admin/room/:id' render={({ location, match }) => (
+                                                <div>
+                                                    <Suspense fallback={<Loading />}>
+                                                        <RoomDetails params={match.params}/>
+                                                    </Suspense>
+                                                </div>
+                                            )} />
+                                            <Route exact path='/admin/report' component={Report} />
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <Login setAuthenticate={this.setAuthenticate} />
+                                        </div>
+                                    )}
+                                </div>
+                            )} />
+                            <Route exact path='/' component={Home} />
+                            <Route exact path='/cookie' component={CookiePolicy} />
+                            <Route exact path='/privacy' component={PrivacyPolicy} />
+                        </Switch>
+                    </div>
                 </div>
+                <Switch>
+                    <Route path='/admin/' component={Footer} />
+                </Switch>
             </div>
         );
     }

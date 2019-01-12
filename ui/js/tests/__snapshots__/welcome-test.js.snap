@@ -2,100 +2,59 @@
 
 exports[`Clicking on close button closes modal 1`] = `
 <App>
-  <div
-    className="container"
-  >
-    <withRouter(Nav)
-      isAuthenticated={false}
-      setAuthenticate={[Function]}
+  <div>
+    <div
+      className="container"
     >
-      <Route>
-        <Nav
-          history={
-            Object {
-              "action": "POP",
-              "block": [Function],
-              "createHref": [Function],
-              "go": [Function],
-              "goBack": [Function],
-              "goForward": [Function],
-              "length": 1,
-              "listen": [Function],
-              "location": Object {
-                "hash": "",
-                "pathname": "/",
-                "search": "",
-                "state": undefined,
-              },
-              "push": [Function],
-              "replace": [Function],
-            }
-          }
-          isAuthenticated={false}
-          location={Object {}}
-          match={Object {}}
-          setAuthenticate={[Function]}
-        >
-          <nav
-            className="navbar navbar-default"
-          >
-            <div
-              className="container-fluid"
-            >
-              <div
-                className="navbar-header"
-              >
-                <a
-                  className="navbar-brand"
-                  href="/"
-                >
-                  Shady Meadows - Booking Management
-                </a>
-              </div>
-            </div>
-          </nav>
-        </Nav>
-      </Route>
-    </withRouter(Nav)>
-    <div>
-      <Switch />
+      <div>
+        <Switch />
+      </div>
     </div>
+    <Switch />
   </div>
 </App>
 `;
 
 exports[`Welcome component appears on initial visit 1`] = `
-<div
-  className="container"
->
-  <withRouter(Nav)
-    isAuthenticated={false}
-    setAuthenticate={[Function]}
-  />
-  <div>
-    <Welcome
-      setWelcome={[Function]}
+<div>
+  <div
+    className="container"
+  >
+    <div>
+      <Welcome
+        setWelcome={[Function]}
+      />
+    </div>
+    <div>
+      <Switch>
+        <Route
+          path="/admin/"
+          render={[Function]}
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/cookie"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/privacy"
+        />
+      </Switch>
+    </div>
+  </div>
+  <Switch>
+    <Route
+      component={[Function]}
+      path="/admin/"
     />
-  </div>
-  <div>
-    <Switch>
-      <Route
-        exact={true}
-        path="/"
-        render={[Function]}
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/cookie"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/privacy"
-      />
-    </Switch>
-  </div>
+  </Switch>
 </div>
 `;
 
@@ -190,31 +149,39 @@ exports[`Welcome component contains correct details 1`] = `
 `;
 
 exports[`Welcome component doesnt appear after close 1`] = `
-<div
-  className="container"
->
-  <withRouter(Nav)
-    isAuthenticated={false}
-    setAuthenticate={[Function]}
-  />
-  <div>
-    <Switch>
-      <Route
-        exact={true}
-        path="/"
-        render={[Function]}
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/cookie"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/privacy"
-      />
-    </Switch>
+<div>
+  <div
+    className="container"
+  >
+    <div>
+      <Switch>
+        <Route
+          path="/admin/"
+          render={[Function]}
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/cookie"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/privacy"
+        />
+      </Switch>
+    </div>
   </div>
+  <Switch>
+    <Route
+      component={[Function]}
+      path="/admin/"
+    />
+  </Switch>
 </div>
 `;

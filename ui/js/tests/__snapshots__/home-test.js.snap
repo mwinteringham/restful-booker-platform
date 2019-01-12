@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page renders 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-4"
+    />
+    <div
+      className="col-sm-4"
+    >
+      <h1>
+        Hotel logo
+      </h1>
+    </div>
+    <div
+      className="col-sm-4"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-4"
+    />
+    <div
+      className="col-sm-4"
+    >
+      <hr />
+      <h2>
+        Hotel description
+      </h2>
+    </div>
+    <div
+      className="col-sm-4"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-4"
+    />
+    <div
+      className="col-sm-4"
+    >
+      <hr />
+      <h2>
+        Rooms listing
+      </h2>
+    </div>
+    <div
+      className="col-sm-4"
+    />
+  </div>
+  <div
+    key="1"
+  >
+    <RoomInfo
+      room={
+        Object {
+          "accessible": false,
+          "beds": 2,
+          "details": "Wifi, TV, Mini-bar",
+          "roomNumber": 101,
+          "roomid": 1,
+          "type": "Twin",
+        }
+      }
+    />
+  </div>
+  <div
+    key="2"
+  >
+    <RoomInfo
+      room={
+        Object {
+          "accessible": true,
+          "beds": 1,
+          "details": "Walk in shower",
+          "roomNumber": 102,
+          "roomid": 2,
+          "type": "Single",
+        }
+      }
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-4"
+    />
+    <div
+      className="col-sm-4"
+    >
+      <hr />
+      <h3>
+        Location
+      </h3>
+    </div>
+    <div
+      className="col-sm-4"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-12"
+    >
+      <HotelMap
+        mapDetails={
+          Object {
+            "hotelName": "Shady meadows B&B",
+            "latitude": 52.6351204,
+            "longitude": 1.2733774,
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-4"
+    />
+    <div
+      className="col-sm-4"
+    >
+      <hr />
+      <h4>
+        Footer
+      </h4>
+    </div>
+    <div
+      className="col-sm-4"
+    />
+  </div>
+</div>
+`;
+
+exports[`Map for home page renders 1`] = `
+<div
+  className="map"
+>
+  <Map
+    animate={true}
+    animateMaxScreens={5}
+    defaultCenter={
+      Array [
+        52.6351204,
+        1.2733774,
+      ]
+    }
+    defaultZoom={17}
+    height={600}
+    limitBounds="center"
+    maxZoom={18}
+    metaWheelZoom={false}
+    metaWheelZoomWarning="Use META+wheel to zoom!"
+    minZoom={1}
+    mouseEvents={true}
+    provider={[Function]}
+    touchEvents={true}
+    twoFingerDrag={false}
+    twoFingerDragWarning="Use two fingers to move the map"
+    warningZIndex={100}
+    width={1024}
+    zoomSnap={true}
+  >
+    <Marker
+      anchor={
+        Array [
+          52.6351204,
+          1.2733774,
+        ]
+      }
+      key="marker_Shady Meadows"
+      payload="Shady Meadows"
+    />
+  </Map>
+</div>
+`;
+
+exports[`Map for home page renders error 1`] = `
+<div
+  className="map"
+>
+  <p>
+    ERROR: Invalid or details missing for map to render
+  </p>
+</div>
+`;
+
+exports[`Room info for home page renders 1`] = `
+<div
+  class="row"
+>
+  <div
+    class="col-sm-12"
+  >
+    <p>
+      Twin
+    </p>
+    <p>
+      2
+    </p>
+    <p />
+    <p>
+      Wifi, TV, Mini-bar
+    </p>
+  </div>
+</div>
+`;
