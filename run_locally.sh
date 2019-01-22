@@ -31,8 +31,8 @@ if [[ -z "${JAVA_HOME}" ]]; then
   exit
 fi
 
-if ! type -p node; then
-    printf "Node is missing. To learn how to install it please visit:
+if ! node -v; then
+    printf "Node is missing or broken. To learn how to install it please visit:
     https://automationintesting.com/setup/settingupnode\n"
     exit
 fi

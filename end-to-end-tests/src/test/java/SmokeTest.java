@@ -59,6 +59,8 @@ public class SmokeTest extends TestSetup {
         roomPage.populateFirstname(booking.getFirstname());
         roomPage.populateLastname(booking.getLastname());
         roomPage.populateTotalPrice(booking.getTotalPrice());
+        roomPage.populateCheckin("2100-01-01");
+        roomPage.populateCheckout("2100-01-02");
         roomPage.clickCreateBooking();
 
         int currentBookingCount = roomPage.getBookingCount();
