@@ -90,7 +90,7 @@ export default class BookingForm extends React.Component {
     handleStartChange(date) {
         if(date != null){
             let currentState = this.state;
-            currentState.newbooking.bookingdates.checkin = date.format("YYYY-MM-DD");
+            currentState.newbooking.bookingdates.checkin = moment(date).format("YYYY-MM-DD");
 
             this.setState({newbooking : currentState.newbooking});
         }
@@ -99,7 +99,7 @@ export default class BookingForm extends React.Component {
     handleEndChange(date) {
         if(date != null){
             let currentState = this.state;
-            currentState.newbooking.bookingdates.checkout = date.format("YYYY-MM-DD");
+            currentState.newbooking.bookingdates.checkout = moment(date).format("YYYY-MM-DD");
 
             this.setState({newbooking : currentState.newbooking});
         }
@@ -178,8 +178,8 @@ export default class BookingForm extends React.Component {
                             <option value="true">true</option>
                         </select>
                     </div>
-                    <div className="col-sm-2"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkin).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
-                    <div className="col-sm-2"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkout).toDate()}  onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
+                    <div className="col-sm-2 checkin"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkin).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
+                    <div className="col-sm-2 checkout"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkout).toDate()}  onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
                     <div className="col-sm-1"><input type="button" id="createBooking" value="Create" onClick={this.createBooking}/></div>
                 </div>
                 {errors}

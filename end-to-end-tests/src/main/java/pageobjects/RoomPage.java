@@ -1,5 +1,6 @@
 package pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +24,18 @@ public class RoomPage extends BasePage {
 
     @FindBy(how = How.CSS, using = ".detail")
     private List<WebElement> lstBookings;
+
+    @FindBy(how = How.CSS, using = ".checkin input")
+    private WebElement inputCheckin;
+
+    @FindBy(how = How.CSS, using = ".checkout input")
+    private WebElement inputCheckout;
+
+    @FindBy(how = How.CSS, using = ".react-datepicker__day--001")
+    private WebElement divFirstdate;
+
+    @FindBy(how = How.CSS, using = ".react-datepicker__day--002")
+    private WebElement divSeconddate;
 
     public RoomPage(WebDriver driver) {
         super(driver);
@@ -54,4 +67,15 @@ public class RoomPage extends BasePage {
         return lstBookings.size();
     }
 
+    public void populateCheckin(String checkInDate) throws InterruptedException {
+        Thread.sleep(1000);
+        inputCheckin.click();
+        divFirstdate.click();
+    }
+
+    public void populateCheckout(String checkOutDate) throws InterruptedException {
+        Thread.sleep(1000);
+        inputCheckout.click();
+        divSeconddate.click();
+    }
 }
