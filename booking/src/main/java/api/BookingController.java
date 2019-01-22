@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import requests.AuthRequests;
 import utils.DatabaseScheduler;
+import validators.DateCheckValidator;
 
 import java.sql.SQLException;
 import java.time.Instant;
@@ -29,6 +30,7 @@ public class BookingController {
 
     private BookingDB bookingDB;
     private AuthRequests authRequests;
+    private DateCheckValidator dateCheckValidator;
 
     @Bean
     public WebMvcConfigurer configurer() {
@@ -55,6 +57,7 @@ public class BookingController {
     public BookingController() throws SQLException {
         bookingDB = new BookingDB(true);
         authRequests = new AuthRequests();
+        dateCheckValidator = new DateCheckValidator();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -73,13 +76,18 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<CreatedBooking> createBooking(@RequestBody Booking booking, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequests.postCheckAuth(token)){
-            if(bookingDB.checkForBookingConflict(booking)){
-                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    public ResponseEntity<?> createBooking(@RequestBody Booking booking, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        if(authRequests.postCheckAuth(token)) {
+            if(dateCheckValidator.isValid(booking.getBookingDates())) {
+                if (bookingDB.checkForBookingConflict(booking)) {
+                    return ResponseEntity.status(HttpStatus.CONFLICT).build();
+                } else {
+                    CreatedBooking body = bookingDB.create(booking);
+                    return ResponseEntity.ok(body);
+                }
             } else {
-                CreatedBooking body = bookingDB.create(booking);
-                return ResponseEntity.ok(body);
+                return ResponseEntity.badRequest()
+                        .body("Dates must be set and Checkout must be after Checkin");
             }
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
