@@ -1,3 +1,5 @@
+package com.automationintesting.unit;
+
 import model.BookingDates;
 import org.junit.Before;
 import org.junit.Test;
