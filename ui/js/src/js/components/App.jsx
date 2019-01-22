@@ -118,9 +118,7 @@ export default class App extends React.Component {
                         </Switch>
                     </div>
                 </div>
-                <Switch>
-                    <Route path='/admin/' component={Footer} />
-                </Switch>
+                <Footer />
             </div>
         );
     }

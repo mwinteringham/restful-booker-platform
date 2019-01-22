@@ -1,23 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Contact form errors render 1`] = `
+<p>
+  ERROR: Missing contact details to render
+</p>
+`;
+
+exports[`Contact form for home page renders 1`] = `
+<div>
+  <ul>
+    <li>
+      Shady Meadows B&B
+    </li>
+    <li>
+      The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S
+    </li>
+    <li>
+      0123456789
+    </li>
+    <li>
+      fake@fakeemail.com
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`Home page renders 1`] = `
 <div>
   <div
     className="row"
   >
     <div
-      className="col-sm-4"
-    />
-    <div
-      className="col-sm-4"
+      className="col-sm-12 text-center"
     >
-      <h1>
-        Hotel logo
-      </h1>
+      <HotelLogo
+        logoDetails={
+          Object {
+            "url": "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
+          }
+        }
+      />
     </div>
-    <div
-      className="col-sm-4"
-    />
   </div>
   <div
     className="row"
@@ -29,27 +52,9 @@ exports[`Home page renders 1`] = `
       className="col-sm-4"
     >
       <hr />
-      <h2>
-        Hotel description
-      </h2>
-    </div>
-    <div
-      className="col-sm-4"
-    />
-  </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-4"
-    />
-    <div
-      className="col-sm-4"
-    >
-      <hr />
-      <h2>
-        Rooms listing
-      </h2>
+      <p>
+        Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It's a delightful place.
+      </p>
     </div>
     <div
       className="col-sm-4"
@@ -91,19 +96,19 @@ exports[`Home page renders 1`] = `
     className="row"
   >
     <div
-      className="col-sm-4"
-    />
-    <div
-      className="col-sm-4"
+      className="col-sm-12"
     >
-      <hr />
-      <h3>
-        Location
-      </h3>
+      <HotelContact
+        contact={
+          Object {
+            "address": "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S",
+            "email": "fake@fakeemail.com",
+            "name": "Shady Meadows B&B",
+            "phone": "0123456789",
+          }
+        }
+      />
     </div>
-    <div
-      className="col-sm-4"
-    />
   </div>
   <div
     className="row"
@@ -122,25 +127,21 @@ exports[`Home page renders 1`] = `
       />
     </div>
   </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-4"
-    />
-    <div
-      className="col-sm-4"
-    >
-      <hr />
-      <h4>
-        Footer
-      </h4>
-    </div>
-    <div
-      className="col-sm-4"
-    />
-  </div>
 </div>
+`;
+
+exports[`Logo for home page errors render 1`] = `
+<p>
+  ERROR: Url link not provided
+</p>
+`;
+
+exports[`Logo for home page renders 1`] = `
+<img
+  alt="Hotel logo"
+  className="hotel-logo"
+  src="https://www.mwtestconsultancy.co.uk/img/rbp-logo.png"
+/>
 `;
 
 exports[`Map for home page renders 1`] = `
@@ -198,10 +199,10 @@ exports[`Map for home page renders error 1`] = `
 
 exports[`Room info for home page renders 1`] = `
 <div
-  class="row"
+  className="row"
 >
   <div
-    class="col-sm-12"
+    className="col-sm-12"
   >
     <p>
       Twin

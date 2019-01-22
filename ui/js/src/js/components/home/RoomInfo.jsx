@@ -8,8 +8,8 @@ export default class RoomInfo extends React.Component {
 
     render(){
         return(
-            <div class="row">
-                <div class="col-sm-12">
+            <div className="row">
+                <div className="col-sm-12">
                     <p>{this.props.room.type}</p>
                     <p>{this.props.room.beds}</p>
                     <p>{this.props.room.accessible}</p>

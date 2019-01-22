@@ -10,7 +10,56 @@ exports[`Clicking on close button closes modal 1`] = `
         <Switch />
       </div>
     </div>
-    <Switch />
+    <Footer>
+      <footer
+        className="footer"
+        id="footer"
+      >
+        <div
+          className="container"
+        >
+          <p
+            className="text-muted"
+          >
+            restful-booker-platform v3.0 - Created by 
+            <a
+              href="http://www.mwtestconsultancy.co.uk"
+            >
+              Mark Winteringham
+            </a>
+             - © 2018 
+            <a
+              href="/#/cookie"
+            >
+              Cookie-Policy
+            </a>
+             - 
+            <a
+              href="/#/privacy"
+            >
+              Privacy-Policy
+            </a>
+             
+            <span
+              style={
+                Object {
+                  "float": "right",
+                }
+              }
+            >
+              Learn more about 
+              <a
+                alt="Automation in testing site"
+                href="https://automationintesting.com"
+              >
+                Automation in Testing
+              </a>
+               here
+            </span>
+          </p>
+        </div>
+      </footer>
+    </Footer>
   </div>
 </App>
 `;
@@ -49,12 +98,7 @@ exports[`Welcome component appears on initial visit 1`] = `
       </Switch>
     </div>
   </div>
-  <Switch>
-    <Route
-      component={[Function]}
-      path="/admin/"
-    />
-  </Switch>
+  <Footer />
 </div>
 `;
 
@@ -177,11 +221,6 @@ exports[`Welcome component doesnt appear after close 1`] = `
       </Switch>
     </div>
   </div>
-  <Switch>
-    <Route
-      component={[Function]}
-      path="/admin/"
-    />
-  </Switch>
+  <Footer />
 </div>
 `;
