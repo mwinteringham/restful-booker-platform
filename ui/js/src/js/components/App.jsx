@@ -10,7 +10,7 @@ import Cookies from 'universal-cookie';
 import CookiePolicy from './CookiePolicy.jsx';
 import PrivacyPolicy from './PrivacyPolicy.jsx';
 import Loading from './Loading.jsx';
-import Home from './Home/Home.jsx';
+import Home from './Home.jsx';
 import Footer from './Footer.jsx';
 
 const RoomListings = React.lazy(() => import('./RoomListings.jsx'));

@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from '../src/js/components/home/Home.jsx';
-import RoomInfo from '../src/js/components/home/RoomInfo.jsx';
-import HotelMap from '../src/js/components/home/HotelMap.jsx';
-import HotelLogo from '../src/js/components/home/HotelLogo.jsx';
-import HotelContact from '../src/js/components/home/HotelContact.jsx';
+import Home from '../src/js/components/Home.jsx';
+import RoomInfo from '../src/js/components/RoomInfo.jsx';
+import HotelMap from '../src/js/components/HotelMap.jsx';
+import HotelLogo from '../src/js/components/HotelLogo.jsx';
+import HotelContact from '../src/js/components/HotelContact.jsx';
 
 test('Home page renders', () => {
     const homeState = {
