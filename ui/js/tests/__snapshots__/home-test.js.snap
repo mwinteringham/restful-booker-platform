@@ -7,96 +7,126 @@ exports[`Contact form errors render 1`] = `
 `;
 
 exports[`Contact form for home page renders 1`] = `
-<div>
-  <ul>
-    <li>
+<div
+  className="row"
+>
+  <div
+    className="col-sm-1"
+  />
+  <div
+    className="col-sm-5"
+  >
+    <p>
+      Form
+    </p>
+  </div>
+  <div
+    className="col-sm-5"
+  >
+    <p>
+      <span
+        className="glyphicon glyphicon-home"
+      />
+       
       Shady Meadows B&B
-    </li>
-    <li>
+    </p>
+    <p>
+      <span />
+       
       The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S
-    </li>
-    <li>
+    </p>
+    <p>
+      <span
+        className="glyphicon glyphicon-earphone"
+      />
+       
       0123456789
-    </li>
-    <li>
+    </p>
+    <p>
+      <span
+        className="glyphicon glyphicon-envelope"
+      />
+       
       fake@fakeemail.com
-    </li>
-  </ul>
+    </p>
+  </div>
+  <div
+    className="col-sm-1"
+  />
 </div>
 `;
 
 exports[`Home page renders 1`] = `
 <div>
   <div
-    className="row"
+    className="container-fluid"
   >
     <div
-      className="col-sm-12 text-center"
+      className="row"
     >
-      <HotelLogo
-        logoDetails={
+      <div
+        className="col-sm-12 text-center"
+      >
+        <HotelLogo
+          logoDetails={
+            Object {
+              "url": "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className="row hotel-description"
+    >
+      <div
+        className="col-sm-1"
+      />
+      <div
+        className="col-sm-10"
+      >
+        <p>
+          Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It's a delightful place.
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      />
+    </div>
+    <div
+      key="1"
+    >
+      <RoomInfo
+        room={
           Object {
-            "url": "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
+            "accessible": false,
+            "beds": 2,
+            "details": "Wifi, TV, Mini-bar",
+            "roomNumber": 101,
+            "roomid": 1,
+            "type": "Twin",
           }
         }
       />
     </div>
-  </div>
-  <div
-    className="row"
-  >
     <div
-      className="col-sm-4"
-    />
-    <div
-      className="col-sm-4"
+      key="2"
     >
-      <hr />
-      <p>
-        Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It's a delightful place.
-      </p>
+      <RoomInfo
+        room={
+          Object {
+            "accessible": true,
+            "beds": 1,
+            "details": "Walk in shower",
+            "roomNumber": 102,
+            "roomid": 2,
+            "type": "Single",
+          }
+        }
+      />
     </div>
     <div
-      className="col-sm-4"
-    />
-  </div>
-  <div
-    key="1"
-  >
-    <RoomInfo
-      room={
-        Object {
-          "accessible": false,
-          "beds": 2,
-          "details": "Wifi, TV, Mini-bar",
-          "roomNumber": 101,
-          "roomid": 1,
-          "type": "Twin",
-        }
-      }
-    />
-  </div>
-  <div
-    key="2"
-  >
-    <RoomInfo
-      room={
-        Object {
-          "accessible": true,
-          "beds": 1,
-          "details": "Walk in shower",
-          "roomNumber": 102,
-          "roomid": 2,
-          "type": "Single",
-        }
-      }
-    />
-  </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-12"
+      className="row"
     >
       <HotelContact
         contact={
@@ -109,13 +139,12 @@ exports[`Home page renders 1`] = `
         }
       />
     </div>
-  </div>
-  <div
-    className="row"
-  >
     <div
-      className="col-sm-12"
+      className="row"
     >
+      <div
+        className="col-sm-12"
+      />
       <HotelMap
         mapDetails={
           Object {

@@ -3,13 +3,7 @@
 exports[`Clicking on close button closes modal 1`] = `
 <App>
   <div>
-    <div
-      className="container"
-    >
-      <div>
-        <Switch />
-      </div>
-    </div>
+    <Switch />
     <Footer>
       <footer
         className="footer"
@@ -66,38 +60,32 @@ exports[`Clicking on close button closes modal 1`] = `
 
 exports[`Welcome component appears on initial visit 1`] = `
 <div>
-  <div
-    className="container"
-  >
-    <div>
-      <Welcome
-        setWelcome={[Function]}
-      />
-    </div>
-    <div>
-      <Switch>
-        <Route
-          path="/admin/"
-          render={[Function]}
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          path="/"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          path="/cookie"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          path="/privacy"
-        />
-      </Switch>
-    </div>
+  <div>
+    <Welcome
+      setWelcome={[Function]}
+    />
   </div>
+  <Switch>
+    <Route
+      path="/admin/"
+      render={[Function]}
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/cookie"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/privacy"
+    />
+  </Switch>
   <Footer />
 </div>
 `;
@@ -194,33 +182,27 @@ exports[`Welcome component contains correct details 1`] = `
 
 exports[`Welcome component doesnt appear after close 1`] = `
 <div>
-  <div
-    className="container"
-  >
-    <div>
-      <Switch>
-        <Route
-          path="/admin/"
-          render={[Function]}
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          path="/"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          path="/cookie"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          path="/privacy"
-        />
-      </Switch>
-    </div>
-  </div>
+  <Switch>
+    <Route
+      path="/admin/"
+      render={[Function]}
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/cookie"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/privacy"
+    />
+  </Switch>
   <Footer />
 </div>
 `;
