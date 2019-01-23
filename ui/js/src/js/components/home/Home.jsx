@@ -45,32 +45,31 @@ export default class Home extends React.Component {
 
 	render() {
     	return(
-			<div>
-                <div className="row">
-                    <div className='col-sm-12 text-center'>
-                        <HotelLogo logoDetails={this.state.logo} />
+            <div>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className='col-sm-12 text-center'>
+                            <HotelLogo logoDetails={this.state.logo} />
+                        </div>
                     </div>
-                </div>
-                <div className="row hotel-description">
-                    <div className='col-sm-2'></div>
-                    <div className='col-sm-8'>
-                        <p>{this.state.description}</p>
+                    <div className="row hotel-description">
+                        <div className='col-sm-1'></div>
+                        <div className='col-sm-10'>
+                            <p>{this.state.description}</p>
+                        </div>
+                        <div className='col-sm-1'></div>
                     </div>
-                    <div className='col-sm-2'></div>
-                </div>
-                {this.state.rooms.map((roomDetails) => {
-					return <div key={roomDetails.roomid}><RoomInfo room={roomDetails} /></div>
-				})}
-                <div className="row">
-                    <div className='col-sm-12'>
+                    {this.state.rooms.map((roomDetails) => {
+                        return <div key={roomDetails.roomid}><RoomInfo room={roomDetails} /></div>
+                    })}
+                    <div className="row">
                         <HotelContact contact={this.state.contact} />
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-sm-12">
-                        <HotelMap mapDetails={this.state.map}/>
+                    <div className="row">
+                        <div className='col-sm-12'></div>
+                            <HotelMap mapDetails={this.state.map}/>
+                        </div>
                     </div>
-                </div>
             </div>
       );
     }

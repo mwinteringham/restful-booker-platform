@@ -80,11 +80,10 @@ export default class App extends React.Component {
 
         return(
             <div>
-                <div className="container">
-                    {welcome}
-                    <div>
-                        <Switch>
-                            <Route path='/admin/' render={() => (
+                {welcome}
+                    <Switch>
+                        <Route path='/admin/' render={() => (
+                            <div className="container">
                                 <div>
                                     <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
                                     {this.state.isAuthenticated ? (
@@ -111,13 +110,12 @@ export default class App extends React.Component {
                                         </div>
                                     )}
                                 </div>
-                            )} />
-                            <Route exact path='/' component={Home} />
-                            <Route exact path='/cookie' component={CookiePolicy} />
-                            <Route exact path='/privacy' component={PrivacyPolicy} />
-                        </Switch>
-                    </div>
-                </div>
+                            </div>
+                        )} />
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/cookie' component={CookiePolicy} />
+                        <Route exact path='/privacy' component={PrivacyPolicy} />
+                    </Switch>
                 <Footer />
             </div>
         );
