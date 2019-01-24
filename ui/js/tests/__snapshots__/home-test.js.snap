@@ -8,7 +8,7 @@ exports[`Contact form errors render 1`] = `
 
 exports[`Contact form for home page renders 1`] = `
 <div
-  className="row"
+  className="row contact"
 >
   <div
     className="col-sm-1"
@@ -16,16 +16,132 @@ exports[`Contact form for home page renders 1`] = `
   <div
     className="col-sm-5"
   >
-    <p>
-      Form
-    </p>
+    <form>
+      <div
+        className="input-group mb-3"
+      >
+        <div
+          className="input-group-prepend"
+        >
+          <span
+            className="input-group-text"
+            id="basic-addon1"
+          >
+            <span
+              className="fa fa-id-card"
+            />
+          </span>
+        </div>
+        <input
+          aria-describedby="basic-addon1"
+          aria-label="Name"
+          className="form-control"
+          placeholder="Name"
+          type="text"
+        />
+      </div>
+      <div
+        className="input-group mb-3"
+      >
+        <div
+          className="input-group-prepend"
+        >
+          <span
+            className="input-group-text"
+            id="basic-addon1"
+          >
+            <span
+              className="fa fa-envelope"
+            />
+          </span>
+        </div>
+        <input
+          aria-describedby="basic-addon1"
+          aria-label="Email"
+          className="form-control"
+          placeholder="Email"
+          type="text"
+        />
+      </div>
+      <div
+        className="input-group mb-3"
+      >
+        <div
+          className="input-group-prepend"
+        >
+          <span
+            className="input-group-text"
+            id="basic-addon1"
+          >
+            <span
+              className="fa fa-phone"
+            />
+          </span>
+        </div>
+        <input
+          aria-describedby="basic-addon1"
+          aria-label="Phone"
+          className="form-control"
+          placeholder="Phone"
+          type="text"
+        />
+      </div>
+      <div
+        className="input-group mb-3"
+      >
+        <div
+          className="input-group-prepend"
+        >
+          <span
+            className="input-group-text"
+            id="basic-addon1"
+          >
+            <span
+              className="fa fa-envelope"
+            />
+          </span>
+        </div>
+        <input
+          aria-describedby="basic-addon1"
+          aria-label="Subject"
+          className="form-control"
+          placeholder="Subject"
+          type="text"
+        />
+      </div>
+      <div
+        className="input-group"
+      >
+        <div
+          className="input-group-prepend"
+        >
+          <span
+            className="input-group-text"
+          >
+            Message
+          </span>
+        </div>
+        <textarea
+          aria-label="Message"
+          className="form-control"
+          rows="5"
+        />
+      </div>
+      <br />
+      <button
+        className="btn btn-outline-secondary float-right"
+        type="button"
+      >
+        Submit
+      </button>
+    </form>
   </div>
   <div
     className="col-sm-5"
   >
     <p>
       <span
-        className="glyphicon glyphicon-home"
+        className="fa fa-home"
       />
        
       Shady Meadows B&B
@@ -37,14 +153,14 @@ exports[`Contact form for home page renders 1`] = `
     </p>
     <p>
       <span
-        className="glyphicon glyphicon-earphone"
+        className="fa fa-phone"
       />
        
       0123456789
     </p>
     <p>
       <span
-        className="glyphicon glyphicon-envelope"
+        className="fa fa-envelope"
       />
        
       fake@fakeemail.com
@@ -125,20 +241,16 @@ exports[`Home page renders 1`] = `
         }
       />
     </div>
-    <div
-      className="row"
-    >
-      <HotelContact
-        contact={
-          Object {
-            "address": "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S",
-            "email": "fake@fakeemail.com",
-            "name": "Shady Meadows B&B",
-            "phone": "0123456789",
-          }
+    <HotelContact
+      contact={
+        Object {
+          "address": "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S",
+          "email": "fake@fakeemail.com",
+          "name": "Shady Meadows B&B",
+          "phone": "0123456789",
         }
-      />
-    </div>
+      }
+    />
     <div
       className="row"
     >

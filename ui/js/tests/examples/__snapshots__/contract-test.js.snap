@@ -51,7 +51,7 @@ exports[`Rooms list component 1`] = `
       className="col-sm-1"
     >
       <span
-        className="glyphicon glyphicon-pencil bookingEdit"
+        className="fa fa-pencil bookingEdit"
         onClick={[Function]}
         style={
           Object {
@@ -60,7 +60,7 @@ exports[`Rooms list component 1`] = `
         }
       />
       <span
-        className="glyphicon glyphicon-trash bookingDelete"
+        className="fa fa-trash bookingDelete"
         onClick={[Function]}
       />
     </div>
