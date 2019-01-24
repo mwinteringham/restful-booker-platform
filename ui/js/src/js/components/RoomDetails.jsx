@@ -107,8 +107,8 @@ export default class RoomDetails extends React.Component {
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <h2>Room: <input type="text" defaultValue={this.state.orgRoom.roomNumber} style={{width: "70%"}} onChange={val => this.state.editRoom.roomNumber = val.target.value} />
-                                            <span className="glyphicon glyphicon-ok confirmRoomEdit" onClick={this.doEdit} style={{paddingLeft: 10 + "px", fontSize: 0.5 + "em"}}></span>
-                                            <span className="glyphicon glyphicon-remove exitRoomEdit" onClick={this.disableEdit} style={{paddingLeft: 10 + "px", fontSize: 0.5 + "em"}}></span>
+                                            <span className="fa fa-ok confirmRoomEdit" onClick={this.doEdit} style={{paddingLeft: 10 + "px", fontSize: 0.5 + "em"}}></span>
+                                            <span className="fa fa-remove exitRoomEdit" onClick={this.disableEdit} style={{paddingLeft: 10 + "px", fontSize: 0.5 + "em"}}></span>
                                         </h2>
                                         <p>Type: <input type="text" defaultValue={this.state.orgRoom.type} onChange={val => this.state.editRoom.type = val.target.value} /></p>
                                         <p>Beds: <input type="text" defaultValue={this.state.orgRoom.beds} onChange={val => this.state.editRoom.beds = val.target.value} /></p>
@@ -123,7 +123,7 @@ export default class RoomDetails extends React.Component {
         } else {
             roomSummary = <div className="row">
                             <div className="col-sm-6">
-                                <h2>Room: {this.state.orgRoom.roomNumber} <span className="glyphicon glyphicon-pencil roomEdit" onClick={this.enableEdit} style={{marginLeft: "5px", fontSize: 0.5 + "em"}} ></span></h2>
+                                <h2>Room: {this.state.orgRoom.roomNumber} <span className="fa fa-pencil roomEdit" onClick={this.enableEdit} style={{marginLeft: "5px", fontSize: 0.5 + "em"}} ></span></h2>
                                 <p>Type: <span>{this.state.orgRoom.type}</span></p>
                                 <p>Beds: <span>{this.state.orgRoom.beds}</span></p>
                                 <p>Accessible: <span>{this.state.orgRoom.accessible.toString()}</span></p>

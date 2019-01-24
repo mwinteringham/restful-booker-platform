@@ -105,8 +105,8 @@ export default class BookingListing extends React.Component {
                         <div className="col-sm-2"><DatePicker selected={moment(this.state.booking.bookingdates.checkin)} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
                         <div className="col-sm-2"><DatePicker selected={moment(this.state.booking.bookingdates.checkout)} onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
                         <div className="col-sm-1">
-                            <span className="glyphicon glyphicon-ok confirmBookingEdit" onClick={this.doEdit} style={{paddingRight : 10 + "px"}}></span>
-                            <span className="glyphicon glyphicon-remove exitBookingEdit" onClick={this.disableEdit}></span>
+                            <span className="fa fa-ok confirmBookingEdit" onClick={this.doEdit} style={{paddingRight : 10 + "px"}}></span>
+                            <span className="fa fa-remove exitBookingEdit" onClick={this.disableEdit}></span>
                         </div>
                     </div>
         } else {
@@ -118,8 +118,8 @@ export default class BookingListing extends React.Component {
                         <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkin.split('T')[0]}</p></div>
                         <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkout.split('T')[0]}</p></div>
                         <div className="col-sm-1">
-                            <span className="glyphicon glyphicon-pencil bookingEdit" onClick={this.enableEdit} style={{paddingRight: 10 + "px"}}></span>
-                            <span className="glyphicon glyphicon-trash bookingDelete" onClick={this.doDelete}></span>
+                            <span className="fa fa-pencil bookingEdit" onClick={this.enableEdit} style={{paddingRight: 10 + "px"}}></span>
+                            <span className="fa fa-trash bookingDelete" onClick={this.doDelete}></span>
                         </div>
                       </div>
         }

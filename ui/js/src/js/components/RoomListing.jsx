@@ -33,7 +33,7 @@ export default class RoomListing extends React.Component {
                     <div className="col-sm-6"><p id={"details"+ this.props.details.details}>{this.props.details.details}</p></div>
                 </Link>
                 <div className="col-sm-1">
-                    <span className="glyphicon glyphicon-remove roomDelete" id={this.props.details.roomid} onClick={() => this.deleteRoom()}></span>
+                    <span className="fa fa-remove roomDelete" id={this.props.details.roomid} onClick={() => this.deleteRoom()}></span>
                 </div>
             </div>
         );

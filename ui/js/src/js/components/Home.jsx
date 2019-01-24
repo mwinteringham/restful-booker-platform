@@ -64,9 +64,7 @@ export default class Home extends React.Component {
                     {this.state.rooms.map((roomDetails) => {
                         return <div key={roomDetails.roomid}><RoomInfo room={roomDetails} /></div>
                     })}
-                    <div className="row">
                         <HotelContact contact={this.state.contact} />
-                    </div>
                     <div className="row">
                         <div className='col-sm-12'></div>
                         <HotelMap mapDetails={this.state.map} />
