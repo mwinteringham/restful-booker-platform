@@ -27,6 +27,7 @@ export default class HotelMap extends React.Component {
             defaultCenter={[this.props.mapDetails.latitude, this.props.mapDetails.longitude]}
             defaultZoom={17}
             provider={getProvider}
+            mouseEvents={false}
           >
           
           {marker}
