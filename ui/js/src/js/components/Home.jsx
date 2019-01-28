@@ -1,6 +1,6 @@
 import React from 'react';
 import fetch from 'node-fetch';
-import RoomInfo from './RoomInfo.jsx';
+import HotelRoomInfo from './HotelRoomInfo.jsx';
 import HotelMap from './HotelMap.jsx';
 import HotelLogo from './HotelLogo.jsx';
 import HotelContact from './HotelContact.jsx';
@@ -15,17 +15,31 @@ export default class Home extends React.Component {
             rooms : [{
                 roomid: 1,
                 roomNumber: 101,
-                type: 'Twin',
+                type: 'Standard Room',
                 beds: 2,
                 accessible: false,
-                details: 'Wifi, TV, Mini-bar'
+                image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+                description: 'Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.',
+                features: [
+                    'Internet/Wi-fi',
+                    'Jacuzzi Bathroom',
+                    'Air conditioning',
+                    'High Definition TV',
+                    'Mini-bar'
+                ]
             },{
                 roomid: 2,
                 roomNumber: 102,
                 type: 'Single',
                 beds: 1,
                 accessible: true,
-                details: 'Walk in shower'
+                image: 'https://www.mwtestconsultancy.co.uk/img/room2.jpg',
+                description: 'Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.',
+                features: [
+                    'Internet/Wi-fi',
+                    'Air conditioning',
+                    'Mini-bar'
+                ]
             }]
         }
     }
@@ -61,8 +75,15 @@ export default class Home extends React.Component {
                         </div>
                         <div className='col-sm-1'></div>
                     </div>
+                    <div className="row room-header">
+                        <div className='col-sm-1'></div>
+                        <div className='col-sm-10'>
+                            <h2>Rooms</h2>
+                        </div>
+                        <div className='col-sm-1'></div>
+                    </div>
                     {this.state.rooms.map((roomDetails) => {
-                        return <div key={roomDetails.roomid}><RoomInfo room={roomDetails} /></div>
+                        return <div key={roomDetails.roomid}><HotelRoomInfo room={roomDetails} /></div>
                     })}
                         <HotelContact contact={this.state.contact} />
                     <div className="row">
