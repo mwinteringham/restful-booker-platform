@@ -1,5 +1,6 @@
 package com.automationintesting.api;
 
+import com.automationintesting.db.BrandingDB;
 import com.automationintesting.model.Branding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.sql.SQLException;
+
 @RestController
 public class BrandingController {
+
+    private BrandingDB brandingDB;
 
     @Bean
     public WebMvcConfigurer configurer() {
@@ -32,12 +37,13 @@ public class BrandingController {
         };
     }
 
-    public BrandingController() {
+    public BrandingController() throws SQLException {
+        this.brandingDB = new BrandingDB();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<Branding> getBranding() {
-        Branding branding = new Branding();
+    public ResponseEntity<Branding> getBranding() throws SQLException {
+        Branding branding = brandingDB.queryBranding();
 
         return ResponseEntity.ok(branding);
     }
