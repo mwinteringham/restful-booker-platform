@@ -7,7 +7,6 @@ const PATHS = {
 
 module.exports = {
   entry: ["./src/js/index.js"],
-  watch : true,
   output: {
     path: PATHS.build,
     filename: "js/[name].js"
