@@ -1,26 +1,40 @@
 import React from 'react';
 import Home from '../src/js/components/Home.jsx';
-import RoomInfo from '../src/js/components/RoomInfo.jsx';
 import HotelMap from '../src/js/components/HotelMap.jsx';
 import HotelLogo from '../src/js/components/HotelLogo.jsx';
 import HotelContact from '../src/js/components/HotelContact.jsx';
+import HotelRoomInfo from '../src/js/components/HotelRoomInfo.jsx';
 
 test('Home page renders', () => {
     const homeState = {
         rooms : [{
             roomid: 1,
             roomNumber: 101,
-            type: "Twin",
+            type: 'Standard Room',
             beds: 2,
             accessible: false,
-            details: "Wifi, TV, Mini-bar"
+            image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+            description: 'Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.',
+            features: [
+                'Internet/Wi-fi',
+                'Jacuzzi Bathroom',
+                'Air conditioning',
+                'High Definition TV',
+                'Mini-bar'
+            ]
         },{
             roomid: 2,
             roomNumber: 102,
-            type: "Single",
+            type: 'Single',
             beds: 1,
             accessible: true,
-            details: "Walk in shower"
+            image: 'https://www.mwtestconsultancy.co.uk/img/room2.jpg',
+            description: 'Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.',
+            features: [
+                'Internet/Wi-fi',
+                'Air conditioning',
+                'Mini-bar'
+            ]
         }],
         map : {
             hotelName : 'Shady meadows B&B',
@@ -53,17 +67,25 @@ test('Room info for home page renders', () => {
     const roomDetails = {
         roomid: 1,
         roomNumber: 101,
-        type: "Twin",
+        type: 'Standard Room',
         beds: 2,
         accessible: false,
-        details: "Wifi, TV, Mini-bar"
+        image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+        description: 'Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.',
+        features: [
+            'Internet/Wi-fi',
+            'Jacuzzi Bathroom',
+            'Air conditioning',
+            'High Definition TV',
+            'Mini-bar'
+        ]
     }
 
-    const roomInfoComponent = shallow(
-        <RoomInfo room={roomDetails} />
+    const hotelRoomInfoComponent = shallow(
+        <HotelRoomInfo room={roomDetails} />
     )
 
-    expect(roomInfoComponent).toMatchSnapshot();
+    expect(hotelRoomInfoComponent).toMatchSnapshot();
 });
 
 test('Map for home page renders', () => {
