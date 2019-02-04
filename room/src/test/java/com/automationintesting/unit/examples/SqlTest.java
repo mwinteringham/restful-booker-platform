@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class SqlTest extends BaseTest {
 
@@ -26,7 +27,13 @@ public class SqlTest extends BaseTest {
         roomDB.resetDB();
 
         // We then create a Room object to send to the roomDB
-        Room room = new Room(101, "Twin", 2, false , "Detail, Detail, Detail");
+        Room room = new Room(101,
+                "Twin",
+                2,
+                false,
+                "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
+                "Aenean porttitor mauris sit amet lacinia molestie",
+                new String[]{"Wifi, TV, Mini-bar"});
 
         // With the room created we can send it to the RoomDB to be created
         Room createdRoom = roomDB.create(room);
@@ -49,9 +56,9 @@ public class SqlTest extends BaseTest {
         // We then convert the room into a string to easily assert against
         String queriedRoomString = queriedRoom.toString();
 
-        // We finally use hamcrest to assertThat the room we queried
+        // We finally use Junit's assertEquals to check the room we queried
         // is the same as the expected String in the second parameter
-        assertThat(queriedRoomString, is("Room{roomid=" + currentRoomId + ", roomNumber=101, type='Twin', beds=2, accessible=false, details='Detail, Detail, Detail', bookings=null}"));
+        assertEquals(queriedRoomString, "Room{\nroomid=" + currentRoomId + "\n, roomNumber=101\n, type='Twin'\n, beds=2\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Aenean porttitor mauris sit amet lacinia molestie'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}");
     }
 
     @Test
@@ -67,29 +74,41 @@ public class SqlTest extends BaseTest {
 
         String queriedRoomString = queriedRoom.toString();
 
-        assertThat(queriedRoomString, is("[Room{roomid=" + currentRoomId + ", roomNumber=101, type='Twin', beds=2, accessible=false, details='Detail, Detail, Detail', bookings=null}]"));
+        assertEquals(queriedRoomString, "[Room{\nroomid=1\n, roomNumber=101\n, type='Twin'\n, beds=2\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Aenean porttitor mauris sit amet lacinia molestie'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}]");
     }
 
     @Test
     public void testCreateRoom() throws SQLException {
-        Room room = new Room(102, "Single", 1, true , "Cake");
+        Room room = new Room(102,
+                "Twin",
+                2,
+                false,
+                "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
+                "In posuere accumsan aliquet.",
+                new String[]{"Wifi, TV, Mini-bar"});
 
         Room createdRoom = roomDB.create(room);
 
         String createdRoomString = createdRoom.toString();
 
-        assertThat(createdRoomString, is("Room{roomid=" + (currentRoomId + 1) + ", roomNumber=102, type='Single', beds=1, accessible=true, details='Cake', bookings=null}"));
+        assertEquals(createdRoomString, "Room{\nroomid=" + (currentRoomId + 1) + "\n, roomNumber=102\n, type='Twin'\n, beds=2\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='In posuere accumsan aliquet.'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}");
     }
 
     @Test
     public void testUpdateRoom() throws SQLException {
-        Room room = new Room(103, "Single", 1, true , "Cake");
+        Room room = new Room(103,
+                "Twin",
+                2,
+                false,
+                "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
+                "Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
+                new String[]{"Wifi, TV, Mini-bar"});
 
         Room updatedRoom = roomDB.update(currentRoomId, room);
 
         String updatedRoomString = updatedRoom.toString();
 
-        assertThat(updatedRoomString, is("Room{roomid=" + currentRoomId + ", roomNumber=103, type='Single', beds=1, accessible=true, details='Cake', bookings=null}"));
+        assertEquals(updatedRoomString, "Room{\nroomid=" + currentRoomId + "\n, roomNumber=103\n, type='Twin'\n, beds=2\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}");
     }
 
 

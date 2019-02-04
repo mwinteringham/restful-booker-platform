@@ -2,8 +2,10 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -20,19 +22,25 @@ public class Room {
     @JsonProperty
     private boolean accessible;
     @JsonProperty
-    private String details;
+    private String image;
+    @JsonProperty
+    private String description;
+    @JsonProperty
+    private String[] features;
     @JsonProperty
     private List<Booking> bookings;
 
     public Room() {
     }
 
-    public Room(int roomNumber, String type, int beds, boolean accessible, String details) {
+    public Room(int roomNumber, String type, int beds, boolean accessible, String image, String description, String[] features) {
         this.roomNumber = roomNumber;
         this.type = type;
         this.beds = beds;
         this.accessible = accessible;
-        this.details = details;
+        this.image = image;
+        this.description = description;
+        this.features = features;
     }
 
     public Room(ResultSet result) throws SQLException {
@@ -41,7 +49,11 @@ public class Room {
         this.type = result.getString("type");
         this.beds = result.getInt("beds");
         this.accessible = result.getBoolean("accessible");
-        this.details = result.getString("details");
+        this.image = result.getString("image");
+        this.description = result.getString("description");
+        
+        Array featuresArray = result.getArray("features");
+        this.features = (String[])featuresArray.getArray();
     }
 
     public int getRoomid() {
@@ -84,12 +96,28 @@ public class Room {
         this.accessible = accessible;
     }
 
-    public String getDetails() {
-        return details;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setDescription(String details) {
+        this.description = details;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String[] getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(String[] features) {
+        this.features = features;
     }
 
     public List<Booking> getBookings() {
@@ -103,13 +131,15 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
-                "roomid=" + roomid +
-                ", roomNumber=" + roomNumber +
-                ", type='" + type + '\'' +
-                ", beds=" + beds +
-                ", accessible=" + accessible +
-                ", details='" + details + '\'' +
-                ", bookings=" + bookings +
-                '}';
+                "\nroomid=" + roomid +
+                "\n, roomNumber=" + roomNumber +
+                "\n, type='" + type + '\'' +
+                "\n, beds=" + beds +
+                "\n, accessible=" + accessible +
+                "\n, image='" + image + '\'' +
+                "\n, description='" + description + '\'' +
+                "\n, features=" + Arrays.toString(features) +
+                "\n, bookings=" + bookings +
+                "\n}";
     }
 }
