@@ -10,11 +10,11 @@ class Nav extends React.Component {
         super();
         this.state = {
           username : "",
-		  password : "",
-		}
+		  		password : "",
+				}
 		
-		this.doLogout = this.doLogout.bind(this);
-    }
+			this.doLogout = this.doLogout.bind(this);
+  	}
 	
 	doLogout(){
 		fetch(API_ROOT.auth + '/logout', {
@@ -37,20 +37,30 @@ class Nav extends React.Component {
 
 	render() {
     	return(
-			<nav className="navbar navbar-default">
-				<div className="container-fluid"> 
-					<div className="navbar-header"> 
-					<a className="navbar-brand" href="/admin/">Shady Meadows - Booking Management</a> 
-					</div>
+				<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+					<a className="navbar-brand" href="/admin/">Shady Meadows - Booking Management</a>
+					<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span className="navbar-toggler-icon"></span>
+					</button>
+					<div className="collapse navbar-collapse" id="navbarNav">
 					{this.props.isAuthenticated && (
-						<ul className="nav navbar-nav"> 
-							<li><Link to="/admin/">Rooms</Link></li>
-							<li><Link id="reportLink" to="/admin/report">Report</Link></li>
-							<li id="logout"><a href="#/admin/" id="logout" onClick={this.doLogout}>Logout</a></li>
-						</ul> 
+						<ul className="navbar-nav">
+							<li className="nav-item">
+								<Link className="nav-link" to="/admin/">Rooms</Link>
+							</li>
+							<li className="nav-item">
+								<Link className="nav-link" to="/admin/report">Report</Link>
+							</li>
+							<li className="nav-item">
+								<Link className="nav-link" to="/admin/branding">Branding</Link>
+							</li>
+							<li className="nav-item">
+								<a className="nav-link" href="#/admin/" id="logout" onClick={this.doLogout}>Logout</a>
+							</li>
+						</ul>
 					)}
-				</div> 
-			</nav>
+					</div>
+				</nav>
       );
     }
 }

@@ -83,32 +83,34 @@ export default class App extends React.Component {
                 {welcome}
                     <Switch>
                         <Route path='/admin/' render={() => (
-                            <div className="container">
-                                <div>
-                                    <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
-                                    {this.state.isAuthenticated ? (
-                                        <div>
-                                            <Route exact path='/admin/' render={(props) => (
-                                                <div>
-                                                    <Suspense fallback={<Loading />}>
-                                                        <RoomListings {...props} />
-                                                    </Suspense>
-                                                </div>
-                                            )} />
-                                            <Route exact path='/admin/room/:id' render={({ location, match }) => (
-                                                <div>
-                                                    <Suspense fallback={<Loading />}>
-                                                        <RoomDetails params={match.params}/>
-                                                    </Suspense>
-                                                </div>
-                                            )} />
-                                            <Route exact path='/admin/report' component={Report} />
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <Login setAuthenticate={this.setAuthenticate} />
-                                        </div>
-                                    )}
+                            <div>
+                                <Nav setAuthenticate={this.setAuthenticate} isAuthenticated={this.state.isAuthenticated} />
+                                <div className="container">
+                                    <div>
+                                        {this.state.isAuthenticated ? (
+                                            <div>
+                                                <Route exact path='/admin/' render={(props) => (
+                                                    <div>
+                                                        <Suspense fallback={<Loading />}>
+                                                            <RoomListings {...props} />
+                                                        </Suspense>
+                                                    </div>
+                                                )} />
+                                                <Route exact path='/admin/room/:id' render={({ location, match }) => (
+                                                    <div>
+                                                        <Suspense fallback={<Loading />}>
+                                                            <RoomDetails params={match.params}/>
+                                                        </Suspense>
+                                                    </div>
+                                                )} />
+                                                <Route exact path='/admin/report' component={Report} />
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <Login setAuthenticate={this.setAuthenticate} />
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         )} />

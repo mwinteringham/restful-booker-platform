@@ -82,7 +82,9 @@ export default class RoomForm extends React.Component {
                         <div className="col-sm-1"><input type="text" id="beds" onChange={val => this.state.newRoom.beds = val.target.value} /></div>
                         <div className="col-sm-1"><input type="text" id="accessible" onChange={val => this.state.newRoom.accessible = val.target.value} /></div>
                         <div className="col-sm-6"><input type="text" id="details" onChange={val => this.state.newRoom.details = val.target.value} /></div>
-                        <div className="col-sm-1"><input type="button" value="Create" id="createRoom" onClick={this.createRoom}/></div>
+                        <div className="col-sm-1">
+                            <button class="btn btn-outline-dark" id="createRoom" type="submit" onClick={this.createRoom}>Create</button>
+                        </div>
                     </div>
                     {errors}
                 </div>
