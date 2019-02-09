@@ -77,13 +77,13 @@ export default class RoomForm extends React.Component {
 
         return <div>
                     <div className="row">
-                        <div className="col-sm-1"><input type="text" id="roomNumber" onChange={val => this.state.newRoom.roomNumber = val.target.value} /></div>
-                        <div className="col-sm-2"><input type="text" id="type" onChange={val => this.state.newRoom.type = val.target.value} /></div>
-                        <div className="col-sm-1"><input type="text" id="beds" onChange={val => this.state.newRoom.beds = val.target.value} /></div>
-                        <div className="col-sm-1"><input type="text" id="accessible" onChange={val => this.state.newRoom.accessible = val.target.value} /></div>
-                        <div className="col-sm-6"><input type="text" id="details" onChange={val => this.state.newRoom.details = val.target.value} /></div>
+                        <div className="col-sm-1"><input className="form-control" type="text" id="roomNumber" onChange={val => this.state.newRoom.roomNumber = val.target.value} /></div>
+                        <div className="col-sm-2"><input className="form-control" type="text" id="type" onChange={val => this.state.newRoom.type = val.target.value} /></div>
+                        <div className="col-sm-1"><input className="form-control" type="text" id="beds" onChange={val => this.state.newRoom.beds = val.target.value} /></div>
+                        <div className="col-sm-1"><input className="form-control" type="text" id="accessible" onChange={val => this.state.newRoom.accessible = val.target.value} /></div>
+                        <div className="col-sm-6"><input className="form-control" type="text" id="details" onChange={val => this.state.newRoom.details = val.target.value} /></div>
                         <div className="col-sm-1">
-                            <button class="btn btn-outline-dark" id="createRoom" type="submit" onClick={this.createRoom}>Create</button>
+                            <button className="btn btn-outline-dark" id="createRoom" type="submit" onClick={this.createRoom}>Create</button>
                         </div>
                     </div>
                     {errors}

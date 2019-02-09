@@ -123,7 +123,7 @@ export default class RoomDetails extends React.Component {
         } else {
             roomSummary = <div className="row">
                             <div className="col-sm-6">
-                                <h2>Room: {this.state.orgRoom.roomNumber} <span className="fa fa-pencil roomEdit" onClick={this.enableEdit} style={{marginLeft: "5px", fontSize: 0.5 + "em"}} ></span></h2>
+                                <h2>Room: {this.state.orgRoom.roomNumber} <span className="fa fa-pencil roomEdit" onClick={this.enableEdit} style={{fontSize: 0.5 + "em"}} ></span></h2>
                                 <p>Type: <span>{this.state.orgRoom.type}</span></p>
                                 <p>Beds: <span>{this.state.orgRoom.beds}</span></p>
                                 <p>Accessible: <span>{this.state.orgRoom.accessible.toString()}</span></p>
@@ -140,11 +140,7 @@ export default class RoomDetails extends React.Component {
 
         return(
             <div>
-                <div className="well">
-                    <div className="container-fluid">
-                        {roomSummary}
-                    </div>
-                </div>
+                {roomSummary}
                 <div className="row">
                     <div className="col-sm-2 rowHeader"><p>First name</p></div>
                     <div className="col-sm-2 rowHeader"><p>Last name</p></div>

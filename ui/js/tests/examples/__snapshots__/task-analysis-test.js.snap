@@ -4,7 +4,7 @@ exports[`Login component is created 1`] = `
 <div
   style={
     Object {
-      "marginTop": "15%",
+      "marginTop": "10%",
     }
   }
 >
@@ -32,25 +32,24 @@ exports[`Login component is created 1`] = `
       className="col-sm-2"
     />
   </div>
-  <form>
+  <div
+    className="row"
+  >
     <div
-      className="row"
+      className="col-sm-4"
+    />
+    <div
+      className="col-sm-4"
     >
-      <div
-        className="col-sm-4"
-      />
-      <div
-        className="col-sm-4"
-      >
-        <p>
-          <label
-            htmlFor="username"
-          >
-            Username 
-          </label>
+      <form>
+        <div
+          className="form-group"
+        >
           <input
+            className="form-control"
             id="username"
             onChange={[Function]}
+            placeholder="Username"
             style={
               Object {
                 "border": "1px solid grey",
@@ -58,30 +57,15 @@ exports[`Login component is created 1`] = `
             }
             type="text"
           />
-        </p>
-      </div>
-      <div
-        className="col-sm-4"
-      />
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col-sm-4"
-      />
-      <div
-        className="col-sm-4"
-      >
-        <p>
-          <label
-            htmlFor="password"
-          >
-            Password 
-          </label>
+        </div>
+        <div
+          className="form-group"
+        >
           <input
+            className="form-control"
             id="password"
             onChange={[Function]}
+            placeholder="Password"
             style={
               Object {
                 "border": "1px solid grey",
@@ -89,39 +73,19 @@ exports[`Login component is created 1`] = `
             }
             type="password"
           />
-        </p>
-      </div>
-      <div
-        className="col-sm-4"
-      />
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col-sm-7"
-      />
-      <div
-        className="col-sm-1"
-      >
+        </div>
         <button
-          className="btn btn-default"
-          id="doLogin"
+          className="btn btn-primary"
           onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": "9px",
-            }
-          }
-          type="button"
+          type="submit"
         >
           Login
         </button>
-      </div>
-      <div
-        className="col-sm-4"
-      />
+      </form>
     </div>
-  </form>
+    <div
+      className="col-sm-4"
+    />
+  </div>
 </div>
 `;

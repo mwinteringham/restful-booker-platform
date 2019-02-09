@@ -2,9 +2,11 @@
 
 exports[`Rooms list component 1`] = `
 <div
-  className="row detail booking-1"
+  className="detail booking-1"
 >
-  <div>
+  <div
+    className="row"
+  >
     <div
       className="col-sm-2"
     >
