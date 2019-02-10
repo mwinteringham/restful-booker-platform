@@ -33,9 +33,23 @@ class RoomListing extends React.Component {
             <div data-type="room" id={"room"+ this.props.details.roomid} className="row detail" >
                 <div onClick={this.openRoom} className="col-sm-1"><p id={"roomNumber"+ this.props.details.roomNumber}>{this.props.details.roomNumber}</p></div>
                 <div onClick={this.openRoom} className="col-sm-2"><p id={"type"+ this.props.details.type}>{this.props.details.type}</p></div>
-                <div onClick={this.openRoom} className="col-sm-1"><p id={"beds"+ this.props.details.beds}>{this.props.details.beds}</p></div>
-                <div onClick={this.openRoom} className="col-sm-1"><p id={"accessible"+ this.props.details.accessible}>{this.props.details.accessible.toString()}</p></div>
-                <div onClick={this.openRoom} className="col-sm-6"><p id={"details"+ this.props.details.details}>{this.props.details.description}</p></div>
+                <div onClick={this.openRoom} className="col-sm-2"><p id={"accessible"+ this.props.details.accessible}>{this.props.details.accessible.toString()}</p></div>
+                <div onClick={this.openRoom} className="col-sm-6">
+                    <p id={"details"+ this.props.details.features}>
+                        {this.props.details.features.length > 0 &&
+                            this.props.details.features.map((value, index) => {
+                                if(index + 1 === this.props.details.features.length){
+                                    return value;
+                                } else {
+                                    return value + ", ";
+                                }
+                            })
+                        }
+                        {this.props.details.features.length === 0 && 
+                            <span style={{color : "grey"}}>No features added to the room</span>
+                        }
+                    </p>
+                </div>
                 <div className="col-sm-1">
                     <span className="fa fa-remove roomDelete" id={this.props.details.roomid} onClick={() => this.deleteRoom()}></span>
                 </div>

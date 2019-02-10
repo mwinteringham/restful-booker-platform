@@ -29,11 +29,10 @@ public class SqlTest extends BaseTest {
         // We then create a Room object to send to the roomDB
         Room room = new Room(101,
                 "Twin",
-                2,
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                 "Aenean porttitor mauris sit amet lacinia molestie",
-                new String[]{"Wifi, TV, Mini-bar"});
+                new String[]{"Wifi", "TV", "Safe"});
 
         // With the room created we can send it to the RoomDB to be created
         Room createdRoom = roomDB.create(room);
@@ -58,7 +57,7 @@ public class SqlTest extends BaseTest {
 
         // We finally use Junit's assertEquals to check the room we queried
         // is the same as the expected String in the second parameter
-        assertEquals(queriedRoomString, "Room{\nroomid=" + currentRoomId + "\n, roomNumber=101\n, type='Twin'\n, beds=2\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Aenean porttitor mauris sit amet lacinia molestie'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}");
+        assertEquals(queriedRoomString, "Room{\nroomid=" + currentRoomId + "\n, roomNumber=101\n, type='Twin'\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Aenean porttitor mauris sit amet lacinia molestie'\n, features=[Wifi, TV, Safe]\n, bookings=null\n}");
     }
 
     @Test
@@ -74,14 +73,13 @@ public class SqlTest extends BaseTest {
 
         String queriedRoomString = queriedRoom.toString();
 
-        assertEquals(queriedRoomString, "[Room{\nroomid=1\n, roomNumber=101\n, type='Twin'\n, beds=2\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Aenean porttitor mauris sit amet lacinia molestie'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}]");
+        assertEquals(queriedRoomString, "[Room{\nroomid=1\n, roomNumber=101\n, type='Twin'\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Aenean porttitor mauris sit amet lacinia molestie'\n, features=[Wifi, TV, Safe]\n, bookings=null\n}]");
     }
 
     @Test
     public void testCreateRoom() throws SQLException {
         Room room = new Room(102,
                 "Twin",
-                2,
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                 "In posuere accumsan aliquet.",
@@ -91,14 +89,13 @@ public class SqlTest extends BaseTest {
 
         String createdRoomString = createdRoom.toString();
 
-        assertEquals(createdRoomString, "Room{\nroomid=" + (currentRoomId + 1) + "\n, roomNumber=102\n, type='Twin'\n, beds=2\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='In posuere accumsan aliquet.'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}");
+        assertEquals(createdRoomString, "Room{\nroomid=" + (currentRoomId + 1) + "\n, roomNumber=102\n, type='Twin'\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='In posuere accumsan aliquet.'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}");
     }
 
     @Test
     public void testUpdateRoom() throws SQLException {
         Room room = new Room(103,
                 "Twin",
-                2,
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                 "Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
@@ -108,7 +105,7 @@ public class SqlTest extends BaseTest {
 
         String updatedRoomString = updatedRoom.toString();
 
-        assertEquals(updatedRoomString, "Room{\nroomid=" + currentRoomId + "\n, roomNumber=103\n, type='Twin'\n, beds=2\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}");
+        assertEquals(updatedRoomString, "Room{\nroomid=" + currentRoomId + "\n, roomNumber=103\n, type='Twin'\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.'\n, features=[Wifi, TV, Mini-bar]\n, bookings=null\n}");
     }
 
 

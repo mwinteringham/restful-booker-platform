@@ -42,11 +42,10 @@ public class RoomDB {
 
         Room room = new Room(101,
                 "Twin",
-                2,
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                 "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
-                new String[]{"Wifi, TV, Mini-bar"});
+                new String[]{"Wifi", "TV", "Safe"});
 
         InsertSql insertSql = new InsertSql(connection, room);
         PreparedStatement createBooking = insertSql.getPreparedStatement();

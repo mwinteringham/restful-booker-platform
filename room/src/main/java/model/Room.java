@@ -18,8 +18,6 @@ public class Room {
     @JsonProperty
     private String type;
     @JsonProperty
-    private int beds;
-    @JsonProperty
     private boolean accessible;
     @JsonProperty
     private String image;
@@ -33,10 +31,9 @@ public class Room {
     public Room() {
     }
 
-    public Room(int roomNumber, String type, int beds, boolean accessible, String image, String description, String[] features) {
+    public Room(int roomNumber, String type, boolean accessible, String image, String description, String[] features) {
         this.roomNumber = roomNumber;
         this.type = type;
-        this.beds = beds;
         this.accessible = accessible;
         this.image = image;
         this.description = description;
@@ -47,7 +44,6 @@ public class Room {
         this.roomid = result.getInt("roomid");
         this.roomNumber = result.getInt("room_number");
         this.type = result.getString("type");
-        this.beds = result.getInt("beds");
         this.accessible = result.getBoolean("accessible");
         this.image = result.getString("image");
         this.description = result.getString("description");
@@ -78,14 +74,6 @@ public class Room {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public int getBeds() {
-        return beds;
-    }
-
-    public void setBeds(int beds) {
-        this.beds = beds;
     }
 
     public boolean isAccessible() {
@@ -134,7 +122,6 @@ public class Room {
                 "\nroomid=" + roomid +
                 "\n, roomNumber=" + roomNumber +
                 "\n, type='" + type + '\'' +
-                "\n, beds=" + beds +
                 "\n, accessible=" + accessible +
                 "\n, image='" + image + '\'' +
                 "\n, description='" + description + '\'' +

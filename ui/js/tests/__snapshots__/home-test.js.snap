@@ -233,7 +233,6 @@ exports[`Home page renders 1`] = `
         room={
           Object {
             "accessible": false,
-            "beds": 2,
             "description": "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
             "features": Array [
               "Internet/Wi-fi",
@@ -257,7 +256,6 @@ exports[`Home page renders 1`] = `
         room={
           Object {
             "accessible": true,
-            "beds": 1,
             "description": "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
             "features": Array [
               "Internet/Wi-fi",

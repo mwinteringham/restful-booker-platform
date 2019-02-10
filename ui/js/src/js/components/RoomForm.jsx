@@ -7,24 +7,45 @@ export default class RoomForm extends React.Component {
 
     constructor() {
         super();
+
 		this.state = {
             errors : {},
             rooms : [], 
             newRoom : {
-                roomNumber : 0,
-                type : "",
-                beds : 0,
+                roomNumber : "",
+                type : "Single",
                 accessible : false,
-                details : ""
+                description : "Please enter a description for this room",
+                image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+                features : {
+                    WiFi : false,
+                    TV : false,
+                    Radio : false,
+                    Refreshments : false,
+                    Safe : false,
+                    Views : false
+                }
             }
         };
 
         this.createRoom = this.createRoom.bind(this);
+        this.updateState = this.updateState.bind(this);
     }
-
-    createRoom() {        
-        let vErrors = validate(this.state.newRoom, constraints);
-
+    
+    createRoom() {
+        let roomToCreate = this.state.newRoom;
+        let featureObject = this.state.newRoom.features;
+        let featuresArray = [];
+        
+        for (let property in featureObject) {
+            if(featureObject[property] === true){
+                featuresArray.push(property);
+            }
+        }
+        
+        roomToCreate.features = featuresArray;
+        let vErrors = validate(roomToCreate, constraints);
+        
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
@@ -39,34 +60,48 @@ export default class RoomForm extends React.Component {
             })
             .then(res => {
                 if(res.status == 200){
-                    document.getElementById("roomNumber").value = '';
-                    document.getElementById("type").value = '';
-                    document.getElementById("beds").value = '';
-                    document.getElementById("accessible").value = '';
-                    document.getElementById("details").value = '';
-                    
                     this.setState({
                         errors : {},
                         newRoom : {
-                            roomNumber : 0,
-                            type : "",
-                            beds : 0,
+                            roomNumber : "",
+                            type : "Single",
                             accessible : false,
-                            details : ""
+                            description : "Please enter a description for this room",
+                            image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+                            features : {
+                                WiFi : false,
+                                TV : false,
+                                Radio : false,
+                                Refreshments : false,
+                                Safe : false,
+                                Views : false
+                            }
                         }
-                    })
-
+                    });
+                    
                     this.props.updateRooms();
                 }
             })
         }
+    }
+
+    updateState(event){
+        let currentState = this.state;
+
+        if(event.target.name === 'featureCheck'){
+            currentState.newRoom.features[event.target.value] = event.target.checked;
+        } else {
+            currentState.newRoom[event.target.id] = event.target.value;
+        }
+
+        this.setState(currentState);
     }
     
     render() {
         let errors = '';
         
         if(Object.keys(this.state.errors).length > 0){
-            errors = <div className="alert alert-danger" style={{marginTop : 15 + "px"}}>
+            errors = <div className="alert alert-danger" style={{marginBottom : 5 + "rem"}}>
                     {Object.keys(this.state.errors).map((key, index) => {
                         return this.state.errors[key].map((value, index) => {
                             return <p key={index}>{value}</p>
@@ -76,12 +111,67 @@ export default class RoomForm extends React.Component {
         }
 
         return <div>
-                    <div className="row">
-                        <div className="col-sm-1"><input className="form-control" type="text" id="roomNumber" onChange={val => this.state.newRoom.roomNumber = val.target.value} /></div>
-                        <div className="col-sm-2"><input className="form-control" type="text" id="type" onChange={val => this.state.newRoom.type = val.target.value} /></div>
-                        <div className="col-sm-1"><input className="form-control" type="text" id="beds" onChange={val => this.state.newRoom.beds = val.target.value} /></div>
-                        <div className="col-sm-1"><input className="form-control" type="text" id="accessible" onChange={val => this.state.newRoom.accessible = val.target.value} /></div>
-                        <div className="col-sm-6"><input className="form-control" type="text" id="details" onChange={val => this.state.newRoom.details = val.target.value} /></div>
+                    <div className="row room-form">
+                        <div className="col-sm-1">
+                            <input className="form-control" type="text" id="roomNumber" value={this.state.newRoom.roomNumber} onChange={this.updateState} />
+                        </div>
+                        <div className="col-sm-2">
+                            <select className="form-control" id="type" value={this.state.newRoom.type} onChange={this.updateState}>
+                                <option value="Single">Single</option>
+                                <option value="Twin">Twin</option>
+                                <option value="Double">Double</option>
+                                <option value="Family">Family</option>
+                                <option value="Suite">Suite</option>
+                            </select>
+                        </div>
+                        <div className="col-sm-2">
+                            <select className="form-control" id="accessible" value={this.state.newRoom.accessible} onChange={this.updateState}>
+                                <option value="false">false</option>
+                                <option value="true">true</option>
+                            </select>
+                        </div>
+                        <div className="col-sm-6">
+                            <div className="row">
+                                <div className="col-4">
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" name="featureCheck" id="wifiCheckbox" value="WiFi" checked={this.state.newRoom.features.wifi} onChange={this.updateState} />
+                                        <label className="form-check-label" htmlFor="wifiCheckbox">WiFi</label>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" name="featureCheck" id="tvCheckbox" value="TV" checked={this.state.newRoom.features.tv} onChange={this.updateState} />
+                                        <label className="form-check-label" htmlFor="tvCheckbox">TV</label>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" name="featureCheck" id="radioCheckbox" value="Radio" checked={this.state.newRoom.features.radio} onChange={this.updateState} />
+                                        <label className="form-check-label" htmlFor="radioCheckbox">Radio</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-4">
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" name="featureCheck" id="refreshCheckbox" value="Refreshments" checked={this.state.newRoom.features.refreshments} onChange={this.updateState} />
+                                        <label className="form-check-label" htmlFor="refreshCheckbox">Refreshments</label>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" name="featureCheck" id="safeCheckbox" value="Safe" checked={this.state.newRoom.features.safe} onChange={this.updateState} />
+                                        <label className="form-check-label" htmlFor="safeCheckbox">Safe</label>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="form-check form-check-inline">
+                                        <input className="form-check-input" type="checkbox" name="featureCheck" id="viewsCheckbox" value="Views" checked={this.state.newRoom.features.views} onChange={this.updateState} />
+                                        <label className="form-check-label" htmlFor="viewsCheckbox">Views</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className="col-sm-1">
                             <button className="btn btn-outline-dark" id="createRoom" type="submit" onClick={this.createRoom}>Create</button>
                         </div>
