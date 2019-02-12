@@ -39,6 +39,29 @@ input {
     padding-bottom: 25px;
 }
 
+.room-details {
+    border-radius: 5px;
+    padding: 20px;
+    background: #f5f5f5;
+    margin-bottom: 20px;
+}
+
+.room-details img {
+    height: 200px;
+}
+
+.room-details p{
+    font-weight: bold;
+}
+
+.room-details span{
+    font-weight: normal;
+}
+
+.editLabel {
+    margin-top: 20px;
+}
+
 // Hotel home page
 
 .hotel-logo {
