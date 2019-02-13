@@ -4,6 +4,7 @@ import Form from './BookingForm.jsx';
 import validate from 'validate.js';
 import { constraints } from '../libs/ValidateRules.js'
 import { API_ROOT } from '../api-config';
+import fetch from 'node-fetch';
 
 export default class RoomDetails extends React.Component {
 
@@ -71,10 +72,16 @@ export default class RoomDetails extends React.Component {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'include',
-                body : JSON.stringify(this.state.room)
+                body : JSON.stringify({
+                    accessible : this.state.room.accessible,
+                    description : this.state.room.description,
+                    features : this.state.room.features,
+                    image : this.state.room.image,
+                    roomNumber : this.state.room.roomNumber,
+                    type : this.state.room.type
+                })
             })
-            .then(res => res.json())
-            .then(res => {
+            .then(() => {
                 this.setState({
                     edit : false,
                     room : {
@@ -156,8 +163,8 @@ export default class RoomDetails extends React.Component {
                                         <input type="text" defaultValue={this.state.room.roomNumber} id="roomNumber" onChange={this.updateState} />
                                     </div>
                                     <div className="col-sm-3">
-                                        <button onClick={this.disableEdit} type="button" className="btn btn-outline-danger float-right">Cancel</button>
-                                        <button onClick={this.doEdit} type="button" className="btn btn-outline-primary float-right" style={{marginRight: "10px"}}>Update</button>
+                                        <button onClick={this.disableEdit} type="button" id="cancelEdit" className="btn btn-outline-danger float-right">Cancel</button>
+                                        <button onClick={this.doEdit} type="button" id="update" className="btn btn-outline-primary float-right" style={{marginRight: "10px"}}>Update</button>
                                     </div>
                                 </div>
                                 <div className="form-row">
