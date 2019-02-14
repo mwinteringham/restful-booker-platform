@@ -100,9 +100,7 @@ export default class HotelContact extends React.Component {
                         </div>
                         <input type="text" className="form-control" placeholder="Name" aria-label="Name" id="name" aria-describedby="basic-addon1" onChange={this.updateState} />
                         {this.state.errors.name.map((value, index) => {
-                            return <div key={"name" + index} className="invalid-feedback">
-                                {value}
-                            </div>
+                            return <div key={"name" + index} className="invalid-feedback">{value}</div>
                         })}
                     </div>
                     <div className="input-group mb-3">
@@ -111,9 +109,7 @@ export default class HotelContact extends React.Component {
                         </div>
                         <input type="text" className="form-control" placeholder="Email" aria-label="Email" id="email" aria-describedby="basic-addon1" onChange={this.updateState} />
                         {this.state.errors.email.map((value, index) => {
-                            return <div key={"email" + index} className="invalid-feedback">
-                                {value}
-                            </div>
+                            return <div key={"email" + index} className="invalid-feedback">{value}</div>
                         })}
                     </div>
                     <div className="input-group mb-3">
@@ -122,9 +118,7 @@ export default class HotelContact extends React.Component {
                         </div>
                         <input type="text" className="form-control" placeholder="Phone" aria-label="Phone" id="phone" aria-describedby="basic-addon1" onChange={this.updateState} />
                         {this.state.errors.phone.map((value, index) => {
-                            return <div key={"phone" + index} className="invalid-feedback">
-                                {value}
-                            </div>
+                            return <div key={"phone" + index} className="invalid-feedback">{value}</div>
                         })}
                     </div>
                     <div className="input-group mb-3">
@@ -133,9 +127,7 @@ export default class HotelContact extends React.Component {
                         </div>
                         <input type="text" className="form-control" placeholder="Subject" aria-label="Subject" id="subject" aria-describedby="basic-addon1" onChange={this.updateState} />
                         {this.state.errors.subject.map((value, index) => {
-                            return <div key={"subject" + index} className="invalid-feedback">
-                                {value}
-                            </div>
+                            return <div key={"subject" + index} className="invalid-feedback">{value}</div>
                         })}
                     </div>
                     <div className="input-group">
@@ -144,13 +136,11 @@ export default class HotelContact extends React.Component {
                         </div>
                         <textarea className="form-control" aria-label="Message" id="message" rows="5" onChange={this.updateState}></textarea>
                         {this.state.errors.message.map((value, index) => {
-                            return <div key={"message" + index} className="invalid-feedback">
-                                {value}
-                            </div>
+                            return <div key={"message" + index} className="invalid-feedback">{value}</div>
                         })}
                     </div>
                     <br />
-                    <button type='button' className='btn btn-outline-secondary float-right' onClick={this.submitForm}>Submit</button>
+                    <button type='button' className='btn btn-outline-secondary float-right' id="submitContact" onClick={this.submitForm}>Submit</button>
                 </form>
         }
 
