@@ -173,7 +173,7 @@ export default class RoomForm extends React.Component {
                             </div>
                         </div>
                         <div className="col-sm-1">
-                            <button className="btn btn-outline-dark" id="createRoom" type="submit" onClick={this.createRoom}>Create</button>
+                            <button className="btn btn-outline-primary" id="createRoom" type="submit" onClick={this.createRoom}>Create</button>
                         </div>
                     </div>
                     {errors}

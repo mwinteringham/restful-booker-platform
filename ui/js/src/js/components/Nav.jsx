@@ -6,15 +6,25 @@ import { API_ROOT } from '../api-config';
 
 class Nav extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-          username : "",
-		  		password : "",
-				}
-		
-			this.doLogout = this.doLogout.bind(this);
-  	}
+	constructor() {
+		super();
+	
+		this.state = {
+			name : ""
+		}
+
+		this.doLogout = this.doLogout.bind(this);
+	}
+
+	componentDidMount(){
+		fetch(API_ROOT.branding + '/branding/', {
+			method: 'GET'
+		})
+		.then(res => res.json())
+		.then(res => {
+			this.setState({name : res.name})
+		})
+	}
 	
 	doLogout(){
 		fetch(API_ROOT.auth + '/logout', {
@@ -41,7 +51,7 @@ class Nav extends React.Component {
 					<div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 						{this.props.isAuthenticated && (
 							<ul className="navbar-nav mr-auto">
-									<li className="nav-item active">
+									<li className="nav-item">
 										<Link className="nav-link" to="/admin/">Rooms</Link>
 									</li>
 									<li className="nav-item">
@@ -54,7 +64,7 @@ class Nav extends React.Component {
 						)}
 					</div>
 					<div className="mx-auto order-0">
-							<a className="navbar-brand mx-auto" href="#">Shady Meadows - Booking Management</a>
+							<a className="navbar-brand mx-auto" href="#">{this.state.name} - Booking Management</a>
 							<button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
 									<span className="navbar-toggler-icon"></span>
 							</button>

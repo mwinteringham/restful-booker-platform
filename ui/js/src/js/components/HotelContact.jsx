@@ -140,7 +140,7 @@ export default class HotelContact extends React.Component {
                         })}
                     </div>
                     <br />
-                    <button type='button' className='btn btn-outline-secondary float-right' id="submitContact" onClick={this.submitForm}>Submit</button>
+                    <button type='button' className='btn btn-outline-primary float-right' id="submitContact" onClick={this.submitForm}>Submit</button>
                 </form>
         }
 

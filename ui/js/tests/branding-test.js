@@ -2,7 +2,7 @@ import React from 'react';
 import Branding from '../src/js/components/Branding.jsx';
 import nock from 'nock';
 
-beforeEach(() => {
+test('Branding page renders', () => {
     const brandingData = {
         name: 'Shady Meadows B&B',
         map: {
@@ -19,20 +19,21 @@ beforeEach(() => {
         }
     }
 
-    nock('http://localhost:3002')
-        .get('/branding/')
-        .reply(200, brandingData)
-});
-
-test('Branding page renders', () => {
     const brandingComponent = mount(
         <Branding />
     )
+
+    brandingComponent.setState(brandingData);
+    brandingComponent.update();
 
     expect(brandingComponent).toMatchSnapshot();
 });
 
 test('Branding page has controlled form', (done) => {
+    nock('http://localhost:3002')
+        .get('/branding/')
+        .reply(200, brandingData)
+
     const brandingData = {
         name: 'UPDATE',
         map: {

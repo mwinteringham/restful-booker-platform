@@ -14,6 +14,7 @@ export default class Branding extends React.Component {
             },
             logoUrl: '',
             description: '',
+            name: '',
             contact: {
                 name: '',
                 address: '',
@@ -144,7 +145,7 @@ export default class Branding extends React.Component {
                         </div>
                         <input type="email" className="form-control" id="contactEmail" value={this.state.contact.email} onChange={this.updateState} placeholder="Enter Email Address" />
                     </div>
-                    <button type="submit" className="btn btn-primary" onClick={this.doUpdate}>Submit</button>
+                    <button type="submit" className="btn btn-outline-primary" onClick={this.doUpdate}>Submit</button>
                 </div>
     }
 

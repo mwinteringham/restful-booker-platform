@@ -51,11 +51,12 @@ export default class Login extends React.Component {
             borderColor = "red";
         }
 
-        return(<div style={{marginTop: "10%"}}>
+        return(<div style={{marginTop: "15%"}}>
                 <div className="row">
                     <div className="col-sm-2"></div>
                     <div className="col-sm-8" style={{textAlign : "center"}}>
-                        <h2>Welcome to the Shady Meadows <br /> booking management system</h2>
+                        <h2>Log into your account</h2>
+                        <br />
                     </div>
                     <div className="col-sm-2"></div>
                 </div>
@@ -69,7 +70,7 @@ export default class Login extends React.Component {
                         <div className="form-group">
                             <input type="password" style={{border : "1px solid " + borderColor}} className="form-control" id="password" placeholder="Password" onChange={val => this.setState({password : val.target.value})} />
                         </div>
-                        <button type="submit" className="btn btn-primary" onClick={this.doLogin}>Login</button>
+                        <button type="submit" className="btn btn-primary float-right" onClick={this.doLogin}>Login</button>
                     </form>
                     </div>
                     <div className="col-sm-4"></div>

@@ -244,7 +244,7 @@ exports[`Contact form returns error messages 1`] = `
       </div>
       <br />
       <button
-        className="btn btn-outline-secondary float-right"
+        className="btn btn-outline-primary float-right"
         id="submitContact"
         onClick={[Function]}
         type="button"

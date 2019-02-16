@@ -26,6 +26,7 @@ exports[`Branding page renders 1`] = `
         onChange={[Function]}
         placeholder="Enter B&B name"
         type="text"
+        value="Shady Meadows B&B"
       />
     </div>
     <div
@@ -46,7 +47,7 @@ exports[`Branding page renders 1`] = `
         onChange={[Function]}
         placeholder="Enter image url"
         type="text"
-        value=""
+        value="https://www.mwtestconsultancy.co.uk/img/rbp-logo.png"
       />
     </div>
     <div
@@ -66,7 +67,7 @@ exports[`Branding page renders 1`] = `
         id="description"
         onChange={[Function]}
         rows="5"
-        value=""
+        value="Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place."
       />
     </div>
     <br />
@@ -91,7 +92,7 @@ exports[`Branding page renders 1`] = `
         onChange={[Function]}
         placeholder="Enter Latitude"
         type="text"
-        value={0}
+        value={52.6351204}
       />
     </div>
     <div
@@ -112,7 +113,7 @@ exports[`Branding page renders 1`] = `
         onChange={[Function]}
         placeholder="Enter Longitude"
         type="text"
-        value={0}
+        value={1.2733774}
       />
     </div>
     <br />
@@ -137,7 +138,7 @@ exports[`Branding page renders 1`] = `
         onChange={[Function]}
         placeholder="Enter Contact Name"
         type="text"
-        value=""
+        value="Shady Meadows B&B"
       />
     </div>
     <div
@@ -158,7 +159,7 @@ exports[`Branding page renders 1`] = `
         onChange={[Function]}
         placeholder="Enter Address"
         type="text"
-        value=""
+        value="The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S"
       />
     </div>
     <div
@@ -179,7 +180,7 @@ exports[`Branding page renders 1`] = `
         onChange={[Function]}
         placeholder="Enter Phone Number"
         type="text"
-        value=""
+        value="0123456789"
       />
     </div>
     <div
@@ -200,11 +201,11 @@ exports[`Branding page renders 1`] = `
         onChange={[Function]}
         placeholder="Enter Email Address"
         type="email"
-        value=""
+        value="fake@fakeemail.com"
       />
     </div>
     <button
-      className="btn btn-primary"
+      className="btn btn-outline-primary"
       onClick={[Function]}
       type="submit"
     >
