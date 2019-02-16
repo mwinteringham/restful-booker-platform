@@ -2,7 +2,7 @@ import React from 'react';
 import Branding from '../src/js/components/Branding.jsx';
 import nock from 'nock';
 
-test('Branding page renders', () => {
+beforeEach(() => {
     const brandingData = {
         name: 'Shady Meadows B&B',
         map: {
@@ -19,47 +19,50 @@ test('Branding page renders', () => {
         }
     }
 
+    nock('http://localhost:3002')
+        .get('/branding/')
+        .reply(200, brandingData)
+});
+
+test('Branding page renders', () => {
+    const brandingComponent = mount(
+        <Branding />
+    )
+
+    expect(brandingComponent).toMatchSnapshot();
+});
+
+test('Branding page has controlled form', (done) => {
+    const brandingData = {
+        name: 'UPDATE',
+        map: {
+            latitude: 88,
+            longitude: 11
+        },
+        logoUrl: 'url/update',
+        description: 'Updated description',
+        contact: {
+            name: 'Another B&B',
+            address: 'Somewhere else',
+            phone: '9999999',
+            email: 'another@fakeemail.com'
+        }
+    }
+    
+    let brandingPutMock = nock('http://localhost:3002')
+        .put('/branding/', brandingData)
+        .reply(200, () => {
+            done();
+        });
+
     const brandingComponent = shallow(
         <Branding />
     )
 
     brandingComponent.setState(brandingData);
     brandingComponent.update();
+    brandingComponent.instance().doUpdate();
 
-    expect(brandingComponent).toMatchSnapshot();
+    let didNockAcceptRequest = brandingPutMock.isDone();
+    expect(didNockAcceptRequest).toBe(true);
 });
-
-// test('Branding page has controlled form', (done) => {
-//     const brandingData = {
-//         name: 'UPDATE',
-//         map: {
-//             latitude: 88,
-//             longitude: 11
-//         },
-//         logo: {
-//             url: 'url/update'
-//         },
-//         description: 'Updated description',
-//         contact: {
-//             name: 'Another B&B',
-//             address: 'Somewhere else',
-//             phone: '9999999',
-//             email: 'another@fakeemail.com'
-//         }
-//     }
-    
-//     let brandingPutMock = nock('http://localhost:3002')
-//         .put('/branding/', brandingData)
-//         .reply(200, () => {
-//             done();
-//         });
-
-//     const brandingComponent = shallow(
-//         <Branding />
-//     )
-
-//     brandingComponent.find('#createRoom').simulate('click');
-
-//     let didNockAcceptRequest = brandingPutMock.isDone();
-//     expect(didNockAcceptRequest).toBe(true);
-// });

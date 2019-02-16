@@ -37,8 +37,7 @@ export default class Branding extends React.Component {
         .then(res => res.json())
         .then(res => {
             this.setState(res);
-        })
-        .catch(e => console.log(e));
+        });
     }
 
     doUpdate(){
@@ -51,18 +50,13 @@ export default class Branding extends React.Component {
             credentials: 'include',
             body : JSON.stringify(this.state)
         })
-        .then(res => {
-            
-        });
+        .catch(e => console.log(e));
     }
 
     updateState(event){
         let currentState = this.state;
         
         switch(event.target.id){
-            // case 'logoUrl':
-            //     currentState.logoUrl.url = event.target.value;
-            //     break;
             case 'latitude':
                 currentState.map.latitude = event.target.value;
                 break;
