@@ -18,7 +18,7 @@ import ReactModal from 'react-modal';
 const RoomListings = React.lazy(() => import('./RoomListings.jsx'));
 const RoomDetails = React.lazy(() => import('./RoomDetails.jsx'));
 
-ReactModal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#root');
 
 export default class App extends React.Component {
 

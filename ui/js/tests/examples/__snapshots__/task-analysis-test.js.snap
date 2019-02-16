@@ -4,7 +4,7 @@ exports[`Login component is created 1`] = `
 <div
   style={
     Object {
-      "marginTop": "10%",
+      "marginTop": "15%",
     }
   }
 >
@@ -23,10 +23,9 @@ exports[`Login component is created 1`] = `
       }
     >
       <h2>
-        Welcome to the Shady Meadows 
-        <br />
-         booking management system
+        Log into your account
       </h2>
+      <br />
     </div>
     <div
       className="col-sm-2"
@@ -75,7 +74,7 @@ exports[`Login component is created 1`] = `
           />
         </div>
         <button
-          className="btn btn-primary"
+          className="btn btn-primary float-right"
           onClick={[Function]}
           type="submit"
         >
