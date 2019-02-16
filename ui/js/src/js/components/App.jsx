@@ -13,9 +13,12 @@ import Loading from './Loading.jsx';
 import Home from './Home.jsx';
 import Branding from './Branding.jsx';
 import Footer from './Footer.jsx';
+import ReactModal from 'react-modal';
 
 const RoomListings = React.lazy(() => import('./RoomListings.jsx'));
 const RoomDetails = React.lazy(() => import('./RoomDetails.jsx'));
+
+ReactModal.setAppElement('#root');
 
 export default class App extends React.Component {
 
