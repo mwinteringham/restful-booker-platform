@@ -137,7 +137,7 @@ exports[`Welcome component contains correct details 1`] = `
           <br />
           <br />
           <h2>
-            Welcome to Shady Meadows Booking Manager
+            Welcome to Restful Booker Platform
           </h2>
           <br />
           <br />
@@ -157,13 +157,18 @@ exports[`Welcome component contains correct details 1`] = `
         />
         <div>
           <div
-            className="col-sm-4"
-          />
-          <div
-            className="col-sm-2 text-center"
+            className="btn-group mr-2"
+            role="group"
           >
             <button
-              className="btn btn-primary"
+              className="btn btn-outline-primary disabled"
+              id="prev"
+              onClick={[Function]}
+            >
+              Prev
+            </button>
+            <button
+              className="btn btn-outline-primary"
               id="next"
               onClick={[Function]}
             >
