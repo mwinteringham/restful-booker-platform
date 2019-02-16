@@ -2,21 +2,36 @@ package com.automationintesting.integration;
 
 import com.automationintesting.api.BrandingApplication;
 import com.automationintesting.model.*;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.approvaltests.Approvals;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static io.restassured.RestAssured.given;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BrandingApplication.class)
 @ActiveProfiles("dev")
 public class BrandingServiceIT {
+
+    @Rule
+    public WireMockRule wireMockRule = new WireMockRule(3004);
+
+    @Before
+    public void setupWiremock(){
+        stubFor(post("/auth/validate")
+                .withRequestBody(equalToJson("{ \"token\": \"abc123\" }"))
+                .willReturn(aResponse().withStatus(200)));
+    }
 
     @Test
     public void returnsBrandingData() {
@@ -38,6 +53,7 @@ public class BrandingServiceIT {
         );
 
         Response brandingPutResponse = given()
+                .cookie("token", "abc123")
                 .contentType(ContentType.JSON)
                 .body(brandingPayload)
                 .when()

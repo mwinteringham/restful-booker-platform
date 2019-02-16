@@ -2,7 +2,9 @@ package com.automationintesting.api;
 
 import com.automationintesting.db.BrandingDB;
 import com.automationintesting.model.Branding;
+import com.automationintesting.requests.AuthRequests;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -14,6 +16,7 @@ import java.sql.SQLException;
 public class BrandingController {
 
     private BrandingDB brandingDB;
+    private AuthRequests authRequest;
 
     @Bean
     public WebMvcConfigurer configurer() {
@@ -37,6 +40,7 @@ public class BrandingController {
 
     public BrandingController() throws SQLException {
         this.brandingDB = new BrandingDB();
+        this.authRequest = new AuthRequests();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -47,10 +51,14 @@ public class BrandingController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity<?> createBooking(@RequestBody Branding branding) throws SQLException {
-        Branding updatedBranding = brandingDB.update(branding);
+    public ResponseEntity<?> createBooking(@RequestBody Branding branding, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        if(authRequest.postCheckAuth(token)){
+            Branding updatedBranding = brandingDB.update(branding);
 
-        return ResponseEntity.ok(updatedBranding);
+            return ResponseEntity.ok(updatedBranding);
+        } else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
     }
 
 }
