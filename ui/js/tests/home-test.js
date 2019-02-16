@@ -34,8 +34,8 @@ test('Home page renders', () => {
                 'Mini-bar'
             ]
         }],
+        name : 'Shady meadows B&B',
         map : {
-            hotelName : 'Shady meadows B&B',
             latitude : 52.6351204,
             longitude : 1.2733774
         },
@@ -88,13 +88,12 @@ test('Room info for home page renders', () => {
 
 test('Map for home page renders', () => {
     const mapDetails = {
-        hotelName : 'Shady Meadows',
         latitude : 52.6351204,
         longitude : 1.2733774
     }
 
     const mapComponent = shallow(
-        <HotelMap mapDetails={mapDetails} />
+        <HotelMap name={'Shady Meadows'} mapDetails={mapDetails} />
     )
 
     expect(mapComponent).toMatchSnapshot();

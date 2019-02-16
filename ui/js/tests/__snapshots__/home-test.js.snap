@@ -140,6 +140,7 @@ exports[`Contact form for home page renders 1`] = `
       <br />
       <button
         className="btn btn-outline-secondary float-right"
+        id="submitContact"
         onClick={[Function]}
         type="button"
       >
@@ -300,11 +301,11 @@ exports[`Home page renders 1`] = `
         <HotelMap
           mapDetails={
             Object {
-              "hotelName": "Shady meadows B&B",
               "latitude": 52.6351204,
               "longitude": 1.2733774,
             }
           }
+          name="Shady meadows B&B"
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 {
+    "name": "Shady Meadows B&B",
     "map": {
-        "hotelName": "Shady meadows B&B",
         "latitude": 52.6351204,
         "longitude": 1.2733774
     },

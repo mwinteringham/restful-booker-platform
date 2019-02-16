@@ -11,6 +11,7 @@ import CookiePolicy from './CookiePolicy.jsx';
 import PrivacyPolicy from './PrivacyPolicy.jsx';
 import Loading from './Loading.jsx';
 import Home from './Home.jsx';
+import Branding from './Branding.jsx';
 import Footer from './Footer.jsx';
 
 const RoomListings = React.lazy(() => import('./RoomListings.jsx'));
@@ -104,6 +105,7 @@ export default class App extends React.Component {
                                                     </div>
                                                 )} />
                                                 <Route exact path='/admin/report' component={Report} />
+                                                <Route exact path='/admin/branding' component={Branding} />
                                             </div>
                                         ) : (
                                             <div>

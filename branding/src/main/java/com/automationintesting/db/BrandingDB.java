@@ -26,7 +26,7 @@ public class BrandingDB {
         Server server = Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers").start();
 
         String prepareDb = "CREATE TABLE brandings ( brandingid int NOT NULL AUTO_INCREMENT," +
-                " hotel_name varchar(255)," +
+                " name varchar(255)," +
                 " latitude double," +
                 " longitude double," +
                 " logo_url varchar(255)," +
@@ -89,6 +89,7 @@ public class BrandingDB {
 
     private Branding defaultBranding() {
         return new BrandingImpl(
+                "Shady Meadows B&B",
                 new MapImpl(),
                 new LogoImpl(),
                 "Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.",

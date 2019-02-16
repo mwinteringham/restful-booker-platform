@@ -8,6 +8,8 @@ import java.sql.SQLException;
 public class BrandingImpl implements Branding {
 
     @JsonProperty
+    private String name;
+    @JsonProperty
     private Map map;
     @JsonProperty
     private Logo logo;
@@ -16,7 +18,8 @@ public class BrandingImpl implements Branding {
     @JsonProperty
     private Contact contact;
 
-    public BrandingImpl(Map map, Logo logo, String description, Contact contact) {
+    public BrandingImpl(String name, Map map, Logo logo, String description, Contact contact) {
+        this.name = name;
         this.map = map;
         this.logo = logo;
         this.description = description;
@@ -24,10 +27,16 @@ public class BrandingImpl implements Branding {
     }
 
     public BrandingImpl(ResultSet result) throws SQLException {
+        this.name = result.getString("name");
         this.map = new MapImpl();
         this.logo = new LogoImpl();
         this.description = result.getString("description");
         this.contact = new ContactImpl();
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     @Override

@@ -11,10 +11,10 @@ public class InsertSql {
     private PreparedStatement preparedStatement;
 
     InsertSql(Connection connection, Branding branding) throws SQLException {
-        final String CREATE_BRANDING = "INSERT INTO brandings (hotel_name, latitude, longitude, logo_url, description, contact_name, address, phone, email) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        final String CREATE_BRANDING = "INSERT INTO brandings (name, latitude, longitude, logo_url, description, contact_name, address, phone, email) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         preparedStatement = connection.prepareStatement(CREATE_BRANDING);
-        preparedStatement.setString(1, branding.getMap().getHotelName());
+        preparedStatement.setString(1, branding.getName());
         preparedStatement.setDouble(2, branding.getMap().getLatitude());
         preparedStatement.setDouble(3, branding.getMap().getLongitude());
         preparedStatement.setString(4, branding.getLogo().getUrl());

@@ -73,7 +73,7 @@ export default class Home extends React.Component {
                         <HotelContact contact={this.state.contact} />
                     <div className="row">
                         <div className='col-sm-12'>
-                            <HotelMap mapDetails={this.state.map} />
+                            <HotelMap name={this.state.name} mapDetails={this.state.map} />
                         </div>
                     </div>
                 </div>

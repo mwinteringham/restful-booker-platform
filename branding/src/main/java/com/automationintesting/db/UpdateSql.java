@@ -11,10 +11,10 @@ public class UpdateSql {
     private PreparedStatement preparedStatement;
 
     UpdateSql(Connection connection, Branding branding) throws SQLException {
-        String UPDATE_BRANDING = "UPDATE brandings SET hotel_name = ?, latitude = ?, longitude = ?, logo_url = ?, description = ?, contact_name = ?, address = ?, phone = ?, email = ? WHERE brandingid = 0";
+        String UPDATE_BRANDING = "UPDATE brandings SET name = ?, latitude = ?, longitude = ?, logo_url = ?, description = ?, contact_name = ?, address = ?, phone = ?, email = ? WHERE brandingid = 0";
 
         preparedStatement = connection.prepareStatement(UPDATE_BRANDING);
-        preparedStatement.setString(1, branding.getMap().getHotelName());
+        preparedStatement.setString(1, branding.getName());
         preparedStatement.setDouble(2, branding.getMap().getLatitude());
         preparedStatement.setDouble(3, branding.getMap().getLongitude());
         preparedStatement.setString(4, branding.getLogo().getUrl());

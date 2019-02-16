@@ -14,9 +14,9 @@ export default class HotelMap extends React.Component {
     if(this.props.mapDetails){
       const marker = [
         <Marker 
-          key={`marker_${this.props.mapDetails.hotelName}`} 
+          key={`marker_${this.props.name}`} 
           anchor={[this.props.mapDetails.latitude, this.props.mapDetails.longitude]} 
-          payload={this.props.mapDetails.hotelName} />
+          payload={this.props.name} />
       ]
   
       return (

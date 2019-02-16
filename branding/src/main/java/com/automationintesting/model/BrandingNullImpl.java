@@ -3,6 +3,11 @@ package com.automationintesting.model;
 public class BrandingNullImpl implements Branding {
 
     @Override
+    public String getName() {
+        return "";
+    }
+
+    @Override
     public Map getMap() {
         return new MapNullImpl();
     }
