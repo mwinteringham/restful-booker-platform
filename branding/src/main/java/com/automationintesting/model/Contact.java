@@ -24,7 +24,7 @@ public class Contact {
     }
 
     public Contact(ResultSet result) throws SQLException {
-        this.name = result.getString("name");
+        this.name = result.getString("contact_name");
         this.address = result.getString("address");
         this.phone = result.getString("phone");
         this.email = result.getString("email");

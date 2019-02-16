@@ -7,7 +7,7 @@
     "logoUrl": "link/to/logo",
     "description": "Description update",
     "contact": {
-        "name": "Updated hotel name",
+        "name": "Update name",
         "address": "Update address",
         "phone": "9999999999",
         "email": "update@email.com"
