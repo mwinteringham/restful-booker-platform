@@ -22,15 +22,15 @@ const brandingData = {
 const brandingUpdateData = {
     name: 'UPDATE',
     map: {
-        latitude: 88,
-        longitude: 11
+        latitude: 88.123,
+        longitude: 11.123
     },
     logoUrl: 'url/update',
     description: 'Updated description',
     contact: {
         name: 'Another B&B',
         address: 'Somewhere else',
-        phone: '9999999',
+        phone: '99999999999',
         email: 'another@fakeemail.com'
     }
 }
@@ -77,6 +77,16 @@ test('Branding page shows modal on success', () => {
     )
 
     brandingComponent.setState({ showModal : true });
+
+    expect(brandingComponent).toMatchSnapshot();
+});
+
+test('Branding page shows errors', () => {
+    const brandingComponent = shallow(
+        <Branding />
+    )
+
+    brandingComponent.find('#updateBranding').simulate('click');
 
     expect(brandingComponent).toMatchSnapshot();
 });

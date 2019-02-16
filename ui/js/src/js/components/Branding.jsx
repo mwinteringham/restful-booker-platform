@@ -2,6 +2,67 @@ import React from 'react';
 import fetch from 'node-fetch';
 import { API_ROOT } from '../api-config';
 import ReactModal from 'react-modal';
+import validate from 'validate.js';
+
+let rules = {
+    "name": {
+        presence : true,
+        length: {
+            minimum: 3,
+            message: "must be at least 3 characters long"
+        }
+    },
+    "logoUrl": {
+        presence : true
+    },
+    "description": {
+        presence : true,
+        length: {
+            minimum: 3,
+            message: "must be at least 3 characters long"
+        }
+    },
+    "map.latitude": {
+        presence : true,
+        numericality: {
+            onlyFloat: true
+        }
+    },
+    "map.longitude": {
+        presence : true,
+        numericality: {
+            onlyFloat: true
+        }
+    },
+    "contact.name": {
+        presence : true,
+        length: {
+            minimum: 3,
+            message: "must be at least 3 characters long"
+        }
+    },
+    "contact.address": {
+        presence : true,
+        length: {
+            minimum: 10,
+            message: "must be at least 10 characters long"
+        }
+    },
+    "contact.phone": {
+        presence : true,
+        numericality: {
+            onlyInteger: true
+        },
+        length: {
+            minimum: 11,
+            message: "must be at least 11 digits long"
+        }
+    },
+    "contact.email": {
+        presence : true,
+        email : true
+    },
+}
 
 export default class Branding extends React.Component {
     
@@ -24,7 +85,8 @@ export default class Branding extends React.Component {
                     email: ''
                 }
             },
-            showModal : false
+            showModal : false,
+            errors : []
         }
 
         this.updateState = this.updateState.bind(this);
@@ -47,21 +109,27 @@ export default class Branding extends React.Component {
     }
 
     doUpdate(){
-        fetch(API_ROOT.branding + '/branding/', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body : JSON.stringify(this.state.branding)
-        })
-        .then(res => {
-            if(res.status == 200){
-                this.setState({showModal : true});
-            }
-        })
-        .catch(e => console.log(e));
+        let vErrors = validate(this.state.branding, rules);
+
+        if(typeof vErrors === 'undefined'){
+            fetch(API_ROOT.branding + '/branding/', {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body : JSON.stringify(this.state.branding)
+            })
+            .then(res => {
+                if(res.status == 200){
+                    this.setState({showModal : true, errors : {}});
+                }
+            })
+            .catch(e => console.log(e));
+        } else {
+            this.setState({ errors : vErrors })
+        }
     }
 
     updateState(event){
@@ -99,6 +167,18 @@ export default class Branding extends React.Component {
     }
 
     render(){
+        let errors = '';
+        
+        if(Object.keys(this.state.errors).length > 0){
+            errors = <div className="alert alert-danger" style={{marginTop : 1 + "rem"}}>
+                    {Object.keys(this.state.errors).map((key, index) => {
+                        return this.state.errors[key].map((value, index) => {
+                            return <p key={index}>{value}</p>
+                        })
+                    })}
+            </div>
+        }
+
         return <div className="branding-form">
                     <h2>B&amp;B details</h2>
                     <div className="input-group mb-3">
@@ -159,7 +239,7 @@ export default class Branding extends React.Component {
                         </div>
                         <input type="email" className="form-control" id="contactEmail" value={this.state.branding.contact.email} onChange={this.updateState} placeholder="Enter Email Address" />
                     </div>
-                    <button type="submit" className="btn btn-outline-primary" onClick={this.doUpdate}>Submit</button>
+                    <button type="submit" id="updateBranding" className="btn btn-outline-primary" onClick={this.doUpdate}>Submit</button>
                     <ReactModal 
                         isOpen={this.state.showModal}
                         contentLabel="onRequestClose Example"
@@ -174,6 +254,7 @@ export default class Branding extends React.Component {
                             </div>
                         </div>
                     </ReactModal>
+                    {errors}
                 </div>
     }
 

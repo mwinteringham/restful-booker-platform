@@ -206,6 +206,7 @@ exports[`Branding page renders 1`] = `
     </div>
     <button
       className="btn btn-outline-primary"
+      id="updateBranding"
       onClick={[Function]}
       type="submit"
     >
@@ -286,6 +287,298 @@ exports[`Branding page renders 1`] = `
     </Modal>
   </div>
 </Branding>
+`;
+
+exports[`Branding page shows errors 1`] = `
+<div
+  className="branding-form"
+>
+  <h2>
+    B&B details
+  </h2>
+  <div
+    className="input-group mb-3"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Name
+      </span>
+    </div>
+    <input
+      className="form-control"
+      id="name"
+      onChange={[Function]}
+      placeholder="Enter B&B name"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="input-group mb-3"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Logo
+      </span>
+    </div>
+    <input
+      className="form-control"
+      id="logoUrl"
+      onChange={[Function]}
+      placeholder="Enter image url"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Description
+      </span>
+    </div>
+    <textarea
+      className="form-control"
+      id="description"
+      onChange={[Function]}
+      rows="5"
+      value=""
+    />
+  </div>
+  <br />
+  <h2>
+    Map details
+  </h2>
+  <div
+    className="input-group mb-3"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Latitude
+      </span>
+    </div>
+    <input
+      className="form-control"
+      id="latitude"
+      onChange={[Function]}
+      placeholder="Enter Latitude"
+      type="text"
+      value={0}
+    />
+  </div>
+  <div
+    className="input-group mb-3"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Longitude
+      </span>
+    </div>
+    <input
+      className="form-control"
+      id="longitude"
+      onChange={[Function]}
+      placeholder="Enter Longitude"
+      type="text"
+      value={0}
+    />
+  </div>
+  <br />
+  <h2>
+    Contact details
+  </h2>
+  <div
+    className="input-group mb-3"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Name
+      </span>
+    </div>
+    <input
+      className="form-control"
+      id="contactName"
+      onChange={[Function]}
+      placeholder="Enter Contact Name"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="input-group mb-3"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Address
+      </span>
+    </div>
+    <input
+      className="form-control"
+      id="contactAddress"
+      onChange={[Function]}
+      placeholder="Enter Address"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="input-group mb-3"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Phone
+      </span>
+    </div>
+    <input
+      className="form-control"
+      id="contactPhone"
+      onChange={[Function]}
+      placeholder="Enter Phone Number"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="input-group mb-3"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        Email
+      </span>
+    </div>
+    <input
+      className="form-control"
+      id="contactEmail"
+      onChange={[Function]}
+      placeholder="Enter Email Address"
+      type="email"
+      value=""
+    />
+  </div>
+  <button
+    className="btn btn-outline-primary"
+    id="updateBranding"
+    onClick={[Function]}
+    type="submit"
+  >
+    Submit
+  </button>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    className="Modal"
+    closeTimeoutMS={0}
+    contentLabel="onRequestClose Example"
+    isOpen={false}
+    onRequestClose={[Function]}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    role="dialog"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+  >
+    <div
+      className="form-row text-center"
+    >
+      <div
+        className="col-12"
+      >
+        <p>
+          Branding updated!
+        </p>
+        <button
+          className="btn btn-outline-primary"
+          onClick={[Function]}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </Modal>
+  <div
+    className="alert alert-danger"
+    style={
+      Object {
+        "marginTop": "1rem",
+      }
+    }
+  >
+    <p
+      key="0"
+    >
+      Name must be at least 3 characters long
+    </p>
+    <p
+      key="0"
+    >
+      Description must be at least 3 characters long
+    </p>
+    <p
+      key="0"
+    >
+      Contact name must be at least 3 characters long
+    </p>
+    <p
+      key="0"
+    >
+      Contact address must be at least 10 characters long
+    </p>
+    <p
+      key="0"
+    >
+      Contact phone is not a number
+    </p>
+    <p
+      key="1"
+    >
+      Contact phone must be at least 11 digits long
+    </p>
+    <p
+      key="0"
+    >
+      Contact email is not a valid email
+    </p>
+  </div>
+</div>
 `;
 
 exports[`Branding page shows modal on success 1`] = `
@@ -494,6 +787,7 @@ exports[`Branding page shows modal on success 1`] = `
     </div>
     <button
       className="btn btn-outline-primary"
+      id="updateBranding"
       onClick={[Function]}
       type="submit"
     >
