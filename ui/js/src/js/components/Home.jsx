@@ -50,7 +50,7 @@ export default class Home extends React.Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className='col-sm-12 text-center'>
-                            <HotelLogo logoDetails={this.state.logo} />
+                            <HotelLogo logoDetails={this.state.logoUrl} />
                         </div>
                     </div>
                     <div className="row hotel-description">

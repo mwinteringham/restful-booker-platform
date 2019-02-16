@@ -1,0 +1,15 @@
+{
+    "name": "Updated hotel name",
+    "map": {
+        "latitude": 50.0,
+        "longitude": 50.0
+    },
+    "logoUrl": "link/to/logo",
+    "description": "Description update",
+    "contact": {
+        "name": "Updated hotel name",
+        "address": "Update address",
+        "phone": "9999999999",
+        "email": "update@email.com"
+    }
+}

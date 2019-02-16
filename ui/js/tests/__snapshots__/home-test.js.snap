@@ -196,11 +196,7 @@ exports[`Home page renders 1`] = `
         className="col-sm-12 text-center"
       >
         <HotelLogo
-          logoDetails={
-            Object {
-              "url": "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
-            }
-          }
+          logoDetails="https://www.mwtestconsultancy.co.uk/img/rbp-logo.png"
         />
       </div>
     </div>
@@ -321,9 +317,13 @@ exports[`Logo for home page errors render 1`] = `
 
 exports[`Logo for home page renders 1`] = `
 <img
-  alt="Hotel logo"
-  className="hotel-logo"
-  src="https://www.mwtestconsultancy.co.uk/img/rbp-logo.png"
+  alt="Hotel logoUrl"
+  className="hotel-logoUrl"
+  src={
+    Object {
+      "url": "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
+    }
+  }
 />
 `;
 

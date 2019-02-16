@@ -4,9 +4,7 @@ import com.automationintesting.db.BrandingDB;
 import com.automationintesting.model.Branding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -46,6 +44,13 @@ public class BrandingController {
         Branding branding = brandingDB.queryBranding();
 
         return ResponseEntity.ok(branding);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public ResponseEntity<?> createBooking(@RequestBody Branding branding) throws SQLException {
+        Branding updatedBranding = brandingDB.update(branding);
+
+        return ResponseEntity.ok(updatedBranding);
     }
 
 }

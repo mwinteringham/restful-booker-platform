@@ -17,7 +17,7 @@ public class InsertSql {
         preparedStatement.setString(1, branding.getName());
         preparedStatement.setDouble(2, branding.getMap().getLatitude());
         preparedStatement.setDouble(3, branding.getMap().getLongitude());
-        preparedStatement.setString(4, branding.getLogo().getUrl());
+        preparedStatement.setString(4, branding.getLogoUrl());
         preparedStatement.setString(5, branding.getDescription());
         preparedStatement.setString(6, branding.getContact().getName());
         preparedStatement.setString(7, branding.getContact().getAddress());

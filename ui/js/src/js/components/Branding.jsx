@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import fetch from 'node-fetch';
 import { API_ROOT } from '../api-config';
 
-export default class App extends React.Component {
+export default class Branding extends React.Component {
     
     constructor(){
         super();
@@ -12,9 +12,7 @@ export default class App extends React.Component {
                 latitude: 0,
                 longitude: 0
             },
-            logo: {
-                url: ''
-            },
+            logoUrl: '',
             description: '',
             contact: {
                 name: '',
@@ -23,6 +21,9 @@ export default class App extends React.Component {
                 email: ''
             }
         }
+
+        this.updateState = this.updateState.bind(this);
+        this.doUpdate = this.doUpdate.bind(this);
     }
 
     componentDidMount(){
@@ -40,68 +41,116 @@ export default class App extends React.Component {
         .catch(e => console.log(e));
     }
 
+    doUpdate(){
+        fetch(API_ROOT.branding + '/branding/', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body : JSON.stringify(this.state)
+        })
+        .then(res => {
+            
+        });
+    }
+
+    updateState(event){
+        let currentState = this.state;
+        
+        switch(event.target.id){
+            // case 'logoUrl':
+            //     currentState.logoUrl.url = event.target.value;
+            //     break;
+            case 'latitude':
+                currentState.map.latitude = event.target.value;
+                break;
+            case 'longitude':
+                currentState.map.longitude = event.target.value;
+                break;
+            case 'contactName':
+                currentState.contact.name = event.target.value;
+                break;
+            case 'contactAddress':
+                currentState.contact.address = event.target.value;
+                break;
+            case 'contactPhone':
+                currentState.contact.phone = event.target.value;
+                break;
+            case 'contactEmail':
+                currentState.contact.email = event.target.value;
+                break;
+            default :
+                currentState[event.target.id] = event.target.value;
+                break;
+        }
+
+        this.setState(currentState);
+    }
+
     render(){
-        return <div class="branding-form">
+        return <div className="branding-form">
                     <h2>B&amp;B details</h2>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Name</span>
                         </div>
-                        <input type="text" class="form-control" id="bbName" value={this.state.name} placeholder="Enter B&amp;B name" />
+                        <input type="text" className="form-control" id="name" value={this.state.name} onChange={this.updateState} placeholder="Enter B&amp;B name" />
                     </div>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Logo</span>
                         </div>
-                        <input type="text" class="form-control" id="logoUrl" value={this.state.logo.url} placeholder="Enter image url" />
+                        <input type="text" className="form-control" id="logoUrl" value={this.state.logoUrl} onChange={this.updateState} placeholder="Enter image url" />
                     </div>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Description</span>
                         </div>
-                        <textarea className="form-control" aria-label="Message" value={this.state.description} id="description" rows="5"></textarea>
+                        <textarea className="form-control" value={this.state.description} onChange={this.updateState} id="description" rows="5"></textarea>
                     </div>
                     <br />
                     <h2>Map details</h2>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Latitude</span>
                         </div>
-                        <input type="text" class="form-control" id="latitude" value={this.state.map.latitude} placeholder="Enter Latitude" />
+                        <input type="text" className="form-control" id="latitude" value={this.state.map.latitude} onChange={this.updateState} placeholder="Enter Latitude" />
                     </div>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Longitude</span>
                         </div>
-                        <input type="text" class="form-control" id="longitude" value={this.state.map.longitude} placeholder="Enter Longitude" />
+                        <input type="text" className="form-control" id="longitude" value={this.state.map.longitude} onChange={this.updateState} placeholder="Enter Longitude" />
                     </div>
                     <br />
                     <h2>Contact details</h2>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Name</span>
                         </div>
-                        <input type="text" class="form-control" id="name" value={this.state.contact.name} placeholder="Enter Contact Name" />
+                        <input type="text" className="form-control" id="contactName" value={this.state.contact.name} onChange={this.updateState} placeholder="Enter Contact Name" />
                     </div>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Address</span>
                         </div>
-                        <input type="text" class="form-control" id="address" value={this.state.contact.address} placeholder="Enter Address" />
+                        <input type="text" className="form-control" id="contactAddress" value={this.state.contact.address} onChange={this.updateState} placeholder="Enter Address" />
                     </div>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Phone</span>
                         </div>
-                        <input type="text" class="form-control" id="phone" value={this.state.contact.phone} placeholder="Enter Phone Number" />
+                        <input type="text" className="form-control" id="contactPhone" value={this.state.contact.phone} onChange={this.updateState} placeholder="Enter Phone Number" />
                     </div>
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Email</span>
                         </div>
-                        <input type="email" class="form-control" id="email" value={this.state.contact.email} placeholder="Enter Email Address" />
+                        <input type="email" className="form-control" id="contactEmail" value={this.state.contact.email} onChange={this.updateState} placeholder="Enter Email Address" />
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary" onClick={this.doUpdate}>Submit</button>
                 </div>
     }
 

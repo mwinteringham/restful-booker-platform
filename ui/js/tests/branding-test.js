@@ -1,5 +1,6 @@
 import React from 'react';
 import Branding from '../src/js/components/Branding.jsx';
+import nock from 'nock';
 
 test('Branding page renders', () => {
     const brandingData = {
@@ -8,9 +9,7 @@ test('Branding page renders', () => {
             latitude: 52.6351204,
             longitude: 1.2733774
         },
-        logo: {
-            url: 'https://www.mwtestconsultancy.co.uk/img/rbp-logo.png'
-        },
+        logoUrl: 'https://www.mwtestconsultancy.co.uk/img/rbp-logo.png',
         description: 'Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.',
         contact: {
             name: 'Shady Meadows B&B',
@@ -29,3 +28,38 @@ test('Branding page renders', () => {
 
     expect(brandingComponent).toMatchSnapshot();
 });
+
+// test('Branding page has controlled form', (done) => {
+//     const brandingData = {
+//         name: 'UPDATE',
+//         map: {
+//             latitude: 88,
+//             longitude: 11
+//         },
+//         logo: {
+//             url: 'url/update'
+//         },
+//         description: 'Updated description',
+//         contact: {
+//             name: 'Another B&B',
+//             address: 'Somewhere else',
+//             phone: '9999999',
+//             email: 'another@fakeemail.com'
+//         }
+//     }
+    
+//     let brandingPutMock = nock('http://localhost:3002')
+//         .put('/branding/', brandingData)
+//         .reply(200, () => {
+//             done();
+//         });
+
+//     const brandingComponent = shallow(
+//         <Branding />
+//     )
+
+//     brandingComponent.find('#createRoom').simulate('click');
+
+//     let didNockAcceptRequest = brandingPutMock.isDone();
+//     expect(didNockAcceptRequest).toBe(true);
+// });

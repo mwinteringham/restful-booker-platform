@@ -51,12 +51,12 @@ public class BrandingDB {
         PreparedStatement updatePs = updateSql.getPreparedStatement();
 
         if (updatePs.executeUpdate() > 0) {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM brandings WHERE brandingid = 0");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM brandings WHERE brandingid = 1");
 
             ResultSet result = ps.executeQuery();
             result.next();
 
-            return new BrandingImpl(result);
+            return new Branding(result);
         } else {
             return null;
         }
@@ -69,13 +69,13 @@ public class BrandingDB {
 
         ResultSet results = ps.executeQuery();
         while(results.next()) {
-            brandings.add(new BrandingImpl(results));
+            brandings.add(new Branding(results));
         }
 
         Branding branding;
 
         if (brandings.isEmpty()) {
-            branding = new BrandingNullImpl();
+            branding = new Branding();
         } else {
             branding = brandings.get(0);
         }
@@ -88,12 +88,12 @@ public class BrandingDB {
     }
 
     private Branding defaultBranding() {
-        return new BrandingImpl(
+        return new Branding(
                 "Shady Meadows B&B",
-                new MapImpl(),
-                new LogoImpl(),
+                new Map(52.6351204, 1.2733774),
+                "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
                 "Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.",
-                new ContactImpl()
+                new Contact("Shady Meadows B&B", "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S", "0123456789", "fake@fakeemail.com")
         );
     }
 }

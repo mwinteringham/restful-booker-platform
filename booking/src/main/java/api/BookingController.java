@@ -4,10 +4,7 @@ import db.BookingDB;
 import model.Booking;
 import model.BookingResults;
 import model.CreatedBooking;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +15,7 @@ import utils.DatabaseScheduler;
 import validators.DateCheckValidator;
 
 import java.sql.SQLException;
-import java.time.Instant;
-import java.util.GregorianCalendar;
 import java.util.Optional;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @RestController

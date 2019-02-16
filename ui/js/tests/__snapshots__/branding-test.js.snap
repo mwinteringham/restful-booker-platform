@@ -2,13 +2,13 @@
 
 exports[`Branding page renders 1`] = `
 <div
-  class="branding-form"
+  className="branding-form"
 >
   <h2>
     B&B details
   </h2>
   <div
-    class="input-group mb-3"
+    className="input-group mb-3"
   >
     <div
       className="input-group-prepend"
@@ -20,15 +20,16 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <input
-      class="form-control"
-      id="bbName"
+      className="form-control"
+      id="name"
+      onChange={[Function]}
       placeholder="Enter B&B name"
       type="text"
       value="Shady Meadows B&B"
     />
   </div>
   <div
-    class="input-group mb-3"
+    className="input-group mb-3"
   >
     <div
       className="input-group-prepend"
@@ -40,8 +41,9 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <input
-      class="form-control"
+      className="form-control"
       id="logoUrl"
+      onChange={[Function]}
       placeholder="Enter image url"
       type="text"
       value="https://www.mwtestconsultancy.co.uk/img/rbp-logo.png"
@@ -60,9 +62,9 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <textarea
-      aria-label="Message"
       className="form-control"
       id="description"
+      onChange={[Function]}
       rows="5"
       value="Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place."
     />
@@ -72,7 +74,7 @@ exports[`Branding page renders 1`] = `
     Map details
   </h2>
   <div
-    class="input-group mb-3"
+    className="input-group mb-3"
   >
     <div
       className="input-group-prepend"
@@ -84,15 +86,16 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <input
-      class="form-control"
+      className="form-control"
       id="latitude"
+      onChange={[Function]}
       placeholder="Enter Latitude"
       type="text"
       value={52.6351204}
     />
   </div>
   <div
-    class="input-group mb-3"
+    className="input-group mb-3"
   >
     <div
       className="input-group-prepend"
@@ -104,8 +107,9 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <input
-      class="form-control"
+      className="form-control"
       id="longitude"
+      onChange={[Function]}
       placeholder="Enter Longitude"
       type="text"
       value={1.2733774}
@@ -116,7 +120,7 @@ exports[`Branding page renders 1`] = `
     Contact details
   </h2>
   <div
-    class="input-group mb-3"
+    className="input-group mb-3"
   >
     <div
       className="input-group-prepend"
@@ -128,15 +132,16 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <input
-      class="form-control"
-      id="name"
+      className="form-control"
+      id="contactName"
+      onChange={[Function]}
       placeholder="Enter Contact Name"
       type="text"
       value="Shady Meadows B&B"
     />
   </div>
   <div
-    class="input-group mb-3"
+    className="input-group mb-3"
   >
     <div
       className="input-group-prepend"
@@ -148,15 +153,16 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <input
-      class="form-control"
-      id="address"
+      className="form-control"
+      id="contactAddress"
+      onChange={[Function]}
       placeholder="Enter Address"
       type="text"
       value="The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S"
     />
   </div>
   <div
-    class="input-group mb-3"
+    className="input-group mb-3"
   >
     <div
       className="input-group-prepend"
@@ -168,15 +174,16 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <input
-      class="form-control"
-      id="phone"
+      className="form-control"
+      id="contactPhone"
+      onChange={[Function]}
       placeholder="Enter Phone Number"
       type="text"
       value="0123456789"
     />
   </div>
   <div
-    class="input-group mb-3"
+    className="input-group mb-3"
   >
     <div
       className="input-group-prepend"
@@ -188,15 +195,17 @@ exports[`Branding page renders 1`] = `
       </span>
     </div>
     <input
-      class="form-control"
-      id="email"
+      className="form-control"
+      id="contactEmail"
+      onChange={[Function]}
       placeholder="Enter Email Address"
       type="email"
       value="fake@fakeemail.com"
     />
   </div>
   <button
-    class="btn btn-primary"
+    className="btn btn-primary"
+    onClick={[Function]}
     type="submit"
   >
     Submit
