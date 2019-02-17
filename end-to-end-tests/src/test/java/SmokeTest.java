@@ -7,6 +7,7 @@ import pageobjects.*;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.number.OrderingComparison.greaterThan;
 
 public class SmokeTest extends TestSetup {
 
@@ -24,21 +25,18 @@ public class SmokeTest extends TestSetup {
     public void authSmokeTest(){
         NavPage navPage = new NavPage(driver);
 
-        assertThat(navPage.getDivNavBar().getText(), containsString("Shady Meadows - Booking Management"));
+        assertThat(navPage.getDivNavBar().getText(), containsString("Shady Meadows B&B - Booking Management"));
     }
 
     @Test
     public void roomSmokeTest() throws InterruptedException {
-        Room room = new Room("102", "Single", "1", "false", "WiFi");
-
         RoomListingPage roomListingPage = new RoomListingPage(driver);
         int initialRoomCount = roomListingPage.roomCount();
 
-        roomListingPage.populateRoomNumber(room.getNumber());
-        roomListingPage.populateType(room.getType());
-        roomListingPage.populateBeds(room.getBeds());
-        roomListingPage.populateAccessible(room.getAccessible());
-        roomListingPage.populateDetails(room.getDetails());
+        roomListingPage.populateRoomNumber("102");
+        roomListingPage.checkWifi();
+        roomListingPage.checkSafe();
+        roomListingPage.checkRadio();
         roomListingPage.clickCreateRoom();
 
         int currentRoomCount = roomListingPage.roomCount();
@@ -76,6 +74,17 @@ public class SmokeTest extends TestSetup {
         ReportPage reportPage = new ReportPage(driver);
 
         assertThat(reportPage.getReport(), instanceOf(WebElement.class));
+    }
+
+    @Test
+    public void brandingSmokeTest(){
+        NavPage navPage = new NavPage(driver);
+        navPage.clickBranding();
+
+        BrandingPage brandingPage = new BrandingPage(driver);
+        String nameValue = brandingPage.getNameValue();
+
+        assertThat(nameValue.length(), greaterThan(0));
     }
 
 }

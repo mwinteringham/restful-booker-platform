@@ -63,15 +63,13 @@ export default class Login extends React.Component {
                 <div className="row">
                     <div className="col-sm-4"></div>
                     <div className="col-sm-4">
-                    <form>
                         <div className="form-group">
                             <input type="text" style={{border : "1px solid " + borderColor}} className="form-control" id="username" placeholder="Username" onChange={val => this.setState({username : val.target.value})}/>
                         </div>
                         <div className="form-group">
                             <input type="password" style={{border : "1px solid " + borderColor}} className="form-control" id="password" placeholder="Password" onChange={val => this.setState({password : val.target.value})} />
                         </div>
-                        <button type="submit" className="btn btn-primary float-right" onClick={this.doLogin}>Login</button>
-                    </form>
+                        <button type="submit" id="doLogin" className="btn btn-primary float-right" onClick={this.doLogin}>Login</button>
                     </div>
                     <div className="col-sm-4"></div>
                 </div>

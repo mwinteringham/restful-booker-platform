@@ -9,7 +9,7 @@
     "contact": {
         "name": "Shady Meadows B&B",
         "address": "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S",
-        "phone": "0123456789",
+        "phone": "012345678901",
         "email": "fake@fakeemail.com"
     }
 }

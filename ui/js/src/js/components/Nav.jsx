@@ -55,10 +55,10 @@ class Nav extends React.Component {
 										<Link className="nav-link" to="/admin/">Rooms</Link>
 									</li>
 									<li className="nav-item">
-										<Link className="nav-link" to="/admin/report">Report</Link>
+										<Link className="nav-link" to="/admin/report" id="reportLink">Report</Link>
 									</li>
 									<li className="nav-item">
-										<Link className="nav-link" to="/admin/branding">Branding</Link>
+										<Link className="nav-link" to="/admin/branding" id="brandingLink">Branding</Link>
 									</li>
 							</ul>
 						)}
