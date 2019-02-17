@@ -90,7 +90,7 @@ export default class BookingForm extends React.Component {
     handleStartChange(date) {
         if(date != null){
             let currentState = this.state;
-            currentState.newbooking.bookingdates.checkin = moment(date).format("YYYY-MM-DD");
+            currentState.newbooking.bookingdates.checkin = moment(date.toUTCString()).format("YYYY-MM-DD");
 
             this.setState({newbooking : currentState.newbooking});
         }
@@ -99,7 +99,7 @@ export default class BookingForm extends React.Component {
     handleEndChange(date) {
         if(date != null){
             let currentState = this.state;
-            currentState.newbooking.bookingdates.checkout = moment(date).format("YYYY-MM-DD");
+            currentState.newbooking.bookingdates.checkout = moment(date.toUTCString()).format("YYYY-MM-DD");
 
             this.setState({newbooking : currentState.newbooking});
         }
@@ -178,8 +178,8 @@ export default class BookingForm extends React.Component {
                             <option value="true">true</option>
                         </select>
                     </div>
-                    <div className="col-sm-2 checkin"><DatePicker className="form-control" selected={moment(this.state.newbooking.bookingdates.checkin).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
-                    <div className="col-sm-2 checkout"><DatePicker className="form-control" selected={moment(this.state.newbooking.bookingdates.checkout).toDate()}  onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
+                    <div className="col-sm-2 checkin"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkin).utc(true).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-dd" /></div>
+                    <div className="col-sm-2 checkout"><DatePicker selected={moment(this.state.newbooking.bookingdates.checkout).utc(true).toDate()}  onChange={this.handleEndChange} dateFormat="YYYY-MM-dd" /></div>
                     <div className="col-sm-1">
                         <button className="btn btn-outline-primary" id="createRoom" type="submit" onClick={this.createBooking}>Create</button>
                     </div>

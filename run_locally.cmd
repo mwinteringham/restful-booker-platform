@@ -61,6 +61,9 @@ if %errorlevel%==1 (
     pause>nul
 )
 
+set cmdFileDirectory=%~dp0
+
+cd %cmdFileDirectory%
 call mvn clean
 
 echo:
@@ -71,7 +74,7 @@ echo ####                               ####
 echo #######################################
 echo:
 
-cd ui/js
+cd %cmdFileDirectory%ui\js
 call npm install
 call npm run build
 
@@ -83,17 +86,13 @@ echo ####                               ####
 echo #######################################
 echo:
 
-cd ../..
-
-call mvn install
-
-if "%APPLITOOLS_API_KEY%"=="" (
-    @echo Skipping visual checks because no applitools api key has been set.
-    @echo Assign a key to APPLITOOLS_API_KEY to run visual checks
-    mvn install -Dvisual.skip.test=true
+cd %cmdFileDirectory%
+if defined APPLITOOLS_API_KEY (
+    call mvn install
 ) else (
-    mvn install
-}
+    echo Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks
+    call mvn install -Dvisual.skip.test=true
+)
 
 echo:
 echo ####### RESTFUL-BOOKER-PLATFORM #######
@@ -118,8 +117,7 @@ echo ####    RUNNING E2E CHECKS         ####
 echo ####                               ####
 echo #######################################
 
-cd end-to-end-tests
-
+cd %cmdFileDirectory%end-to-end-tests
 call mvn clean test
 
 echo:
