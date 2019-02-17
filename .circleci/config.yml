@@ -422,7 +422,7 @@ jobs:
               echo "[SKIPPING] Room"
             fi
 
-  deploy_room_docker_image:
+  deploy_branding_docker_image:
 
       docker:
         - image: google/cloud-sdk
