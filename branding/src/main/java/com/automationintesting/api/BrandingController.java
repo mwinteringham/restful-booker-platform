@@ -3,6 +3,7 @@ package com.automationintesting.api;
 import com.automationintesting.db.BrandingDB;
 import com.automationintesting.model.Branding;
 import com.automationintesting.requests.AuthRequests;
+import com.automationintesting.utils.DatabaseScheduler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class BrandingController {
@@ -24,16 +26,19 @@ public class BrandingController {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                String originHost = "http://localhost:3003";
+            DatabaseScheduler databaseScheduler = new DatabaseScheduler();
+            databaseScheduler.startScheduler(brandingDB, TimeUnit.MINUTES);
 
-                if(System.getenv("cors") != null){
-                    originHost = System.getenv("cors");
-                }
+            String originHost = "http://localhost:3003";
 
-                registry.addMapping("/*")
-                        .allowedMethods("GET", "POST", "DELETE", "PUT")
-                        .allowedOrigins(originHost)
-                        .allowCredentials(true);
+            if(System.getenv("cors") != null){
+                originHost = System.getenv("cors");
+            }
+
+            registry.addMapping("/*")
+                    .allowedMethods("GET", "POST", "DELETE", "PUT")
+                    .allowedOrigins(originHost)
+                    .allowCredentials(true);
             }
         };
     }

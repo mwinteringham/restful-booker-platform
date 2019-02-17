@@ -480,7 +480,10 @@ jobs:
           command: node prod_monitor.js
           working_directory: .utilities/monitor
       - run:
-          command: mvn clean test
+          command: | 
+            if [ $CIRCLE_BRANCH == "master" ]; then
+              mvn clean test
+            fi
           working_directory: end-to-end-tests
           environment:
             TARGET: production
