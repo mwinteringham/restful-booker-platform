@@ -477,7 +477,10 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          command: node prod_monitor.js
+          command: | 
+            if [ $CIRCLE_BRANCH == "master" ]; then
+              node prod_monitor.js
+            fi
           working_directory: .utilities/monitor
       - run:
           command: | 

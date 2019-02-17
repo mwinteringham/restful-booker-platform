@@ -55,5 +55,5 @@ public class DatabaseScheduler {
             logger.info("No env var was set for DB refresh (or set as 0) so not running DB reset");
         }
     }
-    
+
 }
