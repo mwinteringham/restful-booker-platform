@@ -76,6 +76,7 @@ echo:
 
 cd %cmdFileDirectory%ui\js
 call npm install
+call npm test
 call npm run build
 
 echo:

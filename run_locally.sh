@@ -53,6 +53,7 @@ printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 
 cd ui/js
 npm install
+npm run test
 npm run build
 
 printf "\n####### RESTFUL-BOOKER-PLATFORM #######

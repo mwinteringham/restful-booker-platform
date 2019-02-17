@@ -4,7 +4,7 @@
   "description": "React based UI interface",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watchAll",
     "build": "webpack --mode=production",
     "dev": "webpack-dev-server --mode=development --port 3003"
   },
