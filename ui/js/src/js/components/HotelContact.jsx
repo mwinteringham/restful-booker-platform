@@ -78,7 +78,11 @@ export default class HotelContact extends React.Component {
         if(typeof vErrors === 'undefined'){
             this.setState({ submitted : true});
         } else {
-            this.setState({ errors : vErrors })
+            for (let prop in vErrors) {
+                let currentState = this.state;
+                currentState.errors[prop] = vErrors[prop];
+                this.setState(currentState)
+            }
         }
     }
 
