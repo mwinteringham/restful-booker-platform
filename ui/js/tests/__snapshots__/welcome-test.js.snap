@@ -15,13 +15,13 @@ exports[`Clicking on close button closes modal 1`] = `
           <p
             className="text-muted"
           >
-            restful-booker-platform v3.0 - Created by 
+            restful-booker-platform v4.0 - Created by 
             <a
               href="http://www.mwtestconsultancy.co.uk"
             >
               Mark Winteringham
             </a>
-             - © 2018 
+             - © 2019 
             <a
               href="/#/cookie"
             >
@@ -32,6 +32,12 @@ exports[`Clicking on close button closes modal 1`] = `
               href="/#/privacy"
             >
               Privacy-Policy
+            </a>
+             - 
+            <a
+              href="/#/admin"
+            >
+              Admin panel
             </a>
              
             <span
