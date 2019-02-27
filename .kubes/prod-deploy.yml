@@ -86,22 +86,24 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: rbp-search
+  name: rbp-branding
 spec:
   selector:
     matchLabels:
-      run: rbp-search
+      run: rbp-branding
   replicas: 1
   template:
     metadata:
       labels:
-        run: rbp-search
+        run: rbp-branding
     spec:
       containers:
-        - name: rbp-search
-          image: mwinteringham/restfulbookerplatform_search:latest
+        - name: rbp-branding
+          image: mwinteringham/restfulbookerplatform_branding:latest
           imagePullPolicy: Always
           env:
+          - name: dbRefresh
+            value: "10"
           - name: cors
             value: "https://automationintesting.online"
           ports:
@@ -116,12 +118,12 @@ spec:
           readinessProbe:
             httpGet:
               port: 3002
-              path: /search/actuator/health
+              path: /branding/actuator/health
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 4
             successThreshold: 2
-            failureThreshold: 3
+            failureThreshold: 3            
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -275,9 +277,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rbp-search
+  name: rbp-branding
   labels:
-    app: rbp-search
+    app: rbp-branding
 spec:
   type: NodePort
   ports:
@@ -286,7 +288,7 @@ spec:
       nodePort: 32149
       targetPort: 3002
   selector:
-    run: rbp-search
+    run: rbp-branding
 ---
 apiVersion: v1
 kind: Service
@@ -353,10 +355,10 @@ spec:
         backend:
           serviceName: rbp-room
           servicePort: 3001
-      - path: /search/*
+      - path: /branding/*
         backend:
-          serviceName: rbp-search
-          servicePort: 3002      
+          serviceName: rbp-branding
+          servicePort: 3002
       - path: /auth/*
         backend:
           serviceName: rbp-auth

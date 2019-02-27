@@ -1,0 +1,1033 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Room details can be switched out of edit mode 1`] = `
+<div>
+  <div
+    className="room-details"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-10"
+      >
+        <h2>
+          Room: 
+        </h2>
+      </div>
+      <div
+        className="col-sm-2"
+      >
+        <button
+          className="btn btn-outline-primary float-right"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginRight": "10px",
+            }
+          }
+          type="button"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-6"
+      >
+        <p>
+          Type: 
+          <span />
+        </p>
+      </div>
+      <div
+        className="col-sm-6"
+      >
+        <p>
+          Description: 
+          <span />
+        </p>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-6"
+      >
+        <p>
+          Accessible: 
+          <span>
+            false
+          </span>
+        </p>
+        <p>
+          Features: 
+          <span>
+            <span
+              style={
+                Object {
+                  "color": "grey",
+                }
+              }
+            >
+              No features added to the room
+            </span>
+          </span>
+        </p>
+      </div>
+      <div
+        className="col-sm-6"
+      >
+        <p>
+          Image:
+        </p>
+        <img
+          alt="Room: undefined preview image"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        First name
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Last name
+      </p>
+    </div>
+    <div
+      className="col-sm-1 rowHeader"
+    >
+      <p>
+        Price
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Deposit paid?
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Check in
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Check out
+      </p>
+    </div>
+    <div
+      className="col-sm-1"
+    />
+  </div>
+  <BookingForm
+    fetchRoomDetails={[Function]}
+    roomid={1}
+  />
+</div>
+`;
+
+exports[`Room details can render validation errors 1`] = `
+<div>
+  <div
+    className="room-details"
+  >
+    <div
+      className="form-row"
+    >
+      <div
+        className="col-sm-9"
+      >
+        <h2>
+          Room: 
+        </h2>
+        <input
+          id="roomNumber"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+      <div
+        className="col-sm-3"
+      >
+        <button
+          className="btn btn-outline-danger float-right"
+          id="cancelEdit"
+          onClick={[Function]}
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          className="btn btn-outline-primary float-right"
+          id="update"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginRight": "10px",
+            }
+          }
+          type="button"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+    <div
+      className="form-row"
+    >
+      <div
+        className="col-sm-6"
+      >
+        <label
+          className="editLabel"
+          htmlFor="type"
+        >
+          Type: 
+        </label>
+        <select
+          className="form-control"
+          id="type"
+          onChange={[Function]}
+        >
+          <option
+            value="Single"
+          >
+            Single
+          </option>
+          <option
+            value="Twin"
+          >
+            Twin
+          </option>
+          <option
+            value="Double"
+          >
+            Double
+          </option>
+          <option
+            value="Family"
+          >
+            Family
+          </option>
+          <option
+            value="Suite"
+          >
+            Suite
+          </option>
+        </select>
+        <label
+          className="editLabel"
+          htmlFor="type"
+        >
+          Accessible: 
+        </label>
+        <select
+          className="form-control"
+          id="accessible"
+          onChange={[Function]}
+          value={false}
+        >
+          <option
+            value="false"
+          >
+            false
+          </option>
+          <option
+            value="true"
+          >
+            true
+          </option>
+        </select>
+      </div>
+      <div
+        className="col-sm-6"
+      >
+        <label
+          className="editLabel"
+          htmlFor="description"
+        >
+          Description: 
+        </label>
+        <textarea
+          aria-label="Description"
+          className="form-control"
+          defaultValue=""
+          id="description"
+          onChange={[Function]}
+          rows="5"
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+    >
+      <div
+        className="col-sm-6"
+      >
+        <label
+          className="editLabel"
+        >
+          Room features: 
+        </label>
+        <div
+          className="row"
+        >
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="wifiCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Wifi"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="wifiCheckbox"
+              >
+                WiFi
+              </label>
+            </div>
+          </div>
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="tvCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="TV"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="tvCheckbox"
+              >
+                TV
+              </label>
+            </div>
+          </div>
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="radioCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Radio"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="radioCheckbox"
+              >
+                Radio
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="refreshCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Refreshments"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="refreshCheckbox"
+              >
+                Refreshments
+              </label>
+            </div>
+          </div>
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="safeCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Safe"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="safeCheckbox"
+              >
+                Safe
+              </label>
+            </div>
+          </div>
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="viewsCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Views"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="viewsCheckbox"
+              >
+                Views
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-sm-6"
+      >
+        <label
+          className="editLabel"
+          htmlFor="image"
+        >
+          Image: 
+        </label>
+        <input
+          id="image"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="alert alert-danger"
+      style={
+        Object {
+          "marginTop": "15px",
+        }
+      }
+    >
+      <p
+        key="0"
+      >
+        Room number can't be blank
+      </p>
+      <p
+        key="0"
+      >
+        Type can't be blank
+      </p>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        First name
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Last name
+      </p>
+    </div>
+    <div
+      className="col-sm-1 rowHeader"
+    >
+      <p>
+        Price
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Deposit paid?
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Check in
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Check out
+      </p>
+    </div>
+    <div
+      className="col-sm-1"
+    />
+  </div>
+  <BookingForm
+    fetchRoomDetails={[Function]}
+    roomid={1}
+  />
+</div>
+`;
+
+exports[`Room details component renders 1`] = `
+<div>
+  <div
+    className="room-details"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-10"
+      >
+        <h2>
+          Room: 
+        </h2>
+      </div>
+      <div
+        className="col-sm-2"
+      >
+        <button
+          className="btn btn-outline-primary float-right"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginRight": "10px",
+            }
+          }
+          type="button"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-6"
+      >
+        <p>
+          Type: 
+          <span />
+        </p>
+      </div>
+      <div
+        className="col-sm-6"
+      >
+        <p>
+          Description: 
+          <span />
+        </p>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-6"
+      >
+        <p>
+          Accessible: 
+          <span>
+            false
+          </span>
+        </p>
+        <p>
+          Features: 
+          <span>
+            <span
+              style={
+                Object {
+                  "color": "grey",
+                }
+              }
+            >
+              No features added to the room
+            </span>
+          </span>
+        </p>
+      </div>
+      <div
+        className="col-sm-6"
+      >
+        <p>
+          Image:
+        </p>
+        <img
+          alt="Room: undefined preview image"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        First name
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Last name
+      </p>
+    </div>
+    <div
+      className="col-sm-1 rowHeader"
+    >
+      <p>
+        Price
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Deposit paid?
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Check in
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Check out
+      </p>
+    </div>
+    <div
+      className="col-sm-1"
+    />
+  </div>
+  <BookingForm
+    fetchRoomDetails={[Function]}
+    roomid={1}
+  />
+</div>
+`;
+
+exports[`Room details switches into edit mode 1`] = `
+<div>
+  <div
+    className="room-details"
+  >
+    <div
+      className="form-row"
+    >
+      <div
+        className="col-sm-9"
+      >
+        <h2>
+          Room: 
+        </h2>
+        <input
+          id="roomNumber"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+      <div
+        className="col-sm-3"
+      >
+        <button
+          className="btn btn-outline-danger float-right"
+          id="cancelEdit"
+          onClick={[Function]}
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          className="btn btn-outline-primary float-right"
+          id="update"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginRight": "10px",
+            }
+          }
+          type="button"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+    <div
+      className="form-row"
+    >
+      <div
+        className="col-sm-6"
+      >
+        <label
+          className="editLabel"
+          htmlFor="type"
+        >
+          Type: 
+        </label>
+        <select
+          className="form-control"
+          id="type"
+          onChange={[Function]}
+        >
+          <option
+            value="Single"
+          >
+            Single
+          </option>
+          <option
+            value="Twin"
+          >
+            Twin
+          </option>
+          <option
+            value="Double"
+          >
+            Double
+          </option>
+          <option
+            value="Family"
+          >
+            Family
+          </option>
+          <option
+            value="Suite"
+          >
+            Suite
+          </option>
+        </select>
+        <label
+          className="editLabel"
+          htmlFor="type"
+        >
+          Accessible: 
+        </label>
+        <select
+          className="form-control"
+          id="accessible"
+          onChange={[Function]}
+          value={false}
+        >
+          <option
+            value="false"
+          >
+            false
+          </option>
+          <option
+            value="true"
+          >
+            true
+          </option>
+        </select>
+      </div>
+      <div
+        className="col-sm-6"
+      >
+        <label
+          className="editLabel"
+          htmlFor="description"
+        >
+          Description: 
+        </label>
+        <textarea
+          aria-label="Description"
+          className="form-control"
+          defaultValue=""
+          id="description"
+          onChange={[Function]}
+          rows="5"
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+    >
+      <div
+        className="col-sm-6"
+      >
+        <label
+          className="editLabel"
+        >
+          Room features: 
+        </label>
+        <div
+          className="row"
+        >
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                className="form-check-input"
+                id="wifiCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Wifi"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="wifiCheckbox"
+              >
+                WiFi
+              </label>
+            </div>
+          </div>
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                checked={false}
+                className="form-check-input"
+                id="tvCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="TV"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="tvCheckbox"
+              >
+                TV
+              </label>
+            </div>
+          </div>
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                checked={false}
+                className="form-check-input"
+                id="radioCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Radio"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="radioCheckbox"
+              >
+                Radio
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                checked={false}
+                className="form-check-input"
+                id="refreshCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Refreshments"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="refreshCheckbox"
+              >
+                Refreshments
+              </label>
+            </div>
+          </div>
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                checked={false}
+                className="form-check-input"
+                id="safeCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Safe"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="safeCheckbox"
+              >
+                Safe
+              </label>
+            </div>
+          </div>
+          <div
+            className="col-4"
+          >
+            <div
+              className="form-check form-check-inline"
+            >
+              <input
+                checked={false}
+                className="form-check-input"
+                id="viewsCheckbox"
+                name="featureCheck"
+                onChange={[Function]}
+                type="checkbox"
+                value="Views"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="viewsCheckbox"
+              >
+                Views
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-sm-6"
+      >
+        <label
+          className="editLabel"
+          htmlFor="image"
+        >
+          Image: 
+        </label>
+        <input
+          id="image"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        First name
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Last name
+      </p>
+    </div>
+    <div
+      className="col-sm-1 rowHeader"
+    >
+      <p>
+        Price
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Deposit paid?
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Check in
+      </p>
+    </div>
+    <div
+      className="col-sm-2 rowHeader"
+    >
+      <p>
+        Check out
+      </p>
+    </div>
+    <div
+      className="col-sm-1"
+    />
+  </div>
+  <BookingForm
+    fetchRoomDetails={[Function]}
+    roomid={1}
+  />
+</div>
+`;

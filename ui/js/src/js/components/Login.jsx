@@ -55,33 +55,24 @@ export default class Login extends React.Component {
                 <div className="row">
                     <div className="col-sm-2"></div>
                     <div className="col-sm-8" style={{textAlign : "center"}}>
-                        <h2>Welcome to the Shady Meadows <br /> booking management system</h2>
+                        <h2>Log into your account</h2>
+                        <br />
                     </div>
                     <div className="col-sm-2"></div>
                 </div>
-                <form>
-                    <div className="row">
-                        <div className="col-sm-4"></div>
-                        <div className="col-sm-4">
-                            <p><label htmlFor="username">Username </label><input type="text" id="username" style={{border : "1px solid " + borderColor}} onChange={val => this.setState({username : val.target.value})}/></p> 
+                <div className="row">
+                    <div className="col-sm-4"></div>
+                    <div className="col-sm-4">
+                        <div className="form-group">
+                            <input type="text" style={{border : "1px solid " + borderColor}} className="form-control" id="username" placeholder="Username" onChange={val => this.setState({username : val.target.value})}/>
                         </div>
-                        <div className="col-sm-4"></div>
-                    </div>
-                    <div className="row">
-                        <div className="col-sm-4"></div>
-                        <div className="col-sm-4">
-                            <p><label htmlFor="password">Password </label><input type="password" id="password" style={{border : "1px solid " + borderColor}} onChange={val => this.setState({password : val.target.value})}/></p> 
+                        <div className="form-group">
+                            <input type="password" style={{border : "1px solid " + borderColor}} className="form-control" id="password" placeholder="Password" onChange={val => this.setState({password : val.target.value})} />
                         </div>
-                        <div className="col-sm-4"></div>
+                        <button type="submit" id="doLogin" className="btn btn-primary float-right" onClick={this.doLogin}>Login</button>
                     </div>
-                    <div className="row">
-                        <div className="col-sm-7"></div>
-                        <div className="col-sm-1">
-                            <button type="button" style={{marginLeft : "9px"}} id="submit" className="btn btn-default" id="doLogin" onClick={this.doLogin}>Login</button>
-                        </div>
-                        <div className="col-sm-4"></div>
-                    </div>
-                </form>
+                    <div className="col-sm-4"></div>
+                </div>
             </div>)
     }
 

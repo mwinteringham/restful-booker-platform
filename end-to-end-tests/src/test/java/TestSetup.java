@@ -26,11 +26,11 @@ public class TestSetup {
             // We load the production page up initially to gain access to the site before
             // adding in the cookie to disabled the welcome popup. We finally have to refresh
             // the page to ensure the cookie is read and the popup is disabled.
-            driver.navigate().to("https://automationintesting.online");
+            driver.navigate().to("https://automationintesting.online/#/admin");
             driver.manage().addCookie(new Cookie("welcome", "true"));
             driver.navigate().refresh();
         } else {
-            driver.navigate().to("http://localhost:3003/");
+            driver.navigate().to("http://localhost:3003/#/admin");
         }
     }
 

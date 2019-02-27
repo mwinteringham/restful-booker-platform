@@ -33,7 +33,12 @@ public class DatabaseScheduler {
                         logger.info("Resetting database");
                         roomDB.resetDB();
 
-                        Room room = new Room(101, "Twin", 2, false , "Wifi, TV, Mini-bar");
+                        Room room = new Room(101,
+                                        "Twin",
+                                    false,
+                                        "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
+                                    "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
+                                               new String[]{"Wifi, TV, Mini-bar"});
 
                         roomDB.create(room);
                     } catch ( Exception e ) {

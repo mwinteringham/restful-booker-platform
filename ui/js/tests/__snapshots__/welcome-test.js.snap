@@ -2,100 +2,97 @@
 
 exports[`Clicking on close button closes modal 1`] = `
 <App>
-  <div
-    className="container"
-  >
-    <withRouter(Nav)
-      isAuthenticated={false}
-      setAuthenticate={[Function]}
-    >
-      <Route>
-        <Nav
-          history={
-            Object {
-              "action": "POP",
-              "block": [Function],
-              "createHref": [Function],
-              "go": [Function],
-              "goBack": [Function],
-              "goForward": [Function],
-              "length": 1,
-              "listen": [Function],
-              "location": Object {
-                "hash": "",
-                "pathname": "/",
-                "search": "",
-                "state": undefined,
-              },
-              "push": [Function],
-              "replace": [Function],
-            }
-          }
-          isAuthenticated={false}
-          location={Object {}}
-          match={Object {}}
-          setAuthenticate={[Function]}
+  <div>
+    <Switch />
+    <Footer>
+      <footer
+        className="footer"
+        id="footer"
+      >
+        <div
+          className="container"
         >
-          <nav
-            className="navbar navbar-default"
+          <p
+            className="text-muted"
           >
-            <div
-              className="container-fluid"
+            restful-booker-platform v4.0 - Created by 
+            <a
+              href="http://www.mwtestconsultancy.co.uk"
             >
-              <div
-                className="navbar-header"
+              Mark Winteringham
+            </a>
+             - © 2019 
+            <a
+              href="/#/cookie"
+            >
+              Cookie-Policy
+            </a>
+             - 
+            <a
+              href="/#/privacy"
+            >
+              Privacy-Policy
+            </a>
+             - 
+            <a
+              href="/#/admin"
+            >
+              Admin panel
+            </a>
+             
+            <span
+              style={
+                Object {
+                  "float": "right",
+                }
+              }
+            >
+              Learn more about 
+              <a
+                alt="Automation in testing site"
+                href="https://automationintesting.com"
               >
-                <a
-                  className="navbar-brand"
-                  href="/"
-                >
-                  Shady Meadows - Booking Management
-                </a>
-              </div>
-            </div>
-          </nav>
-        </Nav>
-      </Route>
-    </withRouter(Nav)>
-    <div>
-      <Switch />
-    </div>
+                Automation in Testing
+              </a>
+               here
+            </span>
+          </p>
+        </div>
+      </footer>
+    </Footer>
   </div>
 </App>
 `;
 
 exports[`Welcome component appears on initial visit 1`] = `
-<div
-  className="container"
->
-  <withRouter(Nav)
-    isAuthenticated={false}
-    setAuthenticate={[Function]}
-  />
+<div>
   <div>
     <Welcome
       setWelcome={[Function]}
     />
   </div>
-  <div>
-    <Switch>
-      <Route
-        exact={true}
-        path="/"
-        render={[Function]}
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/cookie"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/privacy"
-      />
-    </Switch>
-  </div>
+  <Switch>
+    <Route
+      path="/admin/"
+      render={[Function]}
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/cookie"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/privacy"
+    />
+  </Switch>
+  <Footer />
 </div>
 `;
 
@@ -146,7 +143,7 @@ exports[`Welcome component contains correct details 1`] = `
           <br />
           <br />
           <h2>
-            Welcome to Shady Meadows Booking Manager
+            Welcome to Restful Booker Platform
           </h2>
           <br />
           <br />
@@ -166,13 +163,18 @@ exports[`Welcome component contains correct details 1`] = `
         />
         <div>
           <div
-            className="col-sm-4"
-          />
-          <div
-            className="col-sm-2 text-center"
+            className="btn-group mr-2"
+            role="group"
           >
             <button
-              className="btn btn-primary"
+              className="btn btn-outline-primary disabled"
+              id="prev"
+              onClick={[Function]}
+            >
+              Prev
+            </button>
+            <button
+              className="btn btn-outline-primary"
               id="next"
               onClick={[Function]}
             >
@@ -190,31 +192,28 @@ exports[`Welcome component contains correct details 1`] = `
 `;
 
 exports[`Welcome component doesnt appear after close 1`] = `
-<div
-  className="container"
->
-  <withRouter(Nav)
-    isAuthenticated={false}
-    setAuthenticate={[Function]}
-  />
-  <div>
-    <Switch>
-      <Route
-        exact={true}
-        path="/"
-        render={[Function]}
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/cookie"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/privacy"
-      />
-    </Switch>
-  </div>
+<div>
+  <Switch>
+    <Route
+      path="/admin/"
+      render={[Function]}
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/cookie"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/privacy"
+    />
+  </Switch>
+  <Footer />
 </div>
 `;

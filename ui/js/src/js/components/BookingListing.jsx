@@ -92,25 +92,25 @@ export default class BookingListing extends React.Component {
         let booking = null;
 
         if(this.state.allowEdit){
-            booking = <div>
-                        <div className="col-sm-2"><input type="text" defaultValue={this.props.booking.firstname} onChange={val => this.state.booking.firstname = val.target.value} /></div>
-                        <div className="col-sm-2"><input type="text" defaultValue={this.props.booking.lastname} onChange={val => this.state.booking.lastname = val.target.value} /></div>
-                        <div className="col-sm-1"><input type="text" defaultValue={this.props.booking.totalprice} onChange={val => this.state.booking.totalprice = val.target.value} /></div>
+            booking = <div className="row">
+                        <div className="col-sm-2"><input type="text" className="form-control" defaultValue={this.props.booking.firstname} onChange={val => this.state.booking.firstname = val.target.value} /></div>
+                        <div className="col-sm-2"><input type="text" className="form-control" defaultValue={this.props.booking.lastname} onChange={val => this.state.booking.lastname = val.target.value} /></div>
+                        <div className="col-sm-1"><input type="text" className="form-control" defaultValue={this.props.booking.totalprice} onChange={val => this.state.booking.totalprice = val.target.value} /></div>
                         <div className="col-sm-2">
-                            <select defaultValue={this.props.booking.depositpaid} onChange={val => this.state.depositpaid = val.target.value}>
+                            <select className="form-control" defaultValue={this.props.booking.depositpaid} onChange={val => this.state.depositpaid = val.target.value}>
                                 <option value="false">false</option>
                                 <option value="true">true</option>
                             </select>
                         </div>
-                        <div className="col-sm-2"><DatePicker selected={moment(this.state.booking.bookingdates.checkin)} onChange={this.handleStartChange} dateFormat="YYYY-MM-DD" /></div>
-                        <div className="col-sm-2"><DatePicker selected={moment(this.state.booking.bookingdates.checkout)} onChange={this.handleEndChange} dateFormat="YYYY-MM-DD" /></div>
+                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkin).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-dd" /></div>
+                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkout).toDate()} onChange={this.handleEndChange} dateFormat="YYYY-MM-dd" /></div>
                         <div className="col-sm-1">
-                            <span className="glyphicon glyphicon-ok confirmBookingEdit" onClick={this.doEdit} style={{paddingRight : 10 + "px"}}></span>
-                            <span className="glyphicon glyphicon-remove exitBookingEdit" onClick={this.disableEdit}></span>
+                            <span className="fa fa-check confirmBookingEdit" onClick={this.doEdit} style={{paddingRight : 10 + "px"}}></span>
+                            <span className="fa fa-remove exitBookingEdit" onClick={this.disableEdit}></span>
                         </div>
                     </div>
         } else {
-            booking = <div>
+            booking = <div className="row">
                         <div className="col-sm-2"><p>{this.props.booking.firstname}</p></div>
                         <div className="col-sm-2"><p>{this.props.booking.lastname}</p></div>
                         <div className="col-sm-1"><p>{this.props.booking.totalprice}</p></div>
@@ -118,14 +118,14 @@ export default class BookingListing extends React.Component {
                         <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkin.split('T')[0]}</p></div>
                         <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkout.split('T')[0]}</p></div>
                         <div className="col-sm-1">
-                            <span className="glyphicon glyphicon-pencil bookingEdit" onClick={this.enableEdit} style={{paddingRight: 10 + "px"}}></span>
-                            <span className="glyphicon glyphicon-trash bookingDelete" onClick={this.doDelete}></span>
+                            <span className="fa fa-pencil bookingEdit" onClick={this.enableEdit} style={{paddingRight: 10 + "px"}}></span>
+                            <span className="fa fa-trash bookingDelete" onClick={this.doDelete}></span>
                         </div>
                       </div>
         }
 
         return(
-            <div className={"row detail booking-" + this.props.booking.roomid}>
+            <div className={"detail booking-" + this.props.booking.roomid}>
                 {booking}
             </div>
         )

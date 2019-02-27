@@ -4,9 +4,9 @@
   "description": "React based UI interface",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watchAll",
     "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode=development"
+    "dev": "webpack-dev-server --mode=development --port 3003"
   },
   "repository": {
     "type": "git",
@@ -44,6 +44,8 @@
     "nock": "^10.0.1",
     "node-fetch": "^2.2.0",
     "node-sass": "^4.9.4",
+    "pigeon-maps": "^0.11.10",
+    "pigeon-marker": "^0.3.4",
     "query-string": "^6.2.0",
     "react": "^16.6.0",
     "react-calendar-heatmap": "^1.7.0",
@@ -77,5 +79,8 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     }
+  },
+  "dependencies": {
+    "react-modal": "^3.8.1"
   }
 }

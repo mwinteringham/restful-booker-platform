@@ -12,7 +12,8 @@ module.exports = {
     filename: "js/[name].js"
   },
   devServer: {
-    contentBase: "./public"
+    contentBase: path.join(__dirname, 'src'),
+    publicPath: '/'
   },
   module: {
     rules: [

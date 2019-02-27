@@ -6,17 +6,25 @@ import { API_ROOT } from '../api-config';
 
 class Nav extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-          username : "",
-		  password : "",
-		  search : ""
+	constructor() {
+		super();
+	
+		this.state = {
+			name : ""
 		}
-		
+
 		this.doLogout = this.doLogout.bind(this);
-		this.doSearch = this.doSearch.bind(this);
-    }
+	}
+
+	componentDidMount(){
+		fetch(API_ROOT.branding + '/branding/', {
+			method: 'GET'
+		})
+		.then(res => res.json())
+		.then(res => {
+			this.setState({name : res.name})
+		})
+	}
 	
 	doLogout(){
 		fetch(API_ROOT.auth + '/logout', {
@@ -37,39 +45,42 @@ class Nav extends React.Component {
 		})
 	}
 
-	doSearch(event){
-		if(event.key == 'Enter'){
-			document.getElementById("search").value = '';
-
-			const { history } = this.props;
-			
-			if(history.location.pathname == '/search'){
-				history.push({
-					search: '?keyword=' + this.state.search
-				})
-			} else {
-				history.push('/search?keyword=' + this.state.search)
-			}
-		}
-	}
-
 	render() {
     	return(
-			<nav className="navbar navbar-default">
-				<div className="container-fluid"> 
-					<div className="navbar-header"> 
-					<a className="navbar-brand" href="/">Shady Meadows - Booking Management</a> 
+				<nav className="navbar navbar-expand-md navbar-dark bg-dark">
+					<div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+						{this.props.isAuthenticated && (
+							<ul className="navbar-nav mr-auto">
+									<li className="nav-item">
+										<Link className="nav-link" to="/admin/">Rooms</Link>
+									</li>
+									<li className="nav-item">
+										<Link className="nav-link" to="/admin/report" id="reportLink">Report</Link>
+									</li>
+									<li className="nav-item">
+										<Link className="nav-link" to="/admin/branding" id="brandingLink">Branding</Link>
+									</li>
+							</ul>
+						)}
 					</div>
-					{this.props.isAuthenticated && (
-						<ul className="nav navbar-nav"> 
-							<li><Link to="/">Rooms</Link></li>
-							<li><Link id="reportLink" to="/report">Report</Link></li>
-							<li id="logout"><a href="#" id="logout" onClick={this.doLogout}>Logout</a></li>
-							<li><a href="#">Search:</a></li> 
-							<li><input type="text" id="search" defaultValue={this.props.location.search.split('=')[1]} onKeyPress={this.doSearch} onChange={val => this.setState({search : val.target.value})}/></li> 
-						</ul> 
-					)}
-				</div> 
+					<div className="mx-auto order-0">
+							<a className="navbar-brand mx-auto" href="#">{this.state.name} - Booking Management</a>
+							<button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+									<span className="navbar-toggler-icon"></span>
+							</button>
+					</div>
+					<div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+						{this.props.isAuthenticated && (
+							<ul className="navbar-nav ml-auto">
+									<li className="nav-item">
+											<a className="nav-link" href="/">Front Page</a>
+									</li>
+									<li className="nav-item">
+											<a className="nav-link" href="#/admin" onClick={this.doLogout}>Logout</a>
+									</li>
+							</ul>
+						)}
+					</div>
 			</nav>
       );
     }

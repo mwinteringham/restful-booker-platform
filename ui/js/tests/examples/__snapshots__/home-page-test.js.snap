@@ -20,14 +20,7 @@ exports[`Rooms list component 1`] = `
       </p>
     </div>
     <div
-      className="col-sm-1 rowHeader"
-    >
-      <p>
-        Beds
-      </p>
-    </div>
-    <div
-      className="col-sm-1 rowHeader"
+      className="col-sm-2 rowHeader"
     >
       <p>
         Accessible
@@ -47,7 +40,7 @@ exports[`Rooms list component 1`] = `
   <div
     key="1"
   >
-    <RoomListing
+    <withRouter(RoomListing)
       details={
         Object {
           "accessible": true,

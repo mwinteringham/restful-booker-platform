@@ -23,105 +23,67 @@ exports[`Login component is created 1`] = `
       }
     >
       <h2>
-        Welcome to the Shady Meadows 
-        <br />
-         booking management system
+        Log into your account
       </h2>
+      <br />
     </div>
     <div
       className="col-sm-2"
     />
   </div>
-  <form>
+  <div
+    className="row"
+  >
     <div
-      className="row"
+      className="col-sm-4"
+    />
+    <div
+      className="col-sm-4"
     >
       <div
-        className="col-sm-4"
-      />
-      <div
-        className="col-sm-4"
+        className="form-group"
       >
-        <p>
-          <label
-            htmlFor="username"
-          >
-            Username 
-          </label>
-          <input
-            id="username"
-            onChange={[Function]}
-            style={
-              Object {
-                "border": "1px solid grey",
-              }
-            }
-            type="text"
-          />
-        </p>
-      </div>
-      <div
-        className="col-sm-4"
-      />
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col-sm-4"
-      />
-      <div
-        className="col-sm-4"
-      >
-        <p>
-          <label
-            htmlFor="password"
-          >
-            Password 
-          </label>
-          <input
-            id="password"
-            onChange={[Function]}
-            style={
-              Object {
-                "border": "1px solid grey",
-              }
-            }
-            type="password"
-          />
-        </p>
-      </div>
-      <div
-        className="col-sm-4"
-      />
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col-sm-7"
-      />
-      <div
-        className="col-sm-1"
-      >
-        <button
-          className="btn btn-default"
-          id="doLogin"
-          onClick={[Function]}
+        <input
+          className="form-control"
+          id="username"
+          onChange={[Function]}
+          placeholder="Username"
           style={
             Object {
-              "marginLeft": "9px",
+              "border": "1px solid grey",
             }
           }
-          type="button"
-        >
-          Login
-        </button>
+          type="text"
+        />
       </div>
       <div
-        className="col-sm-4"
-      />
+        className="form-group"
+      >
+        <input
+          className="form-control"
+          id="password"
+          onChange={[Function]}
+          placeholder="Password"
+          style={
+            Object {
+              "border": "1px solid grey",
+            }
+          }
+          type="password"
+        />
+      </div>
+      <button
+        className="btn btn-primary float-right"
+        id="doLogin"
+        onClick={[Function]}
+        type="submit"
+      >
+        Login
+      </button>
     </div>
-  </form>
+    <div
+      className="col-sm-4"
+    />
+  </div>
 </div>
 `;

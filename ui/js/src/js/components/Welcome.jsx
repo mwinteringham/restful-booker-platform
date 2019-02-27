@@ -52,16 +52,16 @@ export default class Welcome extends React.Component {
                 content = <div className="col-sm-10 content">
                             <br />
                             <br />
-                            <h2>Welcome to Shady Meadows Booking Manager</h2>
+                            <h2>Welcome to Restful Booker Platform</h2>
                             <br />
                             <br />
                             <h4>Your one stop shop to practise Software Testing!</h4>
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-4"></div>
-                            <div className="col-sm-2 text-center">
-                                <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
+                            <div className="btn-group mr-2" role="group">
+                                <button id="prev" className="btn btn-outline-primary disabled" onClick={this.decreasePage}>Prev</button>
+                                <button id="next" className="btn btn-outline-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
                 break;
@@ -70,35 +70,29 @@ export default class Welcome extends React.Component {
                             <br />
                             <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={glassIcon} alt="Magnifying glass" />
                             <br />
-                            <p><span style={{fontWeight: "bold"}}>Exploration: </span> Testing is more than just finding bugs. With Shady Meadows Booking Manager you take time to hone your exploratory testing skills by diving into the application to find out more about how the application works. There are many features for you to explore, with more being continuously added for future. So there is always more to explore!</p>
+                            <p><span style={{fontWeight: "bold"}}>Exploration: </span> Testing is more than just finding bugs. With Restful-booker-platform you can use it to hone your exploratory testing skills by diving into the application to find out more about how it works. There are many features for you to explore, with more being continuously added. So there will always be something else to explore!</p>
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-2 text-center">
-                                <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
-                            </div>
-                            <div className="col-sm-2"></div>
-                            <div className="col-sm-2 text-center">
-                                <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
+                            <div className="btn-group mr-2" role="group">
+                                <button id="prev" className="btn btn-outline-primary" onClick={this.decreasePage}>Prev</button>
+                                <button id="next" className="btn btn-outline-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
                 break;
-            case 2:
+            case 2: 
                 content = <div className="col-sm-10 content">
                             <br />
                             <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={bracketsIcon} alt="Brackets" />
                             <br />
-                            <p><span style={{fontWeight: "bold"}}>Automation:</span> Shady Meadows Booking Manager is an instance of the Open source application, restful-booker-platform. RBP offers a range of different technologies that you automate against, either online or via a locally deployed instance.</p>
+                            <p><span style={{fontWeight: "bold"}}>Automation:</span> Restful-booker-platform is an open source application and it offers a range of different technologies that you can automate against, either online or via a locally deployed instance.</p>
                             <p>Check out the <a href="https://github.com/mwinteringham/restful-booker-platform" alt="Restful booker platform source code">restful-booker-platform source code</a> to learn more about the various APIs and JavaScript features to practise your Automation in Testing skills.</p>
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-2 text-center">
-                                <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
-                            </div>
-                            <div className="col-sm-2"></div>
-                            <div className="col-sm-2 text-center">
-                                <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
+                            <div className="btn-group mr-2" role="group">
+                                <button id="prev" className="btn btn-outline-primary" onClick={this.decreasePage}>Prev</button>
+                                <button id="next" className="btn btn-outline-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>
                 break;
@@ -107,16 +101,13 @@ export default class Welcome extends React.Component {
                             <br />
                             <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={blockIcon} alt="Building blocks" />
                             <br />
-                            <p><span style={{fontWeight: "bold"}}>Infrastructure:</span> Shady Meadows Booking Manager is a continuously deployed application using CircleCi, Docker and Kubernetes. All the deployment assets can be found in the <a href="https://github.com/mwinteringham/restful-booker-platform" alt="Restful booker platform source code">restful-booker-platform source</a> repository for you to create your own pipeline. You can also learn more about the <a href="https://circleci.com/gh/mwinteringham/workflows/restful-booker-platform" alt="Circle CI build pipeline">build process in this public build pipeline</a>.</p>
+                            <p><span style={{fontWeight: "bold"}}>Infrastructure:</span> Restful-booker-platform is a continuously deployed application using CircleCi, Docker and Kubernetes. All the deployment assets can be found in the <a href="https://github.com/mwinteringham/restful-booker-platform" alt="Restful booker platform source code">restful-booker-platform source</a> repository for you to create your own pipeline. You can also learn more about the <a href="https://circleci.com/gh/mwinteringham/workflows/restful-booker-platform" alt="Circle CI build pipeline">build process in this public build pipeline</a>.</p>
                         </div>
 
                 buttons = <div>
-                            <div className="col-sm-2 text-center">
-                                <button id="prev" className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
-                            </div>
-                            <div className="col-sm-2"></div>
-                            <div className="col-sm-2 text-center">
-                                <button id="next" className="btn btn-primary" onClick={this.increasePage}>Next</button>
+                            <div className="btn-group mr-2" role="group">
+                                <button id="prev" className="btn btn-outline-primary" onClick={this.decreasePage}>Prev</button>
+                                <button id="next" className="btn btn-outline-primary" onClick={this.increasePage}>Next</button>
                             </div>
                           </div>                
                 break;
@@ -127,20 +118,18 @@ export default class Welcome extends React.Component {
                             <br />
                             <p><span style={{fontWeight: "bold"}}>Get Started:</span> How you use this application is up to you, but here are a few things to get you started:</p>
                             <ul>
-                                <li>To log into the application use the credentials admin/password</li>
+                                <li>Explore the <a href="https://automationintesting.online" alt="Link to home page">home page</a></li>
+                                <li>Access the <a href="https://automationintesting.online/#/admin" alt="Link to admin page">admin panel</a> with the credentials admin/password</li>
                                 <li>You can <a href="https://github.com/mwinteringham/restful-booker-platform/projects/1" alt="Link to RBP project">read more about the features here</a></li>
                                 <li>If you find a particularly bad bug, <a href="https://github.com/mwinteringham/restful-booker-platform/issues" alt="Bug tracker">feel free to raise it here</a></li>
                             </ul>
-                            <p><span style={{fontWeight: "bold"}}>Please note:</span> for security purposes the database resets itself every 10 minutes.</p>
+                            <p><span style={{fontWeight: "bold"}}>Please note:</span> for security reasons the database resets every 10 minutes.</p>
                           </div>
 
                 buttons = <div>
-                            <div className="col-sm-2 text-center">
-                                <button id="prev"  className="btn btn-primary" onClick={this.decreasePage}>Prev</button>
-                            </div>
-                            <div className="col-sm-2"></div>
-                            <div className="col-sm-2 text-center">
-                                <button id="closeModal" className="btn btn-success" onClick={this.closeModal}>Close</button>
+                            <div className="btn-group mr-2" role="group">
+                                <button id="prev"  className="btn btn-outline-primary" onClick={this.decreasePage}>Prev</button>
+                                <button id="closeModal" className="btn btn-outline-success" onClick={this.closeModal}>Close</button>
                             </div>
                           </div>
                 break;

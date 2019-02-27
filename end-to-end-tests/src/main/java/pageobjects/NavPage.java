@@ -1,14 +1,14 @@
 package pageobjects;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.w3c.dom.html.HTMLInputElement;
 
 public class NavPage extends BasePage {
 
-    @FindBy(how = How.CSS, using  =".navbar")
+    @FindBy(how = How.CSS, using  =".navbar-brand")
     private WebElement divNavBar;
 
     @FindBy(how = How.ID, using = "search")
@@ -16,6 +16,9 @@ public class NavPage extends BasePage {
 
     @FindBy(how = How.ID, using = "reportLink")
     private WebElement aReportLink;
+
+    @FindBy(how = How.ID, using = "brandingLink")
+    private WebElement aBranding;
 
     public NavPage(WebDriver driver) {
         super(driver);
@@ -25,16 +28,11 @@ public class NavPage extends BasePage {
         return divNavBar;
     }
 
-    public void populateSearch(String keyword) {
-        inputSearchTerm.sendKeys(keyword);
-    }
-
-    public void submitSearch() {
-        inputSearchTerm.sendKeys(Keys.RETURN);
-    }
-
     public void clickReport() {
         aReportLink.click();
     }
 
+    public void clickBranding() {
+        aBranding.click();
+    }
 }
