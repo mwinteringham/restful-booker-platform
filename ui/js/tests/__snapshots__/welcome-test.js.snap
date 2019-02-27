@@ -21,6 +21,12 @@ exports[`Clicking on close button closes modal 1`] = `
             >
               Mark Winteringham
             </a>
+             / 
+            <a
+              href="https://thefriendlytester.co.uk/"
+            >
+              Richard Bradshaw
+            </a>
              - © 2019 
             <a
               href="/#/cookie"
