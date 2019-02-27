@@ -294,7 +294,7 @@ jobs:
 
       steps:
         - restore_cache:
-            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-branding
 
         - setup_remote_docker:
             docker_layer_caching: true
