@@ -1,4 +1,3 @@
-import ReactRouterEnzymeContext from 'react-router-enzyme-context';
 import { BrowserRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 
