@@ -1,3 +1,4 @@
+import ReactRouterEnzymeContext from 'react-router-enzyme-context';
 import { BrowserRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 
@@ -16,5 +17,6 @@ const createContext = () => ({
 });
 
 export function mountWrap(node) {
-  return mount(node, createContext());
+  const options = new ReactRouterEnzymeContext();
+  return mount(node, options.get());
 }

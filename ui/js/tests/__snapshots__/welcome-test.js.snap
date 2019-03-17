@@ -129,6 +129,7 @@ exports[`Welcome component contains correct details 1`] = `
   open={false}
   overlayStyle={Object {}}
   position="bottom center"
+  repositionOnResize={true}
   trigger={null}
 >
   <div

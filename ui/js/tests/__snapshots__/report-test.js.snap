@@ -146,6 +146,7 @@ exports[`Report for individual room renders 1`] = `
     }
   />
   <ReactTooltip
+    clickable={false}
     effect="float"
     insecure={true}
     place="top"

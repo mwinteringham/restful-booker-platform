@@ -27,6 +27,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-add-react-displayname": "0.0.5",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
     "css-loader": "^2.1.1",
     "debug": "~4.1.1",
     "emotion": "^10.0.9",
