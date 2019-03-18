@@ -16,5 +16,6 @@ const createContext = () => ({
 });
 
 export function mountWrap(node) {
-  return mount(node, createContext());
+  const options = new ReactRouterEnzymeContext();
+  return mount(node, options.get());
 }

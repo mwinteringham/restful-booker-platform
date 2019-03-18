@@ -41,23 +41,3 @@ test('Welcome component doesnt appear after close', () => {
 
     expect(appComponent).toMatchSnapshot();
 });
-
-test('Clicking on close button closes modal', () => {
-    const appComponent = mountWrap(
-        <App />
-    )
-
-    appComponent.setState({
-        showWelcome : true
-    })
-
-    appComponent.find('Welcome').instance().setState({
-        page : 4
-    });
-
-    appComponent.update();
-
-    appComponent.find('#closeModal').simulate('click');
-
-    expect(appComponent).toMatchSnapshot();
-});
