@@ -72,4 +72,4 @@ else
   mvn install
 fi
 
-/bin/bash ./run_locally.sh
+/bin/bash ./run_locally.sh -e true

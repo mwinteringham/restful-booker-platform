@@ -19,6 +19,7 @@ export default class BookingListing extends React.Component {
         this.handleStartChange = this.handleStartChange.bind(this);
         this.handleEndChange = this.handleEndChange.bind(this);
         this.doEdit = this.doEdit.bind(this);
+        this.updateState = this.updateState.bind(this);
     }
 
     componentDidMount(){
@@ -67,25 +68,28 @@ export default class BookingListing extends React.Component {
     }
 
     handleStartChange(date) {
-        this.setState({
-            booking : {
-                bookingdates: {
-                    checkin : date,
-                    checkout : this.state.booking.bookingdates.checkout
-                }
-            }
-        });
+        let currentState = this.state;
+
+        currentState.booking.bookingdates.checkin = moment(date.toUTCString()).format("YYYY-MM-DD");;
+
+        this.setState(currentState);
     }
 
     handleEndChange(date) {
-        this.setState({
-            booking : {
-                bookingdates: {
-                    checkin : this.state.booking.bookingdates.checkin,
-                    checkout : date
-                }
-            }
-        });
+        let currentState = this.state;
+
+        currentState.booking.bookingdates.checkout = moment(date.toUTCString()).format("YYYY-MM-DD");;
+
+        this.setState(currentState);
+    }
+
+    updateState(event) {
+        let currentState = this.state;
+
+        console.log(event.target.name);
+        currentState.booking[event.target.name] = event.target.value;
+
+        this.setState(currentState);
     }
 
     render(){
@@ -93,17 +97,17 @@ export default class BookingListing extends React.Component {
 
         if(this.state.allowEdit){
             booking = <div className="row">
-                        <div className="col-sm-2"><input type="text" className="form-control" defaultValue={this.props.booking.firstname} onChange={val => this.state.booking.firstname = val.target.value} /></div>
-                        <div className="col-sm-2"><input type="text" className="form-control" defaultValue={this.props.booking.lastname} onChange={val => this.state.booking.lastname = val.target.value} /></div>
-                        <div className="col-sm-1"><input type="text" className="form-control" defaultValue={this.props.booking.totalprice} onChange={val => this.state.booking.totalprice = val.target.value} /></div>
+                        <div className="col-sm-2"><input type="text" className="form-control" name="firstname" defaultValue={this.props.booking.firstname} onChange={this.updateState} /></div>
+                        <div className="col-sm-2"><input type="text" className="form-control" name="lastname" defaultValue={this.props.booking.lastname} onChange={this.updateState} /></div>
+                        <div className="col-sm-1"><input type="text" className="form-control" name="totalprice"  defaultValue={this.props.booking.totalprice} onChange={this.updateState} /></div>
                         <div className="col-sm-2">
-                            <select className="form-control" defaultValue={this.props.booking.depositpaid} onChange={val => this.state.depositpaid = val.target.value}>
+                            <select className="form-control" defaultValue={this.props.booking.depositpaid} name="depositpaid" onChange={this.updateState}>
                                 <option value="false">false</option>
                                 <option value="true">true</option>
                             </select>
                         </div>
-                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkin).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-dd" /></div>
-                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkout).toDate()} onChange={this.handleEndChange} dateFormat="YYYY-MM-dd" /></div>
+                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkin).utc(true).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-dd" /></div>
+                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkout).utc(true).toDate()} onChange={this.handleEndChange} dateFormat="YYYY-MM-dd" /></div>
                         <div className="col-sm-1">
                             <span className="fa fa-check confirmBookingEdit" onClick={this.doEdit} style={{paddingRight : 10 + "px"}}></span>
                             <span className="fa fa-remove exitBookingEdit" onClick={this.disableEdit}></span>
