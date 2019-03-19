@@ -23,6 +23,7 @@ java -jar -Dspring.profiles.active=dev report/target/restful-booker-platform-rep
 java -jar -Dspring.profiles.active=dev branding/target/restful-booker-platform-branding-*-SNAPSHOT.jar > branding.log &
 java -jar -Dspring.profiles.active=dev ui/api/target/restful-booker-platform-ui-*-SNAPSHOT.jar > ui.log &
 
+node .utilities/rbp-proxy/proxy.js &
 node .utilities/monitor/local_monitor.js
 
 printf "\n####### RESTFUL-BOOKER-PLATFORM #######
@@ -45,7 +46,7 @@ printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####      APPLICATION READY        ####
 ####                               ####
 ####         Available at:         ####
-####     http://localhost:3003     ####
+####     http://localhost:8080     ####
 ####                               ####
 #######################################"
 

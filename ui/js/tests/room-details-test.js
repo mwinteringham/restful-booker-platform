@@ -64,7 +64,7 @@ test('Room details can render validation errors', () => {
 });
 
 test('Room details can be submitted', (done) => {
-    let roomPutMock = nock('http://localhost:3001', {
+    let roomPutMock = nock('http://localhost:8080', {
                             'accessible': true,
                             'description': 'Test description',
                             'features': ['Radio', 'Refreshments', 'Views'],

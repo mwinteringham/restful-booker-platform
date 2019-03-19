@@ -47,11 +47,11 @@ test('Branding page renders', () => {
 });
 
 test('Branding page has controlled form', (done) => {
-    nock('http://localhost:3002')
+    nock('http://localhost:8080')
         .get('/branding/')
         .reply(200, brandingUpdateData)
     
-    let brandingPutMock = nock('http://localhost:3002')
+    let brandingPutMock = nock('http://localhost:8080')
         .put('/branding/', brandingUpdateData)
         .reply(200, () => {
             done();

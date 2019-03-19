@@ -16,6 +16,7 @@ START /B java -jar -Dspring.profiles.active=dev report/target/restful-booker-pla
 START /B java -jar -Dspring.profiles.active=dev branding/target/restful-booker-platform-branding-1.0-SNAPSHOT.jar > branding.log
 START /B java -jar -Dspring.profiles.active=dev ui/api/target/restful-booker-platform-ui-1.0-SNAPSHOT.jar > ui.log
 
+call node .utilities/rbp-proxy/proxy.js
 call node .utilities/monitor/local_monitor.js
 
 echo:
