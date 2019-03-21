@@ -30,7 +30,7 @@ public class TestSetup {
             driver.manage().addCookie(new Cookie("welcome", "true"));
             driver.navigate().refresh();
         } else {
-            driver.navigate().to("http://localhost:3003/#/admin");
+            driver.navigate().to("http://localhost:8080/#/admin");
         }
     }
 
