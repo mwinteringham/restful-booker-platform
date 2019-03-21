@@ -74,7 +74,7 @@ echo ####                               ####
 echo #######################################
 echo:
 
-cd %cmdFileDirectory%utilities/rbp-proxy
+cd %cmdFileDirectory%.utilities\rbp-proxy
 call npm install
 cd %cmdFileDirectory%
 
