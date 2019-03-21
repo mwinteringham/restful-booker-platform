@@ -16,7 +16,7 @@ You will require Java SDK 1.8, Maven and Node/Npm installed and available in you
 1. Clone/Download the repository
 2. Navigate into the restful-booker-platform root folder
 3. Run either ```build_locally.sh``` or ```build_locally.cmd``` depending on your OS to build RBP and get it running (It may take a while on the first run as it downloads dependencies)
-4. Navigate to http://localhost:3003 to access the site
+4. Navigate to http://localhost:8080 to access the site
 
 ## Running locally
 
