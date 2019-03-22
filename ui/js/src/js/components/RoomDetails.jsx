@@ -60,7 +60,7 @@ export default class RoomDetails extends React.Component {
         }
         
         roomToUpdate.features = featuresArray;
-        let vErrors = validate(this.state.room, constraints);
+        let vErrors = validate(this.state.room, constraints.room);
 
         if(vErrors != null){
             this.setState({errors : vErrors})
