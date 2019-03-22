@@ -77,7 +77,7 @@ public class SmokeTest extends TestSetup {
     }
 
     @Test
-    public void brandingSmokeTest(){
+    public void brandingSmokeTest() throws InterruptedException {
         NavPage navPage = new NavPage(driver);
         navPage.clickBranding();
 

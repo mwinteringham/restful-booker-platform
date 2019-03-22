@@ -14,7 +14,8 @@ public class BrandingPage extends BasePage {
         super(driver);
     }
 
-    public String getNameValue() {
+    public String getNameValue() throws InterruptedException {
+        Thread.sleep(1000);
         return inpName.getAttribute("value");
     }
 }
