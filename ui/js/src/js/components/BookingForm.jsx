@@ -3,57 +3,9 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import validate from 'validate.js';
 import { API_ROOT } from '../api-config';
+import { constraints } from '../libs/ValidateRules.js'
 
 import 'react-datepicker/dist/react-datepicker.css';
-
-const constraints = {
-    firstname : {
-        presence: true,
-        length: {
-            maximum: 18,
-            minimum: 1
-        }
-    },
-    lastname : {
-        presence: true,
-        length: {
-            maximum: 30,
-            minimum: 1
-        }
-    },
-    totalprice: {
-        presence: true,
-        length: {
-            maximum: 3,
-            minimum: 1
-        },
-        numericality: true
-    },
-    depositpaid: {
-        presence: true,
-        format: {
-            pattern: "true|false",
-            flags: "i",
-            message: "can only be true or false"
-        }
-    },
-    "bookingdates.checkin": {
-        presence: true,
-        format: {
-            pattern: "[0-9]...-[0-9].-[0-9].",
-            flags: "i",
-            message: "can only be YYYY-MM-DD format got"
-        }
-    },
-    "bookingdates.checkout": {
-        presence: true,
-        format: {
-            pattern: "[0-9]...-[0-9].-[0-9].",
-            flags: "i",
-            message: "can only be YYYY-MM-DD format"
-        }
-    }
-}
 
 export default class BookingForm extends React.Component {
 
@@ -106,7 +58,7 @@ export default class BookingForm extends React.Component {
     }
 
     createBooking() {
-        let vErrors = validate(this.state.newbooking, constraints);
+        let vErrors = validate(this.state.newbooking, constraints.booking);
 
         if(vErrors != null){
             this.setState({errors : vErrors})
