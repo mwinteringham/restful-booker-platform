@@ -1,0 +1,19 @@
+{
+  "name": "rbp-local-proxy",
+  "version": "1.0.0",
+  "description": "Proxy for local requests",
+  "main": "proxy.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mwinteringham/restful-booker-platform.git"
+  },
+  "author": "Mark Winteringham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwinteringham/restful-booker-platform/issues"
+  },
+  "homepage": "https://github.com/mwinteringham/restful-booker-platform#readme",
+  "dependencies": {
+    "http-proxy": "^1.17.0"
+  }
+}
