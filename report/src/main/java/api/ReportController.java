@@ -4,6 +4,7 @@ import model.report.Report;
 import model.report.RoomReport;
 import model.report.RoomReportDate;
 import model.room.Booking;
+import model.room.Bookings;
 import model.room.Room;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import requests.BookingRequests;
 import requests.RoomRequests;
 
 
@@ -21,6 +23,7 @@ import java.util.*;
 public class ReportController {
 
     private RoomRequests roomRequests;
+    private BookingRequests bookingRequests;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -42,6 +45,7 @@ public class ReportController {
 
     public ReportController() throws SQLException {
         roomRequests = new RoomRequests();
+        bookingRequests = new BookingRequests();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -51,9 +55,9 @@ public class ReportController {
 
         for(Room r : rooms){
             List<RoomReportDate> dateList = new ArrayList<>();
-            Room specificRoom = roomRequests.searchForSpecificRoom("" + r.getRoomid()).getBody();
+            Bookings roomBookings = bookingRequests.getBookings(r.getRoomid()).getBody();
 
-            for(Booking b : specificRoom.getBookings()){
+            for(Booking b : roomBookings.getBookings()){
                 dateList = DateRange.parse(dateList, b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout());
             }
 

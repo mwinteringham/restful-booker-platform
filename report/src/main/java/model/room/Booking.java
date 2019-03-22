@@ -22,16 +22,6 @@ public class Booking {
     @JsonProperty(value = "bookingdates")
     private BookingDates bookingDates;
 
-    public Booking(ResultSet result) throws SQLException {
-        this.bookingid = result.getInt("bookingid");
-        this.roomid = result.getInt("roomid");
-        this.firstname = result.getString("firstname");
-        this.lastname = result.getString("lastname");
-        this.totalprice = result.getInt("totalprice");
-        this.depositpaid = result.getBoolean("depositpaid");
-        this.bookingDates = new BookingDates(result.getDate("checkin"), result.getDate("checkout"));
-    }
-
     public Booking() {
     }
 

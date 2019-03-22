@@ -25,8 +25,6 @@ public class Room {
     private String description;
     @JsonProperty
     private String[] features;
-    @JsonProperty
-    private List<Booking> bookings;
 
     public Room() {
     }
@@ -108,14 +106,6 @@ public class Room {
         this.features = features;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
-
     @Override
     public String toString() {
         return "Room{" +
@@ -126,7 +116,6 @@ public class Room {
                 "\n, image='" + image + '\'' +
                 "\n, description='" + description + '\'' +
                 "\n, features=" + Arrays.toString(features) +
-                "\n, bookings=" + bookings +
                 "\n}";
     }
 }
