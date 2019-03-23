@@ -1,6 +1,8 @@
 package com.automationintesting.integration;
 
 import api.ReportApplication;
+import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.response.Response;
 import org.approvaltests.Approvals;
@@ -22,7 +24,7 @@ import static io.restassured.RestAssured.given;
 public class BuildReportIT {
 
     @Rule
-    public WireMockRule roomApi = new WireMockRule(3001);
+    public WireMockRule roomApi = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3001));
 
     @Before
     public void setupStubs(){

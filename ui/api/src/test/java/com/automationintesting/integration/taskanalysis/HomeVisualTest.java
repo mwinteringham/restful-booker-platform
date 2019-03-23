@@ -1,6 +1,8 @@
 package com.automationintesting.integration.taskanalysis;
 
 import com.applitools.eyes.RectangleSize;
+import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,12 +15,12 @@ public class HomeVisualTest extends TestSetup {
     // The test relies will need a room API so we add the JUnit rule to setup Wiremock which
     // will mock the behaviour of the Room API, rather than stand up an Room API
     @Rule
-    public WireMockRule roomApi = new WireMockRule(3001);
+    public WireMockRule roomApi = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3001));
 
     // The test also relies on an Branding service so we add the JUnit rule to setup Wiremock which
     // will mock the behaviour of the Branding API, rather than stand up an Branding API
     @Rule
-    public WireMockRule brandingApi = new WireMockRule(3002);
+    public WireMockRule brandingApi = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3002));
 
     @Test
     public void homeVisualTest(){

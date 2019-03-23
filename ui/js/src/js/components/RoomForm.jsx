@@ -44,7 +44,7 @@ export default class RoomForm extends React.Component {
         }
         
         roomToCreate.features = featuresArray;
-        let vErrors = validate(roomToCreate, constraints.booking);
+        let vErrors = validate(roomToCreate, constraints.room);
         
         if(vErrors != null){
             this.setState({errors : vErrors})

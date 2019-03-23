@@ -1,6 +1,8 @@
 package com.automationintesting.integration.examples;
 
 import api.BookingApplication;
+import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -19,7 +21,6 @@ import java.util.GregorianCalendar;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -33,7 +34,7 @@ public class IntegrationIT {
     // Booking relies on an Auth service so we add the JUnit rule to setup Wiremock which
     // will mock the behaviour of the Auth service, rather than stand up an Auth service
     @Rule
-    public WireMockRule wireMockRule = new WireMockRule(3004);
+    public WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3004));
 
     // We add the @Before annotation so that when JUnit runs it knows to run this method before
     // the tests are started. This is known as a hook.

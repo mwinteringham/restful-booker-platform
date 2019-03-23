@@ -2,6 +2,8 @@ package com.automationintesting.integration;
 
 import com.automationintesting.api.BrandingApplication;
 import com.automationintesting.model.*;
+import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -24,7 +26,7 @@ import static io.restassured.RestAssured.given;
 public class BrandingServiceIT {
 
     @Rule
-    public WireMockRule wireMockRule = new WireMockRule(3004);
+    public WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3004));
 
     @Before
     public void setupWiremock(){

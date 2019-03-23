@@ -1,5 +1,7 @@
 package com.automationintesting.unit;
 
+import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import model.room.Room;
 import model.room.Rooms;
@@ -14,7 +16,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 public class BuildReportTest {
 
     @Rule
-    public WireMockRule roomApi = new WireMockRule(3001);
+    public WireMockRule roomApi = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3001));
 
     @Test
     public void testGettingRoomSearchResults(){

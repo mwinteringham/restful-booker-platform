@@ -1,6 +1,8 @@
 package com.automationintesting.integration.taskanalysis;
 
 import com.applitools.eyes.RectangleSize;
+import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,20 +15,22 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 // the Before and After hooks to setup Selenium and Applitools
 public class RoomVisualTest extends TestSetup {
 
+
+
     // The test relies on an Auth service so we add the JUnit rule to setup Wiremock which
     // will mock the behaviour of the Auth API, rather than stand up an Auth API
     @Rule
-    public WireMockRule authApi = new WireMockRule(3004);
+    public WireMockRule authApi = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3004));
 
     // The test also will need a room API so we add the JUnit rule to setup Wiremock which
     // will mock the behaviour of the Room API, rather than stand up an Room API
     @Rule
-    public WireMockRule roomApi = new WireMockRule(3001);
+    public WireMockRule roomApi = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3001));
 
     // The test also relies on a Branding service so we add the JUnit rule to setup Wiremock which
     // will mock the behaviour of the Branding API, rather than stand up an Branding API
     @Rule
-    public WireMockRule brandingApi = new WireMockRule(3002);
+    public WireMockRule brandingApi = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3002));
 
     // We add the @Test annotation so that when JUnit runs it knows which
     // methods to run as tests

@@ -1,6 +1,8 @@
 package com.automationintesting.integration.taskanalysis;
 
 import com.applitools.eyes.RectangleSize;
+import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,7 +17,7 @@ public class AuthVisualTest extends TestSetup {
     // The test relies on a Branding service so we add the JUnit rule to setup Wiremock which
     // will mock the behaviour of the Branding API, rather than stand up an Branding API
     @Rule
-    public WireMockRule brandingApi = new WireMockRule(3002);
+    public WireMockRule brandingApi = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3002));
 
     // We add the @Test annotation so that when JUnit runs it knows which
     // methods to run as tests
