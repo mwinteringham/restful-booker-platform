@@ -20,12 +20,12 @@ const brandingData = {
 }
 
 const brandingUpdateData = {
-    name: 'UPDATE',
+    name: 'A new name',
     map: {
         latitude: 88.123,
         longitude: 11.123
     },
-    logoUrl: 'url/update',
+    logoUrl: 'https://www.mwtestconsultancy.co.uk/url/update.png',
     description: 'Updated description',
     contact: {
         name: 'Another B&B',

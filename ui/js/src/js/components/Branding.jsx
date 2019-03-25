@@ -7,19 +7,32 @@ import validate from 'validate.js';
 let rules = {
     "name": {
         presence : true,
+        format: {
+            pattern: '[a-zA-Z& ]+',
+            flags: 'i',
+            message: 'can only contain alphas'
+        },
         length: {
             minimum: 3,
-            message: "must be at least 3 characters long"
+            maximum: 100,
+            message: "must between 3 and 500 characters long"
         }
     },
     "logoUrl": {
-        presence : true
+        presence : true,
+        url: true
     },
     "description": {
         presence : true,
+        format: {
+            pattern: '[a-zA-Z,&. ]+',
+            flags: 'i',
+            message: 'can only contain alphas and basic punctuation'
+        },
         length: {
             minimum: 3,
-            message: "must be at least 3 characters long"
+            maximum: 500,
+            message: "must between 3 and 500 characters long"
         }
     },
     "map.latitude": {
@@ -36,8 +49,14 @@ let rules = {
     },
     "contact.name": {
         presence : true,
+        format: {
+            pattern: '[a-zA-Z& ]+',
+            flags: 'i',
+            message: 'can only contain alphas'
+        },
         length: {
             minimum: 3,
+            maximum: 40,
             message: "must be at least 3 characters long"
         }
     },
@@ -45,6 +64,7 @@ let rules = {
         presence : true,
         length: {
             minimum: 10,
+            maximum: 200,
             message: "must be at least 10 characters long"
         }
     },

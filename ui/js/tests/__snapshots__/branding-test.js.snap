@@ -545,15 +545,35 @@ exports[`Branding page shows errors 1`] = `
     <p
       key="0"
     >
-      Name must be at least 3 characters long
+      Name can only contain alphas
+    </p>
+    <p
+      key="1"
+    >
+      Name must between 3 and 500 characters long
     </p>
     <p
       key="0"
     >
-      Description must be at least 3 characters long
+      Logo url is not a valid url
     </p>
     <p
       key="0"
+    >
+      Description can only contain alphas and basic punctuation
+    </p>
+    <p
+      key="1"
+    >
+      Description must between 3 and 500 characters long
+    </p>
+    <p
+      key="0"
+    >
+      Contact name can only contain alphas
+    </p>
+    <p
+      key="1"
     >
       Contact name must be at least 3 characters long
     </p>
