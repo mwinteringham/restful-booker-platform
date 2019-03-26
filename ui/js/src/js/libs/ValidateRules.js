@@ -16,7 +16,8 @@ let rules = {
                 onlyInteger: true,
                 greaterThan: 0,
                 lessThanOrEqualTo: 999
-            }
+            },
+
         },
         'type': {
             presence: true,

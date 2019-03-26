@@ -45,6 +45,12 @@ export default class RoomForm extends React.Component {
         
         roomToCreate.features = featuresArray;
         let vErrors = validate(roomToCreate, constraints.room);
+
+        if(validate.contains(this.props.roomNumbers, parseInt(roomToCreate.roomNumber))){
+            vErrors = {
+                roomNumber : ["Room number already exists"]
+            }
+        }
         
         if(vErrors != null){
             this.setState({errors : vErrors})

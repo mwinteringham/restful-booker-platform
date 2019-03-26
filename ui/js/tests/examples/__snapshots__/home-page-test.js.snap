@@ -55,6 +55,7 @@ exports[`Rooms list component 1`] = `
     />
   </div>
   <RoomForm
+    roomNumbers={Array []}
     updateRooms={[Function]}
   />
 </div>

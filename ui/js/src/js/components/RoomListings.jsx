@@ -7,9 +7,10 @@ import { API_ROOT } from '../api-config';
 export default class RoomListings extends React.Component {
 
   constructor() {
-        super();
+    super();
 		this.state = {
-			rooms : []
+			rooms : [],
+			roomNumbers : []
 		};
 		
 		this.updateRooms = this.updateRooms.bind(this);
@@ -23,7 +24,12 @@ export default class RoomListings extends React.Component {
 		fetch(API_ROOT.room + '/room/')
 			.then(res => res.json())
 			.then(body => {
-				this.setState({rooms : body.rooms});
+				let collectedRoomNumbers = [];
+				for(let i =0 ; i < body.rooms.length; i++){
+					collectedRoomNumbers.push(body.rooms[i].roomNumber);
+				}
+
+				this.setState({rooms : body.rooms, roomNumbers : collectedRoomNumbers});
 			});
 	}
 
@@ -40,7 +46,7 @@ export default class RoomListings extends React.Component {
 					{this.state.rooms.map((room) => {
 						return <div key={room.roomid}><RoomListing details={room} updateRooms={this.updateRooms} /></div>
 					})}
-					<RoomForm updateRooms={this.updateRooms}/>
+					<RoomForm roomNumbers={this.state.roomNumbers} updateRooms={this.updateRooms}/>
 				</div>
 			);
     }
