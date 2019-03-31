@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import { API_ROOT } from '../api-config';
 import Cookies from 'universal-cookie';
@@ -6,11 +6,10 @@ import Cookies from 'universal-cookie';
 import Nav from './Nav.jsx';
 import Login from './Login.jsx'
 import Report from './Report.jsx';
-import Loading from './Loading.jsx';
 import Branding from './Branding.jsx';
 
-const RoomListings = React.lazy(() => import('./RoomListings.jsx'));
-const RoomDetails = React.lazy(() => import('./RoomDetails.jsx'));
+import RoomListings from './RoomListings.jsx';
+import RoomDetails from './RoomDetails.jsx';
 
 export default class AdminContainer extends React.Component {
 
@@ -58,16 +57,12 @@ export default class AdminContainer extends React.Component {
                         <div>
                             <Route exact path='/admin/' render={(props) => (
                                 <div>
-                                    <Suspense fallback={<Loading />}>
-                                        <RoomListings {...props} />
-                                    </Suspense>
+                                    <RoomListings {...props} />
                                 </div>
                             )} />
                             <Route exact path='/admin/room/:id' render={({ location, match }) => (
                                 <div>
-                                    <Suspense fallback={<Loading />}>
-                                        <RoomDetails params={match.params}/>
-                                    </Suspense>
+                                    <RoomDetails params={match.params}/>
                                 </div>
                             )} />
                             <Route exact path='/admin/report' component={Report} />
