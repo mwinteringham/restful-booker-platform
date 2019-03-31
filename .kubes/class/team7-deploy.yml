@@ -1,0 +1,379 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-booking
+spec:
+  selector:
+    matchLabels:
+      run: rbp-booking
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-booking
+    spec:
+      containers:
+        - name: rbp-booking
+          image: mwinteringham/restfulbookerplatform_booking:latest
+          imagePullPolicy: Always
+          env:
+          - name: cors
+            value: "https://team7.automationintesting.online"
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "768Mi"
+              cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+          readinessProbe:
+            httpGet:
+              port: 3000
+              path: /booking/actuator/health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-room
+spec:
+  selector:
+    matchLabels:
+      run: rbp-room
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-room
+    spec:
+      containers:
+        - name: rbp-room
+          image: mwinteringham/restfulbookerplatform_room:latest
+          imagePullPolicy: Always
+          env:
+          - name: cors
+            value: "https://team7.automationintesting.online"
+          ports:
+            - containerPort: 3001
+          resources:
+            requests:
+              memory: "768Mi"
+              cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+          readinessProbe:
+            httpGet:
+              port: 3001
+              path: /room/actuator/health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-branding
+spec:
+  selector:
+    matchLabels:
+      run: rbp-branding
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-branding
+    spec:
+      containers:
+        - name: rbp-branding
+          image: mwinteringham/restfulbookerplatform_branding:latest
+          imagePullPolicy: Always
+          env:
+          - name: cors
+            value: "https://team7.automationintesting.online"
+          ports:
+            - containerPort: 3002
+          resources:
+            requests:
+              memory: "768Mi"
+              cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+          readinessProbe:
+            httpGet:
+              port: 3002
+              path: /branding/actuator/health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3            
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-ui
+spec:
+  selector:
+    matchLabels:
+      run: rbp-ui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-ui
+    spec:
+      containers:
+        - name: rbp-ui
+          image: mwinteringham/restfulbookerplatform_ui:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3003
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              port: 3003
+              path: /actuator/health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-auth
+spec:
+  selector:
+    matchLabels:
+      run: rbp-auth
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-auth
+    spec:
+      containers:
+        - name: rbp-auth
+          image: mwinteringham/restfulbookerplatform_auth:latest
+          imagePullPolicy: Always
+          env:
+          - name: cors
+            value: "https://team7.automationintesting.online"
+          ports:
+            - containerPort: 3004
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              port: 3004
+              path: /auth/actuator/health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-report
+spec:
+  selector:
+    matchLabels:
+      run: rbp-report
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-report
+    spec:
+      containers:
+        - name: rbp-report
+          image: mwinteringham/restfulbookerplatform_report:latest
+          imagePullPolicy: Always
+          env:
+          - name: cors
+            value: "https://team7.automationintesting.online"
+          ports:
+            - containerPort: 3005
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              port: 3005
+              path: /report/actuator/health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-booking
+  labels:
+    app: rbp-booking
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      protocol: TCP
+      nodePort: 32147
+      targetPort: 3000
+  selector:
+    run: rbp-booking
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-room
+  labels:
+    app: rbp-room
+spec:
+  type: NodePort
+  ports:
+    - port: 3001
+      protocol: TCP
+      nodePort: 32148
+      targetPort: 3001
+  selector:
+    run: rbp-room
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-branding
+  labels:
+    app: rbp-branding
+spec:
+  type: NodePort
+  ports:
+    - port: 3002
+      protocol: TCP
+      nodePort: 32149
+      targetPort: 3002
+  selector:
+    run: rbp-branding
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-ui
+  labels:
+    app: rbp-ui
+spec:
+  type: NodePort
+  ports:
+    - port: 3003
+      protocol: TCP
+      nodePort: 32150
+      targetPort: 3003
+  selector:
+    run: rbp-ui
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-auth
+  labels:
+    app: rbp-auth
+spec:
+  type: NodePort
+  ports:
+    - port: 3004
+      protocol: TCP
+      nodePort: 32151
+      targetPort: 3004
+  selector:
+    run: rbp-auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-report
+  labels:
+    app: rbp-report
+spec:
+  type: NodePort
+  ports:
+    - port: 3005
+      protocol: TCP
+      nodePort: 32152
+      targetPort: 3005
+  selector:
+    run: rbp-report
+---  
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rbp-ingress
+spec:
+  rules:
+  - host: team7.automationintesting.online
+    http:
+      paths:
+      - path: /booking/*
+        backend:
+          serviceName: rbp-booking
+          servicePort: 3000
+      - path: /room/*
+        backend:
+          serviceName: rbp-room
+          servicePort: 3001
+      - path: /branding/*
+        backend:
+          serviceName: rbp-branding
+          servicePort: 3002
+      - path: /auth/*
+        backend:
+          serviceName: rbp-auth
+          servicePort: 3004
+      - path: /report/*
+        backend:
+          serviceName: rbp-report
+          servicePort: 3005
+      - path: /
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003
+      - path: /js/*
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003
+      - path: /images/*
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003
+      - path: /actuator/*
+        backend:
+          serviceName: rbp-ui
+          servicePort: 3003
