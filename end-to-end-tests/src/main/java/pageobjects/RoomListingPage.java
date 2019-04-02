@@ -31,6 +31,9 @@ public class RoomListingPage extends BasePage {
     @FindBy(how = How.ID, using = "radioCheckbox")
     private WebElement chkRadio;
 
+    @FindBy(how = How.CSS, using = ".room-form")
+    private WebElement frmForm;
+
     public RoomListingPage(WebDriver driver){
         super(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -67,5 +70,9 @@ public class RoomListingPage extends BasePage {
 
     public void checkRadio() {
         chkRadio.click();
+    }
+
+    public Boolean roomFormExists() {
+        return frmForm.isDisplayed();
     }
 }

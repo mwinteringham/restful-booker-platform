@@ -23,9 +23,9 @@ public class SmokeTest extends TestSetup {
 
     @Test
     public void authSmokeTest(){
-        NavPage navPage = new NavPage(driver);
+        RoomListingPage roomListingPage = new RoomListingPage(driver);
 
-        assertThat(navPage.getDivNavBar().getText(), containsString("Shady Meadows B&B - Booking Management"));
+        assertThat(roomListingPage.roomFormExists(), is(true));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class SmokeTest extends TestSetup {
 
         ReportPage reportPage = new ReportPage(driver);
 
-        assertThat(reportPage.getReport(), instanceOf(WebElement.class));
+        assertThat(reportPage.reportExists(), is(true));
     }
 
     @Test

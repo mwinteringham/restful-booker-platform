@@ -7,14 +7,14 @@ import org.openqa.selenium.support.How;
 
 public class ReportPage extends BasePage{
 
-    @FindBy(how = How.CSS, using = "canvas")
-    private WebElement canvasReport;
+    @FindBy(how = How.CSS, using = ".react-calendar-heatmap")
+    private WebElement divHeatmap;
 
     public ReportPage(WebDriver driver) {
         super(driver);
     }
 
-    public WebElement getReport() {
-        return canvasReport;
+    public Boolean reportExists() {
+        return divHeatmap.isDisplayed();
     }
 }
