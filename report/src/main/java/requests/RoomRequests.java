@@ -28,4 +28,5 @@ public class RoomRequests {
 
         return restTemplate.getForEntity(host + "/" + id, Room.class);
     }
+
 }

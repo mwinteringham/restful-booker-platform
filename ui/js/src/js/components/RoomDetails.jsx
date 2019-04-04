@@ -1,6 +1,5 @@
 import React from 'react';
 import BookingListings from './BookingListings.jsx';
-import Form from './BookingForm.jsx';
 import validate from 'validate.js';
 import { constraints } from '../libs/ValidateRules.js'
 import { API_ROOT } from '../api-config';
@@ -142,7 +141,6 @@ export default class RoomDetails extends React.Component {
 
     render(){
         let roomSummary = null;
-        let bookings = null;
         let errors = '';
         
         if(Object.keys(this.state.errors).length > 0){
@@ -288,10 +286,6 @@ export default class RoomDetails extends React.Component {
                         </div>
         }
 
-        if(this.state.room.bookings){
-            bookings = <BookingListings fetchRoomDetails={this.fetchRoomDetails} roomid={this.props.params.id} bookings={this.state.room.bookings} />
-        }
-
         return(
             <div>
                 {roomSummary}
@@ -304,8 +298,7 @@ export default class RoomDetails extends React.Component {
                     <div className="col-sm-2 rowHeader"><p>Check out</p></div>
                     <div className="col-sm-1"></div>
                 </div>
-                {bookings}
-                <Form fetchRoomDetails={this.fetchRoomDetails} roomid={this.props.params.id}/>
+                <BookingListings fetchRoomDetails={this.fetchRoomDetails} roomid={this.props.params.id} />
             </div>
         )
     }

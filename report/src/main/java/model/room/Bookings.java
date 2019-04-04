@@ -1,19 +1,15 @@
-package model;
+package model.room;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class SearchResults {
+public class Bookings {
 
     @JsonProperty
     private List<Booking> bookings;
 
-    public SearchResults() {
-    }
-
-    public SearchResults(List<Booking> bookings) {
-        this.bookings = bookings;
+    public Bookings() {
     }
 
     public List<Booking> getBookings() {

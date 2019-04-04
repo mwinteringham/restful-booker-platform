@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import requests.AuthRequests;
-import requests.BookingRequests;
 import utils.DatabaseScheduler;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +21,6 @@ public class RoomController {
 
     private RoomDB roomDB;
     private AuthRequests authRequest;
-    private BookingRequests bookingRequest;
 
     @Bean
     public WebMvcConfigurer configurer() {
@@ -50,7 +47,6 @@ public class RoomController {
     public RoomController() throws SQLException {
         roomDB = new RoomDB();
         authRequest = new AuthRequests();
-        bookingRequest = new BookingRequests();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -71,8 +67,6 @@ public class RoomController {
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
     public Room getRoom(@PathVariable(value = "id") int id) throws SQLException {
         Room queriedRoom = roomDB.query(id);
-        List<model.Booking> results = bookingRequest.searchForBookings(queriedRoom.getRoomid()).getBody().getBookings();
-        queriedRoom.setBookings(results);
 
         return queriedRoom;
     }

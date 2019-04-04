@@ -140,7 +140,7 @@ exports[`Room details can be switched out of edit mode 1`] = `
       className="col-sm-1"
     />
   </div>
-  <BookingForm
+  <BookingListings
     fetchRoomDetails={[Function]}
     roomid={1}
   />
@@ -516,7 +516,7 @@ exports[`Room details can render validation errors 1`] = `
       className="col-sm-1"
     />
   </div>
-  <BookingForm
+  <BookingListings
     fetchRoomDetails={[Function]}
     roomid={1}
   />
@@ -663,7 +663,7 @@ exports[`Room details component renders 1`] = `
       className="col-sm-1"
     />
   </div>
-  <BookingForm
+  <BookingListings
     fetchRoomDetails={[Function]}
     roomid={1}
   />
@@ -1025,7 +1025,7 @@ exports[`Room details switches into edit mode 1`] = `
       className="col-sm-1"
     />
   </div>
-  <BookingForm
+  <BookingListings
     fetchRoomDetails={[Function]}
     roomid={1}
   />
