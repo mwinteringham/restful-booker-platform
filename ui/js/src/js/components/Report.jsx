@@ -18,7 +18,7 @@ export default class Report extends React.Component {
   }
 
   componentDidMount(){
-    fetch(API_ROOT.report + '/report/')
+    fetch(API_ROOT + '/report/')
       .then(res => res.json())
       .then(body => {
         this.setState({ report : body.report });

@@ -29,7 +29,7 @@ export default class BookingListing extends React.Component {
     }
 
     doDelete(){
-        fetch(API_ROOT.booking + '/booking/' + this.props.booking.bookingid, {
+        fetch(API_ROOT + '/booking/' + this.props.booking.bookingid, {
 			method: 'DELETE',
 			credentials: 'include',
         })
@@ -50,7 +50,7 @@ export default class BookingListing extends React.Component {
     }
 
     doEdit(){
-        fetch(API_ROOT.booking + '/booking/' + this.props.booking.bookingid, {
+        fetch(API_ROOT + '/booking/' + this.props.booking.bookingid, {
 			method: 'PUT',
 			headers: {
 				'Accept': 'application/json',

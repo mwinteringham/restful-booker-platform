@@ -25,7 +25,7 @@ test('Login component sends correct payload', () => {
     // and inspect to make sure the request body matches what we want. We do this
     // by programming a mock using nock with the expected URL and post body and 
     // finally create a fake response for it to reply with
-    let authMock = nock('http://localhost:8080')
+    let authMock = nock('http://localhost')
         .post('/auth/login', {
             "username" : "admin",
             "password" : "password"
@@ -70,7 +70,7 @@ test('App is marked as logged in on successful request', (done) => {
     // Our Login object is going to make a call to an API to request
     // a token. So we are going to mock that API endpoint using nock to
     // return a specific token that we can then check for at a later date
-    const authMock = nock('http://localhost:8080')
+    const authMock = nock('http://localhost')
         .post('/auth/login', {
             "username" : "admin",
             "password" : "password"

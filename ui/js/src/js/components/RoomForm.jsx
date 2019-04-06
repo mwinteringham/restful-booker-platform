@@ -49,7 +49,7 @@ export default class RoomForm extends React.Component {
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
-            fetch(API_ROOT.room + '/room/', {
+            fetch(API_ROOT + '/room/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

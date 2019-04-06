@@ -13,18 +13,18 @@ class RoomListing extends React.Component {
     }
 
     deleteRoom(){
-        fetch(API_ROOT.booking + '/booking/?roomid=' + this.props.details.roomid, {
+        fetch(API_ROOT + '/booking/?roomid=' + this.props.details.roomid, {
             method: 'GET'
         })
         .then(res => res.json())
         .then(res => {
             for(let i = 0; i < res.bookings.length; i++){
-                fetch(API_ROOT.booking + '/booking/' + res.bookings[i].bookingid, {
+                fetch(API_ROOT + '/booking/' + res.bookings[i].bookingid, {
                     method: 'DELETE'
                 });
             }
 
-            fetch(API_ROOT.room + '/room/' + this.props.details.roomid, {
+            fetch(API_ROOT + '/room/' + this.props.details.roomid, {
                 method: 'DELETE',
                 credentials: 'include'
             })

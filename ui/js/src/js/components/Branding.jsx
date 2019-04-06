@@ -115,7 +115,7 @@ export default class Branding extends React.Component {
     }
 
     componentDidMount(){
-        fetch(API_ROOT.branding + '/branding/', {
+        fetch(API_ROOT + '/branding/', {
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',
@@ -132,7 +132,7 @@ export default class Branding extends React.Component {
         let vErrors = validate(this.state.branding, rules);
 
         if(typeof vErrors === 'undefined'){
-            fetch(API_ROOT.branding + '/branding/', {
+            fetch(API_ROOT + '/branding/', {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',

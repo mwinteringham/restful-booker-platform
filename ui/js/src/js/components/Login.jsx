@@ -16,7 +16,7 @@ export default class Login extends React.Component {
     }
 
     doLogin() {
-        fetch(API_ROOT.auth + '/login', {
+        fetch(API_ROOT + '/auth/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

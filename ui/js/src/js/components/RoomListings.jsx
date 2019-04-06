@@ -20,7 +20,7 @@ export default class RoomListings extends React.Component {
 	}
 
 	updateRooms() {
-		fetch(API_ROOT.room + '/room/')
+		fetch(API_ROOT + '/room/')
 			.then(res => res.json())
 			.then(body => {
 				this.setState({rooms : body.rooms});

@@ -17,7 +17,7 @@ class Nav extends React.Component {
 	}
 
 	componentDidMount(){
-		fetch(API_ROOT.branding + '/branding/', {
+		fetch(API_ROOT + '/branding/', {
 			method: 'GET'
 		})
 		.then(res => res.json())
@@ -27,7 +27,7 @@ class Nav extends React.Component {
 	}
 	
 	doLogout(){
-		fetch(API_ROOT.auth + '/logout', {
+		fetch(API_ROOT + '/auth/logout', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',

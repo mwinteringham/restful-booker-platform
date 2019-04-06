@@ -26,7 +26,7 @@ export default class AdminContainer extends React.Component {
     componentDidMount(){
         const cookies = new Cookies();
 
-        fetch(API_ROOT.auth + '/validate', {
+        fetch(API_ROOT + '/auth/validate', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

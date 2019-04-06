@@ -63,7 +63,7 @@ export default class BookingForm extends React.Component {
         if(vErrors != null){
             this.setState({errors : vErrors})
         } else {
-            fetch(API_ROOT.booking + '/booking/', {
+            fetch(API_ROOT + '/booking/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

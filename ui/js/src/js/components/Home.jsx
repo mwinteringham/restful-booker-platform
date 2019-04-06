@@ -17,7 +17,7 @@ export default class Home extends React.Component {
     }
 
     componentDidMount() {
-        fetch(API_ROOT.branding + '/branding/', {
+        fetch(API_ROOT + '/branding/', {
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',
@@ -30,7 +30,7 @@ export default class Home extends React.Component {
         })
         .catch(e => console.log(e));
 
-        fetch(API_ROOT.room + '/room/', {
+        fetch(API_ROOT + '/room/', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
