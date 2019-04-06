@@ -56,7 +56,7 @@ public class BrandingController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity<?> createBooking(@RequestBody Branding branding, @CookieValue(value ="token", required = false) String token) throws SQLException {
+    public ResponseEntity<?> updateBranding(@RequestBody Branding branding, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             Branding updatedBranding = brandingDB.update(branding);
 
