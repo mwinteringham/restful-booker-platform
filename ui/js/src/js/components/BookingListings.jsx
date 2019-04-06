@@ -20,7 +20,7 @@ export default class BookingListings extends React.Component {
     }
 
     getBookings(){
-        fetch(API_ROOT.booking + '/booking/?roomid=' + this.props.roomid, {
+        fetch(API_ROOT + '/booking/?roomid=' + this.props.roomid, {
             headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'

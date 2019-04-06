@@ -86,7 +86,6 @@ export default class BookingListing extends React.Component {
     updateState(event) {
         let currentState = this.state;
 
-        console.log(event.target.name);
         currentState.booking[event.target.name] = event.target.value;
 
         this.setState(currentState);
