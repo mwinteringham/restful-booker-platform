@@ -1,5 +1,6 @@
 package driverfactory;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -30,17 +31,8 @@ public class DriverFactory
     }
 
     private WebDriver prepareChromeDriver(){
-        String classLocation = DriverFactory.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String pathToChromeDriver = "";
+        WebDriverManager.chromedriver().setup();
 
-        if(OS.contains("win")) {
-            pathToChromeDriver = classLocation + "../..//chromedrivers/windows/chromedriver.exe";
-        }
-        else if (OS.contains("mac")) {
-            pathToChromeDriver = classLocation + "../..//chromedrivers/mac/chromedriver";
-        }
-
-        System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
         return new ChromeDriver();
     }
 
