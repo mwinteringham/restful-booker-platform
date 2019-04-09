@@ -1,1 +1,0 @@
-[RoomReportDate{date=2018-01-01}, RoomReportDate{date=2018-01-02}, RoomReportDate{date=2018-01-03}, RoomReportDate{date=2018-01-04}, RoomReportDate{date=2018-01-05}]

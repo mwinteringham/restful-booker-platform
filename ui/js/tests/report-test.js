@@ -1,42 +1,25 @@
 import React from 'react';
-import RoomReport from '../src/js/components/RoomReport.jsx';
 import Report from '../src/js/components/Report.jsx';
-
-test('Report for individual room renders', () => {
-    const reportDetails = {
-        room : "101",
-        values : [
-            { date: '2018-01-01' },
-            { date: '2018-01-02' },
-            { date: '2019-02-01' }
-        ]
-    }
-
-    const roomReportComponent = shallow(
-        <RoomReport year={2018} roomReport={reportDetails} />
-    )
-
-    expect(roomReportComponent).toMatchSnapshot();
-});
+import moment from 'moment';
 
 test('Multiple reports can be created in the Report component', () => {
     const multipleReports = {
-        year : 2018,
-        report : [{
-          room : "101",
-          values : [
-            { date: '2018-01-01' },
-            { date: '2018-01-02' },
-            { date: '2019-02-01' }
-          ]
-        }, {
-          room : "102",
-          values : [
-            { date: '2018-01-01' },
-            { date: '2018-01-02' },
-            { date: '2018-02-01' }
-          ]
-        }]
+      currentTimestamp : moment("2019-01-01"),
+      report : [
+        {
+          start: "2019-04-01",
+          end: "2019-04-03",
+          title: "101"
+        },{
+          start: "2019-04-02",
+          end: "2019-04-04",
+          title: "102"
+        },{
+          start: "2019-04-02",
+          end: "2019-04-04",
+          title: "103"
+        }
+      ]
     }
 
     const reportComponent = shallow(
@@ -47,58 +30,4 @@ test('Multiple reports can be created in the Report component', () => {
     reportComponent.update();
 
     expect(reportComponent).toMatchSnapshot();
-});
-
-test('Moving forward a year by selecting button', () => {
-    const multipleReports = {
-        year : 2018,
-        report : [{
-          room : "101",
-          values : [
-            { date: '2018-01-01' },
-            { date: '2018-01-02' },
-            { date: '2019-02-01' }
-          ]
-        }]
-    }
-
-    const reportComponent = shallow(
-        <Report />
-    )
-
-    reportComponent.setState(multipleReports);
-    reportComponent.update();
-
-    reportComponent.find('#nextYear').simulate('click');
-
-    const newDate = reportComponent.state().year;
-
-    expect(newDate).toBe(2019);
-});
-
-test('Moving backward a year by selecting button', () => {
-    const multipleReports = {
-        year : 2018,
-        report : [{
-          room : "101",
-          values : [
-            { date: '2018-01-01' },
-            { date: '2018-01-02' },
-            { date: '2019-02-01' }
-          ]
-        }]
-    }
-
-    const reportComponent = shallow(
-        <Report />
-    )
-
-    reportComponent.setState(multipleReports);
-    reportComponent.update();
-
-    reportComponent.find('#lastYear').simulate('click');
-
-    const newDate = reportComponent.state().year;
-
-    expect(newDate).toBe(2017);
 });

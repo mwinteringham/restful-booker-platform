@@ -1,158 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Multiple reports can be created in the Report component 1`] = `
-<div
-  style={
-    Object {
-      "paddingBottom": "30px",
+<div>
+  <ForwardRef
+    defaultDate={2019-01-01T00:00:00.000Z}
+    defaultView="month"
+    events={
+      Array [
+        Object {
+          "end": "2019-04-03",
+          "start": "2019-04-01",
+          "title": "101",
+        },
+        Object {
+          "end": "2019-04-04",
+          "start": "2019-04-02",
+          "title": "102",
+        },
+        Object {
+          "end": "2019-04-04",
+          "start": "2019-04-02",
+          "title": "103",
+        },
+      ]
     }
-  }
->
-  <h2
+    localizer={
+      DateLocalizer {
+        "format": [Function],
+        "formats": Object {
+          "agendaDateFormat": "ddd MMM DD",
+          "agendaHeaderFormat": [Function],
+          "agendaTimeFormat": "LT",
+          "agendaTimeRangeFormat": [Function],
+          "dateFormat": "DD",
+          "dayFormat": "DD ddd",
+          "dayHeaderFormat": "dddd MMM DD",
+          "dayRangeHeaderFormat": [Function],
+          "eventTimeRangeEndFormat": [Function],
+          "eventTimeRangeFormat": [Function],
+          "eventTimeRangeStartFormat": [Function],
+          "monthHeaderFormat": "MMMM YYYY",
+          "selectRangeFormat": [Function],
+          "timeGutterFormat": "LT",
+          "weekdayFormat": "ddd",
+        },
+        "propType": [Function],
+        "startOfWeek": [Function],
+      }
+    }
+    popup={true}
     style={
       Object {
-        "textAlign": "center",
+        "height": "75vh",
       }
     }
-  >
-    <button
-      className="btn btn-light"
-      id="lastYear"
-      onClick={[Function]}
-    >
-       &lt; 
-    </button>
-     
-    2018
-     
-    <button
-      className="btn btn-light"
-      id="nextYear"
-      onClick={[Function]}
-    >
-       &gt; 
-    </button>
-  </h2>
-  <div
-    key="101"
-  >
-    <RoomReport
-      roomReport={
-        Object {
-          "room": "101",
-          "values": Array [
-            Object {
-              "date": "2018-01-01",
-            },
-            Object {
-              "date": "2018-01-02",
-            },
-            Object {
-              "date": "2019-02-01",
-            },
-          ],
-        }
-      }
-      year={2018}
-    />
-  </div>
-  <div
-    key="102"
-  >
-    <RoomReport
-      roomReport={
-        Object {
-          "room": "102",
-          "values": Array [
-            Object {
-              "date": "2018-01-01",
-            },
-            Object {
-              "date": "2018-01-02",
-            },
-            Object {
-              "date": "2018-02-01",
-            },
-          ],
-        }
-      }
-      year={2018}
-    />
-  </div>
-</div>
-`;
-
-exports[`Report for individual room renders 1`] = `
-<div>
-  <h3>
-    Room: 
-    101
-  </h3>
-  <CalendarHeatmap
-    classForValue={[Function]}
-    endDate={2018-12-31T00:00:00.000Z}
-    gutterSize={1}
-    horizontal={true}
-    monthLabels={
+    views={
       Array [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+        "month",
       ]
     }
-    numDays={null}
-    onClick={null}
-    onMouseLeave={null}
-    onMouseOver={null}
-    showMonthLabels={true}
-    showOutOfRangeDays={false}
-    showWeekdayLabels={false}
-    startDate={2017-12-31T00:00:00.000Z}
-    titleForValue={[Function]}
-    tooltipDataAttrs={[Function]}
-    transformDayElement={null}
-    values={
-      Array [
-        Object {
-          "date": "2018-01-01",
-        },
-        Object {
-          "date": "2018-01-02",
-        },
-        Object {
-          "date": "2019-02-01",
-        },
-      ]
-    }
-    weekdayLabels={
-      Array [
-        "",
-        "Mon",
-        "",
-        "Wed",
-        "",
-        "Fri",
-        "",
-      ]
-    }
-  />
-  <ReactTooltip
-    clickable={false}
-    effect="float"
-    insecure={true}
-    place="top"
-    resizeHide={true}
-    type="dark"
-    wrapper="div"
   />
 </div>
 `;

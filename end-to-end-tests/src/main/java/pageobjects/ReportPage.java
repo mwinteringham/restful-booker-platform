@@ -7,7 +7,7 @@ import org.openqa.selenium.support.How;
 
 public class ReportPage extends BasePage{
 
-    @FindBy(how = How.CSS, using = ".react-calendar-heatmap")
+    @FindBy(how = How.CSS, using = ".rbc-calendar")
     private WebElement divHeatmap;
 
     public ReportPage(WebDriver driver) {
