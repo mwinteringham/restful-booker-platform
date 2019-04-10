@@ -1,7 +1,11 @@
 import React from 'react';
-import RoomReport from './RoomReport.jsx';
 import { API_ROOT } from '../api-config';
-const fetch = require('node-fetch')
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
+
+const fetch = require('node-fetch');
+
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 export default class Report extends React.Component {
 
@@ -9,12 +13,9 @@ export default class Report extends React.Component {
     super();
     
     this.state = {
-        year : 2019,
-        report : []
+      report : [],
+      currentTimestamp : moment
     }
-
-    this.increaseYear.bind(this);
-    this.decreaseYear.bind(this);
   }
 
   componentDidMount(){
@@ -25,33 +26,20 @@ export default class Report extends React.Component {
       });
   }
 
-  increaseYear(){
-    this.setState({
-      year : this.state.year + 1
-    })
-  }
-
-  decreaseYear(){
-    this.setState({
-      year : this.state.year - 1
-    })
-  }
-
   render(){
-    let report;
+    const localizer = BigCalendar.momentLocalizer(this.state.currentTimestamp);
+    const currentDate = new Date(this.state.currentTimestamp.utc().format("YYYY-MM-DD HH:mm:ss"));
 
-    if(this.state.report.length === 0){
-      report = <h2>Building report</h2>
-    } else {
-      report = <div style={{paddingBottom : "30px"}}>
-                <h2 style={{textAlign : "center"}}><button id="lastYear" className="btn btn-light" onClick={() => this.decreaseYear()}> &lt; </button> {this.state.year} <button id="nextYear" className="btn btn-light" onClick={() => this.increaseYear()}> &gt; </button></h2>
-
-                {this.state.report.map((report) => {
-                  return <div key={report.room}><RoomReport year={this.state.year} roomReport={report} /></div>
-                })}
-              </div>
-    }
-
-    return report
+    return <div>
+      <BigCalendar
+        localizer={localizer}
+        defaultDate={currentDate}
+        defaultView="month"
+        popup={true}
+        events={this.state.report}
+        style={{ height: "75vh" }}
+        views={['month']}
+      />
+    </div>
   }
 }

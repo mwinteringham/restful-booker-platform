@@ -7,17 +7,17 @@ import java.util.List;
 public class Report {
 
     @JsonProperty
-    private List<RoomReport> report;
+    private List<Entry> report;
 
-    public Report(List<RoomReport> report) {
+    public Report(List<Entry> report) {
         this.report = report;
     }
 
-    public List<RoomReport> getReport() {
+    public List<Entry> getReport() {
         return report;
     }
 
-    public void setReport(List<RoomReport> report) {
+    public void setReport(List<Entry> report) {
         this.report = report;
     }
 }

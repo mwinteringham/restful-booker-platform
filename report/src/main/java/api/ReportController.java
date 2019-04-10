@@ -1,8 +1,7 @@
 package api;
 
+import model.report.Entry;
 import model.report.Report;
-import model.report.RoomReport;
-import model.report.RoomReportDate;
 import model.room.Booking;
 import model.room.Bookings;
 import model.room.Room;
@@ -49,20 +48,17 @@ public class ReportController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Report returnReport() throws SQLException {
+    public Report getReport() {
         List<Room> rooms = roomRequests.searchForRooms().getBody().getRooms();
-        List<RoomReport> parsedRooms = new ArrayList<>();
+        List<Entry> parsedRooms = new ArrayList<>();
 
         for(Room r : rooms){
-            List<RoomReportDate> dateList = new ArrayList<>();
             Bookings roomBookings = bookingRequests.getBookings(r.getRoomid()).getBody();
 
             for(Booking b : roomBookings.getBookings()){
-                dateList = DateRange.parse(dateList, b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout());
+                Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), b.getFirstname() + " " + b.getLastname() + " - Room: " + r.getRoomNumber());
+                parsedRooms.add(entry);
             }
-
-            RoomReport roomReport = new RoomReport("" + r.getRoomNumber(), dateList);
-            parsedRooms.add(roomReport);
         }
 
         return new Report(parsedRooms);

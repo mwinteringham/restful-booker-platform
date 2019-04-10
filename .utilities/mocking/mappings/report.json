@@ -15,6 +15,6 @@
       "Transfer-Encoding": "chunked"
 
     },
-    "body": "{\"report\":[{\"room\":\"101\",\"values\":[{\"date\":\"2018-02-26\"}]}]}"
+    "body": "{\n\t\"report\": [{\n\t\t\"start\": \"2019-04-26\",\n\t\t\"end\": \"2019-04-29\",\n\t\t\"title\": \"James Dean - Room: 101\"\n\t}, {\n\t\t\"start\": \"2019-04-10\",\n\t\t\"end\": \"2019-04-13\",\n\t\t\"title\": \"Mark Winteringham - Room: 102\"\n\t}]\n}"
   }
 }

@@ -48,7 +48,6 @@
     "pigeon-marker": "^0.3.4",
     "query-string": "^6.4.2",
     "react": "^16.8.6",
-    "react-calendar-heatmap": "^1.8.0",
     "react-datepicker": "^2.3.0",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
@@ -81,6 +80,7 @@
     }
   },
   "dependencies": {
+    "react-big-calendar": "^0.20.4",
     "react-modal": "^3.8.1"
   }
 }
