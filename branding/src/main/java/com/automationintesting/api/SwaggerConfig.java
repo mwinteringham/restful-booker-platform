@@ -6,6 +6,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -28,7 +29,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("RestfulBooker Branding service")
                 .description("Branding service for Restful Booker. An application for teaching Automation in Testing")
-                .contact("https://automationintesting.com/")
+                .contact(new Contact("Mark Winteringham / Richard Bradshaw", "https://automationintesting.com/", "mark@mwtestconsultancy.co.uk"))
                 .license("MIT")
                 .licenseUrl("https://opensource.org/licenses/MIT")
                 .version("1.0")
