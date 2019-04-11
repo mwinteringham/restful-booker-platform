@@ -1,10 +1,12 @@
 package driverfactory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -48,6 +50,16 @@ public class DriverFactory
         String URL = "http://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com:80/wd/hub";
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+        firefoxOptions.setCapability("platformName", "Windows 10");
+        firefoxOptions.setCapability("browserVersion", "latest");
+
+        MutableCapabilities sauceCaps = new MutableCapabilities();
+        sauceCaps.setCapability("username", System.getenv("SAUCE_USERNAME"));
+        sauceCaps.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceCaps.setCapability("seleniumVersion", "3.141.59");
+        sauceCaps.setCapability("name", "Restful-booker-platform");
+        firefoxOptions.setCapability("sauce:options", sauceCaps);
 
         try {
             return new RemoteWebDriver(new URL(URL), firefoxOptions);
