@@ -4,7 +4,7 @@ import moment from 'moment';
 
 test('Multiple reports can be created in the Report component', () => {
     const multipleReports = {
-      currentTimestamp : moment("2019-01-01"),
+      currentTimestamp : moment.utc([2019, 0, 1, 1]),
       report : [
         {
           start: "2019-04-01",

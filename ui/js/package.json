@@ -61,7 +61,9 @@
     "validate.js": "^0.12.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.2.1",
+    "react-big-calendar": "^0.20.4",
+    "react-modal": "^3.8.1"
   },
   "jest": {
     "testMatch": [
@@ -78,9 +80,5 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     }
-  },
-  "dependencies": {
-    "react-big-calendar": "^0.20.4",
-    "react-modal": "^3.8.1"
   }
 }
