@@ -3,7 +3,6 @@
 exports[`Multiple reports can be created in the Report component 1`] = `
 <div>
   <ForwardRef
-    defaultDate={2019-01-01T00:00:00.000Z}
     defaultView="month"
     events={
       Array [

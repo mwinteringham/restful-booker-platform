@@ -28,12 +28,10 @@ export default class Report extends React.Component {
 
   render(){
     const localizer = BigCalendar.momentLocalizer(this.state.currentTimestamp);
-    const currentDate = new Date(this.state.currentTimestamp.utc().format("YYYY-MM-DD HH:mm:ss"));
 
     return <div>
       <BigCalendar
         localizer={localizer}
-        defaultDate={currentDate}
         defaultView="month"
         popup={true}
         events={this.state.report}
