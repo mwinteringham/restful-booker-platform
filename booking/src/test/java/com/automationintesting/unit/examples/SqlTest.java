@@ -113,10 +113,4 @@ public class SqlTest extends BaseTest {
         assertThat(updatedBookingString, is("CreatedBooking{\nbookingid=" + currentBookingId + "\n, booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', totalprice=100, depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
     }
 
-    @Test
-    public void testQueryByNameSql() throws SQLException {
-        List<Booking> booking = bookingDB.queryBookingsByName("James");
-
-        assertThat(booking.toString(), is("[Booking{roomid=1, firstname='James', lastname='Dean', totalprice=100, depositpaid=true, bookingDates=BookingDates{checkin=2018-02-26, checkout=2018-02-26}}]"));
-    }
 }
