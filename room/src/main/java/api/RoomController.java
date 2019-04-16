@@ -50,7 +50,7 @@ public class RoomController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<Rooms> getRooms(@RequestParam("keyword") Optional<String> keyword) throws SQLException {
+    public ResponseEntity<Rooms> getRooms() throws SQLException {
         return ResponseEntity.ok(new Rooms(roomDB.queryRooms()));
     }
 
