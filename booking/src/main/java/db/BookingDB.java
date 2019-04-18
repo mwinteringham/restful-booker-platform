@@ -85,21 +85,6 @@ public class BookingDB {
         return listToReturn;
     }
 
-    public List<Booking> queryBookingsByName(String keyword) throws SQLException {
-        List<Booking> listToReturn = new ArrayList<Booking>();
-
-        PreparedStatement ps = connection.prepareStatement(SELECT_BY_NAME);
-        ps.setString(1, keyword);
-        ps.setString(2, keyword);
-
-        ResultSet results = ps.executeQuery();
-        while(results.next()){
-            listToReturn.add(new Booking(results));
-        }
-
-        return listToReturn;
-    }
-
     public Booking query(int id) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(SELECT_BY_BOOKINGID);
         ps.setInt(1, id);

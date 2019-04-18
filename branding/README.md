@@ -1,6 +1,6 @@
 # Restful-booker-branding
 
-Branding is responsible for creating, reading, updating and deleting branding data from the database to share with other services.
+Branding is responsible for reading and updating branding data from the database to share with the home and admin pages.
 
 ## Running the checks
 

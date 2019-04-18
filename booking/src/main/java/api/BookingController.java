@@ -54,14 +54,9 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<BookingResults> getBookings(@RequestParam("roomid") Optional<String> roomid, @RequestParam("keyword") Optional<String> keyword) throws SQLException {
+    public ResponseEntity<BookingResults> getBookings(@RequestParam("roomid") Optional<String> roomid) throws SQLException {
         if(roomid.isPresent()){
             BookingResults searchResults = new BookingResults(bookingDB.queryBookingsById(roomid.get()));
-            return ResponseEntity.ok(searchResults);
-        }
-
-        if(keyword.isPresent()){
-            BookingResults searchResults = new BookingResults(bookingDB.queryBookingsByName(keyword.get()));
             return ResponseEntity.ok(searchResults);
         }
 
