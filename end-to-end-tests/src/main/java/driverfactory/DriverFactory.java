@@ -52,7 +52,7 @@ public class DriverFactory
         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
         firefoxOptions.setCapability("platformName", "Windows 10");
-        firefoxOptions.setCapability("browserVersion", "latest");
+        firefoxOptions.setCapability("browserVersion", "65.0");
 
         MutableCapabilities sauceCaps = new MutableCapabilities();
         sauceCaps.setCapability("username", System.getenv("SAUCE_USERNAME"));
