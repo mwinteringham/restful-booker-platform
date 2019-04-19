@@ -1,7 +1,7 @@
 package com.automationintesting.unit.examples;
 
 import com.automationintesting.unit.BaseTest;
-import model.Room;
+import com.automationintesting.model.Room;
 import org.junit.Before;
 import org.junit.Test;
 

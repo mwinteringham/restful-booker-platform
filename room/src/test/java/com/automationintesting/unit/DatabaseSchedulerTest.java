@@ -1,11 +1,11 @@
 package com.automationintesting.unit;
 
-import model.Room;
+import com.automationintesting.model.Room;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.EnvironmentVariables;
-import utils.DatabaseScheduler;
+import com.automationintesting.utils.DatabaseScheduler;
 
 import java.sql.SQLException;
 import java.util.List;

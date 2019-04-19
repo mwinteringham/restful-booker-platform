@@ -1,6 +1,6 @@
 package com.automationintesting.unit;
 
-import db.BookingDB;
+import com.automationintesting.db.BookingDB;
 import org.junit.BeforeClass;
 
 import java.sql.SQLException;

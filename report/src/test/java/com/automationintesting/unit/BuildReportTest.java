@@ -3,13 +3,13 @@ package com.automationintesting.unit;
 import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import model.room.Room;
-import model.room.Rooms;
+import com.automationintesting.model.room.Room;
+import com.automationintesting.model.room.Rooms;
 import org.approvaltests.Approvals;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
-import requests.RoomRequests;
+import com.automationintesting.requests.RoomRequests;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 

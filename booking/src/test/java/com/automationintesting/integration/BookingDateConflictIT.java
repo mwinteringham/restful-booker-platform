@@ -1,12 +1,12 @@
 package com.automationintesting.integration;
 
-import api.BookingApplication;
+import com.automationintesting.api.BookingApplication;
 import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import model.Booking;
+import com.automationintesting.model.Booking;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

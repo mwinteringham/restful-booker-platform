@@ -1,6 +1,6 @@
 package com.automationintesting.unit;
 
-import db.RoomDB;
+import com.automationintesting.db.RoomDB;
 import org.junit.BeforeClass;
 
 import java.sql.SQLException;
