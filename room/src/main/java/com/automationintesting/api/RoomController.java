@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.utils.DatabaseScheduler;
 
+import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
@@ -54,7 +55,7 @@ public class RoomController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<Room> createRoom(@RequestBody Room room, @CookieValue(value ="token", required = false) String token) throws SQLException {
+    public ResponseEntity<Room> createRoom(@Valid @RequestBody Room room, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             Room body = roomDB.create(room);
             return ResponseEntity.ok(body);

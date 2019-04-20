@@ -2,21 +2,32 @@ package com.automationintesting.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.validation.constraints.*;
 import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 
+@Entity
 public class Room {
 
     @JsonProperty
     private int roomid;
+
     @JsonProperty
+    @Min(1)
+    @Max(999)
     private int roomNumber;
+
     @JsonProperty
+    @NotNull(message = "Type must be set")
+    @Pattern(regexp = "Single|Double|Twin|Family|Suite", message = "Type can only contain the room options Single, Double, Twin, Family or Suite")
     private String type;
+
     @JsonProperty
     private boolean accessible;
+
     @JsonProperty
     private String image;
     @JsonProperty
