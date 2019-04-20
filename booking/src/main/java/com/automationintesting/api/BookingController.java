@@ -102,7 +102,7 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.PUT)
-    public ResponseEntity<CreatedBooking> updateBooking(@RequestBody Booking booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
+    public ResponseEntity<CreatedBooking> updateBooking(@Valid @RequestBody Booking booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
             return ResponseEntity.ok(bookingDB.update(id, booking));
         } else {

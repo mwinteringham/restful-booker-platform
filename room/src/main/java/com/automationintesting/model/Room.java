@@ -127,4 +127,61 @@ public class Room {
                 "\n, features=" + Arrays.toString(features) +
                 "\n}";
     }
+
+    public static class RoomBuilder {
+
+        private int roomid;
+        private int roomNumber;
+        private String type;
+        private boolean accessible;
+        private String image;
+        private String description;
+        private String[] features;
+
+        public RoomBuilder setRoomid(int roomid) {
+            this.roomid = roomid;
+
+            return this;
+        }
+
+        public RoomBuilder setRoomNumber(int roomNumber) {
+            this.roomNumber = roomNumber;
+
+            return this;
+        }
+
+        public RoomBuilder setType(String type) {
+            this.type = type;
+
+            return this;
+        }
+
+        public RoomBuilder setAccessible(boolean accessible) {
+            this.accessible = accessible;
+
+            return this;
+        }
+
+        public RoomBuilder setImage(String image) {
+            this.image = image;
+
+            return this;
+        }
+
+        public RoomBuilder setDescription(String description) {
+            this.description = description;
+
+            return this;
+        }
+
+        public RoomBuilder setFeatures(String[] features) {
+            this.features = features;
+
+            return this;
+        }
+
+        public Room build(){
+            return new Room(roomNumber, type, accessible, image, description, features);
+        }
+    }
 }

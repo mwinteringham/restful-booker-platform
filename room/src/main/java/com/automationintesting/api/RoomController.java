@@ -85,7 +85,7 @@ public class RoomController {
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.PUT)
-    public ResponseEntity<Room> updateRoom(@RequestBody Room booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
+    public ResponseEntity<Room> updateRoom(@Valid @RequestBody Room booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             return ResponseEntity.ok(roomDB.update(id, booking));
         } else {

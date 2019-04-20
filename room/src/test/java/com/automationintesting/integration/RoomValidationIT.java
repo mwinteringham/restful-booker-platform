@@ -1,7 +1,7 @@
 package com.automationintesting.integration;
 
-import com.automationintesting.api.BookingApplication;
-import com.automationintesting.model.Booking;
+import com.automationintesting.api.RoomApplication;
+import com.automationintesting.model.Room;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
@@ -15,34 +15,33 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookingApplication.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = RoomApplication.class)
 @ActiveProfiles("dev")
-public class BookingValidationIT {
+public class RoomValidationIT {
 
     @Test
     public void testPostValidation() {
-        Booking bookingPayload = new Booking.BookingBuilder()
+        Room bookingPayload = new Room.RoomBuilder()
                                         .build();
-
         Response response = given()
             .contentType(ContentType.JSON)
             .body(bookingPayload)
             .when()
-            .post("http://localhost:3000/booking/");
+            .post("http://localhost:3001/room/");
 
         assertThat(response.statusCode(), is(400));
     }
 
     @Test
     public void testPutValidation() {
-        Booking bookingPayload = new Booking.BookingBuilder()
-                .build();
+        Room bookingPayload = new Room.RoomBuilder()
+                                      .build();
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(bookingPayload)
                 .when()
-                .put("http://localhost:3000/booking/1");
+                .put("http://localhost:3001/room/1");
 
         assertThat(response.statusCode(), is(400));
     }
