@@ -3,6 +3,7 @@ package com.automationintesting.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,6 +41,7 @@ public class Booking {
     private boolean depositpaid;
 
     @JsonProperty(value = "bookingdates")
+    @Valid
     private BookingDates bookingDates;
 
     public Booking(int bookingid, int roomid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {

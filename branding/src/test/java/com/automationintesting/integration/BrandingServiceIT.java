@@ -19,6 +19,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BrandingApplication.class)
@@ -62,6 +64,20 @@ public class BrandingServiceIT {
                 .put("http://localhost:3002/branding/");
 
         Approvals.verify(brandingPutResponse.body().prettyPrint());
+    }
+
+    @Test
+    public void testPutValidation() {
+        Branding brandingPayload = new Branding.BrandingBuilder()
+                .build();
+
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(brandingPayload)
+                .when()
+                .put("http://localhost:3002/branding/");
+
+        assertThat(response.statusCode(), is(400));
     }
 
 }

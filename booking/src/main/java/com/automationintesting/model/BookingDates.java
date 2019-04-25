@@ -11,13 +11,9 @@ import java.util.Date;
 public class BookingDates {
 
     @JsonProperty
-    @NotBlank(message = "Checkin should not be blank")
-    @NotNull(message = "Checkin should not be null")
     private Date checkin;
 
     @JsonProperty
-    @NotBlank(message = "Checkout should not be blank")
-    @NotNull(message = "Checkout should not be null")
     private Date checkout;
 
     public BookingDates() {
