@@ -101,8 +101,7 @@ public class BookingDateConflictIT {
                 .when()
                 .post("http://localhost:3000/booking/");
 
-        assertThat(bookingResponse.statusCode(), equalTo(400));
-        assertThat(bookingResponse.getBody().prettyPrint(), equalTo("Dates must be set and Checkout must be after Checkin"));
+        assertThat(bookingResponse.statusCode(), equalTo(409));
     }
 
 }

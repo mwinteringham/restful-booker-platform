@@ -1,9 +1,7 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import validate from 'validate.js';
-import { API_ROOT } from '../api-config';
-import { constraints } from '../libs/ValidateRules.js'
+import { API } from '../libs/Api.js';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -21,15 +19,17 @@ export default class BookingForm extends React.Component {
                 depositpaid: "false",
                 bookingdates: {
                     checkin: moment().format("YYYY-MM-DD"),
-                    checkout: moment().format("YYYY-MM-DD")
+                    checkout: moment().add(1, 'day').format("YYYY-MM-DD")
                 }
             },
-            errors : {}
+            errors : []
         };
 
         this.handleStartChange = this.handleStartChange.bind(this);
         this.handleEndChange = this.handleEndChange.bind(this);
         this.createBooking = this.createBooking.bind(this);
+        this.resetForm = this.resetForm.bind(this);
+        this.updateState = this.updateState.bind(this);
     }
 
     componentDidMount(){
@@ -56,76 +56,55 @@ export default class BookingForm extends React.Component {
             this.setState({newbooking : currentState.newbooking});
         }
     }
+    
+    resetForm() {
+        this.setState({
+            newbooking: {
+                roomid : this.props.roomid,
+                firstname: "",
+                lastname: "",
+                totalprice: "",
+                depositpaid: "false",
+                bookingdates: {
+                    checkin : moment().format("YYYY-MM-DD"),
+                    checkout: moment().add(1, 'day').format("YYYY-MM-DD")
+                }
+            },
+            errors : []
+        })
+    }
+
+    updateState(event){
+        let currentState = this.state;
+
+        currentState.newbooking[event.target.id] = event.target.value;
+
+        this.setState(currentState);
+    }
 
     createBooking() {
-        let vErrors = validate(this.state.newbooking, constraints.booking);
-
-        if(vErrors != null){
-            this.setState({errors : vErrors})
-        } else {
-            fetch(API_ROOT + '/booking/', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body : JSON.stringify(this.state.newbooking)
-            })
-            .then(res => {
-                if(res.status == 200){
-                    this.props.fetchRoomDetails();
-
-                    document.getElementById("firstname").value = '';
-                    document.getElementById("lastname").value = '';
-                    document.getElementById("totalprice").value = '';
-                    document.getElementById("depositpaid").value = 'false';
-
-                    this.setState({
-                        newbooking: {
-                            roomid : this.props.roomid,
-                            firstname: "",
-                            lastname: "",
-                            totalprice: "",
-                            depositpaid: "false",
-                            bookingdates: {
-                                checkin : moment().format("YYYY-MM-DD"),
-                                checkout : moment().format("YYYY-MM-DD")
-                            }
-                        },
-                        errors : {}
-                    })
-                } else if (res.status == 409){
-                    this.setState({errors : {
-                        dateconflict : ["The room is already booked for one or more of the dates that you have selected."]
-                    }});
-                }
-            })
-            .catch(e => console.log(e))
-        }
+        API.postBooking(this);
     }
 
     render(){
         let errors = '';
 
         if(Object.keys(this.state.errors).length > 0){
-            errors = <div className="alert alert-danger" style={{marginTop : 15 + "px"}}>
-                    {Object.keys(this.state.errors).map((key, index) => {
-                        return this.state.errors[key].map((value, index) => {
-                            return <p key={index}>{value}</p>
-                        })
-                    })}
+            errors = <div className="alert alert-danger" style={{marginTop: 15 + "px", marginBottom : 5 + "rem"}}>
+                {this.state.errors.map((value) => {
+                    return <p key={value}>{value}</p>
+                })}
             </div>
         }
 
         return(
             <div>
                 <div className="row" style={{marginTop : "10px"}}>
-                    <div className="col-sm-2"><input type="text" className="form-control" id="firstname" onChange={val => this.state.newbooking.firstname = val.target.value} /></div>
-                    <div className="col-sm-2"><input type="text" className="form-control" id="lastname" onChange={val => this.state.newbooking.lastname = val.target.value}/></div>
-                    <div className="col-sm-1"><input type="text" className="form-control" id="totalprice" onChange={val => this.state.newbooking.totalprice = val.target.value} /></div>
+                    <div className="col-sm-2"><input type="text" className="form-control" id="firstname" value={this.state.newbooking.firstname} onChange={this.updateState} /></div>
+                    <div className="col-sm-2"><input type="text" className="form-control" id="lastname" value={this.state.newbooking.lastname} onChange={this.updateState}/></div>
+                    <div className="col-sm-1"><input type="text" className="form-control" id="totalprice" value={this.state.newbooking.totalprice} onChange={this.updateState} /></div>
                     <div className="col-sm-2">
-                        <select id="depositpaid" className="form-control" onChange={val => this.state.newbooking.depositpaid = val.target.value} >
+                        <select id="depositpaid" className="form-control" value={this.state.newbooking.depositpaid} onChange={this.updateState} >
                             <option value="false">false</option>
                             <option value="true">true</option>
                         </select>

@@ -1,0 +1,101 @@
+import { API_ROOT } from '../api-config';
+import fetch from 'node-fetch';
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+export const API = {
+
+    postRoom : (component) => {
+            fetch(API_ROOT + '/room/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body : JSON.stringify(component.state.newRoom)
+            })
+            .then(res => {
+                if(res.status == 200){
+                    component.resetForm();
+                    component.props.updateRooms();
+                } else {
+                    return res.json();
+                }
+            })
+            .then(res => {
+                let capturedErrors = [];
+                
+                for(let i = 0; i < res.errors.length; i++){
+                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+                }
+
+                component.setState({ errors : capturedErrors });
+            });
+    },
+
+    putRoom : (component) => {
+        fetch(API_ROOT + '/room/' + component.props.params.id, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body : JSON.stringify(component.state.room)
+        })
+        .then(res => {
+            if(res.status == 200){
+                component.resetForm();
+                component.fetchRoomDetails();
+            } else {
+                return res.json();
+            }
+        })
+        .then(res => {
+            if(res){
+                let capturedErrors = [];
+    
+                for(let i = 0; i < res.errors.length; i++){
+                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+                }
+                
+                component.setState({ errors : capturedErrors });
+            }
+        });
+    },
+
+    postBooking : (component) => {
+        fetch(API_ROOT + '/booking/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body : JSON.stringify(component.state.newbooking)
+        })
+        .then(res => {
+            if(res.status == 200){
+                component.props.fetchRoomDetails();
+                component.resetForm();
+            } else if (res.status == 409){
+                component.setState({ errors : ["The room dates are either invalid or are already booked for one or more of the dates that you have selected."]})
+            } else {
+                return res.json();
+            }
+        })
+        .then(res => {
+            let capturedErrors = [];
+            
+            for(let i = 0; i < res.errors.length; i++){
+                capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+            }
+
+            component.setState({ errors : capturedErrors });
+        });
+    }
+
+}

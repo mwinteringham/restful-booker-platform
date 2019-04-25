@@ -75,8 +75,7 @@ public class BookingController {
                     return ResponseEntity.ok(body);
                 }
             } else {
-                return ResponseEntity.badRequest()
-                        .body("Dates must be set and Checkout must be after Checkin");
+                return ResponseEntity.status(HttpStatus.CONFLICT).build();
             }
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
