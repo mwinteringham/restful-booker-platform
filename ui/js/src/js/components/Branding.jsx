@@ -1,88 +1,8 @@
 import React from 'react';
 import fetch from 'node-fetch';
 import { API_ROOT } from '../api-config';
+import { API } from '../libs/Api.js';
 import ReactModal from 'react-modal';
-import validate from 'validate.js';
-
-let rules = {
-    "name": {
-        presence : true,
-        format: {
-            pattern: '[a-zA-Z& ]+',
-            flags: 'i',
-            message: 'can only contain alphas'
-        },
-        length: {
-            minimum: 3,
-            maximum: 100,
-            message: "must between 3 and 500 characters long"
-        }
-    },
-    "logoUrl": {
-        presence : true,
-        url: true
-    },
-    "description": {
-        presence : true,
-        format: {
-            pattern: '[a-zA-Z,&. ]+',
-            flags: 'i',
-            message: 'can only contain alphas and basic punctuation'
-        },
-        length: {
-            minimum: 3,
-            maximum: 500,
-            message: "must between 3 and 500 characters long"
-        }
-    },
-    "map.latitude": {
-        presence : true,
-        numericality: {
-            onlyFloat: true
-        }
-    },
-    "map.longitude": {
-        presence : true,
-        numericality: {
-            onlyFloat: true
-        }
-    },
-    "contact.name": {
-        presence : true,
-        format: {
-            pattern: '[a-zA-Z& ]+',
-            flags: 'i',
-            message: 'can only contain alphas'
-        },
-        length: {
-            minimum: 3,
-            maximum: 40,
-            message: "must be at least 3 characters long"
-        }
-    },
-    "contact.address": {
-        presence : true,
-        length: {
-            minimum: 10,
-            maximum: 200,
-            message: "must be at least 10 characters long"
-        }
-    },
-    "contact.phone": {
-        presence : true,
-        numericality: {
-            onlyInteger: true
-        },
-        length: {
-            minimum: 11,
-            message: "must be at least 11 digits long"
-        }
-    },
-    "contact.email": {
-        presence : true,
-        email : true
-    },
-}
 
 export default class Branding extends React.Component {
     
@@ -115,41 +35,11 @@ export default class Branding extends React.Component {
     }
 
     componentDidMount(){
-        fetch(API_ROOT + '/branding/', {
-			method: 'GET',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
-        })
-        .then(res => res.json())
-        .then(res => {
-            this.setState({ branding : res });
-        });
+        API.getBranding(this);
     }
 
     doUpdate(){
-        let vErrors = validate(this.state.branding, rules);
-
-        if(typeof vErrors === 'undefined'){
-            fetch(API_ROOT + '/branding/', {
-                method: 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body : JSON.stringify(this.state.branding)
-            })
-            .then(res => {
-                if(res.status == 200){
-                    this.setState({showModal : true, errors : {}});
-                }
-            })
-            .catch(e => console.log(e));
-        } else {
-            this.setState({ errors : vErrors })
-        }
+        API.putBranding(this);
     }
 
     updateState(event){
@@ -189,13 +79,11 @@ export default class Branding extends React.Component {
     render(){
         let errors = '';
         
-        if(Object.keys(this.state.errors).length > 0){
+        if(this.state.errors.length > 0){
             errors = <div className="alert alert-danger" style={{marginTop : 1 + "rem"}}>
-                    {Object.keys(this.state.errors).map((key, index) => {
-                        return this.state.errors[key].map((value, index) => {
-                            return <p key={index}>{value}</p>
-                        })
-                    })}
+                {this.state.errors.map((value) => {
+                    return <p key={value}>{value}</p>
+                })}
             </div>
         }
 

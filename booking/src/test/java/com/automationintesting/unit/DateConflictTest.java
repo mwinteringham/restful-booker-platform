@@ -1,6 +1,6 @@
 package com.automationintesting.unit;
 
-import model.Booking;
+import com.automationintesting.model.Booking;
 import org.junit.Test;
 
 import java.sql.SQLException;

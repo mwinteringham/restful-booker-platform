@@ -1,17 +1,13 @@
 package com.automationintesting.unit.examples;
 
 import com.automationintesting.unit.BaseTest;
-import db.BookingDB;
-import model.Booking;
-import model.CreatedBooking;
-import org.junit.AfterClass;
+import com.automationintesting.model.Booking;
+import com.automationintesting.model.CreatedBooking;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

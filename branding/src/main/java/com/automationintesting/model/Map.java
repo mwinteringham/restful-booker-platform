@@ -2,14 +2,20 @@ package com.automationintesting.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Entity
 public class Map {
 
     @JsonProperty
+    @NotNull(message = "Latitude should not be null")
     private double latitude;
     @JsonProperty
+    @NotNull(message = "Longitude should not be null")
     private double longitude;
 
     public Map() {}

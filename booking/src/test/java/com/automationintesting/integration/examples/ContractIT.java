@@ -1,6 +1,6 @@
 package com.automationintesting.integration.examples;
 
-import api.BookingApplication;
+import com.automationintesting.api.BookingApplication;
 import io.restassured.response.Response;
 import org.json.JSONException;
 import org.json.JSONObject;

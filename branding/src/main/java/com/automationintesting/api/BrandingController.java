@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
@@ -56,7 +57,7 @@ public class BrandingController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateBranding(@RequestBody Branding branding, @CookieValue(value ="token", required = false) String token) throws SQLException {
+    public ResponseEntity<?> updateBranding(@Valid @RequestBody Branding branding, @CookieValue(value ="token", required = false) String token) throws SQLException {
         if(authRequest.postCheckAuth(token)){
             Branding updatedBranding = brandingDB.update(branding);
 

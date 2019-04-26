@@ -300,12 +300,13 @@ exports[`Room details can render validation errors 1`] = `
               className="form-check form-check-inline"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 id="wifiCheckbox"
                 name="featureCheck"
                 onChange={[Function]}
                 type="checkbox"
-                value="Wifi"
+                value="WiFi"
               />
               <label
                 className="form-check-label"
@@ -322,6 +323,7 @@ exports[`Room details can render validation errors 1`] = `
               className="form-check form-check-inline"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 id="tvCheckbox"
                 name="featureCheck"
@@ -344,6 +346,7 @@ exports[`Room details can render validation errors 1`] = `
               className="form-check form-check-inline"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 id="radioCheckbox"
                 name="featureCheck"
@@ -370,6 +373,7 @@ exports[`Room details can render validation errors 1`] = `
               className="form-check form-check-inline"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 id="refreshCheckbox"
                 name="featureCheck"
@@ -392,6 +396,7 @@ exports[`Room details can render validation errors 1`] = `
               className="form-check form-check-inline"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 id="safeCheckbox"
                 name="featureCheck"
@@ -414,6 +419,7 @@ exports[`Room details can render validation errors 1`] = `
               className="form-check form-check-inline"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 id="viewsCheckbox"
                 name="featureCheck"
@@ -446,25 +452,6 @@ exports[`Room details can render validation errors 1`] = `
           type="text"
         />
       </div>
-    </div>
-    <div
-      className="alert alert-danger"
-      style={
-        Object {
-          "marginTop": "15px",
-        }
-      }
-    >
-      <p
-        key="0"
-      >
-        Room number can't be blank
-      </p>
-      <p
-        key="0"
-      >
-        Type can't be blank
-      </p>
     </div>
   </div>
   <div
@@ -823,12 +810,13 @@ exports[`Room details switches into edit mode 1`] = `
               className="form-check form-check-inline"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 id="wifiCheckbox"
                 name="featureCheck"
                 onChange={[Function]}
                 type="checkbox"
-                value="Wifi"
+                value="WiFi"
               />
               <label
                 className="form-check-label"

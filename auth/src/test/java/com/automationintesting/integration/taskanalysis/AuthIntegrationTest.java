@@ -1,10 +1,10 @@
 package com.automationintesting.integration.taskanalysis;
 
-import api.AuthApplication;
+import com.automationintesting.api.AuthApplication;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import model.Auth;
-import model.Token;
+import com.automationintesting.model.Auth;
+import com.automationintesting.model.Token;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

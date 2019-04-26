@@ -83,12 +83,12 @@ test('Room details can be submitted', (done) => {
     
     roomDetailsComponent.setState({
         room : {
-            'roomId' : 1,
-            'roomNumber' : 999,
-            'accessible' : true,
-            'image'	: 'test/url',
-            'description' : 'Test description',
-            features : {
+            roomId : 1,
+            roomNumber : 999,
+            accessible : true,
+            image	: 'test/url',
+            description : 'Test description',
+            featuresObject : {
                 WiFi : false,
                 TV : false,
                 Radio : true,
@@ -96,8 +96,8 @@ test('Room details can be submitted', (done) => {
                 Safe : false,
                 Views : true
             },
-            'type' : 'Single',
-            'featureArray' : []
+            type : 'Single',
+            features : []
         }
     })
     roomDetailsComponent.update();

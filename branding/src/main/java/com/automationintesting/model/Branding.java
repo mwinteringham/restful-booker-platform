@@ -1,21 +1,46 @@
 package com.automationintesting.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.URL;
 
+import javax.persistence.Entity;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Entity
 public class Branding {
 
     @JsonProperty
+    @NotNull(message = "Name should not be null")
+    @NotBlank(message = "Name should not be blank")
+    @Size(min = 3, max = 100)
+    @Pattern(regexp = "[A-Za-z& ]*", message = "Name can only contain alpha characters and the & sign")
     private String name;
+
     @JsonProperty
+    @Valid
     private Map map;
+
     @JsonProperty
+    @NotNull(message = "Url should not be null")
+    @NotBlank(message = "Url should not be blank")
+    @URL(message = "Url should be a correct url format")
     private String logoUrl;
+
     @JsonProperty
+    @NotNull(message = "Description should not be null")
+    @NotBlank(message = "Description should not be blank")
+    @Pattern(regexp = "[a-zA-Z,&. ]*", message = "Description can only contain alpha characters and basic grammar")
+    @Size(min = 3, max = 500)
     private String description;
+
     @JsonProperty
+    @Valid
     private Contact contact;
 
     public Branding() {}
@@ -85,5 +110,48 @@ public class Branding {
                 ", description='" + description + '\'' +
                 ", contact=" + contact +
                 '}';
+    }
+
+    public static class BrandingBuilder{
+
+        private String name;
+        private Map map;
+        private String logoUrl;
+        private String description;
+        private Contact contact;
+
+        public BrandingBuilder setName(String name) {
+            this.name = name;
+
+            return this;
+        }
+
+        public BrandingBuilder setMap(Map map) {
+            this.map = map;
+
+            return this;
+        }
+
+        public BrandingBuilder setLogoUrl(String logoUrl) {
+            this.logoUrl = logoUrl;
+
+            return this;
+        }
+
+        public BrandingBuilder setDescription(String description) {
+            this.description = description;
+
+            return this;
+        }
+
+        public BrandingBuilder setContact(Contact contact) {
+            this.contact = contact;
+
+            return this;
+        }
+
+        public Branding build(){
+            return new Branding(name, map, logoUrl, description, contact);
+        }
     }
 }

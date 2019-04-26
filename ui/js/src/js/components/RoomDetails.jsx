@@ -1,8 +1,7 @@
 import React from 'react';
 import BookingListings from './BookingListings.jsx';
-import validate from 'validate.js';
-import { constraints } from '../libs/ValidateRules.js'
 import { API_ROOT } from '../api-config';
+import { API } from '../libs/Api.js';
 import fetch from 'node-fetch';
 
 export default class RoomDetails extends React.Component {
@@ -15,7 +14,7 @@ export default class RoomDetails extends React.Component {
             room : {
                 accessible : false,
                 description : "",
-                features : {
+                featuresObject : {
                     WiFi : false,
                     TV : false,
                     Radio : false,
@@ -23,9 +22,9 @@ export default class RoomDetails extends React.Component {
                     Safe : false,
                     Views : false
                 },
-                featureArray : []
+                features : []
             },
-            errors : {}
+            errors : []
         }
 
         this.enableEdit = this.enableEdit.bind(this);
@@ -33,6 +32,7 @@ export default class RoomDetails extends React.Component {
         this.doEdit = this.doEdit.bind(this);
         this.fetchRoomDetails = this.fetchRoomDetails.bind(this);
         this.updateState = this.updateState.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
 
     componentDidMount(){
@@ -48,60 +48,29 @@ export default class RoomDetails extends React.Component {
     }
 
     doEdit(){
-        let roomToUpdate = this.state.room;
-        let featureObject = this.state.room.features;
-        let featuresArray = [];
-        
-        for (let property in featureObject) {
-            if(featureObject[property] === true){
-                featuresArray.push(property);
-            }
-        }
-        
-        roomToUpdate.features = featuresArray;
-        let vErrors = validate(this.state.room, constraints.room);
+        this.state.room.features = Object.keys(this.state.room.featuresObject).filter(key => this.state.room.featuresObject[key]);
 
-        if(vErrors != null){
-            this.setState({errors : vErrors})
-        } else {
-            fetch(API_ROOT + '/room/' + this.props.params.id, {
-                method: 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+        API.putRoom(this);
+    }
+
+    resetForm() {
+        this.setState({
+            edit : false,
+            room : {
+                accessible : false,
+                description : "",
+                featuresObject : {
+                    WiFi : false,
+                    TV : false,
+                    Radio : false,
+                    Refreshments : false,
+                    Safe : false,
+                    Views : false
                 },
-                credentials: 'include',
-                body : JSON.stringify({
-                    accessible : this.state.room.accessible,
-                    description : this.state.room.description,
-                    features : this.state.room.features,
-                    image : this.state.room.image,
-                    roomNumber : this.state.room.roomNumber,
-                    type : this.state.room.type
-                })
-            })
-            .then(() => {
-                this.setState({
-                    edit : false,
-                    room : {
-                        accessible : false,
-                        description : "",
-                        features : {
-                            WiFi : false,
-                            TV : false,
-                            Radio : false,
-                            Refreshments : false,
-                            Safe : false,
-                            Views : false
-                        },
-                        featureArray : []
-                    },
-                    errors : {}
-                })
-                this.fetchRoomDetails();
-            })
-            .catch(e => console.log(e));
-        }
+                features : []
+            },
+            errors : []
+        });
     }
 
     fetchRoomDetails() {
@@ -113,25 +82,21 @@ export default class RoomDetails extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            res.featureArray = res.features;
-            
-            let features = res.features;
-            res.features = this.state.room.features;
+            res.featuresObject = this.state.room.featuresObject;
 
-            for (let i = 0; i < features.length; i++) {
-                res.features[features[i]] = true
+            for (let i = 0; i < res.features.length; i++) {
+                res.featuresObject[res.features[i]] = true
             }
 
             this.setState({ room : res });
-        })
-        .catch(e => console.log(e));
+        });
     }
 
     updateState(event){
         let currentState = this.state;
 
         if(event.target.name === 'featureCheck'){
-            currentState.room.features[event.target.value] = event.target.checked;
+            currentState.room.featuresObject[event.target.value] = event.target.checked;
         } else {
             currentState.room[event.target.id] = event.target.value;
         }
@@ -143,13 +108,11 @@ export default class RoomDetails extends React.Component {
         let roomSummary = null;
         let errors = '';
         
-        if(Object.keys(this.state.errors).length > 0){
+        if(this.state.errors.length > 0){
             errors = <div className="alert alert-danger" style={{marginTop : 15 + "px"}}>
-                    {Object.keys(this.state.errors).map((key, index) => {
-                        return this.state.errors[key].map((value, index) => {
-                            return <p key={index}>{value}</p>
-                        })
-                    })}
+                {this.state.errors.map((value) => {
+                    return <p key={value}>{value}</p>
+                })}
             </div>
         }
 
@@ -192,19 +155,19 @@ export default class RoomDetails extends React.Component {
                                         <div className="row">
                                             <div className="col-4">
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="wifiCheckbox" value="Wifi" checked={this.state.room.features.Wifi} onChange={this.updateState} />
+                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="wifiCheckbox" value="WiFi" checked={this.state.room.featuresObject.WiFi} onChange={this.updateState} />
                                                     <label className="form-check-label" htmlFor="wifiCheckbox">WiFi</label>
                                                 </div>
                                             </div>
                                             <div className="col-4">
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="tvCheckbox" value="TV" checked={this.state.room.features.TV} onChange={this.updateState} />
+                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="tvCheckbox" value="TV" checked={this.state.room.featuresObject.TV} onChange={this.updateState} />
                                                     <label className="form-check-label" htmlFor="tvCheckbox">TV</label>
                                                 </div>
                                             </div>
                                             <div className="col-4">
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="radioCheckbox" value="Radio" checked={this.state.room.features.Radio} onChange={this.updateState} />
+                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="radioCheckbox" value="Radio" checked={this.state.room.featuresObject.Radio} onChange={this.updateState} />
                                                     <label className="form-check-label" htmlFor="radioCheckbox">Radio</label>
                                                 </div>
                                             </div>
@@ -212,19 +175,19 @@ export default class RoomDetails extends React.Component {
                                         <div className="row">
                                             <div className="col-4">
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="refreshCheckbox" value="Refreshments" checked={this.state.room.features.Refreshments} onChange={this.updateState} />
+                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="refreshCheckbox" value="Refreshments" checked={this.state.room.featuresObject.Refreshments} onChange={this.updateState} />
                                                     <label className="form-check-label" htmlFor="refreshCheckbox">Refreshments</label>
                                                 </div>
                                             </div>
                                             <div className="col-4">
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="safeCheckbox" value="Safe" checked={this.state.room.features.Safe} onChange={this.updateState} />
+                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="safeCheckbox" value="Safe" checked={this.state.room.featuresObject.Safe} onChange={this.updateState} />
                                                     <label className="form-check-label" htmlFor="safeCheckbox">Safe</label>
                                                 </div>
                                             </div>
                                             <div className="col-4">
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="viewsCheckbox" value="Views" checked={this.state.room.features.Views} onChange={this.updateState} />
+                                                    <input className="form-check-input" type="checkbox" name="featureCheck" id="viewsCheckbox" value="Views" checked={this.state.room.featuresObject.Views} onChange={this.updateState} />
                                                     <label className="form-check-label" htmlFor="viewsCheckbox">Views</label>
                                                 </div>
                                             </div>
@@ -264,16 +227,16 @@ export default class RoomDetails extends React.Component {
                                 <div className="col-sm-6">
                                     <p>Accessible: <span>{this.state.room.accessible.toString()}</span></p>
                                     <p>Features: <span>
-                                        {this.state.room.featureArray.length > 0 &&
-                                            this.state.room.featureArray.map((value, index) => {
-                                                if(index + 1 === this.state.room.featureArray.length){
+                                        {this.state.room.features.length > 0 &&
+                                            this.state.room.features.map((value, index) => {
+                                                if(index + 1 === this.state.room.features.length){
                                                     return value;
                                                 } else {
                                                     return value + ", ";
                                                 }
                                             })
                                         }
-                                        {this.state.room.featureArray.length === 0 && 
+                                        {this.state.room.features.length === 0 && 
                                             <span style={{color : "grey"}}>No features added to the room</span>
                                         }
                                     </span></p>

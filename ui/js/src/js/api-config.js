@@ -1,4 +1,3 @@
-let backendHost;
 let welcome = true;
 
 if(window.location.origin.match('localhost')) {

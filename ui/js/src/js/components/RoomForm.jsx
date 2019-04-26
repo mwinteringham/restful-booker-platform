@@ -1,7 +1,5 @@
 import React from 'react';
-import validate from 'validate.js';
-import { constraints } from '../libs/ValidateRules.js'
-import { API_ROOT } from '../api-config';
+import { API } from '../libs/Api.js';
 
 export default class RoomForm extends React.Component {
 
@@ -9,7 +7,7 @@ export default class RoomForm extends React.Component {
         super();
 
 		this.state = {
-            errors : {},
+            errors : [],
             rooms : [], 
             newRoom : {
                 roomNumber : "",
@@ -26,63 +24,39 @@ export default class RoomForm extends React.Component {
                     Views : false
                 }
             }
-        };
+        }
 
         this.createRoom = this.createRoom.bind(this);
         this.updateState = this.updateState.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
     
-    createRoom() {
-        let roomToCreate = this.state.newRoom;
-        let featureObject = this.state.newRoom.features;
-        let featuresArray = [];
-        
-        for (let property in featureObject) {
-            if(featureObject[property] === true){
-                featuresArray.push(property);
-            }
-        }
-        
-        roomToCreate.features = featuresArray;
-        let vErrors = validate(roomToCreate, constraints.room);
-        
-        if(vErrors != null){
-            this.setState({errors : vErrors})
-        } else {
-            fetch(API_ROOT + '/room/', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body : JSON.stringify(this.state.newRoom)
-            })
-            .then(res => {
-                if(res.status == 200){
-                    this.setState({
-                        errors : {},
-                        newRoom : {
-                            roomNumber : "",
-                            type : "Single",
-                            accessible : false,
-                            description : "Please enter a description for this room",
-                            image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
-                            features : {
-                                WiFi : false,
-                                TV : false,
-                                Radio : false,
-                                Refreshments : false,
-                                Safe : false,
-                                Views : false
-                            }
-                        }
-                    });
-                    
-                    this.props.updateRooms();
+    resetForm() {
+        this.setState({
+            errors : [],
+            rooms : [], 
+            newRoom : {
+                roomNumber : "",
+                type : "Single",
+                accessible : false,
+                description : "Please enter a description for this room",
+                image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+                features : {
+                    WiFi : false,
+                    TV : false,
+                    Radio : false,
+                    Refreshments : false,
+                    Safe : false,
+                    Views : false
                 }
-            })
-        }
+            }
+        });
+    }
+
+    createRoom() {
+        this.state.newRoom.features = Object.keys(this.state.newRoom.features).filter(key => this.state.newRoom.features[key]);
+        
+        API.postRoom(this);
     }
 
     updateState(event){
@@ -100,13 +74,11 @@ export default class RoomForm extends React.Component {
     render() {
         let errors = '';
         
-        if(Object.keys(this.state.errors).length > 0){
+        if(this.state.errors.length > 0){
             errors = <div className="alert alert-danger" style={{marginBottom : 5 + "rem"}}>
-                    {Object.keys(this.state.errors).map((key, index) => {
-                        return this.state.errors[key].map((value, index) => {
-                            return <p key={index}>{value}</p>
-                        })
-                    })}
+                {this.state.errors.map((value) => {
+                    return <p key={value}>{value}</p>
+                })}
             </div>
         }
 
