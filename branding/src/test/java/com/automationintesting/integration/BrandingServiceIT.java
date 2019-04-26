@@ -51,7 +51,7 @@ public class BrandingServiceIT {
         Branding brandingPayload = new Branding(
                 "Updated hotel name",
                 new Map(50.0, 50.0),
-                "link/to/logo",
+                "https://www.valid.com/link/to/logo",
                 "Description update",
                 new Contact("Update name", "Update address", "9999999999", "update@email.com")
         );

@@ -4,7 +4,7 @@
         "latitude": 50.0,
         "longitude": 50.0
     },
-    "logoUrl": "link/to/logo",
+    "logoUrl": "https://www.valid.com/link/to/logo",
     "description": "Description update",
     "contact": {
         "name": "Update name",

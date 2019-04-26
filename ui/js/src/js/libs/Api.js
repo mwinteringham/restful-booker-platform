@@ -26,13 +26,15 @@ export const API = {
                 }
             })
             .then(res => {
-                let capturedErrors = [];
-                
-                for(let i = 0; i < res.errors.length; i++){
-                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+                if(res){
+                    let capturedErrors = [];
+                    
+                    for(let i = 0; i < res.errors.length; i++){
+                        capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+                    }
+    
+                    component.setState({ errors : capturedErrors });
                 }
-
-                component.setState({ errors : capturedErrors });
             });
     },
 
@@ -88,13 +90,59 @@ export const API = {
             }
         })
         .then(res => {
-            let capturedErrors = [];
-            
-            for(let i = 0; i < res.errors.length; i++){
-                capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+            if(res){
+                let capturedErrors = [];
+                
+                for(let i = 0; i < res.errors.length; i++){
+                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+                }
+    
+                component.setState({ errors : capturedErrors });
             }
+        });
+    },
 
-            component.setState({ errors : capturedErrors });
+    getBranding : (component) => {
+        fetch(API_ROOT + '/branding/', {
+			method: 'GET',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState({ branding : res });
+        });
+    },
+
+    putBranding : (component) => {
+        fetch(API_ROOT + '/branding/', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body : JSON.stringify(component.state.branding)
+        })
+        .then(res => {
+            if(res.status == 200){
+                component.setState({showModal : true, errors : {}});
+            } else if(res.status == 400) {
+                return res.json();
+            }
+        })
+        .then(res => {
+            if(res){
+                let capturedErrors = [];
+                
+                for(let i = 0; i < res.errors.length; i++){
+                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+                }
+    
+                component.setState({ errors : capturedErrors });
+            }
         });
     }
 

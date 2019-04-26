@@ -82,11 +82,18 @@ test('Branding page shows modal on success', () => {
 });
 
 test('Branding page shows errors', () => {
+    nock('http://localhost')
+        .get('/branding/')
+        .reply(200, brandingUpdateData)
+
     const brandingComponent = shallow(
         <Branding />
     )
 
-    brandingComponent.find('#updateBranding').simulate('click');
+    brandingComponent.setState({
+        errors : ["Phone should not be null"]
+    })
+    brandingComponent.update();
 
     expect(brandingComponent).toMatchSnapshot();
 });
