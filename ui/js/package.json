@@ -21,6 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "@emotion/styled": "^10.0.10",
@@ -33,6 +34,7 @@
     "emotion": "^10.0.9",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
+    "enzyme-async-helpers": "^0.9.1",
     "enzyme-to-json": "^3.3.5",
     "file-loader": "^3.0.1",
     "html-loader": "^0.5.5",
@@ -48,8 +50,10 @@
     "pigeon-marker": "^0.3.4",
     "query-string": "^6.4.2",
     "react": "^16.8.6",
+    "react-big-calendar": "^0.20.4",
     "react-datepicker": "^2.3.0",
     "react-dom": "^16.8.6",
+    "react-modal": "^3.8.1",
     "react-router-dom": "^5.0.0",
     "react-spinners": "^0.5.3",
     "react-tooltip": "^3.10.0",
@@ -61,9 +65,7 @@
     "validate.js": "^0.12.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1",
-    "react-big-calendar": "^0.20.4",
-    "react-modal": "^3.8.1"
+    "webpack-dev-server": "^3.2.1"
   },
   "jest": {
     "testMatch": [

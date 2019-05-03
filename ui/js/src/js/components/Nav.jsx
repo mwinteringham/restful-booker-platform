@@ -3,6 +3,7 @@ import Cookies from 'universal-cookie';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { API_ROOT } from '../api-config';
+import Notification from './Notification.jsx';
 
 class Nav extends React.Component {
 
@@ -72,6 +73,9 @@ class Nav extends React.Component {
 					<div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
 						{this.props.isAuthenticated && (
 							<ul className="navbar-nav ml-auto">
+									<li className="nav-item">
+										<Notification />
+									</li>
 									<li className="nav-item">
 											<a className="nav-link" href="/">Front Page</a>
 									</li>

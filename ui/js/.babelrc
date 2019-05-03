@@ -3,7 +3,7 @@
   "plugins": ["add-react-displayname", "@babel/plugin-syntax-dynamic-import", "emotion"],
   "env": {
     "test": {
-      "plugins": ["dynamic-import-node"]
+      "plugins": ["dynamic-import-node", "@babel/plugin-transform-runtime"]
     }
   }
 }

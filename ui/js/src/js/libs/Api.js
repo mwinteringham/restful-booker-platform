@@ -144,6 +144,20 @@ export const API = {
                 component.setState({ errors : capturedErrors });
             }
         });
+    },
+
+    getNotificationCount : (component) => {
+        fetch(API_ROOT + '/notification/count', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState({ count : res.count });
+        })
     }
 
 }
