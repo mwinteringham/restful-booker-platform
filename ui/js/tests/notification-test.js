@@ -5,7 +5,7 @@ import { waitForState } from 'enzyme-async-helpers';
 
 beforeEach(() => {
     nock('http://localhost')
-        .get('/notification/count')
+        .get('/message/count')
         .reply(200, {
                 count : 34
             }

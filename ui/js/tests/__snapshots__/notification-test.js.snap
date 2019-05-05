@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Notification renders alert inbox when there are unread notifications 1`] = `
-<span
+<Link
   className="nav-link"
+  to="/admin/messages"
 >
   <i
     className="fa fa-inbox"
@@ -13,29 +14,18 @@ exports[`Notification renders alert inbox when there are unread notifications 1`
     }
   >
     <span
-      style={
-        Object {
-          "backgroundColor": "darkred",
-          "borderRadius": "100%",
-          "color": "white",
-          "fontFamily": "Arial",
-          "fontSize": "0.8rem",
-          "fontWeight": "bold",
-          "margin": "-5px 0px 0px -12px",
-          "padding": "3px",
-          "position": "absolute",
-        }
-      }
+      className="notification"
     >
       34
     </span>
   </i>
-</span>
+</Link>
 `;
 
 exports[`Notification renders plain inbox when no unread notifications 1`] = `
-<span
+<Link
   className="nav-link"
+  to="/admin/messages"
 >
   <i
     className="fa fa-inbox"
@@ -45,5 +35,5 @@ exports[`Notification renders plain inbox when no unread notifications 1`] = `
       }
     }
   />
-</span>
+</Link>
 `;

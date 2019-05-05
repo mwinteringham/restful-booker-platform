@@ -147,7 +147,7 @@ export const API = {
     },
 
     getNotificationCount : (component) => {
-        fetch(API_ROOT + '/notification/count', {
+        fetch(API_ROOT + '/message/count', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -157,6 +157,33 @@ export const API = {
         .then(res => res.json())
         .then(res => {
             component.setState({ count : res.count });
+        })
+    },
+
+    getMessages : (component) => {
+        fetch(API_ROOT + '/message', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState({ messages : res.messages });
+        })
+    },
+
+    deleteMessage : (id, component) => {
+        fetch(API_ROOT + '/message/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            component.refreshMessageList();
         })
     }
 
