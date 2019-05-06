@@ -168,3 +168,17 @@ svg {
     min-width: 20px;
     text-align: center;
 }
+
+// Message popup
+
+.message-modal {
+    border: 1px solid black;
+    padding: 20px;
+    background-color: #ffffff;
+    width: 70%;
+    margin: 100px auto auto auto;
+}
+
+.message-modal span{
+    font-weight: bold;
+}

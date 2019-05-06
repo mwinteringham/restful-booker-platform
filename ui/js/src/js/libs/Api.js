@@ -185,6 +185,20 @@ export const API = {
         .then(res => {
             component.refreshMessageList();
         })
+    },
+
+    getMessage : (id, component) => {
+        fetch(API_ROOT + '/message/' + id, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState(res);
+        })
     }
 
 }

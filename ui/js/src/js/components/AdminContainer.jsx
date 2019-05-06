@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { API_ROOT } from '../api-config';
 import Cookies from 'universal-cookie';
 
@@ -7,7 +7,7 @@ import Nav from './Nav.jsx';
 import Login from './Login.jsx'
 import Report from './Report.jsx';
 import Branding from './Branding.jsx';
-import Messages from './Messages.jsx';
+import MessageList from './MessageList.jsx';
 
 import RoomListings from './RoomListings.jsx';
 import RoomDetails from './RoomDetails.jsx';
@@ -68,7 +68,7 @@ export default class AdminContainer extends React.Component {
                             )} />
                             <Route exact path='/admin/report' component={Report} />
                             <Route exact path='/admin/branding' component={Branding} />
-                            <Route exact path='/admin/messages' component={Messages} />
+                            <Route exact path='/admin/messages' component={MessageList} />
                         </div>
                     ) : (
                         <div>

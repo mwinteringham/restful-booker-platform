@@ -1,5 +1,5 @@
 import React from 'react';
-import Messages from '../src/js/components/Messages.jsx';
+import MessageList from '../src/js/components/MessageList.jsx';
 import nock from 'nock';
 import { waitForState } from 'enzyme-async-helpers';
 
@@ -25,7 +25,7 @@ beforeAll(() => {
 });
 
 test('Renders the list of messages correctly', async () => {
-    const messageComponent = shallow(<Messages />);
+    const messageComponent = shallow(<MessageList />);
 
     await waitForState(messageComponent, state => state.messages.length === 3);
 
@@ -39,9 +39,18 @@ test('Deletes message when selected to delete', (done) => {
                                     done();
                                 });
 
-    const messageComponent = shallow(<Messages />);
+    const messageComponent = shallow(<MessageList />);
     messageComponent.instance().deleteMessage(1);
 
     let didNockAcceptRequest = messageDeleteMock.isDone();
     expect(didNockAcceptRequest).toBe(true);
+});
+
+test('Clicking message shows message popup', async () => {
+    const messageComponent = shallow(<MessageList />);
+
+    await waitForState(messageComponent, state => state.messages.length === 3);
+    messageComponent.find("#message0").simulate('click');
+
+    expect(messageComponent).toMatchSnapshot();
 });

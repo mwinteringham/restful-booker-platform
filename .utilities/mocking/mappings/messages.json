@@ -8,7 +8,7 @@
       "headers" : {
         "Content-Type": "application/json;charset=UTF-8"
       },
-      "body": "{\"messages\" : [{\"name\" : \"Mark Winteringham\",\"subject\" : \"Subject description here\"}, {\"name\" : \"James Dean\",\"subject\" : \"Another description here\"}, {\"name\" : \"Janet Samson\",\"subject\" : \"Lorem ipsum dolores est\"}]}"
+      "body": "{\"messages\" : [{\"id\" : 1,\"name\" : \"Mark Winteringham\",\"subject\" : \"Subject description here\"}, {\"id\" : 2, \"name\" : \"James Dean\",\"subject\" : \"Another description here\"}, {\"id\" : 3, \"name\" : \"Janet Samson\",\"subject\" : \"Lorem ipsum dolores est\"}]}"
     }
   }
   

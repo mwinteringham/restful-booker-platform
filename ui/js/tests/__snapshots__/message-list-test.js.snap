@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Clicking message shows message popup 1`] = `
+<div>
+  <div
+    className="messages"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-2 rowHeader"
+      >
+        <p>
+          Name
+        </p>
+      </div>
+      <div
+        className="col-sm-9 rowHeader"
+      >
+        <p>
+          Subject
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      />
+    </div>
+    <div
+      className="row detail"
+      id="message0"
+      key="0"
+      onClick={[Function]}
+    >
+      <div
+        className="col-sm-2"
+      >
+        <p>
+          Mark Winteringham
+        </p>
+      </div>
+      <div
+        className="col-sm-9"
+      >
+        <p>
+          Subject description here
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      >
+        <span
+          className="fa fa-remove roomDelete"
+        />
+      </div>
+    </div>
+    <div
+      className="row detail"
+      id="message1"
+      key="1"
+      onClick={[Function]}
+    >
+      <div
+        className="col-sm-2"
+      >
+        <p>
+          James Dean
+        </p>
+      </div>
+      <div
+        className="col-sm-9"
+      >
+        <p>
+          Another description here
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      >
+        <span
+          className="fa fa-remove roomDelete"
+        />
+      </div>
+    </div>
+    <div
+      className="row detail"
+      id="message2"
+      key="2"
+      onClick={[Function]}
+    >
+      <div
+        className="col-sm-2"
+      >
+        <p>
+          Janet Samson
+        </p>
+      </div>
+      <div
+        className="col-sm-9"
+      >
+        <p>
+          Lorem ipsum dolores est
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      >
+        <span
+          className="fa fa-remove roomDelete"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Renders the list of messages correctly 1`] = `
+<div>
+  <div
+    className="messages"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-2 rowHeader"
+      >
+        <p>
+          Name
+        </p>
+      </div>
+      <div
+        className="col-sm-9 rowHeader"
+      >
+        <p>
+          Subject
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      />
+    </div>
+    <div
+      className="row detail"
+      id="message0"
+      key="0"
+      onClick={[Function]}
+    >
+      <div
+        className="col-sm-2"
+      >
+        <p>
+          Mark Winteringham
+        </p>
+      </div>
+      <div
+        className="col-sm-9"
+      >
+        <p>
+          Subject description here
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      >
+        <span
+          className="fa fa-remove roomDelete"
+        />
+      </div>
+    </div>
+    <div
+      className="row detail"
+      id="message1"
+      key="1"
+      onClick={[Function]}
+    >
+      <div
+        className="col-sm-2"
+      >
+        <p>
+          James Dean
+        </p>
+      </div>
+      <div
+        className="col-sm-9"
+      >
+        <p>
+          Another description here
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      >
+        <span
+          className="fa fa-remove roomDelete"
+        />
+      </div>
+    </div>
+    <div
+      className="row detail"
+      id="message2"
+      key="2"
+      onClick={[Function]}
+    >
+      <div
+        className="col-sm-2"
+      >
+        <p>
+          Janet Samson
+        </p>
+      </div>
+      <div
+        className="col-sm-9"
+      >
+        <p>
+          Lorem ipsum dolores est
+        </p>
+      </div>
+      <div
+        className="col-sm-1"
+      >
+        <span
+          className="fa fa-remove roomDelete"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

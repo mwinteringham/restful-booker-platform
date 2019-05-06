@@ -1,6 +1,4 @@
 import React from 'react';
-import fetch from 'node-fetch';
-import { API_ROOT } from '../api-config';
 import { API } from '../libs/Api.js';
 import ReactModal from 'react-modal';
 
