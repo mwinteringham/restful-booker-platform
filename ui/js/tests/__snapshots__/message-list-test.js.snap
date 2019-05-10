@@ -30,10 +30,10 @@ exports[`Clicking message shows message popup 1`] = `
       className="row detail"
       id="message0"
       key="0"
-      onClick={[Function]}
     >
       <div
         className="col-sm-2"
+        onClick={[Function]}
       >
         <p>
           Mark Winteringham
@@ -41,6 +41,7 @@ exports[`Clicking message shows message popup 1`] = `
       </div>
       <div
         className="col-sm-9"
+        onClick={[Function]}
       >
         <p>
           Subject description here
@@ -51,6 +52,7 @@ exports[`Clicking message shows message popup 1`] = `
       >
         <span
           className="fa fa-remove roomDelete"
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -58,10 +60,10 @@ exports[`Clicking message shows message popup 1`] = `
       className="row detail"
       id="message1"
       key="1"
-      onClick={[Function]}
     >
       <div
         className="col-sm-2"
+        onClick={[Function]}
       >
         <p>
           James Dean
@@ -69,6 +71,7 @@ exports[`Clicking message shows message popup 1`] = `
       </div>
       <div
         className="col-sm-9"
+        onClick={[Function]}
       >
         <p>
           Another description here
@@ -79,6 +82,7 @@ exports[`Clicking message shows message popup 1`] = `
       >
         <span
           className="fa fa-remove roomDelete"
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -86,10 +90,10 @@ exports[`Clicking message shows message popup 1`] = `
       className="row detail"
       id="message2"
       key="2"
-      onClick={[Function]}
     >
       <div
         className="col-sm-2"
+        onClick={[Function]}
       >
         <p>
           Janet Samson
@@ -97,6 +101,7 @@ exports[`Clicking message shows message popup 1`] = `
       </div>
       <div
         className="col-sm-9"
+        onClick={[Function]}
       >
         <p>
           Lorem ipsum dolores est
@@ -107,6 +112,7 @@ exports[`Clicking message shows message popup 1`] = `
       >
         <span
           className="fa fa-remove roomDelete"
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -144,10 +150,10 @@ exports[`Renders the list of messages correctly 1`] = `
       className="row detail"
       id="message0"
       key="0"
-      onClick={[Function]}
     >
       <div
         className="col-sm-2"
+        onClick={[Function]}
       >
         <p>
           Mark Winteringham
@@ -155,6 +161,7 @@ exports[`Renders the list of messages correctly 1`] = `
       </div>
       <div
         className="col-sm-9"
+        onClick={[Function]}
       >
         <p>
           Subject description here
@@ -165,6 +172,7 @@ exports[`Renders the list of messages correctly 1`] = `
       >
         <span
           className="fa fa-remove roomDelete"
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -172,10 +180,10 @@ exports[`Renders the list of messages correctly 1`] = `
       className="row detail"
       id="message1"
       key="1"
-      onClick={[Function]}
     >
       <div
         className="col-sm-2"
+        onClick={[Function]}
       >
         <p>
           James Dean
@@ -183,6 +191,7 @@ exports[`Renders the list of messages correctly 1`] = `
       </div>
       <div
         className="col-sm-9"
+        onClick={[Function]}
       >
         <p>
           Another description here
@@ -193,6 +202,7 @@ exports[`Renders the list of messages correctly 1`] = `
       >
         <span
           className="fa fa-remove roomDelete"
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -200,10 +210,10 @@ exports[`Renders the list of messages correctly 1`] = `
       className="row detail"
       id="message2"
       key="2"
-      onClick={[Function]}
     >
       <div
         className="col-sm-2"
+        onClick={[Function]}
       >
         <p>
           Janet Samson
@@ -211,6 +221,7 @@ exports[`Renders the list of messages correctly 1`] = `
       </div>
       <div
         className="col-sm-9"
+        onClick={[Function]}
       >
         <p>
           Lorem ipsum dolores est
@@ -221,6 +232,7 @@ exports[`Renders the list of messages correctly 1`] = `
       >
         <span
           className="fa fa-remove roomDelete"
+          onClick={[Function]}
         />
       </div>
     </div>
