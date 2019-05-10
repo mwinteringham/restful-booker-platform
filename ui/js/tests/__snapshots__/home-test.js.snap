@@ -130,9 +130,9 @@ exports[`Contact form for home page renders 1`] = `
           </span>
         </div>
         <textarea
-          aria-label="Message"
+          aria-label="Description"
           className="form-control"
-          id="message"
+          id="description"
           onChange={[Function]}
           rows="5"
         />

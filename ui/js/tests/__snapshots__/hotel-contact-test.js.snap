@@ -1,80 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Contact form can be submitted 1`] = `
-<div
-  className="row contact"
->
-  <div
-    className="col-sm-1"
-  />
-  <div
-    className="col-sm-5"
-  >
-    <div
-      style={
-        Object {
-          "height": "412px",
-        }
-      }
-    >
-      <h2>
-        Thanks for getting in touch 
-        Mark
-        !
-      </h2>
-      <p>
-        We'll get back to you about
-      </p>
-      <p
-        style={
-          Object {
-            "fontWeight": "bold",
-          }
-        }
-      >
-        I want to book a room
-      </p>
-      <p>
-        as soon as possible.
-      </p>
-    </div>
-  </div>
-  <div
-    className="col-sm-5"
-  >
-    <p>
-      <span
-        className="fa fa-home"
-      />
-       
-      Shady Meadows B&B
-    </p>
-    <p>
-      <span />
-       
-      The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S
-    </p>
-    <p>
-      <span
-        className="fa fa-phone"
-      />
-       
-      0123456789
-    </p>
-    <p>
-      <span
-        className="fa fa-envelope"
-      />
-       
-      fake@fakeemail.com
-    </p>
-  </div>
-  <div
-    className="col-sm-1"
-  />
-</div>
-`;
-
 exports[`Contact form returns error messages 1`] = `
 <div
   className="row contact"
@@ -229,17 +154,17 @@ exports[`Contact form returns error messages 1`] = `
           </span>
         </div>
         <textarea
-          aria-label="Message"
+          aria-label="Description"
           className="form-control"
-          id="message"
+          id="description"
           onChange={[Function]}
           rows="5"
         />
         <div
           className="invalid-feedback"
-          key="message0"
+          key="description0"
         >
-          Message must be at least 20 characters long
+          Description must be at least 20 characters long
         </div>
       </div>
       <br />
@@ -261,29 +186,36 @@ exports[`Contact form returns error messages 1`] = `
         className="fa fa-home"
       />
        
-      Mark
+      Shady Meadows B&B
     </p>
     <p>
       <span />
        
+      The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S
     </p>
     <p>
       <span
         className="fa fa-phone"
       />
        
-      074123291234
+      0123456789
     </p>
     <p>
       <span
         className="fa fa-envelope"
       />
        
-      mark@email.com
+      fake@fakeemail.com
     </p>
   </div>
   <div
     className="col-sm-1"
   />
 </div>
+`;
+
+exports[`Contact form sends request to message API 1`] = `
+<p>
+  ERROR: Missing contact details to render
+</p>
 `;

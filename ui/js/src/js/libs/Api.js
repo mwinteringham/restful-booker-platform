@@ -199,6 +199,22 @@ export const API = {
         .then(res => {
             component.setState(res);
         })
+    },
+
+    postMessage : (component) => {
+        fetch(API_ROOT + '/message/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body : JSON.stringify(component.state.contact)
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState({ submitted : true});
+        })
     }
 
 }

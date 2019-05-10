@@ -1,5 +1,6 @@
 import React from 'react';
 import validate from 'validate.js';
+import { API } from '../libs/Api';
 
 let rules = {
     "name": {
@@ -30,7 +31,7 @@ let rules = {
             message: "must be at least 20 characters long"
         }
     },
-    "message" : {
+    "description" : {
         presence : true,
         length: {
             minimum: 20,
@@ -45,18 +46,20 @@ export default class HotelContact extends React.Component {
         super();
 
         this.state = {
-            name : "",
-            email : "",
-            phone : "",
-            subject : "",
-            message : "",
+            contact : {
+                name : "",
+                email : "",
+                phone : "",
+                subject : "",
+                description : "",
+            },
             submitted : false,
             errors : {
                 name : [],
                 email : [],
                 phone : [],
                 subject : [],
-                message : [],
+                description : [],
             }
         }
 
@@ -65,18 +68,18 @@ export default class HotelContact extends React.Component {
     }
 
     updateState(event){
-        let currentState = this.state;
+        let currentState = this.state.contact;
 
         currentState[event.target.id] = event.target.value;
 
-        this.setState(currentState);
+        this.setState({contact : currentState});
     }
 
     submitForm(){
-        let vErrors = validate(this.state, rules);
+        let vErrors = validate(this.state.contact, rules);
 
         if(typeof vErrors === 'undefined'){
-            this.setState({ submitted : true});
+            API.postMessage(this);
         } else {
             for (let prop in vErrors) {
                 let currentState = this.state;
@@ -91,9 +94,9 @@ export default class HotelContact extends React.Component {
 
         if(this.state.submitted){
             form = <div style={{height : "412px"}}>
-                    <h2>Thanks for getting in touch {this.state.name}!</h2>
+                    <h2>Thanks for getting in touch {this.state.contact.name}!</h2>
                     <p>We'll get back to you about</p>
-                    <p style={{fontWeight : "bold"}}>{this.state.subject}</p>
+                    <p style={{fontWeight : "bold"}}>{this.state.contact.subject}</p>
                     <p>as soon as possible.</p>
                     </div>
         } else {
@@ -138,9 +141,9 @@ export default class HotelContact extends React.Component {
                         <div className="input-group-prepend">
                             <span className="input-group-text">Message</span>
                         </div>
-                        <textarea className="form-control" aria-label="Message" id="message" rows="5" onChange={this.updateState}></textarea>
-                        {this.state.errors.message.map((value, index) => {
-                            return <div key={"message" + index} className="invalid-feedback">{value}</div>
+                        <textarea className="form-control" aria-label="Description" id="description" rows="5" onChange={this.updateState}></textarea>
+                        {this.state.errors.description.map((value, index) => {
+                            return <div key={"description" + index} className="invalid-feedback">{value}</div>
                         })}
                     </div>
                     <br />
