@@ -21,7 +21,6 @@ public class MessageDB {
     private final String DELETE_BY_MESSAGEID = "DELETE FROM MESSAGES WHERE messageid = ?";
     private final String DELETE_ALL_MESSAGES = "DELETE FROM MESSAGES";
     private final String SELECT_MESSAGES = "SELECT * FROM MESSAGES";
-    private final String SELECT_MESSAGE_SUMMARY = "SELECT messageid, name, subject FROM MESSAGE";
 
     public MessageDB(boolean enableServer) throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
