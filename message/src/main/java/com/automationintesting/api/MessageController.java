@@ -73,12 +73,8 @@ public class MessageController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<Message> createMessage(@Valid @RequestBody Message message, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequest.postCheckAuth(token)){
-            Message body = messageDB.create(message);
-            return ResponseEntity.ok(body);
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+        Message body = messageDB.create(message);
+        return ResponseEntity.ok(body);
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.DELETE)

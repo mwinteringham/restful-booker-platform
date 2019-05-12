@@ -2,27 +2,44 @@ package com.automationintesting.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.validation.constraints.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Entity
 public class Message {
 
     @JsonProperty
     private int messageid;
 
     @JsonProperty
+    @NotNull(message = "Name must be set")
+    @NotBlank
     private String name;
 
     @JsonProperty
+    @Email
+    @NotNull(message = "Email must be set")
+    @NotBlank
     private String email;
 
     @JsonProperty
+    @Size(min = 11, max = 21)
+    @NotNull(message = "Phone must be set")
+    @NotBlank
     private String phone;
 
     @JsonProperty
+    @Size(min = 20, max = 100)
+    @NotNull(message = "Subject must be set")
+    @NotBlank
     private String subject;
 
     @JsonProperty
+    @Size(min = 20, max = 2000)
+    @NotNull(message = "Description must be set")
+    @NotBlank
     private String description;
 
     public Message() {

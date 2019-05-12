@@ -2,23 +2,6 @@ import React from 'react';
 import HotelContact from '../src/js/components/HotelContact.jsx';
 import nock from 'Nock';
 
-test('Contact form returns error messages', () => {
-    const contactState = {
-        name: "Shady Meadows B&B",
-        address: "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S",
-        phone: "0123456789",
-        email: "fake@fakeemail.com"
-    }
-
-    const hotelContactComponent = shallow(
-        <HotelContact contact={contactState} />
-    );
-
-    hotelContactComponent.find('#submitContact').simulate('click');
-
-    expect(hotelContactComponent).toMatchSnapshot();
-});
-
 test('Contact form sends request to message API', (done) => {
     let messagePostMock = nock('http://localhost', {
                             name : 'Mark',

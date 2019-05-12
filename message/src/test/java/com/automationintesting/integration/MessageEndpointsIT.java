@@ -40,12 +40,11 @@ public class MessageEndpointsIT {
 
     @Test
     public void createMessage(){
-        Message messagePayload = new Message("Mark", "test@email.com", "01234556789", "Subject line", "Description details here");
+        Message messagePayload = new Message("Mark", "test@email.com", "01234556789", "Subject line goes in here for display", "Description details here to give info on request");
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(messagePayload)
-                .cookie("token", "abc123")
                 .when()
                 .post("http://localhost:3006/message/");
 
@@ -78,12 +77,11 @@ public class MessageEndpointsIT {
 
     @Test
     public void deleteMessage(){
-        Message messagePayload = new Message("Mark", "test@email.com", "01234556789", "Subject line", "Description details here");
+        Message messagePayload = new Message("Mark", "test@email.com", "01234556789", "Subject line goes in here for display", "Description details here to give info on request");
 
         Message createdMessage = given()
                 .contentType(ContentType.JSON)
                 .body(messagePayload)
-                .cookie("token", "abc123")
                 .when()
                 .post("http://localhost:3006/message/")
                 .getBody().as(Message.class);
@@ -93,6 +91,17 @@ public class MessageEndpointsIT {
                 .delete("http://localhost:3006/message/" + createdMessage.getMessageid());
 
         assertThat(response.statusCode(), is(202));
+    }
+
+    @Test
+    public void validationTest(){
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body("{}")
+                .when()
+                .post("http://localhost:3006/message/");
+
+        assertThat(response.statusCode(), is(400));
     }
 
 }

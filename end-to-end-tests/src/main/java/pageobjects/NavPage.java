@@ -20,6 +20,9 @@ public class NavPage extends BasePage {
     @FindBy(how = How.ID, using = "brandingLink")
     private WebElement aBranding;
 
+    @FindBy(how = How.CSS, using = ".fa-inbox")
+    private WebElement aNotification;
+
     public NavPage(WebDriver driver) {
         super(driver);
     }
@@ -34,5 +37,9 @@ public class NavPage extends BasePage {
 
     public void clickBranding() {
         aBranding.click();
+    }
+
+    public void clickNotification() {
+        aNotification.click();
     }
 }

@@ -211,10 +211,24 @@ export const API = {
             credentials: 'include',
             body : JSON.stringify(component.state.contact)
         })
-        .then(res => res.json())
         .then(res => {
-            component.setState({ submitted : true});
+            if(res.status == 200){
+                component.setState({ submitted : true});
+            } else if(res.status == 400) {
+                return res.json();
+            }
         })
+        .then(res => {
+            if(res){
+                let capturedErrors = [];
+                
+                for(let i = 0; i < res.errors.length; i++){
+                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+                }
+    
+                component.setState({ errors : capturedErrors });
+            }
+        });
     }
 
 }
