@@ -18,8 +18,8 @@ spec:
           image: mwinteringham/restfulbookerplatform_booking:latest
           imagePullPolicy: Always
           env:
-          - name: cors
-            value: "https://team5.automationintesting.online"
+            - name: cors
+              value: "https://team5.automationintesting.online"
           ports:
             - containerPort: 3000
           resources:
@@ -58,8 +58,8 @@ spec:
           image: mwinteringham/restfulbookerplatform_room:latest
           imagePullPolicy: Always
           env:
-          - name: cors
-            value: "https://team5.automationintesting.online"
+            - name: cors
+              value: "https://team5.automationintesting.online"
           ports:
             - containerPort: 3001
           resources:
@@ -98,8 +98,8 @@ spec:
           image: mwinteringham/restfulbookerplatform_branding:latest
           imagePullPolicy: Always
           env:
-          - name: cors
-            value: "https://team5.automationintesting.online"
+            - name: cors
+              value: "https://team5.automationintesting.online"
           ports:
             - containerPort: 3002
           resources:
@@ -117,7 +117,7 @@ spec:
             periodSeconds: 5
             timeoutSeconds: 4
             successThreshold: 2
-            failureThreshold: 3            
+            failureThreshold: 3
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -175,8 +175,8 @@ spec:
           image: mwinteringham/restfulbookerplatform_auth:latest
           imagePullPolicy: Always
           env:
-          - name: cors
-            value: "https://team5.automationintesting.online"
+            - name: cors
+              value: "https://team5.automationintesting.online"
           ports:
             - containerPort: 3004
           resources:
@@ -215,8 +215,8 @@ spec:
           image: mwinteringham/restfulbookerplatform_report:latest
           imagePullPolicy: Always
           env:
-          - name: cors
-            value: "https://team5.automationintesting.online"
+            - name: cors
+              value: "https://team5.automationintesting.online"
           ports:
             - containerPort: 3005
           resources:
@@ -230,6 +230,46 @@ spec:
             httpGet:
               port: 3005
               path: /report/actuator/health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 4
+            successThreshold: 2
+            failureThreshold: 3
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rbp-message
+spec:
+  selector:
+    matchLabels:
+      run: rbp-message
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: rbp-message
+    spec:
+      containers:
+        - name: rbp-message
+          image: mwinteringham/restfulbookerplatform_message:latest
+          imagePullPolicy: Always
+          env:
+            - name: cors
+              value: "https://team5.automationintesting.online"
+          ports:
+            - containerPort: 3006
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              port: 3006
+              path: /message/actuator/health
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 4
@@ -299,7 +339,7 @@ spec:
       targetPort: 3003
   selector:
     run: rbp-ui
----  
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -331,49 +371,69 @@ spec:
       targetPort: 3005
   selector:
     run: rbp-report
----  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rbp-message
+  labels:
+    app: rbp-message
+spec:
+  type: NodePort
+  ports:
+    - port: 3006
+      protocol: TCP
+      nodePort: 32153
+      targetPort: 3006
+  selector:
+    run: rbp-message
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: rbp-ingress
 spec:
   rules:
-  - host: team5.automationintesting.online
-    http:
-      paths:
-      - path: /booking/*
-        backend:
-          serviceName: rbp-booking
-          servicePort: 3000
-      - path: /room/*
-        backend:
-          serviceName: rbp-room
-          servicePort: 3001
-      - path: /branding/*
-        backend:
-          serviceName: rbp-branding
-          servicePort: 3002
-      - path: /auth/*
-        backend:
-          serviceName: rbp-auth
-          servicePort: 3004
-      - path: /report/*
-        backend:
-          serviceName: rbp-report
-          servicePort: 3005
-      - path: /
-        backend:
-          serviceName: rbp-ui
-          servicePort: 3003
-      - path: /js/*
-        backend:
-          serviceName: rbp-ui
-          servicePort: 3003
-      - path: /images/*
-        backend:
-          serviceName: rbp-ui
-          servicePort: 3003
-      - path: /actuator/*
-        backend:
-          serviceName: rbp-ui
-          servicePort: 3003
+    - host: team5.automationintesting.online
+      http:
+        paths:
+          - path: /booking/*
+            backend:
+              serviceName: rbp-booking
+              servicePort: 3000
+          - path: /room/*
+            backend:
+              serviceName: rbp-room
+              servicePort: 3001
+          - path: /branding/*
+            backend:
+              serviceName: rbp-branding
+              servicePort: 3002
+          - path: /auth/*
+            backend:
+              serviceName: rbp-auth
+              servicePort: 3004
+          - path: /report/*
+            backend:
+              serviceName: rbp-report
+              servicePort: 3005
+          - path: /message/*
+              backend:
+                serviceName: rbp-message
+                servicePort: 3006
+          - path: /
+            backend:
+              serviceName: rbp-ui
+              servicePort: 3003
+          - path: /js/*
+            backend:
+              serviceName: rbp-ui
+              servicePort: 3003
+          - path: /images/*
+            backend:
+              serviceName: rbp-ui
+              servicePort: 3003
+          - path: /actuator/*
+            backend:
+              serviceName: rbp-ui
+              servicePort: 3003
