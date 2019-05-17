@@ -25,7 +25,7 @@ beforeAll(() => {
 });
 
 test('Renders the list of messages correctly', async () => {
-    const messageComponent = shallow(<MessageList />);
+    const messageComponent = shallow(<MessageList setCount={() => {}} />);
 
     await waitForState(messageComponent, state => state.messages.length === 3);
 
@@ -39,7 +39,7 @@ test('Deletes message when selected to delete', (done) => {
                                     done();
                                 });
 
-    const messageComponent = shallow(<MessageList />);
+    const messageComponent = shallow(<MessageList setCount={() => {}} />);
     messageComponent.instance().deleteMessage(1);
 
     let didNockAcceptRequest = messageDeleteMock.isDone();
@@ -47,7 +47,7 @@ test('Deletes message when selected to delete', (done) => {
 });
 
 test('Clicking message shows message popup', async () => {
-    const messageComponent = shallow(<MessageList />);
+    const messageComponent = shallow(<MessageList setCount={() => {}} />);
 
     await waitForState(messageComponent, state => state.messages.length === 3);
     messageComponent.find("#message0").simulate('click');
