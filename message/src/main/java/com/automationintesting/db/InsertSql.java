@@ -17,7 +17,7 @@ public class InsertSql {
     private String description;
 
     InsertSql(Connection connection, Message message) throws SQLException {
-        final String CREATE_ROOM = "INSERT INTO MESSAGES (name, email, phone, subject, description) VALUES(?, ?, ?, ?, ?);";
+        final String CREATE_ROOM = "INSERT INTO MESSAGES (name, email, phone, subject, description, read) VALUES(?, ?, ?, ?, ?, false);";
 
         preparedStatement = connection.prepareStatement(CREATE_ROOM);
         preparedStatement.setString(1, message.getName());

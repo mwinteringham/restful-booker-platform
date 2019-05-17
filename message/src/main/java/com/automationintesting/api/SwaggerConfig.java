@@ -20,7 +20,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2).groupName("public-api")
                 .apiInfo(apiInfo())
                 .select()
-                    .apis(RequestHandlerSelectors.basePackage("com/automationintesting/api"))
+                    .apis(RequestHandlerSelectors.basePackage("com.automationintesting.api"))
                     .paths(PathSelectors.any())
                 .build();
     }

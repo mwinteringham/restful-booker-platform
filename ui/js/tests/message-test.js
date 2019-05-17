@@ -15,6 +15,11 @@ beforeAll(() => {
                 "description" : "Lorem ipsum dolores est"
             }
         );
+
+    nock('http://localhost')
+        .persist()
+        .put('/message/1/read')
+        .reply(200);
 });
 
 test('Message popup is populated with details', async () => {

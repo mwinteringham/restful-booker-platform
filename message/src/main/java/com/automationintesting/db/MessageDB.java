@@ -16,11 +16,13 @@ public class MessageDB {
 
     private Connection connection;
 
-    private final String CREATE_DB = "CREATE table MESSAGES ( messageid int NOT NULL AUTO_INCREMENT, name varchar(255), email varchar(255), phone varchar(255), subject varchar(255), description CLOB, primary key (messageid));";
+    private final String CREATE_DB = "CREATE table MESSAGES ( messageid int NOT NULL AUTO_INCREMENT, name varchar(255), email varchar(255), phone varchar(255), subject varchar(255), description CLOB, read boolean, primary key (messageid));";
     private final String SELECT_BY_MESSAGEID = "SELECT * FROM MESSAGES WHERE messageid = ?";
     private final String DELETE_BY_MESSAGEID = "DELETE FROM MESSAGES WHERE messageid = ?";
     private final String DELETE_ALL_MESSAGES = "DELETE FROM MESSAGES";
     private final String SELECT_MESSAGES = "SELECT * FROM MESSAGES";
+    private final String SELECT_UNREAD_MESSAGE = "SELECT * FROM MESSAGES WHERE read = 'false'";
+    private final String UPDATE_MESSAGE_READ = "UPDATE MESSAGES SET read = 'true' WHERE messageid = ?";
 
     public MessageDB(boolean enableServer) throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -81,9 +83,9 @@ public class MessageDB {
         return new Message(result);
     }
 
-    public Boolean delete(int bookingid) throws SQLException {
+    public Boolean delete(int messageId) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(DELETE_BY_MESSAGEID);
-        ps.setInt(1, bookingid);
+        ps.setInt(1, messageId);
 
         int resultSet = ps.executeUpdate();
         return resultSet == 1;
@@ -102,4 +104,18 @@ public class MessageDB {
         return messageSummaries;
     }
 
+    public void markAsRead(int messageId) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(UPDATE_MESSAGE_READ);
+        ps.setInt(1, messageId);
+
+        ps.executeUpdate();
+    }
+
+    public int getUnreadCount() throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(SELECT_UNREAD_MESSAGE);
+
+        ResultSet result = ps.executeQuery();
+
+        return result.last() ? result.getRow() : 0;
+    }
 }

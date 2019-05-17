@@ -2,7 +2,6 @@ package com.automationintesting.unit;
 
 import com.automationintesting.model.Message;
 import com.automationintesting.model.MessageSummary;
-import org.approvaltests.Approvals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -76,6 +75,24 @@ public class MessageDBTest extends BaseTest {
         List<MessageSummary> messageSummaries = messageDB.queryMessages();
 
         assertEquals("[MessageSummary{id=1, name='James', subject='Just getting a message setup'}, MessageSummary{id=2, name='Mark', subject='A subject you may be interested in'}]", messageSummaries.toString());
+    }
+
+    @Test
+    public void testReadCount() throws SQLException {
+        int currentMessageCount = messageDB.getUnreadCount();
+
+        assertThat(currentMessageCount, is(1));
+    }
+
+    @Test
+    public void testMarkAsRead() throws SQLException {
+        int beforeReadCount = messageDB.getUnreadCount();
+
+        messageDB.markAsRead(currentMessageId);
+
+        int afterReadCount = messageDB.getUnreadCount();
+
+        assertThat(afterReadCount, is(beforeReadCount - 1));
     }
 
 }

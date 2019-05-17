@@ -229,6 +229,17 @@ export const API = {
                 component.setState({ errors : capturedErrors });
             }
         });
+    },
+
+    putMessageRead :  (id) => {
+        fetch(API_ROOT + '/message/' + id + '/read', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
     }
 
 }

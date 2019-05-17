@@ -59,7 +59,7 @@ public class MessageController {
 
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public ResponseEntity<Count> getCount() throws SQLException {
-        Count count = new Count(messageDB.queryMessages().size());
+        Count count = new Count(messageDB.getUnreadCount());
 
         return ResponseEntity.ok(count);
     }
@@ -85,6 +85,17 @@ public class MessageController {
             } else {
                 return ResponseEntity.notFound().build();
             }
+        } else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+    }
+
+    @RequestMapping(value = "/{id:[0-9]*}/read", method = RequestMethod.PUT)
+    public ResponseEntity markAsRead(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        if(authRequest.postCheckAuth(token)){
+            messageDB.markAsRead(id);
+
+            return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }

@@ -104,4 +104,26 @@ public class MessageEndpointsIT {
         assertThat(response.statusCode(), is(400));
     }
 
+    @Test
+    public void markAsReadTest(){
+        Message messagePayload = new Message("Mark", "test@email.com", "01234556789", "Subject line goes in here for display", "Description details here to give info on request");
+
+        Message createdMessage = given()
+                .contentType(ContentType.JSON)
+                .body(messagePayload)
+                .when()
+                .post("http://localhost:3006/message/")
+                .getBody().as(Message.class);
+
+        given()
+            .cookie("token", "abc123")
+            .put("http://localhost:3006/message/" + createdMessage.getMessageid() + "/read");
+
+
+        Response response = given()
+                .get("http://localhost:3006/message/count");
+
+        Approvals.verify(response.getBody().prettyPrint());
+    }
+
 }

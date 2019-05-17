@@ -31,7 +31,7 @@ public class Message {
     private String phone;
 
     @JsonProperty
-    @Size(min = 20, max = 100)
+    @Size(min = 5, max = 100)
     @NotNull(message = "Subject must be set")
     @NotBlank
     private String subject;

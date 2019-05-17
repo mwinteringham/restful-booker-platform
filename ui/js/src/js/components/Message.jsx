@@ -17,6 +17,8 @@ export default class Message extends React.Component {
     }
 
     componentDidMount(){
+        API.putMessageRead(this.props.messageId);
+
         API.getMessage(this.props.messageId, this);
     }
 

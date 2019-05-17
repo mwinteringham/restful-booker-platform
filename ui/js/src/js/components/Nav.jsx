@@ -74,7 +74,7 @@ class Nav extends React.Component {
 						{this.props.isAuthenticated && (
 							<ul className="navbar-nav ml-auto">
 									<li className="nav-item">
-										<Notification />
+										<Notification setCount={this.props.setCount} count={this.props.count} />
 									</li>
 									<li className="nav-item">
 											<a className="nav-link" href="/">Front Page</a>

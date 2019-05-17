@@ -36,6 +36,8 @@ export default class MessageList extends React.Component {
 
     closeMessage(){
         this.setState({messageId : 0});
+
+        this.props.setCount();
     }
 
     render() {
