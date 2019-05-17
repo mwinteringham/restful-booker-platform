@@ -24,6 +24,8 @@ export default class MessageList extends React.Component {
 
     deleteMessage(id) {
         API.deleteMessage(id, this);
+
+        this.props.setCount();
     }
 
     refreshMessageList(){
