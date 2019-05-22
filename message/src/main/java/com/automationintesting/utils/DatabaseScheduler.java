@@ -1,0 +1,62 @@
+package com.automationintesting.utils;
+
+import com.automationintesting.db.MessageDB;
+import com.automationintesting.model.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class DatabaseScheduler {
+
+    private Logger logger = LoggerFactory.getLogger(DatabaseScheduler.class);
+    private int resetCount;
+    private boolean stop;
+
+    public DatabaseScheduler() {
+        if(System.getenv("dbRefresh") == null){
+            this.resetCount = 0;
+        } else {
+            this.resetCount = Integer.parseInt(System.getenv("dbRefresh"));
+        }
+    }
+
+    public void startScheduler(MessageDB messageDB, TimeUnit timeUnit){
+        if(resetCount > 0){
+            ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+            Runnable r = () -> {
+                if(!stop){
+                    try {
+                        logger.info("Resetting database");
+                        messageDB.resetDB();
+
+                        Message message = new Message("James",
+                                "james@dean.com",
+                                "01821 123321",
+                                "Just getting a message setup",
+                                "Lorem ipsum dolores est");
+
+                        messageDB.create(message);
+                    } catch ( Exception e ) {
+                        logger.error("Scheduler failed " + e.getMessage());
+                    }
+                }
+            };
+
+            executor.scheduleAtFixedRate ( r , 0L , resetCount , timeUnit );
+        } else {
+            logger.info("No env var was set for DB refresh (or set as 0) so not running DB reset");
+        }
+    }
+
+    public int getResetCount() {
+        return resetCount;
+    }
+
+    public void stepScheduler() {
+        stop = true;
+    }
+}

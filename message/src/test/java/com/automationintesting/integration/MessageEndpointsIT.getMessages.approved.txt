@@ -1,0 +1,19 @@
+{
+    "messages": [
+        {
+            "id": 1,
+            "name": "James Dean",
+            "subject": "Booking enquiry"
+        },
+        {
+            "id": 2,
+            "name": "Mark",
+            "subject": "Subject line goes in here for display"
+        },
+        {
+            "id": 3,
+            "name": "Mark",
+            "subject": "Subject line goes in here for display"
+        }
+    ]
+}

@@ -32,8 +32,15 @@ body {
     background-color: #ddd;
 }
 
+.detail p, .detail span {
+    display: table-cell;
+    display: table-cell;
+    line-height : 40px;
+}
+
 .room-form {
     padding-bottom: 25px;
+    margin-top: 10px;
 }
 
 .room-details {
@@ -144,4 +151,34 @@ svg {
     background-color: #ffffff;
     width: 180px;
     margin: 20px auto auto auto;
+}
+
+// Nav bar
+
+.notification {
+    color: white;
+    border-radius: 100%;
+    background-color: darkred;
+    padding: 4px;
+    font-weight: bold;
+    font-family : Arial;
+    position: absolute;
+    margin: -5px 0px 0px -12px;
+    font-size : 0.8rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+// Message popup
+
+.message-modal {
+    border: 1px solid black;
+    padding: 20px;
+    background-color: #ffffff;
+    width: 70%;
+    margin: 100px auto auto auto;
+}
+
+.message-modal span{
+    font-weight: bold;
 }

@@ -19,7 +19,10 @@ var server = http.createServer(function(req, res) {
             break;
         case /report/.test(req.url):
             proxy.web(req, res, { target: 'http://localhost:3005' });
-            break;    
+            break;
+        case /message/.test(req.url):
+            proxy.web(req, res, { target: 'http://localhost:3006' });
+            break;
         default:
             proxy.web(req, res, { target: 'http://localhost:3003' });
             break;

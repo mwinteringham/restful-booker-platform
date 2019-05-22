@@ -144,6 +144,102 @@ export const API = {
                 component.setState({ errors : capturedErrors });
             }
         });
+    },
+
+    getNotificationCount : (component) => {
+        fetch(API_ROOT + '/message/count', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState({ count : res.count });
+        })
+    },
+
+    getMessages : (component) => {
+        fetch(API_ROOT + '/message', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState({ messages : res.messages });
+        })
+    },
+
+    deleteMessage : (id, component) => {
+        fetch(API_ROOT + '/message/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            component.refreshMessageList();
+        })
+    },
+
+    getMessage : (id, component) => {
+        fetch(API_ROOT + '/message/' + id, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState(res);
+        })
+    },
+
+    postMessage : (component) => {
+        fetch(API_ROOT + '/message/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body : JSON.stringify(component.state.contact)
+        })
+        .then(res => {
+            if(res.status == 200){
+                component.setState({ submitted : true});
+            } else if(res.status == 400) {
+                return res.json();
+            }
+        })
+        .then(res => {
+            if(res){
+                let capturedErrors = [];
+                
+                for(let i = 0; i < res.errors.length; i++){
+                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
+                }
+    
+                component.setState({ errors : capturedErrors });
+            }
+        });
+    },
+
+    putMessageRead :  (id) => {
+        fetch(API_ROOT + '/message/' + id + '/read', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
     }
 
 }

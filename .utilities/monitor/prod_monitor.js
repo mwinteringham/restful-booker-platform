@@ -6,3 +6,4 @@ apiMonitor.checkForLife('https', 'https://automationintesting.online', '/brandin
 apiMonitor.checkForLife('https', 'https://automationintesting.online', '/');
 apiMonitor.checkForLife('https', 'https://automationintesting.online', '/auth');
 apiMonitor.checkForLife('https', 'https://automationintesting.online', '/report');
+apiMonitor.checkForLife('https', 'https://automationintesting.online', '/message');

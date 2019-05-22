@@ -1,0 +1,14 @@
+{
+    "request": {
+      "method": "GET",
+      "url": "/message"
+    },
+    "response": {
+      "status": 200,
+      "headers" : {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      "body": "{\"messages\" : [{\"id\" : 1,\"name\" : \"Mark Winteringham\",\"subject\" : \"Subject description here\"}, {\"id\" : 2, \"name\" : \"James Dean\",\"subject\" : \"Another description here\"}, {\"id\" : 3, \"name\" : \"Janet Samson\",\"subject\" : \"Lorem ipsum dolores est\"}]}"
+    }
+  }
+  

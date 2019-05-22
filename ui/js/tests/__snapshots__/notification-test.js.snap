@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification renders alert inbox when there are unread notifications 1`] = `
+<Link
+  className="nav-link"
+  to="/admin/messages"
+>
+  <i
+    className="fa fa-inbox"
+    style={
+      Object {
+        "fontSize": "1.5rem",
+      }
+    }
+  >
+    <span
+      className="notification"
+    >
+      34
+    </span>
+  </i>
+</Link>
+`;
+
+exports[`Notification renders plain inbox when no unread notifications 1`] = `
+<Link
+  className="nav-link"
+  to="/admin/messages"
+>
+  <i
+    className="fa fa-inbox"
+    style={
+      Object {
+        "fontSize": "1.5rem",
+      }
+    }
+  />
+</Link>
+`;

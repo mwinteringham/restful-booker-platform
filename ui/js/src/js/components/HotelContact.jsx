@@ -1,5 +1,6 @@
 import React from 'react';
 import validate from 'validate.js';
+import { API } from '../libs/Api';
 
 let rules = {
     "name": {
@@ -30,7 +31,7 @@ let rules = {
             message: "must be at least 20 characters long"
         }
     },
-    "message" : {
+    "description" : {
         presence : true,
         length: {
             minimum: 20,
@@ -45,19 +46,15 @@ export default class HotelContact extends React.Component {
         super();
 
         this.state = {
-            name : "",
-            email : "",
-            phone : "",
-            subject : "",
-            message : "",
+            contact : {
+                name : "",
+                email : "",
+                phone : "",
+                subject : "",
+                description : "",
+            },
             submitted : false,
-            errors : {
-                name : [],
-                email : [],
-                phone : [],
-                subject : [],
-                message : [],
-            }
+            errors : []
         }
 
         this.updateState = this.updateState.bind(this);
@@ -65,35 +62,44 @@ export default class HotelContact extends React.Component {
     }
 
     updateState(event){
-        let currentState = this.state;
+        let currentState = this.state.contact;
 
         currentState[event.target.id] = event.target.value;
 
-        this.setState(currentState);
+        this.setState({contact : currentState});
     }
 
     submitForm(){
-        let vErrors = validate(this.state, rules);
+        // let vErrors = validate(this.state.contact, rules);
 
-        if(typeof vErrors === 'undefined'){
-            this.setState({ submitted : true});
-        } else {
-            for (let prop in vErrors) {
-                let currentState = this.state;
-                currentState.errors[prop] = vErrors[prop];
-                this.setState(currentState)
-            }
-        }
+        // if(typeof vErrors === 'undefined'){
+        API.postMessage(this);
+        // } else {
+        //     for (let prop in vErrors) {
+        //         let currentState = this.state;
+        //         currentState.errors[prop] = vErrors[prop];
+        //         this.setState(currentState)
+        //     }
+        // }
     }
 
     render(){
-        let form = "";
+        let form = '';
+        let errors = '';
+
+        if(this.state.errors.length > 0){
+            errors = <div className="alert alert-danger" style={{marginBottom : 5 + "rem"}}>
+                {this.state.errors.map((value) => {
+                    return <p key={value}>{value}</p>
+                })}
+            </div>
+        }
 
         if(this.state.submitted){
             form = <div style={{height : "412px"}}>
-                    <h2>Thanks for getting in touch {this.state.name}!</h2>
+                    <h2>Thanks for getting in touch {this.state.contact.name}!</h2>
                     <p>We'll get back to you about</p>
-                    <p style={{fontWeight : "bold"}}>{this.state.subject}</p>
+                    <p style={{fontWeight : "bold"}}>{this.state.contact.subject}</p>
                     <p>as soon as possible.</p>
                     </div>
         } else {
@@ -103,47 +109,48 @@ export default class HotelContact extends React.Component {
                             <span className="input-group-text" id="basic-addon1"><span className="fa fa-id-card"></span></span>
                         </div>
                         <input type="text" className="form-control" placeholder="Name" aria-label="Name" id="name" aria-describedby="basic-addon1" onChange={this.updateState} />
-                        {this.state.errors.name.map((value, index) => {
+                        {/* {this.state.errors.name.map((value, index) => {
                             return <div key={"name" + index} className="invalid-feedback">{value}</div>
-                        })}
+                        })} */}
                     </div>
                     <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1"><span className="fa fa-envelope"></span></span>
                         </div>
                         <input type="text" className="form-control" placeholder="Email" aria-label="Email" id="email" aria-describedby="basic-addon1" onChange={this.updateState} />
-                        {this.state.errors.email.map((value, index) => {
+                        {/* {this.state.errors.email.map((value, index) => {
                             return <div key={"email" + index} className="invalid-feedback">{value}</div>
-                        })}
+                        })} */}
                     </div>
                     <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1"><span className="fa fa-phone"></span></span>
                         </div>
                         <input type="text" className="form-control" placeholder="Phone" aria-label="Phone" id="phone" aria-describedby="basic-addon1" onChange={this.updateState} />
-                        {this.state.errors.phone.map((value, index) => {
+                        {/* {this.state.errors.phone.map((value, index) => {
                             return <div key={"phone" + index} className="invalid-feedback">{value}</div>
-                        })}
+                        })} */}
                     </div>
                     <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1"><span className="fa fa-envelope"></span></span>
                         </div>
                         <input type="text" className="form-control" placeholder="Subject" aria-label="Subject" id="subject" aria-describedby="basic-addon1" onChange={this.updateState} />
-                        {this.state.errors.subject.map((value, index) => {
+                        {/* {this.state.errors.subject.map((value, index) => {
                             return <div key={"subject" + index} className="invalid-feedback">{value}</div>
-                        })}
+                        })} */}
                     </div>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Message</span>
                         </div>
-                        <textarea className="form-control" aria-label="Message" id="message" rows="5" onChange={this.updateState}></textarea>
-                        {this.state.errors.message.map((value, index) => {
-                            return <div key={"message" + index} className="invalid-feedback">{value}</div>
-                        })}
+                        <textarea className="form-control" aria-label="Description" id="description" rows="5" onChange={this.updateState}></textarea>
+                        {/* {this.state.errors.description.map((value, index) => {
+                            return <div key={"description" + index} className="invalid-feedback">{value}</div>
+                        })} */}
                     </div>
                     <br />
+                    {errors}
                     <button type='button' className='btn btn-outline-primary float-right' id="submitContact" onClick={this.submitForm}>Submit</button>
                 </form>
         }

@@ -1,0 +1,14 @@
+{
+    "request": {
+      "method": "GET",
+      "url": "/message/1"
+    },
+    "response": {
+      "status": 200,
+      "headers" : {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      "body": "{\"name\" : \"Mark Winteringham\",\"email\" : \"mark@mwtestconsultancy.co.uk\",\"phone\" : \"01821 912812\",\"subject\" : \"Subject description here\",\"description\" : \"Lorem ipsum dolores est\"}"
+    }
+}
+  

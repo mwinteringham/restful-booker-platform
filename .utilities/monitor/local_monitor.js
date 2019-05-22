@@ -6,3 +6,4 @@ apiMonitor.checkForLife('http', 'http://localhost:3002', '/branding');
 apiMonitor.checkForLife('http', 'http://localhost:3003', '/');
 apiMonitor.checkForLife('http', 'http://localhost:3004', '/auth');
 apiMonitor.checkForLife('http', 'http://localhost:3005', '/report');
+apiMonitor.checkForLife('http', 'http://localhost:3006', '/message');

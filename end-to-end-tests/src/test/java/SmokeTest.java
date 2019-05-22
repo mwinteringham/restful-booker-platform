@@ -1,9 +1,12 @@
 import models.Booking;
+import models.MessagePage;
 import models.Room;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import pageobjects.*;
+
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -85,6 +88,17 @@ public class SmokeTest extends TestSetup {
         String nameValue = brandingPage.getNameValue();
 
         assertThat(nameValue.length(), greaterThan(0));
+    }
+
+    @Test
+    public void messageSmokeTest(){
+        NavPage navPage = new NavPage(driver);
+        navPage.clickNotification();
+
+        MessagePage messagePage = new MessagePage(driver);
+        List<WebElement> messages = messagePage.getMessages();
+
+        assertThat(messages.size(), greaterThan(0));
     }
 
 }
