@@ -1,6 +1,6 @@
 import React from 'react';
 import HotelContact from '../src/js/components/HotelContact.jsx';
-import nock from 'Nock';
+import nock from 'nock';
 
 test('Contact form sends request to message API', (done) => {
     let messagePostMock = nock('http://localhost', {
