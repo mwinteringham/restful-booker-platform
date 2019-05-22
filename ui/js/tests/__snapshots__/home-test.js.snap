@@ -341,6 +341,7 @@ exports[`Map for home page renders 1`] = `
       ]
     }
     defaultZoom={17}
+    dprs={Array []}
     height={600}
     limitBounds="center"
     maxZoom={18}
