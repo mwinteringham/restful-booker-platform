@@ -426,9 +426,9 @@ spec:
           serviceName: rbp-report
           servicePort: 3005
       - path: /message/*
-          backend:
-            serviceName: rbp-message
-            servicePort: 3006
+        backend:
+          serviceName: rbp-message
+          servicePort: 3006
       - path: /
         backend:
           serviceName: rbp-ui

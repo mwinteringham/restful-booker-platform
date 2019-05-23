@@ -161,7 +161,7 @@ export const API = {
     },
 
     getMessages : (component) => {
-        fetch(API_ROOT + '/message', {
+        fetch(API_ROOT + '/message/', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
