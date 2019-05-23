@@ -6,7 +6,7 @@ import { waitForState } from 'enzyme-async-helpers';
 beforeAll(() => {
     nock('http://localhost')
         .persist()
-        .get('/message')
+        .get('/message/')
         .reply(200, {
                 messages : [
                     {
