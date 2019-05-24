@@ -77,13 +77,10 @@ export const API = {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body : JSON.stringify(component.state.newbooking)
+            body : JSON.stringify(component.state.booking)
         })
         .then(res => {
-            if(res.status == 200){
-                component.props.fetchRoomDetails();
-                component.resetForm();
-            } else if (res.status == 409){
+            if (res.status == 409){
                 component.setState({ errors : ["The room dates are either invalid or are already booked for one or more of the dates that you have selected."]})
             } else {
                 return res.json();

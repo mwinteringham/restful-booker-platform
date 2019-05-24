@@ -1,7 +1,6 @@
 import React from 'react';
 import { API_ROOT } from '../api-config';
 import BookingListing from './BookingListing.jsx';
-import BookingForm from './BookingForm.jsx';
 
 export default class BookingListings extends React.Component {
 
@@ -39,7 +38,6 @@ export default class BookingListings extends React.Component {
                 {this.state.bookings.map((booking) => {
                     return <div key={booking.bookingid}><BookingListing booking={booking} getBookings={this.getBookings} /></div>
                 })}
-                <BookingForm fetchRoomDetails={this.getBookings} roomid={this.props.roomid}/>
             </div>
         )
     }
