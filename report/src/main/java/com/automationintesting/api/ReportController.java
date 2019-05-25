@@ -6,6 +6,7 @@ import com.automationintesting.model.room.Booking;
 import com.automationintesting.model.room.Bookings;
 import com.automationintesting.model.room.Room;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,7 +49,7 @@ public class ReportController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Report getReport() {
+    public Report getAllRoomReports() {
         List<Room> rooms = roomRequests.searchForRooms().getBody().getRooms();
         List<Entry> parsedRooms = new ArrayList<>();
 
@@ -59,6 +60,20 @@ public class ReportController {
                 Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), b.getFirstname() + " " + b.getLastname() + " - Room: " + r.getRoomNumber());
                 parsedRooms.add(entry);
             }
+        }
+
+        return new Report(parsedRooms);
+    }
+
+    @RequestMapping(value = "/room/{id:[0-9]*}", method = RequestMethod.GET)
+    public Report getSpecificRoomReport(@PathVariable(value = "id") int id){
+        List<Entry> parsedRooms = new ArrayList<>();
+
+        Bookings roomBookings = bookingRequests.getBookings(id).getBody();
+
+        for(Booking b : roomBookings.getBookings()){
+            Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), "Unavailable");
+            parsedRooms.add(entry);
         }
 
         return new Report(parsedRooms);

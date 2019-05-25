@@ -62,4 +62,12 @@ public class BuildReportIT {
         Approvals.verify(reportResponse.body().prettyPrint());
     }
 
+    @Test
+    public void testSpecificRoomReportCreation(){
+        Response reportResponse = given()
+                                    .get("http://localhost:3005/report/room/1");
+
+        Approvals.verify(reportResponse.getBody().prettyPrint());
+    }
+
 }

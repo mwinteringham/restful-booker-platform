@@ -10,6 +10,7 @@ export default class RoomBookingForm extends React.Component {
 
         this.state = {
 			events : [],
+			newEvent : [],
 			contact : {
                 email : '',
                 phone : '',
@@ -31,6 +32,10 @@ export default class RoomBookingForm extends React.Component {
 		this.handleSelect = this.handleSelect.bind(this);
 		this.submitForm = this.submitForm.bind(this);
 		this.updateState = this.updateState.bind(this);
+	}
+
+	componentDidMount(){
+		API.getRoomReport(this);
 	}
 
 	updateState(event){
@@ -55,19 +60,22 @@ export default class RoomBookingForm extends React.Component {
 	}
 
     handleSelect( result ){
-		let currentState = this.state;
-		currentState.events = [
-			{
-				start : result.start,
-				end : result.end,
-				title : 'New booking'
-			}
-		]
+		if(result.slots.length > 1){
+			let currentState = this.state;
 
-		currentState.booking.bookingdates.checkin = result.start.toISOString().split('T')[0];
-		currentState.booking.bookingdates.checkout = result.end.toISOString().split('T')[0];
-		
-		this.setState(currentState);
+			currentState.newEvent = [
+				{
+					start : new Date(Date.UTC(result.start.getFullYear(), result.start.getMonth(), result.start.getDate(), result.start.getHours(), result.start.getMinutes(), result.start.getSeconds())),
+					end : new Date(Date.UTC(result.end.getFullYear(), result.end.getMonth(), result.end.getDate(), result.end.getHours(), result.end.getMinutes(), result.end.getSeconds())),
+					title : (result.slots.length - 1) + ' night(s)'
+				}
+			]
+	
+			currentState.booking.bookingdates.checkin = moment(result.start).format("YYYY-MM-DD");
+			currentState.booking.bookingdates.checkout = moment(result.end).format("YYYY-MM-DD");
+			
+			this.setState(currentState);
+		}
 	}
 	
 	submitForm(){
@@ -84,6 +92,8 @@ export default class RoomBookingForm extends React.Component {
 
     render(){
         const localizer = BigCalendar.momentLocalizer(moment);
+		
+		const events = this.state.newEvent.concat(this.state.events);
 
         return <div className="row hotel-room-info">
             <div className="col-sm-1"></div>
@@ -94,7 +104,7 @@ export default class RoomBookingForm extends React.Component {
                   defaultView="month"
                   selectable
                   popup={true}
-                  events={this.state.events}
+                  events={events}
                   style={{ height: "50vh" }}
                   views={['month']}
               />

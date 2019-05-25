@@ -66,19 +66,15 @@ public class BookingController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<?> createBooking(@Valid @RequestBody Booking booking, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequests.postCheckAuth(token)) {
-            if(dateCheckValidator.isValid(booking.getBookingDates())) {
-                if (bookingDB.checkForBookingConflict(booking)) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT).build();
-                } else {
-                    CreatedBooking body = bookingDB.create(booking);
-                    return ResponseEntity.ok(body);
-                }
-            } else {
+        if(dateCheckValidator.isValid(booking.getBookingDates())) {
+            if (bookingDB.checkForBookingConflict(booking)) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            } else {
+                CreatedBooking body = bookingDB.create(booking);
+                return ResponseEntity.ok(body);
             }
         } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
 

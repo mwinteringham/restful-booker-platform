@@ -143,6 +143,20 @@ export const API = {
         });
     },
 
+    getRoomReport : (component) => {
+        fetch(API_ROOT + '/report/room/' + component.props.roomid, {
+            method : 'GET',
+            headers : {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            component.setState({ events : res.report });
+        })
+    },
+
     getNotificationCount : (component) => {
         fetch(API_ROOT + '/message/count', {
             method: 'GET',
