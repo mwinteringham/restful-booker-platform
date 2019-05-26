@@ -82,6 +82,8 @@ export const API = {
         .then(res => {
             if (res.status == 409){
                 component.setState({ errors : ["The room dates are either invalid or are already booked for one or more of the dates that you have selected."]})
+            } else if (res.status == 200){
+                component.setState({completed : true})
             } else {
                 return res.json();
             }

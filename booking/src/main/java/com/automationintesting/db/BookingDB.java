@@ -42,6 +42,8 @@ public class BookingDB {
                 .setDepositpaid(true)
                 .setCheckin(new GregorianCalendar(2018,1,26).getTime())
                 .setCheckout(new GregorianCalendar(2018,1,26).getTime())
+                .setEmail("mark@mwtestconsultancy.co.uk")
+                .setPhone("01234123123")
                 .build();
 
         InsertSql insertSql = new InsertSql(connection, booking);

@@ -52,6 +52,8 @@ public class BookingDateConflictIT {
                 .setDepositpaid(true)
                 .setCheckin(checkindate)
                 .setCheckout(checkoutdate)
+                .setEmail("mark@mwtestconsultancy.co.uk")
+                .setPhone("01234123123")
                 .build();
 
         given()
@@ -85,6 +87,8 @@ public class BookingDateConflictIT {
                 .setDepositpaid(true)
                 .setCheckin(checkindate)
                 .setCheckout(checkoutdate)
+                .setEmail("mark@mwtestconsultancy.co.uk")
+                .setPhone("01234123123")
                 .build();
 
         given()
