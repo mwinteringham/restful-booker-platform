@@ -3,6 +3,8 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { API_ROOT } from '../api-config';
 
+import "react-datepicker/dist/react-datepicker.css";
+
 export default class BookingListing extends React.Component {
 
     constructor(){
@@ -72,6 +74,7 @@ export default class BookingListing extends React.Component {
         let currentState = this.state;
 
         currentState.booking.bookingdates.checkin = moment(date.toUTCString()).format("YYYY-MM-DD");;
+        currentState.amountOfDays = Math.round(Math.abs((new Date(this.props.booking.bookingdates.checkin).getTime() - new Date(this.props.booking.bookingdates.checkout).getTime())/(24*60*60*1000)));
 
         this.setState(currentState);
     }
@@ -80,6 +83,7 @@ export default class BookingListing extends React.Component {
         let currentState = this.state;
 
         currentState.booking.bookingdates.checkout = moment(date.toUTCString()).format("YYYY-MM-DD");;
+        currentState.amountOfDays = Math.round(Math.abs((new Date(this.props.booking.bookingdates.checkin).getTime() - new Date(this.props.booking.bookingdates.checkout).getTime())/(24*60*60*1000)));
 
         this.setState(currentState);
     }
