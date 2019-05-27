@@ -52,7 +52,7 @@ export default class RoomBookingForm extends React.Component {
 				{
 					start : new Date(Date.UTC(result.start.getFullYear(), result.start.getMonth(), result.start.getDate(), result.start.getHours(), result.start.getMinutes(), result.start.getSeconds())),
 					end : new Date(Date.UTC(result.end.getFullYear(), result.end.getMonth(), result.end.getDate(), result.end.getHours(), result.end.getMinutes(), result.end.getSeconds())),
-					title : (result.slots.length - 1) + ' night(s)'
+					title : (result.slots.length - 1) + ' night(s) - £' + ((result.slots.length - 1) * this.props.roomPrice)
 				}
 			]
 	

@@ -38,7 +38,8 @@ public class DatabaseScheduler {
                                     false,
                                         "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                                     "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
-                                               new String[]{"Wifi, TV, Mini-bar"});
+                                               new String[]{"Wifi, TV, Mini-bar"},
+                                    100);
 
                         roomDB.create(room);
                     } catch ( Exception e ) {

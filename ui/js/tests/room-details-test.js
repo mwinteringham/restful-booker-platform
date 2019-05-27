@@ -12,6 +12,7 @@ beforeEach(() => {
             accessible : false,
             description : 'This is a room to test',
             image : 'path/to/an/image',
+            roomPrice : 100,
             features : {
                 WiFi : false,
                 TV : true,

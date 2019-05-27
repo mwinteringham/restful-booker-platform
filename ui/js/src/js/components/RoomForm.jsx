@@ -22,7 +22,8 @@ export default class RoomForm extends React.Component {
                     Refreshments : false,
                     Safe : false,
                     Views : false
-                }
+                },
+                roomPrice : null
             }
         }
 
@@ -102,7 +103,10 @@ export default class RoomForm extends React.Component {
                                 <option value="true">true</option>
                             </select>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-1">
+                            <input className="form-control" type="text" id="roomPrice" value={this.state.newRoom.roomPrice} onChange={this.updateState} />
+                        </div>
+                        <div className="col-sm-5">
                             <div className="row">
                                 <div className="col-4">
                                     <div className="form-check form-check-inline">

@@ -34,7 +34,8 @@ export default class RoomListings extends React.Component {
 						<div className="col-sm-1 rowHeader"><p>Room #</p></div>
 						<div className="col-sm-2 rowHeader"><p>Type</p></div>
 						<div className="col-sm-2 rowHeader"><p>Accessible</p></div>
-						<div className="col-sm-6 rowHeader"><p>Room details</p></div>
+						<div className="col-sm-1 rowHeader"><p>Price</p></div>
+						<div className="col-sm-5 rowHeader"><p>Room details</p></div>
 						<div className="col-sm-1"></div>
 					</div>
 					{this.state.rooms.map((room) => {

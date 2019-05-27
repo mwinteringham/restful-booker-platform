@@ -46,7 +46,8 @@ class RoomListing extends React.Component {
                 <div onClick={this.openRoom} className="col-sm-1"><p id={"roomNumber"+ this.props.details.roomNumber}>{this.props.details.roomNumber}</p></div>
                 <div onClick={this.openRoom} className="col-sm-2"><p id={"type"+ this.props.details.type}>{this.props.details.type}</p></div>
                 <div onClick={this.openRoom} className="col-sm-2"><p id={"accessible"+ this.props.details.accessible}>{this.props.details.accessible.toString()}</p></div>
-                <div onClick={this.openRoom} className="col-sm-6">
+                <div onClick={this.openRoom} className="col-sm-1"><p id={"roomPrice"+ this.props.details.roomPrice}>{this.props.details.roomPrice}</p></div>
+                <div onClick={this.openRoom} className="col-sm-5">
                     <p id={"details"+ this.props.details.features}>
                         {this.props.details.features.length > 0 &&
                             this.props.details.features.map((value, index) => {

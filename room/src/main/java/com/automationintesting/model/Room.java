@@ -30,21 +30,27 @@ public class Room {
 
     @JsonProperty
     private String image;
+
     @JsonProperty
     private String description;
+
     @JsonProperty
     private String[] features;
+
+    @JsonProperty
+    private int roomPrice;
 
     public Room() {
     }
 
-    public Room(int roomNumber, String type, boolean accessible, String image, String description, String[] features) {
+    public Room(int roomNumber, String type, boolean accessible, String image, String description, String[] features, int roomPrice) {
         this.roomNumber = roomNumber;
         this.type = type;
         this.accessible = accessible;
         this.image = image;
         this.description = description;
         this.features = features;
+        this.roomPrice = roomPrice;
     }
 
     public Room(ResultSet result) throws SQLException {
@@ -54,6 +60,7 @@ public class Room {
         this.accessible = result.getBoolean("accessible");
         this.image = result.getString("image");
         this.description = result.getString("description");
+        this.roomPrice = result.getInt("roomPrice");
         
         Array featuresArray = result.getArray("features");
         this.features = (String[])featuresArray.getArray();
@@ -115,17 +122,26 @@ public class Room {
         this.features = features;
     }
 
+    public int getRoomPrice() {
+        return roomPrice;
+    }
+
+    public void setRoomPrice(int roomPrice) {
+        this.roomPrice = roomPrice;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
-                "\nroomid=" + roomid +
-                "\n, roomNumber=" + roomNumber +
-                "\n, type='" + type + '\'' +
-                "\n, accessible=" + accessible +
-                "\n, image='" + image + '\'' +
-                "\n, description='" + description + '\'' +
-                "\n, features=" + Arrays.toString(features) +
-                "\n}";
+                "roomid=" + roomid +
+                ", roomNumber=" + roomNumber +
+                ", type='" + type + '\'' +
+                ", accessible=" + accessible +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+                ", features=" + Arrays.toString(features) +
+                ", roomPrice=" + roomPrice +
+                '}';
     }
 
     public static class RoomBuilder {
@@ -137,6 +153,7 @@ public class Room {
         private String image;
         private String description;
         private String[] features;
+        private int roomPrice;
 
         public RoomBuilder setRoomid(int roomid) {
             this.roomid = roomid;
@@ -180,8 +197,14 @@ public class Room {
             return this;
         }
 
+        public RoomBuilder setRoomPrice(int roomPrice) {
+            this.roomPrice = roomPrice;
+
+            return this;
+        }
+
         public Room build(){
-            return new Room(roomNumber, type, accessible, image, description, features);
+            return new Room(roomNumber, type, accessible, image, description, features, roomPrice);
         }
     }
 }

@@ -34,6 +34,9 @@ public class RoomListingPage extends BasePage {
     @FindBy(how = How.CSS, using = ".room-form")
     private WebElement frmForm;
 
+    @FindBy(how = How.ID, using = "roomPrice")
+    private WebElement inptRoomPrice;
+
     public RoomListingPage(WebDriver driver){
         super(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -74,5 +77,10 @@ public class RoomListingPage extends BasePage {
 
     public Boolean roomFormExists() {
         return frmForm.isDisplayed();
+    }
+
+    public void setRoomPrice(String price) throws InterruptedException {
+        Thread.sleep(1000);
+        inptRoomPrice.sendKeys(price);
     }
 }

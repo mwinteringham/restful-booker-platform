@@ -35,6 +35,7 @@ public class SmokeTest extends TestSetup {
         int initialRoomCount = roomListingPage.roomCount();
 
         roomListingPage.populateRoomNumber("102");
+        roomListingPage.setRoomPrice("100");
         roomListingPage.checkWifi();
         roomListingPage.checkSafe();
         roomListingPage.checkRadio();

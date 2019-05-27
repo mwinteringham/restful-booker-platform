@@ -26,7 +26,7 @@ export default class HotelRoomInfo extends React.Component {
         let buttonMessage = 'Book';
 
         if(this.state.book){
-            bookRoomView = <RoomBookingForm roomid={this.props.room.roomid} />
+            bookRoomView = <RoomBookingForm roomid={this.props.room.roomid} roomPrice={this.props.room.roomPrice} />
             buttonMessage = 'Cancel';
         }
 

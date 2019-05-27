@@ -143,6 +143,8 @@ export default class RoomDetails extends React.Component {
                                             <option value="false">false</option>
                                             <option value="true">true</option>
                                         </select>
+                                        <label className="editLabel" htmlFor="roomPrice">Room price: </label>
+                                        <input className="form-control" type="text" defaultValue={this.state.room.roomPrice} id="roomPrice" onChange={this.updateState} />
                                     </div>
                                     <div className="col-sm-6">
                                         <label className="editLabel" htmlFor="description">Description: </label>
@@ -150,7 +152,7 @@ export default class RoomDetails extends React.Component {
                                     </div>
                                 </div>
                                 <div className="form-row">
-                                <div className="col-sm-6">
+                                    <div className="col-sm-6">
                                         <label className="editLabel">Room features: </label>
                                         <div className="row">
                                             <div className="col-4">
@@ -195,7 +197,7 @@ export default class RoomDetails extends React.Component {
                                     </div>
                                     <div className="col-sm-6">
                                         <label className="editLabel" htmlFor="image">Image: </label>
-                                        <input type="text" defaultValue={this.state.room.image} id="image" onChange={this.updateState} />
+                                        <input type="text" className="form-control" defaultValue={this.state.room.image} id="image" onChange={this.updateState} />
                                     </div>
                                 </div>
                                 {errors}
@@ -240,6 +242,7 @@ export default class RoomDetails extends React.Component {
                                             <span style={{color : "grey"}}>No features added to the room</span>
                                         }
                                     </span></p>
+                                    <p>Room price: <span>{this.state.room.roomPrice}</span></p>
                                 </div>
                                 <div className="col-sm-6">
                                     <p>Image:</p>
@@ -261,7 +264,7 @@ export default class RoomDetails extends React.Component {
                     <div className="col-sm-2 rowHeader"><p>Check out</p></div>
                     <div className="col-sm-1"></div>
                 </div>
-                <BookingListings fetchRoomDetails={this.fetchRoomDetails} roomid={this.props.params.id} />
+                <BookingListings fetchRoomDetails={this.fetchRoomDetails} roomid={this.props.params.id} roomPrice={this.state.room.roomPrice} />
             </div>
         )
     }

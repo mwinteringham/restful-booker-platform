@@ -32,7 +32,8 @@ public class SqlTest extends BaseTest {
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                 "Aenean porttitor mauris sit amet lacinia molestie",
-                new String[]{"Wifi", "TV", "Safe"});
+                new String[]{"Wifi", "TV", "Safe"},
+                100);
 
         // With the room created we can send it to the RoomDB to be created
         Room createdRoom = roomDB.create(room);
@@ -57,7 +58,7 @@ public class SqlTest extends BaseTest {
 
         // We finally use Junit's assertEquals to check the room we queried
         // is the same as the expected String in the second parameter
-        assertEquals(queriedRoomString, "Room{\nroomid=" + currentRoomId + "\n, roomNumber=101\n, type='Twin'\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Aenean porttitor mauris sit amet lacinia molestie'\n, features=[Wifi, TV, Safe]\n}");
+        assertEquals(queriedRoomString, "Room{roomid=" + currentRoomId + ", roomNumber=101, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie', features=[Wifi, TV, Safe], roomPrice=100}");
     }
 
     @Test
@@ -73,7 +74,7 @@ public class SqlTest extends BaseTest {
 
         String queriedRoomString = queriedRoom.toString();
 
-        assertEquals(queriedRoomString, "[Room{\nroomid=1\n, roomNumber=101\n, type='Twin'\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Aenean porttitor mauris sit amet lacinia molestie'\n, features=[Wifi, TV, Safe]\n}]");
+        assertEquals(queriedRoomString, "[Room{roomid=1, roomNumber=101, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie', features=[Wifi, TV, Safe], roomPrice=100}]");
     }
 
     @Test
@@ -83,13 +84,14 @@ public class SqlTest extends BaseTest {
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                 "In posuere accumsan aliquet.",
-                new String[]{"Wifi, TV, Mini-bar"});
+                new String[]{"Wifi, TV, Mini-bar"},
+                100);
 
         Room createdRoom = roomDB.create(room);
 
         String createdRoomString = createdRoom.toString();
 
-        assertEquals(createdRoomString, "Room{\nroomid=" + (currentRoomId + 1) + "\n, roomNumber=102\n, type='Twin'\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='In posuere accumsan aliquet.'\n, features=[Wifi, TV, Mini-bar]\n}");
+        assertEquals(createdRoomString, "Room{roomid=" + (currentRoomId + 1) + ", roomNumber=102, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='In posuere accumsan aliquet.', features=[Wifi, TV, Mini-bar], roomPrice=100}");
     }
 
     @Test
@@ -99,13 +101,14 @@ public class SqlTest extends BaseTest {
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                 "Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
-                new String[]{"Wifi, TV, Mini-bar"});
+                new String[]{"Wifi, TV, Mini-bar"},
+                100);
 
         Room updatedRoom = roomDB.update(currentRoomId, room);
 
         String updatedRoomString = updatedRoom.toString();
 
-        assertEquals(updatedRoomString, "Room{\nroomid=" + currentRoomId + "\n, roomNumber=103\n, type='Twin'\n, accessible=false\n, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg'\n, description='Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.'\n, features=[Wifi, TV, Mini-bar]\n}");
+        assertEquals(updatedRoomString, "Room{roomid=" + currentRoomId + ", roomNumber=103, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.', features=[Wifi, TV, Mini-bar], roomPrice=100}");
     }
 
 

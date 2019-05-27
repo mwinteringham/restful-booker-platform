@@ -20,7 +20,7 @@ public class InsertSql {
     private String[] features;
 
     InsertSql(Connection connection, Room room) throws SQLException {
-        final String CREATE_ROOM = "INSERT INTO ROOMS (room_number, type, accessible, image, description, features) VALUES(?, ?, ?, ?, ?, ?);";
+        final String CREATE_ROOM = "INSERT INTO ROOMS (room_number, type, accessible, image, description, features, roomPrice) VALUES(?, ?, ?, ?, ?, ?, ?);";
 
         preparedStatement = connection.prepareStatement(CREATE_ROOM);
         preparedStatement.setInt(1, room.getRoomNumber());
@@ -31,6 +31,8 @@ public class InsertSql {
 
         Array featuresArray = connection.createArrayOf("VARCHAR", room.getFeatures());
         preparedStatement.setArray(6, featuresArray);
+
+        preparedStatement.setInt(7, room.getRoomPrice());
     }
 
     public PreparedStatement getPreparedStatement() {
