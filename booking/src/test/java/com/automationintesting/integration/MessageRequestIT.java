@@ -43,7 +43,6 @@ public class MessageRequestIT {
         Booking bookingPayload = new Booking.BookingBuilder()
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
-                .setTotalprice(200)
                 .setDepositpaid(true)
                 .setCheckin(checkindate)
                 .setCheckout(checkoutdate)

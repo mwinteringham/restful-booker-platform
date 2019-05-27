@@ -14,7 +14,7 @@ public class BookingDB {
 
     private Connection connection;
 
-    private final String CREATE_DB = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
+    private final String CREATE_DB = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
     private final String SELECT_BY_BOOKINGID = "SELECT * FROM BOOKINGS WHERE bookingid=?";
     private final String DELETE_BY_ID = "DELETE FROM BOOKINGS WHERE bookingid = ?" ;
     private final String SELECT_BY_NAME = "SELECT * FROM BOOKINGS WHERE firstname = ? OR lastname = ?;";
@@ -38,7 +38,6 @@ public class BookingDB {
                 .setRoomid(1)
                 .setFirstname("James")
                 .setLastname("Dean")
-                .setTotalprice(100)
                 .setDepositpaid(true)
                 .setCheckin(new GregorianCalendar(2018,1,26).getTime())
                 .setCheckout(new GregorianCalendar(2018,1,26).getTime())

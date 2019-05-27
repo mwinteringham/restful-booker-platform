@@ -98,7 +98,7 @@ export default class BookingListing extends React.Component {
             booking = <div className="row">
                         <div className="col-sm-2"><input type="text" className="form-control" name="firstname" defaultValue={this.props.booking.firstname} onChange={this.updateState} /></div>
                         <div className="col-sm-2"><input type="text" className="form-control" name="lastname" defaultValue={this.props.booking.lastname} onChange={this.updateState} /></div>
-                        <div className="col-sm-1"><input type="text" className="form-control" name="totalprice"  defaultValue={this.props.booking.totalprice} onChange={this.updateState} /></div>
+                        <div className="col-sm-1"><p>{this.props.booking.totalprice}</p></div>
                         <div className="col-sm-2">
                             <select className="form-control" defaultValue={this.props.booking.depositpaid} name="depositpaid" onChange={this.updateState}>
                                 <option value="false">false</option>

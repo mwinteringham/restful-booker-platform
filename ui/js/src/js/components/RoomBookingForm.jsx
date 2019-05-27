@@ -22,7 +22,6 @@ export default class RoomBookingForm extends React.Component {
                 firstname : '',
                 lastname : '',
                 roomid : null,
-				totalprice : 100,
 				email : '',
                 phone : ''
             },

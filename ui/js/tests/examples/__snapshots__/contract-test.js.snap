@@ -24,9 +24,7 @@ exports[`Rooms list component 1`] = `
     <div
       className="col-sm-1"
     >
-      <p>
-        100
-      </p>
+      <p />
     </div>
     <div
       className="col-sm-2"

@@ -61,7 +61,6 @@ public class BookingIntegrationIT {
         Booking bookingPayload = new Booking.BookingBuilder()
                                             .setFirstname("Mark")
                                             .setLastname("Winteringham")
-                                            .setTotalprice(200)
                                             .setDepositpaid(true)
                                             .setCheckin(checkindate)
                                             .setCheckout(checkoutdate)
@@ -84,7 +83,6 @@ public class BookingIntegrationIT {
         // Finally we assert on the various values we get from the HTTP response body
         assertThat(response.getBooking().getFirstname(), is("Mark"));
         assertThat(response.getBooking().getLastname(), is("Winteringham"));
-        assertThat(response.getBooking().getTotalprice(), is(200));
         assertThat(response.getBooking().isDepositpaid(), is(true));
         assertThat(response.getBooking().getBookingDates().getCheckin(), is(checkindate));
         assertThat(response.getBooking().getBookingDates().getCheckout(), is(checkoutdate));

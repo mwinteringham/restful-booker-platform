@@ -106,7 +106,7 @@ test('Booking info for room renders when button selected', () => {
         <HotelRoomInfo room={roomDetails} />
     )
 
-    hotelRoomInfoComponent.find('.submitContact').simulate('click');
+    hotelRoomInfoComponent.find('.openBooking').simulate('click');
 
     expect(hotelRoomInfoComponent).toMatchSnapshot();
 });

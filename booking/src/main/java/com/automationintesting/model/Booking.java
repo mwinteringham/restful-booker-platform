@@ -33,12 +33,6 @@ public class Booking {
     private String lastname;
 
     @JsonProperty
-    @NotNull(message = "Total price should not be null")
-    @Min(10)
-    @Max(999)
-    private int totalprice;
-
-    @JsonProperty
     @NotNull(message = "Deposit paid should not be null")
     private boolean depositpaid;
 
@@ -52,22 +46,20 @@ public class Booking {
     @JsonProperty
     private Optional<@NotEmpty @Size(min = 11, max = 21) String> phone;
 
-    public Booking(int bookingid, int roomid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates) {
+    public Booking(int bookingid, int roomid, String firstname, String lastname, boolean depositpaid, BookingDates bookingDates) {
         this.bookingid = bookingid;
         this.roomid = roomid;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.totalprice = totalprice;
         this.depositpaid = depositpaid;
         this.bookingDates = bookingDates;
     }
 
-    public Booking(int bookingid, int roomid, String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingDates, String email, String phone) {
+    public Booking(int bookingid, int roomid, String firstname, String lastname, boolean depositpaid, BookingDates bookingDates, String email, String phone) {
         this.bookingid = bookingid;
         this.roomid = roomid;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.totalprice = totalprice;
         this.depositpaid = depositpaid;
         this.bookingDates = bookingDates;
         this.email = Optional.of(email);
@@ -79,7 +71,6 @@ public class Booking {
         this.roomid = result.getInt("roomid");
         this.firstname = result.getString("firstname");
         this.lastname = result.getString("lastname");
-        this.totalprice = result.getInt("totalprice");
         this.depositpaid = result.getBoolean("depositpaid");
         this.bookingDates = new BookingDates(result.getDate("checkin"), result.getDate("checkout"));
     }
@@ -93,10 +84,6 @@ public class Booking {
 
     public String getLastname() {
         return lastname;
-    }
-
-    public int getTotalprice() {
-        return totalprice;
     }
 
     public boolean isDepositpaid() {
@@ -131,10 +118,6 @@ public class Booking {
         this.lastname = lastname;
     }
 
-    public void setTotalprice(int totalprice) {
-        this.totalprice = totalprice;
-    }
-
     public void setDepositpaid(boolean depositpaid) {
         this.depositpaid = depositpaid;
     }
@@ -165,7 +148,6 @@ public class Booking {
                 "roomid=" + roomid +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", totalprice=" + totalprice +
                 ", depositpaid=" + depositpaid +
                 ", bookingDates=" + bookingDates +
                 '}';
@@ -177,7 +159,6 @@ public class Booking {
         private int roomid;
         private String firstname;
         private String lastname;
-        private int totalprice;
         private boolean depositpaid;
         private Date checkin;
         private Date checkout;
@@ -198,12 +179,6 @@ public class Booking {
 
         public BookingBuilder setLastname(String lastname) {
             this.lastname = lastname;
-
-            return this;
-        }
-
-        public BookingBuilder setTotalprice(int totalprice) {
-            this.totalprice = totalprice;
 
             return this;
         }
@@ -242,9 +217,9 @@ public class Booking {
             BookingDates bookingDates = new BookingDates(checkin, checkout);
 
             if(email == null && phone == null){
-                return new Booking(0, roomid, firstname, lastname, totalprice, depositpaid, bookingDates);
+                return new Booking(0, roomid, firstname, lastname, depositpaid, bookingDates);
             } else {
-                return new Booking(0, roomid, firstname, lastname, totalprice, depositpaid, bookingDates, email, phone);
+                return new Booking(0, roomid, firstname, lastname, depositpaid, bookingDates, email, phone);
             }
         }
     }

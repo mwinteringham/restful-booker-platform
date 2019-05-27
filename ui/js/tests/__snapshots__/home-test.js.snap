@@ -54,7 +54,7 @@ exports[`Booking info for room renders when button selected 1`] = `
         </li>
       </ul>
       <button
-        className="btn btn-outline-primary float-right submitContact"
+        className="btn btn-outline-primary float-right openBooking"
         onClick={[Function]}
         type="button"
       >
@@ -506,7 +506,7 @@ exports[`Room info for home page renders 1`] = `
         </li>
       </ul>
       <button
-        className="btn btn-outline-primary float-right submitContact"
+        className="btn btn-outline-primary float-right openBooking"
         onClick={[Function]}
         type="button"
       >

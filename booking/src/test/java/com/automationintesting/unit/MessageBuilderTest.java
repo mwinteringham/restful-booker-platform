@@ -21,7 +21,6 @@ public class MessageBuilderTest {
         Booking booking = new Booking.BookingBuilder()
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
-                .setTotalprice(200)
                 .setDepositpaid(true)
                 .setCheckin(checkindate)
                 .setCheckout(checkoutdate)

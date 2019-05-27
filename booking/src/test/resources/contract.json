@@ -3,7 +3,6 @@
   "roomid": 1,
   "firstname": "James",
   "lastname": "Dean",
-  "totalprice": 100,
   "depositpaid": true,
   "bookingdates": {
     "checkin": "2018-02-26",

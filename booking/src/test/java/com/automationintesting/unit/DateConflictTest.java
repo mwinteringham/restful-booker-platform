@@ -24,7 +24,6 @@ public class DateConflictTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setTotalprice(100)
                 .setCheckin(checkin)
                 .setCheckout(checkout)
                 .build();
@@ -48,7 +47,6 @@ public class DateConflictTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setTotalprice(100)
                 .setCheckin(bookingOneCheckin)
                 .setCheckout(bookingOneCheckout)
                 .build();
@@ -58,7 +56,6 @@ public class DateConflictTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setTotalprice(100)
                 .setCheckin(bookingTwoCheckin)
                 .setCheckout(bookingTwoCheckout)
                 .build();
@@ -84,7 +81,6 @@ public class DateConflictTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setTotalprice(100)
                 .setCheckin(bookingOneCheckin)
                 .setCheckout(bookingOneCheckout)
                 .build();
@@ -94,7 +90,6 @@ public class DateConflictTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setTotalprice(100)
                 .setCheckin(bookingTwoCheckin)
                 .setCheckout(bookingTwoCheckout)
                 .build();
@@ -120,7 +115,6 @@ public class DateConflictTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setTotalprice(100)
                 .setCheckin(bookingOneCheckin)
                 .setCheckout(bookingOneCheckout)
                 .build();
@@ -130,7 +124,6 @@ public class DateConflictTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setTotalprice(100)
                 .setCheckin(bookingTwoCheckin)
                 .setCheckout(bookingTwoCheckout)
                 .build();
