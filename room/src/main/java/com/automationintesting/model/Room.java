@@ -38,6 +38,8 @@ public class Room {
     private String[] features;
 
     @JsonProperty
+    @Min(0)
+    @Max(999)
     private int roomPrice;
 
     public Room() {
