@@ -77,7 +77,7 @@ class Nav extends React.Component {
 										<Notification setCount={this.props.setCount} count={this.props.count} />
 									</li>
 									<li className="nav-item">
-											<a className="nav-link" href="/">Front Page</a>
+											<a className="nav-link" id="frontPageLink" href="/">Front Page</a>
 									</li>
 									<li className="nav-item">
 											<a className="nav-link" href="#/admin" onClick={this.doLogout}>Logout</a>

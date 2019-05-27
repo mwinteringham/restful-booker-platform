@@ -138,7 +138,7 @@ export default class RoomBookingForm extends React.Component {
 						</div>
 						<input type="text" className="form-control room-phone" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon1" name="phone" value={this.state.booking.phone} onChange={this.updateState} />
 					</div>
-					<button type='button' className='btn btn-outline-primary float-right' onClick={this.submitForm}>Submit</button>
+					<button type='button' className='btn btn-outline-primary float-right book-room' onClick={this.submitForm}>Book</button>
 					{errors}
 				</div>
 				<div className="col-sm-1"></div>

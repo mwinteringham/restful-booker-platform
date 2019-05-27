@@ -46,7 +46,7 @@ export default class HotelRoomInfo extends React.Component {
                                 return <li key={index}>{feature}</li>
                             })}
                         </ul>
-                        <button type='button' className='btn btn-outline-primary float-right submitContact' onClick={this.enableBooking}>{buttonMessage}</button>
+                        <button type='button' className='btn btn-outline-primary float-right openBooking' onClick={this.enableBooking}>{buttonMessage}</button>
                     </div>
                     <div className="col-sm-1"></div>
                 </div>
