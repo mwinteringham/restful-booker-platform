@@ -2,6 +2,7 @@ import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import { API } from '../libs/Api';
+import BookingConfirmation from './BookingConfirmation.jsx';
 
 export default class RoomBookingForm extends React.Component {
 
@@ -30,6 +31,7 @@ export default class RoomBookingForm extends React.Component {
 		this.handleSelect = this.handleSelect.bind(this);
 		this.submitForm = this.submitForm.bind(this);
 		this.updateState = this.updateState.bind(this);
+		this.closeConfirmation = this.closeConfirmation.bind(this);
 	}
 
 	componentDidMount(){
@@ -71,6 +73,11 @@ export default class RoomBookingForm extends React.Component {
 		API.postBooking(this);
 	}
 
+	closeConfirmation(){
+		this.setState({completed : false});
+		this.props.toggleBooking();
+    }
+
     render(){
 		let errors;
 
@@ -87,16 +94,7 @@ export default class RoomBookingForm extends React.Component {
 		const events = this.state.newEvent.concat(this.state.events);
 
 		if(this.state.completed){
-			return <div className="row hotel-room-info text-center">
-				<div className="col-sm-3"></div>
-				<div className="col-sm-6">
-					<br />
-					<h3>Booking Successful!</h3>
-					<p>Congratulations! Your booking has been confirmed for:</p>
-					<p>{this.state.booking.bookingdates.checkin} - {this.state.booking.bookingdates.checkout}</p>
-				</div>
-				<div className="col-sm-3"></div>
-			</div>
+			return <BookingConfirmation booking={this.state.booking} closeConfirmation={this.closeConfirmation}/>
 		} else {
 			return <div className="row hotel-room-info">
 				<div className="col-sm-1"></div>
@@ -108,7 +106,7 @@ export default class RoomBookingForm extends React.Component {
 					selectable
 					popup={true}
 					events={events}
-					style={{ height: "50vh" }}
+					style={{ height: "60vh" }}
 					views={['month']}
 				/>
 				</div>
@@ -137,7 +135,8 @@ export default class RoomBookingForm extends React.Component {
 						</div>
 						<input type="text" className="form-control room-phone" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon1" name="phone" value={this.state.booking.phone} onChange={this.updateState} />
 					</div>
-					<button type='button' className='btn btn-outline-primary float-right book-room' onClick={this.submitForm}>Book</button>
+					<button type='button' className='btn btn-outline-danger float-right book-room' onClick={this.props.toggleBooking}>Cancel</button>
+					<button type='button' className='btn btn-outline-primary float-right book-room' style={{marginRight : '10px' }} onClick={this.submitForm}>Book</button>
 					{errors}
 				</div>
 				<div className="col-sm-1"></div>

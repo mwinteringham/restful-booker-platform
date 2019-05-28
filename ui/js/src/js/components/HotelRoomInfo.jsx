@@ -10,10 +10,10 @@ export default class HotelRoomInfo extends React.Component {
             book : false
         }
 
-        this.enableBooking = this.enableBooking.bind(this);
+        this.toggleBooking = this.toggleBooking.bind(this);
     }
 
-    enableBooking(){
+    toggleBooking(){
         if(this.state.book){
             this.setState({book : false})
         } else {
@@ -23,11 +23,12 @@ export default class HotelRoomInfo extends React.Component {
 
     render(){
         let bookRoomView;
-        let buttonMessage = 'Book';
+        let button;
 
         if(this.state.book){
-            bookRoomView = <RoomBookingForm roomid={this.props.room.roomid} roomPrice={this.props.room.roomPrice} />
-            buttonMessage = 'Cancel';
+            bookRoomView = <RoomBookingForm roomid={this.props.room.roomid} roomPrice={this.props.room.roomPrice} toggleBooking={this.toggleBooking} />
+        } else {
+            button = <button type='button' className='btn btn-outline-primary float-right openBooking' onClick={this.toggleBooking}>Book this room</button>
         }
 
         return(
@@ -46,7 +47,7 @@ export default class HotelRoomInfo extends React.Component {
                                 return <li key={index}>{feature}</li>
                             })}
                         </ul>
-                        <button type='button' className='btn btn-outline-primary float-right openBooking' onClick={this.enableBooking}>{buttonMessage}</button>
+                        {button}
                     </div>
                     <div className="col-sm-1"></div>
                 </div>

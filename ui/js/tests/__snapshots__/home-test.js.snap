@@ -53,13 +53,6 @@ exports[`Booking info for room renders when button selected 1`] = `
           Mini-bar
         </li>
       </ul>
-      <button
-        className="btn btn-outline-primary float-right openBooking"
-        onClick={[Function]}
-        type="button"
-      >
-        Cancel
-      </button>
     </div>
     <div
       className="col-sm-1"
@@ -67,6 +60,7 @@ exports[`Booking info for room renders when button selected 1`] = `
   </div>
   <RoomBookingForm
     roomid={1}
+    toggleBooking={[Function]}
   />
 </div>
 `;
@@ -510,7 +504,7 @@ exports[`Room info for home page renders 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Book
+        Book this room
       </button>
     </div>
     <div
