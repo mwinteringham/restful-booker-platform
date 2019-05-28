@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
     @FindBy(how = How.CSS, using = ".openBooking")
     private WebElement btnOpenBooking;
 
-    @FindBy(how = How.CSS, using = ".book-room")
+    @FindBy(how = How.CSS, using = ".btn-outline-primary.book-room")
     private WebElement btnSubmitBooking;
 
     @FindBy(how = How.CSS, using = ".alert-danger")
@@ -21,6 +21,9 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".openBooking")));
     }
 
     public void clickOpenBookingForm() {

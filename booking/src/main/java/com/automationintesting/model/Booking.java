@@ -20,6 +20,7 @@ public class Booking {
     private int bookingid;
 
     @JsonProperty
+    @Min(1)
     private int roomid;
 
     @JsonProperty

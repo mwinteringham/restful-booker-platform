@@ -41,6 +41,7 @@ public class MessageRequestIT {
         Date checkoutdate = new GregorianCalendar(1990,1,2).getTime();
 
         Booking bookingPayload = new Booking.BookingBuilder()
+                .setRoomid(1)
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)

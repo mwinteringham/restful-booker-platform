@@ -77,9 +77,11 @@ public class BookingController {
             } else {
                 CreatedBooking body = bookingDB.create(booking);
 
-                MessageBuilder messageBuilder = new MessageBuilder();
-                Message message = messageBuilder.build(booking);
-                messageRequests.postMessage(message);
+                if(booking.getEmail() != null && booking.getPhone() != null){
+                    MessageBuilder messageBuilder = new MessageBuilder();
+                    Message message = messageBuilder.build(booking);
+                    messageRequests.postMessage(message);
+                }
 
                 return ResponseEntity.ok(body);
             }

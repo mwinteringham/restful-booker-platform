@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-export default class Message extends React.Component {
+export default class BookingConfirmation extends React.Component {
 
     constructor(){
         super();

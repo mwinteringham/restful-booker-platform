@@ -46,7 +46,7 @@ export default class RoomBookingForm extends React.Component {
 		this.setState(currentState);
 	}
 
-    handleSelect( result ){
+    handleSelect(result){
 		if(result.slots.length > 1){
 			let currentState = this.state;
 

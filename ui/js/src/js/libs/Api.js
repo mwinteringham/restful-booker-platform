@@ -7,6 +7,14 @@ String.prototype.capitalize = function() {
 
 export const API = {
 
+    getRoom : (component) => {
+        fetch(API_ROOT + '/room/')
+			.then(res => res.json())
+			.then(res => {
+				component.setState({rooms : res.rooms});
+			});
+    },
+
     postRoom : (component) => {
             fetch(API_ROOT + '/room/', {
                 method: 'POST',
@@ -83,6 +91,7 @@ export const API = {
             if (res.status == 409){
                 component.setState({ errors : ["The room dates are either invalid or are already booked for one or more of the dates that you have selected."]})
             } else if (res.status == 200){
+                console.log("ASADASDASSAD")
                 component.setState({completed : true})
             } else {
                 return res.json();
@@ -157,6 +166,14 @@ export const API = {
         .then(res => {
             component.setState({ events : res.report });
         })
+    },
+
+    getReport : (component) => {
+        fetch(API_ROOT + '/report/')
+            .then(res => res.json())
+            .then(body => {
+                component.setState({ report : body.report });
+            });
     },
 
     getNotificationCount : (component) => {

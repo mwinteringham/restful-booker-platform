@@ -59,6 +59,7 @@ public class BookingIntegrationIT {
 
         // We next create our booking payload to send to the Booking webservice
         Booking bookingPayload = new Booking.BookingBuilder()
+                                            .setRoomid(1)
                                             .setFirstname("Mark")
                                             .setLastname("Winteringham")
                                             .setDepositpaid(true)

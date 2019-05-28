@@ -46,6 +46,7 @@ public class BookingDateConflictIT {
         Date checkoutdate = new GregorianCalendar(2018,1,2).getTime();
 
         Booking bookingPayload = new Booking.BookingBuilder()
+                .setRoomid(1)
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
@@ -80,6 +81,7 @@ public class BookingDateConflictIT {
         Date checkoutdate = new GregorianCalendar(2018,1,1).getTime();
 
         Booking bookingPayload = new Booking.BookingBuilder()
+                .setRoomid(1)
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
