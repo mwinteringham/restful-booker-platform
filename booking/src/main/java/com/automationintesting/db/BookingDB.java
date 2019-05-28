@@ -6,7 +6,9 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -39,8 +41,8 @@ public class BookingDB {
                 .setFirstname("James")
                 .setLastname("Dean")
                 .setDepositpaid(true)
-                .setCheckin(new GregorianCalendar(2018,1,26).getTime())
-                .setCheckout(new GregorianCalendar(2018,1,26).getTime())
+                .setCheckin(new GregorianCalendar(2019,1,1).getTime())
+                .setCheckout(new GregorianCalendar(2019,1,5).getTime())
                 .setEmail("mark@mwtestconsultancy.co.uk")
                 .setPhone("01234123123")
                 .build();
@@ -134,11 +136,15 @@ public class BookingDB {
     public Boolean checkForBookingConflict(Booking bookingToCheck) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(SELECT_DATE_CONFLICTS);
 
+        Calendar parseCheckinDate = Calendar.getInstance();
+        parseCheckinDate.setTime(bookingToCheck.getBookingDates().getCheckin());
+        parseCheckinDate.add(Calendar.DATE, 1);
+
         for(int i = 1; i <= 6; i++){
             if (i % 2 == 0){
                 ps.setDate(i, new Date(bookingToCheck.getBookingDates().getCheckout().getTime()));
             } else {
-                ps.setDate(i, new Date(bookingToCheck.getBookingDates().getCheckin().getTime()));
+                ps.setDate(i, new Date(parseCheckinDate.getTimeInMillis()));
             }
         }
 

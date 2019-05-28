@@ -135,4 +135,38 @@ public class DateConflictTest extends BaseTest {
         assertThat(conflict, is(false));
     }
 
+    @Test
+    public void testNoConflictForOverlapOnCheckoutCheckinDate() throws SQLException, ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date bookingOneCheckin = simpleDateFormat.parse("2018-01-01");
+        Date bookingOneCheckout = simpleDateFormat.parse("2018-01-05");
+
+        Date bookingTwoCheckin = simpleDateFormat.parse("2018-01-05");
+        Date bookingTwoCheckout = simpleDateFormat.parse("2018-01-07");
+
+        Booking bookingOne = new Booking.BookingBuilder()
+                .setRoomid(1)
+                .setFirstname("Mark")
+                .setLastname("Winteringham")
+                .setDepositpaid(true)
+                .setCheckin(bookingOneCheckin)
+                .setCheckout(bookingOneCheckout)
+                .build();
+
+        Booking bookingTwo = new Booking.BookingBuilder()
+                .setRoomid(1)
+                .setFirstname("Mark")
+                .setLastname("Winteringham")
+                .setDepositpaid(true)
+                .setCheckin(bookingTwoCheckin)
+                .setCheckout(bookingTwoCheckout)
+                .build();
+
+        bookingDB.create(bookingOne);
+
+        Boolean conflict = bookingDB.checkForBookingConflict(bookingTwo);
+
+        assertThat(conflict, is(false));
+    }
+
 }
