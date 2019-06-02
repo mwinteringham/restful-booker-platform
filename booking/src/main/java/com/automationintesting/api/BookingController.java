@@ -4,6 +4,9 @@ import com.automationintesting.db.BookingDB;
 import com.automationintesting.model.Booking;
 import com.automationintesting.model.BookingResults;
 import com.automationintesting.model.CreatedBooking;
+import com.automationintesting.model.Message;
+import com.automationintesting.requests.MessageRequests;
+import com.automationintesting.utils.MessageBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,7 @@ public class BookingController {
 
     private BookingDB bookingDB;
     private AuthRequests authRequests;
+    private MessageRequests messageRequests;
     private DateCheckValidator dateCheckValidator;
 
     @Bean
@@ -51,6 +55,7 @@ public class BookingController {
     public BookingController() throws SQLException {
         bookingDB = new BookingDB(true);
         authRequests = new AuthRequests();
+        messageRequests = new MessageRequests();
         dateCheckValidator = new DateCheckValidator();
     }
 
@@ -66,19 +71,22 @@ public class BookingController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<?> createBooking(@Valid @RequestBody Booking booking, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequests.postCheckAuth(token)) {
-            if(dateCheckValidator.isValid(booking.getBookingDates())) {
-                if (bookingDB.checkForBookingConflict(booking)) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT).build();
-                } else {
-                    CreatedBooking body = bookingDB.create(booking);
-                    return ResponseEntity.ok(body);
-                }
-            } else {
+        if(dateCheckValidator.isValid(booking.getBookingDates())) {
+            if (bookingDB.checkForBookingConflict(booking)) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            } else {
+                CreatedBooking body = bookingDB.create(booking);
+
+                if(booking.getEmail() != null && booking.getPhone() != null){
+                    MessageBuilder messageBuilder = new MessageBuilder();
+                    Message message = messageBuilder.build(booking);
+                    messageRequests.postMessage(message);
+                }
+
+                return ResponseEntity.ok(body);
             }
         } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
 

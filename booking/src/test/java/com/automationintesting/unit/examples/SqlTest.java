@@ -33,7 +33,6 @@ public class SqlTest extends BaseTest {
                 .setRoomid(1)
                 .setFirstname("James")
                 .setLastname("Dean")
-                .setTotalprice(100)
                 .setDepositpaid(true)
                 .setCheckin(new GregorianCalendar(2018,1,26).getTime())
                 .setCheckout(new GregorianCalendar(2018,1,26).getTime())
@@ -62,7 +61,7 @@ public class SqlTest extends BaseTest {
 
         // We finally use hamcrest to assertThat the booking we queried
         // is the same as the expected String in the second parameter
-        assertThat(bookingString, is("Booking{roomid=1, firstname='James', lastname='Dean', totalprice=100, depositpaid=true, bookingDates=BookingDates{checkin=2018-02-26, checkout=2018-02-26}}"));
+        assertThat(bookingString, is("Booking{roomid=1, firstname='James', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2018-02-26, checkout=2018-02-26}}"));
     }
 
     @Test
@@ -71,7 +70,6 @@ public class SqlTest extends BaseTest {
                 .setRoomid(1)
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
-                .setTotalprice(100)
                 .setDepositpaid(true)
                 .setCheckin(new GregorianCalendar(2013,0,31).getTime())
                 .setCheckout(new GregorianCalendar(2013,0,31).getTime())
@@ -80,7 +78,7 @@ public class SqlTest extends BaseTest {
         CreatedBooking createdBooking = bookingDB.create(booking);
         String createdBookingString = createdBooking.toString();
 
-        assertThat(createdBookingString, is("CreatedBooking{\nbookingid=" + (currentBookingId + 1) + "\n, booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', totalprice=100, depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
+        assertThat(createdBookingString, is("CreatedBooking{\nbookingid=" + (currentBookingId + 1) + "\n, booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
     }
 
     @Test
@@ -97,7 +95,6 @@ public class SqlTest extends BaseTest {
                 .setRoomid(1)
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
-                .setTotalprice(100)
                 .setDepositpaid(true)
                 .setCheckin(new GregorianCalendar(2013,0,31).getTime())
                 .setCheckout(new GregorianCalendar(2013,0,31).getTime())
@@ -106,7 +103,7 @@ public class SqlTest extends BaseTest {
         CreatedBooking updatedBooking = bookingDB.update(currentBookingId, booking);
         String updatedBookingString = updatedBooking.toString();
 
-        assertThat(updatedBookingString, is("CreatedBooking{\nbookingid=" + currentBookingId + "\n, booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', totalprice=100, depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
+        assertThat(updatedBookingString, is("CreatedBooking{\nbookingid=" + currentBookingId + "\n, booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
     }
 
 }

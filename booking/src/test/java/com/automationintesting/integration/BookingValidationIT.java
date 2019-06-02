@@ -22,6 +22,8 @@ public class BookingValidationIT {
     @Test
     public void testPostValidation() {
         Booking bookingPayload = new Booking.BookingBuilder()
+                                        .setEmail("mark@mwtestconsultancy.co.uk")
+                                        .setPhone("01234123123")
                                         .build();
 
         Response response = given()
@@ -36,6 +38,8 @@ public class BookingValidationIT {
     @Test
     public void testPutValidation() {
         Booking bookingPayload = new Booking.BookingBuilder()
+                .setEmail("mark@mwtestconsultancy.co.uk")
+                .setPhone("01234123123")
                 .build();
 
         Response response = given()

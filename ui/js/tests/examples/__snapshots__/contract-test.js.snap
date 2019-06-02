@@ -25,7 +25,7 @@ exports[`Rooms list component 1`] = `
       className="col-sm-1"
     >
       <p>
-        100
+        NaN
       </p>
     </div>
     <div
@@ -39,14 +39,14 @@ exports[`Rooms list component 1`] = `
       className="col-sm-2"
     >
       <p>
-        2018-02-26
+        2019-02-01
       </p>
     </div>
     <div
       className="col-sm-2"
     >
       <p>
-        2018-02-26
+        2019-02-05
       </p>
     </div>
     <div

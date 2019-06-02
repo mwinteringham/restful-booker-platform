@@ -12,7 +12,7 @@ public class UpdateSql {
     private PreparedStatement preparedStatement;
 
     UpdateSql(Connection connection, int id, Room room) throws SQLException {
-        String UPDATE_ROOM = "UPDATE ROOMS SET room_number = ?, type = ?, accessible = ?, image = ?, description = ?, features = ? WHERE roomid = ?";
+        String UPDATE_ROOM = "UPDATE ROOMS SET room_number = ?, type = ?, accessible = ?, image = ?, description = ?, features = ?, roomPrice = ? WHERE roomid = ?";
 
         preparedStatement = connection.prepareStatement(UPDATE_ROOM);
         preparedStatement.setInt(1, room.getRoomNumber());
@@ -24,7 +24,8 @@ public class UpdateSql {
         Array featuresArray = connection.createArrayOf("VARCHAR", room.getFeatures());
         preparedStatement.setArray(6, featuresArray);
 
-        preparedStatement.setInt(7, id);
+        preparedStatement.setInt(7, room.getRoomPrice());
+        preparedStatement.setInt(8, id);
     }
 
     public PreparedStatement getPreparedStatement() {

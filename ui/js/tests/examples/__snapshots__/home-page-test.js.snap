@@ -27,7 +27,14 @@ exports[`Rooms list component 1`] = `
       </p>
     </div>
     <div
-      className="col-sm-6 rowHeader"
+      className="col-sm-1 rowHeader"
+    >
+      <p>
+        Price
+      </p>
+    </div>
+    <div
+      className="col-sm-5 rowHeader"
     >
       <p>
         Room details

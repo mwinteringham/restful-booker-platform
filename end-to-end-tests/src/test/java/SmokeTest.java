@@ -1,6 +1,4 @@
-import models.Booking;
 import models.MessagePage;
-import models.Room;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
@@ -8,7 +6,7 @@ import pageobjects.*;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 
@@ -37,6 +35,7 @@ public class SmokeTest extends TestSetup {
         int initialRoomCount = roomListingPage.roomCount();
 
         roomListingPage.populateRoomNumber("102");
+        roomListingPage.setRoomPrice("100");
         roomListingPage.checkWifi();
         roomListingPage.checkSafe();
         roomListingPage.checkRadio();
@@ -48,25 +47,15 @@ public class SmokeTest extends TestSetup {
     }
 
     @Test
-    public void bookingSmokeTest() throws InterruptedException {
-        Booking booking = new Booking("Sam", "Jones", "100");
+    public void bookingSmokeTest() {
+        NavPage navPage = new NavPage(driver);
+        navPage.clickFrontPage();
 
-        RoomListingPage roomListingPage = new RoomListingPage(driver);
-        roomListingPage.clickFirstRoom();
+        HomePage homePage = new HomePage(driver);
+        homePage.clickOpenBookingForm();
+        homePage.clickSubmitBooking();
 
-        RoomPage roomPage = new RoomPage(driver);
-        int initialBookingCount = roomPage.getBookingCount();
-
-        roomPage.populateFirstname(booking.getFirstname());
-        roomPage.populateLastname(booking.getLastname());
-        roomPage.populateTotalPrice(booking.getTotalPrice());
-        roomPage.populateCheckin("2100-01-01");
-        roomPage.populateCheckout("2100-01-02");
-        roomPage.clickCreateBooking();
-
-        int currentBookingCount = roomPage.getBookingCount();
-
-        assertThat(currentBookingCount, is(initialBookingCount + 1));
+        assertThat(homePage.bookingFormErrorsExist(), is(true));
     }
 
     @Test

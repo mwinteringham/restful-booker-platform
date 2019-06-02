@@ -18,6 +18,7 @@ public class RoomDB {
     private final String SELECT_BY_ROOMID = "SELECT * FROM ROOMS WHERE roomid = ?";
     private final String DELETE_BY_ROOMID = "DELETE FROM ROOMS WHERE roomid = ?";
     private final String DELETE_ALL_ROOMS = "DELETE FROM ROOMS";
+    private final String CREATE_DB = "CREATE table ROOMS ( roomid int NOT NULL AUTO_INCREMENT, room_number int, type varchar(255), beds int, accessible boolean, image varchar(2000), description varchar(2000), features ARRAY, roomPrice int, primary key (roomid))";
 
     public RoomDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -28,24 +29,15 @@ public class RoomDB {
 
         Server server = Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
 
-        String prepareDb = "CREATE table ROOMS ( roomid int NOT NULL AUTO_INCREMENT," +
-                           " room_number int," +
-                           " type varchar(255)," +
-                           " beds int," +
-                           " accessible boolean," +
-                           " image varchar(2000)," +
-                           " description varchar(2000)," +
-                           " features ARRAY," +
-                           " primary key (roomid));";
-
-        connection.prepareStatement(prepareDb).executeUpdate();
+        connection.prepareStatement(CREATE_DB).executeUpdate();
 
         Room room = new Room(101,
                 "Twin",
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
                 "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
-                new String[]{"Wifi", "TV", "Safe"});
+                new String[]{"Wifi", "TV", "Safe"},
+                100);
 
         InsertSql insertSql = new InsertSql(connection, room);
         PreparedStatement createBooking = insertSql.getPreparedStatement();

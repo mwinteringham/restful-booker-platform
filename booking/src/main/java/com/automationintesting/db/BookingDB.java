@@ -6,7 +6,9 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class BookingDB {
 
     private Connection connection;
 
-    private final String CREATE_DB = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), totalprice int, depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
+    private final String CREATE_DB = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
     private final String SELECT_BY_BOOKINGID = "SELECT * FROM BOOKINGS WHERE bookingid=?";
     private final String DELETE_BY_ID = "DELETE FROM BOOKINGS WHERE bookingid = ?" ;
     private final String SELECT_BY_NAME = "SELECT * FROM BOOKINGS WHERE firstname = ? OR lastname = ?;";
@@ -38,10 +40,11 @@ public class BookingDB {
                 .setRoomid(1)
                 .setFirstname("James")
                 .setLastname("Dean")
-                .setTotalprice(100)
                 .setDepositpaid(true)
-                .setCheckin(new GregorianCalendar(2018,1,26).getTime())
-                .setCheckout(new GregorianCalendar(2018,1,26).getTime())
+                .setCheckin(new GregorianCalendar(2019,1,1).getTime())
+                .setCheckout(new GregorianCalendar(2019,1,5).getTime())
+                .setEmail("mark@mwtestconsultancy.co.uk")
+                .setPhone("01234123123")
                 .build();
 
         InsertSql insertSql = new InsertSql(connection, booking);
@@ -133,11 +136,15 @@ public class BookingDB {
     public Boolean checkForBookingConflict(Booking bookingToCheck) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(SELECT_DATE_CONFLICTS);
 
+        Calendar parseCheckinDate = Calendar.getInstance();
+        parseCheckinDate.setTime(bookingToCheck.getBookingDates().getCheckin());
+        parseCheckinDate.add(Calendar.DATE, 1);
+
         for(int i = 1; i <= 6; i++){
             if (i % 2 == 0){
                 ps.setDate(i, new Date(bookingToCheck.getBookingDates().getCheckout().getTime()));
             } else {
-                ps.setDate(i, new Date(bookingToCheck.getBookingDates().getCheckin().getTime()));
+                ps.setDate(i, new Date(parseCheckinDate.getTimeInMillis()));
             }
         }
 

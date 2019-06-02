@@ -1,5 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Booking info for room renders when button selected 1`] = `
+<div>
+  <div
+    className="row hotel-room-info"
+  >
+    <div
+      className="col-sm-1"
+    />
+    <div
+      className="col-sm-3"
+    >
+      <img
+        alt="Preview image of room101"
+        className="img-responsive hotel-img"
+        src="https://www.mwtestconsultancy.co.uk/img/room1.jpg"
+      />
+    </div>
+    <div
+      className="col-sm-7"
+    >
+      <h3>
+        Standard Room
+      </h3>
+      <p>
+        Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.
+      </p>
+      <ul>
+        <li
+          key="0"
+        >
+          Internet/Wi-fi
+        </li>
+        <li
+          key="1"
+        >
+          Jacuzzi Bathroom
+        </li>
+        <li
+          key="2"
+        >
+          Air conditioning
+        </li>
+        <li
+          key="3"
+        >
+          High Definition TV
+        </li>
+        <li
+          key="4"
+        >
+          Mini-bar
+        </li>
+      </ul>
+    </div>
+    <div
+      className="col-sm-1"
+    />
+  </div>
+  <RoomBookingForm
+    roomid={1}
+    toggleBooking={[Function]}
+  />
+</div>
+`;
+
 exports[`Contact form errors render 1`] = `
 <p>
   ERROR: Missing contact details to render
@@ -382,60 +447,69 @@ exports[`Map for home page renders error 1`] = `
 `;
 
 exports[`Room info for home page renders 1`] = `
-<div
-  className="row hotel-room-info"
->
+<div>
   <div
-    className="col-sm-1"
-  />
-  <div
-    className="col-sm-3"
+    className="row hotel-room-info"
   >
-    <img
-      alt="Preview image of room101"
-      className="img-responsive hotel-img"
-      src="https://www.mwtestconsultancy.co.uk/img/room1.jpg"
+    <div
+      className="col-sm-1"
+    />
+    <div
+      className="col-sm-3"
+    >
+      <img
+        alt="Preview image of room101"
+        className="img-responsive hotel-img"
+        src="https://www.mwtestconsultancy.co.uk/img/room1.jpg"
+      />
+    </div>
+    <div
+      className="col-sm-7"
+    >
+      <h3>
+        Standard Room
+      </h3>
+      <p>
+        Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.
+      </p>
+      <ul>
+        <li
+          key="0"
+        >
+          Internet/Wi-fi
+        </li>
+        <li
+          key="1"
+        >
+          Jacuzzi Bathroom
+        </li>
+        <li
+          key="2"
+        >
+          Air conditioning
+        </li>
+        <li
+          key="3"
+        >
+          High Definition TV
+        </li>
+        <li
+          key="4"
+        >
+          Mini-bar
+        </li>
+      </ul>
+      <button
+        className="btn btn-outline-primary float-right openBooking"
+        onClick={[Function]}
+        type="button"
+      >
+        Book this room
+      </button>
+    </div>
+    <div
+      className="col-sm-1"
     />
   </div>
-  <div
-    className="col-sm-7"
-  >
-    <h3>
-      Standard Room
-    </h3>
-    <p>
-      Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.
-    </p>
-    <ul>
-      <li
-        key="0"
-      >
-        Internet/Wi-fi
-      </li>
-      <li
-        key="1"
-      >
-        Jacuzzi Bathroom
-      </li>
-      <li
-        key="2"
-      >
-        Air conditioning
-      </li>
-      <li
-        key="3"
-      >
-        High Definition TV
-      </li>
-      <li
-        key="4"
-      >
-        Mini-bar
-      </li>
-    </ul>
-  </div>
-  <div
-    className="col-sm-1"
-  />
 </div>
 `;

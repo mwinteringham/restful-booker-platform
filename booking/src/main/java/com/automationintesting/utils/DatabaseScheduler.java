@@ -38,7 +38,6 @@ public class DatabaseScheduler {
                                 .setRoomid(1)
                                 .setFirstname("James")
                                 .setLastname("Dean")
-                                .setTotalprice(100)
                                 .setDepositpaid(true)
                                 .setCheckin(new GregorianCalendar(2018,1,26).getTime())
                                 .setCheckout(new GregorianCalendar(2018,1,26).getTime())

@@ -47,7 +47,9 @@ exports[`Multiple reports can be created in the Report component 1`] = `
         "startOfWeek": [Function],
       }
     }
+    onSelectSlot={[Function]}
     popup={true}
+    selectable={true}
     style={
       Object {
         "height": "75vh",

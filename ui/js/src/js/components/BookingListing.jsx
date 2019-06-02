@@ -3,6 +3,8 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { API_ROOT } from '../api-config';
 
+import "react-datepicker/dist/react-datepicker.css";
+
 export default class BookingListing extends React.Component {
 
     constructor(){
@@ -24,7 +26,8 @@ export default class BookingListing extends React.Component {
 
     componentDidMount(){
         this.setState({
-            booking : this.props.booking
+            booking : this.props.booking,
+            amountOfDays : Math.round(Math.abs((new Date(this.props.booking.bookingdates.checkin).getTime() - new Date(this.props.booking.bookingdates.checkout).getTime())/(24*60*60*1000)))
         })
     }
 
@@ -71,6 +74,7 @@ export default class BookingListing extends React.Component {
         let currentState = this.state;
 
         currentState.booking.bookingdates.checkin = moment(date.toUTCString()).format("YYYY-MM-DD");;
+        currentState.amountOfDays = Math.round(Math.abs((new Date(this.props.booking.bookingdates.checkin).getTime() - new Date(this.props.booking.bookingdates.checkout).getTime())/(24*60*60*1000)));
 
         this.setState(currentState);
     }
@@ -79,6 +83,7 @@ export default class BookingListing extends React.Component {
         let currentState = this.state;
 
         currentState.booking.bookingdates.checkout = moment(date.toUTCString()).format("YYYY-MM-DD");;
+        currentState.amountOfDays = Math.round(Math.abs((new Date(this.props.booking.bookingdates.checkin).getTime() - new Date(this.props.booking.bookingdates.checkout).getTime())/(24*60*60*1000)));
 
         this.setState(currentState);
     }
@@ -98,7 +103,7 @@ export default class BookingListing extends React.Component {
             booking = <div className="row">
                         <div className="col-sm-2"><input type="text" className="form-control" name="firstname" defaultValue={this.props.booking.firstname} onChange={this.updateState} /></div>
                         <div className="col-sm-2"><input type="text" className="form-control" name="lastname" defaultValue={this.props.booking.lastname} onChange={this.updateState} /></div>
-                        <div className="col-sm-1"><input type="text" className="form-control" name="totalprice"  defaultValue={this.props.booking.totalprice} onChange={this.updateState} /></div>
+                        <div className="col-sm-1"><p>{this.props.roomPrice * this.state.amountOfDays}</p></div>
                         <div className="col-sm-2">
                             <select className="form-control" defaultValue={this.props.booking.depositpaid} name="depositpaid" onChange={this.updateState}>
                                 <option value="false">false</option>
@@ -116,7 +121,7 @@ export default class BookingListing extends React.Component {
             booking = <div className="row">
                         <div className="col-sm-2"><p>{this.props.booking.firstname}</p></div>
                         <div className="col-sm-2"><p>{this.props.booking.lastname}</p></div>
-                        <div className="col-sm-1"><p>{this.props.booking.totalprice}</p></div>
+                        <div className="col-sm-1"><p>{this.props.roomPrice * this.state.amountOfDays}</p></div>
                         <div className="col-sm-2"><p>{String(this.props.booking.depositpaid)}</p></div>
                         <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkin.split('T')[0]}</p></div>
                         <div className="col-sm-2"><p>{this.props.booking.bookingdates.checkout.split('T')[0]}</p></div>

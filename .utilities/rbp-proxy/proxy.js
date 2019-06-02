@@ -8,6 +8,9 @@ var server = http.createServer(function(req, res) {
         case /booking/.test(req.url):
             proxy.web(req, res, { target: 'http://localhost:3000' });
             break;
+        case /report/.test(req.url):
+            proxy.web(req, res, { target: 'http://localhost:3005' });
+            break;
         case /room/.test(req.url):
             proxy.web(req, res, { target: 'http://localhost:3001' });
             break;
@@ -16,9 +19,6 @@ var server = http.createServer(function(req, res) {
             break;
         case /auth/.test(req.url):
             proxy.web(req, res, { target: 'http://localhost:3004' });
-            break;
-        case /report/.test(req.url):
-            proxy.web(req, res, { target: 'http://localhost:3005' });
             break;
         case /message/.test(req.url):
             proxy.web(req, res, { target: 'http://localhost:3006' });

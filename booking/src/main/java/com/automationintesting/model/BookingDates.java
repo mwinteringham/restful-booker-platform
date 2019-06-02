@@ -11,9 +11,11 @@ import java.util.Date;
 public class BookingDates {
 
     @JsonProperty
+    @NotNull
     private Date checkin;
 
     @JsonProperty
+    @NotNull
     private Date checkout;
 
     public BookingDates() {

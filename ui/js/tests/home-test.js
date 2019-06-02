@@ -84,6 +84,33 @@ test('Room info for home page renders', () => {
     expect(hotelRoomInfoComponent).toMatchSnapshot();
 });
 
+test('Booking info for room renders when button selected', () => {
+    const roomDetails = {
+        roomid: 1,
+        roomNumber: 101,
+        type: 'Standard Room',
+        beds: 2,
+        accessible: false,
+        image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+        description: 'Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.',
+        features: [
+            'Internet/Wi-fi',
+            'Jacuzzi Bathroom',
+            'Air conditioning',
+            'High Definition TV',
+            'Mini-bar'
+        ]
+    }
+
+    const hotelRoomInfoComponent = shallow(
+        <HotelRoomInfo room={roomDetails} />
+    )
+
+    hotelRoomInfoComponent.find('.openBooking').simulate('click');
+
+    expect(hotelRoomInfoComponent).toMatchSnapshot();
+});
+
 test('Map for home page renders', () => {
     const mapDetails = {
         latitude : 52.6351204,

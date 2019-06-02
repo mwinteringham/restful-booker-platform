@@ -23,6 +23,9 @@ public class NavPage extends BasePage {
     @FindBy(how = How.CSS, using = ".fa-inbox")
     private WebElement aNotification;
 
+    @FindBy(how = How.ID, using = "frontPageLink")
+    private WebElement aFrontPage;
+
     public NavPage(WebDriver driver) {
         super(driver);
     }
@@ -41,5 +44,9 @@ public class NavPage extends BasePage {
 
     public void clickNotification() {
         aNotification.click();
+    }
+
+    public void clickFrontPage() {
+        aFrontPage.click();
     }
 }

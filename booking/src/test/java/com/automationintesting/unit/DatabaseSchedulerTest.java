@@ -76,7 +76,6 @@ public class DatabaseSchedulerTest extends BaseTest {
                                     .setFirstname("Mark")
                                     .setLastname("Winteringham")
                                     .setDepositpaid(true)
-                                    .setTotalprice(100)
                                     .setCheckin(new Date())
                                     .setCheckout(new Date())
                                     .build();
@@ -86,7 +85,6 @@ public class DatabaseSchedulerTest extends BaseTest {
                                     .setFirstname("Richard")
                                     .setLastname("Bradshaw")
                                     .setDepositpaid(true)
-                                    .setTotalprice(100)
                                     .setCheckin(new Date())
                                     .setCheckout(new Date())
                                     .build();
