@@ -1,10 +1,10 @@
 package com.automationintesting.integration.taskanalysis;
 
 import com.automationintesting.api.AuthApplication;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import com.automationintesting.model.Auth;
 import com.automationintesting.model.Token;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,9 +12,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
 // We need to start the app up to test it. So we use the SpringRunner class and SpringBootTest to configure
