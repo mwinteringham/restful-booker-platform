@@ -128,20 +128,20 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: rbp-ui
+  name: rbp-assets
 spec:
   selector:
     matchLabels:
-      run: rbp-ui
+      run: rbp-assets
   replicas: 1
   template:
     metadata:
       labels:
-        run: rbp-ui
+        run: rbp-assets
     spec:
       containers:
-        - name: rbp-ui
-          image: mwinteringham/restfulbookerplatform_ui:latest
+        - name: rbp-assets
+          image: mwinteringham/restfulbookerplatform_assets:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3003
@@ -335,9 +335,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rbp-ui
+  name: rbp-assets
   labels:
-    app: rbp-ui
+    app: rbp-assets
 spec:
   type: NodePort
   ports:
@@ -346,7 +346,7 @@ spec:
       nodePort: 32150
       targetPort: 3003
   selector:
-    run: rbp-ui
+    run: rbp-assets
 ---  
 apiVersion: v1
 kind: Service
@@ -431,17 +431,17 @@ spec:
           servicePort: 3006
       - path: /
         backend:
-          serviceName: rbp-ui
+          serviceName: rbp-assets
           servicePort: 3003
       - path: /js/*
         backend:
-          serviceName: rbp-ui
+          serviceName: rbp-assets
           servicePort: 3003
       - path: /images/*
         backend:
-          serviceName: rbp-ui
+          serviceName: rbp-assets
           servicePort: 3003
       - path: /actuator/*
         backend:
-          serviceName: rbp-ui
+          serviceName: rbp-assets
           servicePort: 3003

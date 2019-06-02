@@ -173,7 +173,7 @@ jobs:
             - message/
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-message
 
-  run_ui_tests:
+  run_assets_tests:
 
     docker:
       - image: circleci/openjdk:8u151-jdk-node-browsers
@@ -191,8 +191,8 @@ jobs:
             bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY}
       - run:
           command: |
-            if [ -f ~/tmp/ui.txt ]; then
-              echo "[BUILDING] UI"
+            if [ -f ~/tmp/assets.txt ]; then
+              echo "[BUILDING] Assets"
               npm install
               npm test
               npm run build
@@ -206,15 +206,15 @@ jobs:
                 mvn install
               fi
             else
-              echo "[SKIPPING] UI"
+              echo "[SKIPPING] Assets"
             fi
-          working_directory: ui/js
+          working_directory: assets/js
           environment:
             BROWSER: remote
       - save_cache:
           paths:
-            - ui/
-          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
+            - assets/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-assets
 
   build_auth_docker_image:
 
@@ -360,29 +360,29 @@ jobs:
             fi
           working_directory: message
 
-  build_ui_docker_image:
+  build_assets_docker_image:
 
         docker:
           - image: circleci/openjdk:8u151-jdk-node-browsers
 
         steps:
           - restore_cache:
-              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-ui
+              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-assets
 
           - setup_remote_docker:
               docker_layer_caching: true
 
           - run:
               command: |
-                if [ -f ~/project/ui/api/target/restful-booker-platform-ui-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
-                  echo "[BUILDING] UI"
+                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*-SNAPSHOT.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+                  echo "[BUILDING] Assets"
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
-                  docker build -t mwinteringham/restfulbookerplatform_ui:latest .
-                  docker push mwinteringham/restfulbookerplatform_ui:latest
+                  docker build -t mwinteringham/restfulbookerplatform_assets:latest .
+                  docker push mwinteringham/restfulbookerplatform_assets:latest
                 else
-                  echo "[SKIPPING] UI"
+                  echo "[SKIPPING] Assets"
                 fi
-              working_directory: ui
+              working_directory: assets
 
   deploy_auth_docker_image:
 
@@ -522,7 +522,7 @@ jobs:
             echo "[SKIPPING] Message"
           fi
 
-  deploy_ui_docker_image:
+  deploy_assets_docker_image:
 
       docker:
         - image: google/cloud-sdk
@@ -534,15 +534,15 @@ jobs:
             name: Store Service Account
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run: |
-            if [ -f /home/circleci/tmp/ui.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-              echo "[DEPLOYING] UI"
+            if [ -f /home/circleci/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+              echo "[DEPLOYING] Assets"
               gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
               gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
               gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
               gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-              kubectl delete pod $(kubectl get pods | awk '/rbp-ui/ {print $1;exit}')
+              kubectl delete pod $(kubectl get pods | awk '/rbp-assets/ {print $1;exit}')
             else
-              echo "[SKIPPING] UI"
+              echo "[SKIPPING] Assets"
             fi
 
   run_e2e_checks:
@@ -592,7 +592,7 @@ workflows:
       - run_message_build:
           requires:
             - checkout_code
-      - run_ui_tests:
+      - run_assets_tests:
           requires:
             - checkout_code
       - build_auth_docker_image:
@@ -613,9 +613,9 @@ workflows:
       - build_message_docker_image:
           requires:
             - run_message_build
-      - build_ui_docker_image:
+      - build_assets_docker_image:
           requires:
-            - run_ui_tests
+            - run_assets_tests
       - deploy_auth_docker_image:
           requires:
             - build_auth_docker_image
@@ -634,15 +634,15 @@ workflows:
       - deploy_message_docker_image:
           requires:
             - build_message_docker_image
-      - deploy_ui_docker_image:
+      - deploy_assets_docker_image:
           requires:
-            - build_ui_docker_image
+            - build_assets_docker_image
       - run_e2e_checks:
           requires:
             - deploy_auth_docker_image
             - deploy_booking_docker_image
             - deploy_report_docker_image
             - deploy_room_docker_image
-            - deploy_ui_docker_image
+            - deploy_assets_docker_image
             - deploy_branding_docker_image
             - deploy_message_docker_image

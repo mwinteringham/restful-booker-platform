@@ -78,7 +78,7 @@ cd %cmdFileDirectory%.utilities\rbp-proxy
 call npm install
 cd %cmdFileDirectory%
 
-cd %cmdFileDirectory%ui\js
+cd %cmdFileDirectory%assets\js
 call npm install
 call npm test
 call npm run build

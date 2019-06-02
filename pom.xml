@@ -12,6 +12,6 @@
         <module>report</module>
         <module>branding</module>
         <module>message</module>
-        <module>ui/api</module>
+        <module>assets/api</module>
     </modules>
 </project>

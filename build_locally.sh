@@ -55,7 +55,7 @@ cd .utilities/rbp-proxy
 npm install
 cd ../..
 
-cd ui/js
+cd assets/js
 npm install
 npm run test
 npm run build
