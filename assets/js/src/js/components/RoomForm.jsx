@@ -10,11 +10,12 @@ export default class RoomForm extends React.Component {
             errors : [],
             rooms : [], 
             newRoom : {
-                roomNumber : "",
+                roomNumber : '',
                 type : "Single",
                 accessible : false,
                 description : "Please enter a description for this room",
                 image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+                roomPrice : '',
                 features : {
                     WiFi : false,
                     TV : false,
@@ -22,8 +23,7 @@ export default class RoomForm extends React.Component {
                     Refreshments : false,
                     Safe : false,
                     Views : false
-                },
-                roomPrice : null
+                }
             }
         }
 
@@ -42,6 +42,7 @@ export default class RoomForm extends React.Component {
                 accessible : false,
                 description : "Please enter a description for this room",
                 image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
+                roomPrice : '',
                 features : {
                     WiFi : false,
                     TV : false,

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import { SHOW_WELCOME } from '../api-config';
 import ReactModal from 'react-modal';
 import Cookies from 'universal-cookie';
+import { createBrowserHistory as createHistory } from 'history'
+import ReactGA from 'react-ga';
 
 import AdminContainer from './AdminContainer.jsx';
 import Welcome from './Welcome.jsx';
@@ -12,6 +14,14 @@ import Home from './Home.jsx';
 import Footer from './Footer.jsx';
 
 if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#root');
+
+const history = createHistory();
+
+ReactGA.initialize('UA-118712228-3');
+
+history.listen((location) => {
+    ReactGA.pageview(location.pathname + location.hash);
+});
 
 export default class App extends React.Component {
 
@@ -23,6 +33,8 @@ export default class App extends React.Component {
         }
         
         this.setWelcome = this.setWelcome.bind(this);
+
+        ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
     componentDidMount(){
@@ -51,7 +63,7 @@ export default class App extends React.Component {
         }
 
         return(
-            <div>
+            <HashRouter>
                 {welcome}
                     <Switch>
                         <Route path='/admin/' render={() => (
@@ -62,7 +74,7 @@ export default class App extends React.Component {
                         <Route exact path='/privacy' component={PrivacyPolicy} />
                     </Switch>
                 <Footer />
-            </div>
+            </HashRouter>
         );
     }
 }

@@ -53,6 +53,7 @@
     "react-big-calendar": "^0.21.0",
     "react-datepicker": "^2.6.0",
     "react-dom": "^16.8.6",
+    "react-ga": "^2.5.7",
     "react-modal": "^3.8.1",
     "react-router-dom": "^5.0.0",
     "react-spinners": "^0.5.4",
