@@ -2,7 +2,8 @@ import React from 'react';
 import Welcome from '../src/js/components/Welcome.jsx';
 import App from '../src/js/components/App.jsx';
 import nock from 'nock';
-import { mountWrap } from './helpers/routerWrapper.js';
+
+jest.mock("react-ga")
 
 beforeEach(() => {
     nock('http://localhost:3004')

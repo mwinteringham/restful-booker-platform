@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Welcome component appears on initial visit 1`] = `
-<div>
+<HashRouter>
   <div>
     <Welcome
       setWelcome={[Function]}
@@ -29,7 +29,7 @@ exports[`Welcome component appears on initial visit 1`] = `
     />
   </Switch>
   <Footer />
-</div>
+</HashRouter>
 `;
 
 exports[`Welcome component contains correct details 1`] = `
@@ -129,7 +129,7 @@ exports[`Welcome component contains correct details 1`] = `
 `;
 
 exports[`Welcome component doesnt appear after close 1`] = `
-<div>
+<HashRouter>
   <Switch>
     <Route
       path="/admin/"
@@ -152,5 +152,5 @@ exports[`Welcome component doesnt appear after close 1`] = `
     />
   </Switch>
   <Footer />
-</div>
+</HashRouter>
 `;
