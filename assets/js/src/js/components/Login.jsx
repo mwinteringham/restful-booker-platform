@@ -55,7 +55,7 @@ export default class Login extends React.Component {
                 <div className="row">
                     <div className="col-sm-2"></div>
                     <div className="col-sm-8" style={{textAlign : "center"}}>
-                        <h2>Log into your account</h2>
+                        <h2 data-testid="login-header">Log into your account</h2>
                         <br />
                     </div>
                     <div className="col-sm-2"></div>
@@ -64,12 +64,12 @@ export default class Login extends React.Component {
                     <div className="col-sm-4"></div>
                     <div className="col-sm-4">
                         <div className="form-group">
-                            <input type="text" style={{border : "1px solid " + borderColor}} className="form-control" id="username" placeholder="Username" onChange={val => this.setState({username : val.target.value})}/>
+                            <input data-testid="username" type="text" style={{border : "1px solid " + borderColor}} className="form-control" id="username" placeholder="Username" onChange={val => this.setState({username : val.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <input type="password" style={{border : "1px solid " + borderColor}} className="form-control" id="password" placeholder="Password" onChange={val => this.setState({password : val.target.value})} />
+                            <input data-testid="password" type="password" style={{border : "1px solid " + borderColor}} className="form-control" id="password" placeholder="Password" onChange={val => this.setState({password : val.target.value})} />
                         </div>
-                        <button type="submit" id="doLogin" className="btn btn-primary float-right" onClick={this.doLogin}>Login</button>
+                        <button type="submit" data-testid="submit" id="doLogin" className="btn btn-primary float-right" onClick={this.doLogin}>Login</button>
                     </div>
                     <div className="col-sm-4"></div>
                 </div>

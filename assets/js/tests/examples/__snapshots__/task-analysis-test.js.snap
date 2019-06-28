@@ -22,7 +22,9 @@ exports[`Login component is created 1`] = `
         }
       }
     >
-      <h2>
+      <h2
+        data-testid="login-header"
+      >
         Log into your account
       </h2>
       <br />
@@ -45,6 +47,7 @@ exports[`Login component is created 1`] = `
       >
         <input
           className="form-control"
+          data-testid="username"
           id="username"
           onChange={[Function]}
           placeholder="Username"
@@ -61,6 +64,7 @@ exports[`Login component is created 1`] = `
       >
         <input
           className="form-control"
+          data-testid="password"
           id="password"
           onChange={[Function]}
           placeholder="Password"
@@ -74,6 +78,7 @@ exports[`Login component is created 1`] = `
       </div>
       <button
         className="btn btn-primary float-right"
+        data-testid="submit"
         id="doLogin"
         onClick={[Function]}
         type="submit"
