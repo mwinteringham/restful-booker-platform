@@ -64,8 +64,17 @@ public class Room {
         this.description = result.getString("description");
         this.roomPrice = result.getInt("roomPrice");
         
-        Array featuresArray = result.getArray("features");
-        this.features = (String[])featuresArray.getArray();
+//        Array featuresArray = result.getArray("features");
+//        this.features = (String[])featuresArray.getArray();
+
+        Object[] featuresArray = (Object[]) result.getArray("features").getArray();
+        String[] featureStringArray = new String[featuresArray.length];
+
+        for (int i = 0; i < featuresArray.length; i++) {
+            featureStringArray[i] = (String) featuresArray[i];
+        }
+
+        this.features = featureStringArray;
     }
 
     public int getRoomid() {
