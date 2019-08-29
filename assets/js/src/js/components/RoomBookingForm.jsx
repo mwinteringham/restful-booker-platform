@@ -1,5 +1,5 @@
 import React from 'react';
-import BigCalendar from 'react-big-calendar';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { API } from '../libs/Api';
 import BookingConfirmation from './BookingConfirmation.jsx';
@@ -89,7 +89,7 @@ export default class RoomBookingForm extends React.Component {
             </div>
         }
 
-        const localizer = BigCalendar.momentLocalizer(moment);
+        const localizer = momentLocalizer(moment);
 		
 		const events = this.state.newEvent.concat(this.state.events);
 
@@ -99,7 +99,7 @@ export default class RoomBookingForm extends React.Component {
 			return <div className="row hotel-room-info">
 				<div className="col-sm-1"></div>
 				<div className="col-sm-6">
-				<BigCalendar
+				<Calendar
 					localizer={localizer}
 					onSelectSlot={this.handleSelect}
 					defaultView="month"

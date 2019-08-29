@@ -1,5 +1,5 @@
 import React from 'react';
-import BigCalendar from 'react-big-calendar';
+import { Calendar, momentLocalizer} from 'react-big-calendar';
 import moment from 'moment';
 import AdminBooking from './AdminBooking.jsx';
 
@@ -40,13 +40,13 @@ export default class Report extends React.Component {
   }
 
   render(){
-    const localizer = BigCalendar.momentLocalizer(this.state.currentTimestamp);
+    const localizer = momentLocalizer(this.state.currentTimestamp);
 
     if(this.state.showBookingForm){
       return <AdminBooking closeBooking={this.closeBooking} dates={this.state.dates} />
     } else {
       return <div>
-        <BigCalendar
+        <Calendar
           onSelectSlot={this.addBooking}
           selectable
           localizer={localizer}

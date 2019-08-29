@@ -5,7 +5,6 @@ import {
   fireEvent,
   cleanup
 } from '@testing-library/react'
-import 'jest-dom/extend-expect'
 
 import Login from '../src/js/components/Login.jsx';
 
