@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-1
+      author: mwinteringham
+      changes:
+        - createTable:
+            tableName: BOOKINGS
+            columns:
+              - column:
+                  name: bookingid
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: roomid
+                  type: int
+              - column:
+                  name: firstname
+                  type: varchar(255)
+              - column:
+                  name: lastname
+                  type: varchar(255)
+              - column:
+                  name: depositpaid
+                  type: boolean
+              - column:
+                  name: checkin
+                  type: date
+              - column:
+                  name: checkout
+                  type: date
+  - changeSet:
+      id: insert-1
+      author: mwinteringham
+      changes:
+        - insert:
+            tableName: BOOKINGS
+            columns:
+              - column:
+                  name: roomid
+                  value: 1
+              - column:
+                  name: firstname
+                  value: James
+              - column:
+                  name: lastname
+                  value: Dean
+              - column:
+                  name: depositpaid
+                  value: true
+              - column:
+                  name: checkin
+                  value: "2019-01-01"
+              - column:
+                  name: checkout
+                  value: "2019-01-05"

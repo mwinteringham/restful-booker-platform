@@ -41,7 +41,6 @@ RBP uses h2 in-memory databases for ease of deployment. However, the databases h
 
 You can either connect to the:
 * Booking database on port ```9090```
-* Room database on port ```9091```
 * Branding database on port ```9092```
 * Message database on port ```9093```
 

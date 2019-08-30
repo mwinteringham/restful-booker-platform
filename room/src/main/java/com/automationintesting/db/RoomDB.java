@@ -28,7 +28,9 @@ public class RoomDB {
         ds.setPassword("password");
         connection = ds.getConnection();
 
-//        Server server = Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
+        // If you would like to access the DB for this API locally. Uncomment the line below and
+        // use a SQL client to access jdbc:h2:tcp://localhost:9091/mem:rbp
+        // Server server = Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
     }
 
     public Room create(Room room) throws SQLException {

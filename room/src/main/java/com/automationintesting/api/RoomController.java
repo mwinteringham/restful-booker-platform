@@ -47,7 +47,6 @@ public class RoomController {
     }
 
     public RoomController() throws SQLException {
-//        roomDB = new RoomDB();
         authRequest = new AuthRequests();
     }
 
