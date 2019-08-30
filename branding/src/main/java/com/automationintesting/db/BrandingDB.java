@@ -1,8 +1,10 @@
 package com.automationintesting.db;
 
-import com.automationintesting.model.*;
+import com.automationintesting.model.Branding;
+import com.automationintesting.model.Contact;
+import com.automationintesting.model.Map;
 import org.h2.jdbcx.JdbcDataSource;
-import org.h2.tools.Server;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,10 +13,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class BrandingDB {
 
     private Connection connection;
-    private final String SELECT_ALL_BRANDINGS = "SELECT * FROM brandings";
+    private final String SELECT_ALL_BRANDINGS = "SELECT * FROM PUBLIC.brandings";
 
     public BrandingDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -23,27 +26,9 @@ public class BrandingDB {
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        Server server = Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers").start();
-
-        String prepareDb = "CREATE TABLE brandings ( brandingid int NOT NULL AUTO_INCREMENT," +
-                " name varchar(255)," +
-                " latitude double," +
-                " longitude double," +
-                " logo_url varchar(255)," +
-                " description varchar(2000)," +
-                " contact_name varchar(255)," +
-                " address varchar(255)," +
-                " phone varchar(15)," +
-                " email varchar(255)," +
-                " primary key (brandingid));";
-        connection.prepareStatement(prepareDb).executeUpdate();
-
-        Branding branding = defaultBranding();
-
-        InsertSql insertSql = new InsertSql(connection, branding);
-        PreparedStatement createBooking = insertSql.getPreparedStatement();
-
-        createBooking.executeUpdate();
+        // If you would like to access the DB for this API locally. Uncomment the line below and
+        // use a SQL client to access jdbc:h2:tcp://localhost:9092/mem:rbp
+        // Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers").start();
     }
 
     public Branding update(Branding branding) throws SQLException {
@@ -51,7 +36,7 @@ public class BrandingDB {
         PreparedStatement updatePs = updateSql.getPreparedStatement();
 
         if (updatePs.executeUpdate() > 0) {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM brandings WHERE brandingid = 1");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM PUBLIC.brandings WHERE brandingid = 1");
 
             ResultSet result = ps.executeQuery();
             result.next();

@@ -4,6 +4,7 @@ import com.automationintesting.model.Message;
 import com.automationintesting.model.MessageSummary;
 import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,35 +13,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MessageDB {
 
     private Connection connection;
 
-    private final String CREATE_DB = "CREATE table MESSAGES ( messageid int NOT NULL AUTO_INCREMENT, name varchar(255), email varchar(255), phone varchar(255), subject varchar(255), description CLOB, read boolean, primary key (messageid));";
-    private final String SELECT_BY_MESSAGEID = "SELECT * FROM MESSAGES WHERE messageid = ?";
-    private final String DELETE_BY_MESSAGEID = "DELETE FROM MESSAGES WHERE messageid = ?";
-    private final String DELETE_ALL_MESSAGES = "DELETE FROM MESSAGES";
-    private final String SELECT_MESSAGES = "SELECT * FROM MESSAGES";
-    private final String SELECT_UNREAD_MESSAGE = "SELECT * FROM MESSAGES WHERE read = 'false'";
-    private final String UPDATE_MESSAGE_READ = "UPDATE MESSAGES SET read = 'true' WHERE messageid = ?";
+    private final String SELECT_BY_MESSAGEID = "SELECT * FROM PUBLIC.MESSAGES WHERE messageid = ?";
+    private final String DELETE_BY_MESSAGEID = "DELETE FROM PUBLIC.MESSAGES WHERE messageid = ?";
+    private final String DELETE_ALL_MESSAGES = "DELETE FROM PUBLIC.MESSAGES";
+    private final String SELECT_MESSAGES = "SELECT * FROM PUBLIC.MESSAGES";
+    private final String SELECT_UNREAD_MESSAGE = "SELECT * FROM PUBLIC.MESSAGES WHERE read = 'false'";
+    private final String UPDATE_MESSAGE_READ = "UPDATE PUBLIC.MESSAGES SET read = 'true' WHERE messageid = ?";
 
-    public MessageDB(boolean enableServer) throws SQLException {
+    public MessageDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
         ds.setURL("jdbc:h2:mem:rbp");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        if (enableServer) {
-            Server server = Server.createTcpServer("-tcpPort", "9093", "-tcpAllowOthers").start();
-        }
-
-        connection.prepareStatement(CREATE_DB).executeUpdate();
-
-        Message message = new Message("James Dean", "james@email.com", "01402 619211", "Booking enquiry", "I'm looking to book a room at your place");
-
-        InsertSql insertSql = new InsertSql(connection, message);
-        insertSql.getPreparedStatement().executeUpdate();
+        // If you would like to access the DB for this API locally. Uncomment the line below and
+        // use a SQL client to access jdbc:h2:tcp://localhost:9093/mem:rbp
+        // Server.createTcpServer("-tcpPort", "9093", "-tcpAllowOthers").start();
     }
 
     public Message create(Message room) throws SQLException {
@@ -68,7 +62,7 @@ public class MessageDB {
 
         ps.executeUpdate();
 
-        PreparedStatement resetPs = connection.prepareStatement("ALTER TABLE MESSAGES ALTER COLUMN messageid RESTART WITH 1");
+        PreparedStatement resetPs = connection.prepareStatement("ALTER TABLE PUBLIC.MESSAGES ALTER COLUMN messageid RESTART WITH 1");
 
         resetPs.execute();
     }

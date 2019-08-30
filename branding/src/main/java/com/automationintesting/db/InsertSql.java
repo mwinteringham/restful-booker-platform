@@ -11,7 +11,7 @@ public class InsertSql {
     private PreparedStatement preparedStatement;
 
     InsertSql(Connection connection, Branding branding) throws SQLException {
-        final String CREATE_BRANDING = "INSERT INTO brandings (name, latitude, longitude, logo_url, description, contact_name, address, phone, email) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        final String CREATE_BRANDING = "INSERT INTO PUBLIC.brandings (name, latitude, longitude, logo_url, description, contact_name, address, phone, email) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         preparedStatement = connection.prepareStatement(CREATE_BRANDING);
         preparedStatement.setString(1, branding.getName());

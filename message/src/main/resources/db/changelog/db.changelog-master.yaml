@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-1
+      author: mwinteringham
+      changes:
+        - createTable:
+            tableName: MESSAGES
+            columns:
+              - column:
+                  name: messageid
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: phone
+                  type: varchar(255)
+              - column:
+                  name: subject
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: clob
+              - column:
+                  name: read
+                  type: boolean
+  - changeSet:
+      id: insert-1
+      author: mwinteringham
+      changes:
+        - insert:
+            tableName: MESSAGES
+            columns:
+              - column:
+                  name: name
+                  value: James Dean
+              - column:
+                  name: email
+                  value: james@email.com
+              - column:
+                  name: phone
+                  value: "01402 619211"
+              - column:
+                  name: subject
+                  value: Booking enquiry
+              - column:
+                  name: description
+                  value: I'm looking to book a room at your place
+              - column:
+                  name: read
+                  value: false
