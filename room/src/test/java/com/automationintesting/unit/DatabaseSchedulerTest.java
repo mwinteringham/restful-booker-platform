@@ -2,13 +2,11 @@ package com.automationintesting.unit;
 
 import com.automationintesting.model.Room;
 import com.automationintesting.utils.DatabaseScheduler;
-import org.h2.jdbcx.JdbcDataSource;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.EnvironmentVariables;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

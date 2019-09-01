@@ -2,9 +2,15 @@ package com.automationintesting.utils;
 
 import com.automationintesting.db.RoomDB;
 import com.automationintesting.model.Room;
+import liquibase.Contexts;
+import liquibase.Liquibase;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.ResourceAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Connection;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -31,17 +37,8 @@ public class DatabaseScheduler {
                 if(!stop){
                     try {
                         logger.info("Resetting database");
+
                         roomDB.resetDB();
-
-                        Room room = new Room(101,
-                                        "Twin",
-                                    false,
-                                        "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
-                                    "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
-                                               new String[]{"Wifi, TV, Mini-bar"},
-                                    100);
-
-                        roomDB.create(room);
                     } catch ( Exception e ) {
                         logger.error("Scheduler failed " + e.getMessage());
                     }
