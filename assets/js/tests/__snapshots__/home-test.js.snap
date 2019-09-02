@@ -252,6 +252,26 @@ exports[`Contact form for home page renders 1`] = `
 exports[`Home page renders 1`] = `
 <div>
   <div
+    className="alert alert-dismissible"
+  >
+    <button
+      className="close"
+      data-dismiss="alert"
+      type="button"
+    >
+      ×
+    </button>
+    <img
+      alt="AiT Sponsorship banner"
+      src="images/aitsponsorshipbanner.png"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    />
+  </div>
+  <div
     className="container-fluid"
   >
     <div
