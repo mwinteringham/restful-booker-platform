@@ -32,14 +32,6 @@ public class DatabaseScheduler {
                     try {
                         logger.info("Resetting database");
                         messageDB.resetDB();
-
-                        Message message = new Message("James",
-                                "james@dean.com",
-                                "01821 123321",
-                                "Just getting a message setup",
-                                "Lorem ipsum dolores est");
-
-                        messageDB.create(message);
                     } catch ( Exception e ) {
                         logger.error("Scheduler failed " + e.getMessage());
                     }

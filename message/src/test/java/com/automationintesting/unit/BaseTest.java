@@ -1,8 +1,13 @@
 package com.automationintesting.unit;
 
+import com.automationintesting.db.InsertSql;
 import com.automationintesting.db.MessageDB;
+import com.automationintesting.model.Message;
+import liquibase.exception.LiquibaseException;
+import org.h2.jdbcx.JdbcDataSource;
 import org.junit.BeforeClass;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class BaseTest {
@@ -21,11 +26,14 @@ public class BaseTest {
     // is set as static. @BeforeClass annotated methods are always
     // static
     @BeforeClass
-    public static void createMessageDb() throws SQLException {
+    public static void createMessageDb() throws SQLException, LiquibaseException {
         // First we check if a DB is already open by seeing if
         // dbOpen is set to true. If it's not, create a new MessageDB
         if(!dbOpen){
-            messageDB = new MessageDB(false);
+            messageDB = new MessageDB();
+
+            messageDB.resetDB();
+
             dbOpen = true;
         }
     }

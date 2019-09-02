@@ -2,53 +2,40 @@ package com.automationintesting.db;
 
 import com.automationintesting.model.Booking;
 import com.automationintesting.model.CreatedBooking;
+import liquibase.Contexts;
+import liquibase.Liquibase;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.LiquibaseException;
+import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
-import org.h2.tools.Server;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
+@Component
 public class BookingDB {
 
     private Connection connection;
 
-    private final String CREATE_DB = "CREATE table BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
-    private final String SELECT_BY_BOOKINGID = "SELECT * FROM BOOKINGS WHERE bookingid=?";
-    private final String DELETE_BY_ID = "DELETE FROM BOOKINGS WHERE bookingid = ?" ;
-    private final String SELECT_BY_NAME = "SELECT * FROM BOOKINGS WHERE firstname = ? OR lastname = ?;";
-    private final String DELETE_ALL_BOOKINGS = "DELETE FROM BOOKINGS";
-    private final String SELECT_DATE_CONFLICTS = "SELECT COUNT(1) FROM BOOKINGS WHERE ((checkin BETWEEN ? AND ?) OR (checkout BETWEEN ? AND ?) OR (checkin <= ? AND checkout >= ?)) AND (roomid = ?)";
+    private final String SELECT_BY_BOOKINGID = "SELECT * FROM PUBLIC.BOOKINGS WHERE bookingid=?";
+    private final String DELETE_BY_ID = "DELETE FROM PUBLIC.BOOKINGS WHERE bookingid = ?" ;
+    private final String DELETE_ALL_BOOKINGS = "DELETE FROM PUBLIC.BOOKINGS";
+    private final String SELECT_DATE_CONFLICTS = "SELECT COUNT(1) FROM PUBLIC.BOOKINGS WHERE ((checkin BETWEEN ? AND ?) OR (checkout BETWEEN ? AND ?) OR (checkin <= ? AND checkout >= ?)) AND (roomid = ?)";
 
-    public BookingDB(boolean enableServer) throws SQLException {
+    public BookingDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
         ds.setURL("jdbc:h2:mem:rbp");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        if (enableServer) {
-            Server server = Server.createTcpServer("-tcpPort", "9090", "-tcpAllowOthers").start();
-        }
-
-        connection.prepareStatement(CREATE_DB).executeUpdate();
-
-        Booking booking = new Booking.BookingBuilder()
-                .setRoomid(1)
-                .setFirstname("James")
-                .setLastname("Dean")
-                .setDepositpaid(true)
-                .setCheckin(new GregorianCalendar(2019,1,1).getTime())
-                .setCheckout(new GregorianCalendar(2019,1,5).getTime())
-                .setEmail("mark@mwtestconsultancy.co.uk")
-                .setPhone("01234123123")
-                .build();
-
-        InsertSql insertSql = new InsertSql(connection, booking);
-        insertSql.getPreparedStatement().executeUpdate();
+        // If you would like to access the DB for this API locally. Uncomment the line below and
+        // use a SQL client to access jdbc:h2:tcp://localhost:9090/mem:rbp
+        // Server server = Server.createTcpServer("-tcpPort", "9090", "-tcpAllowOthers").start();
     }
 
     public CreatedBooking create(Booking booking) throws SQLException {
@@ -123,14 +110,19 @@ public class BookingDB {
         }
     }
 
-    public void resetDB() throws SQLException {
-        PreparedStatement ps = connection.prepareStatement(DELETE_ALL_BOOKINGS);
+    public void resetDB() throws SQLException, LiquibaseException {
+        JdbcConnection connection = this.getConnection();
+        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
 
-        ps.executeUpdate();
+        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
 
-        PreparedStatement resetPs = connection.prepareStatement("ALTER TABLE BOOKINGS ALTER COLUMN bookingid RESTART WITH 1");
+        liquibase.dropAll();
 
-        resetPs.execute();
+        liquibase.update(new Contexts());
+    }
+
+    private JdbcConnection getConnection() {
+        return new JdbcConnection(connection);
     }
 
     public Boolean checkForBookingConflict(Booking bookingToCheck) throws SQLException {

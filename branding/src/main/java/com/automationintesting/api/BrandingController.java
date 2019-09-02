@@ -4,6 +4,7 @@ import com.automationintesting.db.BrandingDB;
 import com.automationintesting.model.Branding;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.utils.DatabaseScheduler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class BrandingController {
 
+    @Autowired
     private BrandingDB brandingDB;
     private AuthRequests authRequest;
 
@@ -45,7 +47,6 @@ public class BrandingController {
     }
 
     public BrandingController() throws SQLException {
-        this.brandingDB = new BrandingDB();
         this.authRequest = new AuthRequests();
     }
 

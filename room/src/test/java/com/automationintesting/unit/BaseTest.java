@@ -1,8 +1,11 @@
 package com.automationintesting.unit;
 
 import com.automationintesting.db.RoomDB;
+import liquibase.exception.LiquibaseException;
+import org.h2.jdbcx.JdbcDataSource;
 import org.junit.BeforeClass;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class BaseTest {
@@ -21,11 +24,13 @@ public class BaseTest {
     // is set as static. @BeforeClass annotated methods are always
     // static
     @BeforeClass
-    public static void createRoomDB() throws SQLException {
+    public static void createRoomDB() throws SQLException, LiquibaseException {
         // First we check if a DB is already open by seeing if
         // dbOpen is set to true. If it's not, create a new BookingDB
         if(!dbOpen){
             roomDB = new RoomDB();
+            roomDB.resetDB();
+
             dbOpen = true;
         }
 

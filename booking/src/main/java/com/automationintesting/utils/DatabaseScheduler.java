@@ -32,18 +32,8 @@ public class DatabaseScheduler {
                 if(!stop){
                     try {
                         logger.info("Resetting database");
+
                         bookingDB.resetDB();
-
-                        Booking booking = new Booking.BookingBuilder()
-                                .setRoomid(1)
-                                .setFirstname("James")
-                                .setLastname("Dean")
-                                .setDepositpaid(true)
-                                .setCheckin(new GregorianCalendar(2018,1,26).getTime())
-                                .setCheckout(new GregorianCalendar(2018,1,26).getTime())
-                                .build();
-
-                        bookingDB.create(booking);
                     } catch ( Exception e ) {
                         logger.error("Scheduler failed " + e.getMessage());
                     }

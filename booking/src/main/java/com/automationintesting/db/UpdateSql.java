@@ -12,7 +12,7 @@ public class UpdateSql {
     private PreparedStatement preparedStatement;
 
     UpdateSql(Connection connection, int id, Booking booking) throws SQLException {
-        final String UPDATE_SQL = "UPDATE BOOKINGS SET firstname= ?, lastname = ?, depositpaid = ?, checkin = ?, checkout = ? WHERE bookingid = ?";
+        final String UPDATE_SQL = "UPDATE PUBLIC.BOOKINGS SET firstname= ?, lastname = ?, depositpaid = ?, checkin = ?, checkout = ? WHERE bookingid = ?";
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 

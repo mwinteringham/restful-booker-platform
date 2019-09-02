@@ -11,7 +11,7 @@ public class UpdateSql {
     private PreparedStatement preparedStatement;
 
     UpdateSql(Connection connection, Branding branding) throws SQLException {
-        String UPDATE_BRANDING = "UPDATE brandings SET name = ?, latitude = ?, longitude = ?, logo_url = ?, description = ?, contact_name = ?, address = ?, phone = ?, email = ? WHERE brandingid = 1";
+        String UPDATE_BRANDING = "UPDATE PUBLIC.brandings SET name = ?, latitude = ?, longitude = ?, logo_url = ?, description = ?, contact_name = ?, address = ?, phone = ?, email = ? WHERE brandingid = 1";
 
         preparedStatement = connection.prepareStatement(UPDATE_BRANDING);
         preparedStatement.setString(1, branding.getName());

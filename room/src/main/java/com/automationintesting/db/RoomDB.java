@@ -1,8 +1,14 @@
 package com.automationintesting.db;
 
 import com.automationintesting.model.Room;
+import liquibase.Contexts;
+import liquibase.Liquibase;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.LiquibaseException;
+import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
-import org.h2.tools.Server;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,14 +17,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class RoomDB {
 
     private Connection connection;
-    private final String SELECT_ROOMS = "SELECT * FROM ROOMS";
-    private final String SELECT_BY_ROOMID = "SELECT * FROM ROOMS WHERE roomid = ?";
-    private final String DELETE_BY_ROOMID = "DELETE FROM ROOMS WHERE roomid = ?";
-    private final String DELETE_ALL_ROOMS = "DELETE FROM ROOMS";
-    private final String CREATE_DB = "CREATE table ROOMS ( roomid int NOT NULL AUTO_INCREMENT, room_number int, type varchar(255), beds int, accessible boolean, image varchar(2000), description varchar(2000), features ARRAY, roomPrice int, primary key (roomid))";
+    private final String SELECT_ROOMS = "SELECT * FROM PUBLIC.ROOMS";
+    private final String SELECT_BY_ROOMID = "SELECT * FROM PUBLIC.ROOMS WHERE roomid = ?";
+    private final String DELETE_BY_ROOMID = "DELETE FROM PUBLIC.ROOMS WHERE roomid = ?";
+    private final String DELETE_ALL_ROOMS = "DELETE FROM PUBLIC.ROOMS";
 
     public RoomDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -27,22 +33,9 @@ public class RoomDB {
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        Server server = Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
-
-        connection.prepareStatement(CREATE_DB).executeUpdate();
-
-        Room room = new Room(101,
-                "Twin",
-                false,
-                "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
-                "Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.",
-                new String[]{"Wifi", "TV", "Safe"},
-                100);
-
-        InsertSql insertSql = new InsertSql(connection, room);
-        PreparedStatement createBooking = insertSql.getPreparedStatement();
-
-        createBooking.executeUpdate();
+        // If you would like to access the DB for this API locally. Uncomment the line below and
+        // use a SQL client to access jdbc:h2:tcp://localhost:9091/mem:rbp
+        // Server server = Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
     }
 
     public Room create(Room room) throws SQLException {
@@ -119,13 +112,18 @@ public class RoomDB {
         return listToReturn;
     }
 
-    public void resetDB() throws SQLException {
-        PreparedStatement ps = connection.prepareStatement(DELETE_ALL_ROOMS);
+    public void resetDB() throws LiquibaseException {
+        JdbcConnection connection = this.getConnection();
+        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
 
-        ps.executeUpdate();
+        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
 
-        PreparedStatement resetPs = connection.prepareStatement("ALTER TABLE ROOMS ALTER COLUMN roomid RESTART WITH 1");
+        liquibase.dropAll();
 
-        resetPs.execute();
+        liquibase.update(new Contexts());
+    }
+
+    public JdbcConnection getConnection() {
+        return new JdbcConnection(connection);
     }
 }

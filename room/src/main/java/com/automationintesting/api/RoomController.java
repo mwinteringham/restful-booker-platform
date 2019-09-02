@@ -3,6 +3,7 @@ package com.automationintesting.api;
 import com.automationintesting.db.RoomDB;
 import com.automationintesting.model.Room;
 import com.automationintesting.model.Rooms;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class RoomController {
 
+    @Autowired
     private RoomDB roomDB;
     private AuthRequests authRequest;
 
@@ -45,7 +47,6 @@ public class RoomController {
     }
 
     public RoomController() throws SQLException {
-        roomDB = new RoomDB();
         authRequest = new AuthRequests();
     }
 

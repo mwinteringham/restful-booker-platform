@@ -35,16 +35,6 @@ The user login details are:
 * Username: admin
 * Password: password
 
-### Database access
-
-RBP uses h2 in-memory databases for ease of deployment. However, the databases have been setup with TCP access, meaning you can use a SQL client that supports h2 SQL to connect.
-
-You can either connect to the:
-* Booking database on port ```9090```
-* Room database on port ```9091```
-* Branding database on port ```9092```
-* Message database on port ```9093```
-
 **Please note: DB connections are only available in local deployments**
 
 ### Development

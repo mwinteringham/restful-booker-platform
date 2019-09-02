@@ -7,6 +7,7 @@ import com.automationintesting.model.CreatedBooking;
 import com.automationintesting.model.Message;
 import com.automationintesting.requests.MessageRequests;
 import com.automationintesting.utils.MessageBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class BookingController {
 
+    @Autowired
     private BookingDB bookingDB;
     private AuthRequests authRequests;
     private MessageRequests messageRequests;
@@ -53,7 +55,6 @@ public class BookingController {
     }
 
     public BookingController() throws SQLException {
-        bookingDB = new BookingDB(true);
         authRequests = new AuthRequests();
         messageRequests = new MessageRequests();
         dateCheckValidator = new DateCheckValidator();

@@ -12,7 +12,7 @@ public class InsertSql {
     private PreparedStatement preparedStatement;
 
     public InsertSql(Connection connection, Booking booking) throws SQLException {
-        String INSERT_SQL = "INSERT INTO BOOKINGS(roomid, firstname, lastname, depositpaid, checkin, checkout) VALUES(?, ?, ?, ?, ?, ?);";
+        String INSERT_SQL = "INSERT INTO PUBLIC.BOOKINGS(roomid, firstname, lastname, depositpaid, checkin, checkout) VALUES(?, ?, ?, ?, ?, ?);";
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         preparedStatement = connection.prepareStatement(INSERT_SQL);

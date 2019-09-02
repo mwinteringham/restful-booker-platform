@@ -2,6 +2,7 @@ package com.automationintesting.unit.examples;
 
 import com.automationintesting.unit.BaseTest;
 import com.automationintesting.model.Room;
+import liquibase.exception.LiquibaseException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +23,7 @@ public class SqlTest extends BaseTest {
     // method before each test starts to run. This is useful when
     // creating test data
     @Before
-    public void resetDB() throws SQLException {
+    public void resetDB() throws SQLException, LiquibaseException {
         // We call resetDB to return it back to it's vanilla state
         roomDB.resetDB();
 
@@ -74,7 +75,7 @@ public class SqlTest extends BaseTest {
 
         String queriedRoomString = queriedRoom.toString();
 
-        assertEquals(queriedRoomString, "[Room{roomid=1, roomNumber=101, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie', features=[Wifi, TV, Safe], roomPrice=100}]");
+        assertEquals(queriedRoomString, "[Room{roomid=1, roomNumber=101, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.', features=[Wifi, TV, Safe], roomPrice=100}, Room{roomid=2, roomNumber=101, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie', features=[Wifi, TV, Safe], roomPrice=100}]");
     }
 
     @Test
