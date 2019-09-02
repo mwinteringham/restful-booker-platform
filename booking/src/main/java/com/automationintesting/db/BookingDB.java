@@ -2,6 +2,12 @@ package com.automationintesting.db;
 
 import com.automationintesting.model.Booking;
 import com.automationintesting.model.CreatedBooking;
+import liquibase.Contexts;
+import liquibase.Liquibase;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.LiquibaseException;
+import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.stereotype.Component;
 
@@ -104,14 +110,19 @@ public class BookingDB {
         }
     }
 
-    public void resetDB() throws SQLException {
-        PreparedStatement ps = connection.prepareStatement(DELETE_ALL_BOOKINGS);
+    public void resetDB() throws SQLException, LiquibaseException {
+        JdbcConnection connection = this.getConnection();
+        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
 
-        ps.executeUpdate();
+        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
 
-        PreparedStatement resetPs = connection.prepareStatement("ALTER TABLE PUBLIC.BOOKINGS ALTER COLUMN bookingid RESTART WITH 1");
+        liquibase.dropAll();
 
-        resetPs.execute();
+        liquibase.update(new Contexts());
+    }
+
+    private JdbcConnection getConnection() {
+        return new JdbcConnection(connection);
     }
 
     public Boolean checkForBookingConflict(Booking bookingToCheck) throws SQLException {

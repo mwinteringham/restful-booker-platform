@@ -1,6 +1,7 @@
 package com.automationintesting.unit;
 
 import com.automationintesting.db.BookingDB;
+import liquibase.exception.LiquibaseException;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.BeforeClass;
 
@@ -23,21 +24,13 @@ public class BaseTest {
     // is set as static. @BeforeClass annotated methods are always
     // static
     @BeforeClass
-    public static void createBookingDb() throws SQLException {
+    public static void createBookingDb() throws SQLException, LiquibaseException {
         // First we check if a DB is already open by seeing if
         // dbOpen is set to true. If it's not, create a new BookingDB
         if(!dbOpen){
             bookingDB = new BookingDB();
+            bookingDB.resetDB();
             dbOpen = true;
-
-            String CREATE_DB = "CREATE table PUBLIC.BOOKINGS ( bookingid int NOT NULL AUTO_INCREMENT, roomid int, firstname varchar(255), lastname varchar(255), depositpaid Boolean, checkin Date, checkout Date, primary key (bookingid));";
-            JdbcDataSource ds = new JdbcDataSource();
-            ds.setURL("jdbc:h2:mem:rbp");
-            ds.setUser("user");
-            ds.setPassword("password");
-
-            Connection connection = ds.getConnection();
-            connection.prepareStatement(CREATE_DB).executeUpdate();
         }
     }
 

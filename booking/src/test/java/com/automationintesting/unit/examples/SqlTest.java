@@ -3,6 +3,7 @@ package com.automationintesting.unit.examples;
 import com.automationintesting.unit.BaseTest;
 import com.automationintesting.model.Booking;
 import com.automationintesting.model.CreatedBooking;
+import liquibase.exception.LiquibaseException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +25,7 @@ public class SqlTest extends BaseTest {
     // method before each test starts to run. This is useful when
     // creating test data
     @Before
-    public void resetDb() throws SQLException {
+    public void resetDb() throws SQLException, LiquibaseException {
         // We call resetDB to return it back to it's vanilla state
         bookingDB.resetDB();
 
