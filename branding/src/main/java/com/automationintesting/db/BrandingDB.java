@@ -1,8 +1,12 @@
 package com.automationintesting.db;
 
 import com.automationintesting.model.Branding;
-import com.automationintesting.model.Contact;
-import com.automationintesting.model.Map;
+import liquibase.Contexts;
+import liquibase.Liquibase;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.LiquibaseException;
+import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.stereotype.Component;
 
@@ -68,17 +72,18 @@ public class BrandingDB {
         return branding;
     }
 
-    public void resetDB() throws SQLException {
-        update(defaultBranding());
+    public void resetDB() throws LiquibaseException {
+        JdbcConnection connection = this.getConnection();
+        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
+
+        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
+
+        liquibase.dropAll();
+
+        liquibase.update(new Contexts());
     }
 
-    private Branding defaultBranding() {
-        return new Branding(
-                "Shady Meadows B&B",
-                new Map(52.6351204, 1.2733774),
-                "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
-                "Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.",
-                new Contact("Shady Meadows B&B", "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S", "012345678901", "fake@fakeemail.com")
-        );
+    private JdbcConnection getConnection() {
+        return new JdbcConnection(connection);
     }
 }

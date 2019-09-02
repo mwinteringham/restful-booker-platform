@@ -33,17 +33,8 @@ public class DatabaseScheduler {
                 if(!stop){
                     try {
                         logger.info("Resetting database");
+
                         brandingDB.resetDB();
-
-                        Branding branding = new Branding(
-                                "Shady Meadows B&B",
-                                new Map(52.6351204, 1.2733774),
-                                "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
-                                "Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.",
-                                new Contact("Shady Meadows B&B", "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S", "012345678901", "fake@fakeemail.com")
-                        );
-
-                        brandingDB.update(branding);
                     } catch ( Exception e ) {
                         logger.error("Scheduler failed " + e.getMessage());
                     }
