@@ -263,7 +263,7 @@ exports[`Home page renders 1`] = `
     </button>
     <img
       alt="AiT Sponsorship banner"
-      src="images/aitsponsorshipbanner.png"
+      src="https://automationintesting.com/images/supporters/saucelabs/aitsponsorshipbanner.png"
       style={
         Object {
           "width": "100%",

@@ -49,7 +49,7 @@ export default class Home extends React.Component {
             <div>
                 <div className="alert alert-dismissible">
                     <button type="button" className="close" data-dismiss="alert">×</button>
-                    <img src="images/aitsponsorshipbanner.png" style={{width: "100%"}} alt="AiT Sponsorship banner" />
+                    <img src="https://automationintesting.com/images/supporters/saucelabs/aitsponsorshipbanner.png" style={{width: "100%"}} alt="AiT Sponsorship banner" />
                 </div>
                 <div className="container-fluid">
                     <div className="row">
