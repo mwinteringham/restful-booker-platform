@@ -73,9 +73,9 @@ public class SqlTest extends BaseTest {
     public void testQueryRooms() throws SQLException {
         List<Room> queriedRoom = roomDB.queryRooms();
 
-        String queriedRoomString = queriedRoom.toString();
+        Room room = queriedRoom.get(0);
 
-        assertEquals(queriedRoomString, "[Room{roomid=1, roomNumber=101, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.', features=[Wifi, TV, Safe], roomPrice=100}, Room{roomid=2, roomNumber=101, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie', features=[Wifi, TV, Safe], roomPrice=100}]");
+        assertThat(room, is(Room.class));
     }
 
     @Test

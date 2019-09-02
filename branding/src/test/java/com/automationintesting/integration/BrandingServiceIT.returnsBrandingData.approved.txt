@@ -1,15 +1,15 @@
 {
-    "name": "Shady Meadows B&B",
+    "name": "Sauce Labs Retreat",
     "map": {
-        "latitude": 52.6351204,
-        "longitude": 1.2733774
+        "latitude": 37.7871917,
+        "longitude": -122.4005403
     },
-    "logoUrl": "https://www.mwtestconsultancy.co.uk/img/rbp-logo.png",
-    "description": "Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.",
+    "logoUrl": "https://automationintesting.com/images/supporters/saucelabs/020101_LOGO_Sauce-Labs_Vert_Red-Grey_RGB.png",
+    "description": "Welcome to the Sauce Labs Retreat, the perfect space for continuous testing. Founded in 2008 and set in the glorious cross browser foothills of Foxfire and Pareo in the beautiful cloud, here you can take part in a wide range of activities including acting lessons for devices, painting for visual comparison and language lessons for Selenium, Appium, Espresso and more. So join us for your continuous testing solutions, stay for the hot sauce.",
     "contact": {
-        "name": "Shady Meadows B&B",
-        "address": "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S",
+        "name": "Sauce Labs - USA (HQ)",
+        "address": "116 New Montgomery St, 3rd Floor San Francisco, CA 94105 USA",
         "phone": "012345678901",
-        "email": "fake@fakeemail.com"
+        "email": "https://saucelabs.com/sales"
     }
 }

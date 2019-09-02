@@ -3,6 +3,7 @@ package com.automationintesting.unit;
 import com.automationintesting.model.Room;
 import com.automationintesting.utils.DatabaseScheduler;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.EnvironmentVariables;
@@ -17,10 +18,16 @@ import static org.junit.Assert.assertThat;
 public class DatabaseSchedulerTest extends BaseTest {
 
     private DatabaseScheduler databaseScheduler;
+    private int initialDbCount;
 
     @Rule
     public final EnvironmentVariables environmentVariables
             = new EnvironmentVariables();
+
+    @Before
+    public void getCurrentCount() throws SQLException {
+        initialDbCount = roomDB.queryRooms().size();
+    }
 
     @After
     public void stopDatabaseScheduler(){
@@ -54,7 +61,7 @@ public class DatabaseSchedulerTest extends BaseTest {
         List<Room> rooms = setupRunAndCountScheduler();
 
         // Assert the count equals 1
-        assertThat(rooms.size(), is(1));
+        assertThat(rooms.size(), is(initialDbCount));
     }
 
     @Test
@@ -65,7 +72,7 @@ public class DatabaseSchedulerTest extends BaseTest {
         List<Room> rooms = setupRunAndCountScheduler();
 
         // Assert the count equals 1
-        assertThat(rooms.size(), is(3));
+        assertThat(rooms.size(), is(initialDbCount + 2));
     }
 
     private List<Room> setupRunAndCountScheduler() throws SQLException, InterruptedException {

@@ -32,7 +32,7 @@ public class Contact {
     @JsonProperty
     @NotNull(message = "Email should not be null")
     @NotBlank(message = "Email should not be blank")
-    @Email(message = "Email should be a valid email format")
+//    @Email(message = "Email should be a valid email format")
     private String email;
 
     public Contact(String name, String address, String phone, String email) {
