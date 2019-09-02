@@ -3,6 +3,7 @@ package com.automationintesting.unit;
 import com.automationintesting.db.InsertSql;
 import com.automationintesting.db.MessageDB;
 import com.automationintesting.model.Message;
+import liquibase.exception.LiquibaseException;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.BeforeClass;
 
@@ -25,21 +26,13 @@ public class BaseTest {
     // is set as static. @BeforeClass annotated methods are always
     // static
     @BeforeClass
-    public static void createMessageDb() throws SQLException {
+    public static void createMessageDb() throws SQLException, LiquibaseException {
         // First we check if a DB is already open by seeing if
         // dbOpen is set to true. If it's not, create a new MessageDB
         if(!dbOpen){
             messageDB = new MessageDB();
 
-            String CREATE_DB = "CREATE table MESSAGES ( messageid int NOT NULL AUTO_INCREMENT, name varchar(255), email varchar(255), phone varchar(255), subject varchar(255), description CLOB, read boolean, primary key (messageid));";
-
-            JdbcDataSource ds = new JdbcDataSource();
-            ds.setURL("jdbc:h2:mem:rbp");
-            ds.setUser("user");
-            ds.setPassword("password");
-            Connection connection = ds.getConnection();
-
-            connection.prepareStatement(CREATE_DB).executeUpdate();
+            messageDB.resetDB();
 
             dbOpen = true;
         }
