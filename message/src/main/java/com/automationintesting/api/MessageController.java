@@ -73,7 +73,7 @@ public class MessageController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<Message> createMessage(@Valid @RequestBody Message message, @CookieValue(value ="token", required = false) String token) throws SQLException {
+    public ResponseEntity<Message> createMessage(@Valid @RequestBody Message message) throws SQLException {
         Message body = messageDB.create(message);
         return ResponseEntity.ok(body);
     }
