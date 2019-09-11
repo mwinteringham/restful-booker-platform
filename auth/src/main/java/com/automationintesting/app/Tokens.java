@@ -1,4 +1,4 @@
-package auth;
+package com.automationintesting.app;
 
 import java.util.ArrayList;
 import java.util.List;

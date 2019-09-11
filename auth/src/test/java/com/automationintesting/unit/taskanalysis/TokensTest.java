@@ -1,6 +1,7 @@
 package com.automationintesting.unit.taskanalysis;
 
-import auth.Tokens;
+import com.automationintesting.app.Tokens;
+import com.automationintesting.model.Token;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -23,6 +24,21 @@ public class TokensTest {
         // token is an instance of a String.class and is 16 characters long
         assertThat(token, is(instanceOf(String.class)));
         assertThat(token.length(), is(16));
+    }
+
+    @Test
+    public void testTokenPositiveVerification(){
+        String token = Tokens.create();
+        Boolean tokenIsValid = Tokens.verify(token);
+
+        assertThat(tokenIsValid, is(true));
+    }
+
+    @Test
+    public void testTokenNegativeVerification(){
+        Boolean tokenIsNotValid = Tokens.verify("abc123");
+
+        assertThat(tokenIsNotValid, is(false));
     }
 
 }

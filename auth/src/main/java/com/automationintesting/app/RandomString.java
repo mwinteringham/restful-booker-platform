@@ -1,4 +1,4 @@
-package auth;
+package com.automationintesting.app;
 
 import java.security.SecureRandom;
 import java.util.Locale;
