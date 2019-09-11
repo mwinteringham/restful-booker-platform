@@ -22,4 +22,12 @@ public class Decision {
     public Token getToken() {
         return token;
     }
+
+    @Override
+    public String toString() {
+        return "Decision{" +
+                "result=" + result +
+                ", token=" + token +
+                '}';
+    }
 }

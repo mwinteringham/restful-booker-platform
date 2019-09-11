@@ -1,4 +1,4 @@
-package com.automationintesting.unit.taskanalysis;
+package com.automationintesting.unit.example;
 
 import com.automationintesting.app.Tokens;
 import com.automationintesting.model.Token;
@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class TokensTest {
+public class TaskAnalysisExampleTest {
 
     // We add the @Test annotation so that when JUnit runs it knows which
     // methods to run as tests
@@ -24,21 +24,6 @@ public class TokensTest {
         // token is an instance of a String.class and is 16 characters long
         assertThat(token, is(instanceOf(String.class)));
         assertThat(token.length(), is(16));
-    }
-
-    @Test
-    public void testTokenPositiveVerification(){
-        String token = Tokens.create();
-        Boolean tokenIsValid = Tokens.verify(token);
-
-        assertThat(tokenIsValid, is(true));
-    }
-
-    @Test
-    public void testTokenNegativeVerification(){
-        Boolean tokenIsNotValid = Tokens.verify("abc123");
-
-        assertThat(tokenIsNotValid, is(false));
     }
 
 }
