@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class TaskAnalysisExampleTest {
+public class TaskAnalysisTest {
 
     // We add the @Test annotation so that when JUnit runs it knows which
     // methods to run as tests

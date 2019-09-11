@@ -1,4 +1,4 @@
-package com.automationintesting.integration.taskanalysis;
+package com.automationintesting.integration.example;
 
 import com.automationintesting.api.AuthApplication;
 import com.automationintesting.model.Auth;
@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = AuthApplication.class)
 @ActiveProfiles("dev")
-public class AuthIntegrationTest {
+public class TaskAnalysisIntegrationTest {
 
     // We add the @Test annotation so that when JUnit runs it knows which
     // methods to run as tests
