@@ -1,0 +1,11 @@
+{
+  "request" : {
+    "method" : "POST",
+    "path" : "/booking/query",
+    "parameters" : ["roomid", "firstname", "lastname", "depositpaid", "checkin", "checkout"]
+  },
+  "sql" : {
+    "database" : "h2-booking",
+    "query" : "SELECT * FROM BOOKINGS WHERE roomid = ${roomid} AND firstname = ${firstname} AND lastname = ${lastname} AND depositpaid = ${depositpaid} AND checkin = ${checkin} AND checkout = ${checkout};"
+  }
+}
