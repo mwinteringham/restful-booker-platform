@@ -96,7 +96,7 @@ export default class BookingListing extends React.Component {
 
     render(){
         let totalPrice;
-        if(this.props.roomPrice){
+        if(this.props.roomPrice && this.state.booking.bookingdates){
             totalPrice = this.props.roomPrice * Math.round(Math.abs((new Date(this.state.booking.bookingdates.checkin).getTime() - new Date(this.state.booking.bookingdates.checkout).getTime())/(24*60*60*1000)));
         } else {
             totalPrice = 0;
@@ -115,8 +115,8 @@ export default class BookingListing extends React.Component {
                                 <option value="true">true</option>
                             </select>
                         </div>
-                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkin).utc(true).toDate()} onChange={this.handleStartChange} dateFormat="YYYY-MM-dd" /></div>
-                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkout).utc(true).toDate()} onChange={this.handleEndChange} dateFormat="YYYY-MM-dd" /></div>
+                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkin).utc(true).toDate()} onChange={this.handleStartChange} dateFormat="yyyy-MM-dd" /></div>
+                        <div className="col-sm-2"><DatePicker className="form-control" selected={moment(this.state.booking.bookingdates.checkout).utc(true).toDate()} onChange={this.handleEndChange} dateFormat="yyyy-MM-dd" /></div>
                         <div className="col-sm-1">
                             <span className="fa fa-check confirmBookingEdit" onClick={this.doEdit} style={{paddingRight : 10 + "px"}}></span>
                             <span className="fa fa-remove exitBookingEdit" onClick={this.disableEdit}></span>
