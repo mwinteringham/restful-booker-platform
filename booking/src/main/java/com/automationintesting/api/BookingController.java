@@ -1,27 +1,20 @@
 package com.automationintesting.api;
 
+import com.automationintesting.service.BookingApp;
 import com.automationintesting.db.BookingDB;
-import com.automationintesting.model.Booking;
-import com.automationintesting.model.BookingResults;
-import com.automationintesting.model.CreatedBooking;
-import com.automationintesting.model.Message;
+import com.automationintesting.model.*;
 import com.automationintesting.requests.MessageRequests;
-import com.automationintesting.utils.MessageBuilder;
+import com.automationintesting.service.MessageBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.automationintesting.requests.AuthRequests;
-import com.automationintesting.utils.DatabaseScheduler;
-import com.automationintesting.validators.DateCheckValidator;
+import com.automationintesting.service.DateCheckValidator;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class BookingController {
@@ -32,27 +25,8 @@ public class BookingController {
     private MessageRequests messageRequests;
     private DateCheckValidator dateCheckValidator;
 
-    @Bean
-    public WebMvcConfigurer configurer() {
-        DatabaseScheduler databaseScheduler = new DatabaseScheduler();
-        databaseScheduler.startScheduler(bookingDB, TimeUnit.MINUTES);
-
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                String originHost = "http://localhost:3003";
-
-                if(System.getenv("cors") != null){
-                    originHost = System.getenv("cors");
-                }
-
-                registry.addMapping("/*")
-                        .allowedMethods("GET", "POST", "DELETE", "PUT")
-                        .allowedOrigins(originHost)
-                        .allowCredentials(true);
-            }
-        };
-    }
+    @Autowired
+    private BookingApp bookingApp;
 
     public BookingController() throws SQLException {
         authRequests = new AuthRequests();
@@ -62,12 +36,9 @@ public class BookingController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<BookingResults> getBookings(@RequestParam("roomid") Optional<String> roomid) throws SQLException {
-        if(roomid.isPresent()){
-            BookingResults searchResults = new BookingResults(bookingDB.queryBookingsById(roomid.get()));
-            return ResponseEntity.ok(searchResults);
-        }
+        BookingResults searchResults = bookingApp.getBookings(roomid);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(searchResults);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -92,8 +63,10 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
-    public Booking getBooking(@PathVariable(value = "id") int id) throws SQLException {
-        return bookingDB.query(id);
+    public ResponseEntity getBooking(@PathVariable(value = "id") int bookingId) throws SQLException {
+        BookingResult bookingResult = bookingApp.getIndividualBooking(bookingId);
+
+        return ResponseEntity.status(bookingResult.getStatus()).body(bookingResult.getBooking());
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.DELETE)

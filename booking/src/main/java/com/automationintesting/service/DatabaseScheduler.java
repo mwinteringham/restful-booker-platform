@@ -1,11 +1,9 @@
-package com.automationintesting.utils;
+package com.automationintesting.service;
 
 import com.automationintesting.db.BookingDB;
-import com.automationintesting.model.Booking;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.GregorianCalendar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

@@ -23,7 +23,6 @@ public class BookingDB {
 
     private final String SELECT_BY_BOOKINGID = "SELECT * FROM PUBLIC.BOOKINGS WHERE bookingid=?";
     private final String DELETE_BY_ID = "DELETE FROM PUBLIC.BOOKINGS WHERE bookingid = ?" ;
-    private final String DELETE_ALL_BOOKINGS = "DELETE FROM PUBLIC.BOOKINGS";
     private final String SELECT_DATE_CONFLICTS = "SELECT COUNT(1) FROM PUBLIC.BOOKINGS WHERE ((checkin BETWEEN ? AND ?) OR (checkout BETWEEN ? AND ?) OR (checkin <= ? AND checkout >= ?)) AND (roomid = ?)";
 
     public BookingDB() throws SQLException {
@@ -146,5 +145,17 @@ public class BookingDB {
         result.next();
 
         return result.getInt("COUNT(1)") > 0;
+    }
+
+    public List<Booking> queryAllBookings() throws SQLException {
+        List<Booking> listToReturn = new ArrayList<Booking>();
+        String sql = "SELECT * FROM PUBLIC.BOOKINGS";
+
+        ResultSet results = connection.prepareStatement(sql).executeQuery();
+        while(results.next()){
+            listToReturn.add(new Booking(results));
+        }
+
+        return listToReturn;
     }
 }

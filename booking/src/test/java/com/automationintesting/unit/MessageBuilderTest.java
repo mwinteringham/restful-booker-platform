@@ -2,7 +2,7 @@ package com.automationintesting.unit;
 
 import com.automationintesting.model.Booking;
 import com.automationintesting.model.Message;
-import com.automationintesting.utils.MessageBuilder;
+import com.automationintesting.service.MessageBuilder;
 import org.junit.Test;
 
 import java.util.Date;

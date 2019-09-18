@@ -1,4 +1,4 @@
-package com.automationintesting.utils;
+package com.automationintesting.service;
 
 import com.automationintesting.model.Booking;
 import com.automationintesting.model.Message;

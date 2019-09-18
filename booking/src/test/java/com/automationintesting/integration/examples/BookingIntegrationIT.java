@@ -92,7 +92,7 @@ public class BookingIntegrationIT {
 
 //    ...Integration check suggestions
 //
-//    Check each service integrates and read / writes to the MySQL service
+//    Check each service integrates and read / writes to the service
 //    Check each service integrates with the Auth web service
 //    Check room and booking services integrate with one another
 

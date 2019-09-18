@@ -1,5 +1,6 @@
 package com.automationintesting.unit;
 
+import com.automationintesting.service.DateCheckValidator;
 import com.automationintesting.model.BookingDates;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,12 +11,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DateCheckValidatorTest {
 
-    private com.automationintesting.validators.DateCheckValidator dateCheckValidator;
+    private DateCheckValidator dateCheckValidator;
     private BookingDates bookingDates;
 
     @Before
     public void setup() {
-        dateCheckValidator = new com.automationintesting.validators.DateCheckValidator();
+        dateCheckValidator = new DateCheckValidator();
         bookingDates = new BookingDates();
     }
 

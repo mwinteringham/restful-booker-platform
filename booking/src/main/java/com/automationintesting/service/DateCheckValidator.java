@@ -1,4 +1,4 @@
-package com.automationintesting.validators;
+package com.automationintesting.service;
 
 import com.automationintesting.model.BookingDates;
 
