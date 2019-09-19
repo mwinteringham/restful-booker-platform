@@ -1,7 +1,7 @@
 package com.automationintesting.db;
 
-import com.automationintesting.model.Booking;
-import com.automationintesting.model.CreatedBooking;
+import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.CreatedBooking;
 import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.jvm.JdbcConnection;

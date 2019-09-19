@@ -1,6 +1,6 @@
 package com.automationintesting.service;
 
-import com.automationintesting.model.BookingDates;
+import com.automationintesting.model.db.BookingDates;
 
 import java.util.Date;
 

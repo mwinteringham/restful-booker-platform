@@ -1,6 +1,6 @@
 package com.automationintesting.requests;
 
-import com.automationintesting.model.Message;
+import com.automationintesting.model.db.Message;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;

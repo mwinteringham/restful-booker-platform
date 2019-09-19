@@ -1,6 +1,6 @@
 package com.automationintesting.db;
 
-import com.automationintesting.model.Booking;
+import com.automationintesting.model.db.Booking;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

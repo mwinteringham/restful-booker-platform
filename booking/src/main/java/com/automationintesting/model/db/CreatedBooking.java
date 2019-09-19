@@ -1,5 +1,6 @@
-package com.automationintesting.model;
+package com.automationintesting.model.db;
 
+import com.automationintesting.model.db.Booking;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreatedBooking {
@@ -36,9 +37,9 @@ public class CreatedBooking {
 
     @Override
     public String toString() {
-        return "CreatedBooking{\n" +
+        return "CreatedBooking{" +
                 "bookingid=" + bookingid +
-                "\n, booking=" + booking.toString() +
+                ", booking=" + booking.toString() +
                 '}';
     }
 

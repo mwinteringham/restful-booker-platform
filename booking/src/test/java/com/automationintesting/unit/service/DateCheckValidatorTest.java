@@ -1,7 +1,7 @@
-package com.automationintesting.unit;
+package com.automationintesting.unit.service;
 
 import com.automationintesting.service.DateCheckValidator;
-import com.automationintesting.model.BookingDates;
+import com.automationintesting.model.db.BookingDates;
 import org.junit.Before;
 import org.junit.Test;
 

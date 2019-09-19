@@ -1,7 +1,7 @@
 package com.automationintesting.service;
 
-import com.automationintesting.model.Booking;
-import com.automationintesting.model.Message;
+import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.Message;
 
 import java.text.SimpleDateFormat;
 

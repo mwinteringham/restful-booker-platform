@@ -1,7 +1,7 @@
 package com.automationintesting.integration;
 
 import com.automationintesting.api.BookingApplication;
-import com.automationintesting.model.Booking;
+import com.automationintesting.model.db.Booking;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;

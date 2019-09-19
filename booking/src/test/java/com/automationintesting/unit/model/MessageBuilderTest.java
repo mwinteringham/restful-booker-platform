@@ -1,7 +1,7 @@
-package com.automationintesting.unit;
+package com.automationintesting.unit.model;
 
-import com.automationintesting.model.Booking;
-import com.automationintesting.model.Message;
+import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.Message;
 import com.automationintesting.service.MessageBuilder;
 import org.junit.Test;
 

@@ -1,9 +1,14 @@
 package com.automationintesting.unit;
 
+import com.automationintesting.api.BookingApplication;
 import com.automationintesting.db.BookingDB;
 import liquibase.exception.LiquibaseException;
 import org.h2.jdbcx.JdbcDataSource;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Connection;
 import java.sql.SQLException;

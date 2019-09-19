@@ -1,6 +1,6 @@
 package com.automationintesting.requests;
 
-import com.automationintesting.model.Token;
+import com.automationintesting.model.db.Token;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
