@@ -87,7 +87,7 @@ public class BookingServiceTest {
         BookingResult bookingResult = bookingService.getIndividualBooking(2);
 
         assertThat(bookingResult.getStatus(), is(HttpStatus.OK));
-        assertThat(bookingResult.getBooking().toString(), is("Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=Sun Sep 01 00:00:00 BST 2019, checkout=Mon Sep 02 00:00:00 BST 2019}}"));
+        assertThat(bookingResult.getBooking().toString(), is("Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}"));
     }
 
 
@@ -132,7 +132,7 @@ public class BookingServiceTest {
         BookingResult bookingResult = bookingService.updateBooking(1, booking, "abc123");
 
         assertThat(bookingResult.getStatus(), is(HttpStatus.OK));
-        assertThat(bookingResult.getCreatedBooking().toString(), is("CreatedBooking{bookingid=1, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=Sun Sep 01 00:00:00 BST 2019, checkout=Mon Sep 02 00:00:00 BST 2019}}}"));
+        assertThat(bookingResult.getCreatedBooking().toString(), is("CreatedBooking{bookingid=1, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}}"));
     }
 
     @Test
@@ -157,7 +157,7 @@ public class BookingServiceTest {
         BookingResult bookingResult = bookingService.createBooking(booking);
 
         assertThat(bookingResult.getStatus(), is(HttpStatus.OK));
-        assertThat(bookingResult.getCreatedBooking().toString(), is("CreatedBooking{bookingid=3, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=Sun Sep 01 00:00:00 BST 2019, checkout=Mon Sep 02 00:00:00 BST 2019}}}"));
+        assertThat(bookingResult.getCreatedBooking().toString(), is("CreatedBooking{bookingid=3, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}}"));
     }
 
     @Test
