@@ -9,22 +9,8 @@ class Nav extends React.Component {
 
 	constructor() {
 		super();
-	
-		this.state = {
-			name : ""
-		}
 
 		this.doLogout = this.doLogout.bind(this);
-	}
-
-	componentDidMount(){
-		fetch(API_ROOT + '/branding/', {
-			method: 'GET'
-		})
-		.then(res => res.json())
-		.then(res => {
-			this.setState({name : res.name})
-		})
 	}
 	
 	doLogout(){
@@ -65,7 +51,7 @@ class Nav extends React.Component {
 						)}
 					</div>
 					<div className="mx-auto order-0">
-							<a className="navbar-brand mx-auto" href="#">{this.state.name} - Booking Management</a>
+							<a className="navbar-brand mx-auto" href="#">B&B Booking Management</a>
 							<button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
 									<span className="navbar-toggler-icon"></span>
 							</button>
