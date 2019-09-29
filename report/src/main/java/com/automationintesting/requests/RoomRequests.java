@@ -2,7 +2,6 @@ package com.automationintesting.requests;
 
 import com.automationintesting.model.room.Room;
 import com.automationintesting.model.room.Rooms;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 public class RoomRequests {
@@ -17,16 +16,16 @@ public class RoomRequests {
         }
     }
 
-    public ResponseEntity<Rooms> searchForRooms(){
+    public Rooms searchForRooms(){
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.getForEntity(host, Rooms.class);
+        return restTemplate.getForEntity(host, Rooms.class).getBody();
     }
 
-    public ResponseEntity<Room> searchForSpecificRoom(String id){
+    public Room searchForSpecificRoom(String id){
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.getForEntity(host + "/" + id, Room.class);
+        return restTemplate.getForEntity(host + "/" + id, Room.class).getBody();
     }
 
 }

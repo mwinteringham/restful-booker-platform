@@ -16,10 +16,10 @@ public class BookingRequests {
         }
     }
 
-    public ResponseEntity<Bookings> getBookings(int roomid){
+    public Bookings getBookings(int roomid){
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.getForEntity(host + "/?roomid=" + roomid, Bookings.class);
+        return restTemplate.getForEntity(host + "/?roomid=" + roomid, Bookings.class).getBody();
     }
 
 }

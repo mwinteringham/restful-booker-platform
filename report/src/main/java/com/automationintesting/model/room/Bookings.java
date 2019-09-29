@@ -12,6 +12,10 @@ public class Bookings {
     public Bookings() {
     }
 
+    public Bookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
     public List<Booking> getBookings() {
         return bookings;
     }

@@ -20,4 +20,11 @@ public class Report {
     public void setReport(List<Entry> report) {
         this.report = report;
     }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "report=" + report +
+                '}';
+    }
 }

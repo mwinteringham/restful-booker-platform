@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
 @SpringBootApplication
-@ComponentScan()
+@ComponentScan(basePackages = "com.automationintesting")
 public class ReportApplication {
 
     @PostConstruct

@@ -1,4 +1,4 @@
-package com.automationintesting.unit;
+package com.automationintesting.unit.requests;
 
 import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
@@ -29,9 +29,9 @@ public class BuildReportTest {
 
         RoomRequests roomRequests = new RoomRequests();
 
-        ResponseEntity<Rooms> roomSearchResults = roomRequests.searchForRooms();
+        Rooms roomSearchResults = roomRequests.searchForRooms();
 
-        Approvals.verify(roomSearchResults.getBody().getRooms().toString());
+        Approvals.verify(roomSearchResults.getRooms().toString());
     }
 
     @Test
@@ -46,9 +46,9 @@ public class BuildReportTest {
 
         RoomRequests roomRequests = new RoomRequests();
 
-        ResponseEntity<Room> roomSearchResults = roomRequests.searchForSpecificRoom("1");
+        Room roomSearchResults = roomRequests.searchForSpecificRoom("1");
 
-        Approvals.verify(roomSearchResults.getBody().toString());
+        Approvals.verify(roomSearchResults.toString());
     }
 
 }

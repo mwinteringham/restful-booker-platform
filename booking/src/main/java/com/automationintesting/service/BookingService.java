@@ -9,12 +9,8 @@ import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.requests.MessageRequests;
 import org.h2.jdbc.JdbcSQLNonTransientException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.sql.SQLException;
 import java.util.List;
