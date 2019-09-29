@@ -1,6 +1,6 @@
 package com.automationintesting.db;
 
-import com.automationintesting.model.Branding;
+import com.automationintesting.model.db.Branding;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -2,18 +2,12 @@ package com.automationintesting.api;
 
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.CreatedBooking;
-import com.automationintesting.model.db.Message;
 import com.automationintesting.model.service.BookingResult;
 import com.automationintesting.service.BookingService;
-import com.automationintesting.db.BookingDB;
-import com.automationintesting.requests.MessageRequests;
-import com.automationintesting.service.MessageBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.automationintesting.requests.AuthRequests;
-import com.automationintesting.service.DateCheckValidator;
 
 import javax.validation.Valid;
 import java.sql.SQLException;

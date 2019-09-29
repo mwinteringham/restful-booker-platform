@@ -1,6 +1,6 @@
 package com.automationintesting.db;
 
-import com.automationintesting.model.Branding;
+import com.automationintesting.model.db.Branding;
 import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.jvm.JdbcConnection;

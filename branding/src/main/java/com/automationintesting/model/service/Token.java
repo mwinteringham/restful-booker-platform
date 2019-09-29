@@ -1,4 +1,4 @@
-package com.automationintesting.model;
+package com.automationintesting.model.service;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -9,13 +9,17 @@ import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.requests.MessageRequests;
 import org.h2.jdbc.JdbcSQLNonTransientException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class BookingService {
@@ -30,6 +34,9 @@ public class BookingService {
         authRequests = new AuthRequests();
         dateCheckValidator = new DateCheckValidator();
         messageRequests = new MessageRequests();
+
+        DatabaseScheduler databaseScheduler = new DatabaseScheduler();
+        databaseScheduler.startScheduler(bookingDB, TimeUnit.MINUTES);
     }
 
     public List<Booking> getBookings(Optional<String> roomId) throws SQLException {

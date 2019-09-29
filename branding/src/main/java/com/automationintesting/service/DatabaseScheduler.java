@@ -1,9 +1,6 @@
-package com.automationintesting.utils;
+package com.automationintesting.service;
 
 import com.automationintesting.db.BrandingDB;
-import com.automationintesting.model.Branding;
-import com.automationintesting.model.Contact;
-import com.automationintesting.model.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

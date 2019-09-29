@@ -28,8 +28,6 @@ import static org.mockito.Mockito.when;
 
 public class BookingServiceTest {
 
-    private Connection connection;
-
     @Mock
     private AuthRequests authRequests;
 
@@ -44,7 +42,7 @@ public class BookingServiceTest {
     private BookingService bookingService;
 
     @Before
-    public void createAdditionalBookings() throws SQLException {
+    public void initialiseMocks() {
         MockitoAnnotations.initMocks(this);
     }
 

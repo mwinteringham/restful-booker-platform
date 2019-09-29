@@ -1,4 +1,4 @@
-package com.automationintesting.model;
+package com.automationintesting.model.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -44,5 +44,13 @@ public class Map {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    @Override
+    public String toString() {
+        return "Map{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
     }
 }

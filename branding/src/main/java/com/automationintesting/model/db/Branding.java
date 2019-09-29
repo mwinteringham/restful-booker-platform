@@ -1,4 +1,4 @@
-package com.automationintesting.model;
+package com.automationintesting.model.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.URL;
@@ -105,10 +105,10 @@ public class Branding {
     public String toString() {
         return "Branding{" +
                 "name='" + name + '\'' +
-                ", map=" + map +
+                ", map=" + map.toString() +
                 ", logoUrl='" + logoUrl + '\'' +
                 ", description='" + description + '\'' +
-                ", contact=" + contact +
+                ", contact=" + contact.toString() +
                 '}';
     }
 

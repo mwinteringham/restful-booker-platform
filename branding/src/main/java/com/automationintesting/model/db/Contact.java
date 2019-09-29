@@ -1,4 +1,4 @@
-package com.automationintesting.model;
+package com.automationintesting.model.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -81,5 +81,15 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
