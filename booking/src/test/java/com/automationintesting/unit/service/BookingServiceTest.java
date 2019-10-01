@@ -125,6 +125,8 @@ public class BookingServiceTest {
         CreatedBooking createdBooking = new CreatedBooking(1, booking);
 
         when(authRequests.postCheckAuth("abc123")).thenReturn(true);
+        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(false);
+        when(bookingDB.checkForBookingConflict(booking)).thenReturn(false);
         when(bookingDB.update(1, booking)).thenReturn(createdBooking);
 
         BookingResult bookingResult = bookingService.updateBooking(1, booking, "abc123");
@@ -138,12 +140,37 @@ public class BookingServiceTest {
         Booking booking = createGenericBooking();
 
         when(authRequests.postCheckAuth("abc123")).thenReturn(true);
+        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(false);
+        when(bookingDB.checkForBookingConflict(booking)).thenReturn(false);
         when(bookingDB.update(100, booking)).thenReturn(null);
 
         BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
 
         assertThat(bookingResult.getStatus(), is(HttpStatus.NOT_FOUND));
         assertThat(bookingResult.getCreatedBooking(), is(nullValue()));
+    }
+
+    @Test
+    public void updateBookingDatesTest() throws SQLException {
+        Booking booking = createGenericBooking();
+
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
+        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(false);
+        when(bookingDB.checkForBookingConflict(booking)).thenReturn(true);
+
+        BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
+        assertThat(bookingResult.getStatus(), is(HttpStatus.CONFLICT));
+    }
+
+    @Test
+    public void updateBookingBadDatesTest() throws SQLException {
+        Booking booking = createGenericBooking();
+
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
+        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(true);
+
+        BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
+        assertThat(bookingResult.getStatus(), is(HttpStatus.CONFLICT));
     }
 
     @Test

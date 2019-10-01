@@ -70,12 +70,20 @@ public class BookingService {
 
     public BookingResult updateBooking(int bookingId, Booking bookingToUpdate, String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
-            CreatedBooking updatedBooking = bookingDB.update(bookingId, bookingToUpdate);
-
-            if(updatedBooking != null){
-                return new BookingResult(updatedBooking,  HttpStatus.OK);
+            if(dateCheckValidator.isValid(bookingToUpdate.getBookingDates())) {
+                return new BookingResult(HttpStatus.CONFLICT);
             } else {
-                return new BookingResult(HttpStatus.NOT_FOUND);
+                if (bookingDB.checkForBookingConflict(bookingToUpdate)) {
+                    return new BookingResult(HttpStatus.CONFLICT);
+                } else {
+                    CreatedBooking updatedBooking = bookingDB.update(bookingId, bookingToUpdate);
+
+                    if(updatedBooking != null){
+                        return new BookingResult(updatedBooking,  HttpStatus.OK);
+                    } else {
+                        return new BookingResult(HttpStatus.NOT_FOUND);
+                    }
+                }
             }
         } else {
             return new BookingResult(HttpStatus.FORBIDDEN);
