@@ -1,8 +1,7 @@
-package com.automationintesting.model;
+package com.automationintesting.model.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Messages {
@@ -18,4 +17,10 @@ public class Messages {
         return messages;
     }
 
+    @Override
+    public String toString() {
+        return "Messages{" +
+                "messages=" + messages.toString() +
+                '}';
+    }
 }

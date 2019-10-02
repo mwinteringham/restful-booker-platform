@@ -1,4 +1,4 @@
-package com.automationintesting.model;
+package com.automationintesting.model.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,5 +13,12 @@ public class Count {
 
     public int getCount() {
         return count;
+    }
+
+    @Override
+    public String toString() {
+        return "Count{" +
+                "count=" + count +
+                '}';
     }
 }

@@ -1,7 +1,7 @@
 package com.automationintesting.integration;
 
 import com.automationintesting.api.MessageApplication;
-import com.automationintesting.model.Message;
+import com.automationintesting.model.db.Message;
 import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;

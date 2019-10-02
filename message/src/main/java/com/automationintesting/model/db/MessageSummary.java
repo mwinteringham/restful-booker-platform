@@ -1,4 +1,4 @@
-package com.automationintesting.model;
+package com.automationintesting.model.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,6 +20,12 @@ public class MessageSummary {
         this.id = resultSet.getInt("messageid");
         this.name = resultSet.getString("name");
         this.subject = resultSet.getString("subject");
+    }
+
+    public MessageSummary(int id, String name, String subject) {
+        this.id = id;
+        this.name = name;
+        this.subject = subject;
     }
 
     public int getId() {

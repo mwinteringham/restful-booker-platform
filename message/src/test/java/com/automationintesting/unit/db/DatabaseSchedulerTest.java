@@ -1,8 +1,8 @@
-package com.automationintesting.unit;
+package com.automationintesting.unit.db;
 
-import com.automationintesting.model.Message;
-import com.automationintesting.model.MessageSummary;
-import com.automationintesting.utils.DatabaseScheduler;
+import com.automationintesting.model.db.Message;
+import com.automationintesting.model.db.MessageSummary;
+import com.automationintesting.service.DatabaseScheduler;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;

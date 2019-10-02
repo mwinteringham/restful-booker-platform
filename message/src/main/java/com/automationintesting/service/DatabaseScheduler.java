@@ -1,7 +1,6 @@
-package com.automationintesting.utils;
+package com.automationintesting.service;
 
 import com.automationintesting.db.MessageDB;
-import com.automationintesting.model.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

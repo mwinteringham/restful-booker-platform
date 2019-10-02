@@ -1,6 +1,6 @@
 package com.automationintesting.db;
 
-import com.automationintesting.model.Message;
+import com.automationintesting.model.db.Message;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

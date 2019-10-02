@@ -1,13 +1,9 @@
-package com.automationintesting.unit;
+package com.automationintesting.unit.db;
 
-import com.automationintesting.db.InsertSql;
 import com.automationintesting.db.MessageDB;
-import com.automationintesting.model.Message;
 import liquibase.exception.LiquibaseException;
-import org.h2.jdbcx.JdbcDataSource;
 import org.junit.BeforeClass;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class BaseTest {

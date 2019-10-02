@@ -1,7 +1,7 @@
-package com.automationintesting.unit;
+package com.automationintesting.unit.db;
 
-import com.automationintesting.model.Message;
-import com.automationintesting.model.MessageSummary;
+import com.automationintesting.model.db.Message;
+import com.automationintesting.model.db.MessageSummary;
 import liquibase.exception.LiquibaseException;
 import org.junit.Before;
 import org.junit.Test;
