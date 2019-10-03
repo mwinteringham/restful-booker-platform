@@ -1,10 +1,9 @@
-package com.automationintesting.model;
+package com.automationintesting.model.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.*;
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -63,9 +62,6 @@ public class Room {
         this.image = result.getString("image");
         this.description = result.getString("description");
         this.roomPrice = result.getInt("roomPrice");
-        
-//        Array featuresArray = result.getArray("features");
-//        this.features = (String[])featuresArray.getArray();
 
         Object[] featuresArray = (Object[]) result.getArray("features").getArray();
         String[] featureStringArray = new String[featuresArray.length];

@@ -2,6 +2,7 @@ package com.automationintesting.service;
 
 import com.automationintesting.db.BookingDB;
 import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.Bookings;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.model.db.Message;
 import com.automationintesting.model.service.BookingResult;
@@ -35,7 +36,7 @@ public class BookingService {
         databaseScheduler.startScheduler(bookingDB, TimeUnit.MINUTES);
     }
 
-    public List<Booking> getBookings(Optional<String> roomId) throws SQLException {
+    public Bookings getBookings(Optional<String> roomId) throws SQLException {
         List<Booking> bookingList;
 
         if(roomId.isPresent()){
@@ -44,7 +45,7 @@ public class BookingService {
             bookingList = bookingDB.queryAllBookings();
         }
 
-        return bookingList;
+        return new Bookings(bookingList);
     }
 
     public BookingResult getIndividualBooking(int bookingId) throws SQLException {
@@ -71,8 +72,6 @@ public class BookingService {
     public BookingResult updateBooking(int bookingId, Booking bookingToUpdate, String token) throws SQLException {
         if(authRequests.postCheckAuth(token)){
             if(dateCheckValidator.isValid(bookingToUpdate.getBookingDates())) {
-                return new BookingResult(HttpStatus.CONFLICT);
-            } else {
                 if (bookingDB.checkForBookingConflict(bookingToUpdate)) {
                     return new BookingResult(HttpStatus.CONFLICT);
                 } else {
@@ -84,6 +83,8 @@ public class BookingService {
                         return new BookingResult(HttpStatus.NOT_FOUND);
                     }
                 }
+            } else {
+                return new BookingResult(HttpStatus.CONFLICT);
             }
         } else {
             return new BookingResult(HttpStatus.FORBIDDEN);
@@ -104,7 +105,7 @@ public class BookingService {
                     messageRequests.postMessage(message);
                 }
 
-                return new BookingResult(createdBooking, HttpStatus.OK);
+                return new BookingResult(createdBooking, HttpStatus.CREATED);
             }
         } else {
             return new BookingResult(HttpStatus.CONFLICT);

@@ -3,6 +3,7 @@ package com.automationintesting.unit.service;
 import com.automationintesting.db.BookingDB;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.BookingDates;
+import com.automationintesting.model.db.Bookings;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.model.service.BookingResult;
 import com.automationintesting.requests.AuthRequests;
@@ -57,9 +58,9 @@ public class BookingServiceTest {
 
         Optional<String> emptyOptional = Optional.empty();
 
-        List<Booking> bookingResults = bookingService.getBookings(emptyOptional);
+        Bookings bookingResults = bookingService.getBookings(emptyOptional);
 
-        assertThat(bookingResults.size(), is(2));
+        assertThat(bookingResults.getBookings().size(), is(2));
     }
 
     @Test
@@ -72,9 +73,9 @@ public class BookingServiceTest {
 
         Optional<String> roomid = Optional.of("2");
 
-        List<Booking> bookingResults = bookingService.getBookings(roomid);
+        Bookings bookingResults = bookingService.getBookings(roomid);
 
-        assertThat(bookingResults.size(), is(1));
+        assertThat(bookingResults.getBookings().size(), is(1));
     }
 
     @Test
@@ -125,7 +126,7 @@ public class BookingServiceTest {
         CreatedBooking createdBooking = new CreatedBooking(1, booking);
 
         when(authRequests.postCheckAuth("abc123")).thenReturn(true);
-        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(false);
+        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(true);
         when(bookingDB.checkForBookingConflict(booking)).thenReturn(false);
         when(bookingDB.update(1, booking)).thenReturn(createdBooking);
 
@@ -140,7 +141,7 @@ public class BookingServiceTest {
         Booking booking = createGenericBooking();
 
         when(authRequests.postCheckAuth("abc123")).thenReturn(true);
-        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(false);
+        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(true);
         when(bookingDB.checkForBookingConflict(booking)).thenReturn(false);
         when(bookingDB.update(100, booking)).thenReturn(null);
 
@@ -155,7 +156,7 @@ public class BookingServiceTest {
         Booking booking = createGenericBooking();
 
         when(authRequests.postCheckAuth("abc123")).thenReturn(true);
-        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(false);
+        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(true);
         when(bookingDB.checkForBookingConflict(booking)).thenReturn(true);
 
         BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
@@ -167,7 +168,7 @@ public class BookingServiceTest {
         Booking booking = createGenericBooking();
 
         when(authRequests.postCheckAuth("abc123")).thenReturn(true);
-        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(true);
+        when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(false);
 
         BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
         assertThat(bookingResult.getStatus(), is(HttpStatus.CONFLICT));
@@ -181,7 +182,7 @@ public class BookingServiceTest {
 
         BookingResult bookingResult = bookingService.createBooking(booking);
 
-        assertThat(bookingResult.getStatus(), is(HttpStatus.OK));
+        assertThat(bookingResult.getStatus(), is(HttpStatus.CREATED));
         assertThat(bookingResult.getCreatedBooking().toString(), is("CreatedBooking{bookingid=3, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}}"));
     }
 

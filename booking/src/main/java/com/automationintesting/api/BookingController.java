@@ -1,6 +1,7 @@
 package com.automationintesting.api;
 
 import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.Bookings;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.model.service.BookingResult;
 import com.automationintesting.service.BookingService;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,7 +22,7 @@ public class BookingController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity getBookings(@RequestParam("roomid") Optional<String> roomid) throws SQLException {
-        List<Booking> bookings = bookingService.getBookings(roomid);
+        Bookings bookings = bookingService.getBookings(roomid);
 
         return ResponseEntity.ok(bookings);
     }

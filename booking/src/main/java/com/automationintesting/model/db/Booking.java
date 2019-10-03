@@ -157,6 +157,7 @@ public class Booking {
 
     public static class BookingBuilder {
 
+        private int bookingid;
         private int roomid;
         private String firstname;
         private String lastname;
@@ -165,6 +166,12 @@ public class Booking {
         private Date checkout;
         private String email;
         private String phone;
+
+        public BookingBuilder setBookingid(int bookingid){
+            this.bookingid = bookingid;
+
+            return this;
+        }
 
         public BookingBuilder setRoomid(int roomid){
             this.roomid = roomid;
@@ -218,9 +225,9 @@ public class Booking {
             BookingDates bookingDates = new BookingDates(checkin, checkout);
 
             if(email == null && phone == null){
-                return new Booking(0, roomid, firstname, lastname, depositpaid, bookingDates);
+                return new Booking(bookingid, roomid, firstname, lastname, depositpaid, bookingDates);
             } else {
-                return new Booking(0, roomid, firstname, lastname, depositpaid, bookingDates, email, phone);
+                return new Booking(bookingid, roomid, firstname, lastname, depositpaid, bookingDates, email, phone);
             }
         }
     }

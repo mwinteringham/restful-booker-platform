@@ -1,7 +1,7 @@
 package com.automationintesting.integration;
 
 import com.automationintesting.api.RoomApplication;
-import com.automationintesting.model.Room;
+import com.automationintesting.model.db.Room;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;

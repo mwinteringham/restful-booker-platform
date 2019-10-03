@@ -1,4 +1,4 @@
-package com.automationintesting.unit;
+package com.automationintesting.unit.db;
 
 import com.automationintesting.db.RoomDB;
 import liquibase.exception.LiquibaseException;
