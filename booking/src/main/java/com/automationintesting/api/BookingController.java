@@ -1,121 +1,58 @@
 package com.automationintesting.api;
 
-import com.automationintesting.db.BookingDB;
-import com.automationintesting.model.Booking;
-import com.automationintesting.model.BookingResults;
-import com.automationintesting.model.CreatedBooking;
-import com.automationintesting.model.Message;
-import com.automationintesting.requests.MessageRequests;
-import com.automationintesting.utils.MessageBuilder;
+import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.Bookings;
+import com.automationintesting.model.db.CreatedBooking;
+import com.automationintesting.model.service.BookingResult;
+import com.automationintesting.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import com.automationintesting.requests.AuthRequests;
-import com.automationintesting.utils.DatabaseScheduler;
-import com.automationintesting.validators.DateCheckValidator;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class BookingController {
 
     @Autowired
-    private BookingDB bookingDB;
-    private AuthRequests authRequests;
-    private MessageRequests messageRequests;
-    private DateCheckValidator dateCheckValidator;
-
-    @Bean
-    public WebMvcConfigurer configurer() {
-        DatabaseScheduler databaseScheduler = new DatabaseScheduler();
-        databaseScheduler.startScheduler(bookingDB, TimeUnit.MINUTES);
-
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                String originHost = "http://localhost:3003";
-
-                if(System.getenv("cors") != null){
-                    originHost = System.getenv("cors");
-                }
-
-                registry.addMapping("/*")
-                        .allowedMethods("GET", "POST", "DELETE", "PUT")
-                        .allowedOrigins(originHost)
-                        .allowCredentials(true);
-            }
-        };
-    }
-
-    public BookingController() throws SQLException {
-        authRequests = new AuthRequests();
-        messageRequests = new MessageRequests();
-        dateCheckValidator = new DateCheckValidator();
-    }
+    private BookingService bookingService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<BookingResults> getBookings(@RequestParam("roomid") Optional<String> roomid) throws SQLException {
-        if(roomid.isPresent()){
-            BookingResults searchResults = new BookingResults(bookingDB.queryBookingsById(roomid.get()));
-            return ResponseEntity.ok(searchResults);
-        }
+    public ResponseEntity getBookings(@RequestParam("roomid") Optional<String> roomid) throws SQLException {
+        Bookings bookings = bookingService.getBookings(roomid);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(bookings);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<?> createBooking(@Valid @RequestBody Booking booking, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(dateCheckValidator.isValid(booking.getBookingDates())) {
-            if (bookingDB.checkForBookingConflict(booking)) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).build();
-            } else {
-                CreatedBooking body = bookingDB.create(booking);
+    public ResponseEntity createBooking(@Valid @RequestBody Booking booking) throws SQLException {
+        BookingResult bookingResult = bookingService.createBooking(booking);
 
-                if(booking.getEmail() != null && booking.getPhone() != null){
-                    MessageBuilder messageBuilder = new MessageBuilder();
-                    Message message = messageBuilder.build(booking);
-                    messageRequests.postMessage(message);
-                }
-
-                return ResponseEntity.ok(body);
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
+        return ResponseEntity.status(bookingResult.getStatus()).body(bookingResult.getCreatedBooking());
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
-    public Booking getBooking(@PathVariable(value = "id") int id) throws SQLException {
-        return bookingDB.query(id);
+    public ResponseEntity getBooking(@PathVariable(value = "id") int bookingId) throws SQLException {
+        BookingResult bookingResult = bookingService.getIndividualBooking(bookingId);
+
+        return ResponseEntity.status(bookingResult.getStatus()).body(bookingResult.getBooking());
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.DELETE)
     public ResponseEntity deleteBooking(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequests.postCheckAuth(token)){
-            if(bookingDB.delete(id)){
-                return ResponseEntity.accepted().build();
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+        HttpStatus deleteHttpStatus = bookingService.deleteBooking(id, token);
+
+        return ResponseEntity.status(deleteHttpStatus).build();
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.PUT)
     public ResponseEntity<CreatedBooking> updateBooking(@Valid @RequestBody Booking booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequests.postCheckAuth(token)){
-            return ResponseEntity.ok(bookingDB.update(id, booking));
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+        BookingResult updateResult = bookingService.updateBooking(id, booking, token);
+
+        return ResponseEntity.status(updateResult.getStatus()).body(updateResult.getCreatedBooking());
     }
 
 }

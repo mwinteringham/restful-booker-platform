@@ -1,8 +1,8 @@
 package com.automationintesting.unit.examples;
 
 import com.automationintesting.unit.BaseTest;
-import com.automationintesting.model.Booking;
-import com.automationintesting.model.CreatedBooking;
+import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.CreatedBooking;
 import liquibase.exception.LiquibaseException;
 import org.junit.Before;
 import org.junit.Test;
@@ -79,7 +79,7 @@ public class SqlTest extends BaseTest {
         CreatedBooking createdBooking = bookingDB.create(booking);
         String createdBookingString = createdBooking.toString();
 
-        assertThat(createdBookingString, is("CreatedBooking{\nbookingid=" + (currentBookingId + 1) + "\n, booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
+        assertThat(createdBookingString, is("CreatedBooking{bookingid=" + (currentBookingId + 1) + ", booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class SqlTest extends BaseTest {
         CreatedBooking updatedBooking = bookingDB.update(currentBookingId, booking);
         String updatedBookingString = updatedBooking.toString();
 
-        assertThat(updatedBookingString, is("CreatedBooking{\nbookingid=" + currentBookingId + "\n, booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
+        assertThat(updatedBookingString, is("CreatedBooking{bookingid=" + currentBookingId + ", booking=Booking{roomid=1, firstname='Mark', lastname='Winteringham', depositpaid=true, bookingDates=BookingDates{checkin=2013-01-31, checkout=2013-01-31}}}"));
     }
 
 }

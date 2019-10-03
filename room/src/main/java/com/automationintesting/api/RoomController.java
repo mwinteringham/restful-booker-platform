@@ -1,97 +1,58 @@
 package com.automationintesting.api;
 
 import com.automationintesting.db.RoomDB;
-import com.automationintesting.model.Room;
-import com.automationintesting.model.Rooms;
+import com.automationintesting.model.db.Room;
+import com.automationintesting.model.db.Rooms;
+import com.automationintesting.model.service.RoomResult;
+import com.automationintesting.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.automationintesting.requests.AuthRequests;
-import com.automationintesting.utils.DatabaseScheduler;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class RoomController {
 
     @Autowired
-    private RoomDB roomDB;
-    private AuthRequests authRequest;
-
-    @Bean
-    public WebMvcConfigurer configurer() {
-        DatabaseScheduler databaseScheduler = new DatabaseScheduler();
-        databaseScheduler.startScheduler(roomDB, TimeUnit.MINUTES);
-
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                String originHost = "http://localhost:3003";
-
-                if(System.getenv("cors") != null){
-                    originHost = System.getenv("cors");
-                }
-
-                registry.addMapping("/*")
-                        .allowedMethods("GET", "POST", "DELETE", "PUT")
-                        .allowedOrigins(originHost)
-                        .allowCredentials(true);
-            }
-        };
-    }
-
-    public RoomController() throws SQLException {
-        authRequest = new AuthRequests();
-    }
+    private RoomService roomService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<Rooms> getRooms() throws SQLException {
-        return ResponseEntity.ok(new Rooms(roomDB.queryRooms()));
-    }
+        Rooms rooms = roomService.getRooms();
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<Room> createRoom(@Valid @RequestBody Room room, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequest.postCheckAuth(token)){
-            Room body = roomDB.create(room);
-            return ResponseEntity.ok(body);
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(rooms);
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
-    public Room getRoom(@PathVariable(value = "id") int id) throws SQLException {
-        Room queriedRoom = roomDB.query(id);
+    public ResponseEntity getRoom(@PathVariable(value = "id") int roomId) throws SQLException {
+        RoomResult roomResult = roomService.getSpecificRoom(roomId);
 
-        return queriedRoom;
+        return ResponseEntity.status(roomResult.getHttpStatus()).body(roomResult.getRoom());
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<Room> createRoom(@Valid @RequestBody Room roomToCreate, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        RoomResult roomResult = roomService.createRoom(roomToCreate, token);
+
+        return ResponseEntity.status(roomResult.getHttpStatus()).body(roomResult.getRoom());
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteRoom(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequest.postCheckAuth(token)){
-            if(roomDB.delete(id)){
-                return ResponseEntity.accepted().build();
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+    public ResponseEntity deleteRoom(@PathVariable(value = "id") int roomId, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        RoomResult roomResult = roomService.deleteRoom(roomId, token);
+
+        return ResponseEntity.status(roomResult.getHttpStatus()).build();
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.PUT)
-    public ResponseEntity<Room> updateRoom(@Valid @RequestBody Room booking, @PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequest.postCheckAuth(token)){
-            return ResponseEntity.ok(roomDB.update(id, booking));
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+    public ResponseEntity<Room> updateRoom(@Valid @RequestBody Room roomToUpdate, @PathVariable(value = "id") int roomId, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        RoomResult roomResult = roomService.updateRoom(roomId, roomToUpdate, token);
+
+        return ResponseEntity.status(roomResult.getHttpStatus()).body(roomResult.getRoom());
     }
 
 }

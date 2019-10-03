@@ -1,43 +1,32 @@
 package com.automationintesting.api;
 
-import auth.Tokens;
+import com.automationintesting.app.AuthApp;
+import com.automationintesting.app.Tokens;
 import com.automationintesting.model.Auth;
+import com.automationintesting.model.Decision;
 import com.automationintesting.model.Token;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @RestController
 public class AuthController {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                String originHost = "http://localhost:3003";
+    private AuthApp authApp;
 
-                if(System.getenv("cors") != null){
-                    originHost = System.getenv("cors");
-                }
-
-                registry.addMapping("/*")
-                        .allowedOrigins(originHost)
-                        .allowCredentials(true);
-            }
-        };
+    public AuthController() {
+        authApp = new AuthApp();
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<Token> createToken(@RequestBody Auth auth) {
-        if(auth.getUsername().equals("admin") && auth.getPassword().equals("password")){
-            return ResponseEntity.ok(new Token(Tokens.create()));
+        Decision credentialDecision = authApp.decideOnTokenGeneration(auth.getUsername(), auth.getPassword());
+
+        if(credentialDecision.getResult()){
+            return ResponseEntity.ok(credentialDecision.getToken());
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
@@ -45,7 +34,9 @@ public class AuthController {
 
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
     public ResponseEntity<Token> validateToken(@RequestBody Token token) {
-        if(Tokens.verify(token.getToken())){
+        boolean isValidToken = Tokens.verify(token.getToken());
+
+        if(isValidToken){
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();

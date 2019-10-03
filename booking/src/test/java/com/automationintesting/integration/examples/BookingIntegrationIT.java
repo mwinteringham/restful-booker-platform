@@ -6,8 +6,8 @@ import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import com.automationintesting.model.Booking;
-import com.automationintesting.model.CreatedBooking;
+import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.CreatedBooking;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -92,7 +92,7 @@ public class BookingIntegrationIT {
 
 //    ...Integration check suggestions
 //
-//    Check each service integrates and read / writes to the MySQL service
+//    Check each service integrates and read / writes to the service
 //    Check each service integrates with the Auth web service
 //    Check room and booking services integrate with one another
 

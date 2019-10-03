@@ -26,7 +26,8 @@ public class Room {
     public Room() {
     }
 
-    public Room(int roomNumber, String type, int beds, boolean accessible, String details) {
+    public Room(int roomid, int roomNumber, String type, int beds, boolean accessible, String details) {
+        this.roomid = roomid;
         this.roomNumber = roomNumber;
         this.type = type;
         this.beds = beds;

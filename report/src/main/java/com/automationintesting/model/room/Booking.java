@@ -13,11 +13,18 @@ public class Booking {
     @JsonProperty
     private String lastname;
     @JsonProperty
-    private int totalprice;
-    @JsonProperty
     private boolean depositpaid;
     @JsonProperty(value = "bookingdates")
     private BookingDates bookingDates;
+
+    public Booking(int bookingid, int roomid, String firstname, String lastname, boolean depositpaid, BookingDates bookingDates) {
+        this.bookingid = bookingid;
+        this.roomid = roomid;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.depositpaid = depositpaid;
+        this.bookingDates = bookingDates;
+    }
 
     public Booking() {
     }
@@ -28,10 +35,6 @@ public class Booking {
 
     public String getLastname() {
         return lastname;
-    }
-
-    public int getTotalprice() {
-        return totalprice;
     }
 
     public boolean isDepositpaid() {
@@ -54,10 +57,6 @@ public class Booking {
         this.lastname = lastname;
     }
 
-    public void setTotalprice(int totalprice) {
-        this.totalprice = totalprice;
-    }
-
     public void setDepositpaid(boolean depositpaid) {
         this.depositpaid = depositpaid;
     }
@@ -77,7 +76,6 @@ public class Booking {
                 ", roomid=" + roomid +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", totalprice=" + totalprice +
                 ", depositpaid=" + depositpaid +
                 ", bookingDates=" + bookingDates +
                 '}';

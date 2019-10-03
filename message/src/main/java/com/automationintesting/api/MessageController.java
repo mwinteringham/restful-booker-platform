@@ -1,104 +1,63 @@
 package com.automationintesting.api;
 
-import com.automationintesting.db.MessageDB;
-import com.automationintesting.model.Count;
-import com.automationintesting.model.Message;
-import com.automationintesting.model.Messages;
-import com.automationintesting.requests.AuthRequests;
-import com.automationintesting.utils.DatabaseScheduler;
+import com.automationintesting.model.db.Count;
+import com.automationintesting.model.db.Message;
+import com.automationintesting.model.db.Messages;
+import com.automationintesting.model.service.MessageResult;
+import com.automationintesting.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class MessageController {
 
     @Autowired
-    private MessageDB messageDB;
-    private AuthRequests authRequest;
-
-    @Bean
-    public WebMvcConfigurer configurer() {
-        DatabaseScheduler databaseScheduler = new DatabaseScheduler();
-        databaseScheduler.startScheduler(messageDB, TimeUnit.MINUTES);
-
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                String originHost = "http://localhost:3003";
-
-                if(System.getenv("cors") != null){
-                    originHost = System.getenv("cors");
-                }
-
-                registry.addMapping("/*")
-                        .allowedMethods("GET", "POST", "DELETE", "PUT")
-                        .allowedOrigins(originHost)
-                        .allowCredentials(true);
-            }
-        };
-    }
-
-    public MessageController() throws SQLException {
-        this.authRequest = new AuthRequests();
-    }
+    private MessageService messageService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<Messages> getMessages() throws SQLException {
-        Messages messages = new Messages(messageDB.queryMessages());
+        Messages messages = messageService.getMessages();
 
-        return ResponseEntity.ok(messages);
+        return ResponseEntity.status(HttpStatus.OK).body(messages);
     }
 
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public ResponseEntity<Count> getCount() throws SQLException {
-        Count count = new Count(messageDB.getUnreadCount());
+        Count count = messageService.getCount();
 
-        return ResponseEntity.ok(count);
+        return ResponseEntity.status(HttpStatus.OK).body(count);
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
-    public Message getMessage(@PathVariable(value = "id") int id) throws SQLException {
-        Message queriedMessage = messageDB.query(id);
+    public ResponseEntity getMessage(@PathVariable(value = "id") int messageId) throws SQLException {
+        MessageResult messageResult = messageService.getSpecificMessage(messageId);
 
-        return queriedMessage;
+        return ResponseEntity.status(messageResult.getHttpStatus()).body(messageResult.getMessage());
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<Message> createMessage(@Valid @RequestBody Message message) throws SQLException {
-        Message body = messageDB.create(message);
-        return ResponseEntity.ok(body);
+        Message createdMessage = messageService.createMessage(message);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdMessage);
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteMessage(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequest.postCheckAuth(token)){
-            if(messageDB.delete(id)){
-                return ResponseEntity.accepted().build();
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+    public ResponseEntity deleteMessage(@PathVariable(value = "id") int messageId, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        MessageResult messageResult = messageService.deleteMessage(messageId, token);
+
+        return ResponseEntity.status(messageResult.getHttpStatus()).build();
     }
 
     @RequestMapping(value = "/{id:[0-9]*}/read", method = RequestMethod.PUT)
-    public ResponseEntity markAsRead(@PathVariable(value = "id") int id, @CookieValue(value ="token", required = false) String token) throws SQLException {
-        if(authRequest.postCheckAuth(token)){
-            messageDB.markAsRead(id);
+    public ResponseEntity markAsRead(@PathVariable(value = "id") int messageId, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        HttpStatus messageStatus = messageService.markAsRead(messageId, token);
 
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+        return ResponseEntity.status(messageStatus).build();
     }
 }

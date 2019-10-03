@@ -26,7 +26,7 @@ export const API = {
                 body : JSON.stringify(component.state.newRoom)
             })
             .then(res => {
-                if(res.status == 200){
+                if(res.status == 201){
                     component.resetForm();
                     component.props.updateRooms();
                 } else {
@@ -57,7 +57,7 @@ export const API = {
             body : JSON.stringify(component.state.room)
         })
         .then(res => {
-            if(res.status == 200){
+            if(res.status == 202){
                 component.resetForm();
                 component.fetchRoomDetails();
             } else {
@@ -90,7 +90,7 @@ export const API = {
         .then(res => {
             if (res.status == 409){
                 component.setState({ errors : ["The room dates are either invalid or are already booked for one or more of the dates that you have selected."]})
-            } else if (res.status == 200){
+            } else if (res.status == 201){
                 component.setState({completed : true})
             } else {
                 return res.json();
@@ -134,7 +134,7 @@ export const API = {
             body : JSON.stringify(component.state.branding)
         })
         .then(res => {
-            if(res.status == 200){
+            if(res.status == 202){
                 component.setState({showModal : true, errors : {}});
             } else if(res.status == 400) {
                 return res.json();
@@ -241,7 +241,7 @@ export const API = {
             body : JSON.stringify(component.state.contact)
         })
         .then(res => {
-            if(res.status == 200){
+            if(res.status == 201){
                 component.setState({ submitted : true});
             } else if(res.status == 400) {
                 return res.json();

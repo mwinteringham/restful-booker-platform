@@ -1,7 +1,9 @@
 package com.automationintesting.integration;
 
 import com.automationintesting.api.BrandingApplication;
-import com.automationintesting.model.*;
+import com.automationintesting.model.db.Branding;
+import com.automationintesting.model.db.Contact;
+import com.automationintesting.model.db.Map;
 import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;

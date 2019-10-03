@@ -1,1 +1,0 @@
-[Room{roomid=1, roomNumber=101, type='Twin', beds=2, accessible=false, details='Wifi, TV, Mini-bar}, Room{roomid=2, roomNumber=102, type='Single', beds=3, accessible=true, details='Wifi, TV, Mini-bar}]

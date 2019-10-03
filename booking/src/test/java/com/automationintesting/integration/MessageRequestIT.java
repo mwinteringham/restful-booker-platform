@@ -1,7 +1,7 @@
 package com.automationintesting.integration;
 
 import com.automationintesting.api.BookingApplication;
-import com.automationintesting.model.Booking;
+import com.automationintesting.model.db.Booking;
 import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;

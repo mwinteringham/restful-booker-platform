@@ -1,6 +1,6 @@
 package com.automationintesting.db;
 
-import com.automationintesting.model.Room;
+import com.automationintesting.model.db.Room;
 
 import java.sql.Array;
 import java.sql.Connection;

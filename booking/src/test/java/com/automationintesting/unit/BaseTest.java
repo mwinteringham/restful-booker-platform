@@ -2,10 +2,8 @@ package com.automationintesting.unit;
 
 import com.automationintesting.db.BookingDB;
 import liquibase.exception.LiquibaseException;
-import org.h2.jdbcx.JdbcDataSource;
 import org.junit.BeforeClass;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class BaseTest {

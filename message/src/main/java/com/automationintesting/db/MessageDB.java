@@ -1,7 +1,7 @@
 package com.automationintesting.db;
 
-import com.automationintesting.model.Message;
-import com.automationintesting.model.MessageSummary;
+import com.automationintesting.model.db.Message;
+import com.automationintesting.model.db.MessageSummary;
 import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.jvm.JdbcConnection;
@@ -9,7 +9,6 @@ import liquibase.exception.LiquibaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
-import org.h2.tools.Server;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -43,8 +42,8 @@ public class MessageDB {
         // Server.createTcpServer("-tcpPort", "9093", "-tcpAllowOthers").start();
     }
 
-    public Message create(Message room) throws SQLException {
-        InsertSql insertSql = new InsertSql(connection, room);
+    public Message create(Message message) throws SQLException {
+        InsertSql insertSql = new InsertSql(connection, message);
         PreparedStatement createPs = insertSql.getPreparedStatement();
 
         if(createPs.executeUpdate() > 0){
