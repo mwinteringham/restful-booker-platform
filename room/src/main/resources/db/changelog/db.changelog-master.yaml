@@ -49,115 +49,22 @@ databaseChangeLog:
                   valueNumeric: 101
               - column:
                   name: type
-                  value: Single
+                  value: Twin
               - column:
                   name: beds
                   valueNumeric: 1
               - column:
                   name: accessible
-                  value: true
+                  value: false
               - column:
                   name: image
-                  value: https://automationintesting.com/images/supporters/saucelabs/single.jpg
+                  value: https://www.mwtestconsultancy.co.uk/img/room1.jpg
               - column:
                   name: description
-                  value: Our live testing room, perfect for those who need a solution for their cross browser exploratory testing
+                  value: Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.
               - column:
                   name: features
-                  value: TV
+                  value: TV, WiFi, Safe
               - column:
                   name: roomPrice
-                  valueNumeric: 19
-  - changeSet:
-      id: insert-2
-      author: mwinteringham
-      changes:
-        - insert:
-            tableName: ROOMS
-            columns:
-              - column:
-                  name: room_number
-                  valueNumeric: 102
-              - column:
-                  name: type
-                  value: Double
-              - column:
-                  name: beds
-                  valueNumeric: 1
-              - column:
-                  name: accessible
-                  value: true
-              - column:
-                  name: image
-                  value: https://automationintesting.com/images/supporters/saucelabs/double.jpg
-              - column:
-                  name: description
-                  value: This room offers you the ability to run your automated tests across all sorts of fun stuff. Browsers, devices, and more...
-              - column:
-                  name: features
-                  value: TV, Views
-              - column:
-                  name: roomPrice
-                  valueNumeric: 149
-  - changeSet:
-      id: insert-3
-      author: mwinteringham
-      changes:
-        - insert:
-            tableName: ROOMS
-            columns:
-              - column:
-                  name: room_number
-                  valueNumeric: 201
-              - column:
-                  name: type
-                  value: Family
-              - column:
-                  name: beds
-                  valueNumeric: 1
-              - column:
-                  name: accessible
-                  value: true
-              - column:
-                  name: image
-                  value: https://automationintesting.com/images/supporters/saucelabs/family.jpg
-              - column:
-                  name: description
-                  value: Need a bit more space to run your automation, this room with unlimited views (and minutes) is the one for you
-              - column:
-                  name: features
-                  value: Wifi, TV, Safe, Views
-              - column:
-                  name: roomPrice
-                  valueNumeric: 349
-  - changeSet:
-      id: insert-4
-      author: mwinteringham
-      changes:
-        - insert:
-            tableName: ROOMS
-            columns:
-              - column:
-                  name: room_number
-                  valueNumeric: 301
-              - column:
-                  name: type
-                  value: Suite
-              - column:
-                  name: beds
-                  valueNumeric: 1
-              - column:
-                  name: accessible
-                  value: true
-              - column:
-                  name: image
-                  value: https://automationintesting.com/images/supporters/saucelabs/suite.jpg
-              - column:
-                  name: description
-                  value: The enterprise solution for all your continuous testing needs, the best views and the most awesome devices!
-              - column:
-                  name: features
-                  value: Wifi, TV, Safe, Radio, Refreshments, Views
-              - column:
-                  name: roomPrice
-                  valueNumeric: 500
+                  valueNumeric: 100

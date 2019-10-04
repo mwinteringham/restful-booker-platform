@@ -47,10 +47,6 @@ export default class Home extends React.Component {
     render() {
         return (
             <div>
-                <div className="alert alert-dismissible">
-                    <button type="button" className="close" data-dismiss="alert">×</button>
-                    <img src="https://automationintesting.com/images/supporters/saucelabs/aitsponsorshipbanner.png" style={{width: "100%"}} alt="AiT Sponsorship banner" />
-                </div>
                 <div className="container-fluid">
                     <div className="row">
                         <div className='col-sm-12 text-center'>
