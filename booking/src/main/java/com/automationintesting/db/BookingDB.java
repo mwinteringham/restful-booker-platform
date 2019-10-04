@@ -6,11 +6,12 @@ import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.stereotype.Component;
 
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -111,9 +112,11 @@ public class BookingDB {
 
     public void resetDB() throws SQLException, LiquibaseException {
         JdbcConnection connection = this.getConnection();
-        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
 
-        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
+        URL resource = getClass().getResource("/db/changelog/");
+        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(resource.getPath());
+
+        Liquibase liquibase = new Liquibase("db.changelog-master.yaml", resourceAccessor, connection);
 
         liquibase.dropAll();
 
