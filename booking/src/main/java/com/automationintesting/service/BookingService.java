@@ -21,16 +21,17 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class BookingService {
 
-    @Autowired
     private BookingDB bookingDB;
     private AuthRequests authRequests;
     private DateCheckValidator dateCheckValidator;
     private MessageRequests messageRequests;
 
-    public BookingService() {
+    public BookingService() throws SQLException {
         authRequests = new AuthRequests();
         dateCheckValidator = new DateCheckValidator();
         messageRequests = new MessageRequests();
+
+        bookingDB = new BookingDB();
 
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(bookingDB, TimeUnit.MINUTES);

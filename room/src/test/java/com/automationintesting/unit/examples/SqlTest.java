@@ -1,6 +1,5 @@
 package com.automationintesting.unit.examples;
 
-import com.automationintesting.unit.db.BaseTest;
 import com.automationintesting.model.db.Room;
 import liquibase.exception.LiquibaseException;
 import org.junit.Before;

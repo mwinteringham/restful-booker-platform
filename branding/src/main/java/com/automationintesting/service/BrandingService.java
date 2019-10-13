@@ -14,13 +14,14 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class BrandingService {
 
-    @Autowired
     private BrandingDB brandingDB;
     private AuthRequests authRequest;
 
-    public BrandingService() {
+    public BrandingService() throws SQLException {
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(brandingDB, TimeUnit.MINUTES);
+
+        brandingDB = new BrandingDB();
 
         authRequest = new AuthRequests();
     }

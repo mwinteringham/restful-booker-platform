@@ -16,13 +16,14 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RoomService {
 
-    @Autowired
     private RoomDB roomDB;
 
     private AuthRequests authRequests;
 
-    public RoomService() {
+    public RoomService() throws SQLException {
         authRequests = new AuthRequests();
+
+        roomDB = new RoomDB();
 
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(roomDB, TimeUnit.MINUTES);
