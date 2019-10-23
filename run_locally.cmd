@@ -8,6 +8,7 @@ echo ####                               ####
 echo ####    STARTING APPLICATION...    ####
 echo ####                               ####
 echo #######################################
+echo \n
 
 START /B java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platform-auth-1.0-SNAPSHOT.jar > auth.log
 START /B java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-1.0-SNAPSHOT.jar > booking.log
@@ -21,6 +22,7 @@ START /B node .utilities/rbp-proxy/proxy.js
 call node .utilities/monitor/local_monitor.js
 
 echo:
+echo \n
 echo ####### RESTFUL-BOOKER-PLATFORM #######
 echo ####                               ####
 echo ####    RUNNING E2E CHECKS         ####

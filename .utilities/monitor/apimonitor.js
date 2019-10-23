@@ -1,7 +1,7 @@
 const http = require('http');
 const https = require('https');
 
-makeHttpRequest = (host, apiName, callback) => {
+makeHttpRequest = (host, apiName) => {
   http.get(host + apiName + '/actuator/health', (response) => {
     let data = '';
     
@@ -10,17 +10,26 @@ makeHttpRequest = (host, apiName, callback) => {
     });
     
     response.on('end', () => {
-      console.log(apiName + ' UP! (' + response.statusCode + ')');
-      callback(response.statusCode);
+      if(response.statusCode !== 200){
+        process.stdout.write('.');
+
+        setTimeout(() => {
+          makeHttpRequest(host, apiName);
+        }, 5000);
+      } else {
+        process.stdout.write('\n' + apiName + ' ready ');
+      }
     });
 
-  }).on('error', (err) => {
-      console.log(apiName + ' NOT UP! (' + err.message + ')');
-      callback(err.message);
+  }).on('error', () => {
+      process.stdout.write('.')
+      setTimeout(() => {
+        makeHttpRequest(host, apiName);
+      }, 5000);
   });
 }
 
-makeHttpsRequest = (host, apiName, callback) => {
+makeHttpsRequest = (host, apiName) => {
   https.get(host + apiName + '/actuator/health', (response) => {
     let data = '';
     
@@ -29,30 +38,33 @@ makeHttpsRequest = (host, apiName, callback) => {
     });
     
     response.on('end', () => {
-      console.log(apiName + ' UP! (' + response.statusCode + ')');
-      callback(response.statusCode);
-    });
-
-  }).on('error', (err) => {
-      console.log(apiName + ' NOT UP! (' + err.message + ')');
-      callback(err.message);
-  });
-}
-  
-exports.checkForLife = (protocol, host, apiName) => {
-  if(protocol === 'https'){
-    makeHttpsRequest(host, apiName, (requestResult) => {
-      if(requestResult !== 200){
+      if(response.statusCode !== 200){
+        process.stdout.write('.');
+        
         setTimeout(() => {
-          this.checkForLife(protocol, host, apiName)
+          makeHttpsRequest(host, apiName);
         }, 5000);
+      } else {
+        process.stdout.write('\n' + apiName + ' ready ');
       }
     });
+
+  }).on('error', () => {
+      process.stdout.write('.')
+      setTimeout(() => {
+        makeHttpsRequest(host, apiName);
+      }, 5000);
+  });
+}
+
+exports.checkForLife = (protocol, host, apiName) => {
+  if(protocol === 'https'){
+    makeHttpsRequest(host, apiName);
   } else if (protocol === 'http'){
     makeHttpRequest(host, apiName, (requestResult) => {
       if(requestResult !== 200){
         setTimeout(() => {
-          this.checkForLife(protocol, host, apiName)
+          makeHttpRequest(host, apiName)
         }, 5000);
       }
     });

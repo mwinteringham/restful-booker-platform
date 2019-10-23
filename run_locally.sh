@@ -12,7 +12,7 @@ printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
 ####    STARTING APPLICATION...    ####
 ####                               ####
-#######################################\n"
+#######################################\n\n"
 
 trap "kill 0" EXIT
 
@@ -27,7 +27,7 @@ java -jar -Dspring.profiles.active=dev assets/api/target/restful-booker-platform
 node .utilities/rbp-proxy/proxy.js &
 node .utilities/monitor/local_monitor.js
 
-printf "\n####### RESTFUL-BOOKER-PLATFORM #######
+printf "\n\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
 ####    RUNNING E2E CHECKS         ####
 ####                               ####
