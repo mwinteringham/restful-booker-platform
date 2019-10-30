@@ -5,6 +5,7 @@ import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
+import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
@@ -116,10 +117,9 @@ public class RoomDB {
     public void resetDB() throws LiquibaseException {
         JdbcConnection connection = this.getConnection();
 
-        URL resource = getClass().getResource("/db/changelog/");
-        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(resource.getPath());
+        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
 
-        Liquibase liquibase = new Liquibase("db.changelog-master.yaml", resourceAccessor, connection);
+        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
 
         liquibase.dropAll();
 
