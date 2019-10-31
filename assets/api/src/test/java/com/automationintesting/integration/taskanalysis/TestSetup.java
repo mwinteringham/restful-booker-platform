@@ -33,6 +33,7 @@ public class TestSetup {
         // For Appplitools to work, it requires an account that can be registered on their website.
         // The account will come with an API key that you can assign to the environmental variable
         // APPLITOOLS_API_KEY to use in your checks.
+        //eyes.setApiKey("");
         eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
     }
 
