@@ -4,10 +4,10 @@ A platform of web services that form a Hotel booking system for training others 
 ## Requirements
 RBP is currently known to work with the following requirements:
 
-- JDK 1.8
-- Maven 3.3.9
-- Node 10.15.0
-- NPM 6.4.1
+- JDK 11
+- Maven 3.6.2
+- Node 12.13.0
+- NPM 6.12.0
 
 ## Building locally
 
@@ -15,7 +15,7 @@ You will require Java SDK 1.8, Maven and Node/Npm installed and available in you
 
 1. Clone/Download the repository
 2. Navigate into the restful-booker-platform root folder
-3. Run either ```build_locally.sh``` or ```build_locally.cmd``` depending on your OS to build RBP and get it running (It may take a while on the first run as it downloads dependencies)
+3. Run either ```bash build_locally.sh``` on Linux or Mac or ```build_locally.cmd``` on Windows to build RBP and get it running (It may take a while on the first run as it downloads dependencies)
 4. Navigate to http://localhost:8080 to access the site
 
 ## Running locally
