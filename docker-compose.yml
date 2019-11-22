@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  rbp-booking:
+    image: mwinteringham/restfulbookerplatform_booking
+    ports:
+      - "3000:3000"
+    restart: always
+  rbp-room:
+    image: mwinteringham/restfulbookerplatform_room
+    ports:
+      - "3001:3001"
+    restart: always
+  rbp-branding:
+    image: mwinteringham/restfulbookerplatform_branding
+    ports:
+      - "3002:3002"
+    restart: always
+  rbp-assets:
+    image: mwinteringham/restfulbookerplatform_assets
+    ports:
+      - "3003:3003"
+    restart: always
+  rbp-auth:
+    image: mwinteringham/restfulbookerplatform_auth
+    ports:
+      - "3004:3004"
+    restart: always
+  rbp-report:
+    image: mwinteringham/restfulbookerplatform_report
+    ports:
+      - "3005:3005"
+    restart: always
+  rbp-message:
+    image: mwinteringham/restfulbookerplatform_message
+    ports:
+      - "3006:3006"
+    restart: always
+  rbp-proxy:
+    image: mwinteringham/restfulbookerplatform_proxy
+    ports:
+      - "80:80"
+    restart: always
