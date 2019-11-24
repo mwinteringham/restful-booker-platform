@@ -8,4 +8,4 @@ COPY target ./
 
 ENV authDomain=rbp-auth
 
-ENTRYPOINT java -jar -Dspring.profiles.active=prod target/restful-booker-platform-room-1.0-SNAPSHOT.jar -D
+ENTRYPOINT java -jar -Dspring.profiles.active=prod target/restful-booker-platform-room-*.jar -D
