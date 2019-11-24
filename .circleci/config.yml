@@ -350,8 +350,8 @@ jobs:
                 if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                   echo "[BUILDING] Assets"
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
-                  docker build -t mwinteringham/restfulbookerplatform_assets:$(ls target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                  docker push mwinteringham/restfulbookerplatform_assets:$(ls target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                  docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+                  docker push mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11)
                 else
                   echo "[SKIPPING] Assets"
                 fi
