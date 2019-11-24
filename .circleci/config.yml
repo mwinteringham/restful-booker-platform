@@ -37,8 +37,7 @@ jobs:
       - run:
           command: |
               echo "[BUILDING] Auth"
-              build_ver = git rev-parse --short HEAD
-              mvn clean install -Drevision=${build_ver}
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
           working_directory: auth
       - save_cache:
           paths:
@@ -59,8 +58,7 @@ jobs:
       - run:
           command: |
               echo "[BUILDING] Booking"
-              build_ver = git rev-parse --short HEAD
-              mvn clean install -Drevision=${build_ver}
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
           working_directory: booking
       - save_cache:
           paths:
@@ -81,8 +79,7 @@ jobs:
       - run:
           command: |
               echo "[BUILDING] Report"
-              build_ver = git rev-parse --short HEAD
-              mvn clean install -Drevision=${build_ver}
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
           working_directory: report
       - save_cache:
           paths:
@@ -103,8 +100,7 @@ jobs:
       - run:
           command: |
               echo "[BUILDING] Room"
-              build_ver = git rev-parse --short HEAD
-              mvn clean install -Drevision=${build_ver}
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
           working_directory: room
       - save_cache:
           paths:
@@ -125,8 +121,7 @@ jobs:
       - run:
           command: |
               echo "[BUILDING] Branding"
-              build_ver = git rev-parse --short HEAD
-              mvn clean install -Drevision=${build_ver}
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
           working_directory: branding
       - save_cache:
           paths:
@@ -147,8 +142,7 @@ jobs:
       - run:
           command: |
               echo "[BUILDING] Message"
-              build_ver = git rev-parse --short HEAD
-              mvn clean install -Drevision=${build_ver}
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
           working_directory: message
       - save_cache:
           paths:
@@ -182,10 +176,10 @@ jobs:
               wget --retry-connrefused --no-check-certificate -T 60 localhost:4445  # wait for Sauce Labs SC to be ready
               if [[ -z "${APPLITOOLS_API_KEY}" ]]; then
                 printf "Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks"
-                mvn install -Drevision=${build_ver} -Dvisual.skip.test=true
+                mvn install -Drevision=$(git rev-parse --short HEAD) -Dvisual.skip.test=true
               else
                 build_ver = git rev-parse --short HEAD
-                mvn install -Drevision=${build_ver}
+                mvn install -Drevision=$(git rev-parse --short HEAD)
               fi
           working_directory: assets/js
           environment:
