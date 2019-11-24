@@ -36,12 +36,13 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            if [ -f ~/tmp/auth.txt ]; then
+#            if [ -f ~/tmp/auth.txt ]; then
               echo "[BUILDING] Auth"
-              mvn clean install
-            else
-              echo "[SKIPPING] Auth"
-            fi
+              build_ver = git rev-parse --short HEAD
+              mvn clean install -Drevision=${build_ver}
+#            else
+#              echo "[SKIPPING] Auth"
+#            fi
           working_directory: auth
       - save_cache:
           paths:
@@ -61,12 +62,13 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            if [ -f ~/tmp/booking.txt ]; then
+#            if [ -f ~/tmp/booking.txt ]; then
               echo "[BUILDING] Booking"
-              mvn clean install
-            else
-              echo "[SKIPPING] Booking"
-            fi
+              build_ver = git rev-parse --short HEAD
+              mvn clean install -Drevision=${build_ver}
+#            else
+#              echo "[SKIPPING] Booking"
+#            fi
           working_directory: booking
       - save_cache:
           paths:
@@ -86,12 +88,13 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            if [ -f ~/tmp/report.txt ]; then
+#            if [ -f ~/tmp/report.txt ]; then
               echo "[BUILDING] Report"
-              mvn clean install
-            else
-              echo "[SKIPPING] Report"
-            fi
+              build_ver = git rev-parse --short HEAD
+              mvn clean install -Drevision=${build_ver}
+#            else
+#              echo "[SKIPPING] Report"
+#            fi
           working_directory: report
       - save_cache:
           paths:
@@ -111,12 +114,13 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            if [ -f ~/tmp/room.txt ]; then
+#            if [ -f ~/tmp/room.txt ]; then
               echo "[BUILDING] Room"
-              mvn clean install
-            else
-              echo "[SKIPPING] Room"
-            fi
+              build_ver = git rev-parse --short HEAD
+              mvn clean install -Drevision=${build_ver}
+#            else
+#              echo "[SKIPPING] Room"
+#            fi
           working_directory: room
       - save_cache:
           paths:
@@ -136,12 +140,13 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            if [ -f ~/tmp/branding.txt ]; then
+#            if [ -f ~/tmp/branding.txt ]; then
               echo "[BUILDING] Branding"
-              mvn clean install
-            else
-              echo "[SKIPPING] Branding"
-            fi
+              build_ver = git rev-parse --short HEAD
+              mvn clean install -Drevision=${build_ver}
+#            else
+#              echo "[SKIPPING] Branding"
+#            fi
           working_directory: branding
       - save_cache:
           paths:
@@ -161,12 +166,13 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-            if [ -f ~/tmp/message.txt ]; then
+#            if [ -f ~/tmp/message.txt ]; then
               echo "[BUILDING] Message"
-              mvn clean install
-            else
-              echo "[SKIPPING] Message"
-            fi
+              build_ver = git rev-parse --short HEAD
+              mvn clean install -Drevision=${build_ver}
+#            else
+#              echo "[SKIPPING] Message"
+#            fi
           working_directory: message
       - save_cache:
           paths:
@@ -191,7 +197,7 @@ jobs:
             bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY}
       - run:
           command: |
-            if [ -f ~/tmp/assets.txt ]; then
+#            if [ -f ~/tmp/assets.txt ]; then
               echo "[BUILDING] Assets"
               npm install
               npm test
@@ -201,13 +207,14 @@ jobs:
               wget --retry-connrefused --no-check-certificate -T 60 localhost:4445  # wait for Sauce Labs SC to be ready
               if [[ -z "${APPLITOOLS_API_KEY}" ]]; then
                 printf "Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks"
-                mvn install -Dvisual.skip.test=true
+                mvn install -Drevision=${build_ver} -Dvisual.skip.test=true
               else
-                mvn install
+                build_ver = git rev-parse --short HEAD
+                mvn install -Drevision=${build_ver}
               fi
-            else
-              echo "[SKIPPING] Assets"
-            fi
+#            else
+#              echo "[SKIPPING] Assets"
+#            fi
           working_directory: assets/js
           environment:
             BROWSER: remote
