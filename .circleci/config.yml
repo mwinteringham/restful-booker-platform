@@ -406,25 +406,20 @@ jobs:
   deploy_report_docker_image:
 
       docker:
-        - image: google/cloud-sdk
+        - image: circleci/openjdk:11-jdk-node-browsers
 
       steps:
         - restore_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            name: Store Service Account
-            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - add_ssh_keys:
+            fingerprints:
+              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run: |
-            if [ -f /home/circleci/tmp/report.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-              echo "[DEPLOYING] Report"
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-              kubectl delete pod $(kubectl get pods | awk '/rbp-report/ {print $1;exit}')
-            else
-              echo "[SKIPPING] Report"
-            fi
+            echo "[DEPLOYING] Report"
+            ssh ec2-user@52.213.175.2
+            container=`sudo docker ps -aqf "name=rbp-report"`
+            docker stop $container && docker rm $container
+            sudo docker run -d --network rbp-host --name rbp-report -p 3005:3005 mwinteringham/restfulbookerplatform_report:tag
 
   deploy_room_docker_image:
 
