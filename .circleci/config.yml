@@ -18,6 +18,8 @@ jobs:
               echo "$folder will be built in this run"
               touch ~/tmp/$folder.txt
             done
+            cd project/booking
+            touch ~/tmp/${$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)/SNAPSHOT/$(git rev-parse --short HEAD)}
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -36,9 +38,9 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
+              ls -al ~/tmp/
               echo "[BUILDING] Auth"
               mvn clean install -Drevision=$(git rev-parse --short HEAD)
-              touch ~/tmp/$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
           working_directory: auth
       - save_cache:
           paths:
@@ -60,7 +62,6 @@ jobs:
           command: |
               echo "[BUILDING] Booking"
               mvn clean install -Drevision=$(git rev-parse --short HEAD)
-              touch ~/tmp/$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
           working_directory: booking
       - save_cache:
           paths:
@@ -82,7 +83,6 @@ jobs:
           command: |
               echo "[BUILDING] Report"
               mvn clean install -Drevision=$(git rev-parse --short HEAD)
-              touch ~/tmp/$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
           working_directory: report
       - save_cache:
           paths:
@@ -104,7 +104,6 @@ jobs:
           command: |
               echo "[BUILDING] Room"
               mvn clean install -Drevision=$(git rev-parse --short HEAD)
-              touch ~/tmp/$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
           working_directory: room
       - save_cache:
           paths:
@@ -126,7 +125,6 @@ jobs:
           command: |
               echo "[BUILDING] Branding"
               mvn clean install -Drevision=$(git rev-parse --short HEAD)
-              touch ~/tmp/$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
           working_directory: branding
       - save_cache:
           paths:
@@ -148,7 +146,6 @@ jobs:
           command: |
               echo "[BUILDING] Message"
               mvn clean install -Drevision=$(git rev-parse --short HEAD)
-              touch ~/tmp/$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
           working_directory: message
       - save_cache:
           paths:
@@ -186,7 +183,6 @@ jobs:
               else
                 mvn install -Drevision=$(git rev-parse --short HEAD)
               fi
-              touch ~/tmp/$(ls target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
           working_directory: assets/js
           environment:
             BROWSER: remote
