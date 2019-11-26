@@ -203,9 +203,9 @@ jobs:
       - run:
           command: |
             echo $CIRCLE_BRANCH
-            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
               echo "[BUILDING] Auth"
-              touch ~/tmp/$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
+              touch ~/$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11) .
               docker push mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11)
@@ -230,7 +230,7 @@ jobs:
             command: |
               if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                 echo "[BUILDING] Booking"
-                touch ~/tmp/$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
+                touch ~/$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11) .
                 docker push mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11)
@@ -255,7 +255,7 @@ jobs:
             command: |
               if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                 echo "[BUILDING] Report"
-                touch ~/tmp/$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
+                touch ~/$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11) .
                 docker push mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11)
@@ -280,7 +280,7 @@ jobs:
             command: |
               if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                 echo "[BUILDING] Room"
-                touch ~/tmp/$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
+                touch ~/$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11) .
                 docker push mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11)
@@ -305,7 +305,7 @@ jobs:
             command: |
               if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                 echo "[BUILDING] Branding"
-                touch ~/tmp/$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
+                touch ~/$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11) .
                 docker push mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11)
@@ -330,7 +330,7 @@ jobs:
           command: |
             if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
               echo "[BUILDING] Message"
-              touch ~/tmp/$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
+              touch ~/$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker build -t mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11) .
               docker push mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11)
@@ -355,7 +355,7 @@ jobs:
               command: |
                 if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                   echo "[BUILDING] Assets"
-                  touch ~/tmp/$(ls target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
+                  touch ~/$(ls target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
                   docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11) .
                   docker push mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11)
@@ -377,7 +377,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
           echo "[DEPLOYING] Auth"
-          ls -al ~/tmp/*.tmp
+          ls -al ~/*.tmp
           ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:4.0.baab23d && exit'
 
@@ -394,7 +394,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
           echo "[DEPLOYING] Booking"
-          ls -al ~/tmp/*.tmp
+          ls -al ~/*.tmp
           ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' mwinteringham/restfulbookerplatform_booking:4.0.cba8f5a && exit'
 
@@ -411,7 +411,7 @@ jobs:
               - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run: |
             echo "[DEPLOYING] Report"
-            ls -al ~/tmp/*.tmp
+            ls -al ~/*.tmp
             ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
             ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-report"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-report -p 3005:3005 mwinteringham/restfulbookerplatform_report:4.0.cba8f5a && exit'
 
@@ -428,7 +428,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
           echo "[DEPLOYING] Room"
-          ls -al ~/tmp/*.tmp
+          ls -al ~/*.tmp
           ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-room"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-room -p 3001:3001 -e dbRefresh='10' mwinteringham/restfulbookerplatform_room:4.0.cba8f5a && exit'
 
@@ -445,7 +445,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
           echo "[DEPLOYING] Branding"
-          ls -al ~/tmp/*.tmp
+          ls -al ~/*.tmp
           ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-branding"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' mwinteringham/restfulbookerplatform_branding:4.0.cba8f5a && exit'
 
@@ -462,7 +462,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
           echo "[DEPLOYING] Message"
-          ls -al ~/tmp/*.tmp
+          ls -al ~/*.tmp
           ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-message"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-message -p 3006:3006 -e dbRefresh='10' mwinteringham/restfulbookerplatform_message:4.0.cba8f5a && exit'
 
@@ -479,7 +479,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
           echo "[DEPLOYING] Report"
-          ls -al ~/tmp/*.tmp
+          ls -al ~/*.tmp
           ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-assets"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-assets -p 3003:3003 mwinteringham/restfulbookerplatform_assets:4.0.cba8f5a && exit'
 
