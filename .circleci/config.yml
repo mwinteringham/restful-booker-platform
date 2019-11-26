@@ -19,7 +19,7 @@ jobs:
               touch ~/tmp/$folder.txt
             done
             cd project/booking
-            touch ~/tmp/${$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)/SNAPSHOT/$(git rev-parse --short HEAD)}
+            touch ~/tmp/${$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)/SNAPSHOT/$(git rev-parse --short HEAD)}.tmp
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
