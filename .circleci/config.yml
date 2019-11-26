@@ -417,7 +417,7 @@ jobs:
         - run: |
             echo "[DEPLOYING] Report"
             ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
-            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-report"` && docker stop $container && docker rm $container && sudo docker run -d --network rbp-host --name rbp-report -p 3005:3005 mwinteringham/restfulbookerplatform_report:4.0.cba8f5a && exit'
+            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-report"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-report -p 3005:3005 mwinteringham/restfulbookerplatform_report:4.0.cba8f5a && exit'
 
   deploy_room_docker_image:
 
