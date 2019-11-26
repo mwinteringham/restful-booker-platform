@@ -359,49 +359,35 @@ jobs:
 
   deploy_auth_docker_image:
 
-      docker:
-        - image: google/cloud-sdk
+    docker:
+      - image: circleci/openjdk:11-jdk-node-browsers
 
       steps:
         - restore_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            name: Store Service Account
-            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - add_ssh_keys:
+            fingerprints:
+              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run: |
-            if [ -f /home/circleci/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-              echo "[DEPLOYING] Auth"
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-              kubectl delete pod $(kubectl get pods | awk '/rbp-auth/ {print $1;exit}')
-            else
-              echo "[SKIPPING] Auth"
-            fi
+            echo "[DEPLOYING] Report"
+            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:4.0.baab23d && exit'
 
   deploy_booking_docker_image:
 
-      docker:
-        - image: google/cloud-sdk
+    docker:
+      - image: circleci/openjdk:11-jdk-node-browsers
 
       steps:
         - restore_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            name: Store Service Account
-            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - add_ssh_keys:
+            fingerprints:
+              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run: |
-            if [ -f /home/circleci/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-              echo "[DEPLOYING] Booking"
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-              kubectl delete pod $(kubectl get pods | awk '/rbp-booking/ {print $1;exit}')
-            else
-              echo "[SKIPPING] Booking"
-            fi
+            echo "[DEPLOYING] Booking"
+            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' mwinteringham/restfulbookerplatform_booking:4.0.cba8f5a && exit'
 
   deploy_report_docker_image:
 
@@ -421,95 +407,67 @@ jobs:
 
   deploy_room_docker_image:
 
-      docker:
-        - image: google/cloud-sdk
+    docker:
+      - image: circleci/openjdk:11-jdk-node-browsers
 
       steps:
         - restore_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            name: Store Service Account
-            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - add_ssh_keys:
+            fingerprints:
+              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run: |
-            if [ -f /home/circleci/tmp/room.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-              echo "[DEPLOYING] Room"
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-              kubectl delete pod $(kubectl get pods | awk '/rbp-room/ {print $1;exit}')
-            else
-              echo "[SKIPPING] Room"
-            fi
+            echo "[DEPLOYING] Booking"
+            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-room"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-room -p 3001:3001 -e dbRefresh='10' mwinteringham/restfulbookerplatform_room:4.0.cba8f5a && exit'
 
   deploy_branding_docker_image:
 
-      docker:
-        - image: google/cloud-sdk
+    docker:
+      - image: circleci/openjdk:11-jdk-node-browsers
 
       steps:
         - restore_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            name: Store Service Account
-            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - add_ssh_keys:
+            fingerprints:
+              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run: |
-            if [ -f /home/circleci/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-              echo "[DEPLOYING] Branding"
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-              kubectl delete pod $(kubectl get pods | awk '/rbp-branding/ {print $1;exit}')
-            else
-              echo "[SKIPPING] Branding"
-            fi
+            echo "[DEPLOYING] Booking"
+            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' mwinteringham/restfulbookerplatform_branding:4.0.cba8f5a && exit'
 
   deploy_message_docker_image:
 
     docker:
-      - image: google/cloud-sdk
-
-    steps:
-      - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          name: Store Service Account
-          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-      - run: |
-          if [ -f /home/circleci/tmp/message.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-            echo "[DEPLOYING] Message"
-            gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-            gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-            kubectl delete pod $(kubectl get pods | awk '/rbp-message/ {print $1;exit}')
-          else
-            echo "[SKIPPING] Message"
-          fi
-
-  deploy_assets_docker_image:
-
-      docker:
-        - image: google/cloud-sdk
+      - image: circleci/openjdk:11-jdk-node-browsers
 
       steps:
         - restore_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            name: Store Service Account
-            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        - add_ssh_keys:
+            fingerprints:
+              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run: |
-            if [ -f /home/circleci/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
-              echo "[DEPLOYING] Assets"
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-              gcloud container clusters get-credentials rbp-cluster --region europe-north1-a
-              kubectl delete pod $(kubectl get pods | awk '/rbp-assets/ {print $1;exit}')
-            else
-              echo "[SKIPPING] Assets"
-            fi
+            echo "[DEPLOYING] Booking"
+            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-message -p 3006:3006 -e dbRefresh='10' mwinteringham/restfulbookerplatform_message:4.0.cba8f5a && exit'
+
+  deploy_assets_docker_image:
+
+    docker:
+      - image: circleci/openjdk:11-jdk-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - add_ssh_keys:
+            fingerprints:
+              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+        - run: |
+            echo "[DEPLOYING] Booking"
+            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-assets -p 3003:3003 mwinteringham/restfulbookerplatform_assets:4.0.cba8f5a && exit'
 
   run_e2e_checks:
 
