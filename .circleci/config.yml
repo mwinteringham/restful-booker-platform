@@ -362,32 +362,32 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - add_ssh_keys:
-            fingerprints:
-              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
-        - run: |
-            echo "[DEPLOYING] Report"
-            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
-            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:4.0.baab23d && exit'
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run: |
+          echo "[DEPLOYING] Auth"
+          ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+          ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:4.0.baab23d && exit'
 
   deploy_booking_docker_image:
 
     docker:
       - image: circleci/openjdk:11-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - add_ssh_keys:
-            fingerprints:
-              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
-        - run: |
-            echo "[DEPLOYING] Booking"
-            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
-            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' mwinteringham/restfulbookerplatform_booking:4.0.cba8f5a && exit'
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run: |
+          echo "[DEPLOYING] Booking"
+          ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+          ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' mwinteringham/restfulbookerplatform_booking:4.0.cba8f5a && exit'
 
   deploy_report_docker_image:
 
@@ -410,64 +410,64 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - add_ssh_keys:
-            fingerprints:
-              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
-        - run: |
-            echo "[DEPLOYING] Booking"
-            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
-            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-room"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-room -p 3001:3001 -e dbRefresh='10' mwinteringham/restfulbookerplatform_room:4.0.cba8f5a && exit'
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run: |
+          echo "[DEPLOYING] Room"
+          ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+          ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-room"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-room -p 3001:3001 -e dbRefresh='10' mwinteringham/restfulbookerplatform_room:4.0.cba8f5a && exit'
 
   deploy_branding_docker_image:
 
     docker:
       - image: circleci/openjdk:11-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - add_ssh_keys:
-            fingerprints:
-              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
-        - run: |
-            echo "[DEPLOYING] Booking"
-            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
-            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' mwinteringham/restfulbookerplatform_branding:4.0.cba8f5a && exit'
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run: |
+          echo "[DEPLOYING] Branding"
+          ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+          ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-branding"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' mwinteringham/restfulbookerplatform_branding:4.0.cba8f5a && exit'
 
   deploy_message_docker_image:
 
     docker:
       - image: circleci/openjdk:11-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - add_ssh_keys:
-            fingerprints:
-              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
-        - run: |
-            echo "[DEPLOYING] Booking"
-            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
-            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-message -p 3006:3006 -e dbRefresh='10' mwinteringham/restfulbookerplatform_message:4.0.cba8f5a && exit'
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run: |
+          echo "[DEPLOYING] Message"
+          ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+          ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-message"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-message -p 3006:3006 -e dbRefresh='10' mwinteringham/restfulbookerplatform_message:4.0.cba8f5a && exit'
 
   deploy_assets_docker_image:
 
     docker:
       - image: circleci/openjdk:11-jdk-node-browsers
 
-      steps:
-        - restore_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        - add_ssh_keys:
-            fingerprints:
-              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
-        - run: |
-            echo "[DEPLOYING] Booking"
-            ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
-            ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-assets -p 3003:3003 mwinteringham/restfulbookerplatform_assets:4.0.cba8f5a && exit'
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run: |
+          echo "[DEPLOYING] Report"
+          ssh-keyscan 52.213.175.2 >> $HOME/.ssh/known_hosts
+          ssh ec2-user@52.213.175.2 'container=`sudo docker ps -aqf "name=rbp-assets"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-assets -p 3003:3003 mwinteringham/restfulbookerplatform_assets:4.0.cba8f5a && exit'
 
   run_e2e_checks:
 
