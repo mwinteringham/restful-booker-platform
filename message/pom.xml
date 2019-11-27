@@ -6,7 +6,7 @@
 
     <groupId>com.automationintesting</groupId>
     <artifactId>restful-booker-platform-message</artifactId>
-    <version>4.0.${revision}</version>
+    <version>1.0.${revision}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
