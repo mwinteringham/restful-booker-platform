@@ -24,7 +24,6 @@ jobs:
             extract=`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout`
             version=${extract/SNAPSHOT/$(git rev-parse --short HEAD)}
             touch ~/tmp/$version.tmp
-            ls -al ~/tmp/
           working_directory: auth
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
@@ -212,9 +211,10 @@ jobs:
             echo $CIRCLE_BRANCH
             if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
               echo "[BUILDING] Auth"
+              version=`find ~/tmp/*.tmp -printf "%f\n"`
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-              docker push mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              docker build -t mwinteringham/restfulbookerplatform_auth:${version%.*} .
+              docker push mwinteringham/restfulbookerplatform_auth:${version%.*}
             else
               echo "[SKIPPING] Auth"
             fi
@@ -236,9 +236,10 @@ jobs:
             command: |
               if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                 echo "[BUILDING] Booking"
+                version=`find ~/tmp/*.tmp -printf "%f\n"`
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_booking:${version%.*} .
+                docker push mwinteringham/restfulbookerplatform_booking:${version%.*}
               else
                 echo "[SKIPPING] Booking"
               fi
@@ -260,9 +261,10 @@ jobs:
             command: |
               if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                 echo "[BUILDING] Report"
+                version=`find ~/tmp/*.tmp -printf "%f\n"`
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_report:${version%.*} .
+                docker push mwinteringham/restfulbookerplatform_report:${version%.*}
               else
                 echo "[SKIPPING] Report"
               fi
@@ -284,10 +286,10 @@ jobs:
             command: |
               if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                 echo "[BUILDING] Room"
-                touch ~/$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11).tmp
+                version=`find ~/tmp/*.tmp -printf "%f\n"`
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_room:${version%.*} .
+                docker push mwinteringham/restfulbookerplatform_room:${version%.*}
               else
                 echo "[SKIPPING] Room"
               fi
@@ -309,9 +311,10 @@ jobs:
             command: |
               if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                 echo "[BUILDING] Branding"
+                version=`find ~/tmp/*.tmp -printf "%f\n"`
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_branding:${version%.*} .
+                docker push mwinteringham/restfulbookerplatform_branding:${version%.*}
               else
                 echo "[SKIPPING] Branding"
               fi
@@ -333,9 +336,10 @@ jobs:
           command: |
             if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
               echo "[BUILDING] Message"
+              version=`find ~/tmp/*.tmp -printf "%f\n"`
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-              docker push mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              docker build -t mwinteringham/restfulbookerplatform_message:${version%.*} .
+              docker push mwinteringham/restfulbookerplatform_message:${version%.*}
             else
               echo "[SKIPPING] Message"
             fi
@@ -357,9 +361,10 @@ jobs:
               command: |
                 if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
                   echo "[BUILDING] Assets"
+                  version=`find ~/tmp/*.tmp -printf "%f\n"`
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
-                  docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                  docker push mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                  docker build -t mwinteringham/restfulbookerplatform_assets:${version%.*} .
+                  docker push mwinteringham/restfulbookerplatform_assets:${version%.*}
                 else
                   echo "[SKIPPING] Assets"
                 fi
