@@ -239,8 +239,8 @@ jobs:
             if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[BUILDING] Auth"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-              docker push mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              docker build -t mwinteringham/restfulbookerplatform_auth:$(ls api/target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+              docker push mwinteringham/restfulbookerplatform_auth:$(ls api/target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11)
             else
               echo "[SKIPPING] Auth"
             fi
