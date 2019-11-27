@@ -21,7 +21,8 @@ jobs:
               echo "$folder will be built in this run"
               touch ~/tmp/$folder.txt
             done
-            touch ~/tmp/4.0.1eb9556.tmp
+            touch ~/tmp/4.0.$(git rev-parse --short HEAD).tmp
+            ls -al ~/tmp/
           working_directory: auth
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
