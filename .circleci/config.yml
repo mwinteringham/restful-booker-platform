@@ -409,10 +409,14 @@ jobs:
           fingerprints:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
-          echo "[DEPLOYING] Auth"
-          version=`find ~/tmp/*.tmp -printf "%f\n"`
-          ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
-          ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
+          if [ -f /home/circleci/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+            echo "[DEPLOYING] Auth"
+            version=`find ~/tmp/*.tmp -printf "%f\n"`
+            ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
+            ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
+          else
+            echo "[SKIPPING] Auth"
+          fi
 
   deploy_booking_docker_image:
 
@@ -426,10 +430,14 @@ jobs:
           fingerprints:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
+        if [ -f /home/circleci/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
           echo "[DEPLOYING] Booking"
           version=`find ~/tmp/*.tmp -printf "%f\n"`
           ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' mwinteringham/restfulbookerplatform_booking:'${version%.*}' && exit'
+        else
+          echo "[SKIPPING] Booking"
+        fi
 
   deploy_report_docker_image:
 
@@ -443,10 +451,14 @@ jobs:
             fingerprints:
               - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run: |
+          if [ -f /home/circleci/tmp/report.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
             echo "[DEPLOYING] Report"
             version=`find ~/tmp/*.tmp -printf "%f\n"`
             ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
             ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-report"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-report -p 3005:3005 mwinteringham/restfulbookerplatform_report:'${version%.*}' && exit'
+          else
+            echo "[SKIPPING] Report"
+          fi
 
   deploy_room_docker_image:
 
@@ -460,10 +472,14 @@ jobs:
           fingerprints:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
+        if [ -f /home/circleci/tmp/room.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
           echo "[DEPLOYING] Room"
           version=`find ~/tmp/*.tmp -printf "%f\n"`
           ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-room"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-room -p 3001:3001 -e dbRefresh='10' mwinteringham/restfulbookerplatform_room:'${version%.*}' && exit'
+        else
+          echo "[SKIPPING] Room"
+        fi
 
   deploy_branding_docker_image:
 
@@ -477,10 +493,14 @@ jobs:
           fingerprints:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
+        if [ -f /home/circleci/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
           echo "[DEPLOYING] Branding"
           version=`find ~/tmp/*.tmp -printf "%f\n"`
           ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-branding"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' mwinteringham/restfulbookerplatform_branding:'${version%.*}' && exit'
+        else
+          echo "[SKIPPING] Branding"
+        fi
 
   deploy_message_docker_image:
 
@@ -494,10 +514,14 @@ jobs:
           fingerprints:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
+        if [ -f /home/circleci/tmp/message.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
           echo "[DEPLOYING] Message"
           version=`find ~/tmp/*.tmp -printf "%f\n"`
           ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-message"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-message -p 3006:3006 -e dbRefresh='10' mwinteringham/restfulbookerplatform_message:'${version%.*}' && exit'
+        else
+          echo "[SKIPPING] Message"
+        fi
 
   deploy_assets_docker_image:
 
@@ -511,10 +535,14 @@ jobs:
           fingerprints:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run: |
+        if [ -f /home/circleci/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
           echo "[DEPLOYING] Report"
           version=`find ~/tmp/*.tmp -printf "%f\n"`
           ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-assets"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-assets -p 3003:3003 mwinteringham/restfulbookerplatform_assets:'${version%.*}' && exit'
+        else
+          echo "[SKIPPING] Assets"
+        fi
 
   run_e2e_checks:
 
