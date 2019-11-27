@@ -21,8 +21,9 @@ jobs:
               echo "$folder will be built in this run"
               touch ~/tmp/$folder.txt
             done
-            mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout
-            touch ~/tmp/4.0.$(git rev-parse --short HEAD).tmp
+            extract=`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout`
+            version=${extract/SNAPSHOT/$(git rev-parse --short HEAD)}
+            touch ~/tmp/$version.tmp
             ls -al ~/tmp/
           working_directory: auth
       - save_cache:
