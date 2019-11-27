@@ -10,13 +10,13 @@ echo ####                               ####
 echo #######################################
 echo \n
 
-START /B java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platform-auth-1.0-SNAPSHOT.jar > auth.log
-START /B java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-1.0-SNAPSHOT.jar > booking.log
-START /B java -jar -Dspring.profiles.active=dev room/target/restful-booker-platform-room-1.0-SNAPSHOT.jar > room.log
-START /B java -jar -Dspring.profiles.active=dev report/target/restful-booker-platform-report-1.0-SNAPSHOT.jar > report.log
-START /B java -jar -Dspring.profiles.active=dev branding/target/restful-booker-platform-branding-1.0-SNAPSHOT.jar > branding.log
-START /B java -jar -Dspring.profiles.active=dev message/target/restful-booker-platform-message-1.0-SNAPSHOT.jar > message.log &
-START /B java -jar -Dspring.profiles.active=dev assets/api/target/restful-booker-platform-assets-1.0-SNAPSHOT.jar > ui.log
+START /B java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platform-auth-*.jar > auth.log
+START /B java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-*.jar > booking.log
+START /B java -jar -Dspring.profiles.active=dev room/target/restful-booker-platform-room-*.jar > room.log
+START /B java -jar -Dspring.profiles.active=dev report/target/restful-booker-platform-report-*.jar > report.log
+START /B java -jar -Dspring.profiles.active=dev branding/target/restful-booker-platform-branding-*.jar > branding.log
+START /B java -jar -Dspring.profiles.active=dev message/target/restful-booker-platform-message-*.jar > message.log &
+START /B java -jar -Dspring.profiles.active=dev assets/api/target/restful-booker-platform-assets-*.jar > ui.log
 
 START /B node .utilities/rbp-proxy/local/proxy.js
 call node .utilities/monitor/local_monitor.js

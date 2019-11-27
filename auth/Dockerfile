@@ -6,4 +6,4 @@ WORKDIR /usr/local/auth
 
 COPY target ./
 
-ENTRYPOINT java -jar -Dspring.profiles.active=prod restful-booker-platform-auth-1.0-SNAPSHOT.jar
+ENTRYPOINT java -jar -Dspring.profiles.active=prod restful-booker-platform-auth-*.jar
