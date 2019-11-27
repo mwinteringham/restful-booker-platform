@@ -376,6 +376,7 @@ jobs:
       - run: |
           echo "[DEPLOYING] Auth"
           version=`find ~/tmp/*.tmp -printf "%f\n"`
+          echo $version
           ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
           ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:${version%.*} && exit'
 
