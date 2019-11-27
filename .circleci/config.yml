@@ -9,6 +9,9 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk-node-browsers
 
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+
     steps:
       - checkout
       - run:
@@ -19,7 +22,8 @@ jobs:
               touch ~/tmp/$folder.txt
             done
             cd project/booking
-            touch ~/tmp/${$(mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout)/SNAPSHOT/$(git rev-parse --short HEAD)}.tmp
+            touch ~/tmp/4.0.1eb9556.tmp
+          working_directory: auth
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -38,7 +42,6 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: |
-              ls -al ~/tmp/
               echo "[BUILDING] Auth"
               mvn clean install -Drevision=$(git rev-parse --short HEAD)
           working_directory: auth
