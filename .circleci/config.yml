@@ -236,8 +236,7 @@ jobs:
           docker_layer_caching: false
       - run:
           command: |
-            echo $CIRCLE_BRANCH
-            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[BUILDING] Auth"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -262,7 +261,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
+              if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                 echo "[BUILDING] Booking"
                 version=`find ~/tmp/*.tmp -printf "%f\n"`
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -287,7 +286,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
+              if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                 echo "[BUILDING] Report"
                 version=`find ~/tmp/*.tmp -printf "%f\n"`
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -312,7 +311,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
+              if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                 echo "[BUILDING] Room"
                 version=`find ~/tmp/*.tmp -printf "%f\n"`
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -337,7 +336,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
+              if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                 echo "[BUILDING] Branding"
                 version=`find ~/tmp/*.tmp -printf "%f\n"`
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -362,7 +361,7 @@ jobs:
 
       - run:
           command: |
-            if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
+            if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
               echo "[BUILDING] Message"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -387,7 +386,7 @@ jobs:
 
           - run:
               command: |
-                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "awsDeploy" ]; then
+                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
                   echo "[BUILDING] Assets"
                   version=`find ~/tmp/*.tmp -printf "%f\n"`
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
