@@ -21,7 +21,6 @@ jobs:
               echo "$folder will be built in this run"
               touch ~/tmp/$folder.txt
             done
-            cd project/booking
             touch ~/tmp/4.0.1eb9556.tmp
           working_directory: auth
       - save_cache:
