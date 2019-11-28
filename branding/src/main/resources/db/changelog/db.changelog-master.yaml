@@ -52,22 +52,22 @@ databaseChangeLog:
                   value: Shady Meadows B&B
               - column:
                   name: latitude
-                  valueNumeric: 52.6351204
+                  valueNumeric: 37.7735999
               - column:
                   name: longitude
-                  valueNumeric: 1.2733774
+                  valueNumeric: -122.4110378
               - column:
                   name: logo_url
-                  value: https://www.mwtestconsultancy.co.uk/img/rbp-logo.png
+                  value: https://www.mwtestconsultancy.co.uk/img/testim/rbp-logo.jpg
               - column:
                   name: description
-                  value: Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.
+                  value: Welcome to Shady Meadows, sponsored by http://www.testim.io/, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.
               - column:
                   name: contact_name
-                  value: Shady Meadows B&B
+                  value: TestIM
               - column:
                   name: address
-                  value: The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S
+                  value: 325 9th St, San Francisco, CA 94103
               - column:
                   name: phone
                   value: "012345678901"

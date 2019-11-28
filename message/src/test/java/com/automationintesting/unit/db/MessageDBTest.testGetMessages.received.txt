@@ -1,1 +1,0 @@
-[MessageSummary{id=1, name='James', subject='Just getting a message setup'}, MessageSummary{id=2, name='Mark', subject='A subject you may be interested in'}]
