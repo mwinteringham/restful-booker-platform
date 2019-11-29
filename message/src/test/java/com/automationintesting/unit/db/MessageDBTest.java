@@ -3,6 +3,7 @@ package com.automationintesting.unit.db;
 import com.automationintesting.model.db.Message;
 import com.automationintesting.model.db.MessageSummary;
 import liquibase.exception.LiquibaseException;
+import org.approvaltests.Approvals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -75,7 +76,7 @@ public class MessageDBTest extends BaseTest {
 
         List<MessageSummary> messageSummaries = messageDB.queryMessages();
 
-        assertEquals("[MessageSummary{id=1, name='James Dean', subject='Booking enquiry'}, MessageSummary{id=2, name='James', subject='Just getting a message setup'}, MessageSummary{id=3, name='Mark', subject='A subject you may be interested in'}]", messageSummaries.toString());
+        Approvals.verify(messageSummaries.toString());
     }
 
     @Test

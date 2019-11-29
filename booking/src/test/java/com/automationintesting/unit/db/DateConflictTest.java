@@ -182,12 +182,14 @@ public class DateConflictTest extends BaseTest {
 
     @Test
     public void testNoConflictIfReturnedBookingIsSameRoom() throws SQLException, ParseException {
+        int currentBookingCount = bookingDB.queryAllBookings().size();
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date bookingCheckin = simpleDateFormat.parse("2018-01-01");
         Date bookingCheckout = simpleDateFormat.parse("2018-01-05");
 
         Booking booking = new Booking.BookingBuilder()
-                .setBookingid(2)
+                .setBookingid(currentBookingCount + 1)
                 .setRoomid(1)
                 .setFirstname("Mark")
                 .setLastname("Winteringham")

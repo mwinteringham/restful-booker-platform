@@ -2,8 +2,8 @@
     "messages": [
         {
             "id": 1,
-            "name": "James Dean",
-            "subject": "Booking enquiry"
+            "name": "Oren Rubin",
+            "subject": "More details on TestIM"
         },
         {
             "id": 2,

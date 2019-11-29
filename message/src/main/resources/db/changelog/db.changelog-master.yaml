@@ -40,19 +40,19 @@ databaseChangeLog:
             columns:
               - column:
                   name: name
-                  value: James Dean
+                  value: Oren Rubin
               - column:
                   name: email
-                  value: james@email.com
+                  value: oren@testimfake.com
               - column:
                   name: phone
                   value: "01402 619211"
               - column:
                   name: subject
-                  value: Booking enquiry
+                  value: More details on TestIM
               - column:
                   name: description
-                  value: I'm looking to book a room at your place
+                  value: I'd like to know more about the awesome tool TestIM
               - column:
                   name: read
                   value: false
