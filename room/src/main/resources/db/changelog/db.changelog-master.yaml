@@ -92,7 +92,7 @@ databaseChangeLog:
                   value: https://www.mwtestconsultancy.co.uk/img/testim/room2.jpg
               - column:
                   name: description
-                  value: Thanks to TestIM for sponsoring this month
+                  value: Customize your tests in the Visual Editor
               - column:
                   name: features
                   value: Stable Tests, Visual Editor, Code in your IDE

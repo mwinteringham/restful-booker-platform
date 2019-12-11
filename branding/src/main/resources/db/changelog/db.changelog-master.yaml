@@ -61,7 +61,7 @@ databaseChangeLog:
                   value: https://www.mwtestconsultancy.co.uk/img/testim/rbp-logo.jpg
               - column:
                   name: description
-                  value: Welcome to Shady Meadows, sponsored by http://www.testim.io/, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place.
+                  value: Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. Shadow Meadows is an instance of Restful Booker Platform, an open source application specifically designed for practising automation on various layers of a modern web application. The awesome folk over at Testim.io are supporting us this month. Testim are the creators of a codeless browser based automation tool, with smart locators and a new Testim Dev Kit that allows you to harness the power of Testim but in code!
               - column:
                   name: contact_name
                   value: TestIM
