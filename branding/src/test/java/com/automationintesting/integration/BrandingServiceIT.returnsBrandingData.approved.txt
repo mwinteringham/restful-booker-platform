@@ -1,14 +1,14 @@
 {
     "name": "Shady Meadows B&B",
     "map": {
-        "latitude": 37.7735999,
-        "longitude": -122.4110378
+        "latitude": 52.6351204,
+        "longitude": 1.2733774
     },
     "logoUrl": "https://www.mwtestconsultancy.co.uk/img/testim/rbp-logo.jpg",
     "description": "Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. Shadow Meadows is an instance of Restful Booker Platform, an open source application specifically designed for practising automation on various layers of a modern web application. The awesome folk over at Testim.io are supporting us this month. Testim are the creators of a codeless browser based automation tool, with smart locators and a new Testim Dev Kit that allows you to harness the power of Testim but in code!",
     "contact": {
-        "name": "TestIM",
-        "address": "325 9th St, San Francisco, CA 94103",
+        "name": "Shady Meadows B&B",
+        "address": "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S",
         "phone": "012345678901",
         "email": "fake@fakeemail.com"
     }
