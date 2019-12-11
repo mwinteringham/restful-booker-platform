@@ -5,6 +5,7 @@ import HotelMap from './HotelMap.jsx';
 import HotelLogo from './HotelLogo.jsx';
 import HotelContact from './HotelContact.jsx';
 import { API_ROOT } from '../api-config';
+import logo from '../../images/aitsponsorshipbanner.png';
 
 export default class Home extends React.Component {
 
@@ -47,6 +48,10 @@ export default class Home extends React.Component {
     render() {
         return (
             <div>
+                <div className="alert alert-dismissible">
+                    <button type="button" className="close" data-dismiss="alert">×</button>
+                    <a href="http://bit.ly/2rBhdHF" alt="Link to TestIM"><img src={logo} style={{width: "100%"}} alt="AiT Sponsorship banner" /></a>
+                </div>
                 <div className="container-fluid">
                     <div className="row">
                         <div className='col-sm-12 text-center'>
