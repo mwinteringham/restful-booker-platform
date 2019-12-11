@@ -267,7 +267,7 @@ exports[`Home page renders 1`] = `
     >
       <img
         alt="AiT Sponsorship banner"
-        src="images/aitsponsorshipbanner.png"
+        src="test-file-stub"
         style={
           Object {
             "width": "100%",
