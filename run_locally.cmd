@@ -8,15 +8,28 @@ echo ####                               ####
 echo ####    STARTING APPLICATION...    ####
 echo ####                               ####
 echo #######################################
-echo \n
+echo:
 
-START /B java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platform-auth-*.jar > auth.log
-START /B java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-*.jar > booking.log
-START /B java -jar -Dspring.profiles.active=dev room/target/restful-booker-platform-room-*.jar > room.log
-START /B java -jar -Dspring.profiles.active=dev report/target/restful-booker-platform-report-*.jar > report.log
-START /B java -jar -Dspring.profiles.active=dev branding/target/restful-booker-platform-branding-*.jar > branding.log
-START /B java -jar -Dspring.profiles.active=dev message/target/restful-booker-platform-message-*.jar > message.log &
-START /B java -jar -Dspring.profiles.active=dev assets/api/target/restful-booker-platform-assets-*.jar > ui.log
+for /f "delims=" %%a in ('dir auth\target\*.jar /B /O:D') do set "auth_jar=%%a"
+START /B java -jar -Dspring.profiles.active=dev auth/target/%auth_jar% > auth.log
+
+for /f "delims=" %%a in ('dir booking\target\*.jar /B /O:D') do set "booking_jar=%%a"
+START /B java -jar -Dspring.profiles.active=dev booking/target/%booking_jar% > booking.log
+
+for /f "delims=" %%a in ('dir room\target\*.jar /B /O:D') do set "room_jar=%%a"
+START /B java -jar -Dspring.profiles.active=dev room/target/%room_jar% > room.log
+
+for /f "delims=" %%a in ('dir report\target\*.jar /B /O:D') do set "report_jar=%%a"
+START /B java -jar -Dspring.profiles.active=dev report/target/%report_jar% > report.log
+
+for /f "delims=" %%a in ('dir branding\target\*.jar /B /O:D') do set "branding_jar=%%a"
+START /B java -jar -Dspring.profiles.active=dev branding/target/%branding_jar% > branding.log
+
+for /f "delims=" %%a in ('dir message\target\*.jar /B /O:D') do set "message_jar=%%a"
+START /B java -jar -Dspring.profiles.active=dev message/target/%message_jar% > message.log &
+
+for /f "delims=" %%a in ('dir assets\api\target\*.jar /B /O:D') do set "assets_jar=%%a"
+START /B java -jar -Dspring.profiles.active=dev assets/api/target/%assets_jar% > ui.log
 
 START /B node .utilities/rbp-proxy/local/proxy.js
 call node .utilities/monitor/local_monitor.js
