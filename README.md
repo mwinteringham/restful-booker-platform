@@ -11,7 +11,7 @@ RBP is currently known to work with the following requirements:
 
 ## Building locally
 
-You will require Java SDK 1.8, Maven and Node/Npm installed and available in your terminal to run RBP. To get started follow these instructions:
+You will require Java SDK 11, Maven and Node/Npm installed and available in your terminal to run RBP. To get started follow these instructions:
 
 1. Clone/Download the repository
 2. Navigate into the restful-booker-platform root folder
@@ -34,8 +34,6 @@ Assuming you have successfully built the application at least once, you can now 
 The user login details are:
 * Username: admin
 * Password: password
-
-**Please note: DB connections are only available in local deployments**
 
 ### Development
 
