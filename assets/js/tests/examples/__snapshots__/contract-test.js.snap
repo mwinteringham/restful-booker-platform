@@ -39,14 +39,14 @@ exports[`Rooms list component 1`] = `
       className="col-sm-2"
     >
       <p>
-        2019-01-01
+        2020-02-01
       </p>
     </div>
     <div
       className="col-sm-2"
     >
       <p>
-        2019-01-05
+        2020-02-05
       </p>
     </div>
     <div
