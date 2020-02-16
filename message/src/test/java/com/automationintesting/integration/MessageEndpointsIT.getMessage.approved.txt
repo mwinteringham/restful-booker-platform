@@ -1,8 +1,8 @@
 {
     "messageid": 1,
-    "name": "Oren Rubin",
-    "email": "oren@testimfake.com",
+    "name": "James Dean",
+    "email": "james@email.com",
     "phone": "01402 619211",
-    "subject": "More details on TestIM",
-    "description": "I'd like to know more about the awesome tool TestIM"
+    "subject": "Booking enquiry",
+    "description": "I'm looking to book a room at your place"
 }

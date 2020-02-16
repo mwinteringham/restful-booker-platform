@@ -52,57 +52,8 @@ databaseChangeLog:
                   value: true
               - column:
                   name: checkin
-                  value: "2019-01-01"
+                  value: "2020-02-01"
               - column:
                   name: checkout
-                  value: "2019-01-05"
-  - changeSet:
-      id: insert-2
-      author: mwinteringham
-      changes:
-        - insert:
-            tableName: BOOKINGS
-            columns:
-              - column:
-                  name: roomid
-                  value: 1
-              - column:
-                  name: firstname
-                  value: Oren
-              - column:
-                  name: lastname
-                  value: Rubin
-              - column:
-                  name: depositpaid
-                  value: true
-              - column:
-                  name: checkin
-                  value: "2019-12-06"
-              - column:
-                  name: checkout
-                  value: "2019-12-09"
-  - changeSet:
-      id: insert-3
-      author: mwinteringham
-      changes:
-        - insert:
-            tableName: BOOKINGS
-            columns:
-              - column:
-                  name: roomid
-                  value: 2
-              - column:
-                  name: firstname
-                  value: Ronit
-              - column:
-                  name: lastname
-                  value: Belson
-              - column:
-                  name: depositpaid
-                  value: true
-              - column:
-                  name: checkin
-                  value: "2020-01-06"
-              - column:
-                  name: checkout
-                  value: "2020-01-09"
+                  value: "2020-02-05"
+                  

@@ -58,44 +58,13 @@ databaseChangeLog:
                   value: true
               - column:
                   name: image
-                  value: https://www.mwtestconsultancy.co.uk/img/testim/room1.jpg
-              - column:
-                  name: description
-                  value: Record or code stable E2E tests that fit your workflow
-              - column:
-                  name: features
-                  value: Stable Tests, Visual Editor, Code in your IDE
-              - column:
-                  name: roomPrice
-                  valueNumeric: 100
-  - changeSet:
-      id: insert-2
-      author: mwinteringham
-      changes:
-        - insert:
-            tableName: ROOMS
-            columns:
-              - column:
-                  name: room_number
-                  valueNumeric: 102
-              - column:
-                  name: type
-                  value: Twin
-              - column:
-                  name: beds
-                  valueNumeric: 1
-              - column:
-                  name: accessible
-                  value: true
-              - column:
-                  name: image
                   value: https://www.mwtestconsultancy.co.uk/img/testim/room2.jpg
               - column:
                   name: description
-                  value: Customize your tests in the Visual Editor
+                  value: Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.
               - column:
                   name: features
-                  value: Stable Tests, Visual Editor, Code in your IDE
+                  value: TV, WiFi, Safe
               - column:
                   name: roomPrice
-                  valueNumeric: 250
+                  valueNumeric: 100
