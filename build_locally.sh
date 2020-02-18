@@ -51,9 +51,9 @@ printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
 #######################################\n"
 
-cd .utilities/rbp-proxy
+cd .utilities/rbp-proxy/local
 npm install
-cd ../..
+cd ../../..
 
 cd assets/js
 npm install
