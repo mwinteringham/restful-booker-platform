@@ -12,5 +12,12 @@
 # Java
 target/
 
+#VS Code
+.project
+*.project
+.settings/
+*.settings/
+*.classpath
+
 # ui
 ui/public/js
