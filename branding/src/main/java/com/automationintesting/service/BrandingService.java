@@ -18,12 +18,11 @@ public class BrandingService {
     private AuthRequests authRequest;
 
     public BrandingService() throws SQLException {
+        brandingDB = new BrandingDB();
+        authRequest = new AuthRequests();
+
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(brandingDB, TimeUnit.MINUTES);
-
-        brandingDB = new BrandingDB();
-
-        authRequest = new AuthRequests();
     }
 
     public Branding getBrandingDetails() throws SQLException {
