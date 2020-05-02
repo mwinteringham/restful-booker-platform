@@ -33,17 +33,14 @@ test('Renders the list of messages correctly', async () => {
 });
 
 test('Deletes message when selected to delete', (done) => {
-    let messageDeleteMock = nock('http://localhost')
-                                .delete('/message/1')
-                                .reply(201, () => {
-                                    done();
-                                });
+    nock('http://localhost')
+        .delete('/message/1')
+        .reply(201, () => {
+            done();
+        });
 
     const messageComponent = shallow(<MessageList setCount={() => {}} />);
     messageComponent.instance().deleteMessage(1);
-
-    let didNockAcceptRequest = messageDeleteMock.isDone();
-    expect(didNockAcceptRequest).toBe(true);
 });
 
 test('Clicking message shows message popup', async () => {

@@ -261,7 +261,7 @@ exports[`Home page renders 1`] = `
         className="col-sm-12 text-center"
       >
         <HotelLogo
-          logoDetails="https://www.mwtestconsultancy.co.uk/img/rbp-logo.png"
+          logoDetails="https://www.mwtestconsultancy.co.uk/url/update.png"
         />
       </div>
     </div>
@@ -275,7 +275,7 @@ exports[`Home page renders 1`] = `
         className="col-sm-10"
       >
         <p>
-          Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It's a delightful place.
+          Updated description
         </p>
       </div>
       <div
@@ -346,10 +346,10 @@ exports[`Home page renders 1`] = `
     <HotelContact
       contact={
         Object {
-          "address": "The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S",
-          "email": "fake@fakeemail.com",
-          "name": "Shady Meadows B&B",
-          "phone": "0123456789",
+          "address": "Somewhere else",
+          "email": "another@fakeemail.com",
+          "name": "Another B&B",
+          "phone": "99999999999",
         }
       }
     />
@@ -362,11 +362,11 @@ exports[`Home page renders 1`] = `
         <HotelMap
           mapDetails={
             Object {
-              "latitude": 52.6351204,
-              "longitude": 1.2733774,
+              "latitude": 88.123,
+              "longitude": 11.123,
             }
           }
-          name="Shady meadows B&B"
+          name="A new name"
         />
       </div>
     </div>
