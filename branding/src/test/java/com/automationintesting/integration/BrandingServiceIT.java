@@ -11,7 +11,6 @@ import org.approvaltests.Approvals;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,16 +28,6 @@ import static org.junit.Assert.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BrandingApplication.class)
 @ActiveProfiles("dev")
 public class BrandingServiceIT {
-
-//    @Rule
-//    public WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3004));
-//
-//    @Before
-//    public void setupWiremock(){
-//        stubFor(post("/auth/validate")
-//                .withRequestBody(equalToJson("{ \"token\": \"abc123\" }"))
-//                .willReturn(aResponse().withStatus(200)));
-//    }
 
     StubServer server = new StubServer(3004).run();
 
