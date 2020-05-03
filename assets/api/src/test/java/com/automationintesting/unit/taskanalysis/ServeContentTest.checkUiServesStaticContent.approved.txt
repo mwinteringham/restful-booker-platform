@@ -12,6 +12,6 @@
   </head>
   <body>
     <div id="root"/>
-    <script type="text/javascript" src="js/main.js"/>
+    <script src="js/main.js"/>
   </body>
 </html>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Report from '../src/js/components/Report.jsx';
-import moment from 'moment';
+import moment from 'moment/moment';
 import nock from 'nock';
 
 test('Multiple reports can be created in the Report component', (done) => {
