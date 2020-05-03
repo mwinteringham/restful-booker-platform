@@ -27,7 +27,7 @@ public class BookingDB {
 
     public BookingDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
-        ds.setURL("jdbc:h2:mem:rbp");
+        ds.setURL("jdbc:h2:mem:rbp;MODE=MySQL");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();
