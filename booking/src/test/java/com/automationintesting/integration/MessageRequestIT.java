@@ -36,7 +36,7 @@ public class MessageRequestIT {
                 match(post("/message/")).
                 then(status(HttpStatus.OK_200));
     }
-    
+
     @After
     public void stopServer(){
         server.stop();
