@@ -2,13 +2,13 @@ package com.automationintesting.integration;
 
 import com.automationintesting.api.BookingApplication;
 import com.automationintesting.model.db.Booking;
-import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
-import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.xebialabs.restito.server.StubServer;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.approvaltests.Approvals;
+import org.glassfish.grizzly.http.util.HttpStatus;
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
+import static com.xebialabs.restito.semantics.Action.status;
+import static com.xebialabs.restito.semantics.Condition.post;
 import static io.restassured.RestAssured.given;
 
 @RunWith(SpringRunner.class)
@@ -26,13 +28,18 @@ import static io.restassured.RestAssured.given;
 @ActiveProfiles("dev")
 public class MessageRequestIT {
 
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3006));
+    StubServer server = new StubServer(3006).run();
 
     @Before
-    public void setupWiremock(){
-        stubFor(post("/message/")
-                .willReturn(aResponse().withStatus(200)));
+    public void setupRestito(){
+        whenHttp(server).
+                match(post("/message/")).
+                then(status(HttpStatus.OK_200));
+    }
+
+    @After
+    public void stopServer(){
+        server.stop();
     }
 
     @Test
@@ -57,14 +64,7 @@ public class MessageRequestIT {
                 .when()
                 .post("http://localhost:3000/booking/");
 
-        verify(postRequestedFor(urlEqualTo("/message/"))
-                .withRequestBody(equalToJson("{\n" +
-                        "  \"name\" : \"Mark Winteringham\",\n" +
-                        "  \"email\" : \"mark@mwtestconsultancy.co.uk\",\n" +
-                        "  \"phone\" : \"01292123456\",\n" +
-                        "  \"subject\" : \"You have a new booking!\",\n" +
-                        "  \"description\" : \"You have a new booking from Mark Winteringham. They have booked a room for the following dates: 1990-02-01 to 1990-02-02\"\n" +
-                        "}")));
+        Approvals.verify(server.getCalls().get(0).getPostBody());
     }
 
 }

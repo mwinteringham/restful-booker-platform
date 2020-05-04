@@ -1,6 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import moment from 'moment/moment';
 import { API_ROOT } from '../api-config';
 
 import "react-datepicker/dist/react-datepicker.css";

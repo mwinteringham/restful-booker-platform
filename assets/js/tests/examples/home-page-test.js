@@ -1,5 +1,27 @@
 import React from 'react';
 import RoomListings from '../../src/js/components/RoomListings.jsx';
+import nock from 'nock';
+
+// Although this is not necessary for the test. We add a mock in for the API
+// that the RoomListings component will load when ready.
+nock('http://localhost')
+    .get('/room/')
+    .reply(200, {
+        "rooms": [
+          {
+            "roomid": 1,
+            "roomNumber": 2,
+            "type": "Single",
+            "accessible": true,
+            "image": "string",
+            "description": "string",
+            "features": [
+              "string"
+            ],
+            "roomPrice": 0
+          }
+        ]
+      });
 
 // We first declare our test by using Jests test function and provide it
 // with a name and then an anonymous function which will run our test

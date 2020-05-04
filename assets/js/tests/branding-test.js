@@ -35,23 +35,23 @@ const brandingUpdateData = {
     }
 }
 
-test('Branding page renders', () => {
+nock('http://localhost')
+    .persist()
+    .get('/branding/')
+    .reply(200, brandingData)
+
+test('Branding page renders', async () => {
     const brandingComponent = mount(
         <Branding />
     )
 
-    brandingComponent.setState({ branding : brandingData });
-    brandingComponent.update();
-
-    expect(brandingComponent).toMatchSnapshot();
+    setTimeout(() => {
+        expect(brandingComponent).toMatchSnapshot();
+    }, 0);
 });
 
-test('Branding page has controlled form', (done) => {
+test('Branding page has controlled form', (done) => {    
     nock('http://localhost')
-        .get('/branding/')
-        .reply(200, brandingUpdateData)
-    
-    let brandingPutMock = nock('http://localhost')
         .put('/branding/', brandingUpdateData)
         .reply(200, () => {
             done();
@@ -64,9 +64,6 @@ test('Branding page has controlled form', (done) => {
     brandingComponent.setState({ branding : brandingUpdateData});
     brandingComponent.update();
     brandingComponent.instance().doUpdate();
-
-    let didNockAcceptRequest = brandingPutMock.isDone();
-    expect(didNockAcceptRequest).toBe(true);
 });
 
 test('Branding page shows modal on success', () => {
@@ -82,10 +79,6 @@ test('Branding page shows modal on success', () => {
 });
 
 test('Branding page shows errors', () => {
-    nock('http://localhost')
-        .get('/branding/')
-        .reply(200, brandingUpdateData)
-
     const brandingComponent = shallow(
         <Branding />
     )

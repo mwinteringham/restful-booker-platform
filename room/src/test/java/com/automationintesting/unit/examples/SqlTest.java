@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.sql.SQLException;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
@@ -74,7 +74,7 @@ public class SqlTest extends BaseTest {
 
         Room room = queriedRoom.get(0);
 
-        assertThat(room, is(Room.class));
+        assertThat(room, instanceOf(Room.class));
     }
 
     @Test

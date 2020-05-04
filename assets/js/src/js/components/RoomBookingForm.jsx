@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
+import moment from 'moment/moment';
 import { API } from '../libs/Api';
 import BookingConfirmation from './BookingConfirmation.jsx';
 

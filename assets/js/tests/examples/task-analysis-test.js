@@ -32,9 +32,7 @@ test('Login component sends correct payload', () => {
             "username" : "admin",
             "password" : "password"
         })
-        .reply(200, { token: '123ABC' }, () => {
-            done();
-        });
+        .reply(200, { token: '123ABC' });
 
     // Our component we want to test requires data so we create
     // our object of test data to use later
@@ -48,7 +46,7 @@ test('Login component sends correct payload', () => {
     // enzymes shallow function and passing it the React component
     // we want to create, Enzyme will create a headless DOM and render
     // the React component inside.
-    const login = shallow(<LoginComponent />)
+    const login = shallow(<LoginComponent setAuthenticate={() => {}} />)
 
     // Now that we have a rendered React component, we can call it's
     // internal functions. We call setState and pass it our data to 

@@ -1,15 +1,14 @@
 package com.automationintesting.integration.examples;
 
 import com.automationintesting.api.BookingApplication;
-import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
-import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.CreatedBooking;
+import com.xebialabs.restito.server.StubServer;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.glassfish.grizzly.http.util.HttpStatus;
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +18,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
+import static com.xebialabs.restito.semantics.Action.status;
+import static com.xebialabs.restito.semantics.Condition.post;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,19 +32,27 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @ActiveProfiles("dev")
 public class BookingIntegrationIT {
 
-    // Booking relies on an Auth service so we add the JUnit rule to setup Wiremock which
-    // will mock the behaviour of the Auth service, rather than stand up an Auth service
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3006));
+    private StubServer server;
 
     // We add the @Before annotation so that when JUnit runs it knows to run this method before
     // the tests are started. This is known as a hook.
     @Before
     // We give the before hook a clear name to ensure that it is descriptive in what it is checking
-    public void setupWiremock(){
-        // Configure Wiremock for the Message service to send a positive validate response
-        stubFor(post("/message/")
-                .willReturn(aResponse().withStatus(200)));
+    public void setupRestito() {
+        // Booking relies on the Message service so we will mock the message API. We do that by creating a
+        // StubServer that we will later configure.
+        server = new StubServer(3006).run();
+
+        whenHttp(server).
+                match(post("/message/")).
+                then(status(HttpStatus.OK_200));
+    }
+
+    // Once the test is finished we need to stop the mock server
+    @After
+    // We give the after hook a clear name to ensure that it is description in what it's doing
+    public void stopServer(){
+        server.stop();
     }
 
     // We add the @Test annotation so that when JUnit runs it knows which

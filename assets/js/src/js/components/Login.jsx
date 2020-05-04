@@ -1,7 +1,7 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import { API_ROOT } from '../api-config';
-import 'isomorphic-fetch';
+import fetch from 'isomorphic-fetch';
 
 export default class Login extends React.Component {
 

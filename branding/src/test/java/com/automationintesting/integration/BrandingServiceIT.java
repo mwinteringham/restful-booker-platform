@@ -4,22 +4,22 @@ import com.automationintesting.api.BrandingApplication;
 import com.automationintesting.model.db.Branding;
 import com.automationintesting.model.db.Contact;
 import com.automationintesting.model.db.Map;
-import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
-import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.xebialabs.restito.server.StubServer;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.approvaltests.Approvals;
+import org.glassfish.grizzly.http.util.HttpStatus;
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
+import static com.xebialabs.restito.semantics.Action.status;
+import static com.xebialabs.restito.semantics.Condition.post;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -29,14 +29,18 @@ import static org.junit.Assert.assertThat;
 @ActiveProfiles("dev")
 public class BrandingServiceIT {
 
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.options().notifier(new ConsoleNotifier(true)).port(3004));
+    StubServer server = new StubServer(3004).run();
 
     @Before
-    public void setupWiremock(){
-        stubFor(post("/auth/validate")
-                .withRequestBody(equalToJson("{ \"token\": \"abc123\" }"))
-                .willReturn(aResponse().withStatus(200)));
+    public void setupRestito(){
+        whenHttp(server).
+                match(post("/auth/validate")).
+                then(status(HttpStatus.OK_200));
+    }
+
+    @After
+    public void stopServer(){
+        server.stop();
     }
 
     @Test
