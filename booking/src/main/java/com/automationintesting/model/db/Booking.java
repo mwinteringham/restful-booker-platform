@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 
@@ -73,7 +74,7 @@ public class Booking {
         this.firstname = result.getString("firstname");
         this.lastname = result.getString("lastname");
         this.depositpaid = result.getBoolean("depositpaid");
-        this.bookingDates = new BookingDates(result.getDate("checkin"), result.getDate("checkout"));
+        this.bookingDates = new BookingDates(result.getDate("checkin").toLocalDate(), result.getDate("checkout").toLocalDate());
     }
 
     public Booking() {
@@ -162,8 +163,8 @@ public class Booking {
         private String firstname;
         private String lastname;
         private boolean depositpaid;
-        private Date checkin;
-        private Date checkout;
+        private LocalDate checkin;
+        private LocalDate checkout;
         private String email;
         private String phone;
 
@@ -197,13 +198,13 @@ public class Booking {
             return this;
         }
 
-        public BookingBuilder setCheckin(Date checkin) {
+        public BookingBuilder setCheckin(LocalDate checkin) {
             this.checkin = checkin;
 
             return this;
         }
 
-        public BookingBuilder setCheckout(Date checkout) {
+        public BookingBuilder setCheckout(LocalDate checkout) {
             this.checkout = checkout;
 
             return this;

@@ -20,8 +20,8 @@ public class UpdateSql {
         preparedStatement.setString(1, booking.getFirstname());
         preparedStatement.setString(2, booking.getLastname());
         preparedStatement.setBoolean(3, booking.isDepositpaid());
-        preparedStatement.setString(4, dateFormat.format(booking.getBookingDates().getCheckin()));
-        preparedStatement.setString(5, dateFormat.format(booking.getBookingDates().getCheckout()));
+        preparedStatement.setString(4, booking.getBookingDates().getCheckin().toString());
+        preparedStatement.setString(5, booking.getBookingDates().getCheckout().toString());
         preparedStatement.setInt(6, id);
     }
 

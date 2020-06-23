@@ -11,12 +11,9 @@ import java.util.TimeZone;
 @ComponentScan(basePackages = "com.automationintesting")
 public class BookingApplication {
 
-    @PostConstruct
-    void started() {
-        TimeZone.setDefault(TimeZone.getTimeZone("Etc/UTC"));
-    }
-
     public static void main(String[] args) {
+        TimeZone.setDefault(TimeZone.getTimeZone("Etc/UTC"));
+
         SpringApplication.run(BookingApplication.class, args);
     }
 

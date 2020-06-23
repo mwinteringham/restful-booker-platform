@@ -20,6 +20,8 @@ import org.springframework.http.HttpStatus;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -208,10 +210,12 @@ public class BookingServiceTest {
     }
 
     private Booking createGenericBooking() {
-        Calendar startDate = new GregorianCalendar(2019, Calendar.SEPTEMBER, 1);
-        Calendar endDate = new GregorianCalendar(2019, Calendar.SEPTEMBER, 2);
+//        Calendar startDate = new GregorianCalendar(2019, Calendar.SEPTEMBER, 1);
+//        Calendar endDate = new GregorianCalendar(2019, Calendar.SEPTEMBER, 2);
+        LocalDate startDate = LocalDate.of(2019, Month.SEPTEMBER, 1);
+        LocalDate endDate = LocalDate.of(2019, Month.SEPTEMBER, 2);
 
-        BookingDates bookingDates = new BookingDates(startDate.getTime(), endDate.getTime());
+        BookingDates bookingDates = new BookingDates(startDate, endDate);
         return new Booking(1, 2, "Mark", "Dean", true, bookingDates);
     }
 

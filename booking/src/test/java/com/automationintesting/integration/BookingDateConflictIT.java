@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -26,8 +28,10 @@ public class BookingDateConflictIT {
     public void testBookingConflict(){
         String token = "abc123";
 
-        Date checkindate = new GregorianCalendar(2018,1,1).getTime();
-        Date checkoutdate = new GregorianCalendar(2018,1,2).getTime();
+//        Date checkindate = new GregorianCalendar(2018,1,1).getTime();
+//        Date checkoutdate = new GregorianCalendar(2018,1,2).getTime();
+        LocalDate checkindate = LocalDate.of(2018, Month.JANUARY, 1);
+        LocalDate checkoutdate = LocalDate.of(2018, Month.JANUARY, 2);
 
         Booking bookingPayload = new Booking.BookingBuilder()
                 .setRoomid(1)
@@ -59,8 +63,8 @@ public class BookingDateConflictIT {
 
     @Test
     public void testBookingDatesInvalid() {
-        Date checkindate = new GregorianCalendar(2018,1,1).getTime();
-        Date checkoutdate = new GregorianCalendar(2018,1,5).getTime();
+        LocalDate checkindate = LocalDate.of(2018, Month.JANUARY, 1);
+        LocalDate checkoutdate = LocalDate.of(2018, Month.JANUARY, 5);
 
         Booking bookingPayload = new Booking.BookingBuilder()
                 .setRoomid(1)

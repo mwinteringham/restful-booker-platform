@@ -5,6 +5,8 @@ import com.automationintesting.model.db.Message;
 import com.automationintesting.service.MessageBuilder;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -15,8 +17,8 @@ public class MessageBuilderTest {
 
     @Test
     public void messageBuiltFromBookingTest(){
-        Date checkindate = new GregorianCalendar(1990,1,1).getTime();
-        Date checkoutdate = new GregorianCalendar(1990,1,2).getTime();
+        LocalDate checkindate = LocalDate.of(1990, Month.FEBRUARY, 1);
+        LocalDate checkoutdate = LocalDate.of(1990, Month.FEBRUARY, 2);
 
         Booking booking = new Booking.BookingBuilder()
                 .setFirstname("Mark")

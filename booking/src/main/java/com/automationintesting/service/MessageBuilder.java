@@ -11,7 +11,7 @@ public class MessageBuilder {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         String name = booking.getFirstname() + " " + booking.getLastname();
-        String description = "You have a new booking from " + name + ". They have booked a room for the following dates: " + dateFormat.format(booking.getBookingDates().getCheckin()) + " to " + dateFormat.format(booking.getBookingDates().getCheckout());
+        String description = "You have a new booking from " + name + ". They have booked a room for the following dates: " + booking.getBookingDates().getCheckin().toString() + " to " + booking.getBookingDates().getCheckout().toString();
         String email = booking.getEmail().get();
         String phone = booking.getPhone().get();
 

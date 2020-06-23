@@ -15,6 +15,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 @Component
 public class BookingDB {
@@ -129,12 +130,12 @@ public class BookingDB {
         PreparedStatement ps = connection.prepareStatement(SELECT_DATE_CONFLICTS);
 
         Calendar parseCheckinDate = Calendar.getInstance();
-        parseCheckinDate.setTime(bookingToCheck.getBookingDates().getCheckin());
+        parseCheckinDate.setTime(Date.valueOf(bookingToCheck.getBookingDates().getCheckin()));
         parseCheckinDate.add(Calendar.DATE, 1);
 
         for(int i = 1; i <= 6; i++){
             if (i % 2 == 0){
-                ps.setDate(i, new Date(bookingToCheck.getBookingDates().getCheckout().getTime()));
+                ps.setDate(i, new Date(Date.valueOf(bookingToCheck.getBookingDates().getCheckout()).getTime()));
             } else {
                 ps.setDate(i, new Date(parseCheckinDate.getTimeInMillis()));
             }

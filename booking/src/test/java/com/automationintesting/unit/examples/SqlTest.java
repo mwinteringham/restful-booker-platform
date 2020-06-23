@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.GregorianCalendar;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -35,8 +37,8 @@ public class SqlTest extends BaseTest {
                 .setFirstname("James")
                 .setLastname("Dean")
                 .setDepositpaid(true)
-                .setCheckin(new GregorianCalendar(2018,1,26).getTime())
-                .setCheckout(new GregorianCalendar(2018,1,26).getTime())
+                .setCheckin(LocalDate.of(2018, Month.FEBRUARY, 26))
+                .setCheckout(LocalDate.of(2018, Month.FEBRUARY, 26))
                 .build();
 
         // With the booking created we can send it to the BookingDb to be created
@@ -72,8 +74,8 @@ public class SqlTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setCheckin(new GregorianCalendar(2013,0,31).getTime())
-                .setCheckout(new GregorianCalendar(2013,0,31).getTime())
+                .setCheckin(LocalDate.of(2013, Month.JANUARY, 31))
+                .setCheckout(LocalDate.of(2013, Month.JANUARY, 31))
                 .build();
 
         CreatedBooking createdBooking = bookingDB.create(booking);
@@ -97,8 +99,8 @@ public class SqlTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setCheckin(new GregorianCalendar(2013,0,31).getTime())
-                .setCheckout(new GregorianCalendar(2013,0,31).getTime())
+                .setCheckin(LocalDate.of(2013, Month.JANUARY, 31))
+                .setCheckout(LocalDate.of(2013, Month.JANUARY, 31))
                 .build();
 
         CreatedBooking updatedBooking = bookingDB.update(currentBookingId, booking);

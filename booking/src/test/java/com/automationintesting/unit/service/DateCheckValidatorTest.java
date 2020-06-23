@@ -29,8 +29,8 @@ public class DateCheckValidatorTest {
 
     @Test
     public void invalidIfCheckinAfterCheckout() {
-        bookingDates.setCheckout(Date.valueOf("2018-01-01"));
-        bookingDates.setCheckin(Date.valueOf("2018-01-05"));
+        bookingDates.setCheckout(Date.valueOf("2018-01-01").toLocalDate());
+        bookingDates.setCheckin(Date.valueOf("2018-01-05").toLocalDate());
 
         boolean validDate = dateCheckValidator.isValid(bookingDates);
 
@@ -39,8 +39,8 @@ public class DateCheckValidatorTest {
 
     @Test
     public void invalidIfCheckinAndCheckoutSameDay() {
-        bookingDates.setCheckout(Date.valueOf("2018-01-01"));
-        bookingDates.setCheckin(Date.valueOf("2018-01-01"));
+        bookingDates.setCheckout(Date.valueOf("2018-01-01").toLocalDate());
+        bookingDates.setCheckin(Date.valueOf("2018-01-01").toLocalDate());
 
         boolean validDate = dateCheckValidator.isValid(bookingDates);
 
@@ -49,8 +49,8 @@ public class DateCheckValidatorTest {
 
     @Test
     public void validIfCheckinBeforeCheckout() {
-        bookingDates.setCheckin(Date.valueOf("2018-01-01"));
-        bookingDates.setCheckout(Date.valueOf("2018-01-05"));
+        bookingDates.setCheckin(Date.valueOf("2018-01-01").toLocalDate());
+        bookingDates.setCheckout(Date.valueOf("2018-01-05").toLocalDate());
 
         boolean validDate = dateCheckValidator.isValid(bookingDates);
 

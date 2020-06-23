@@ -21,8 +21,8 @@ public class InsertSql {
         preparedStatement.setString(2, booking.getFirstname());
         preparedStatement.setString(3, booking.getLastname());
         preparedStatement.setBoolean(4, booking.isDepositpaid());
-        preparedStatement.setString(5, dateFormat.format(booking.getBookingDates().getCheckin()));
-        preparedStatement.setString(6, dateFormat.format(booking.getBookingDates().getCheckout()));
+        preparedStatement.setString(5, booking.getBookingDates().getCheckin().toString());
+        preparedStatement.setString(6, booking.getBookingDates().getCheckout().toString());
     }
 
     public PreparedStatement getPreparedStatement() {

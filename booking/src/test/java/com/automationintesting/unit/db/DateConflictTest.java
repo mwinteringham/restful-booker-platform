@@ -10,6 +10,8 @@ import org.junit.Test;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -24,9 +26,11 @@ public class DateConflictTest extends BaseTest {
 
     @Test
     public void testBookingWithNoConflict() throws SQLException, ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date checkin = simpleDateFormat.parse("2100-01-01");
-        Date checkout = simpleDateFormat.parse("2100-01-05");
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        Date checkin = simpleDateFormat.parse("2100-01-01");
+//        Date checkout = simpleDateFormat.parse("2100-01-05");
+        LocalDate checkin = LocalDate.of(2100, Month.JANUARY, 1);
+        LocalDate checkout = LocalDate.of(2100, Month.JANUARY, 5);
 
         Booking booking = new Booking.BookingBuilder()
                 .setRoomid(1)
@@ -44,12 +48,11 @@ public class DateConflictTest extends BaseTest {
 
     @Test
     public void testConflictingBooking() throws SQLException, ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date bookingOneCheckin = simpleDateFormat.parse("2018-01-01");
-        Date bookingOneCheckout = simpleDateFormat.parse("2018-01-05");
+        LocalDate bookingOneCheckin = LocalDate.of(2018, Month.JANUARY, 1);
+        LocalDate bookingOneCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
-        Date bookingTwoCheckin = simpleDateFormat.parse("2018-01-01");
-        Date bookingTwoCheckout = simpleDateFormat.parse("2018-01-05");
+        LocalDate bookingTwoCheckin = LocalDate.of(2018, Month.JANUARY, 1);
+        LocalDate bookingTwoCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
         Booking bookingOne = new Booking.BookingBuilder()
                 .setRoomid(1)
@@ -80,11 +83,11 @@ public class DateConflictTest extends BaseTest {
     @Test
     public void testPartialConflict() throws ParseException, SQLException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date bookingOneCheckin = simpleDateFormat.parse("2018-01-01");
-        Date bookingOneCheckout = simpleDateFormat.parse("2018-01-05");
+        LocalDate bookingOneCheckin = LocalDate.of(2018, Month.JANUARY, 1);
+        LocalDate bookingOneCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
-        Date bookingTwoCheckin = simpleDateFormat.parse("2018-01-03");
-        Date bookingTwoCheckout = simpleDateFormat.parse("2018-01-08");
+        LocalDate bookingTwoCheckin = LocalDate.of(2018, Month.JANUARY, 3);
+        LocalDate bookingTwoCheckout = LocalDate.of(2018, Month.JANUARY, 8);
 
         Booking bookingOne = new Booking.BookingBuilder()
                 .setRoomid(1)
@@ -114,12 +117,11 @@ public class DateConflictTest extends BaseTest {
 
     @Test
     public void testConflictForSpecificRoom() throws SQLException, ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date bookingOneCheckin = simpleDateFormat.parse("2018-01-01");
-        Date bookingOneCheckout = simpleDateFormat.parse("2018-01-05");
+        LocalDate bookingOneCheckin = LocalDate.of(2018, Month.JANUARY, 1);
+        LocalDate bookingOneCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
-        Date bookingTwoCheckin = simpleDateFormat.parse("2018-01-01");
-        Date bookingTwoCheckout = simpleDateFormat.parse("2018-01-05");
+        LocalDate bookingTwoCheckin = LocalDate.of(2018, Month.JANUARY, 1);
+        LocalDate bookingTwoCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
         Booking bookingOne = new Booking.BookingBuilder()
                 .setRoomid(1)
@@ -148,12 +150,11 @@ public class DateConflictTest extends BaseTest {
 
     @Test
     public void testNoConflictForOverlapOnCheckoutCheckinDate() throws SQLException, ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date bookingOneCheckin = simpleDateFormat.parse("2018-01-01");
-        Date bookingOneCheckout = simpleDateFormat.parse("2018-01-05");
+        LocalDate bookingOneCheckin = LocalDate.of(2018, Month.JANUARY, 1);
+        LocalDate bookingOneCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
-        Date bookingTwoCheckin = simpleDateFormat.parse("2018-01-05");
-        Date bookingTwoCheckout = simpleDateFormat.parse("2018-01-07");
+        LocalDate bookingTwoCheckin = LocalDate.of(2018, Month.JANUARY, 5);
+        LocalDate bookingTwoCheckout = LocalDate.of(2018, Month.JANUARY, 7);
 
         Booking bookingOne = new Booking.BookingBuilder()
                 .setRoomid(1)
@@ -184,9 +185,8 @@ public class DateConflictTest extends BaseTest {
     public void testNoConflictIfReturnedBookingIsSameRoom() throws SQLException, ParseException {
         int currentBookingCount = bookingDB.queryAllBookings().size();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date bookingCheckin = simpleDateFormat.parse("2018-01-01");
-        Date bookingCheckout = simpleDateFormat.parse("2018-01-05");
+        LocalDate checkin = LocalDate.of(2100, Month.JANUARY, 1);
+        LocalDate checkout = LocalDate.of(2100, Month.JANUARY, 5);
 
         Booking booking = new Booking.BookingBuilder()
                 .setBookingid(currentBookingCount + 1)
@@ -194,8 +194,8 @@ public class DateConflictTest extends BaseTest {
                 .setFirstname("Mark")
                 .setLastname("Winteringham")
                 .setDepositpaid(true)
-                .setCheckin(bookingCheckin)
-                .setCheckout(bookingCheckout)
+                .setCheckin(checkin)
+                .setCheckout(checkout)
                 .build();
 
         bookingDB.create(booking);
