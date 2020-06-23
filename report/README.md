@@ -1,6 +1,6 @@
 # Restful-booker-report
 
-Report is responsible for collating information about the different rooms and the total price each room has made in bookings.
+Report is responsible for collating information about the different rooms their bookings.
 
 ## Running the checks
 
