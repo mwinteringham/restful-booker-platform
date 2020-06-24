@@ -1,8 +1,8 @@
 package com.automationintesting.unit.examples;
 
-import com.automationintesting.unit.BaseTest;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.CreatedBooking;
+import com.automationintesting.unit.BaseTest;
 import liquibase.exception.LiquibaseException;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,6 @@ import org.junit.Test;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.GregorianCalendar;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

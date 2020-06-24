@@ -5,7 +5,6 @@ import com.automationintesting.model.db.Booking;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 public class InsertSql {
 
@@ -13,7 +12,6 @@ public class InsertSql {
 
     public InsertSql(Connection connection, Booking booking) throws SQLException {
         String INSERT_SQL = "INSERT INTO PUBLIC.BOOKINGS(roomid, firstname, lastname, depositpaid, checkin, checkout) VALUES(?, ?, ?, ?, ?, ?);";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         preparedStatement = connection.prepareStatement(INSERT_SQL);
 

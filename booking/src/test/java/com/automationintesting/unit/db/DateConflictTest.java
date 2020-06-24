@@ -12,7 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,9 +25,6 @@ public class DateConflictTest extends BaseTest {
 
     @Test
     public void testBookingWithNoConflict() throws SQLException, ParseException {
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date checkin = simpleDateFormat.parse("2100-01-01");
-//        Date checkout = simpleDateFormat.parse("2100-01-05");
         LocalDate checkin = LocalDate.of(2100, Month.JANUARY, 1);
         LocalDate checkout = LocalDate.of(2100, Month.JANUARY, 5);
 

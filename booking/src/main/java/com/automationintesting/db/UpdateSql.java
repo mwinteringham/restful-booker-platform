@@ -5,7 +5,6 @@ import com.automationintesting.model.db.Booking;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 public class UpdateSql {
 
@@ -13,8 +12,6 @@ public class UpdateSql {
 
     UpdateSql(Connection connection, int id, Booking booking) throws SQLException {
         final String UPDATE_SQL = "UPDATE PUBLIC.BOOKINGS SET firstname= ?, lastname = ?, depositpaid = ?, checkin = ?, checkout = ? WHERE bookingid = ?";
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         preparedStatement = connection.prepareStatement(UPDATE_SQL);
         preparedStatement.setString(1, booking.getFirstname());

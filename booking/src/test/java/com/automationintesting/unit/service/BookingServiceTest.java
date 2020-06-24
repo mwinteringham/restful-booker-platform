@@ -18,11 +18,12 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -210,8 +211,6 @@ public class BookingServiceTest {
     }
 
     private Booking createGenericBooking() {
-//        Calendar startDate = new GregorianCalendar(2019, Calendar.SEPTEMBER, 1);
-//        Calendar endDate = new GregorianCalendar(2019, Calendar.SEPTEMBER, 2);
         LocalDate startDate = LocalDate.of(2019, Month.SEPTEMBER, 1);
         LocalDate endDate = LocalDate.of(2019, Month.SEPTEMBER, 2);
 

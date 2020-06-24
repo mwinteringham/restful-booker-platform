@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 @Entity
@@ -44,8 +43,6 @@ public class BookingDates {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
         return "BookingDates{" +
                 "checkin=" + checkin.toString() +
                 ", checkout=" + checkout.toString() +

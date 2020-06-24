@@ -3,7 +3,6 @@ package com.automationintesting.service;
 import com.automationintesting.model.db.BookingDates;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class DateCheckValidator {
 

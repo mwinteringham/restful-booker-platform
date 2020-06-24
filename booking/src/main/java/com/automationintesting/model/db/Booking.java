@@ -1,6 +1,5 @@
 package com.automationintesting.model.db;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,7 +9,6 @@ import javax.validation.constraints.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Optional;
 
 @Entity
