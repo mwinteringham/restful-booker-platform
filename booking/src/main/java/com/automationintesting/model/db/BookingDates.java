@@ -3,53 +3,49 @@ package com.automationintesting.model.db;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class BookingDates {
 
     @JsonProperty
     @NotNull
-    private Date checkin;
+    private LocalDate checkin;
 
     @JsonProperty
     @NotNull
-    private Date checkout;
+    private LocalDate checkout;
 
     public BookingDates() {
     }
 
-    public BookingDates(Date checkin, Date checkout) {
+    public BookingDates(LocalDate checkin, LocalDate checkout) {
         this.checkin = checkin;
         this.checkout = checkout;
     }
 
-    public Date getCheckin() {
+    public LocalDate getCheckin() {
         return checkin;
     }
 
-    public void setCheckin(Date checkin) {
+    public void setCheckin(LocalDate checkin) {
         this.checkin = checkin;
     }
 
-    public Date getCheckout() {
+    public LocalDate getCheckout() {
         return checkout;
     }
 
-    public void setCheckout(Date checkout) {
+    public void setCheckout(LocalDate checkout) {
         this.checkout = checkout;
     }
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
         return "BookingDates{" +
-                "checkin=" + sdf.format(checkin) +
-                ", checkout=" + sdf.format(checkout) +
+                "checkin=" + checkin.toString() +
+                ", checkout=" + checkout.toString() +
                 '}';
     }
 }

@@ -15,8 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.Month;
 
 import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
 import static com.xebialabs.restito.semantics.Action.status;
@@ -63,8 +63,8 @@ public class BookingIntegrationIT {
     public void testCreateBooking(){
         // We want to create a couple of date objects that we are going to us in our bookingPayload
         // and then again in the assertion to make sure they were processed correctly.
-        Date checkindate = new GregorianCalendar(1991,1,1).getTime();
-        Date checkoutdate = new GregorianCalendar(1991,1,2).getTime();
+        LocalDate checkindate = LocalDate.of(1991, Month.JANUARY, 1);
+        LocalDate checkoutdate = LocalDate.of(1991, Month.JANUARY, 2);
 
         // We next create our booking payload to send to the Booking webservice
         Booking bookingPayload = new Booking.BookingBuilder()

@@ -15,8 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.Month;
 
 import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
 import static com.xebialabs.restito.semantics.Action.status;
@@ -44,8 +44,8 @@ public class MessageRequestIT {
 
     @Test
     public void testSendingToMessageAPI(){
-        Date checkindate = new GregorianCalendar(1990,1,1).getTime();
-        Date checkoutdate = new GregorianCalendar(1990,1,2).getTime();
+        LocalDate checkindate = LocalDate.of(1990, Month.FEBRUARY, 1);
+        LocalDate checkoutdate = LocalDate.of(1990, Month.FEBRUARY, 2);
 
         Booking bookingPayload = new Booking.BookingBuilder()
                 .setRoomid(1)

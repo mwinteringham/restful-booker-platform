@@ -2,13 +2,13 @@ package com.automationintesting.service;
 
 import com.automationintesting.model.db.BookingDates;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DateCheckValidator {
 
     public boolean isValid(BookingDates dateBooking) {
-        final Date checkin = dateBooking.getCheckin();
-        final Date checkout =  dateBooking.getCheckout();
+        final LocalDate checkin = dateBooking.getCheckin();
+        final LocalDate checkout =  dateBooking.getCheckout();
 
         if (checkin == null || checkout == null) {
             return false;
