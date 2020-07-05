@@ -9,6 +9,9 @@ import liquibase.exception.LiquibaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
+import org.h2.tools.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -22,6 +25,7 @@ import java.util.List;
 public class MessageDB {
 
     private Connection connection;
+    private Logger logger = LoggerFactory.getLogger(MessageDB.class);
 
     private final String SELECT_BY_MESSAGEID = "SELECT * FROM PUBLIC.MESSAGES WHERE messageid = ?";
     private final String DELETE_BY_MESSAGEID = "DELETE FROM PUBLIC.MESSAGES WHERE messageid = ?";
@@ -37,9 +41,18 @@ public class MessageDB {
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        // If you would like to access the DB for this API locally. Uncomment the line below and
-        // use a SQL client to access jdbc:h2:tcp://localhost:9093/mem:rbp
-        // Server.createTcpServer("-tcpPort", "9093", "-tcpAllowOthers").start();
+        // If you would like to access the DB for this API locally. Run this API with
+        // the environmental variable dbServer to true.
+        try{
+            if(System.getenv("dbServer").equals("true")){
+                Server.createTcpServer("-tcpPort", "9093", "-tcpAllowOthers").start();
+                logger.info("DB server mode enabled");
+            } else {
+                logger.info("DB server mode disabled");
+            }
+        } catch (NullPointerException e){
+            logger.info("DB server mode disabled");
+        }
     }
 
     public Message create(Message message) throws SQLException {

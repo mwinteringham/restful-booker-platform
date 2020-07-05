@@ -7,7 +7,6 @@ import com.automationintesting.model.service.RoomResult;
 import com.automationintesting.requests.AuthRequests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -16,14 +15,13 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RoomService {
 
+    @Autowired
     private RoomDB roomDB;
 
     private AuthRequests authRequests;
 
-    public RoomService() throws SQLException {
+    public RoomService() {
         authRequests = new AuthRequests();
-
-        roomDB = new RoomDB();
 
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(roomDB, TimeUnit.MINUTES);
