@@ -8,6 +8,9 @@ import liquibase.exception.LiquibaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
+import org.h2.tools.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -21,10 +24,11 @@ import java.util.List;
 public class RoomDB {
 
     private Connection connection;
+    private Logger logger = LoggerFactory.getLogger(RoomDB.class);
+
     private final String SELECT_ROOMS = "SELECT * FROM PUBLIC.ROOMS";
     private final String SELECT_BY_ROOMID = "SELECT * FROM PUBLIC.ROOMS WHERE roomid = ?";
     private final String DELETE_BY_ROOMID = "DELETE FROM PUBLIC.ROOMS WHERE roomid = ?";
-    private final String DELETE_ALL_ROOMS = "DELETE FROM PUBLIC.ROOMS";
 
     public RoomDB() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -33,9 +37,18 @@ public class RoomDB {
         ds.setPassword("password");
         connection = ds.getConnection();
 
-        // If you would like to access the DB for this API locally. Uncomment the line below and
-        // use a SQL client to access jdbc:h2:tcp://localhost:9091/mem:rbp
-        // Server server = Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
+        // If you would like to access the DB for this API locally. Run this API with
+        // the environmental variable dbServer to true.
+        try{
+            if(System.getenv("dbServer").equals("true")){
+                Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
+                logger.info("DB server mode enabled");
+            } else {
+                logger.info("DB server mode disabled");
+            }
+        } catch (NullPointerException e){
+            logger.info("DB server mode disabled");
+        }
     }
 
     public Room create(Room room) throws SQLException {

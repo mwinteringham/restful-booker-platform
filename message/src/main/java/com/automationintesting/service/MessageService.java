@@ -16,14 +16,13 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class MessageService {
 
+    @Autowired
     private MessageDB messageDB;
 
     private AuthRequests authRequest;
 
-    public MessageService() throws SQLException {
+    public MessageService() {
         authRequest = new AuthRequests();
-
-        messageDB = new MessageDB();
 
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(messageDB, TimeUnit.MINUTES);
