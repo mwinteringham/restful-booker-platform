@@ -19,8 +19,7 @@ import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
 import static com.xebialabs.restito.semantics.Action.status;
 import static com.xebialabs.restito.semantics.Condition.post;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = MessageApplication.class)
@@ -37,8 +36,11 @@ public class MessageEndpointsIT {
     }
 
     @After
-    public void stopServer(){
+    public void stopServer() throws InterruptedException {
         server.stop();
+
+       // We have to wait for the mock to catch up and shutdown the mock before we can continue
+       Thread.sleep(1000);
     }
 
     @Test
@@ -93,7 +95,7 @@ public class MessageEndpointsIT {
                 .cookie("token", "abc123")
                 .delete("http://localhost:3006/message/" + createdMessage.getMessageid());
 
-        assertThat(response.statusCode(), is(202));
+        assertEquals(response.statusCode(), 202);
     }
 
     @Test
@@ -104,7 +106,7 @@ public class MessageEndpointsIT {
                 .when()
                 .post("http://localhost:3006/message/");
 
-        assertThat(response.statusCode(), is(400));
+        assertEquals(response.statusCode(), 400);
     }
 
     @Test

@@ -18,7 +18,7 @@ import org.springframework.http.HttpStatus;
 import java.sql.SQLException;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class BrandingServiceTest {
@@ -47,7 +47,7 @@ public class BrandingServiceTest {
         when(brandingDB.queryBranding()).thenReturn(sampleBranding);
 
         Branding branding = brandingService.getBrandingDetails();
-        assertThat(branding.toString(), is("Branding{name='Demo B&B', map=Map{latitude=2.0, longitude=4.0}, logoUrl='http://sample.url', description='Branding description here', contact=Contact{name='Demo B&B contact name', address='The street', phone='012345', email='test@email.com'}}"));
+        assertEquals(branding.toString(), "Branding{name='Demo B&B', map=Map{latitude=2.0, longitude=4.0}, logoUrl='http://sample.url', description='Branding description here', contact=Contact{name='Demo B&B contact name', address='The street', phone='012345', email='test@email.com'}}");
     }
 
     @Test
@@ -63,8 +63,8 @@ public class BrandingServiceTest {
 
         BrandingResult result = brandingService.updateBrandingDetails(sampleBranding, token);
 
-        assertThat(result.getHttpStatus(), is(HttpStatus.ACCEPTED));
-        assertThat(result.getBranding().toString(), is("Branding{name='Updated Branding', map=Map{latitude=2.0, longitude=4.0}, logoUrl='http://sample.url', description='Branding description here', contact=Contact{name='Demo B&B contact name', address='The street', phone='012345', email='test@email.com'}}"));
+        assertEquals(result.getHttpStatus(), HttpStatus.ACCEPTED);
+        assertEquals(result.getBranding().toString(), "Branding{name='Updated Branding', map=Map{latitude=2.0, longitude=4.0}, logoUrl='http://sample.url', description='Branding description here', contact=Contact{name='Demo B&B contact name', address='The street', phone='012345', email='test@email.com'}}");
     }
 
     @Test
@@ -75,7 +75,7 @@ public class BrandingServiceTest {
 
         BrandingResult result = brandingService.updateBrandingDetails(null, token);
 
-        assertThat(result.getHttpStatus(), is(HttpStatus.FORBIDDEN));
+        assertEquals(result.getHttpStatus(), HttpStatus.FORBIDDEN);
     }
 
 }

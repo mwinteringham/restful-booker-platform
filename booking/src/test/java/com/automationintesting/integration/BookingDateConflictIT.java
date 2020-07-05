@@ -14,8 +14,7 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookingApplication.class)
@@ -54,7 +53,7 @@ public class BookingDateConflictIT {
                                     .when()
                                     .post("http://localhost:3000/booking/");
 
-        assertThat(bookingResponse.statusCode(), equalTo(409));
+        assertEquals(bookingResponse.statusCode(), 409);
     }
 
     @Test
@@ -85,7 +84,7 @@ public class BookingDateConflictIT {
                 .when()
                 .post("http://localhost:3000/booking/");
 
-        assertThat(bookingResponse.statusCode(), equalTo(409));
+        assertEquals(bookingResponse.statusCode(), 409);
     }
 
 }

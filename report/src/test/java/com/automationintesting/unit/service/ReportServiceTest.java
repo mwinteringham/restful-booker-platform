@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class ReportServiceTest {
@@ -68,14 +67,14 @@ public class ReportServiceTest {
     public void getAllRoomReportTest(){
         Report report = reportService.getAllRoomsReport();
 
-        assertThat(report.toString(), is("Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Mark Dean - Room: 101'}, Entry{start=2019-09-01, end=2019-09-02, title='James Jones - Room: 102'}]}"));
+        assertEquals(report.toString(), "Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Mark Dean - Room: 101'}, Entry{start=2019-09-01, end=2019-09-02, title='James Jones - Room: 102'}]}");
     }
 
     @Test
     public void getSpecificRoomReportTest(){
         Report report = reportService.getSpecificRoomReport(1);
 
-        assertThat(report.toString(), is("Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Unavailable'}]}"));
+        assertEquals(report.toString(), "Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Unavailable'}]}");
     }
 
 }

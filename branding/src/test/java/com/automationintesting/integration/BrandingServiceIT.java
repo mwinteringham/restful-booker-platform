@@ -21,8 +21,7 @@ import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
 import static com.xebialabs.restito.semantics.Action.status;
 import static com.xebialabs.restito.semantics.Condition.post;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BrandingApplication.class)
@@ -39,8 +38,11 @@ public class BrandingServiceIT {
     }
 
     @After
-    public void stopServer(){
+    public void stopServer() throws InterruptedException {
         server.stop();
+
+        // Mock takes time to stop so we have to wait for it to complete
+        Thread.sleep(1500);
     }
 
     @Test
@@ -83,7 +85,7 @@ public class BrandingServiceIT {
                 .when()
                 .put("http://localhost:3002/branding/");
 
-        assertThat(response.statusCode(), is(400));
+        assertEquals(response.statusCode(), 400);
     }
 
 }

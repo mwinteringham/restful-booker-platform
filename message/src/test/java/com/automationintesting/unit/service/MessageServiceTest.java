@@ -20,8 +20,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +43,7 @@ public class MessageServiceTest {
 
     @Test
     public void getMessagesTest() throws SQLException {
-        List<MessageSummary> sampleMessages = new ArrayList<MessageSummary>(){{
+        List<MessageSummary> sampleMessages = new ArrayList<>(){{
             this.add(new MessageSummary(1, "Mark", "Message 1"));
             this.add(new MessageSummary(1, "Richard", "Message 2"));
         }};
@@ -53,7 +52,7 @@ public class MessageServiceTest {
 
         Messages messages = messageService.getMessages();
 
-        assertThat(messages.toString(), is("Messages{messages=[MessageSummary{id=1, name='Mark', subject='Message 1'}, MessageSummary{id=1, name='Richard', subject='Message 2'}]}"));
+        assertEquals(messages.toString(), "Messages{messages=[MessageSummary{id=1, name='Mark', subject='Message 1'}, MessageSummary{id=1, name='Richard', subject='Message 2'}]}");
     }
 
     @Test
@@ -62,7 +61,7 @@ public class MessageServiceTest {
 
         Count count = messageService.getCount();
 
-        assertThat(count.toString(), is("Count{count=10}"));
+        assertEquals(count.toString(), "Count{count=10}");
     }
 
     @Test
@@ -73,8 +72,8 @@ public class MessageServiceTest {
 
         MessageResult messageResult = messageService.getSpecificMessage(1);
 
-        assertThat(messageResult.getHttpStatus(), is(HttpStatus.OK));
-        assertThat(messageResult.getMessage().toString(), is("Message{messageid=0, name='Mark', email='test@email.com', phone='0189271231', subject='Test Subject', description='Test Description'}"));
+        assertEquals(messageResult.getHttpStatus(), HttpStatus.OK);
+        assertEquals(messageResult.getMessage().toString(), "Message{messageid=0, name='Mark', email='test@email.com', phone='0189271231', subject='Test Subject', description='Test Description'}");
     }
 
     @Test
@@ -83,7 +82,7 @@ public class MessageServiceTest {
 
         MessageResult message = messageService.getSpecificMessage(0);
 
-        assertThat(message.getHttpStatus(), is(HttpStatus.NOT_FOUND));
+        assertEquals(message.getHttpStatus(), HttpStatus.NOT_FOUND);
     }
 
     @Test
@@ -94,7 +93,7 @@ public class MessageServiceTest {
 
         Message message = messageService.createMessage(sampleMessage);
 
-        assertThat(message.toString(), is("Message{messageid=0, name='Mark', email='test@email.com', phone='0189271231', subject='Test Subject', description='Test Description'}"));
+        assertEquals(message.toString(), "Message{messageid=0, name='Mark', email='test@email.com', phone='0189271231', subject='Test Subject', description='Test Description'}");
     }
 
     @Test
@@ -104,7 +103,7 @@ public class MessageServiceTest {
 
         MessageResult messageResult = messageService.deleteMessage(1, "abc");
 
-        assertThat(messageResult.getHttpStatus(), is(HttpStatus.ACCEPTED));
+        assertEquals(messageResult.getHttpStatus(), HttpStatus.ACCEPTED);
     }
 
     @Test
@@ -114,7 +113,7 @@ public class MessageServiceTest {
 
         MessageResult messageResult = messageService.deleteMessage(1, "abc");
 
-        assertThat(messageResult.getHttpStatus(), is(HttpStatus.NOT_FOUND));
+        assertEquals(messageResult.getHttpStatus(), HttpStatus.NOT_FOUND);
     }
 
     @Test
@@ -123,7 +122,7 @@ public class MessageServiceTest {
 
         MessageResult messageResult = messageService.deleteMessage(1, "abc");
 
-        assertThat(messageResult.getHttpStatus(), is(HttpStatus.FORBIDDEN));
+        assertEquals(messageResult.getHttpStatus(), HttpStatus.FORBIDDEN);
     }
 
     @Test
@@ -133,7 +132,7 @@ public class MessageServiceTest {
 
         HttpStatus messageStatus = messageService.markAsRead(1, "abc");
 
-        assertThat(messageStatus, is(HttpStatus.ACCEPTED));
+        assertEquals(messageStatus, HttpStatus.ACCEPTED);
     }
 
     @Test
@@ -142,7 +141,7 @@ public class MessageServiceTest {
 
         HttpStatus messageStatus = messageService.markAsRead(1, "abc");
 
-        assertThat(messageStatus, is(HttpStatus.FORBIDDEN));
+        assertEquals(messageStatus, HttpStatus.FORBIDDEN);
     }
 
 }

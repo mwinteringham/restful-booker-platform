@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 // We need to start the app up to test it. So we use the SpringRunner class and SpringBootTest to configure
 // and run the app.
@@ -45,8 +45,8 @@ public class TaskAnalysisIntegrationTest {
         // in the API. The first being the API takes the request (by checking that a 404
         // is not returned) and the second being the response sends back the correct
         // body back in the form of a token.
-        assertThat(authResponse.getStatusCode(), not(404));
-        assertThat(authResponse.as(Token.class).getToken(), instanceOf(String.class));
+        assertNotEquals(authResponse.getStatusCode(), 404);
+        assertEquals(authResponse.as(Token.class).getToken().getClass(), String.class);
     }
 
 }

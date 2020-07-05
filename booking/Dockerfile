@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:14-jre-slim
 
 ADD . /usr/local/booking
 
