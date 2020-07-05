@@ -236,7 +236,7 @@ jobs:
           docker_layer_caching: false
       - run:
           command: |
-            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[BUILDING] Auth"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11) .
@@ -260,7 +260,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+              if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Booking"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11) .
@@ -284,7 +284,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+              if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Report"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11) .
@@ -308,7 +308,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+              if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Room"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11) .
@@ -332,7 +332,7 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+              if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Branding"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker build -t mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11) .
@@ -356,7 +356,7 @@ jobs:
 
       - run:
           command: |
-            if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[BUILDING] Message"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker build -t mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11) .
@@ -380,7 +380,7 @@ jobs:
 
           - run:
               command: |
-                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "master" ]; then
+                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                   echo "[BUILDING] Assets"
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
                   docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11) .
@@ -403,7 +403,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f /home/circleci/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Auth"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
@@ -425,7 +425,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f /home/circleci/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Booking"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
@@ -447,7 +447,7 @@ jobs:
               - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run:
             command: |
-              if [ -f /home/circleci/tmp/report.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+              if [ -f /home/circleci/tmp/report.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[DEPLOYING] Report"
                 version=`find ~/tmp/*.tmp -printf "%f\n"`
                 ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
@@ -469,7 +469,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/room.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f /home/circleci/tmp/room.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Room"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
@@ -491,7 +491,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f /home/circleci/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Branding"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
@@ -513,7 +513,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/message.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f /home/circleci/tmp/message.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Message"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
@@ -535,7 +535,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "master" ]; then
+            if [ -f /home/circleci/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Report"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
@@ -554,13 +554,13 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           command: | 
-            if [ $CIRCLE_BRANCH == "master" ]; then
+            if [ $CIRCLE_BRANCH == "trunk" ]; then
               node prod_monitor.js
             fi
           working_directory: .utilities/monitor
       - run:
           command: | 
-            if [ $CIRCLE_BRANCH == "master" ]; then
+            if [ $CIRCLE_BRANCH == "trunk" ]; then
               mvn clean test -Drevision=$(git rev-parse --short HEAD)
             fi
           working_directory: end-to-end-tests
