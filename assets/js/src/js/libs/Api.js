@@ -35,13 +35,7 @@ export const API = {
             })
             .then(res => {
                 if(res){
-                    let capturedErrors = [];
-                    
-                    for(let i = 0; i < res.errors.length; i++){
-                        capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
-                    }
-    
-                    component.setState({ errors : capturedErrors });
+                    component.setState({ errors : res.fieldErrors });
                 }
             });
     },
@@ -66,13 +60,7 @@ export const API = {
         })
         .then(res => {
             if(res){
-                let capturedErrors = [];
-    
-                for(let i = 0; i < res.errors.length; i++){
-                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
-                }
-                
-                component.setState({ errors : capturedErrors });
+                component.setState({ errors : res.fieldErrors });
             }
         });
     },
@@ -98,13 +86,7 @@ export const API = {
         })
         .then(res => {
             if(res){
-                let capturedErrors = [];
-                
-                for(let i = 0; i < res.errors.length; i++){
-                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
-                }
-    
-                component.setState({ errors : capturedErrors });
+                component.setState({ errors : res.fieldErrors });
             }
         });
     },
@@ -142,13 +124,7 @@ export const API = {
         })
         .then(res => {
             if(res){
-                let capturedErrors = [];
-                
-                for(let i = 0; i < res.errors.length; i++){
-                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
-                }
-    
-                component.setState({ errors : capturedErrors });
+                component.setState({ errors : res.fieldErrors });
             }
         });
     },
@@ -249,13 +225,7 @@ export const API = {
         })
         .then(res => {
             if(res){
-                let capturedErrors = [];
-                
-                for(let i = 0; i < res.errors.length; i++){
-                    capturedErrors.push(res.errors[i].field.capitalize() + ": " + res.errors[i].defaultMessage);
-                }
-    
-                component.setState({ errors : capturedErrors });
+                component.setState({ errors : res.fieldErrors });
             }
         });
     },
