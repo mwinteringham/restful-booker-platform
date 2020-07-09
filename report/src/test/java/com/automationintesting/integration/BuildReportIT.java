@@ -45,9 +45,12 @@ public class BuildReportIT {
     }
 
     @After
-    public void stopServer(){
+    public void stopServer() throws InterruptedException {
         roomApi.stop();
         bookingApi.stop();
+
+        // Mocking is too slow to kill APIs so we have to pause the run to let it catchup
+        Thread.sleep(1500);
     }
 
     @Test

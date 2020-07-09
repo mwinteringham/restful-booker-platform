@@ -23,6 +23,8 @@ test('Trialling react-testing-library', () =>{
     fireEvent.change(getByTestId('password'), { target: { value: 'password' } });
     fireEvent.click(getByTestId('submit'));
 
-    let didNockAcceptRequest = authMock.isDone();
-    expect(didNockAcceptRequest).toBe(true);
+    setImmediate(() => {
+      let didNockAcceptRequest = authMock.isDone();
+      expect(didNockAcceptRequest).toBe(true);
+    });
 });

@@ -11,8 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookingApplication.class)
@@ -32,7 +31,7 @@ public class BookingValidationIT {
             .when()
             .post("http://localhost:3000/booking/");
 
-        assertThat(response.statusCode(), is(400));
+        assertEquals(response.statusCode(), 400);
     }
 
     @Test
@@ -48,7 +47,7 @@ public class BookingValidationIT {
                 .when()
                 .put("http://localhost:3000/booking/1");
 
-        assertThat(response.statusCode(), is(400));
+        assertEquals(response.statusCode(), 400);
     }
 
 }

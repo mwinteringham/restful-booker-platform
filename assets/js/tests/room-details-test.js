@@ -146,6 +146,8 @@ test('Room details can be submitted', () => {
     roomDetailsComponent.update();
     roomDetailsComponent.instance().doEdit();
 
-    let didNockAcceptRequest = putMock.isDone();
-    expect(didNockAcceptRequest).toBe(true);
+    setImmediate(() => {
+        let didNockAcceptRequest = putMock.isDone();
+        expect(didNockAcceptRequest).toBe(true);
+    });
 });

@@ -4,10 +4,10 @@ A platform of web services that form a Hotel booking system for training others 
 ## Requirements
 RBP is currently known to work with the following requirements:
 
-- JDK 11
-- Maven 3.6.2
-- Node 12.13.0
-- NPM 6.12.0
+- JDK 14.0.1
+- Maven 3.6.3
+- Node 12.18.2
+- NPM 6.14.5
 
 ## Building locally
 

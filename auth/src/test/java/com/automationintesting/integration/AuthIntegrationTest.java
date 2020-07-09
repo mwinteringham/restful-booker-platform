@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -41,7 +42,7 @@ public class AuthIntegrationTest {
                             .body(token)
                             .post("http://localhost:3004/auth/validate");
 
-        assertThat(response.getStatusCode(), is(200));
+        assertEquals(response.getStatusCode(), 200);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class AuthIntegrationTest {
                 .body(token)
                 .post("http://localhost:3004/auth/logout");
 
-        assertThat(response.getStatusCode(), is(200));
+        assertEquals(response.getStatusCode(), 200);
     }
 
 }

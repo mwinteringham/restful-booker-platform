@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -29,7 +30,7 @@ public class RoomValidationIT {
             .when()
             .post("http://localhost:3001/room/");
 
-        assertThat(response.statusCode(), is(400));
+        assertEquals(response.statusCode(), 400);
     }
 
     @Test
@@ -43,7 +44,7 @@ public class RoomValidationIT {
                 .when()
                 .put("http://localhost:3001/room/1");
 
-        assertThat(response.statusCode(), is(400));
+        assertEquals(response.statusCode(), 400);
     }
 
 }

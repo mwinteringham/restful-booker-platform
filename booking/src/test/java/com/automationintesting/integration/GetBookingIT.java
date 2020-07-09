@@ -9,8 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookingApplication.class)
@@ -22,7 +21,7 @@ public class GetBookingIT {
         Response response = given()
                                 .get("http://localhost:3000/booking/1");
 
-        assertThat(response.getStatusCode(), is(200));
+        assertEquals(response.getStatusCode(), 200);
     }
 
     @Test
@@ -32,7 +31,7 @@ public class GetBookingIT {
 
         response.getBody().prettyPrint();
 
-        assertThat(response.getStatusCode(), is(404));
+        assertEquals(response.getStatusCode(), 404);
     }
 
 }

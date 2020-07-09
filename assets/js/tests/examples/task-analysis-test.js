@@ -62,8 +62,11 @@ test('Login component sends correct payload', () => {
     // or not it received the expected request. If it did, it will return
     // true. If it didn't it will return false. We then assert whether 
     // the result is true.
-    let didNockAcceptRequest = authMock.isDone();
-    expect(didNockAcceptRequest).toBe(true)
+
+    setImmediate(() => {
+        let didNockAcceptRequest = authMock.isDone();
+        expect(didNockAcceptRequest).toBe(true)
+    });
 });
 
 test('App is marked as logged in on successful request', (done) => {
