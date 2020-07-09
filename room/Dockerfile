@@ -1,4 +1,4 @@
-FROM openjdk:14-jre-slim
+FROM openjdk:14-slim
 
 ADD . /usr/local/room
 
