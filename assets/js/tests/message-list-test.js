@@ -11,13 +11,16 @@ beforeAll(() => {
                 messages : [
                     {
                         "name" : "Mark Winteringham",
-                        "subject" : "Subject description here"
+                        "subject" : "Subject description here",
+                        "read" : true
                     }, {
                         "name" : "James Dean",
-                        "subject" : "Another description here"
+                        "subject" : "Another description here",
+                        "read" : false
                     }, {
                         "name" : "Janet Samson",
-                        "subject" : "Lorem ipsum dolores est"
+                        "subject" : "Lorem ipsum dolores est",
+                        "read" : true
                     }
                 ]
             }
