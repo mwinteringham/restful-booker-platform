@@ -27,7 +27,7 @@ exports[`Clicking message shows message popup 1`] = `
       />
     </div>
     <div
-      className="row detail"
+      className="row detail read-true"
       id="message0"
       key="0"
     >
@@ -57,7 +57,7 @@ exports[`Clicking message shows message popup 1`] = `
       </div>
     </div>
     <div
-      className="row detail"
+      className="row detail read-false"
       id="message1"
       key="1"
     >
@@ -87,7 +87,7 @@ exports[`Clicking message shows message popup 1`] = `
       </div>
     </div>
     <div
-      className="row detail"
+      className="row detail read-true"
       id="message2"
       key="2"
     >
@@ -147,7 +147,7 @@ exports[`Renders the list of messages correctly 1`] = `
       />
     </div>
     <div
-      className="row detail"
+      className="row detail read-true"
       id="message0"
       key="0"
     >
@@ -177,7 +177,7 @@ exports[`Renders the list of messages correctly 1`] = `
       </div>
     </div>
     <div
-      className="row detail"
+      className="row detail read-false"
       id="message1"
       key="1"
     >
@@ -207,7 +207,7 @@ exports[`Renders the list of messages correctly 1`] = `
       </div>
     </div>
     <div
-      className="row detail"
+      className="row detail read-true"
       id="message2"
       key="2"
     >

@@ -37,6 +37,7 @@ export default class MessageList extends React.Component {
     }
 
     closeMessage(){
+        this.refreshMessageList();
         this.setState({messageId : 0});
 
         this.props.setCount();
@@ -45,7 +46,7 @@ export default class MessageList extends React.Component {
     render() {
         return <div>
             {this.state.messageId > 0 && 
-                <Message messageId={this.state.messageId} closeMessage={this.closeMessage} />
+                <Message messageId={this.state.messageId} closeMessage={this.closeMessage} refreshMessageList={this.refreshMessageList} />
             }
             <div className="messages">
                 <div className="row">
@@ -54,7 +55,7 @@ export default class MessageList extends React.Component {
                     <div className="col-sm-1"></div>
                 </div>
                 {this.state.messages.map((value, index) => {
-                    return  <div className="row detail" id={"message" + index} key={index}>
+                    return  <div className={"row detail read-" + value.read} id={"message" + index} key={index}>
                                 <div className="col-sm-2" onClick={() => this.openMessage(value.id)}><p>{value.name}</p></div>
                                 <div className="col-sm-9" onClick={() => this.openMessage(value.id)}><p>{value.subject}</p></div>
                                 <div className="col-sm-1">

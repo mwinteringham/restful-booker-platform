@@ -1,1 +1,1 @@
-[MessageSummary{id=1, name='James Dean', subject='Booking enquiry'}, MessageSummary{id=2, name='James', subject='Just getting a message setup'}, MessageSummary{id=3, name='Mark', subject='A subject you may be interested in'}]
+[MessageSummary{id=1, name='James Dean', subject='Booking enquiry', read='false'}, MessageSummary{id=2, name='James', subject='Just getting a message setup', read='false'}, MessageSummary{id=3, name='Mark', subject='A subject you may be interested in', read='false'}]

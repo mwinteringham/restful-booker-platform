@@ -44,15 +44,15 @@ public class MessageServiceTest {
     @Test
     public void getMessagesTest() throws SQLException {
         List<MessageSummary> sampleMessages = new ArrayList<>(){{
-            this.add(new MessageSummary(1, "Mark", "Message 1"));
-            this.add(new MessageSummary(1, "Richard", "Message 2"));
+            this.add(new MessageSummary(1, "Mark", "Message 1", false));
+            this.add(new MessageSummary(1, "Richard", "Message 2", false));
         }};
 
         when(messageDB.queryMessages()).thenReturn(sampleMessages);
 
         Messages messages = messageService.getMessages();
 
-        assertEquals(messages.toString(), "Messages{messages=[MessageSummary{id=1, name='Mark', subject='Message 1'}, MessageSummary{id=1, name='Richard', subject='Message 2'}]}");
+        assertEquals(messages.toString(), "Messages{messages=[MessageSummary{id=1, name='Mark', subject='Message 1', read='false'}, MessageSummary{id=1, name='Richard', subject='Message 2', read='false'}]}");
     }
 
     @Test
