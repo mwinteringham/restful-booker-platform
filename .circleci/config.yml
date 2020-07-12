@@ -197,6 +197,12 @@ jobs:
             cd sc-*
             bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY}
       - run:
+          name: Startup local proxy
+          command: |
+            npm install
+            npm start &
+          working_directory: .utilities/rbp-proxy/local/
+      - run:
           command: |
             if [ -f ~/tmp/assets.txt ]; then
               echo "[BUILDING] Assets"

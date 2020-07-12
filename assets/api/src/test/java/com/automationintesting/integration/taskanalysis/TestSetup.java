@@ -3,6 +3,7 @@ package com.automationintesting.integration.taskanalysis;
 import com.applitools.eyes.selenium.Eyes;
 import com.automationintesting.UiApplication;
 import com.automationintesting.integration.taskanalysis.driverfactory.DriverFactory;
+import com.xebialabs.restito.server.StubServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -16,6 +17,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = UiApplication.class)
 public class TestSetup {
 
+    // Our test rely on multiples services so we want to mock each of the
+    // services the UI uses
+    StubServer brandingApi, authApi, roomApi;
+
+    // We require instances of WebDriver and AppliTools eyes that will be
+    // inherited by the classes that use this setup class
     protected WebDriver driver;
     protected Eyes eyes;
 
@@ -35,17 +42,30 @@ public class TestSetup {
         // APPLITOOLS_API_KEY to use in your checks.
         //eyes.setApiKey("");
         eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
+
+        // With the browser setup, we begin to configure our mocked services
+        brandingApi = new StubServer(3002).run();
+        authApi = new StubServer(3004).run();
+        roomApi = new StubServer(3001).run();
     }
 
     // We add the @After annotation so that when JUnit runs it knows to run this method after
     // the tests are started. This is known as a hook.
     @After
-    public void teardownDriver(){
+    public void teardownDriver() throws InterruptedException {
         // Once the check is complete we need to close the Applitools and WebDriver instances so that
         // we can rebuild new ones for the next check
         eyes.close();
 
         driver.quit();
+
+        // We also need to close our mocks down to get them ready for the next check
+        brandingApi.stop();
+        authApi.stop();
+        roomApi.stop();
+
+        // Sadly we have to wait a second to allow the mocks to properly turn off
+        Thread.sleep(1000);
     }
 
 }
