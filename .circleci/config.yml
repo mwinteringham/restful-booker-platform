@@ -192,10 +192,15 @@ jobs:
           name: Install Sauce Labs and Set Up Tunnel
           background: true
           command: |
-            curl https://saucelabs.com/downloads/sc-4.5.3-linux.tar.gz -o saucelabs.tar.gz
+            curl https://saucelabs.com/downloads/sc-4.6.2-linux.tar.gz -o saucelabs.tar.gz
             tar -xzf saucelabs.tar.gz
             cd sc-*
-            bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY}
+      - run:
+          name: Startup local proxy
+          command: |
+            npm install
+            npm start &
+          working_directory: .utilities/rbp-proxy/local/
       - run:
           command: |
             if [ -f ~/tmp/assets.txt ]; then
