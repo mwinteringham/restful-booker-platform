@@ -8,7 +8,7 @@
     "url": "git+ssh://git@github.com/mwinteringham/restful-booker-platform.git"
   },
   "scripts": {
-    "start" : "node proxy.js"
+    "start": "node proxy.js"
   },
   "author": "Mark Winteringham",
   "license": "ISC",

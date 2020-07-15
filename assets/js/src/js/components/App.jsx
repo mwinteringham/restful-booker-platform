@@ -7,9 +7,9 @@ import { createBrowserHistory as createHistory } from 'history'
 import ReactGA from 'react-ga';
 
 import AdminContainer from './AdminContainer.jsx';
-import Welcome from './Welcome.jsx';
 import CookiePolicy from './CookiePolicy.jsx';
 import PrivacyPolicy from './PrivacyPolicy.jsx';
+import Banner from './Banner.jsx';
 import Home from './Home.jsx';
 import Footer from './Footer.jsx';
 
@@ -29,10 +29,8 @@ export default class App extends React.Component {
         super();
 
         this.state = {
-            showWelcome : false
+            showBanner : false
         }
-        
-        this.setWelcome = this.setWelcome.bind(this);
 
         ReactGA.pageview(window.location.pathname + window.location.hash);
     }
@@ -40,25 +38,19 @@ export default class App extends React.Component {
     componentDidMount(){
         const cookies = new Cookies();
 
-        if(typeof cookies.get('welcome') === 'undefined' && SHOW_WELCOME){
+        if(typeof cookies.get('banner') === 'undefined'){
            this.setState({
-                showWelcome : true
+                showBanner : true
             })
         }
-    }
-
-    setWelcome(e){
-        this.setState({
-            showWelcome : e
-        });
     }
 
     render() {
         let welcome = null;
 
-        if(this.state.showWelcome){
+        if(this.state.showBanner){
             welcome = <div>
-                <Welcome setWelcome={this.setWelcome} />
+                <Banner />
             </div>
         }
 
