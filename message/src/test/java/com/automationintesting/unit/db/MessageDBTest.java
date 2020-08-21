@@ -2,11 +2,11 @@ package com.automationintesting.unit.db;
 
 import com.automationintesting.model.db.Message;
 import com.automationintesting.model.db.MessageSummary;
-import liquibase.exception.LiquibaseException;
 import org.approvaltests.Approvals;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class MessageDBTest extends BaseTest {
     private int currentMessageId;
 
     @Before
-    public void resetDB() throws SQLException, LiquibaseException {
+    public void resetDB() throws SQLException, IOException {
         messageDB.resetDB();
 
         Message message = new Message("James",

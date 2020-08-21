@@ -7,6 +7,8 @@ import com.automationintesting.model.db.Messages;
 import com.automationintesting.model.service.MessageResult;
 import com.automationintesting.requests.AuthRequests;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +25,13 @@ public class MessageService {
 
     public MessageService() {
         authRequest = new AuthRequests();
+    }
 
+    @EventListener(ApplicationReadyEvent.class)
+    public void beginDbScheduler() {
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(messageDB, TimeUnit.MINUTES);
     }
-
 
     public Messages getMessages() throws SQLException {
         return new Messages(messageDB.queryMessages());
