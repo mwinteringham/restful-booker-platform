@@ -3,10 +3,10 @@ package com.automationintesting.unit.db;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.unit.BaseTest;
-import liquibase.exception.LiquibaseException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class DateConflictTest extends BaseTest {
 
     @Before
-    public void resetDb() throws SQLException, LiquibaseException {
+    public void resetDb() throws SQLException, IOException {
         bookingDB.resetDB();
     }
 

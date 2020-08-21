@@ -1,0 +1,1 @@
+INSERT INTO BOOKINGS (roomid, firstname, lastname, depositpaid, checkin, checkout) VALUES (1, 'James', 'Dean', true, '2020-02-01', '2020-02-05');
