@@ -31,7 +31,7 @@ public class DatabaseScheduler {
                     try {
                         logger.info("Resetting database");
 
-                        roomDB.resetDB();
+                        roomDB.seedDB();
                     } catch ( Exception e ) {
                         logger.error("Scheduler failed " + e.getMessage());
                     }

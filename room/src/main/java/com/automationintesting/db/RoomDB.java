@@ -1,24 +1,21 @@
 package com.automationintesting.db;
 
 import com.automationintesting.model.db.Room;
-import liquibase.Contexts;
-import liquibase.Liquibase;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.LiquibaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
-import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
+import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Component
 public class RoomDB {
@@ -30,12 +27,15 @@ public class RoomDB {
     private final String SELECT_BY_ROOMID = "SELECT * FROM PUBLIC.ROOMS WHERE roomid = ?";
     private final String DELETE_BY_ROOMID = "DELETE FROM PUBLIC.ROOMS WHERE roomid = ?";
 
-    public RoomDB() throws SQLException {
+    public RoomDB() throws SQLException, IOException {
         JdbcDataSource ds = new JdbcDataSource();
         ds.setURL("jdbc:h2:mem:rbp;MODE=MySQL");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();
+
+        executeSqlFile("db.sql");
+        executeSqlFile("seed.sql");
 
         // If you would like to access the DB for this API locally. Run this API with
         // the environmental variable dbServer to true.
@@ -125,19 +125,19 @@ public class RoomDB {
         return listToReturn;
     }
 
-    public void resetDB() throws LiquibaseException {
-        JdbcConnection connection = this.getConnection();
-
-        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
-
-        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
-
-        liquibase.dropAll();
-
-        liquibase.update(new Contexts());
+    public void seedDB() throws IOException, SQLException {
+        executeSqlFile("seed.sql");
     }
 
-    public JdbcConnection getConnection() {
-        return new JdbcConnection(connection);
+    private void executeSqlFile(String filename) throws IOException, SQLException {
+        Reader reader = new InputStreamReader( new ClassPathResource(filename).getInputStream());
+        Scanner sc = new Scanner(reader);
+
+        StringBuffer sb = new StringBuffer();
+        while(sc.hasNext()){
+            sb.append(sc.nextLine());
+        }
+
+        connection.prepareStatement(sb.toString()).executeUpdate();
     }
 }

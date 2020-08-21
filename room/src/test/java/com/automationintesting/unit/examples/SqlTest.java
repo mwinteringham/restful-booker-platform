@@ -1,10 +1,10 @@
 package com.automationintesting.unit.examples;
 
 import com.automationintesting.model.db.Room;
-import liquibase.exception.LiquibaseException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,9 +22,9 @@ public class SqlTest extends BaseTest {
     // method before each test starts to run. This is useful when
     // creating test data
     @Before
-    public void resetDB() throws SQLException, LiquibaseException {
+    public void resetDB() throws SQLException, IOException {
         // We call resetDB to return it back to it's vanilla state
-        roomDB.resetDB();
+        roomDB.seedDB();
 
         // We then create a Room object to send to the roomDB
         Room room = new Room(101,
