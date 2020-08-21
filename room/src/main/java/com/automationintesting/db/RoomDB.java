@@ -23,9 +23,11 @@ public class RoomDB {
     private Connection connection;
     private Logger logger = LoggerFactory.getLogger(RoomDB.class);
 
-    private final String SELECT_ROOMS = "SELECT * FROM PUBLIC.ROOMS";
-    private final String SELECT_BY_ROOMID = "SELECT * FROM PUBLIC.ROOMS WHERE roomid = ?";
-    private final String DELETE_BY_ROOMID = "DELETE FROM PUBLIC.ROOMS WHERE roomid = ?";
+    private final String SELECT_ROOMS = "SELECT * FROM ROOMS";
+    private final String SELECT_BY_ROOMID = "SELECT * FROM ROOMS WHERE roomid = ?";
+    private final String DELETE_BY_ROOMID = "DELETE FROM ROOMS WHERE roomid = ?";
+    private final String DELETE_ALL_ROOMS = "DELETE FROM ROOMS";
+    private final String RESET_INCREMENT = "ALTER TABLE ROOMS ALTER COLUMN roomid RESTART WITH 1";
 
     public RoomDB() throws SQLException, IOException {
         JdbcDataSource ds = new JdbcDataSource();
@@ -126,6 +128,12 @@ public class RoomDB {
     }
 
     public void seedDB() throws IOException, SQLException {
+        PreparedStatement ps = connection.prepareStatement(DELETE_ALL_ROOMS);
+        ps.executeUpdate();
+
+        PreparedStatement ps2 = connection.prepareStatement(RESET_INCREMENT);
+        ps2.executeUpdate();
+
         executeSqlFile("seed.sql");
     }
 

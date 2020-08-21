@@ -6,6 +6,9 @@ import com.automationintesting.model.db.Rooms;
 import com.automationintesting.model.service.RoomResult;
 import com.automationintesting.requests.AuthRequests;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +23,16 @@ public class RoomService {
 
     private AuthRequests authRequests;
 
+    @Autowired
     public RoomService() {
         authRequests = new AuthRequests();
+    }
 
+    @EventListener(ApplicationReadyEvent.class)
+    public void beginDbScheduler() {
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(roomDB, TimeUnit.MINUTES);
     }
-
 
     public Rooms getRooms() throws SQLException {
         return new Rooms(roomDB.queryRooms());
