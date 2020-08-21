@@ -6,13 +6,7 @@ databaseChangeLog:
         - createTable:
             tableName: brandings
             columns:
-              - column:
-                  name: brandingid
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
+
               - column:
                   name: name
                   type: varchar(255)
