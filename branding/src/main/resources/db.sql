@@ -1,0 +1,1 @@
+CREATE TABLE BRANDINGS ( brandingid int NOT NULL AUTO_INCREMENT, name varchar(255), latitude double, longitude double, logo_url varchar(255), description varchar(2000), contact_name varchar(255), address varchar(255), phone varchar(15), email varchar(255), primary key (brandingid));

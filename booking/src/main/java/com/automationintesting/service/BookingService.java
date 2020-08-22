@@ -10,6 +10,8 @@ import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.requests.MessageRequests;
 import org.h2.jdbc.JdbcSQLNonTransientException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +33,10 @@ public class BookingService {
         authRequests = new AuthRequests();
         dateCheckValidator = new DateCheckValidator();
         messageRequests = new MessageRequests();
+    }
 
+    @EventListener(ApplicationReadyEvent.class)
+    public void beginDbScheduler() {
         DatabaseScheduler databaseScheduler = new DatabaseScheduler();
         databaseScheduler.startScheduler(bookingDB, TimeUnit.MINUTES);
     }

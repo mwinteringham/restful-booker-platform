@@ -3,11 +3,13 @@ package com.automationintesting.service;
 import com.automationintesting.db.RoomDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class DatabaseScheduler {
 
     private Logger logger = LoggerFactory.getLogger(DatabaseScheduler.class);
@@ -31,7 +33,7 @@ public class DatabaseScheduler {
                     try {
                         logger.info("Resetting database");
 
-                        roomDB.resetDB();
+                        roomDB.seedDB();
                     } catch ( Exception e ) {
                         logger.error("Scheduler failed " + e.getMessage());
                     }

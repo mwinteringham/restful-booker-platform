@@ -1,0 +1,1 @@
+CREATE TABLE MESSAGES ( messageid int NOT NULL AUTO_INCREMENT, name varchar(255), email varchar(255), phone varchar(255), subject varchar(255), description clob, read boolean, primary key (messageid));

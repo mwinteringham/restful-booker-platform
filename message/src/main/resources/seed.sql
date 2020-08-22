@@ -1,0 +1,1 @@
+INSERT INTO MESSAGES (name, email, phone, subject, description, read) VALUES ('James Dean', 'james@email.com', '01402 619211', 'Booking enquiry', 'I would like to book a room at your place', false);

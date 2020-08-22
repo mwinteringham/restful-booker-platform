@@ -2,22 +2,21 @@ package com.automationintesting.db;
 
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.CreatedBooking;
-import liquibase.Contexts;
-import liquibase.Liquibase;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.LiquibaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
-import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Scanner;
 
 @Component
 public class BookingDB {
@@ -25,16 +24,21 @@ public class BookingDB {
     private Connection connection;
     private Logger logger = LoggerFactory.getLogger(BookingDB.class);
 
-    private final String SELECT_BY_BOOKINGID = "SELECT * FROM PUBLIC.BOOKINGS WHERE bookingid=?";
-    private final String DELETE_BY_ID = "DELETE FROM PUBLIC.BOOKINGS WHERE bookingid = ?" ;
-    private final String SELECT_DATE_CONFLICTS = "SELECT * FROM PUBLIC.BOOKINGS WHERE ((checkin BETWEEN ? AND ?) OR (checkout BETWEEN ? AND ?) OR (checkin <= ? AND checkout >= ?)) AND (roomid = ?)";
+    private final String SELECT_BY_BOOKINGID = "SELECT * FROM BOOKINGS WHERE bookingid=?";
+    private final String DELETE_BY_ID = "DELETE FROM BOOKINGS WHERE bookingid = ?" ;
+    private final String SELECT_DATE_CONFLICTS = "SELECT * FROM BOOKINGS WHERE ((checkin BETWEEN ? AND ?) OR (checkout BETWEEN ? AND ?) OR (checkin <= ? AND checkout >= ?)) AND (roomid = ?)";
+    private final String DELETE_ALL_BOOKINGS = "DELETE FROM BOOKINGS";
+    private final String RESET_INCREMENT = "ALTER TABLE BOOKINGS ALTER COLUMN bookingid RESTART WITH 1";
 
-    public BookingDB() throws SQLException {
+    public BookingDB() throws SQLException, IOException {
         JdbcDataSource ds = new JdbcDataSource();
         ds.setURL("jdbc:h2:mem:rbp;MODE=MySQL");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();
+
+        executeSqlFile("db.sql");
+        executeSqlFile("seed.sql");
 
         // If you would like to access the DB for this API locally. Run this API with
         // the environmental variable dbServer to true.
@@ -122,20 +126,14 @@ public class BookingDB {
         }
     }
 
-    public void resetDB() throws SQLException, LiquibaseException {
-        JdbcConnection connection = this.getConnection();
+    public void resetDB() throws SQLException, IOException {
+        PreparedStatement ps = connection.prepareStatement(DELETE_ALL_BOOKINGS);
+        ps.executeUpdate();
 
-        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
+        PreparedStatement ps2 = connection.prepareStatement(RESET_INCREMENT);
+        ps2.executeUpdate();
 
-        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
-
-        liquibase.dropAll();
-
-        liquibase.update(new Contexts());
-    }
-
-    private JdbcConnection getConnection() {
-        return new JdbcConnection(connection);
+        executeSqlFile("seed.sql");
     }
 
     public Boolean checkForBookingConflict(Booking bookingToCheck) throws SQLException {
@@ -181,5 +179,17 @@ public class BookingDB {
         }
 
         return listToReturn;
+    }
+
+    private void executeSqlFile(String filename) throws IOException, SQLException {
+        Reader reader = new InputStreamReader( new ClassPathResource(filename).getInputStream());
+        Scanner sc = new Scanner(reader);
+
+        StringBuffer sb = new StringBuffer();
+        while(sc.hasNext()){
+            sb.append(sc.nextLine());
+        }
+
+        connection.prepareStatement(sb.toString()).executeUpdate();
     }
 }

@@ -1,24 +1,23 @@
 package com.automationintesting.db;
 
 import com.automationintesting.model.db.Branding;
-import liquibase.Contexts;
-import liquibase.Liquibase;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.LiquibaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
-import liquibase.resource.ResourceAccessor;
 import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Component
 public class BrandingDB {
@@ -26,14 +25,19 @@ public class BrandingDB {
     private Connection connection;
     private Logger logger = LoggerFactory.getLogger(BrandingDB.class);
 
-    private final String SELECT_ALL_BRANDINGS = "SELECT * FROM PUBLIC.brandings";
+    private final String SELECT_ALL_BRANDINGS = "SELECT * FROM BRANDINGS";
+    private final String DELETE_BRANDING = "DELETE FROM BRANDINGS";
+    private final String RESET_INCREMENT = "ALTER TABLE BRANDINGS ALTER COLUMN brandingid RESTART WITH 1";
 
-    public BrandingDB() throws SQLException {
+    public BrandingDB() throws SQLException, IOException {
         JdbcDataSource ds = new JdbcDataSource();
         ds.setURL("jdbc:h2:mem:rbp");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();
+
+        executeSqlFile("db.sql");
+        executeSqlFile("seed.sql");
 
         // If you would like to access the DB for this API locally. Run this API with
         // the environmental variable dbServer to true.
@@ -86,19 +90,25 @@ public class BrandingDB {
         return branding;
     }
 
-    public void resetDB() throws LiquibaseException {
-        JdbcConnection connection = this.getConnection();
+    public void resetDB() throws SQLException, IOException {
+        PreparedStatement ps = connection.prepareStatement(DELETE_BRANDING);
+        ps.executeUpdate();
 
-        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
+        PreparedStatement ps2 = connection.prepareStatement(RESET_INCREMENT);
+        ps2.executeUpdate();
 
-        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", resourceAccessor, connection);
-
-        liquibase.dropAll();
-
-        liquibase.update(new Contexts());
+        executeSqlFile("seed.sql");
     }
 
-    private JdbcConnection getConnection() {
-        return new JdbcConnection(connection);
+    private void executeSqlFile(String filename) throws IOException, SQLException {
+        Reader reader = new InputStreamReader( new ClassPathResource(filename).getInputStream());
+        Scanner sc = new Scanner(reader);
+
+        StringBuffer sb = new StringBuffer();
+        while(sc.hasNext()){
+            sb.append(sc.nextLine());
+        }
+
+        connection.prepareStatement(sb.toString()).executeUpdate();
     }
 }

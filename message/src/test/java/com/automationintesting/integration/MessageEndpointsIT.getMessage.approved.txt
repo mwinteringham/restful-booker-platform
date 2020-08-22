@@ -4,5 +4,5 @@
     "email": "james@email.com",
     "phone": "01402 619211",
     "subject": "Booking enquiry",
-    "description": "I'm looking to book a room at your place"
+    "description": "I would like to book a room at your place"
 }

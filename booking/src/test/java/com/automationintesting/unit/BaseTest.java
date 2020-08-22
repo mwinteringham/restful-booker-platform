@@ -1,9 +1,9 @@
 package com.automationintesting.unit;
 
 import com.automationintesting.db.BookingDB;
-import liquibase.exception.LiquibaseException;
 import org.junit.BeforeClass;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class BaseTest {
@@ -22,14 +22,15 @@ public class BaseTest {
     // is set as static. @BeforeClass annotated methods are always
     // static
     @BeforeClass
-    public static void createBookingDb() throws SQLException, LiquibaseException {
+    public static void createBookingDb() throws SQLException, IOException {
         // First we check if a DB is already open by seeing if
         // dbOpen is set to true. If it's not, create a new BookingDB
         if(!dbOpen){
             bookingDB = new BookingDB();
-            bookingDB.resetDB();
             dbOpen = true;
         }
+
+        bookingDB.resetDB();
     }
 
 }
