@@ -7,7 +7,7 @@ jobs:
   checkout_code:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:8
 
     environment:
       MAVEN_OPTS: -Xmx3200m
