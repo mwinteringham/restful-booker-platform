@@ -33,7 +33,7 @@ jobs:
   run_assets_tests:
 
     docker:
-      - image: circleci/openjdk:8-node-browsers
+      - image: circleci/openjdk:14-buster-node-browsers
 
     steps:
       - restore_cache:
