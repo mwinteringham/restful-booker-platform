@@ -33,11 +33,17 @@ jobs:
   run_assets_tests:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:8-node-browsers
 
     steps:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Startup local proxy
+          command: |
+            npm install
+            npm start &
+          working_directory: .utilities/rbp-proxy/local/
       - run:
           name: Install Sauce Connect Proxy
           command: |
