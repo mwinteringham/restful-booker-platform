@@ -40,9 +40,10 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Startup local proxy
+          background: true
           command: |
             npm install
-            npm start &
+            npm start
           working_directory: .utilities/rbp-proxy/local/
       - run:
           name: Install Sauce Connect Proxy
