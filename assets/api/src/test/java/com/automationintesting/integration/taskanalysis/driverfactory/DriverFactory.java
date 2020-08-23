@@ -50,6 +50,7 @@ public class DriverFactory {
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setCapability("screenResolution", "1440x900");
+        firefoxOptions.setCapability("extendedDebugging", "true");
 
         try {
             return new RemoteWebDriver(new URL(URL), firefoxOptions);
