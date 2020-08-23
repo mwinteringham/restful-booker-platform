@@ -56,11 +56,15 @@ jobs:
                 printf "Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks"
                 mvn install -Drevision=$(git rev-parse --short HEAD) -Dvisual.skip.test=true
               else
-                curl https://saucelabs.com/downloads/sc-4.4.12-linux.tar.gz -o saucelabs.tar.gz
+                cd /tmp
+                curl https://saucelabs.com/downloads/sc-4.5.1-linux.tar.gz -o saucelabs.tar.gz
                 tar -xzf saucelabs.tar.gz
-                cd sc-*
-                bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -x https://eu-central-1.saucelabs.com/rest/v1 &
+                chmod a+x sc-4.5.1-linux/bin/sc
+                sudo cp sc-4.5.1-linux/bin/sc /usr/local/bin
+                sc --version
+                sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -x https://eu-central-1.saucelabs.com/rest/v1 &
                 wget --retry-connrefused --no-check-certificate -T 60 localhost:4445
+            
                 cd ..
                 mvn install -Drevision=$(git rev-parse --short HEAD)
               fi
