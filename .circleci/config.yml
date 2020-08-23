@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2.1
+version: 2
 jobs:
   checkout_code:
 
@@ -34,9 +34,6 @@ jobs:
 
     docker:
       - image: circleci/openjdk:14-buster-node-browsers
-
-    orbs:
-      sauce-connect: saucelabs/sauce-connect@1.0.1
 
     steps:
       - restore_cache:
