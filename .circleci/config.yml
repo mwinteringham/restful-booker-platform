@@ -30,6 +30,156 @@ jobs:
           paths:
             - ~/
 
+  run_auth_build:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    environment:
+        MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            if [ -f ~/tmp/auth.txt ]; then
+              echo "[BUILDING] Auth"
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
+            else
+              echo "[SKIPPING] Auth"
+            fi
+          working_directory: auth
+      - save_cache:
+          paths:
+            - auth/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-auth
+
+  run_booking_build:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    environment:
+        MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            if [ -f ~/tmp/booking.txt ]; then
+              echo "[BUILDING] Booking"
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
+            else
+              echo "[SKIPPING] Booking"
+            fi
+          working_directory: booking
+      - save_cache:
+          paths:
+            - booking/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
+
+  run_report_build:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    environment:
+        MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            if [ -f ~/tmp/report.txt ]; then
+              echo "[BUILDING] Report"
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
+            else
+              echo "[SKIPPING] Report"
+            fi
+          working_directory: report
+      - save_cache:
+          paths:
+            - report/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
+
+  run_room_build:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    environment:
+        MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            if [ -f ~/tmp/room.txt ]; then
+              echo "[BUILDING] Room"
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
+            else
+              echo "[SKIPPING] Room"
+            fi
+          working_directory: room
+      - save_cache:
+          paths:
+            - room/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
+
+  run_branding_build:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    environment:
+        MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            if [ -f ~/tmp/branding.txt ]; then
+              echo "[BUILDING] Branding"
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
+            else
+              echo "[SKIPPING] Branding"
+            fi
+          working_directory: branding
+      - save_cache:
+          paths:
+            - branding/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-branding
+
+  run_message_build:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    environment:
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: |
+            if [ -f ~/tmp/message.txt ]; then
+              echo "[BUILDING] Message"
+              mvn clean install -Drevision=$(git rev-parse --short HEAD)
+            else
+              echo "[SKIPPING] Message"
+            fi
+          working_directory: message
+      - save_cache:
+          paths:
+            - message/
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-message
+
   run_assets_tests:
 
     docker:
@@ -56,6 +206,7 @@ jobs:
             sc --version
       - run:
           command: |
+            if [ -f ~/tmp/assets.txt ]; then
               echo "[BUILDING] Assets"
               npm install
               npm test
@@ -71,6 +222,9 @@ jobs:
 
                 mvn install -Drevision=$(git rev-parse --short HEAD)
               fi
+            else
+              echo "[SKIPPING] Assets"
+            fi
           working_directory: assets/js
           environment:
             BROWSER: remote
@@ -79,11 +233,425 @@ jobs:
             - assets/
           key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-assets
 
+  build_auth_docker_image:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-auth
+
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run:
+          command: |
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              echo "[BUILDING] Auth"
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+              docker push mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11)
+            else
+              echo "[SKIPPING] Auth"
+            fi
+          working_directory: auth
+
+  build_booking_docker_image:
+
+      docker:
+        - image: circleci/openjdk:14-buster-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-booking
+
+        - setup_remote_docker:
+            docker_layer_caching: false
+
+        - run:
+            command: |
+              if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+                echo "[BUILDING] Booking"
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              else
+                echo "[SKIPPING] Booking"
+              fi
+            working_directory: booking
+
+  build_report_docker_image:
+
+      docker:
+        - image: circleci/openjdk:14-buster-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-report
+
+        - setup_remote_docker:
+            docker_layer_caching: false
+
+        - run:
+            command: |
+              if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+                echo "[BUILDING] Report"
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              else
+                echo "[SKIPPING] Report"
+              fi
+            working_directory: report
+
+  build_room_docker_image:
+
+      docker:
+        - image: circleci/openjdk:14-buster-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-room
+
+        - setup_remote_docker:
+            docker_layer_caching: false
+
+        - run:
+            command: |
+              if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+                echo "[BUILDING] Room"
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              else
+                echo "[SKIPPING] Room"
+              fi
+            working_directory: room
+
+  build_branding_docker_image:
+
+      docker:
+        - image: circleci/openjdk:14-buster-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-branding
+
+        - setup_remote_docker:
+            docker_layer_caching: false
+
+        - run:
+            command: |
+              if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+                echo "[BUILDING] Branding"
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker build -t mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              else
+                echo "[SKIPPING] Branding"
+              fi
+            working_directory: branding
+
+  build_message_docker_image:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-message
+
+      - setup_remote_docker:
+          docker_layer_caching: false
+
+      - run:
+          command: |
+            if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              echo "[BUILDING] Message"
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker build -t mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+              docker push mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11)
+            else
+              echo "[SKIPPING] Message"
+            fi
+          working_directory: message
+
+  build_assets_docker_image:
+
+        docker:
+          - image: circleci/openjdk:14-buster-node-browsers
+
+        steps:
+          - restore_cache:
+              key: v1-dependencies-{{ .Environment.CIRCLE_SHA1 }}-assets
+
+          - setup_remote_docker:
+              docker_layer_caching: false
+
+          - run:
+              command: |
+                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+                  echo "[BUILDING] Assets"
+                  docker login -u $DOCKER_USER -p $DOCKER_PASS
+                  docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11) .
+                  docker push mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                else
+                  echo "[SKIPPING] Assets"
+                fi
+              working_directory: assets
+
+  deploy_auth_docker_image:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run:
+          command: |
+            if [ -f /home/circleci/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              echo "[DEPLOYING] Auth"
+              version=`find ~/tmp/*.tmp -printf "%f\n"`
+              ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
+              ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
+            else
+              echo "[SKIPPING] Auth"
+            fi
+
+  deploy_booking_docker_image:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run:
+          command: |
+            if [ -f /home/circleci/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              echo "[DEPLOYING] Booking"
+              version=`find ~/tmp/*.tmp -printf "%f\n"`
+              ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
+              ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' mwinteringham/restfulbookerplatform_booking:'${version%.*}' && exit'
+            else
+              echo "[SKIPPING] Booking"
+            fi
+
+  deploy_report_docker_image:
+
+      docker:
+        - image: circleci/openjdk:14-buster-node-browsers
+
+      steps:
+        - restore_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        - add_ssh_keys:
+            fingerprints:
+              - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+        - run:
+            command: |
+              if [ -f /home/circleci/tmp/report.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+                echo "[DEPLOYING] Report"
+                version=`find ~/tmp/*.tmp -printf "%f\n"`
+                ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
+                ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-report"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-report -p 3005:3005 mwinteringham/restfulbookerplatform_report:'${version%.*}' && exit'
+              else
+                echo "[SKIPPING] Report"
+              fi
+
+  deploy_room_docker_image:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run:
+          command: |
+            if [ -f /home/circleci/tmp/room.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              echo "[DEPLOYING] Room"
+              version=`find ~/tmp/*.tmp -printf "%f\n"`
+              ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
+              ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-room"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-room -p 3001:3001 -e dbRefresh='10' mwinteringham/restfulbookerplatform_room:'${version%.*}' && exit'
+            else
+              echo "[SKIPPING] Room"
+            fi
+
+  deploy_branding_docker_image:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run:
+          command: |
+            if [ -f /home/circleci/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              echo "[DEPLOYING] Branding"
+              version=`find ~/tmp/*.tmp -printf "%f\n"`
+              ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
+              ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-branding"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' mwinteringham/restfulbookerplatform_branding:'${version%.*}' && exit'
+            else
+              echo "[SKIPPING] Branding"
+            fi
+
+  deploy_message_docker_image:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run:
+          command: |
+            if [ -f /home/circleci/tmp/message.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              echo "[DEPLOYING] Message"
+              version=`find ~/tmp/*.tmp -printf "%f\n"`
+              ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
+              ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-message"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-message -p 3006:3006 -e dbRefresh='10' mwinteringham/restfulbookerplatform_message:'${version%.*}' && exit'
+            else
+              echo "[SKIPPING] Message"
+            fi
+
+  deploy_assets_docker_image:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
+      - run:
+          command: |
+            if [ -f /home/circleci/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              echo "[DEPLOYING] Report"
+              version=`find ~/tmp/*.tmp -printf "%f\n"`
+              ssh-keyscan 52.211.95.191 >> $HOME/.ssh/known_hosts
+              ssh ec2-user@52.211.95.191 'container=`sudo docker ps -aqf "name=rbp-assets"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-assets -p 3003:3003 mwinteringham/restfulbookerplatform_assets:'${version%.*}' && exit'
+            else
+              echo "[SKIPPING] Assets"
+            fi
+
+  run_e2e_checks:
+
+    docker:
+      - image: circleci/openjdk:14-buster-node-browsers
+
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          command: | 
+            if [ $CIRCLE_BRANCH == "trunk" ]; then
+              node prod_monitor.js
+            fi
+          working_directory: .utilities/monitor
+      - run:
+          command: | 
+            if [ $CIRCLE_BRANCH == "trunk" ]; then
+              mvn clean test -Drevision=$(git rev-parse --short HEAD)
+            fi
+          working_directory: end-to-end-tests
+          environment:
+            TARGET: production
+            BROWSER: remote
+
 workflows:
   version: 2
   build-test-and-deploy:
     jobs:
       - checkout_code
+      - run_auth_build:
+          requires:
+            - checkout_code
+      - run_booking_build:
+          requires:
+            - checkout_code
+      - run_report_build:
+          requires:
+            - checkout_code
+      - run_room_build:
+          requires:
+            - checkout_code
+      - run_branding_build:
+          requires:
+            - checkout_code
+      - run_message_build:
+          requires:
+            - checkout_code
       - run_assets_tests:
           requires:
             - checkout_code
+      - build_auth_docker_image:
+          requires:
+            - run_auth_build
+      - build_booking_docker_image:
+          requires:
+            - run_booking_build
+      - build_report_docker_image:
+          requires:
+            - run_report_build
+      - build_room_docker_image:
+          requires:
+            - run_room_build
+      - build_branding_docker_image:
+          requires:
+            - run_branding_build
+      - build_message_docker_image:
+          requires:
+            - run_message_build
+      - build_assets_docker_image:
+          requires:
+            - run_assets_tests
+      - deploy_auth_docker_image:
+          requires:
+            - build_auth_docker_image
+      - deploy_booking_docker_image:
+          requires:
+            - build_booking_docker_image
+      - deploy_report_docker_image:
+          requires:
+            - build_report_docker_image
+      - deploy_room_docker_image:
+          requires:
+            - build_room_docker_image
+      - deploy_branding_docker_image:
+          requires:
+            - build_branding_docker_image
+      - deploy_message_docker_image:
+          requires:
+            - build_message_docker_image
+      - deploy_assets_docker_image:
+          requires:
+            - build_assets_docker_image
+      - run_e2e_checks:
+          requires:
+            - deploy_auth_docker_image
+            - deploy_booking_docker_image
+            - deploy_report_docker_image
+            - deploy_room_docker_image
+            - deploy_assets_docker_image
+            - deploy_branding_docker_image
+            - deploy_message_docker_image
