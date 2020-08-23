@@ -64,6 +64,7 @@ jobs:
                 printf "Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks"
                 mvn install -Drevision=$(git rev-parse --short HEAD) -Dvisual.skip.test=true
               else
+                wget --retry-connrefused --no-check-certificate -T 60 localhost:4445
                 mvn install -Drevision=$(git rev-parse --short HEAD)
               fi
           working_directory: assets/js
