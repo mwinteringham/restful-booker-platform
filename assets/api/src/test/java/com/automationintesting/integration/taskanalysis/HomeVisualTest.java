@@ -36,7 +36,7 @@ public class HomeVisualTest extends TestSetup {
         eyes.setForceFullPageScreenshot(true);
 
         // Next we use Selenium to navigate to our page under test
-        driver.navigate().to("http://127.0.0.1:8080/");
+        driver.navigate().to("http://localhost:8080/");
 
         // Finally we trigger the Applitools check by calling 'checkWindow' that will take a screenshot of the browser
         // and upload it to Applitools cloud to compare it against a previously stored image to compare the differences
