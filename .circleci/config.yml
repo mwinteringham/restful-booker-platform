@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   checkout_code:
 
@@ -35,6 +35,9 @@ jobs:
     docker:
       - image: circleci/openjdk:14-buster-node-browsers
 
+    orbs:
+      sauce-connect: saucelabs/sauce-connect@1.0.1
+
     steps:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
@@ -45,7 +48,7 @@ jobs:
             curl https://saucelabs.com/downloads/sc-4.6.2-linux.tar.gz -o saucelabs.tar.gz
             tar -xzf saucelabs.tar.gz
             cd sc-*
-            bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -x https://eu-central-1.saucelabs.com/rest/v1
+            bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -x https://eu-central-1.saucelabs.com/rest/v1 -v -s
       - run:
           name: Startup local proxy
           command: |
