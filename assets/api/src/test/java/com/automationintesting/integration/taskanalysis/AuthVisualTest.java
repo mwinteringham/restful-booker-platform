@@ -3,9 +3,6 @@ package com.automationintesting.integration.taskanalysis;
 import com.applitools.eyes.RectangleSize;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-
-import java.util.Date;
 
 // This test class extends the class TestSetup meaning we can inherit
 // the Before and After hooks to setup Selenium and Applitools
