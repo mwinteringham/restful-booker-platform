@@ -46,10 +46,11 @@ public class DriverFactory {
             throw new RuntimeException("To use remote driver a Sauce lab account is required. Please assign your Sauce labs access key to the environmental variable 'sauce_access_key'");
         }
 
-        String URL = "http://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com:80/wd/hub";
+        String URL = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.eu-central-1.saucelabs.com:443/wd/hub";
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setCapability("screenResolution", "1440x900");
+        firefoxOptions.setCapability("extendedDebugging", "true");
 
         try {
             return new RemoteWebDriver(new URL(URL), firefoxOptions);

@@ -4,6 +4,7 @@ var http = require('http'),
 var proxy = httpProxy.createProxyServer({});
 
 var server = http.createServer(function(req, res) {
+    console.log(req.url);
     switch(true){
         case /booking/.test(req.url):
             proxy.web(req, res, { target: 'http://localhost:3000' });

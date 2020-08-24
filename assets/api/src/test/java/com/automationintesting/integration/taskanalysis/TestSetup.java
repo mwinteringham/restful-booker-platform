@@ -42,6 +42,7 @@ public class TestSetup {
         // APPLITOOLS_API_KEY to use in your checks.
         //eyes.setApiKey("");
         eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
+        eyes.setForceFullPageScreenshot(true);
 
         // With the browser setup, we begin to configure our mocked services
         brandingApi = new StubServer(3002).run();
