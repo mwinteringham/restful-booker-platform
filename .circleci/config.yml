@@ -199,10 +199,10 @@ jobs:
           name: Install Sauce Connect Proxy
           command: |
             cd /tmp
-            curl https://saucelabs.com/downloads/sc-4.5.1-linux.tar.gz -o saucelabs.tar.gz
+            curl https://saucelabs.com/downloads/sc-4.6.2-linux.tar.gz -o saucelabs.tar.gz
             tar -xzf saucelabs.tar.gz
-            chmod a+x sc-4.5.1-linux/bin/sc
-            sudo cp sc-4.5.1-linux/bin/sc /usr/local/bin
+            chmod a+x sc-4.6.2-linux/bin/sc
+            sudo cp sc-4.6.2-linux/bin/sc /usr/local/bin
             sc --version
       - run:
           command: |
