@@ -16,6 +16,9 @@ export default class Login extends React.Component {
     }
 
     doLogin() {
+        let date = new Date();
+        date.setDate(date.getDate() + 1);
+
         fetch(API_ROOT + '/auth/login', {
             method: 'POST',
             headers: {
@@ -31,7 +34,7 @@ export default class Login extends React.Component {
         .then(res => {
             if(typeof(res.token) !== 'undefined'){
                 const cookies = new Cookies();
-                cookies.set('token', res.token, { path: '/' });
+                cookies.set('token', res.token, { path: '/', expires: date, sameSite : 'strict'});
 
                 this.props.setAuthenticate(true);
             } else {

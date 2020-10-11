@@ -14,22 +14,25 @@ export default class Banner extends React.Component {
     }
 
     closeBanner(){
+        let date = new Date()
+        date.setDate(date.getDate() + 1);
+
         const cookies = new Cookies();
-        cookies.set('banner', true, { path: '/' });
+        cookies.set('banner', true, { path: '/', expires: date, sameSite : 'strict'});
 
         this.props.setWelcome(false);
     }
 
     render(){
-        return <div class="collapse show" id="collapseBanner">
+        return <div className="collapse show" id="collapseBanner">
                 <div className="jumbotron">
-                    <div class="row">
+                    <div className="row">
                         <div className="col-12">
                             <h1>Welcome to Restful Booker Platform</h1>
                             <h4>Your one stop shop to practise Software Testing!</h4>
                         </div>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <div className="col-sm-3 content">
                             <br />
                             <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={glassIcon} alt="Magnifying glass" />
@@ -63,10 +66,10 @@ export default class Banner extends React.Component {
                             <p><span style={{fontWeight: "bold"}}>Please note:</span> for security reasons the database resets every 10 minutes.</p>
                           </div>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <div className="col-5"></div>
                         <div className="col-2 text-center" data-toggle="collapse" data-target="#collapseBanner" aria-expanded="false" aria-controls="collapseBanner">
-                            <button type="button" class="btn btn-primary" onClick={this.closeBanner}>Let me hack!</button>
+                            <button type="button" className="btn btn-primary" onClick={this.closeBanner}>Let me hack!</button>
                         </div>
                         <div className="col-5"></div>
                     </div>

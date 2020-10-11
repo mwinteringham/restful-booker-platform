@@ -1,5 +1,6 @@
 import { API_ROOT } from '../api-config';
 import fetch from 'node-fetch';
+import Cookies from 'universal-cookie';
 
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -239,6 +240,27 @@ export const API = {
             },
             credentials: 'include'
         })
+    },
+
+    postLogout : (component, tokenCookie) => {
+        fetch(API_ROOT + '/auth/logout', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body : JSON.stringify({
+				'token' : tokenCookie
+			})
+		})
+		.then(res => {
+			if(res.status == 200){
+				component.props.setAuthenticate(false);
+
+				const cookies = new Cookies();
+				cookies.remove('token');
+			}
+		})
     }
 
 }

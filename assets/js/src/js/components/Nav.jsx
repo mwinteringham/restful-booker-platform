@@ -2,7 +2,7 @@ import React from 'react';
 import Cookies from 'universal-cookie';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { API_ROOT } from '../api-config';
+import { API } from '../libs/Api';
 import Notification from './Notification.jsx';
 
 class Nav extends React.Component {
@@ -14,22 +14,10 @@ class Nav extends React.Component {
 	}
 	
 	doLogout(){
-		fetch(API_ROOT + '/auth/logout', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body : JSON.stringify(this.state)
-		})
-		.then(res => {
-			if(res.status == 200){
-				this.props.setAuthenticate(false);
+		const cookies = new Cookies();
+		let token = cookies.get('token')
 
-				const cookies = new Cookies();
-				cookies.remove('token');
-			}
-		})
+		API.postLogout(this, token);
 	}
 
 	render() {
