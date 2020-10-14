@@ -25,8 +25,8 @@ public class BookingDateConflictIT {
     public void testBookingConflict(){
         String token = "abc123";
 
-        LocalDate checkindate = LocalDate.of(2018, Month.JANUARY, 1);
-        LocalDate checkoutdate = LocalDate.of(2018, Month.JANUARY, 2);
+        LocalDate checkindate = LocalDate.of(2020, Month.FEBRUARY, 1);
+        LocalDate checkoutdate = LocalDate.of(2020, Month.FEBRUARY, 2);
 
         Booking bookingPayload = new Booking.BookingBuilder()
                 .setRoomid(1)
@@ -53,7 +53,7 @@ public class BookingDateConflictIT {
                                     .when()
                                     .post("http://localhost:3000/booking/");
 
-        assertEquals(bookingResponse.statusCode(), 409);
+        assertEquals(409, bookingResponse.statusCode());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class BookingDateConflictIT {
                 .when()
                 .post("http://localhost:3000/booking/");
 
-        assertEquals(bookingResponse.statusCode(), 409);
+        assertEquals(409, bookingResponse.statusCode());
     }
 
 }
