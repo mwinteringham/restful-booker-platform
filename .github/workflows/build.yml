@@ -18,6 +18,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
         working-directory: assets/js
+      - run: npm test
+        working-directory: assets/js  
       - run: npm run build
         working-directory: assets/js
       - name: Set up JDK 14
