@@ -23,6 +23,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 14
+      - run: cd ../..    
       - name: Build with Maven
-        run: cd ../..
         run: mvn clean install -Dvisual.skip.test=true
