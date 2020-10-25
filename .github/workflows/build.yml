@@ -25,4 +25,4 @@ jobs:
         with:
           java-version: 14
       - name: Build with Maven
-        run: mvn clean install -Dvisual.skip.test=true
+        run: mvn install -Dvisual.skip.test=true
