@@ -7,7 +7,7 @@ jobs:
   checkout_code:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     environment:
       MAVEN_OPTS: -Xmx3200m
@@ -33,7 +33,7 @@ jobs:
   run_auth_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -58,7 +58,7 @@ jobs:
   run_booking_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -83,7 +83,7 @@ jobs:
   run_report_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -108,7 +108,7 @@ jobs:
   run_room_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -133,7 +133,7 @@ jobs:
   run_branding_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -158,7 +158,7 @@ jobs:
   run_message_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     environment:
       MAVEN_OPTS: -Xmx3200m
@@ -183,7 +183,7 @@ jobs:
   run_assets_tests:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -236,7 +236,7 @@ jobs:
   build_auth_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -259,7 +259,7 @@ jobs:
   build_booking_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: circleci/openjdk:15-buster-node-browsers
 
       steps:
         - restore_cache:
@@ -283,7 +283,7 @@ jobs:
   build_report_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: circleci/openjdk:15-buster-node-browsers
 
       steps:
         - restore_cache:
@@ -307,7 +307,7 @@ jobs:
   build_room_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: circleci/openjdk:15-buster-node-browsers
 
       steps:
         - restore_cache:
@@ -331,7 +331,7 @@ jobs:
   build_branding_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: circleci/openjdk:15-buster-node-browsers
 
       steps:
         - restore_cache:
@@ -355,7 +355,7 @@ jobs:
   build_message_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -379,7 +379,7 @@ jobs:
   build_assets_docker_image:
 
         docker:
-          - image: circleci/openjdk:14-buster-node-browsers
+          - image: circleci/openjdk:15-buster-node-browsers
 
         steps:
           - restore_cache:
@@ -403,7 +403,7 @@ jobs:
   deploy_auth_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -425,7 +425,7 @@ jobs:
   deploy_booking_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -447,7 +447,7 @@ jobs:
   deploy_report_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: circleci/openjdk:15-buster-node-browsers
 
       steps:
         - restore_cache:
@@ -469,7 +469,7 @@ jobs:
   deploy_room_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -491,7 +491,7 @@ jobs:
   deploy_branding_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -513,7 +513,7 @@ jobs:
   deploy_message_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -535,7 +535,7 @@ jobs:
   deploy_assets_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
@@ -557,7 +557,7 @@ jobs:
   run_e2e_checks:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: circleci/openjdk:15-buster-node-browsers
 
     steps:
       - restore_cache:
