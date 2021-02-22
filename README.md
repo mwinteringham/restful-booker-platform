@@ -4,10 +4,10 @@ A platform of web services that forms a Bed and Breakfast booking system. The pl
 ## Requirements
 RBP is currently known to work with the following requirements:
 
-- JDK 14.0.1
+- JDK 15.0.2
 - Maven 3.6.3
-- Node 12.18.2
-- NPM 6.14.5
+- Node 14.15.5
+- NPM 6.14.11
 
 ## Building locally
 
