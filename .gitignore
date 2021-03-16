@@ -4,6 +4,7 @@
 *.log
 **/node
 *.gz
+**/*.received*
 
 # IntelliJ
 .idea
