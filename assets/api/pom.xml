@@ -109,13 +109,13 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.0.0-beta-3</version>
+            <version>3.141.59</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.applitools</groupId>
             <artifactId>eyes-selenium-java3</artifactId>
-            <version>3.200.0-beta</version>
+            <version>3.199.1</version>
         </dependency>
         <dependency>
             <groupId>com.xebialabs.restito</groupId>
