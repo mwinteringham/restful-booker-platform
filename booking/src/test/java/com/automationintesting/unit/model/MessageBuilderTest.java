@@ -3,7 +3,7 @@ package com.automationintesting.unit.model;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.Message;
 import com.automationintesting.service.MessageBuilder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;

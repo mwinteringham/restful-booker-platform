@@ -9,35 +9,35 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.approvaltests.Approvals;
 import org.glassfish.grizzly.http.util.HttpStatus;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
 import static com.xebialabs.restito.semantics.Action.status;
 import static com.xebialabs.restito.semantics.Condition.post;
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BrandingApplication.class)
 @ActiveProfiles("dev")
 public class BrandingServiceIT {
 
     StubServer server = new StubServer(3004).run();
 
-    @Before
+    @BeforeEach
     public void setupRestito(){
         whenHttp(server).
                 match(post("/auth/validate")).
                 then(status(HttpStatus.OK_200));
     }
 
-    @After
+    @AfterEach
     public void stopServer() throws InterruptedException {
         server.stop();
 

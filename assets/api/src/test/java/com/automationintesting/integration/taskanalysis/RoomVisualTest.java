@@ -2,7 +2,7 @@ package com.automationintesting.integration.taskanalysis;
 
 import com.applitools.eyes.RectangleSize;
 import com.xebialabs.restito.semantics.Condition;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;

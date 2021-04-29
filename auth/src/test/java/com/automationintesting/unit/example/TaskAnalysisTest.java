@@ -1,8 +1,7 @@
 package com.automationintesting.unit.example;
 
 import com.automationintesting.app.Tokens;
-import com.automationintesting.model.Token;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;

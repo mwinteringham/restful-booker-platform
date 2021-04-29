@@ -3,13 +3,11 @@ package com.automationintesting.unit.db;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.unit.BaseTest;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -18,13 +16,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DateConflictTest extends BaseTest {
 
-    @Before
+    @BeforeEach
     public void resetDb() throws SQLException, IOException {
         bookingDB.resetDB();
     }
 
     @Test
-    public void testBookingWithNoConflict() throws SQLException, ParseException {
+    public void testBookingWithNoConflict() throws SQLException {
         LocalDate checkin = LocalDate.of(2100, Month.JANUARY, 1);
         LocalDate checkout = LocalDate.of(2100, Month.JANUARY, 5);
 
@@ -43,7 +41,7 @@ public class DateConflictTest extends BaseTest {
     }
 
     @Test
-    public void testConflictingBooking() throws SQLException, ParseException {
+    public void testConflictingBooking() throws SQLException {
         LocalDate bookingOneCheckin = LocalDate.of(2018, Month.JANUARY, 1);
         LocalDate bookingOneCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
@@ -77,8 +75,7 @@ public class DateConflictTest extends BaseTest {
     }
 
     @Test
-    public void testPartialConflict() throws ParseException, SQLException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public void testPartialConflict() throws SQLException {
         LocalDate bookingOneCheckin = LocalDate.of(2018, Month.JANUARY, 1);
         LocalDate bookingOneCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
@@ -112,7 +109,7 @@ public class DateConflictTest extends BaseTest {
     }
 
     @Test
-    public void testConflictForSpecificRoom() throws SQLException, ParseException {
+    public void testConflictForSpecificRoom() throws SQLException {
         LocalDate bookingOneCheckin = LocalDate.of(2018, Month.JANUARY, 1);
         LocalDate bookingOneCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
@@ -145,7 +142,7 @@ public class DateConflictTest extends BaseTest {
     }
 
     @Test
-    public void testNoConflictForOverlapOnCheckoutCheckinDate() throws SQLException, ParseException {
+    public void testNoConflictForOverlapOnCheckoutCheckinDate() throws SQLException {
         LocalDate bookingOneCheckin = LocalDate.of(2018, Month.JANUARY, 1);
         LocalDate bookingOneCheckout = LocalDate.of(2018, Month.JANUARY, 5);
 
@@ -178,7 +175,7 @@ public class DateConflictTest extends BaseTest {
     }
 
     @Test
-    public void testNoConflictIfReturnedBookingIsSameRoom() throws SQLException, ParseException {
+    public void testNoConflictIfReturnedBookingIsSameRoom() throws SQLException {
         int currentBookingCount = bookingDB.queryAllBookings().size();
 
         LocalDate checkin = LocalDate.of(2100, Month.JANUARY, 1);

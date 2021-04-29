@@ -6,8 +6,8 @@ import com.automationintesting.model.db.Rooms;
 import com.automationintesting.model.service.RoomResult;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.service.RoomService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class RoomServiceTest {
@@ -33,9 +33,9 @@ public class RoomServiceTest {
     @InjectMocks
     private RoomService roomService;
 
-    @Before
+    @BeforeEach
     public void initialiseMocks() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

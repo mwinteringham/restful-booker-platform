@@ -1,6 +1,5 @@
-import pageobjects.MessagePage;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import pageobjects.*;
 
@@ -12,7 +11,7 @@ import static org.hamcrest.number.OrderingComparison.greaterThan;
 
 public class SmokeTest extends TestSetup {
 
-    @Before
+    @BeforeEach
     public void logIntoApplication(){
         navigateToApplication();
 
