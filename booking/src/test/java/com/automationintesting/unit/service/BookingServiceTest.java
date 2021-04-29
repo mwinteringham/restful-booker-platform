@@ -10,8 +10,8 @@ import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.service.BookingService;
 import com.automationintesting.service.DateCheckValidator;
 import org.h2.jdbc.JdbcSQLNonTransientException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -25,8 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 public class BookingServiceTest {
@@ -44,14 +44,14 @@ public class BookingServiceTest {
     @Autowired
     private BookingService bookingService;
 
-    @Before
+    @BeforeEach
     public void initialiseMocks() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     public void returnAllBookingsTest() throws SQLException {
-        List<Booking> bookings = new ArrayList<Booking>(){{
+        List<Booking> bookings = new ArrayList<>(){{
             this.add(createGenericBooking());
             this.add(createGenericBooking());
         }};
@@ -67,7 +67,7 @@ public class BookingServiceTest {
 
     @Test
     public void returnBookingsByRoomIdTest() throws SQLException {
-        List<Booking> bookings = new ArrayList<Booking>(){{
+        List<Booking> bookings = new ArrayList<>(){{
             this.add(createGenericBooking());
         }};
 
@@ -99,7 +99,7 @@ public class BookingServiceTest {
         BookingResult bookingResult = bookingService.getIndividualBooking(100);
 
         assertEquals(bookingResult.getStatus(), HttpStatus.NOT_FOUND);
-        assertEquals(bookingResult.getBooking(), null);
+        assertNull(bookingResult.getBooking());
     }
 
     @Test
@@ -150,7 +150,7 @@ public class BookingServiceTest {
         BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
 
         assertEquals(bookingResult.getStatus(), HttpStatus.NOT_FOUND);
-        assertEquals(bookingResult.getCreatedBooking(), null);
+        assertNull(bookingResult.getCreatedBooking());
     }
 
     @Test

@@ -1,8 +1,8 @@
 package com.automationintesting.unit.examples;
 
 import com.automationintesting.model.db.Room;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SqlTest extends BaseTest {
 
@@ -21,7 +21,7 @@ public class SqlTest extends BaseTest {
     // The @Before annotation means run whatever code is in this
     // method before each test starts to run. This is useful when
     // creating test data
-    @Before
+    @BeforeEach
     public void resetDB() throws SQLException, IOException {
         // We call resetDB to return it back to it's vanilla state
         roomDB.seedDB();

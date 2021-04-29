@@ -1,6 +1,6 @@
 import driverfactory.DriverFactory;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
@@ -10,13 +10,13 @@ public class TestSetup {
 
     WebDriver driver;
 
-    @Before
+    @BeforeEach
     public void SetUp(){
         driver = new DriverFactory().create();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     }
 
-    @After
+    @AfterEach
     public void TearDown(){
         driver.quit();
     }

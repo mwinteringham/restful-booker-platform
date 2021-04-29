@@ -1,7 +1,7 @@
 package com.automationintesting.unit.db;
 
 import com.automationintesting.db.MessageDB;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ public class BaseTest {
     // this method before running any of the tests. Notice how it
     // is set as static. @BeforeClass annotated methods are always
     // static
-    @BeforeClass
+    @BeforeAll
     public static void createMessageDb() throws SQLException, IOException {
         // First we check if a DB is already open by seeing if
         // dbOpen is set to true. If it's not, create a new MessageDB

@@ -1,7 +1,7 @@
 package com.automationintesting.unit.examples;
 
 import com.automationintesting.db.RoomDB;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,11 +17,11 @@ public class BaseTest {
     // whether the DB has been started or not
     private static boolean dbOpen;
 
-    // The @BeforeClass annotation means run whatever code is in
+    // The @BeforeAll annotation means run whatever code is in
     // this method before running any of the tests. Notice how it
-    // is set as static. @BeforeClass annotated methods are always
+    // is set as static. @BeforeAll annotated methods are always
     // static
-    @BeforeClass
+    @BeforeAll
     public static void createRoomDB() throws SQLException, IOException {
         // First we check if a DB is already open by seeing if
         // dbOpen is set to true. If it's not, create a new BookingDB

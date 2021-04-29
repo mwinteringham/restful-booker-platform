@@ -3,8 +3,8 @@ package com.automationintesting.unit.db;
 import com.automationintesting.model.db.Message;
 import com.automationintesting.model.db.MessageSummary;
 import org.approvaltests.Approvals;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,13 +12,13 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MessageDBTest extends BaseTest {
 
     private int currentMessageId;
 
-    @Before
+    @BeforeEach
     public void resetDB() throws SQLException, IOException {
         messageDB.resetDB();
 

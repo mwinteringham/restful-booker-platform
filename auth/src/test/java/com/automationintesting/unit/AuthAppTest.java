@@ -3,13 +3,9 @@ package com.automationintesting.unit;
 import com.automationintesting.app.AuthApp;
 import com.automationintesting.model.Decision;
 import com.automationintesting.model.Token;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.nullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AuthAppTest {
 

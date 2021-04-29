@@ -1,7 +1,7 @@
 package com.automationintesting.integration.taskanalysis;
 
 import com.applitools.eyes.RectangleSize;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 // This test class extends the class TestSetup meaning we can inherit

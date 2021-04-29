@@ -5,8 +5,9 @@ import com.automationintesting.model.room.*;
 import com.automationintesting.requests.BookingRequests;
 import com.automationintesting.requests.RoomRequests;
 import com.automationintesting.service.ReportService;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class ReportServiceTest {
@@ -31,14 +32,14 @@ public class ReportServiceTest {
     @Autowired
     private ReportService reportService;
 
-    @Before
+    @BeforeEach
     public void initialiseMocks() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
 
         Room roomOne = new Room(1, 101, "Single", 1, true, "Wifi");
         Room roomTwo = new Room(2, 102, "Double", 2, true, "Mini-bar");
 
-        Rooms sampleRooms = new Rooms(new ArrayList<Room>(){{
+        Rooms sampleRooms = new Rooms(new ArrayList<>(){{
             this.add(roomOne);
             this.add(roomTwo);
         }});
@@ -50,11 +51,11 @@ public class ReportServiceTest {
         Booking bookingOne = new Booking(1, 1, "Mark", "Dean", true, bookingDates);
         Booking bookingTwo = new Booking(2, 2, "James", "Jones", true, bookingDates);
 
-        Bookings bookingsOne = new Bookings(new ArrayList<Booking>(){{
+        Bookings bookingsOne = new Bookings(new ArrayList<>(){{
             this.add(bookingOne);
         }});
 
-        Bookings bookingsTwo = new Bookings(new ArrayList<Booking>(){{
+        Bookings bookingsTwo = new Bookings(new ArrayList<>(){{
             this.add(bookingTwo);
         }});
 

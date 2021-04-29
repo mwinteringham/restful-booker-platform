@@ -246,11 +246,11 @@ jobs:
           docker_layer_caching: false
       - run:
           command: |
-            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[BUILDING] Auth"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-              docker push mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+              docker push mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
             else
               echo "[SKIPPING] Auth"
             fi
@@ -270,11 +270,11 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f ~/project/booking/target/restful-booker-platform-booking-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Booking"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
               else
                 echo "[SKIPPING] Booking"
               fi
@@ -294,11 +294,11 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f ~/project/report/target/restful-booker-platform-report-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Report"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
               else
                 echo "[SKIPPING] Report"
               fi
@@ -318,11 +318,11 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f ~/project/room/target/restful-booker-platform-room-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Room"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
               else
                 echo "[SKIPPING] Room"
               fi
@@ -342,11 +342,11 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f ~/project/branding/target/restful-booker-platform-branding-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Branding"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
               else
                 echo "[SKIPPING] Branding"
               fi
@@ -366,11 +366,11 @@ jobs:
 
       - run:
           command: |
-            if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f ~/project/message/target/restful-booker-platform-message-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[BUILDING] Message"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-              docker push mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              docker build -t mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+              docker push mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
             else
               echo "[SKIPPING] Message"
             fi
@@ -390,11 +390,11 @@ jobs:
 
           - run:
               command: |
-                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                   echo "[BUILDING] Assets"
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
-                  docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                  docker push mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                  docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                  docker push mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
                 else
                   echo "[SKIPPING] Assets"
                 fi

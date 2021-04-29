@@ -7,13 +7,13 @@ import com.xebialabs.restito.server.StubServer;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.glassfish.grizzly.http.util.HttpStatus;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -25,9 +25,9 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-// We need to start the app up to test it. So we use the SpringRunner class and SpringBootTest to configure
+// We need to start the app up to test it. So we use the SpringExtension class and SpringBootTest to configure
 // and run the app.
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookingApplication.class)
 @ActiveProfiles("dev")
 public class BookingIntegrationIT {
@@ -36,7 +36,7 @@ public class BookingIntegrationIT {
 
     // We add the @Before annotation so that when JUnit runs it knows to run this method before
     // the tests are started. This is known as a hook.
-    @Before
+    @BeforeEach
     // We give the before hook a clear name to ensure that it is descriptive in what it is checking
     public void setupRestito() {
         // Booking relies on the Message service so we will mock the message API. We do that by creating a
@@ -49,7 +49,7 @@ public class BookingIntegrationIT {
     }
 
     // Once the test is finished we need to stop the mock server
-    @After
+    @AfterEach
     // We give the after hook a clear name to ensure that it is description in what it's doing
     public void stopServer(){
         server.stop();

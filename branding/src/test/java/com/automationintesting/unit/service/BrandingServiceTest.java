@@ -7,8 +7,8 @@ import com.automationintesting.model.db.Map;
 import com.automationintesting.model.service.BrandingResult;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.service.BrandingService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -17,8 +17,7 @@ import org.springframework.http.HttpStatus;
 
 import java.sql.SQLException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class BrandingServiceTest {
@@ -33,9 +32,9 @@ public class BrandingServiceTest {
     @Autowired
     private BrandingService brandingService;
 
-    @Before
+    @BeforeEach
     public void initialiseMocks() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
