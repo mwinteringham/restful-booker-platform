@@ -246,7 +246,7 @@ jobs:
           docker_layer_caching: false
       - run:
           command: |
-            if [ -f ~/project/auth/target/restful-booker-platform-auth-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[BUILDING] Auth"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
@@ -417,7 +417,7 @@ jobs:
               echo "[DEPLOYING] Auth"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -e HONEYCOMB_API_KEY=$HONEYCOMB_API_KEY -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Auth"
             fi

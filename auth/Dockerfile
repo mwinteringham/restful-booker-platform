@@ -6,4 +6,4 @@ WORKDIR /usr/local/auth
 
 COPY target ./
 
-ENTRYPOINT java -jar -Dspring.profiles.active=prod restful-booker-platform-auth-*.jar
+ENTRYPOINT java -jar -Dspring.profiles.active=prod -Dhoneycomb.beeline.write-key=${HONEYCOMB_API_KEY} restful-booker-platform-auth-*.jar
