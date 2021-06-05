@@ -439,7 +439,7 @@ jobs:
               echo "[DEPLOYING] Booking"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' mwinteringham/restfulbookerplatform_booking:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' -e HONEYCOMB_API_KEY=$HONEYCOMB_API_KEY mwinteringham/restfulbookerplatform_booking:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Booking"
             fi
