@@ -505,7 +505,7 @@ jobs:
               echo "[DEPLOYING] Branding"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-branding"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' mwinteringham/restfulbookerplatform_branding:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-branding"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' -e HONEYCOMB_API_KEY=$HONEYCOMB_API_KEY mwinteringham/restfulbookerplatform_branding:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Branding"
             fi

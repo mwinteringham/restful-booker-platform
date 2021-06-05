@@ -8,4 +8,4 @@ COPY target ./
 
 ENV authDomain=rbp-auth
 
-ENTRYPOINT java -jar -Dspring.profiles.active=prod target/restful-booker-platform-branding-*.jar -D
+ENTRYPOINT java -jar -Dspring.profiles.active=prod -Dhoneycomb.beeline.write-key=${HONEYCOMB_API_KEY} target/restful-booker-platform-branding-*.jar -D
