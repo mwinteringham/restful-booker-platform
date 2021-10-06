@@ -19,7 +19,7 @@ public class Decision {
         return result;
     }
 
-    public Token getToken() {
+    public Token getTokenPayload() {
         return token;
     }
 

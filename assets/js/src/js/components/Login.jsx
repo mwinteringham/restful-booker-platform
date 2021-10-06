@@ -1,5 +1,4 @@
 import React from 'react';
-import Cookies from 'universal-cookie';
 import { API_ROOT } from '../api-config';
 import fetch from 'isomorphic-fetch';
 
@@ -33,9 +32,6 @@ export default class Login extends React.Component {
         .then(res => res.json())
         .then(res => {
             if(typeof(res.token) !== 'undefined'){
-                const cookies = new Cookies();
-                cookies.set('token', res.token, { path: '/', expires: date, sameSite : 'strict'});
-
                 this.props.setAuthenticate(true);
             } else {
                 this.setState({ error : true });

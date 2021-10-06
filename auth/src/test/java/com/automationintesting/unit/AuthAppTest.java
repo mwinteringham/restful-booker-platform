@@ -16,7 +16,7 @@ public class AuthAppTest {
         Decision decision = authApp.decideOnTokenGeneration("admin", "password");
 
         assertEquals(decision.getResult(), true);
-        assertEquals(decision.getToken().getClass(), Token.class);
+        assertEquals(decision.getTokenPayload().getClass(), Token.class);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class AuthAppTest {
         Decision decision = authApp.decideOnTokenGeneration("nimda", "password");
 
         assertEquals(decision.getResult(), false);
-        assertEquals(decision.getToken(), null);
+        assertEquals(decision.getTokenPayload(), null);
     }
 
 }

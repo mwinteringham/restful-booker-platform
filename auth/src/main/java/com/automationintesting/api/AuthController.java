@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 public class AuthController {
 
@@ -22,11 +25,15 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Token> createToken(@RequestBody Auth auth) {
+    public ResponseEntity<Token> createToken(@RequestBody Auth auth, HttpServletResponse response) {
         Decision credentialDecision = authApp.decideOnTokenGeneration(auth.getUsername(), auth.getPassword());
 
         if(credentialDecision.getResult()){
-            return ResponseEntity.ok(credentialDecision.getToken());
+            Cookie cookie = new Cookie("token", credentialDecision.getTokenPayload().getToken());
+            cookie.setPath("/");
+            response.addCookie(cookie);
+
+            return ResponseEntity.ok(credentialDecision.getTokenPayload());
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
