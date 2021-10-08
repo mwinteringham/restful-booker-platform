@@ -29,9 +29,8 @@ export default class Login extends React.Component {
                 password: this.state.password,
             })
         })
-        .then(res => res.json())
         .then(res => {
-            if(typeof(res.token) !== 'undefined'){
+            if(res.status === 200){
                 this.props.setAuthenticate(true);
             } else {
                 this.setState({ error : true });

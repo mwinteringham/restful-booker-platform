@@ -26,11 +26,12 @@ public class AuthIntegrationTest {
     public void createToken(){
         Auth authPayload = new Auth("admin", "password");
 
-        token = given()
-                .contentType(ContentType.JSON)
-                .body(authPayload)
-                .post("http://localhost:3004/auth/login")
-                .as(Token.class);
+        Response response = given()
+                            .contentType(ContentType.JSON)
+                            .body(authPayload)
+                            .post("http://localhost:3004/auth/login");
+
+        token = new Token(response.cookies().get("token"));
     }
 
     @Test

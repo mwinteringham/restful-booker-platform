@@ -31,9 +31,10 @@ public class AuthController {
         if(credentialDecision.getResult()){
             Cookie cookie = new Cookie("token", credentialDecision.getTokenPayload().getToken());
             cookie.setPath("/");
+
             response.addCookie(cookie);
 
-            return ResponseEntity.ok(credentialDecision.getTokenPayload());
+            return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }

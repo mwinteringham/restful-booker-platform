@@ -43,9 +43,9 @@ public class TaskAnalysisIntegrationTest {
         // We are checking two different things for two different risks we identified
         // in the API. The first being the API takes the request (by checking that a 404
         // is not returned) and the second being the response sends back the correct
-        // body back in the form of a token.
+        // header back in the form of a token.
         assertNotEquals(authResponse.getStatusCode(), 404);
-        assertEquals(authResponse.as(Token.class).getToken().getClass(), String.class);
+        assertEquals(authResponse.cookies().get("token").getClass(), String.class);
     }
 
 }
