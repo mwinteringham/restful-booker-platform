@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 
 @SpringBootApplication
-@ComponentScan()
+@ComponentScan(basePackages = "com.automationintesting")
 @EnableOpenApi
 public class AuthApplication {
 

@@ -1,4 +1,4 @@
-package com.automationintesting.app;
+package com.automationintesting.service;
 
 import java.security.SecureRandom;
 import java.util.Locale;
