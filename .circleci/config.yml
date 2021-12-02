@@ -246,7 +246,7 @@ jobs:
           docker_layer_caching: false
       - run:
           command: |
-            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[BUILDING] Auth"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
