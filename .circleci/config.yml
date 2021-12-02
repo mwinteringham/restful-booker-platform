@@ -417,7 +417,7 @@ jobs:
               echo "[DEPLOYING] Auth"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -e HONEYCOMB_API_KEY='$HONEYCOMB_API_KEY' -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -e HONEYCOMB_API_KEY='$HONEYCOMB_API_KEY' -e dbRefresh='10' -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Auth"
             fi
