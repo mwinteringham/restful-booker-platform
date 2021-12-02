@@ -1,6 +1,6 @@
 package com.automationintesting.unit.example;
 
-import com.automationintesting.app.Tokens;
+import com.automationintesting.model.Token;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -15,14 +15,15 @@ public class TaskAnalysisTest {
     // We give the check a clear name to ensure that it is descriptive in
     // what it is checking
     public void testTokenCreation(){
-        // We assign a token that is generated via the Tokens class to a string
-        String token = Tokens.create();
+        // We generate a new Token to check it creates a random string correctly
+        Token token = new Token();
+        String tokenString = token.getToken();
 
         // Since the token is randomly generated we cannot assert on the string
         // but we can assert on the String class by using hamcrest to assertThat
         // token is an instance of a String.class and is 16 characters long
-        assertThat(token, is(instanceOf(String.class)));
-        assertThat(token.length(), is(16));
+        assertThat(tokenString, is(instanceOf(String.class)));
+        assertThat(tokenString.length(), is(16));
     }
 
 }

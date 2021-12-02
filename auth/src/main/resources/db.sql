@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS TOKENS ( tokenid int NOT NULL AUTO_INCREMENT, token varchar(255), expiry TIMESTAMP, primary key (tokenid));
+CREATE TABLE IF NOT EXISTS ACCOUNTS ( accountid int NOT NULL AUTO_INCREMENT, username varchar(255), password varchar(255), primary key (accountid));

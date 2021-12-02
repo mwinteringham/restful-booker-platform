@@ -1,33 +1,27 @@
 package com.automationintesting.model;
 
+import org.springframework.http.HttpStatus;
+
 public class Decision {
 
-    private boolean result;
+    private HttpStatus httpStatus;
 
     private Token token;
 
-    public Decision(boolean result) {
-        this.result = result;
+    public Decision(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
     }
 
-    public Decision(boolean result, String tokenString) {
-        this.result = result;
-        this.token = new Token(tokenString);
+    public Decision(HttpStatus httpStatus, Token token) {
+        this.httpStatus = httpStatus;
+        this.token = token;
     }
 
-    public boolean getResult() {
-        return result;
+    public HttpStatus getStatus() {
+        return httpStatus;
     }
 
-    public Token getTokenPayload() {
+    public Token getToken() {
         return token;
-    }
-
-    @Override
-    public String toString() {
-        return "Decision{" +
-                "result=" + result +
-                ", token=" + token +
-                '}';
     }
 }
