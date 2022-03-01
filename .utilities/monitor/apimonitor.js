@@ -2,7 +2,7 @@ const http = require('http');
 const https = require('https');
 
 makeHttpRequest = (host, apiName) => {
-  http.get(host + apiName + '/actuator/health', (response) => {
+  http.get(host + apiName + 'actuator/health', (response) => {
     let data = '';
     
     response.on('data', (chunk) => {
@@ -30,7 +30,7 @@ makeHttpRequest = (host, apiName) => {
 }
 
 makeHttpsRequest = (host, apiName) => {
-  https.get(host + apiName + '/actuator/health', (response) => {
+  https.get(host + apiName + 'actuator/health', (response) => {
     let data = '';
     
     response.on('data', (chunk) => {
