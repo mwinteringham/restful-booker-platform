@@ -502,13 +502,13 @@ exports[`Branding page shows modal on success 1`] = `
             class="ReactModalPortal"
           >
             <div
-              class="ReactModal__Overlay ReactModal__Overlay--after-open"
+              class="ReactModal__Overlay"
               style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background-color: rgba(255, 255, 255, 0.75);"
             >
               <div
                 aria-label="onRequestClose Example"
                 aria-modal="true"
-                class="ReactModal__Content ReactModal__Content--after-open Modal"
+                class="ReactModal__Content Modal"
                 role="dialog"
                 tabindex="-1"
               >
