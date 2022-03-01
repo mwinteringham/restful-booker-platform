@@ -258,6 +258,22 @@ exports[`Home page renders 1`] = `
       className="row"
     >
       <div
+        className="col-12"
+      >
+        <a
+          alt="Link to Automation in Testing training in Edinburgh"
+          href="https://www.ministryoftesting.com/events/automation-in-testing-28-to-30-march-2022?utm_medium=web&utm_source=aitonline"
+        >
+          <img
+            src="test-file-stub"
+          />
+        </a>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
         className="col-sm-12 text-center"
       >
         <HotelLogo

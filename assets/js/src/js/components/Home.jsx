@@ -6,6 +6,8 @@ import HotelLogo from './HotelLogo.jsx';
 import HotelContact from './HotelContact.jsx';
 import { API_ROOT } from '../api-config';
 
+import adbanner from '../../images/ait-banner.png';
+
 export default class Home extends React.Component {
 
     constructor() {
@@ -48,6 +50,11 @@ export default class Home extends React.Component {
         return (
             <div>
                 <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-12">
+                            <a href="https://www.ministryoftesting.com/events/automation-in-testing-28-to-30-march-2022?utm_medium=web&utm_source=aitonline" alt="Link to Automation in Testing training in Edinburgh"><img src={adbanner} /></a>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className='col-sm-12 text-center'>
                             <HotelLogo logoDetails={this.state.logoUrl} />
