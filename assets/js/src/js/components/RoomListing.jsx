@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { API_ROOT } from '../api-config';
 import PropTypes from 'prop-types';
+import { API } from '../libs/Api.js';
 
 class RoomListing extends React.Component {
 
@@ -13,27 +13,7 @@ class RoomListing extends React.Component {
     }
 
     deleteRoom(){
-        fetch(API_ROOT + '/booking/?roomid=' + this.props.details.roomid, {
-            method: 'GET'
-        })
-        .then(res => res.json())
-        .then(res => {
-            for(let i = 0; i < res.bookings.length; i++){
-                fetch(API_ROOT + '/booking/' + res.bookings[i].bookingid, {
-                    method: 'DELETE'
-                });
-            }
-
-            fetch(API_ROOT + '/room/' + this.props.details.roomid, {
-                method: 'DELETE',
-                credentials: 'include'
-            })
-            .then(res => {
-                if(res.status == 202){
-                    this.props.updateRooms();
-                }
-            });
-        })
+        API.deleteAll(this)
     }
 
     openRoom(){

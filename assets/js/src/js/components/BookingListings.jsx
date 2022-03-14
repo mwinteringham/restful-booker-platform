@@ -1,6 +1,7 @@
 import React from 'react';
-import { API_ROOT } from '../api-config';
 import BookingListing from './BookingListing.jsx';
+
+import { API } from '../libs/Api.js';
 
 export default class BookingListings extends React.Component {
 
@@ -19,17 +20,7 @@ export default class BookingListings extends React.Component {
     }
 
     getBookings(){
-        fetch(API_ROOT + '/booking/?roomid=' + this.props.roomid, {
-            headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
-        })
-        .then(res => res.json())
-        .then(res => {
-            this.setState(res);
-        })
-        .catch(e => console.log(e));
+        API.getBookingsByRoomId(this)
     }
 
     render(){

@@ -1,8 +1,6 @@
 import React from 'react';
 import BookingListings from './BookingListings.jsx';
-import { API_ROOT } from '../api-config';
 import { API } from '../libs/Api.js';
-import fetch from 'node-fetch';
 
 export default class RoomDetails extends React.Component {
 
@@ -74,22 +72,7 @@ export default class RoomDetails extends React.Component {
     }
 
     fetchRoomDetails() {
-        fetch(API_ROOT + '/room/' + this.props.params.id, {
-            headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
-        })
-        .then(res => res.json())
-        .then(res => {
-            res.featuresObject = this.state.room.featuresObject;
-
-            for (let i = 0; i < res.features.length; i++) {
-                res.featuresObject[res.features[i]] = true
-            }
-
-            this.setState({ room : res });
-        });
+        API.getRoomById(this)
     }
 
     updateState(event){

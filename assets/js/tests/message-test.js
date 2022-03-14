@@ -1,7 +1,6 @@
 import React from 'react';
 import Message from '../src/js/components/Message.jsx';
 import nock from 'nock';
-import { waitForState } from 'enzyme-async-helpers';
 
 beforeAll(() => {
     nock('http://localhost')
@@ -25,7 +24,7 @@ beforeAll(() => {
 test('Message popup is populated with details', async () => {
     const messageComponent = shallow(<Message messageId={1} />);
 
-    await waitForState(messageComponent, state => state.name.length > 0);
-
-    expect(messageComponent).toMatchSnapshot();
+    setTimeout(() => {
+        expect(messageComponent).toMatchSnapshot();
+    }, 1000)
 });

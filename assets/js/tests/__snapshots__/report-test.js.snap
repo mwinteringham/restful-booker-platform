@@ -25,6 +25,14 @@ exports[`Multiple reports can be created in the Report component 1`] = `
     }
     localizer={
       DateLocalizer {
+        "add": [Function],
+        "ceil": [Function],
+        "continuesAfter": [Function],
+        "continuesPrior": [Function],
+        "diff": [Function],
+        "endOf": [Function],
+        "eq": [Function],
+        "firstVisibleDay": [Function],
         "format": [Function],
         "formats": Object {
           "agendaDateFormat": "ddd MMM DD",
@@ -43,8 +51,32 @@ exports[`Multiple reports can be created in the Report component 1`] = `
           "timeGutterFormat": "LT",
           "weekdayFormat": "ddd",
         },
+        "getDstOffset": [Function],
+        "getMinutesFromMidnight": [Function],
+        "getSlotDate": [Function],
+        "getTimezoneOffset": [Function],
+        "getTotalMin": [Function],
+        "gt": [Function],
+        "gte": [Function],
+        "inEventRange": [Function],
+        "inRange": [Function],
+        "isSameDate": [Function],
+        "lastVisibleDay": [Function],
+        "lt": [Function],
+        "lte": [Function],
+        "max": [Function],
+        "merge": [Function],
+        "min": [Function],
+        "minutes": [Function],
+        "neq": [Function],
         "propType": [Function],
+        "range": [Function],
+        "segmentOffset": 0,
+        "sortEvents": [Function],
+        "startAndEndAreDateOnly": [Function],
+        "startOf": [Function],
         "startOfWeek": [Function],
+        "visibleDays": [Function],
       }
     }
     onSelectSlot={[Function]}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom'
-import { SHOW_WELCOME } from '../api-config';
 import ReactModal from 'react-modal';
 import Cookies from 'universal-cookie';
 import { createBrowserHistory as createHistory } from 'history'

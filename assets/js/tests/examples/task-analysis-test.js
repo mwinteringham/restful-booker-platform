@@ -63,10 +63,10 @@ test('Login component sends correct payload', () => {
     // true. If it didn't it will return false. We then assert whether 
     // the result is true.
 
-    setImmediate(() => {
+    setTimeout(() => {
         let didNockAcceptRequest = authMock.isDone();
         expect(didNockAcceptRequest).toBe(true)
-    });
+    }, 0);
 });
 
 test('App is marked as logged in on successful request', (done) => {
@@ -122,12 +122,12 @@ test('Correct components are rendered when logged in', () => {
     application.setState(applicationState);
     application.update();
 
-    // We use setImmediate and an anonymous function to push the updating
+    // We use setTimeout and an anonymous function to push the updating
     // of the component and the assertion to the end of the queue of function
     // calls within Node. This ensures that the AppComponent that is doing an
     // async call to a mock API has time to process the request and response
     // before we check it's state
-    setImmediate(() => {
+    setTimeout(() => {
         expect(application).toMatchSnapshot();
-    })
+    },0)
 });

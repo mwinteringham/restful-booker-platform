@@ -1,7 +1,7 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment/moment';
-import { API_ROOT } from '../api-config';
+import { API } from '../libs/Api.js';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -32,16 +32,7 @@ export default class BookingListing extends React.Component {
     }
 
     doDelete(){
-        fetch(API_ROOT + '/booking/' + this.props.booking.bookingid, {
-			method: 'DELETE',
-			credentials: 'include',
-        })
-        .then(res => {
-            if(res.status == 202){
-                this.props.getBookings();
-            }
-        })
-        .catch(e => console.log(e))
+        API.deleteBooking(this)
     }
 
     enableEdit(){
@@ -53,21 +44,7 @@ export default class BookingListing extends React.Component {
     }
 
     doEdit(){
-        fetch(API_ROOT + '/booking/' + this.props.booking.bookingid, {
-			method: 'PUT',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-            credentials: 'include',
-            body : JSON.stringify(this.state.booking)
-        })
-        .then(res => res.json())
-        .then(res => {
-            this.setState({allowEdit : false});
-            this.props.getBookings();
-        })
-        .catch(e => console.log(e));
+        API.updateBooking(this)
     }
 
     handleStartChange(date) {

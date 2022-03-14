@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
-import { API_ROOT } from '../api-config';
 import Cookies from 'universal-cookie';
 
 import Nav from './Nav.jsx';
@@ -30,19 +29,7 @@ export default class AdminContainer extends React.Component {
     componentDidMount(){
         const cookies = new Cookies();
 
-        fetch(API_ROOT + '/auth/validate', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body : JSON.stringify({ token: cookies.get('token')})
-            })
-            .then(res => {
-                if(res.status == 200){
-                    this.setAuthenticate(true);
-                }
-            })
+        API.postValidation(this, cookies);
     }
     
     setAuthenticate(e){

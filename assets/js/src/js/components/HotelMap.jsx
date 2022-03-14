@@ -1,5 +1,5 @@
 import React from 'react';
-import Map from 'pigeon-maps';
+import { Map } from 'pigeon-maps';
 import Marker from 'pigeon-marker';
 
 const getProvider = (x, y, z) => `https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/${z}/${x}/${y}.png`;

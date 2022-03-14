@@ -1,8 +1,9 @@
 import React from 'react';
-import fetch from 'node-fetch';
+
 import RoomListing from './RoomListing.jsx';
 import RoomForm from './RoomForm.jsx';
-import { API_ROOT } from '../api-config';
+
+import { API } from '../libs/Api.js';
 
 export default class RoomListings extends React.Component {
 
@@ -20,11 +21,7 @@ export default class RoomListings extends React.Component {
 	}
 
 	updateRooms() {
-		fetch(API_ROOT + '/room/')
-			.then(res => res.json())
-			.then(body => {
-				this.setState({rooms : body.rooms});
-			});
+		API.getRoom(this);
 	}
 
     render() {

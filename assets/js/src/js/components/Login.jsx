@@ -1,6 +1,5 @@
 import React from 'react';
-import { API_ROOT } from '../api-config';
-import fetch from 'isomorphic-fetch';
+import { API } from '../libs/Api.js';
 
 export default class Login extends React.Component {
 
@@ -18,28 +17,7 @@ export default class Login extends React.Component {
         let date = new Date();
         date.setDate(date.getDate() + 1);
 
-        fetch(API_ROOT + '/auth/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body : JSON.stringify({
-                username: this.state.username,
-                password: this.state.password,
-            })
-        })
-        .then(res => {
-            if(res.status === 200){
-                this.props.setAuthenticate(true);
-            } else {
-                this.setState({ error : true });
-            }
-        })
-        .catch(e => {
-          console.log("Failed to authenticate");
-          console.log(e);
-        })
+        API.postLogin(this)
     }
 
     render(){   

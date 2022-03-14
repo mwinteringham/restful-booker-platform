@@ -1,12 +1,12 @@
 import React from 'react';
-import fetch from 'node-fetch';
 import HotelRoomInfo from './HotelRoomInfo.jsx';
 import HotelMap from './HotelMap.jsx';
 import HotelLogo from './HotelLogo.jsx';
 import HotelContact from './HotelContact.jsx';
-import { API_ROOT } from '../api-config';
 
 import adbanner from '../../images/ait-banner.png';
+
+import { API } from '../libs/Api.js';
 
 export default class Home extends React.Component {
 
@@ -14,36 +14,15 @@ export default class Home extends React.Component {
         super();
 
         this.state = {
-            rooms : []
+            rooms : [],
+            branding : {}
         }
     }
 
     componentDidMount() {
-        fetch(API_ROOT + '/branding/', {
-			method: 'GET',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
-        })
-        .then(res => res.json())
-        .then(res => {
-            this.setState(res);
-        })
-        .catch(e => console.log(e));
+        API.getBranding(this);
 
-        fetch(API_ROOT + '/room/', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(res => {
-            this.setState({rooms : res.rooms});
-        })
-        .catch(e => console.log(e));
+        API.getRoom(this);
     }
 
     render() {
@@ -57,13 +36,13 @@ export default class Home extends React.Component {
                     </div>
                     <div className="row">
                         <div className='col-sm-12 text-center'>
-                            <HotelLogo logoDetails={this.state.logoUrl} />
+                            <HotelLogo logoDetails={this.state.branding.logoUrl} />
                         </div>
                     </div>
                     <div className="row hotel-description">
                         <div className='col-sm-1'></div>
                         <div className='col-sm-10'>
-                            <p>{this.state.description}</p>
+                            <p>{this.state.branding.description}</p>
                         </div>
                         <div className='col-sm-1'></div>
                     </div>
@@ -77,10 +56,10 @@ export default class Home extends React.Component {
                     {this.state.rooms.map((roomDetails) => {
                         return <div key={roomDetails.roomid}><HotelRoomInfo room={roomDetails} /></div>
                     })}
-                        <HotelContact contact={this.state.contact} />
+                        <HotelContact contact={this.state.branding.contact} />
                     <div className="row">
                         <div className='col-sm-12'>
-                            <HotelMap name={this.state.name} mapDetails={this.state.map} />
+                            <HotelMap name={this.state.branding.name} mapDetails={this.state.branding.map} />
                         </div>
                     </div>
                 </div>

@@ -3,8 +3,6 @@ import { Calendar, momentLocalizer} from 'react-big-calendar';
 import moment from 'moment/moment';
 import AdminBooking from './AdminBooking.jsx';
 
-const fetch = require('node-fetch');
-
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { API } from '../libs/Api';
 

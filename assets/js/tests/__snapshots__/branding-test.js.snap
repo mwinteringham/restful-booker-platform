@@ -1,5 +1,300 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Branding page has controlled form 1`] = `
+<Branding>
+  <div
+    className="branding-form"
+  >
+    <h2>
+      B&B details
+    </h2>
+    <div
+      className="input-group mb-3"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Name
+        </span>
+      </div>
+      <input
+        className="form-control"
+        id="name"
+        onChange={[Function]}
+        placeholder="Enter B&B name"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group mb-3"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Logo
+        </span>
+      </div>
+      <input
+        className="form-control"
+        id="logoUrl"
+        onChange={[Function]}
+        placeholder="Enter image url"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Description
+        </span>
+      </div>
+      <textarea
+        className="form-control"
+        id="description"
+        onChange={[Function]}
+        rows="5"
+        value=""
+      />
+    </div>
+    <br />
+    <h2>
+      Map details
+    </h2>
+    <div
+      className="input-group mb-3"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Latitude
+        </span>
+      </div>
+      <input
+        className="form-control"
+        id="latitude"
+        onChange={[Function]}
+        placeholder="Enter Latitude"
+        type="text"
+        value={0}
+      />
+    </div>
+    <div
+      className="input-group mb-3"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Longitude
+        </span>
+      </div>
+      <input
+        className="form-control"
+        id="longitude"
+        onChange={[Function]}
+        placeholder="Enter Longitude"
+        type="text"
+        value={0}
+      />
+    </div>
+    <br />
+    <h2>
+      Contact details
+    </h2>
+    <div
+      className="input-group mb-3"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Name
+        </span>
+      </div>
+      <input
+        className="form-control"
+        id="contactName"
+        onChange={[Function]}
+        placeholder="Enter Contact Name"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group mb-3"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Address
+        </span>
+      </div>
+      <input
+        className="form-control"
+        id="contactAddress"
+        onChange={[Function]}
+        placeholder="Enter Address"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group mb-3"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Phone
+        </span>
+      </div>
+      <input
+        className="form-control"
+        id="contactPhone"
+        onChange={[Function]}
+        placeholder="Enter Phone Number"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group mb-3"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Email
+        </span>
+      </div>
+      <input
+        className="form-control"
+        id="contactEmail"
+        onChange={[Function]}
+        placeholder="Enter Email Address"
+        type="email"
+        value=""
+      />
+    </div>
+    <button
+      className="btn btn-outline-primary"
+      id="updateBranding"
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+    <Modal
+      ariaHideApp={true}
+      bodyOpenClassName="ReactModal__Body--open"
+      className="Modal"
+      closeTimeoutMS={0}
+      contentElement={[Function]}
+      contentLabel="onRequestClose Example"
+      isOpen={false}
+      onRequestClose={[Function]}
+      overlayElement={[Function]}
+      parentSelector={[Function]}
+      portalClassName="ReactModalPortal"
+      preventScroll={false}
+      role="dialog"
+      shouldCloseOnEsc={true}
+      shouldCloseOnOverlayClick={true}
+      shouldFocusAfterRender={true}
+      shouldReturnFocusAfterClose={true}
+    >
+      <Portal
+        containerInfo={
+          <div
+            class="ReactModalPortal"
+          />
+        }
+      >
+        <ModalPortal
+          ariaHideApp={true}
+          bodyOpenClassName="ReactModal__Body--open"
+          className="Modal"
+          closeTimeoutMS={0}
+          contentElement={[Function]}
+          contentLabel="onRequestClose Example"
+          defaultStyles={
+            Object {
+              "content": Object {
+                "WebkitOverflowScrolling": "touch",
+                "background": "#fff",
+                "border": "1px solid #ccc",
+                "borderRadius": "4px",
+                "bottom": "40px",
+                "left": "40px",
+                "outline": "none",
+                "overflow": "auto",
+                "padding": "20px",
+                "position": "absolute",
+                "right": "40px",
+                "top": "40px",
+              },
+              "overlay": Object {
+                "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                "bottom": 0,
+                "left": 0,
+                "position": "fixed",
+                "right": 0,
+                "top": 0,
+              },
+            }
+          }
+          isOpen={false}
+          onRequestClose={[Function]}
+          overlayElement={[Function]}
+          parentSelector={[Function]}
+          portalClassName="ReactModalPortal"
+          preventScroll={false}
+          role="dialog"
+          shouldCloseOnEsc={true}
+          shouldCloseOnOverlayClick={true}
+          shouldFocusAfterRender={true}
+          shouldReturnFocusAfterClose={true}
+          style={
+            Object {
+              "content": Object {},
+              "overlay": Object {},
+            }
+          }
+        />
+      </Portal>
+    </Modal>
+  </div>
+</Branding>
+`;
+
 exports[`Branding page shows errors 1`] = `
 <div
   className="branding-form"
