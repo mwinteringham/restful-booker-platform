@@ -6,7 +6,7 @@
 
     <groupId>com.automationintesting</groupId>
     <artifactId>restful-booker-platform-report</artifactId>
-    <version>1.4.${revision}</version>
+    <version>1.5.${revision}</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
