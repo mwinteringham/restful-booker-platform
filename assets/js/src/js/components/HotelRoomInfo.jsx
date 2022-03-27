@@ -36,7 +36,7 @@ export default class HotelRoomInfo extends React.Component {
                 <div className="row hotel-room-info">
                     <div className="col-sm-1"></div>
                     <div className="col-sm-3">
-                        <img className="img-responsive hotel-img" src={this.props.room.image} alt={"Preview image of room" + this.props.room.roomNumber} />
+                        <img className="img-responsive hotel-img" src={this.props.room.image} alt={"Preview image of room" + this.props.room.roomName} />
                     </div>
                     <div className="col-sm-7">
                         {this.props.room.accessible && <span className="fa fa-wheelchair wheelchair"></span>}

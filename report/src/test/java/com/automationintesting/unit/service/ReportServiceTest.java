@@ -36,8 +36,8 @@ public class ReportServiceTest {
     public void initialiseMocks() {
         MockitoAnnotations.openMocks(this);
 
-        Room roomOne = new Room(1, 101, "Single", 1, true, "Wifi");
-        Room roomTwo = new Room(2, 102, "Double", 2, true, "Mini-bar");
+        Room roomOne = new Room(1, "101", "Single", 1, true, "Wifi");
+        Room roomTwo = new Room(2, "102", "Double", 2, true, "Mini-bar");
 
         Rooms sampleRooms = new Rooms(new ArrayList<>(){{
             this.add(roomOne);

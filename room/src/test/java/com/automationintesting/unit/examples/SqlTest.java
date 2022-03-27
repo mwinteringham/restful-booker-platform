@@ -27,7 +27,7 @@ public class SqlTest extends BaseTest {
         roomDB.seedDB();
 
         // We then create a Room object to send to the roomDB
-        Room room = new Room(101,
+        Room room = new Room("101",
                 "Twin",
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
@@ -58,7 +58,7 @@ public class SqlTest extends BaseTest {
 
         // We finally use Junit's assertEquals to check the room we queried
         // is the same as the expected String in the second parameter
-        assertEquals(queriedRoomString, "Room{roomid=" + currentRoomId + ", roomNumber=101, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie', features=[Wifi, TV, Safe], roomPrice=100}");
+        assertEquals(queriedRoomString, "Room{roomid=" + currentRoomId + ", roomName='101', type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Aenean porttitor mauris sit amet lacinia molestie', features=[Wifi, TV, Safe], roomPrice=100}");
     }
 
     @Test
@@ -79,7 +79,7 @@ public class SqlTest extends BaseTest {
 
     @Test
     public void testCreateRoom() throws SQLException {
-        Room room = new Room(102,
+        Room room = new Room("102",
                 "Twin",
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
@@ -91,12 +91,12 @@ public class SqlTest extends BaseTest {
 
         String createdRoomString = createdRoom.toString();
 
-        assertEquals(createdRoomString, "Room{roomid=" + (currentRoomId + 1) + ", roomNumber=102, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='In posuere accumsan aliquet.', features=[Wifi, TV, Mini-bar], roomPrice=100}");
+        assertEquals(createdRoomString, "Room{roomid=" + (currentRoomId + 1) + ", roomName='102', type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='In posuere accumsan aliquet.', features=[Wifi, TV, Mini-bar], roomPrice=100}");
     }
 
     @Test
     public void testUpdateRoom() throws SQLException {
-        Room room = new Room(103,
+        Room room = new Room("103",
                 "Twin",
                 false,
                 "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
@@ -108,7 +108,7 @@ public class SqlTest extends BaseTest {
 
         String updatedRoomString = updatedRoom.toString();
 
-        assertEquals(updatedRoomString, "Room{roomid=" + currentRoomId + ", roomNumber=103, type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.', features=[Wifi, TV, Mini-bar], roomPrice=100}");
+        assertEquals(updatedRoomString, "Room{roomid=" + currentRoomId + ", roomName='103', type='Twin', accessible=false, image='https://www.mwtestconsultancy.co.uk/img/room1.jpg', description='Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.', features=[Wifi, TV, Mini-bar], roomPrice=100}");
     }
 
 

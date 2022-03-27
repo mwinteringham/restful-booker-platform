@@ -2,8 +2,6 @@ package com.automationintesting.model.room;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class Room {
@@ -11,7 +9,7 @@ public class Room {
     @JsonProperty
     private int roomid;
     @JsonProperty
-    private int roomNumber;
+    private String roomName;
     @JsonProperty
     private String type;
     @JsonProperty
@@ -26,24 +24,14 @@ public class Room {
     public Room() {
     }
 
-    public Room(int roomid, int roomNumber, String type, int beds, boolean accessible, String details) {
+    public Room(int roomid, String roomName, String type, int beds, boolean accessible, String details) {
         this.roomid = roomid;
-        this.roomNumber = roomNumber;
+        this.roomName = roomName;
         this.type = type;
         this.beds = beds;
         this.accessible = accessible;
         this.details = details;
     }
-
-    public Room(ResultSet result) throws SQLException {
-        this.roomid = result.getInt("roomid");
-        this.roomNumber = result.getInt("room_number");
-        this.type = result.getString("type");
-        this.beds = result.getInt("beds");
-        this.accessible = result.getBoolean("accessible");
-        this.details = result.getString("details");
-    }
-
     public int getRoomid() {
         return roomid;
     }
@@ -52,12 +40,12 @@ public class Room {
         this.roomid = roomid;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
     public String getType() {
@@ -105,7 +93,7 @@ public class Room {
         if(bookings == null){
             return "Room{" +
                     "roomid=" + roomid +
-                    ", roomNumber=" + roomNumber +
+                    ", roomName=" + roomName +
                     ", type='" + type + '\'' +
                     ", beds=" + beds +
                     ", accessible=" + accessible +
@@ -114,7 +102,7 @@ public class Room {
         } else {
             return "Room{" +
                     "roomid=" + roomid +
-                    ", roomNumber=" + roomNumber +
+                    ", roomName=" + roomName +
                     ", type='" + type + '\'' +
                     ", beds=" + beds +
                     ", accessible=" + accessible +

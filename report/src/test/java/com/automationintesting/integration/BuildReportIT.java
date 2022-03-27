@@ -31,7 +31,7 @@ public class BuildReportIT {
     public void setupRestito(){
         whenHttp(roomApi).
                 match(get("/room")).
-                then(ok(), header("Content-Type","application/json"), stringContent("{\"rooms\":[{\"roomid\":1,\"roomNumber\":101,\"type\":\"Twin\",\"beds\":2,\"accessible\":false,\"details\":\"Wifi, TV, Mini-bar\"}, {\"roomid\":2,\"roomNumber\":102,\"type\":\"Single\",\"beds\":3,\"accessible\":true,\"details\":\"Wifi, TV, Mini-bar\"}]}"));
+                then(ok(), header("Content-Type","application/json"), stringContent("{\"rooms\":[{\"roomid\":1,\"roomName\":\"101\",\"type\":\"Twin\",\"beds\":2,\"accessible\":false,\"details\":\"Wifi, TV, Mini-bar\"}, {\"roomid\":2,\"roomName\":\"102\",\"type\":\"Single\",\"beds\":3,\"accessible\":true,\"details\":\"Wifi, TV, Mini-bar\"}]}"));
 
         whenHttp(bookingApi).
                 match(get("/booking/"), parameter("roomid", "1")).

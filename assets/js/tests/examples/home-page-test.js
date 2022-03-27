@@ -10,7 +10,7 @@ nock('http://localhost')
         "rooms": [
           {
             "roomid": 1,
-            "roomNumber": 2,
+            "roomName": "2",
             "type": "Single",
             "accessible": true,
             "image": "string",
@@ -30,7 +30,7 @@ test('Rooms list component', () => {
     // our object to pass later
     const roomPayload = {
         "roomid": 1,
-        "roomNumber": 101,
+        "roomName": "101",
         "type": "Single",
         "beds": 2,
         "accessible": true,

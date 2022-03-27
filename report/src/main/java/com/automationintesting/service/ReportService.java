@@ -31,7 +31,7 @@ public class ReportService {
             Bookings roomBookings = bookingRequests.getBookings(r.getRoomid());
 
             for(Booking b : roomBookings.getBookings()){
-                Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), b.getFirstname() + " " + b.getLastname() + " - Room: " + r.getRoomNumber());
+                Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), b.getFirstname() + " " + b.getLastname() + " - Room: " + r.getRoomName());
                 parsedRooms.add(entry);
             }
         }

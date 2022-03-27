@@ -9,7 +9,7 @@ import nock from 'nock';
 const homeState = {
     rooms : [{
         roomid: 1,
-        roomNumber: 101,
+        roomName: "101",
         type: 'Standard Room',
         accessible: false,
         image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
@@ -23,7 +23,7 @@ const homeState = {
         ]
     },{
         roomid: 2,
-        roomNumber: 102,
+        roomName: "102",
         type: 'Single',
         accessible: true,
         image: 'https://www.mwtestconsultancy.co.uk/img/room2.jpg',
@@ -85,7 +85,7 @@ test('Home page renders', (done) => {
 test('Room info for home page renders', () => {
     const roomDetails = {
         roomid: 1,
-        roomNumber: 101,
+        roomName: "101",
         type: 'Standard Room',
         beds: 2,
         accessible: false,
@@ -110,7 +110,7 @@ test('Room info for home page renders', () => {
 test('Booking info for room renders when button selected', () => {
     const roomDetails = {
         roomid: 1,
-        roomNumber: 101,
+        roomName: "101",
         type: 'Standard Room',
         beds: 2,
         accessible: false,

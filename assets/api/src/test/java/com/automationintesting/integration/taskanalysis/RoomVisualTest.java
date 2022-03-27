@@ -38,7 +38,7 @@ public class RoomVisualTest extends TestSetup {
         // rooms listing for us to check.
         whenHttp(roomApi).
             match(Condition.get("/room/")).
-            then(ok(), header("Content-Type","application/json"), stringContent("{\"rooms\":[{\"roomid\":1,\"roomNumber\":101,\"type\":\"Twin\",\"accessible\":false,\"image\":\"https://www.mwtestconsultancy.co.uk/img/room1.jpg\",\"description\":\"Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.\",\"features\":[\"Wifi\",\"TV\",\"Safe\"]}]}"));
+            then(ok(), header("Content-Type","application/json"), stringContent("{\"rooms\":[{\"roomid\":1,\"roomName\":\"101\",\"type\":\"Twin\",\"accessible\":false,\"image\":\"https://www.mwtestconsultancy.co.uk/img/room1.jpg\",\"description\":\"Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.\",\"features\":[\"Wifi\",\"TV\",\"Safe\"]}]}"));
 
         // Next, we start Applitools by calling the open method and giving it the Selenium WebDriver object
         // to interact with and then details about the check and finally a fixed browser size that Applitools will

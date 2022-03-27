@@ -33,7 +33,7 @@ public class SmokeTest extends TestSetup {
         RoomListingPage roomListingPage = new RoomListingPage(driver);
         int initialRoomCount = roomListingPage.roomCount();
 
-        roomListingPage.populateRoomNumber("102");
+        roomListingPage.populateRoomName("102");
         roomListingPage.setRoomPrice("100");
         roomListingPage.checkWifi();
         roomListingPage.checkSafe();
