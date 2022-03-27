@@ -15,7 +15,8 @@ public class Room {
     private int roomid;
 
     @JsonProperty
-    @NotNull(message = "Room name must be set")
+    @NotNull()
+    @NotEmpty(message = "Room name must be set")
     private String roomName;
 
     @JsonProperty
@@ -36,7 +37,7 @@ public class Room {
     private String[] features;
 
     @JsonProperty
-    @Min(0)
+    @Min(1)
     @Max(999)
     private int roomPrice;
 

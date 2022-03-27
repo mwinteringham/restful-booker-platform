@@ -51,10 +51,8 @@ export const API = {
                 return res.data;
             }
         })
-        .then(res => {
-            if(res){
-                component.setState({ errors : res.fieldErrors });
-            }
+        .catch(res => {
+            component.setState({ errors : res.response.data.fieldErrors });
         });
     },
 
@@ -76,10 +74,8 @@ export const API = {
                     return res.data;
                 }
             })
-            .then(res => {
-                if(res){
-                    component.setState({ errors : res.fieldErrors });
-                }
+            .catch(res => {
+                component.setState({ errors : res.response.data.fieldErrors });
             });
     },
 

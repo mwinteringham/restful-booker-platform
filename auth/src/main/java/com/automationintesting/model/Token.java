@@ -50,5 +50,5 @@ public class Token {
         cal.add(Calendar.HOUR_OF_DAY, 1);
         return new Date(cal.getTime().getTime());
     }
-    
+
 }
