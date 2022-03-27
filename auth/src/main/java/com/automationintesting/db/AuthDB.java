@@ -64,9 +64,13 @@ public class AuthDB {
         ps.setString(1, token.getToken());
 
         ResultSet result = ps.executeQuery();
-        result.next();
+//        result.next();
 
-        return new Token(result.getString("token"), result.getDate("expiry"));
+        if(result.next()) {
+            return new Token(result.getString("token"), result.getDate("expiry"));
+        } else {
+           return null;
+        }
     }
 
     public Boolean deleteToken(Token token) throws SQLException {

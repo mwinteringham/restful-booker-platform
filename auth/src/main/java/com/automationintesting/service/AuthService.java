@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -26,6 +27,7 @@ public class AuthService {
     }
 
     public HttpStatus verify(Token token) throws SQLException {
+        System.out.println(token.toString());
         Token returnedToken = authDB.queryToken(token);
 
         if(returnedToken != null){
@@ -47,7 +49,7 @@ public class AuthService {
 
     public Decision queryCredentials(Auth auth) throws SQLException {
         if(authDB.queryCredentials(auth)){
-            Token token = new Token();
+            Token token = new Token(new RandomString(16, ThreadLocalRandom.current()).nextString());
 
             Boolean successfulStorage = authDB.insertToken(token);
 
