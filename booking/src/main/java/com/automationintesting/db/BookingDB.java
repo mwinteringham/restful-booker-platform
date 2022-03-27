@@ -181,6 +181,18 @@ public class BookingDB {
         return listToReturn;
     }
 
+    public List<Booking> queryBookingSummariesById(String roomid) throws SQLException {
+        List<Booking> listToReturn = new ArrayList<Booking>();
+        String sql = "SELECT * FROM BOOKINGS WHERE roomid = " + roomid;
+
+        ResultSet results = connection.prepareStatement(sql).executeQuery();
+        while(results.next()){
+            listToReturn.add(new Booking(results));
+        }
+
+        return listToReturn;
+    }
+
     private void executeSqlFile(String filename) throws IOException, SQLException {
         Reader reader = new InputStreamReader( new ClassPathResource(filename).getInputStream());
         Scanner sc = new Scanner(reader);

@@ -23,12 +23,12 @@ public class ReportService {
         bookingRequests = new BookingRequests();
     }
 
-    public Report getAllRoomsReport() {
+    public Report getAllRoomsReport(String token) {
         List<Room> rooms = roomRequests.searchForRooms().getRooms();
         List<Entry> parsedRooms = new ArrayList<>();
 
         for(Room r : rooms){
-            Bookings roomBookings = bookingRequests.getBookings(r.getRoomid());
+            Bookings roomBookings = bookingRequests.getBookings(r.getRoomid(), token);
 
             for(Booking b : roomBookings.getBookings()){
                 Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), b.getFirstname() + " " + b.getLastname() + " - Room: " + r.getRoomName());
@@ -42,7 +42,7 @@ public class ReportService {
     public Report getSpecificRoomReport(int roomId) {
         List<Entry> parsedRooms = new ArrayList<>();
 
-        Bookings roomBookings = bookingRequests.getBookings(roomId);
+        Bookings roomBookings = bookingRequests.getBookingSummaries(roomId);
 
         for(Booking b : roomBookings.getBookings()){
             Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), "Unavailable");

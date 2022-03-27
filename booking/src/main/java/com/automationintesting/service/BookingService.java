@@ -124,4 +124,12 @@ public class BookingService {
             return new BookingResult(HttpStatus.CONFLICT);
         }
     }
+
+    public Bookings getBookingSummaries(String roomId) throws SQLException {
+        List<Booking> bookingList;
+
+        bookingList = bookingDB.queryBookingSummariesById(roomId);
+
+        return new Bookings(bookingList);
+    }
 }

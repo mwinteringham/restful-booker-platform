@@ -55,4 +55,11 @@ public class BookingController {
         return ResponseEntity.status(updateResult.getStatus()).body(updateResult.getCreatedBooking());
     }
 
+    @RequestMapping(value = "/summary", method = RequestMethod.GET)
+    public ResponseEntity getSummaries(@RequestParam("roomid") String roomid) throws SQLException {
+        Bookings bookingSummaries = bookingService.getBookingSummaries(roomid);
+
+        return ResponseEntity.status(HttpStatus.OK).body(bookingSummaries);
+    }
+
 }
