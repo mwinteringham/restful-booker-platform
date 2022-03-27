@@ -6,7 +6,7 @@
 
     <groupId>com.automationintesting</groupId>
     <artifactId>restful-booker-platform-branding</artifactId>
-    <version>1.3.${revision}</version>
+    <version>1.4.${revision}</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -6,7 +6,7 @@
 
     <groupId>com.automationintesting</groupId>
     <artifactId>restful-booker-platform-endtoendtests</artifactId>
-    <version>1.3.${revision}</version>
+    <version>1.4.${revision}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
