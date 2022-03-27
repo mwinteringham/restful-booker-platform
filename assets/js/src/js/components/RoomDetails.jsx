@@ -104,7 +104,7 @@ export default class RoomDetails extends React.Component {
                                 <div className="form-row">
                                     <div className="col-sm-9">
                                         <h2>Room: </h2>
-                                        <input type="text" defaultValue={this.state.room.roomNumber} id="roomNumber" onChange={this.updateState} />
+                                        <input type="text" defaultValue={this.state.room.roomName} id="roomName" onChange={this.updateState} />
                                     </div>
                                     <div className="col-sm-3">
                                         <button onClick={this.disableEdit} type="button" id="cancelEdit" className="btn btn-outline-danger float-right">Cancel</button>
@@ -189,7 +189,7 @@ export default class RoomDetails extends React.Component {
             roomSummary = <div className="room-details">
                             <div className="row">
                                 <div className="col-sm-10">
-                                    <h2>Room: {this.state.room.roomNumber}</h2>
+                                    <h2>Room: {this.state.room.roomName}</h2>
                                 </div>
                                 <div className="col-sm-2">
                                     <button onClick={this.enableEdit} type="button" className="btn btn-outline-primary float-right" style={{marginRight: "10px"}}>Edit</button>
@@ -229,7 +229,7 @@ export default class RoomDetails extends React.Component {
                                 </div>
                                 <div className="col-sm-6">
                                     <p>Image:</p>
-                                    <img src={this.state.room.image} alt={"Room: " + this.state.room.roomNumber + " preview image"} />
+                                    <img src={this.state.room.image} alt={"Room: " + this.state.room.roomName + " preview image"} />
                                 </div>
                             </div>
                         </div>

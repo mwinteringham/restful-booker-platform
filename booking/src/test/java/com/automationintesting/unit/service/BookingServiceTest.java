@@ -57,12 +57,13 @@ public class BookingServiceTest {
         }};
 
         when(bookingDB.queryAllBookings()).thenReturn(bookings);
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
 
         Optional<String> emptyOptional = Optional.empty();
 
-        Bookings bookingResults = bookingService.getBookings(emptyOptional);
+        BookingResult bookingResults = bookingService.getBookings(emptyOptional, "abc123");
 
-        assertEquals(bookingResults.getBookings().size(), 2);
+        assertEquals(bookingResults.getBookings().getBookings().size(), 2);
     }
 
     @Test
@@ -72,20 +73,22 @@ public class BookingServiceTest {
         }};
 
         when(bookingDB.queryBookingsById("2")).thenReturn(bookings);
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
 
         Optional<String> roomid = Optional.of("2");
 
-        Bookings bookingResults = bookingService.getBookings(roomid);
+        BookingResult bookingResults = bookingService.getBookings(roomid, "abc123");
 
-        assertEquals(bookingResults.getBookings().size(), 1);
+        assertEquals(bookingResults.getBookings().getBookings().size(), 1);
     }
 
     @Test
     public void returnSpecificBookingTest() throws SQLException {
         Booking booking = this.createGenericBooking();
         when(bookingDB.query(2)).thenReturn(booking);
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
 
-        BookingResult bookingResult = bookingService.getIndividualBooking(2);
+        BookingResult bookingResult = bookingService.getIndividualBooking(2,"abc123");
 
         assertEquals(bookingResult.getStatus(), HttpStatus.OK);
         assertEquals(bookingResult.getBooking().toString(), "Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}");
@@ -95,8 +98,9 @@ public class BookingServiceTest {
     @Test
     public void returnBookingNotFoundTest() throws SQLException {
         when(bookingDB.query(100)).thenThrow(new JdbcSQLNonTransientException("a", "b", "c", 1, new Throwable(), "d"));
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
 
-        BookingResult bookingResult = bookingService.getIndividualBooking(100);
+        BookingResult bookingResult = bookingService.getIndividualBooking(100, "abc123");
 
         assertEquals(bookingResult.getStatus(), HttpStatus.NOT_FOUND);
         assertNull(bookingResult.getBooking());

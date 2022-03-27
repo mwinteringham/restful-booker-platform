@@ -7,7 +7,7 @@ nock('http://localhost')
     .get('/room/1')
     .reply(200, {
         roomid: 1,
-        roomNumber: 101,
+        roomName: "101",
         type: "Single",
         accessible: true,
         image: "https://www.mwtestconsultancy.co.uk/img/testim/room2.jpg",
@@ -102,7 +102,7 @@ test('Room details can be submitted', () => {
     let putMock = nock('http://localhost')
                     .put('/room/1',  {
                         roomId : 1,
-                        roomNumber : 999,
+                        roomName : "999",
                         accessible : true,
                         image	: 'test/url',
                         description : 'Test description',
@@ -126,7 +126,7 @@ test('Room details can be submitted', () => {
     roomDetailsComponent.setState({
         room : {
             roomId : 1,
-            roomNumber : 999,
+            roomName : "999",
             accessible : true,
             image	: 'test/url',
             description : 'Test description',

@@ -166,7 +166,7 @@ exports[`Room details can render validation errors 1`] = `
           Room: 
         </h2>
         <input
-          id="roomNumber"
+          id="roomName"
           onChange={[Function]}
           type="text"
         />
@@ -693,7 +693,7 @@ exports[`Room details switches into edit mode 1`] = `
           Room: 
         </h2>
         <input
-          id="roomNumber"
+          id="roomName"
           onChange={[Function]}
           type="text"
         />

@@ -10,7 +10,7 @@ export default class RoomForm extends React.Component {
             errors : [],
             rooms : [], 
             newRoom : {
-                roomNumber : '',
+                roomName : '',
                 type : "Single",
                 accessible : false,
                 description : "Please enter a description for this room",
@@ -37,7 +37,7 @@ export default class RoomForm extends React.Component {
             errors : [],
             rooms : [], 
             newRoom : {
-                roomNumber : "",
+                roomName : "",
                 type : "Single",
                 accessible : false,
                 description : "Please enter a description for this room",
@@ -87,7 +87,7 @@ export default class RoomForm extends React.Component {
         return <div>
                     <div className="row room-form">
                         <div className="col-sm-1">
-                            <input className="form-control" type="text" id="roomNumber" value={this.state.newRoom.roomNumber} onChange={this.updateState} />
+                            <input className="form-control" type="text" id="roomName" value={this.state.newRoom.roomName} onChange={this.updateState} />
                         </div>
                         <div className="col-sm-2">
                             <select className="form-control" id="type" value={this.state.newRoom.type} onChange={this.updateState}>

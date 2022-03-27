@@ -1,22 +1,18 @@
 package com.automationintesting.model;
 
-import com.automationintesting.service.RandomString;
-
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.sql.Date;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Token {
 
     private String token;
     private Date expiry;
 
-    public Token() {
-        this.token = new RandomString(16, ThreadLocalRandom.current()).nextString();
-        this.expiry = createExpiryTimestamp();
+    public Token(){
+
     }
 
     public Token(String token) {
@@ -54,4 +50,5 @@ public class Token {
         cal.add(Calendar.HOUR_OF_DAY, 1);
         return new Date(cal.getTime().getTime());
     }
+
 }

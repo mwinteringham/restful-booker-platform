@@ -36,8 +36,8 @@ public class ReportServiceTest {
     public void initialiseMocks() {
         MockitoAnnotations.openMocks(this);
 
-        Room roomOne = new Room(1, 101, "Single", 1, true, "Wifi");
-        Room roomTwo = new Room(2, 102, "Double", 2, true, "Mini-bar");
+        Room roomOne = new Room(1, "101", "Single", 1, true, "Wifi");
+        Room roomTwo = new Room(2, "102", "Double", 2, true, "Mini-bar");
 
         Rooms sampleRooms = new Rooms(new ArrayList<>(){{
             this.add(roomOne);
@@ -60,13 +60,16 @@ public class ReportServiceTest {
         }});
 
         when(roomRequests.searchForRooms()).thenReturn(sampleRooms);
-        when(bookingRequests.getBookings(1)).thenReturn(bookingsOne);
-        when(bookingRequests.getBookings(2)).thenReturn(bookingsTwo);
+        when(bookingRequests.getBookings(1, "abc123")).thenReturn(bookingsOne);
+        when(bookingRequests.getBookings(2, "abc123")).thenReturn(bookingsTwo);
+
+        when(bookingRequests.getBookingSummaries(1)).thenReturn(bookingsOne);
+        when(bookingRequests.getBookingSummaries(2)).thenReturn(bookingsTwo);
     }
 
     @Test
     public void getAllRoomReportTest(){
-        Report report = reportService.getAllRoomsReport();
+        Report report = reportService.getAllRoomsReport("abc123");
 
         assertEquals(report.toString(), "Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Mark Dean - Room: 101'}, Entry{start=2019-09-01, end=2019-09-02, title='James Jones - Room: 102'}]}");
     }

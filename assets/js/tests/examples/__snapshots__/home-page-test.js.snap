@@ -53,7 +53,7 @@ exports[`Rooms list component 1`] = `
           "accessible": true,
           "beds": 2,
           "details": "WiFi, TV, Mini-bar",
-          "roomNumber": 101,
+          "roomName": "101",
           "roomid": 1,
           "type": "Single",
         }

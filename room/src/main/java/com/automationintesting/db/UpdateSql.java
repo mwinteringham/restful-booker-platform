@@ -12,10 +12,10 @@ public class UpdateSql {
     private PreparedStatement preparedStatement;
 
     UpdateSql(Connection connection, int id, Room room) throws SQLException {
-        String UPDATE_ROOM = "UPDATE PUBLIC.ROOMS SET room_number = ?, type = ?, accessible = ?, image = ?, description = ?, features = ?, roomPrice = ? WHERE roomid = ?";
+        String UPDATE_ROOM = "UPDATE PUBLIC.ROOMS SET room_name = ?, type = ?, accessible = ?, image = ?, description = ?, features = ?, roomPrice = ? WHERE roomid = ?";
 
         preparedStatement = connection.prepareStatement(UPDATE_ROOM);
-        preparedStatement.setInt(1, room.getRoomNumber());
+        preparedStatement.setString(1, room.getRoomName());
         preparedStatement.setString(2, room.getType());
         preparedStatement.setBoolean(3, room.isAccessible());
         preparedStatement.setString(4, room.getImage());

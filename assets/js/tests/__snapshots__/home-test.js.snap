@@ -331,7 +331,7 @@ exports[`Home page renders 1`] = `
               "Mini-bar",
             ],
             "image": "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
-            "roomNumber": 101,
+            "roomName": "101",
             "roomid": 1,
             "type": "Standard Room",
           }
@@ -352,7 +352,7 @@ exports[`Home page renders 1`] = `
               "Mini-bar",
             ],
             "image": "https://www.mwtestconsultancy.co.uk/img/room2.jpg",
-            "roomNumber": 102,
+            "roomName": "102",
             "roomid": 2,
             "type": "Single",
           }

@@ -25,8 +25,8 @@ export const API = {
         .then(res => {
             res.data.featuresObject = component.state.room.featuresObject;
 
-            for (let i = 0; i < res.features.length; i++) {
-                res.data.featuresObject[res.features[i]] = true
+            for (let i = 0; i < res.data.features.length; i++) {
+                res.data.featuresObject[res.data.features[i]] = true
             }
 
             component.setState({ room : res.data });
@@ -51,10 +51,8 @@ export const API = {
                 return res.data;
             }
         })
-        .then(res => {
-            if(res){
-                component.setState({ errors : res.fieldErrors });
-            }
+        .catch(res => {
+            component.setState({ errors : res.response.data.fieldErrors });
         });
     },
 
@@ -76,10 +74,8 @@ export const API = {
                     return res.data;
                 }
             })
-            .then(res => {
-                if(res){
-                    component.setState({ errors : res.fieldErrors });
-                }
+            .catch(res => {
+                component.setState({ errors : res.response.data.fieldErrors });
             });
     },
 

@@ -1,7 +1,10 @@
 package com.automationintesting.unit.example;
 
 import com.automationintesting.model.Token;
+import com.automationintesting.service.RandomString;
 import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -16,7 +19,7 @@ public class TaskAnalysisTest {
     // what it is checking
     public void testTokenCreation(){
         // We generate a new Token to check it creates a random string correctly
-        Token token = new Token();
+        Token token = new Token(new RandomString(16, ThreadLocalRandom.current()).nextString());
         String tokenString = token.getToken();
 
         // Since the token is randomly generated we cannot assert on the string

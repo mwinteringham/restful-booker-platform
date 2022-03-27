@@ -90,7 +90,7 @@ export default class AdminBooking extends React.Component {
                                 <select className="form-control" name="roomid" id="roomid" value={this.state.booking.roomid} onChange={this.updateState}>
                                 <option value="0">Select room</option>
                                 {this.state.rooms.map((room) => {
-                                    return <option key={room.roomid} value={room.roomid}>{room.roomNumber}</option>
+                                    return <option key={room.roomid} value={room.roomid}>{room.roomName}</option>
                                 })}
                                 </select>
                             </div>
