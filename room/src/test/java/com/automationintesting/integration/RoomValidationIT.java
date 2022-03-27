@@ -20,11 +20,11 @@ public class RoomValidationIT {
 
     @Test
     public void testPostValidation() {
-        Room bookingPayload = new Room.RoomBuilder()
+        Room roomPayload = new Room.RoomBuilder()
                                         .build();
         Response response = given()
             .contentType(ContentType.JSON)
-            .body(bookingPayload)
+            .body(roomPayload)
             .when()
             .post("http://localhost:3001/room/");
 
@@ -33,12 +33,12 @@ public class RoomValidationIT {
 
     @Test
     public void testPutValidation() {
-        Room bookingPayload = new Room.RoomBuilder()
+        Room roomPayload = new Room.RoomBuilder()
                                       .build();
 
         Response response = given()
                 .contentType(ContentType.JSON)
-                .body(bookingPayload)
+                .body(roomPayload)
                 .when()
                 .put("http://localhost:3001/room/1");
 

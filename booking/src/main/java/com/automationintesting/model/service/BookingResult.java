@@ -1,6 +1,7 @@
 package com.automationintesting.model.service;
 
 import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.Bookings;
 import com.automationintesting.model.db.CreatedBooking;
 import org.springframework.http.HttpStatus;
 
@@ -9,6 +10,8 @@ public class BookingResult {
     private Booking booking;
 
     private CreatedBooking createdBooking;
+
+    private Bookings bookings;
 
     private HttpStatus result;
 
@@ -20,6 +23,11 @@ public class BookingResult {
     public BookingResult(CreatedBooking createdBooking, HttpStatus result) {
         this.createdBooking = createdBooking;
         this.result = result;
+    }
+
+    public BookingResult(Bookings bookings, HttpStatus result){
+        this.bookings = bookings;
+        this.result= result;
     }
 
     public BookingResult(HttpStatus result) {
@@ -36,5 +44,9 @@ public class BookingResult {
 
     public CreatedBooking getCreatedBooking() {
         return createdBooking;
+    }
+
+    public Bookings getBookings() {
+        return bookings;
     }
 }
