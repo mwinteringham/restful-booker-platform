@@ -25,8 +25,8 @@ export const API = {
         .then(res => {
             res.data.featuresObject = component.state.room.featuresObject;
 
-            for (let i = 0; i < res.features.length; i++) {
-                res.data.featuresObject[res.features[i]] = true
+            for (let i = 0; i < res.data.features.length; i++) {
+                res.data.featuresObject[res.data.features[i]] = true
             }
 
             component.setState({ room : res.data });
