@@ -30,8 +30,8 @@ export default class Home extends React.Component {
             <div>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-12">
-                            <a href="https://www.ministryoftesting.com/events/automation-in-testing-28-to-30-march-2022?utm_medium=web&utm_source=aitonline" alt="Link to Automation in Testing training in Edinburgh"><img src={adbanner} /></a>
+                        <div className="col-12 justify-content-center d-flex">
+                            <a className="img-fluid" href="https://www.ministryoftesting.com/events/automation-in-testing-april-2022?utm_medium=web&utm_source=aitonline" alt="Link to Automation in Testing training in Edinburgh"><img src={adbanner} /></a>
                         </div>
                     </div>
                     <div className="row">
