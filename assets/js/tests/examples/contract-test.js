@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+    render,
+    fireEvent,
+    cleanup
+  } from '@testing-library/react'
 import BookingListing from '../../src/js/components/BookingListing.jsx';
 import contract from '../../../../booking/src/test/resources/contract.json';
 
@@ -7,9 +12,9 @@ import contract from '../../../../booking/src/test/resources/contract.json';
 test('Rooms list component', () => {
 
     // First we create our component that we want to check. By using
-    // enzymes shallow function and passing it the React component
-    // we want to create, Enzyme will create a headless DOM and render
-    // the React component inside. 
+    // react testing libraries' render function and passing it the 
+    // React component we want to create, RTL will create a headless
+    // DOM and render the React component inside. 
     //
     // You'll notice we are passing parameters to the component namely 
     // the contract we imported at the top of test. If the contract 
@@ -18,7 +23,7 @@ test('Rooms list component', () => {
     //
     // Also we pass isAuthenticated to put it into a mode where it 
     // renders as if we were logged in.
-    const booking = shallow(
+    const booking = render(
         <BookingListing booking={contract} isAuthenticated={true}/>
     );
 
