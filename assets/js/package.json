@@ -46,7 +46,7 @@
     "identity-obj-proxy": "^3.0.0",
     "isomorphic-fetch": "^3.0.0",
     "jest": "^27.5.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "morgan": "^1.10.0",
     "nock": "^13.2.4",
     "node-sass": "^7.0.1",
