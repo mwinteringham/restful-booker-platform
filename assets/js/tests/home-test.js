@@ -6,6 +6,13 @@ import HotelContact from '../src/js/components/HotelContact.jsx';
 import HotelRoomInfo from '../src/js/components/HotelRoomInfo.jsx';
 import nock from 'nock';
 
+import '@testing-library/jest-dom'
+import {
+    render,
+    fireEvent,
+    waitFor
+  } from '@testing-library/react'
+
 const homeState = {
     rooms : [{
         roomid: 1,
@@ -71,123 +78,13 @@ nock('http://localhost')
         }
     });
 
-test('Home page renders', (done) => {
-    const homeComponent = shallow(
+test('Home page renders', async () => {
+    const {getByText, asFragment} = render(
         <Home />
     )
 
-    setTimeout(() => {
-        expect(homeComponent).toMatchSnapshot();
-        done();
-    }, 1000);
-});
-
-test('Room info for home page renders', () => {
-    const roomDetails = {
-        roomid: 1,
-        roomName: "101",
-        type: 'Standard Room',
-        beds: 2,
-        accessible: false,
-        image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
-        description: 'Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.',
-        features: [
-            'Internet/Wi-fi',
-            'Jacuzzi Bathroom',
-            'Air conditioning',
-            'High Definition TV',
-            'Mini-bar'
-        ]
-    }
-
-    const hotelRoomInfoComponent = shallow(
-        <HotelRoomInfo room={roomDetails} />
-    )
-
-    expect(hotelRoomInfoComponent).toMatchSnapshot();
-});
-
-test('Booking info for room renders when button selected', () => {
-    const roomDetails = {
-        roomid: 1,
-        roomName: "101",
-        type: 'Standard Room',
-        beds: 2,
-        accessible: false,
-        image : 'https://www.mwtestconsultancy.co.uk/img/room1.jpg',
-        description: 'Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.',
-        features: [
-            'Internet/Wi-fi',
-            'Jacuzzi Bathroom',
-            'Air conditioning',
-            'High Definition TV',
-            'Mini-bar'
-        ]
-    }
-
-    const hotelRoomInfoComponent = shallow(
-        <HotelRoomInfo room={roomDetails} />
-    )
-
-    hotelRoomInfoComponent.find('.openBooking').simulate('click');
-
-    expect(hotelRoomInfoComponent).toMatchSnapshot();
-});
-
-test('Map for home page renders', () => {
-    const mapDetails = {
-        latitude : 52.6351204,
-        longitude : 1.2733774
-    }
-
-    const mapComponent = shallow(
-        <HotelMap name={'Shady Meadows'} mapDetails={mapDetails} />
-    )
-
-    expect(mapComponent).toMatchSnapshot();
-});
-
-test('Map for home page renders error', () => {
-    const mapComponent = shallow(
-        <HotelMap />
-    )
-
-    expect(mapComponent).toMatchSnapshot();
-});
-
-test('Logo for home page renders', () => {
-    const logoDetails = {
-        url : 'https://www.mwtestconsultancy.co.uk/img/rbp-logo.png'
-    }
-
-    const logoComponent = shallow(
-        <HotelLogo logoDetails={logoDetails} />
-    )
-
-    expect(logoComponent).toMatchSnapshot();
-});
-
-test('Logo for home page errors render', () => {
-    const logoComponent = shallow(
-        <HotelLogo />
-    )
-
-    expect(logoComponent).toMatchSnapshot();
-});
-
-test('Contact form for home page renders', () => {
-    const contactDetails = {
-        name : 'Shady Meadows B&B',
-        address : 'The Old Farmhouse, Shady Street, Newfordburyshire, NE1 410S',
-        phone : '0123456789',
-        email : 'fake@fakeemail.com'
-    }
-
-    const contactComponent = shallow(
-        <HotelContact contact={contactDetails} />
-    )
-
-    expect(contactComponent).toMatchSnapshot();
+    await waitFor(() => expect(getByText(/Updated description/)).toBeInTheDocument());
+    expect(asFragment()).toMatchSnapshot();
 });
 
 test('Contact form errors render', () => {

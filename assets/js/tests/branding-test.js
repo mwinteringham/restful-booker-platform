@@ -4,12 +4,8 @@ import nock from 'nock';
 import ReactModal from 'react-modal';
 import '@testing-library/jest-dom'
 import {
-    asFragment,
-    findByDisplayValue,
-    getByLabelText,
     render,
-    fireEvent,
-    getByTestId
+    fireEvent
   } from '@testing-library/react'
 
 const brandingData = {
