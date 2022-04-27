@@ -1,8 +1,14 @@
 import React from 'react';
 import Nav from '../src/js/components/Nav.jsx';
+import { BrowserRouter } from 'react-router-dom';
+import {
+    render
+  } from '@testing-library/react'
 
 test('Nav bar renders', () => {
-    let navComponent = shallow(<Nav />);
+    const {asFragment} = render(
+        <BrowserRouter><Nav setCount={() => {}} isAuthenticated={true} /></BrowserRouter>
+    )
 
-    expect(navComponent).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
 })

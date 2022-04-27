@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Contact form errors render 1`] = `
-<p>
-  ERROR: Missing contact details to render
-</p>
-`;
-
 exports[`Home page renders 1`] = `
 <DocumentFragment>
   <div>
@@ -214,6 +208,7 @@ exports[`Home page renders 1`] = `
                 aria-describedby="basic-addon1"
                 aria-label="Name"
                 class="form-control"
+                data-testid="ContactName"
                 id="name"
                 placeholder="Name"
                 type="text"
@@ -238,6 +233,7 @@ exports[`Home page renders 1`] = `
                 aria-describedby="basic-addon1"
                 aria-label="Email"
                 class="form-control"
+                data-testid="ContactEmail"
                 id="email"
                 placeholder="Email"
                 type="text"
@@ -262,6 +258,7 @@ exports[`Home page renders 1`] = `
                 aria-describedby="basic-addon1"
                 aria-label="Phone"
                 class="form-control"
+                data-testid="ContactPhone"
                 id="phone"
                 placeholder="Phone"
                 type="text"
@@ -286,6 +283,7 @@ exports[`Home page renders 1`] = `
                 aria-describedby="basic-addon1"
                 aria-label="Subject"
                 class="form-control"
+                data-testid="ContactSubject"
                 id="subject"
                 placeholder="Subject"
                 type="text"
@@ -306,6 +304,7 @@ exports[`Home page renders 1`] = `
               <textarea
                 aria-label="Description"
                 class="form-control"
+                data-testid="ContactDescription"
                 id="description"
                 rows="5"
               />

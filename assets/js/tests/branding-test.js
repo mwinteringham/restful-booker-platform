@@ -5,7 +5,8 @@ import ReactModal from 'react-modal';
 import '@testing-library/jest-dom'
 import {
     render,
-    fireEvent
+    fireEvent,
+    waitFor
   } from '@testing-library/react'
 
 const brandingData = {
@@ -39,7 +40,7 @@ test('Branding page renders', async () => {
     expect(asFragment()).toMatchSnapshot();
 });
 
-test('Branding page shows modal on success', (done) => {
+test('Branding page shows modal on success', async () => {
     nock('http://localhost')
         .put('/branding/')
         .reply(202)
@@ -53,11 +54,7 @@ test('Branding page shows modal on success', (done) => {
     fireEvent.change(getByPlaceholderText('Enter B&B name'), { target: { value: 'Updated Room' } });
     fireEvent.click(getByText('Submit'))
 
-    setTimeout(() => {
-        expect(getByText('Branding updated!')).toBeInTheDocument()
-        done();
-    }, 500)
-
+    await waitFor(() => expect(getByText('Branding updated!')).toBeInTheDocument())
 });
 
 test('Branding page shows errors', async () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import nock from 'nock';
 import LoginComponent from '../../src/js/components/Login.jsx';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 
 jest.mock("react-ga")
 
@@ -22,7 +22,7 @@ test('Login component is created', () => {
 
 // We first declare our test by using Jests test function and provide it
 // with a name and then an anonymous function which will run our test
-test('Login component sends correct payload', (done) => {
+test('Login component sends correct payload', async () => {
     // Our Login object is going to send an API request that we want to capture
     // and inspect to make sure the request body matches what we want. We do this
     // by programming a mock using nock with the expected URL and post body and 
@@ -51,10 +51,5 @@ test('Login component sends correct payload', (done) => {
     // or not it received the expected request. If it did, it will return
     // true. If it didn't it will return false. We then assert whether 
     // the result is true.
-    setTimeout(() => {
-        let didNockAcceptRequest = authMock.isDone();
-        expect(didNockAcceptRequest).toBe(true);
-        
-        done();
-    }, 0);
+    await waitFor(() => expect(authMock.isDone()).toBeTruthy())
 });

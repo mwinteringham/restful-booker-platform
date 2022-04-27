@@ -1,15 +1,10 @@
 import React from 'react';
 import Home from '../src/js/components/Home.jsx';
-import HotelMap from '../src/js/components/HotelMap.jsx';
-import HotelLogo from '../src/js/components/HotelLogo.jsx';
-import HotelContact from '../src/js/components/HotelContact.jsx';
-import HotelRoomInfo from '../src/js/components/HotelRoomInfo.jsx';
 import nock from 'nock';
 
 import '@testing-library/jest-dom'
 import {
     render,
-    fireEvent,
     waitFor
   } from '@testing-library/react'
 
@@ -85,12 +80,4 @@ test('Home page renders', async () => {
 
     await waitFor(() => expect(getByText(/Updated description/)).toBeInTheDocument());
     expect(asFragment()).toMatchSnapshot();
-});
-
-test('Contact form errors render', () => {
-    const contactComponent = shallow(
-        <HotelContact />
-    )
-
-    expect(contactComponent).toMatchSnapshot();
 });

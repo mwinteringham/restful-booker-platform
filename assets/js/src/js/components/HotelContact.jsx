@@ -59,31 +59,31 @@ export default class HotelContact extends React.Component {
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1"><span className="fa fa-id-card"></span></span>
                         </div>
-                        <input type="text" className="form-control" placeholder="Name" aria-label="Name" id="name" aria-describedby="basic-addon1" onChange={this.updateState} />
+                        <input type="text" data-testid="ContactName" className="form-control" placeholder="Name" aria-label="Name" id="name" aria-describedby="basic-addon1" onChange={this.updateState} />
                     </div>
                     <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1"><span className="fa fa-envelope"></span></span>
                         </div>
-                        <input type="text" className="form-control" placeholder="Email" aria-label="Email" id="email" aria-describedby="basic-addon1" onChange={this.updateState} />
+                        <input type="text" data-testid="ContactEmail" className="form-control" placeholder="Email" aria-label="Email" id="email" aria-describedby="basic-addon1" onChange={this.updateState} />
                     </div>
                     <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1"><span className="fa fa-phone"></span></span>
                         </div>
-                        <input type="text" className="form-control" placeholder="Phone" aria-label="Phone" id="phone" aria-describedby="basic-addon1" onChange={this.updateState} />
+                        <input type="text" data-testid="ContactPhone" className="form-control" placeholder="Phone" aria-label="Phone" id="phone" aria-describedby="basic-addon1" onChange={this.updateState} />
                     </div>
                     <div className="input-group mb-3">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1"><span className="fa fa-envelope"></span></span>
                         </div>
-                        <input type="text" className="form-control" placeholder="Subject" aria-label="Subject" id="subject" aria-describedby="basic-addon1" onChange={this.updateState} />
+                        <input type="text" data-testid="ContactSubject" className="form-control" placeholder="Subject" aria-label="Subject" id="subject" aria-describedby="basic-addon1" onChange={this.updateState} />
                     </div>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text">Message</span>
                         </div>
-                        <textarea className="form-control" aria-label="Description" id="description" rows="5" onChange={this.updateState}></textarea>
+                        <textarea data-testid="ContactDescription" className="form-control" aria-label="Description" id="description" rows="5" onChange={this.updateState}></textarea>
                     </div>
                     <br />
                     {errors}
