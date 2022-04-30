@@ -24,6 +24,7 @@ export default class Message extends React.Component {
     render(){
         return <ReactModal 
                     isOpen={true}
+                    ariaHideApp={false}
                     contentLabel="onRequestClose Example"
                     className="message-modal" >
                     
