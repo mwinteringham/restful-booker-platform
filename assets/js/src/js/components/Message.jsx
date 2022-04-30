@@ -28,32 +28,34 @@ export default class Message extends React.Component {
                     contentLabel="onRequestClose Example"
                     className="message-modal" >
                     
-                    <div className="form-row">
-                        <div className="col-10">
-                            <p><span>From: </span>{this.state.name}</p>
+                    <div data-testid="message">
+                        <div className="form-row">
+                            <div className="col-10">
+                                <p><span>From: </span>{this.state.name}</p>
+                            </div>
+                            <div className="col-2">
+                                <p><span>Phone: </span>{this.state.phone}</p>
+                            </div>
                         </div>
-                        <div className="col-2">
-                            <p><span>Phone: </span>{this.state.phone}</p>
+                        <div className="form-row">
+                            <div className="col-12">
+                                <p><span>Email: </span>{this.state.email}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-row">
-                        <div className="col-12">
-                            <p><span>Email: </span>{this.state.email}</p>
+                        <div className="form-row">
+                            <div className="col-12">
+                                <p><span>{this.state.subject}</span></p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-row">
-                        <div className="col-12">
-                            <p><span>{this.state.subject}</span></p>
+                        <div className="form-row">
+                            <div className="col-12">
+                                <p>{this.state.description}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-row">
-                        <div className="col-12">
-                            <p>{this.state.description}</p>
-                        </div>
-                    </div>
-                    <div className="form-row">
-                        <div className="col-12">
-                            <button className="btn btn-outline-primary" onClick={() => this.props.closeMessage()}>Close</button>
+                        <div className="form-row">
+                            <div className="col-12">
+                                <button className="btn btn-outline-primary" onClick={() => this.props.closeMessage()}>Close</button>
+                            </div>
                         </div>
                     </div>
                 </ReactModal>
