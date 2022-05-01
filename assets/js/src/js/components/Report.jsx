@@ -45,6 +45,7 @@ export default class Report extends React.Component {
     } else {
       return <div>
         <Calendar
+          defaultDate={this.props.defaultDate}
           onSelectSlot={this.addBooking}
           selectable
           localizer={localizer}
