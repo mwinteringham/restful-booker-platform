@@ -1,11 +1,10 @@
 import React from 'react';
 import Report from '../src/js/components/Report.jsx';
-import moment from 'moment/moment';
 import nock from 'nock';
 import '@testing-library/jest-dom'
 
 import {
-  render, waitFor, getByText
+  render, waitFor
 } from '@testing-library/react'
 
 test('Multiple reports can be created in the Report component', async () => {
