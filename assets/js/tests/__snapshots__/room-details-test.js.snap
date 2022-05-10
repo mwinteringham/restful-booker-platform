@@ -1,1055 +1,1007 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Room details can be switched out of edit mode 1`] = `
-<div>
-  <div
-    className="room-details"
-  >
+<DocumentFragment>
+  <div>
     <div
-      className="row"
+      class="room-details"
     >
       <div
-        className="col-sm-10"
+        class="row"
       >
-        <h2>
-          Room: 
-        </h2>
-      </div>
-      <div
-        className="col-sm-2"
-      >
-        <button
-          className="btn btn-outline-primary float-right"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginRight": "10px",
-            }
-          }
-          type="button"
+        <div
+          class="col-sm-10"
         >
-          Edit
-        </button>
+          <h2>
+            Room: 101
+          </h2>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <button
+            class="btn btn-outline-primary float-right"
+            style="margin-right: 10px;"
+            type="button"
+          >
+            Edit
+          </button>
+        </div>
       </div>
-    </div>
-    <div
-      className="row"
-    >
       <div
-        className="col-sm-6"
+        class="row"
       >
-        <p>
-          Type: 
-          <span />
-        </p>
-      </div>
-      <div
-        className="col-sm-6"
-      >
-        <p>
-          Description: 
-          <span />
-        </p>
-      </div>
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col-sm-6"
-      >
-        <p>
-          Accessible: 
-          <span>
-            false
-          </span>
-        </p>
-        <p>
-          Features: 
-          <span>
-            <span
-              style={
-                Object {
-                  "color": "grey",
-                }
-              }
-            >
-              No features added to the room
+        <div
+          class="col-sm-6"
+        >
+          <p>
+            Type: 
+            <span>
+              Single
             </span>
-          </span>
-        </p>
+          </p>
+        </div>
+        <div
+          class="col-sm-6"
+        >
+          <p>
+            Description: 
+            <span>
+              Aenean porttitor mauris sit amet lacinia molestie....
+            </span>
+          </p>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col-sm-6"
+        >
+          <p>
+            Accessible: 
+            <span>
+              true
+            </span>
+          </p>
+          <p>
+            Features: 
+            <span>
+              TV, WiFi, Safe
+            </span>
+          </p>
+          <p>
+            Room price: 
+            <span>
+              100
+            </span>
+          </p>
+        </div>
+        <div
+          class="col-sm-6"
+        >
+          <p>
+            Image:
+          </p>
+          <img
+            alt="Room: 101 preview image"
+            src="https://www.mwtestconsultancy.co.uk/img/testim/room2.jpg"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="row"
+    >
+      <div
+        class="col-sm-2 rowHeader"
+      >
         <p>
-          Room price: 
-          <span />
+          First name
         </p>
       </div>
       <div
-        className="col-sm-6"
+        class="col-sm-2 rowHeader"
       >
         <p>
-          Image:
+          Last name
         </p>
-        <img
-          alt="Room: undefined preview image"
-        />
       </div>
+      <div
+        class="col-sm-1 rowHeader"
+      >
+        <p>
+          Price
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Deposit paid?
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Check in
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Check out
+        </p>
+      </div>
+      <div
+        class="col-sm-1"
+      />
     </div>
+    <div />
   </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        First name
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Last name
-      </p>
-    </div>
-    <div
-      className="col-sm-1 rowHeader"
-    >
-      <p>
-        Price
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Deposit paid?
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Check in
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Check out
-      </p>
-    </div>
-    <div
-      className="col-sm-1"
-    />
-  </div>
-  <BookingListings
-    fetchRoomDetails={[Function]}
-    roomid={1}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`Room details can render validation errors 1`] = `
-<div>
-  <div
-    className="room-details"
-  >
+<DocumentFragment>
+  <div>
     <div
-      className="form-row"
+      class="room-details"
     >
       <div
-        className="col-sm-9"
+        class="form-row"
       >
-        <h2>
-          Room: 
-        </h2>
-        <input
-          id="roomName"
-          onChange={[Function]}
-          type="text"
-        />
-      </div>
-      <div
-        className="col-sm-3"
-      >
-        <button
-          className="btn btn-outline-danger float-right"
-          id="cancelEdit"
-          onClick={[Function]}
-          type="button"
-        >
-          Cancel
-        </button>
-        <button
-          className="btn btn-outline-primary float-right"
-          id="update"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginRight": "10px",
-            }
-          }
-          type="button"
-        >
-          Update
-        </button>
-      </div>
-    </div>
-    <div
-      className="form-row"
-    >
-      <div
-        className="col-sm-6"
-      >
-        <label
-          className="editLabel"
-          htmlFor="type"
-        >
-          Type: 
-        </label>
-        <select
-          className="form-control"
-          id="type"
-          onChange={[Function]}
-        >
-          <option
-            value="Single"
-          >
-            Single
-          </option>
-          <option
-            value="Twin"
-          >
-            Twin
-          </option>
-          <option
-            value="Double"
-          >
-            Double
-          </option>
-          <option
-            value="Family"
-          >
-            Family
-          </option>
-          <option
-            value="Suite"
-          >
-            Suite
-          </option>
-        </select>
-        <label
-          className="editLabel"
-          htmlFor="type"
-        >
-          Accessible: 
-        </label>
-        <select
-          className="form-control"
-          id="accessible"
-          onChange={[Function]}
-          value={false}
-        >
-          <option
-            value="false"
-          >
-            false
-          </option>
-          <option
-            value="true"
-          >
-            true
-          </option>
-        </select>
-        <label
-          className="editLabel"
-          htmlFor="roomPrice"
-        >
-          Room price: 
-        </label>
-        <input
-          className="form-control"
-          id="roomPrice"
-          onChange={[Function]}
-          type="text"
-        />
-      </div>
-      <div
-        className="col-sm-6"
-      >
-        <label
-          className="editLabel"
-          htmlFor="description"
-        >
-          Description: 
-        </label>
-        <textarea
-          aria-label="Description"
-          className="form-control"
-          defaultValue=""
-          id="description"
-          onChange={[Function]}
-          rows="5"
-        />
-      </div>
-    </div>
-    <div
-      className="form-row"
-    >
-      <div
-        className="col-sm-6"
-      >
-        <label
-          className="editLabel"
-        >
-          Room features: 
-        </label>
         <div
-          className="row"
+          class="col-sm-9"
         >
+          <h2>
+            Room: 
+          </h2>
+          <input
+            id="roomName"
+            type="text"
+            value="101"
+          />
+        </div>
+        <div
+          class="col-sm-3"
+        >
+          <button
+            class="btn btn-outline-danger float-right"
+            id="cancelEdit"
+            style="margin-right: 10px;"
+            type="button"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-outline-primary float-right"
+            id="update"
+            style="margin-right: 10px;"
+            type="button"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+      <div
+        class="form-row"
+      >
+        <div
+          class="col-sm-6"
+        >
+          <label
+            class="editLabel"
+            for="type"
+          >
+            Type: 
+          </label>
+          <select
+            class="form-control"
+            id="type"
+          >
+            <option
+              value="Single"
+            >
+              Single
+            </option>
+            <option
+              value="Twin"
+            >
+              Twin
+            </option>
+            <option
+              value="Double"
+            >
+              Double
+            </option>
+            <option
+              value="Family"
+            >
+              Family
+            </option>
+            <option
+              value="Suite"
+            >
+              Suite
+            </option>
+          </select>
+          <label
+            class="editLabel"
+            for="type"
+          >
+            Accessible: 
+          </label>
+          <select
+            class="form-control"
+            id="accessible"
+          >
+            <option
+              value="false"
+            >
+              false
+            </option>
+            <option
+              value="true"
+            >
+              true
+            </option>
+          </select>
+          <label
+            class="editLabel"
+            for="roomPrice"
+          >
+            Room price: 
+          </label>
+          <input
+            class="form-control"
+            id="roomPrice"
+            type="text"
+            value="100"
+          />
+        </div>
+        <div
+          class="col-sm-6"
+        >
+          <label
+            class="editLabel"
+            for="description"
+          >
+            Description: 
+          </label>
+          <textarea
+            aria-label="Description"
+            class="form-control"
+            id="description"
+            rows="5"
+          >
+            Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.
+          </textarea>
+        </div>
+      </div>
+      <div
+        class="form-row"
+      >
+        <div
+          class="col-sm-6"
+        >
+          <label
+            class="editLabel"
+          >
+            Room features: 
+          </label>
           <div
-            className="col-4"
+            class="row"
           >
             <div
-              className="form-check form-check-inline"
+              class="col-4"
             >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="wifiCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="WiFi"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="wifiCheckbox"
+              <div
+                class="form-check form-check-inline"
               >
-                WiFi
-              </label>
+                <input
+                  class="form-check-input"
+                  id="wifiCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="WiFi"
+                />
+                <label
+                  class="form-check-label"
+                  for="wifiCheckbox"
+                >
+                  WiFi
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="tvCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="TV"
+                />
+                <label
+                  class="form-check-label"
+                  for="tvCheckbox"
+                >
+                  TV
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="radioCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Radio"
+                />
+                <label
+                  class="form-check-label"
+                  for="radioCheckbox"
+                >
+                  Radio
+                </label>
+              </div>
             </div>
           </div>
           <div
-            className="col-4"
+            class="row"
           >
             <div
-              className="form-check form-check-inline"
+              class="col-4"
             >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="tvCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="TV"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="tvCheckbox"
+              <div
+                class="form-check form-check-inline"
               >
-                TV
-              </label>
+                <input
+                  class="form-check-input"
+                  id="refreshCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Refreshments"
+                />
+                <label
+                  class="form-check-label"
+                  for="refreshCheckbox"
+                >
+                  Refreshments
+                </label>
+              </div>
             </div>
-          </div>
-          <div
-            className="col-4"
-          >
             <div
-              className="form-check form-check-inline"
+              class="col-4"
             >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="radioCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="Radio"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="radioCheckbox"
+              <div
+                class="form-check form-check-inline"
               >
-                Radio
-              </label>
+                <input
+                  class="form-check-input"
+                  id="safeCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Safe"
+                />
+                <label
+                  class="form-check-label"
+                  for="safeCheckbox"
+                >
+                  Safe
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="viewsCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Views"
+                />
+                <label
+                  class="form-check-label"
+                  for="viewsCheckbox"
+                >
+                  Views
+                </label>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="row"
+          class="col-sm-6"
         >
-          <div
-            className="col-4"
+          <label
+            class="editLabel"
+            for="image"
           >
-            <div
-              className="form-check form-check-inline"
-            >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="refreshCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="Refreshments"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="refreshCheckbox"
-              >
-                Refreshments
-              </label>
-            </div>
-          </div>
-          <div
-            className="col-4"
-          >
-            <div
-              className="form-check form-check-inline"
-            >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="safeCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="Safe"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="safeCheckbox"
-              >
-                Safe
-              </label>
-            </div>
-          </div>
-          <div
-            className="col-4"
-          >
-            <div
-              className="form-check form-check-inline"
-            >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="viewsCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="Views"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="viewsCheckbox"
-              >
-                Views
-              </label>
-            </div>
-          </div>
+            Image: 
+          </label>
+          <input
+            class="form-control"
+            id="image"
+            type="text"
+            value="https://www.mwtestconsultancy.co.uk/img/testim/room2.jpg"
+          />
         </div>
       </div>
       <div
-        className="col-sm-6"
+        class="alert alert-danger"
+        style="margin-top: 15px;"
       >
-        <label
-          className="editLabel"
-          htmlFor="image"
-        >
-          Image: 
-        </label>
-        <input
-          className="form-control"
-          id="image"
-          onChange={[Function]}
-          type="text"
-        />
+        <p>
+          Type can only contain the room options Single, Double, Twin, Family or Suite
+        </p>
       </div>
     </div>
+    <div
+      class="row"
+    >
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          First name
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Last name
+        </p>
+      </div>
+      <div
+        class="col-sm-1 rowHeader"
+      >
+        <p>
+          Price
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Deposit paid?
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Check in
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Check out
+        </p>
+      </div>
+      <div
+        class="col-sm-1"
+      />
+    </div>
+    <div />
   </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        First name
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Last name
-      </p>
-    </div>
-    <div
-      className="col-sm-1 rowHeader"
-    >
-      <p>
-        Price
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Deposit paid?
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Check in
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Check out
-      </p>
-    </div>
-    <div
-      className="col-sm-1"
-    />
-  </div>
-  <BookingListings
-    fetchRoomDetails={[Function]}
-    roomid={1}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`Room details component renders 1`] = `
-<div>
-  <div
-    className="room-details"
-  >
+<DocumentFragment>
+  <div>
     <div
-      className="row"
+      class="room-details"
     >
       <div
-        className="col-sm-10"
+        class="row"
       >
-        <h2>
-          Room: 
-        </h2>
-      </div>
-      <div
-        className="col-sm-2"
-      >
-        <button
-          className="btn btn-outline-primary float-right"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginRight": "10px",
-            }
-          }
-          type="button"
+        <div
+          class="col-sm-10"
         >
-          Edit
-        </button>
+          <h2>
+            Room: 101
+          </h2>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <button
+            class="btn btn-outline-primary float-right"
+            style="margin-right: 10px;"
+            type="button"
+          >
+            Edit
+          </button>
+        </div>
       </div>
-    </div>
-    <div
-      className="row"
-    >
       <div
-        className="col-sm-6"
+        class="row"
       >
-        <p>
-          Type: 
-          <span />
-        </p>
-      </div>
-      <div
-        className="col-sm-6"
-      >
-        <p>
-          Description: 
-          <span />
-        </p>
-      </div>
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col-sm-6"
-      >
-        <p>
-          Accessible: 
-          <span>
-            false
-          </span>
-        </p>
-        <p>
-          Features: 
-          <span>
-            <span
-              style={
-                Object {
-                  "color": "grey",
-                }
-              }
-            >
-              No features added to the room
+        <div
+          class="col-sm-6"
+        >
+          <p>
+            Type: 
+            <span>
+              Single
             </span>
-          </span>
-        </p>
+          </p>
+        </div>
+        <div
+          class="col-sm-6"
+        >
+          <p>
+            Description: 
+            <span>
+              Aenean porttitor mauris sit amet lacinia molestie....
+            </span>
+          </p>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col-sm-6"
+        >
+          <p>
+            Accessible: 
+            <span>
+              true
+            </span>
+          </p>
+          <p>
+            Features: 
+            <span>
+              TV, WiFi, Safe
+            </span>
+          </p>
+          <p>
+            Room price: 
+            <span>
+              100
+            </span>
+          </p>
+        </div>
+        <div
+          class="col-sm-6"
+        >
+          <p>
+            Image:
+          </p>
+          <img
+            alt="Room: 101 preview image"
+            src="https://www.mwtestconsultancy.co.uk/img/testim/room2.jpg"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="row"
+    >
+      <div
+        class="col-sm-2 rowHeader"
+      >
         <p>
-          Room price: 
-          <span />
+          First name
         </p>
       </div>
       <div
-        className="col-sm-6"
+        class="col-sm-2 rowHeader"
       >
         <p>
-          Image:
+          Last name
         </p>
-        <img
-          alt="Room: undefined preview image"
-        />
       </div>
+      <div
+        class="col-sm-1 rowHeader"
+      >
+        <p>
+          Price
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Deposit paid?
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Check in
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Check out
+        </p>
+      </div>
+      <div
+        class="col-sm-1"
+      />
     </div>
+    <div />
   </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        First name
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Last name
-      </p>
-    </div>
-    <div
-      className="col-sm-1 rowHeader"
-    >
-      <p>
-        Price
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Deposit paid?
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Check in
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Check out
-      </p>
-    </div>
-    <div
-      className="col-sm-1"
-    />
-  </div>
-  <BookingListings
-    fetchRoomDetails={[Function]}
-    roomid={1}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`Room details switches into edit mode 1`] = `
-<div>
-  <div
-    className="room-details"
-  >
+<DocumentFragment>
+  <div>
     <div
-      className="form-row"
+      class="room-details"
     >
       <div
-        className="col-sm-9"
+        class="form-row"
       >
-        <h2>
-          Room: 
-        </h2>
-        <input
-          id="roomName"
-          onChange={[Function]}
-          type="text"
-        />
-      </div>
-      <div
-        className="col-sm-3"
-      >
-        <button
-          className="btn btn-outline-danger float-right"
-          id="cancelEdit"
-          onClick={[Function]}
-          type="button"
-        >
-          Cancel
-        </button>
-        <button
-          className="btn btn-outline-primary float-right"
-          id="update"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginRight": "10px",
-            }
-          }
-          type="button"
-        >
-          Update
-        </button>
-      </div>
-    </div>
-    <div
-      className="form-row"
-    >
-      <div
-        className="col-sm-6"
-      >
-        <label
-          className="editLabel"
-          htmlFor="type"
-        >
-          Type: 
-        </label>
-        <select
-          className="form-control"
-          id="type"
-          onChange={[Function]}
-        >
-          <option
-            value="Single"
-          >
-            Single
-          </option>
-          <option
-            value="Twin"
-          >
-            Twin
-          </option>
-          <option
-            value="Double"
-          >
-            Double
-          </option>
-          <option
-            value="Family"
-          >
-            Family
-          </option>
-          <option
-            value="Suite"
-          >
-            Suite
-          </option>
-        </select>
-        <label
-          className="editLabel"
-          htmlFor="type"
-        >
-          Accessible: 
-        </label>
-        <select
-          className="form-control"
-          id="accessible"
-          onChange={[Function]}
-          value={false}
-        >
-          <option
-            value="false"
-          >
-            false
-          </option>
-          <option
-            value="true"
-          >
-            true
-          </option>
-        </select>
-        <label
-          className="editLabel"
-          htmlFor="roomPrice"
-        >
-          Room price: 
-        </label>
-        <input
-          className="form-control"
-          id="roomPrice"
-          onChange={[Function]}
-          type="text"
-        />
-      </div>
-      <div
-        className="col-sm-6"
-      >
-        <label
-          className="editLabel"
-          htmlFor="description"
-        >
-          Description: 
-        </label>
-        <textarea
-          aria-label="Description"
-          className="form-control"
-          defaultValue=""
-          id="description"
-          onChange={[Function]}
-          rows="5"
-        />
-      </div>
-    </div>
-    <div
-      className="form-row"
-    >
-      <div
-        className="col-sm-6"
-      >
-        <label
-          className="editLabel"
-        >
-          Room features: 
-        </label>
         <div
-          className="row"
+          class="col-sm-9"
         >
+          <h2>
+            Room: 
+          </h2>
+          <input
+            id="roomName"
+            type="text"
+            value="101"
+          />
+        </div>
+        <div
+          class="col-sm-3"
+        >
+          <button
+            class="btn btn-outline-danger float-right"
+            id="cancelEdit"
+            style="margin-right: 10px;"
+            type="button"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-outline-primary float-right"
+            id="update"
+            style="margin-right: 10px;"
+            type="button"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+      <div
+        class="form-row"
+      >
+        <div
+          class="col-sm-6"
+        >
+          <label
+            class="editLabel"
+            for="type"
+          >
+            Type: 
+          </label>
+          <select
+            class="form-control"
+            id="type"
+          >
+            <option
+              value="Single"
+            >
+              Single
+            </option>
+            <option
+              value="Twin"
+            >
+              Twin
+            </option>
+            <option
+              value="Double"
+            >
+              Double
+            </option>
+            <option
+              value="Family"
+            >
+              Family
+            </option>
+            <option
+              value="Suite"
+            >
+              Suite
+            </option>
+          </select>
+          <label
+            class="editLabel"
+            for="type"
+          >
+            Accessible: 
+          </label>
+          <select
+            class="form-control"
+            id="accessible"
+          >
+            <option
+              value="false"
+            >
+              false
+            </option>
+            <option
+              value="true"
+            >
+              true
+            </option>
+          </select>
+          <label
+            class="editLabel"
+            for="roomPrice"
+          >
+            Room price: 
+          </label>
+          <input
+            class="form-control"
+            id="roomPrice"
+            type="text"
+            value="100"
+          />
+        </div>
+        <div
+          class="col-sm-6"
+        >
+          <label
+            class="editLabel"
+            for="description"
+          >
+            Description: 
+          </label>
+          <textarea
+            aria-label="Description"
+            class="form-control"
+            id="description"
+            rows="5"
+          >
+            Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.
+          </textarea>
+        </div>
+      </div>
+      <div
+        class="form-row"
+      >
+        <div
+          class="col-sm-6"
+        >
+          <label
+            class="editLabel"
+          >
+            Room features: 
+          </label>
           <div
-            className="col-4"
+            class="row"
           >
             <div
-              className="form-check form-check-inline"
+              class="col-4"
             >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="wifiCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="WiFi"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="wifiCheckbox"
+              <div
+                class="form-check form-check-inline"
               >
-                WiFi
-              </label>
+                <input
+                  class="form-check-input"
+                  id="wifiCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="WiFi"
+                />
+                <label
+                  class="form-check-label"
+                  for="wifiCheckbox"
+                >
+                  WiFi
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="tvCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="TV"
+                />
+                <label
+                  class="form-check-label"
+                  for="tvCheckbox"
+                >
+                  TV
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="radioCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Radio"
+                />
+                <label
+                  class="form-check-label"
+                  for="radioCheckbox"
+                >
+                  Radio
+                </label>
+              </div>
             </div>
           </div>
           <div
-            className="col-4"
+            class="row"
           >
             <div
-              className="form-check form-check-inline"
+              class="col-4"
             >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="tvCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="TV"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="tvCheckbox"
+              <div
+                class="form-check form-check-inline"
               >
-                TV
-              </label>
+                <input
+                  class="form-check-input"
+                  id="refreshCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Refreshments"
+                />
+                <label
+                  class="form-check-label"
+                  for="refreshCheckbox"
+                >
+                  Refreshments
+                </label>
+              </div>
             </div>
-          </div>
-          <div
-            className="col-4"
-          >
             <div
-              className="form-check form-check-inline"
+              class="col-4"
             >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="radioCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="Radio"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="radioCheckbox"
+              <div
+                class="form-check form-check-inline"
               >
-                Radio
-              </label>
+                <input
+                  class="form-check-input"
+                  id="safeCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Safe"
+                />
+                <label
+                  class="form-check-label"
+                  for="safeCheckbox"
+                >
+                  Safe
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="viewsCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Views"
+                />
+                <label
+                  class="form-check-label"
+                  for="viewsCheckbox"
+                >
+                  Views
+                </label>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="row"
+          class="col-sm-6"
         >
-          <div
-            className="col-4"
+          <label
+            class="editLabel"
+            for="image"
           >
-            <div
-              className="form-check form-check-inline"
-            >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="refreshCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="Refreshments"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="refreshCheckbox"
-              >
-                Refreshments
-              </label>
-            </div>
-          </div>
-          <div
-            className="col-4"
-          >
-            <div
-              className="form-check form-check-inline"
-            >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="safeCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="Safe"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="safeCheckbox"
-              >
-                Safe
-              </label>
-            </div>
-          </div>
-          <div
-            className="col-4"
-          >
-            <div
-              className="form-check form-check-inline"
-            >
-              <input
-                checked={false}
-                className="form-check-input"
-                id="viewsCheckbox"
-                name="featureCheck"
-                onChange={[Function]}
-                type="checkbox"
-                value="Views"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="viewsCheckbox"
-              >
-                Views
-              </label>
-            </div>
-          </div>
+            Image: 
+          </label>
+          <input
+            class="form-control"
+            id="image"
+            type="text"
+            value="https://www.mwtestconsultancy.co.uk/img/testim/room2.jpg"
+          />
         </div>
       </div>
+    </div>
+    <div
+      class="row"
+    >
       <div
-        className="col-sm-6"
+        class="col-sm-2 rowHeader"
       >
-        <label
-          className="editLabel"
-          htmlFor="image"
-        >
-          Image: 
-        </label>
-        <input
-          className="form-control"
-          id="image"
-          onChange={[Function]}
-          type="text"
-        />
+        <p>
+          First name
+        </p>
       </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Last name
+        </p>
+      </div>
+      <div
+        class="col-sm-1 rowHeader"
+      >
+        <p>
+          Price
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Deposit paid?
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Check in
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Check out
+        </p>
+      </div>
+      <div
+        class="col-sm-1"
+      />
     </div>
+    <div />
   </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        First name
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Last name
-      </p>
-    </div>
-    <div
-      className="col-sm-1 rowHeader"
-    >
-      <p>
-        Price
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Deposit paid?
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Check in
-      </p>
-    </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Check out
-      </p>
-    </div>
-    <div
-      className="col-sm-1"
-    />
-  </div>
-  <BookingListings
-    fetchRoomDetails={[Function]}
-    roomid={1}
-  />
-</div>
+</DocumentFragment>
 `;
