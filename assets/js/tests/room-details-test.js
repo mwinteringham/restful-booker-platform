@@ -34,6 +34,7 @@ test('Room details component renders', async () => {
     )
 
     await waitFor(() => {expect(roomMock.isDone()).toBeTruthy()})
+    await getByText(/Aenean/)
     
     expect(asFragment()).toMatchSnapshot();
 });
@@ -50,6 +51,8 @@ test('Room details switches into edit mode', async () => {
     await waitFor(() => {expect(roomMock.isDone()).toBeTruthy()})
     
     fireEvent.click(getByText(/Edit/));
+
+    await getByText(/Update/)
 
     expect(asFragment()).toMatchSnapshot();
 });
