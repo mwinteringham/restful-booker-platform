@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Contact form sends request to message API 1`] = `
-<p>
-  ERROR: Missing contact details to render
-</p>
-`;

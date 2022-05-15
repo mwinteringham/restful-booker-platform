@@ -1,68 +1,341 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rooms list component 1`] = `
-<div>
-  <div
-    className="row"
-  >
+<DocumentFragment>
+  <div>
     <div
-      className="col-sm-1 rowHeader"
+      class="row"
     >
-      <p>
-        Room #
-      </p>
+      <div
+        class="col-sm-1 rowHeader"
+      >
+        <p>
+          Room #
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Type
+        </p>
+      </div>
+      <div
+        class="col-sm-2 rowHeader"
+      >
+        <p>
+          Accessible
+        </p>
+      </div>
+      <div
+        class="col-sm-1 rowHeader"
+      >
+        <p>
+          Price
+        </p>
+      </div>
+      <div
+        class="col-sm-5 rowHeader"
+      >
+        <p>
+          Room details
+        </p>
+      </div>
+      <div
+        class="col-sm-1"
+      />
     </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Type
-      </p>
+    <div>
+      <div
+        class="row detail"
+        data-testid="roomlisting"
+        data-type="room"
+        id="room1"
+      >
+        <div
+          class="col-sm-1"
+        >
+          <p
+            id="roomName202"
+          >
+            202
+          </p>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <p
+            id="typeSingle"
+          >
+            Single
+          </p>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <p
+            id="accessibletrue"
+          >
+            true
+          </p>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <p
+            id="roomPrice0"
+          >
+            0
+          </p>
+        </div>
+        <div
+          class="col-sm-5"
+        >
+          <p
+            id="detailsstring"
+          >
+            string
+          </p>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <span
+            class="fa fa-remove roomDelete"
+            id="1"
+          />
+        </div>
+      </div>
     </div>
-    <div
-      className="col-sm-2 rowHeader"
-    >
-      <p>
-        Accessible
-      </p>
+    <div>
+      <div
+        class="row room-form"
+      >
+        <div
+          class="col-sm-1"
+        >
+          <input
+            class="form-control"
+            data-testid="roomName"
+            id="roomName"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <select
+            class="form-control"
+            id="type"
+          >
+            <option
+              value="Single"
+            >
+              Single
+            </option>
+            <option
+              value="Twin"
+            >
+              Twin
+            </option>
+            <option
+              value="Double"
+            >
+              Double
+            </option>
+            <option
+              value="Family"
+            >
+              Family
+            </option>
+            <option
+              value="Suite"
+            >
+              Suite
+            </option>
+          </select>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <select
+            class="form-control"
+            id="accessible"
+          >
+            <option
+              value="false"
+            >
+              false
+            </option>
+            <option
+              value="true"
+            >
+              true
+            </option>
+          </select>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <input
+            class="form-control"
+            id="roomPrice"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="col-sm-5"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="wifiCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="WiFi"
+                />
+                <label
+                  class="form-check-label"
+                  for="wifiCheckbox"
+                >
+                  WiFi
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="tvCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="TV"
+                />
+                <label
+                  class="form-check-label"
+                  for="tvCheckbox"
+                >
+                  TV
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="radioCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Radio"
+                />
+                <label
+                  class="form-check-label"
+                  for="radioCheckbox"
+                >
+                  Radio
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="row"
+          >
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="refreshCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Refreshments"
+                />
+                <label
+                  class="form-check-label"
+                  for="refreshCheckbox"
+                >
+                  Refreshments
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="safeCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Safe"
+                />
+                <label
+                  class="form-check-label"
+                  for="safeCheckbox"
+                >
+                  Safe
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-4"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input"
+                  id="viewsCheckbox"
+                  name="featureCheck"
+                  type="checkbox"
+                  value="Views"
+                />
+                <label
+                  class="form-check-label"
+                  for="viewsCheckbox"
+                >
+                  Views
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <button
+            class="btn btn-outline-primary"
+            id="createRoom"
+            type="submit"
+          >
+            Create
+          </button>
+        </div>
+      </div>
     </div>
-    <div
-      className="col-sm-1 rowHeader"
-    >
-      <p>
-        Price
-      </p>
-    </div>
-    <div
-      className="col-sm-5 rowHeader"
-    >
-      <p>
-        Room details
-      </p>
-    </div>
-    <div
-      className="col-sm-1"
-    />
   </div>
-  <div
-    key="1"
-  >
-    <withRouter(RoomListing)
-      details={
-        Object {
-          "accessible": true,
-          "beds": 2,
-          "details": "WiFi, TV, Mini-bar",
-          "roomName": "101",
-          "roomid": 1,
-          "type": "Single",
-        }
-      }
-      updateRooms={[Function]}
-    />
-  </div>
-  <RoomForm
-    updateRooms={[Function]}
-  />
-</div>
+</DocumentFragment>
 `;

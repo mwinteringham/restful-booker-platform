@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import Cookies from 'universal-cookie';
+import moment from 'moment';
 
 import Nav from './Nav.jsx';
 import Login from './Login.jsx'
@@ -60,7 +61,11 @@ export default class AdminContainer extends React.Component {
                                     <RoomDetails params={match.params}/>
                                 </div>
                             )} />
-                            <Route exact path='/admin/report' component={Report} />
+                            <Route exact path='/admin/report' render={() => (
+                                <div>
+                                    <Report defaultDate={new Date()} />
+                                </div>
+                            )} />
                             <Route exact path='/admin/branding' component={Branding} />
                             <Route exact path='/admin/messages' render={({ location, match }) => (
                                 <div>

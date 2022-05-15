@@ -2,6 +2,12 @@ import React from 'react';
 import Branding from '../src/js/components/Branding.jsx';
 import nock from 'nock';
 import ReactModal from 'react-modal';
+import '@testing-library/jest-dom'
+import {
+    render,
+    fireEvent,
+    waitFor
+  } from '@testing-library/react'
 
 const brandingData = {
     name: 'Shady Meadows B&B',
@@ -19,74 +25,51 @@ const brandingData = {
     }
 }
 
-const brandingUpdateData = {
-    name: 'A new name',
-    map: {
-        latitude: 88.123,
-        longitude: 11.123
-    },
-    logoUrl: 'https://www.mwtestconsultancy.co.uk/url/update.png',
-    description: 'Updated description',
-    contact: {
-        name: 'Another B&B',
-        address: 'Somewhere else',
-        phone: '99999999999',
-        email: 'another@fakeemail.com'
-    }
-}
-
 nock('http://localhost')
     .persist()
     .get('/branding/')
     .reply(200, brandingData)
 
 test('Branding page renders', async () => {
-    const brandingComponent = mount(
+    const { asFragment, findByDisplayValue } = render(
         <Branding />
     )
 
-    setTimeout(() => {
-        expect(brandingComponent).toMatchSnapshot();
-    }, 0);
+    await findByDisplayValue("52.6351204")
+    
+    expect(asFragment()).toMatchSnapshot();
 });
 
-test('Branding page has controlled form', (done) => {    
+test('Branding page shows modal on success', async () => {
     nock('http://localhost')
-        .put('/branding/', brandingUpdateData)
-        .reply(200, () => {
-            done();
-        });
+        .put('/branding/')
+        .reply(202)
 
-    const brandingComponent = shallow(
-        <Branding />
-    )
-
-    brandingComponent.setState({ branding : brandingUpdateData});
-    brandingComponent.update();
-    brandingComponent.instance().doUpdate();
-});
-
-test('Branding page shows modal on success', () => {
     ReactModal.setAppElement(document.createElement('div'));
 
-    const brandingComponent = mount(
+    const {getByText, getByPlaceholderText} = render(
         <Branding />
     )
 
-    brandingComponent.setState({ showModal : true });
+    fireEvent.change(getByPlaceholderText('Enter B&B name'), { target: { value: 'Updated Room' } });
+    fireEvent.click(getByText('Submit'))
 
-    expect(brandingComponent).toMatchSnapshot();
+    await waitFor(() => expect(getByText('Branding updated!')).toBeInTheDocument())
 });
 
-test('Branding page shows errors', () => {
-    const brandingComponent = shallow(
+test('Branding page shows errors', async () => {
+    nock('http://localhost')
+        .put('/branding/')
+        .reply(400, {
+            "fieldErrors": ["Phone should not be blank"]
+        })
+
+    const {getByText, findByText} = render(
         <Branding />
     )
 
-    brandingComponent.setState({
-        errors : ["Phone should not be null"]
-    })
-    brandingComponent.update();
+    fireEvent.click(getByText('Submit'))
+    await findByText('Phone should not be blank')
 
-    expect(brandingComponent).toMatchSnapshot();
+    expect(getByText('Phone should not be blank')).toBeInTheDocument()
 });

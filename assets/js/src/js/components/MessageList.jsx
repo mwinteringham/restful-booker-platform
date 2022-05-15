@@ -56,10 +56,10 @@ export default class MessageList extends React.Component {
                 </div>
                 {this.state.messages.map((value, index) => {
                     return  <div className={"row detail read-" + value.read} id={"message" + index} key={index}>
-                                <div className="col-sm-2" onClick={() => this.openMessage(value.id)}><p>{value.name}</p></div>
-                                <div className="col-sm-9" onClick={() => this.openMessage(value.id)}><p>{value.subject}</p></div>
+                                <div className="col-sm-2" data-testid={"message" + index} onClick={() => this.openMessage(value.id)}><p>{value.name}</p></div>
+                                <div className="col-sm-9" data-testid={"messageDescription" + index} onClick={() => this.openMessage(value.id)}><p>{value.subject}</p></div>
                                 <div className="col-sm-1">
-                                <span className="fa fa-remove roomDelete" onClick={() => this.deleteMessage(value.id)}></span>
+                                <span data-testid={"DeleteMessage" + index} className="fa fa-remove roomDelete" onClick={() => this.deleteMessage(value.id)}></span>
                                 </div>
                             </div>
                 })}

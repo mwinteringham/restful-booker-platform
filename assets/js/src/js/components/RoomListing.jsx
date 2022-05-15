@@ -22,7 +22,7 @@ class RoomListing extends React.Component {
 
     render() {
         return(
-            <div data-type="room" id={"room"+ this.props.details.roomid} className="row detail" >
+            <div data-testid="roomlisting" data-type="room" id={"room"+ this.props.details.roomid} className="row detail" >
                 <div onClick={this.openRoom} className="col-sm-1"><p id={"roomName"+ this.props.details.roomName}>{this.props.details.roomName}</p></div>
                 <div onClick={this.openRoom} className="col-sm-2"><p id={"type"+ this.props.details.type}>{this.props.details.type}</p></div>
                 <div onClick={this.openRoom} className="col-sm-2"><p id={"accessible"+ this.props.details.accessible}>{this.props.details.accessible.toString()}</p></div>

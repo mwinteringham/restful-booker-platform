@@ -28,7 +28,6 @@
     "@emotion/styled": "^11.8.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "axios": "^0.26.1",
     "babel-core": "^6.26.3",
     "babel-jest": "^27.5.1",
@@ -38,8 +37,6 @@
     "css-loader": "^6.7.1",
     "debug": "~4.3.3",
     "emotion": "^11.0.0",
-    "enzyme": "^3.11.0",
-    "enzyme-to-json": "^3.6.2",
     "file-loader": "^6.2.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
@@ -76,12 +73,6 @@
     "testMatch": [
       "**/tests/**/*-test.js?(x)",
       "**/?(*.)(spec|test).js?(x)"
-    ],
-    "setupFiles": [
-      "./tests/jestsetup.js"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
