@@ -71,14 +71,14 @@ public class ReportServiceTest {
     public void getAllRoomReportTest(){
         Report report = reportService.getAllRoomsReport("abc123");
 
-        assertEquals(report.toString(), "Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Mark Dean - Room: 101'}, Entry{start=2019-09-01, end=2019-09-02, title='James Jones - Room: 102'}]}");
+        assertEquals("Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Mark Dean - Room: 101'}, Entry{start=2019-09-01, end=2019-09-02, title='James Jones - Room: 102'}]}", report.toString());
     }
 
     @Test
     public void getSpecificRoomReportTest(){
         Report report = reportService.getSpecificRoomReport(1);
 
-        assertEquals(report.toString(), "Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Unavailable'}]}");
+        assertEquals("Report{report=[Entry{start=2019-09-01, end=2019-09-02, title='Unavailable'}]}", report.toString());
     }
 
 }

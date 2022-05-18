@@ -41,7 +41,7 @@ public class AuthIntegrationTest {
                             .body(token)
                             .post("http://localhost:3004/auth/validate");
 
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals(200, response.getStatusCode());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class AuthIntegrationTest {
                 .body(token)
                 .post("http://localhost:3004/auth/logout");
 
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals(200, response.getStatusCode());
     }
 
 }

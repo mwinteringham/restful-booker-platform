@@ -49,7 +49,7 @@ public class RoomServiceTest {
 
         Rooms rooms = roomService.getRooms();
 
-        assertEquals(rooms.toString(), "Rooms{rooms=[Room{roomid=0, roomName='101', type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}, Room{roomid=0, roomName='102', type='Twin', accessible=false, image='image2', description='Room description 2', features=[x, y, z], roomPrice=987}]}");
+        assertEquals("Rooms{rooms=[Room{roomid=0, roomName='101', type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}, Room{roomid=0, roomName='102', type='Twin', accessible=false, image='image2', description='Room description 2', features=[x, y, z], roomPrice=987}]}", rooms.toString());
     }
 
     @Test
@@ -82,8 +82,8 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.createRoom(sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.CREATED);
-        assertEquals(roomResult.getRoom().toString(),"Room{roomid=0, roomName='103', type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}");
+        assertEquals(HttpStatus.CREATED, roomResult.getHttpStatus());
+        assertEquals("Room{roomid=0, roomName='103', type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}", roomResult.getRoom().toString());
     }
 
     @Test
@@ -94,7 +94,7 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.createRoom(sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.FORBIDDEN);
+        assertEquals(HttpStatus.FORBIDDEN, roomResult.getHttpStatus());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.deleteRoom(1, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.ACCEPTED);
+        assertEquals(HttpStatus.ACCEPTED, roomResult.getHttpStatus());
     }
 
     @Test
@@ -114,7 +114,7 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.deleteRoom(1, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.NOT_FOUND);
+        assertEquals(HttpStatus.NOT_FOUND, roomResult.getHttpStatus());
     }
 
     @Test
@@ -123,7 +123,7 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.deleteRoom(1, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.FORBIDDEN);
+        assertEquals(HttpStatus.FORBIDDEN, roomResult.getHttpStatus());
     }
 
     @Test
@@ -135,8 +135,8 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.updateRoom(1, sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.ACCEPTED);
-        assertEquals(roomResult.getRoom().toString(), "Room{roomid=0, roomName='105', type='Twin', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}");
+        assertEquals(HttpStatus.ACCEPTED, roomResult.getHttpStatus());
+        assertEquals("Room{roomid=0, roomName='105', type='Twin', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}", roomResult.getRoom().toString());
     }
 
     @Test
@@ -148,7 +148,7 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.updateRoom(1, sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.NOT_FOUND);
+        assertEquals(HttpStatus.NOT_FOUND, roomResult.getHttpStatus());
     }
 
     @Test
@@ -159,7 +159,7 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.updateRoom(1, sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.FORBIDDEN);
+        assertEquals(HttpStatus.FORBIDDEN, roomResult.getHttpStatus());
     }
 
 }
