@@ -31,7 +31,7 @@ public class BookingValidationIT {
             .when()
             .post("http://localhost:3000/booking/");
 
-        assertEquals(response.statusCode(), 400);
+        assertEquals(400, response.statusCode());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class BookingValidationIT {
                 .when()
                 .put("http://localhost:3000/booking/1");
 
-        assertEquals(response.statusCode(), 400);
+        assertEquals(400, response.statusCode());
     }
 
 }

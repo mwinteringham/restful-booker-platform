@@ -95,7 +95,7 @@ public class MessageEndpointsIT {
                 .cookie("token", "abc123")
                 .delete("http://localhost:3006/message/" + createdMessage.getMessageid());
 
-        assertEquals(response.statusCode(), 202);
+        assertEquals(202, response.statusCode());
     }
 
     @Test
@@ -106,7 +106,7 @@ public class MessageEndpointsIT {
                 .when()
                 .post("http://localhost:3006/message/");
 
-        assertEquals(response.statusCode(), 400);
+        assertEquals(400, response.statusCode());
     }
 
     @Test

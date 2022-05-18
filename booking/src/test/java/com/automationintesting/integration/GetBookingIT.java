@@ -46,7 +46,7 @@ public class GetBookingIT {
                                 .cookie("token", "abc123")
                                 .get("http://localhost:3000/booking/1");
 
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals(200, response.getStatusCode());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class GetBookingIT {
 
         response.getBody().prettyPrint();
 
-        assertEquals(response.getStatusCode(), 404);
+        assertEquals(404, response.getStatusCode());
     }
 
 }

@@ -28,7 +28,7 @@ public class RoomValidationIT {
             .when()
             .post("http://localhost:3001/room/");
 
-        assertEquals(response.statusCode(), 400);
+        assertEquals(400, response.statusCode());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class RoomValidationIT {
                 .when()
                 .put("http://localhost:3001/room/1");
 
-        assertEquals(response.statusCode(), 400);
+        assertEquals(400, response.statusCode());
     }
 
 }

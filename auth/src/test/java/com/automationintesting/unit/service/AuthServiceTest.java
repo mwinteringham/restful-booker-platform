@@ -41,8 +41,8 @@ public class AuthServiceTest {
 
         Decision decision = authService.queryCredentials(auth);
 
-        assertEquals(decision.getStatus(), HttpStatus.OK);
-        assertEquals(decision.getToken().getToken().length(), 16);
+        assertEquals(HttpStatus.OK, decision.getStatus());
+        assertEquals(16, decision.getToken().getToken().length());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class AuthServiceTest {
 
         Decision decision = authService.queryCredentials(auth);
 
-        assertEquals(decision.getStatus(), HttpStatus.FORBIDDEN);
+        assertEquals(HttpStatus.FORBIDDEN, decision.getStatus());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class AuthServiceTest {
 
         Decision decision = authService.queryCredentials(auth);
 
-        assertEquals(decision.getStatus(), HttpStatus.INTERNAL_SERVER_ERROR);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, decision.getStatus());
     }
 
     @Test

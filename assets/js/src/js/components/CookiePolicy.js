@@ -1,12 +1,7 @@
 import React from 'react';
 
-export default class CookiePolicy extends React.Component {
+const CookiePolicy = () => {
 
-    constructor(){
-        super();
-    }
-
-    render(){
         return(<div>
                 <h1>Cookie Policy</h1>
                 <p>BY CONTINUING TO USE OUR SITE AND SERVICES, YOU ARE AGREEING TO THE USE OF COOKIES AND SIMILAR TECHNOLOGIES FOR THE PURPOSES WE DESCRIBE IN THIS PRIVACY POLICY. IF YOU DO NOT ACCEPT THE USE OF COOKIES AND SIMILAR TECHNOLOGIES, DO NOT USE THIS SITE.</p>
@@ -53,6 +48,7 @@ export default class CookiePolicy extends React.Component {
                 <br />
             </div>
         )
-    }
 
 }
+
+export default CookiePolicy;

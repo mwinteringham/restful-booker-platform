@@ -44,8 +44,8 @@ public class TaskAnalysisIntegrationTest {
         // in the API. The first being the API takes the request (by checking that a 404
         // is not returned) and the second being the response sends back the correct
         // header back in the form of a token.
-        assertNotEquals(authResponse.getStatusCode(), 404);
-        assertEquals(authResponse.cookies().get("token").getClass(), String.class);
+        assertNotEquals(404, authResponse.getStatusCode());
+        assertEquals(String.class, authResponse.cookies().get("token").getClass());
     }
 
 }

@@ -8,34 +8,34 @@ String.prototype.capitalize = function() {
 
 export const API = {
 
-    getRoom : (component) => {
+    getRoom : (setRooms) => {
         axios.get(API_ROOT + '/room/')
 			.then(res => {
-				component.setState({rooms : res.data.rooms});
+				setRooms(res.data.rooms);
 			});
     },
 
-    getRoomById : (component) => {
-        axios.get(API_ROOT + '/room/' + component.props.params.id, {
+    getRoomById : (id, room, setRoom) => {
+        axios.get(API_ROOT + '/room/' + id, {
             headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
         })
         .then(res => {
-            res.data.featuresObject = component.state.room.featuresObject;
+            res.data.featuresObject = room.featuresObject;
 
             for (let i = 0; i < res.data.features.length; i++) {
                 res.data.featuresObject[res.data.features[i]] = true
             }
 
-            component.setState({ room : res.data });
+            setRoom(res.data);
         });
     },
 
-    postRoom : (component) => {
+    postRoom : (newRoom, resetForm, updateRooms, setErrors) => {
         axios.post(API_ROOT + '/room/', 
-        JSON.stringify(component.state.newRoom),
+        JSON.stringify(newRoom),
         {
             headers: {
                 'Accept': 'application/json',
@@ -45,20 +45,20 @@ export const API = {
         })
         .then(res => {
             if(res.status == 201){
-                component.resetForm();
-                component.props.updateRooms();
+                resetForm();
+                updateRooms();
             } else {
                 return res.data;
             }
         })
         .catch(res => {
-            component.setState({ errors : res.response.data.fieldErrors });
+            setErrors(res.response.data.fieldErrors);
         });
     },
 
-    putRoom : (component) => {
-        axios.put(API_ROOT + '/room/' + component.props.params.id,
-            JSON.stringify(component.state.room),
+    putRoom : (id, room, resetForm, fetchRoomDetails, setErrors) => {
+        axios.put(API_ROOT + '/room/' + id,
+            JSON.stringify(room),
             {
                 headers: {
                     'Accept': 'application/json',
@@ -68,20 +68,20 @@ export const API = {
             })
             .then(res => {
                 if(res.status == 202){
-                    component.resetForm();
-                    component.fetchRoomDetails();
+                    resetForm();
+                    fetchRoomDetails();
                 } else {
                     return res.data;
                 }
             })
             .catch(res => {
-                component.setState({ errors : res.response.data.fieldErrors });
+                setErrors(res.response.data.fieldErrors);
             });
     },
 
-    postBooking : (component) => {
+    postBooking : (booking, setComplete, setErrors) => {
         axios.post(API_ROOT + '/booking/',
-            component.state.booking,
+            booking,
             {
                 headers: {
                     'Accept': 'application/json',
@@ -91,36 +91,35 @@ export const API = {
             })
             .then(res => {
                 if (res.status == 201){
-                    component.setState({completed : true})
+                    setComplete(true)
                 } else {
                     return res.data;
                 }
             })
             .catch(res => {
-                if (res.status == 409){
-                    component.setState({ errors : ["The room dates are either invalid or are already booked for one or more of the dates that you have selected."]})
+                if (res.response.status == 409){
+                    setErrors(["The room dates are either invalid or are already booked for one or more of the dates that you have selected."])
                 } else {
-                    component.setState({ errors : res.response.data.fieldErrors });
+                    setErrors(res.response.data.fieldErrors);
                 }
             });
     },
 
-    getBranding : (component) => {
+    getBranding : (setBranding) => {
         axios.get(API_ROOT + '/branding/', {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
         })
-        .then(res => res.data)
         .then(res => {
-            component.setState({ branding : res });
+            setBranding(res.data);
         });
     },
 
-    putBranding : (component) => {
+    putBranding : (branding, setErrors, toggleModal) => {
         axios.put(API_ROOT + '/branding/',
-            JSON.stringify(component.state.branding),
+            JSON.stringify(branding),
             {
                 headers: {
                     'Accept': 'application/json',
@@ -130,35 +129,36 @@ export const API = {
             })
             .then(res => {
                 if(res.status == 202){
-                    component.setState({showModal : true, errors : {}});
+                    setErrors({});
+                    toggleModal(true)
                 }
             })
             .catch(res => {
-                component.setState({ errors : res.response.data.fieldErrors });
+                setErrors(res.response.data.fieldErrors);
             })
     },
     
 
-    getRoomReport : (component) => {
-        axios.get(API_ROOT + '/report/room/' + component.props.roomid, {
+    getRoomReport : (roomid, setEvents) => {
+        axios.get(API_ROOT + '/report/room/' + roomid, {
             headers : {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
         .then(res => {
-            component.setState({ events : res.data.report });
+            setEvents(res.data.report);
         })
     },
 
-    getReport : (component) => {
+    getReport : (setReport) => {
         axios.get(API_ROOT + '/report/')
             .then(body => {
-                component.setState({ report : body.data.report });
+                setReport(body.data.report);
             });
     },
 
-    getNotificationCount : (component) => {
+    getNotificationCount : (updateCount) => {
         axios.get(API_ROOT + '/message/count', {
             headers: {
                 'Accept': 'application/json',
@@ -166,11 +166,11 @@ export const API = {
             }
         })
         .then(res => {
-            component.setState({ count : res.data.count });
+            updateCount(res.data.count);
         })
     },
 
-    getMessages : (component) => {
+    getMessages : (setMessages) => {
         axios.get(API_ROOT + '/message/', {
             headers: {
                 'Accept': 'application/json',
@@ -178,11 +178,11 @@ export const API = {
             }
         })
         .then(res => {
-            component.setState({ messages : res.data.messages });
+            setMessages(res.data.messages);
         })
     },
 
-    deleteMessage : (id, component) => {
+    deleteMessage : (id, refreshMessageList) => {
         axios.delete(API_ROOT + '/message/' + id, {
             headers: {
                 'Accept': 'application/json',
@@ -190,11 +190,11 @@ export const API = {
             }
         })
         .then(res => {
-            component.refreshMessageList();
+            refreshMessageList();
         })
     },
 
-    getMessage : (id, component) => {
+    getMessage : (id, setMessage) => {
         axios.get(API_ROOT + '/message/' + id, {
             headers: {
                 'Accept': 'application/json',
@@ -202,13 +202,13 @@ export const API = {
             }
         })
         .then(res => {
-            component.setState(res.data);
+            setMessage(res.data);
         })
     },
 
-    postMessage : (component) => {
+    postMessage : (contact, setSubmitted, setErrors) => {
         axios.post(API_ROOT + '/message/',
-            JSON.stringify(component.state.contact),{
+            JSON.stringify(contact),{
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -217,11 +217,11 @@ export const API = {
         })
         .then(res => {
             if(res.status == 201){
-                component.setState({ submitted : true});
+                setSubmitted(true);
             }
         })
         .catch(res => {
-            component.setState({ errors : res.response.data.fieldErrors });
+            setErrors(res.response.data.fieldErrors);
         });
     },
 
@@ -235,7 +235,7 @@ export const API = {
         })
     },
 
-    postLogout : (component, tokenCookie) => {
+    postLogout : (setAuthenticate, tokenCookie) => {
         axios.post(API_ROOT + '/auth/logout',
             JSON.stringify({ 'token' : tokenCookie }),
             {
@@ -246,7 +246,7 @@ export const API = {
 		})
 		.then(res => {
 			if(res.status == 200){
-				component.props.setAuthenticate(false);
+				setAuthenticate(false);
 
 				const cookies = new Cookies();
 				cookies.remove('token');
@@ -254,7 +254,7 @@ export const API = {
 		})
     },
 
-    postValidation : (component, cookies) => {
+    postValidation : (setAuthenticate, cookies) => {
         axios.post(API_ROOT + '/auth/validate',
             JSON.stringify({ token: cookies.get('token')}),
             {
@@ -265,26 +265,27 @@ export const API = {
             })
             .then(res => {
                 if(res.status == 200){
-                    component.setAuthenticate(true);
+                    setAuthenticate(true);
                 }
             })
+            .catch()
     },
 
-    deleteBooking : (component) => {
-        axios.delete(API_ROOT + '/booking/' + component.props.booking.bookingid, {
+    deleteBooking : (id, getBookings) => {
+        axios.delete(API_ROOT + '/booking/' + id, {
 			credentials: 'include',
         })
         .then(res => {
             if(res.status == 202){
-                component.props.getBookings();
+                getBookings();
             }
         })
         .catch(e => console.log(e))
     },
 
-    updateBooking : (component) => {
-        axios.put(API_ROOT + '/booking/' + component.props.booking.bookingid,
-            JSON.stringify(component.state.booking),
+    updateBooking : (booking, toggleEdit, getBookings) => {
+        axios.put(API_ROOT + '/booking/' + booking.bookingid,
+            JSON.stringify(booking),
             {
                 headers: {
                     'Accept': 'application/json',
@@ -293,18 +294,15 @@ export const API = {
                 credentials: 'include'
             })
             .then(res => {
-                component.setState({allowEdit : false});
-                component.props.getBookings();
+                toggleEdit(false)
+                getBookings();
             })
             .catch(e => console.log(e));
     },
 
-    postLogin : (component) => {
+    postLogin : (login, setAuthenticate, setError) => {
         axios.post(API_ROOT + '/auth/login',
-            JSON.stringify({
-                username: component.state.username,
-                password: component.state.password,
-            }), {
+            JSON.stringify(login), {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -312,32 +310,33 @@ export const API = {
         })
         .then(res => {
             if(res.status === 200){
-                component.props.setAuthenticate(true);
+                setAuthenticate(true);
             } else {
-                component.setState({ error : true });
+                setError(true);
             }
         })
         .catch(e => {
-          console.log("Failed to authenticate");
-          console.log(e);
+            setError(true);
+            console.log("Failed to authenticate");
+            console.log(e);
         })
     },
 
-    getBookingsByRoomId : (component) => {
-        axios.get(API_ROOT + '/booking/?roomid=' + component.props.roomid, {
+    getBookingsByRoomId : (roomid, setBookings) => {
+        axios.get(API_ROOT + '/booking/?roomid=' + roomid, {
             headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
         })
         .then(res => {
-            component.setState(res.data);
+            setBookings(res.data.bookings);
         })
         .catch(e => console.log(e));
     },
 
-    deleteAll : (component) => {
-        axios.get(API_ROOT + '/booking/?roomid=' + component.props.details.roomid, {
+    deleteAll : (roomid, updateRooms) => {
+        axios.get(API_ROOT + '/booking/?roomid=' + roomid, {
             method: 'GET'
         })
         .then(res => {
@@ -345,12 +344,12 @@ export const API = {
                 axios.delete(API_ROOT + '/booking/' + res.data.bookings[i].bookingid);
             }
 
-            axios.delete(API_ROOT + '/room/' + component.props.details.roomid, {
+            axios.delete(API_ROOT + '/room/' + roomid, {
                 credentials: 'include'
             })
             .then(res => {
                 if(res.status == 202){
-                    component.props.updateRooms();
+                    updateRooms();
                 }
             });
         })
