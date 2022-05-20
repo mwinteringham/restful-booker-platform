@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from '../src/js/components/Home.jsx';
+import Home from '../src/js/components/Home.js';
 import nock from 'nock';
 
 import '@testing-library/jest-dom'

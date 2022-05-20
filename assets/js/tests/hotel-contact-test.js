@@ -1,5 +1,5 @@
 import React from 'react';
-import HotelContact from '../src/js/components/HotelContact.jsx';
+import HotelContact from '../src/js/components/HotelContact.js';
 import nock from 'nock';
 
 import '@testing-library/jest-dom'
@@ -7,7 +7,6 @@ import {
     render,
     fireEvent,
     waitFor,
-    getByTestId
   } from '@testing-library/react'
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import RoomListings from '../../src/js/components/RoomListings.jsx';
+import RoomListings from '../../src/js/components/RoomListings.js';
 import nock from 'nock';
 import {
   findByText,

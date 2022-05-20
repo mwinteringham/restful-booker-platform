@@ -1,5 +1,5 @@
 import React from 'react';
-import MessageList from '../src/js/components/MessageList.jsx';
+import MessageList from '../src/js/components/MessageList.js';
 import nock from 'nock';
 
 import '@testing-library/jest-dom'

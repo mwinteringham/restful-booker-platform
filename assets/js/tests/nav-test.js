@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from '../src/js/components/Nav.jsx';
+import Nav from '../src/js/components/Nav.js';
 import { BrowserRouter } from 'react-router-dom';
 import {
     render

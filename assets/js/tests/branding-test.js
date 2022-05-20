@@ -1,5 +1,5 @@
 import React from 'react';
-import Branding from '../src/js/components/Branding.jsx';
+import Branding from '../src/js/components/Branding.js';
 import nock from 'nock';
 import ReactModal from 'react-modal';
 import '@testing-library/jest-dom'

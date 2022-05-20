@@ -4,7 +4,7 @@ import {
     fireEvent,
     cleanup
   } from '@testing-library/react'
-import BookingListing from '../../src/js/components/BookingListing.jsx';
+import BookingListing from '../../src/js/components/BookingListing.js';
 import contract from '../../../../booking/src/test/resources/contract.json';
 
 // We first declare our test by using Jests test function and provide it

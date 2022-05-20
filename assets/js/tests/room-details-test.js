@@ -1,5 +1,5 @@
 import React from 'react';
-import RoomDetails from '../src/js/components/RoomDetails.jsx';
+import RoomDetails from '../src/js/components/RoomDetails.js';
 import nock from 'nock';
 
 import {
