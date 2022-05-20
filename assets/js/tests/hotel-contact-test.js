@@ -30,11 +30,11 @@ test('Contact form sends request to message API', async () => {
                     .post('/message/', message)
                     .reply(201);
 
-    const {findByPlaceholderText, getByText, getByTestId} = render(
-        <HotelContact contact={contactDetails} />
+    const {getByPlaceholderText, getByText, getByTestId} = render(
+        <HotelContact contactDetails={contactDetails} />
     )
-
-    await waitFor(() => findByPlaceholderText(/Name/))
+ 
+    await waitFor(() => getByPlaceholderText(/Name/))
     fireEvent.change(getByTestId(/ContactName/), { target: { value: message.name } });
     fireEvent.change(getByTestId(/ContactEmail/), { target: { value: message.email } });
     fireEvent.change(getByTestId(/ContactPhone/), { target: { value: message.phone } });
