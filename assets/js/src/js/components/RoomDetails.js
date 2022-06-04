@@ -21,7 +21,7 @@ const RoomDetails = ({params}) => {
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        fetchRoomDetails();
+        API.getRoomById(params.id, room, setRoom);
     }, [])
 
     const toggleAndRestEdit = (toggle) => {
