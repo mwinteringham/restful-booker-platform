@@ -75,11 +75,11 @@ echo #######################################
 echo:
 
 cd %cmdFileDirectory%.utilities\rbp-proxy\local
-call npm install
+call npm install --legacy-peer-deps
 cd %cmdFileDirectory%
 
 cd %cmdFileDirectory%assets\js
-call npm install
+call npm install --legacy-peer-deps
 call npm test
 call npm run build
 

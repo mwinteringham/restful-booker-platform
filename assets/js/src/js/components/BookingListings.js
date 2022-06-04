@@ -3,7 +3,7 @@ import BookingListing from './BookingListing.js';
 
 import { API } from '../libs/Api.js';
 
-const BookingListings = ({fetchRoomDetails, roomid, roomPrice}) => {
+const BookingListings = ({roomid, roomPrice}) => {
 
     const [bookings, setBookings] = useState([]);
 

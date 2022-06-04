@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import BookingListings from './BookingListings.js';
+import { useParams } from 'react-router-dom';
 import { API } from '../libs/Api.js';
 
-const RoomDetails = ({params}) => {
+const RoomDetails = ({}) => {
 
+    let { id } = useParams();
     const [edit, toggleEdit] = useState(false);
     const [room, setRoom] = useState({
         accessible : false,
@@ -21,7 +23,7 @@ const RoomDetails = ({params}) => {
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        API.getRoomById(params.id, room, setRoom);
+        API.getRoomById(id, room, setRoom);
     }, [])
 
     const toggleAndRestEdit = (toggle) => {
@@ -32,7 +34,7 @@ const RoomDetails = ({params}) => {
     const doEdit = () => {
         room.features = Object.keys(room.featuresObject).filter(key => room.featuresObject[key]);
 
-        API.putRoom(params.id, room, resetForm, fetchRoomDetails, setErrors);
+        API.putRoom(id, room, resetForm, fetchRoomDetails, setErrors);
     }
 
     const resetForm = () => {
@@ -54,7 +56,7 @@ const RoomDetails = ({params}) => {
     }
 
     const fetchRoomDetails = () => {
-        API.getRoomById(params.id, room, setRoom)
+        API.getRoomById(id, room, setRoom)
     }
 
     const updateState = (event) => {
@@ -228,7 +230,7 @@ const RoomDetails = ({params}) => {
                 <div className="col-sm-2 rowHeader"><p>Check out</p></div>
                 <div className="col-sm-1"></div>
             </div>
-            <BookingListings fetchRoomDetails={fetchRoomDetails} roomid={params.id} roomPrice={room.roomPrice} />
+            <BookingListings roomid={id} roomPrice={room.roomPrice} />
         </div>
     )
 

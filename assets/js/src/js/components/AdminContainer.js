@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Cookies from 'universal-cookie';
 
 import Nav from './Nav.js';
@@ -33,27 +33,13 @@ const AdminContainer = () => {
             <div>
                 {isAuthenticated ? (
                     <div>
-                        <Route exact path='/admin/' render={(props) => (
-                            <div>
-                                <RoomListings {...props} />
-                            </div>
-                        )} />
-                        <Route exact path='/admin/room/:id' render={({ location, match }) => (
-                            <div>
-                                <RoomDetails params={match.params}/>
-                            </div>
-                        )} />
-                        <Route exact path='/admin/report' render={() => (
-                            <div>
-                                <Report defaultDate={new Date()} />
-                            </div>
-                        )} />
-                        <Route exact path='/admin/branding' component={Branding} />
-                        <Route exact path='/admin/messages' render={({ location, match }) => (
-                            <div>
-                                <MessageList setCount={setCount} />
-                            </div>
-                        )} />
+                        <Routes>
+                            <Route exact path='/' element={<RoomListings />} />
+                            <Route exact path='room/:id' element={<RoomDetails />} />
+                            <Route exact path='report' element={<Report defaultDate={new Date()} />} />
+                            <Route exact path='branding' element={<Branding />} />
+                            <Route exact path='messages' element={<MessageList setCount={setCount} />}/>
+                        </Routes>
                     </div>
                 ) : (
                     <div>

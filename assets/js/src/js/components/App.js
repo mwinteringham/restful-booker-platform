@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import ReactModal from 'react-modal';
 import Cookies from 'universal-cookie';
 import { createBrowserHistory as createHistory } from 'history'
@@ -46,14 +46,12 @@ const App = () => {
     return(
         <HashRouter>
             {welcome}
-                <Switch>
-                    <Route path='/admin/' render={() => (
-                        <AdminContainer />
-                    )} />
-                    <Route exact path='/' component={Home} />
-                    <Route exact path='/cookie' component={CookiePolicy} />
-                    <Route exact path='/privacy' component={PrivacyPolicy} />
-                </Switch>
+                <Routes>
+                    <Route path='/admin/*' element={<AdminContainer />} />
+                    <Route exact path='/' element={<Home />} />
+                    <Route exact path='/cookie' element={<CookiePolicy />} />
+                    <Route exact path='/privacy' element={<PrivacyPolicy />} />
+                </Routes>
             <Footer />
         </HashRouter>
     );

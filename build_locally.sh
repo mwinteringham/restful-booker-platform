@@ -52,11 +52,11 @@ printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 #######################################\n"
 
 cd .utilities/rbp-proxy/local
-npm install
+npm install --legacy-peer-deps
 cd ../../..
 
 cd assets/js
-npm install
+npm install --legacy-peer-deps
 npm run test
 npm run build
 

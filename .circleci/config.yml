@@ -7,7 +7,7 @@ jobs:
   checkout_code:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
       MAVEN_OPTS: -Xmx3200m
@@ -33,7 +33,7 @@ jobs:
   run_auth_build:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -58,7 +58,7 @@ jobs:
   run_booking_build:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -83,7 +83,7 @@ jobs:
   run_report_build:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -108,7 +108,7 @@ jobs:
   run_room_build:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -133,7 +133,7 @@ jobs:
   run_branding_build:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -158,7 +158,7 @@ jobs:
   run_message_build:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
       MAVEN_OPTS: -Xmx3200m
@@ -183,8 +183,8 @@ jobs:
   run_assets_tests:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
-
+      - image: cimg/openjdk:15.0-node
+    resource_class: large
     steps:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
@@ -192,7 +192,7 @@ jobs:
           name: Startup local proxy
           background: true
           command: |
-            npm install
+            npm install --legacy-peer-deps
             npm start
           working_directory: .utilities/rbp-proxy/local/
       - run:
@@ -208,7 +208,7 @@ jobs:
           command: |
             if [ -f ~/tmp/assets.txt ]; then
               echo "[BUILDING] Assets"
-              npm install
+              npm install --legacy-peer-deps
               npm test
               npm run build
               cd ..
@@ -236,7 +236,7 @@ jobs:
   build_auth_docker_image:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -259,7 +259,7 @@ jobs:
   build_booking_docker_image:
 
       docker:
-        - image: circleci/openjdk:15-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -283,7 +283,7 @@ jobs:
   build_report_docker_image:
 
       docker:
-        - image: circleci/openjdk:15-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -307,7 +307,7 @@ jobs:
   build_room_docker_image:
 
       docker:
-        - image: circleci/openjdk:15-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -331,7 +331,7 @@ jobs:
   build_branding_docker_image:
 
       docker:
-        - image: circleci/openjdk:15-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -355,7 +355,7 @@ jobs:
   build_message_docker_image:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -379,7 +379,7 @@ jobs:
   build_assets_docker_image:
 
         docker:
-          - image: circleci/openjdk:15-buster-node-browsers
+          - image: cimg/openjdk:15.0-node
 
         steps:
           - restore_cache:
@@ -403,7 +403,7 @@ jobs:
   deploy_auth_docker_image:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -413,7 +413,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/cimg/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Auth"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -425,7 +425,7 @@ jobs:
   deploy_booking_docker_image:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -435,7 +435,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/cimg/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Booking"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -447,7 +447,7 @@ jobs:
   deploy_report_docker_image:
 
       docker:
-        - image: circleci/openjdk:15-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -457,7 +457,7 @@ jobs:
               - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run:
             command: |
-              if [ -f /home/circleci/tmp/report.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f /home/cimg/tmp/report.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[DEPLOYING] Report"
                 version=`find ~/tmp/*.tmp -printf "%f\n"`
                 ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -469,7 +469,7 @@ jobs:
   deploy_room_docker_image:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -479,7 +479,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/room.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/cimg/tmp/room.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Room"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -491,7 +491,7 @@ jobs:
   deploy_branding_docker_image:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -501,7 +501,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/cimg/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Branding"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -513,7 +513,7 @@ jobs:
   deploy_message_docker_image:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -523,7 +523,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/message.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/cimg/tmp/message.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Message"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -535,7 +535,7 @@ jobs:
   deploy_assets_docker_image:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0-node
 
     steps:
       - restore_cache:
@@ -545,7 +545,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/circleci/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/cimg/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Report"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -557,7 +557,7 @@ jobs:
   run_e2e_checks:
 
     docker:
-      - image: circleci/openjdk:15-buster-node-browsers
+      - image: cimg/openjdk:15.0-browsers
 
     steps:
       - restore_cache:

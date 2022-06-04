@@ -1,5 +1,7 @@
 import React from 'react';
 import RoomDetails from '../src/js/components/RoomDetails.js';
+import { Routes, Route, Router } from 'react-router-dom';
+import {createMemoryHistory} from 'history'
 import nock from 'nock';
 
 import {
@@ -19,10 +21,15 @@ const roomObject = {
     roomPrice: 100
 }
 
+const history = createMemoryHistory()
+history.push('/admin/room/1')
+
 nock('http://localhost')
     .persist()
     .get('/booking/?roomid=1')
-    .reply(200, {})
+    .reply(200, {
+        bookings : []
+    })
 
 test('Room details component renders', async () => {
     const roomMock = nock('http://localhost')
@@ -30,7 +37,11 @@ test('Room details component renders', async () => {
                         .reply(200, roomObject);
 
     const {asFragment, getByText} = render(
-        <RoomDetails params={{id : 1}} />
+        <Router location={history.location} navigator={history}>
+            <Routes>
+                <Route path="/admin/room/:id" element={<RoomDetails />} />
+            </Routes>
+        </Router>
     )
 
     await waitFor(() => {expect(roomMock.isDone()).toBeTruthy()})
@@ -45,7 +56,11 @@ test('Room details switches into edit mode', async () => {
                         .reply(200, roomObject);
 
     const {asFragment, getByText} = render(
-        <RoomDetails params={{id : 1}} />
+        <Router location={history.location} navigator={history}>
+            <Routes>
+                <Route path="/admin/room/:id" element={<RoomDetails />} />
+            </Routes>
+        </Router>
     )
 
     await waitFor(() => {expect(roomMock.isDone()).toBeTruthy()})
@@ -63,7 +78,11 @@ test('Room details can be switched out of edit mode', async () => {
                         .reply(200, roomObject);
 
     const {asFragment, getByText} = render(
-        <RoomDetails params={{id : 1}} />
+        <Router location={history.location} navigator={history}>
+            <Routes>
+                <Route path="/admin/room/:id" element={<RoomDetails />} />
+            </Routes>
+        </Router>
     )
 
     await waitFor(() => {expect(roomMock.isDone()).toBeTruthy()})
@@ -89,7 +108,11 @@ test('Room details can render validation errors', async () => {
                         });
 
     const {asFragment, getByText} = render(
-        <RoomDetails params={{id : 1}} />
+        <Router location={history.location} navigator={history}>
+            <Routes>
+                <Route path="/admin/room/:id" element={<RoomDetails />} />
+            </Routes>
+        </Router>
     )
 
     await waitFor(() => {expect(roomMock.isDone()).toBeTruthy()})
@@ -129,9 +152,13 @@ test('Room details can be submitted', async () => {
                         }
                     })
                     .reply(202);
-    
+
     const {getByText} = render(
-        <RoomDetails params={{id : 1}} />
+        <Router location={history.location} navigator={history}>
+            <Routes>
+                <Route path="/admin/room/:id" element={<RoomDetails />} />
+            </Routes>
+        </Router>
     )
 
     await waitFor(() => {expect(roomMock.isDone()).toBeTruthy()})

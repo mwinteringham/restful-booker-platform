@@ -1,16 +1,16 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { API } from '../libs/Api.js';
 
 const RoomListing = ({details, updateRooms}) => {
     
-    const history = useHistory();
+    let navigate = useNavigate();
     const deleteRoom = () => {
         API.deleteAll(details.roomid, updateRooms)
     }
 
     const openRoom = () => {
-        history.push('/admin/room/' + details.roomid);
+        navigate('/admin/room/' + details.roomid);
     }
     
     return(

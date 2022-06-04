@@ -1,7 +1,6 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
-import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { API } from '../libs/Api';
 import Notification from './Notification.js';
 
@@ -56,10 +55,4 @@ const Nav = ({setAuthenticate, isAuthenticated, setCount, count}) => {
 	);
 }
 
-Nav.propTypes = {
-	match: PropTypes.object.isRequired,
-	location: PropTypes.object.isRequired,
-	history: PropTypes.object.isRequired
-}
-
-export default withRouter(Nav);
+export default Nav;
