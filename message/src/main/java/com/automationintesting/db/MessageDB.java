@@ -30,7 +30,7 @@ public class MessageDB {
     private final String DELETE_BY_MESSAGEID = "DELETE FROM MESSAGES WHERE messageid = ?";
     private final String DELETE_ALL_MESSAGES = "DELETE FROM MESSAGES";
     private final String SELECT_MESSAGES = "SELECT * FROM MESSAGES";
-    private final String SELECT_UNREAD_MESSAGE = "SELECT * FROM MESSAGES WHERE read = 'false'";
+    private final String SELECT_UNREAD_MESSAGE = "SELECT * FROM MESSAGES WHERE read = FALSE";
     private final String UPDATE_MESSAGE_READ = "UPDATE MESSAGES SET read = 'true' WHERE messageid = ?";
     private final String RESET_INCREMENT = "ALTER TABLE MESSAGES ALTER COLUMN messageid RESTART WITH 1";
 

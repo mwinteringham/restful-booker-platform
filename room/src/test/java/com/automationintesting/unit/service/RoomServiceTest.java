@@ -40,7 +40,7 @@ public class RoomServiceTest {
 
     @Test
     public void getRoomsTest() throws SQLException {
-        List<Room> sampleRooms = new ArrayList<>(){{
+        List<Room> sampleRooms = new ArrayList<Room>(){{
             this.add(new Room("101", "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123));
             this.add(new Room("102", "Twin", false, "image2", "Room description 2", new String[] {"x", "y", "z"}, 987));
         }};

@@ -43,7 +43,7 @@ public class MessageServiceTest {
 
     @Test
     public void getMessagesTest() throws SQLException {
-        List<MessageSummary> sampleMessages = new ArrayList<>(){{
+        List<MessageSummary> sampleMessages = new ArrayList<MessageSummary>(){{
             this.add(new MessageSummary(1, "Mark", "Message 1", false));
             this.add(new MessageSummary(1, "Richard", "Message 2", false));
         }};

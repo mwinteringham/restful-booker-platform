@@ -51,7 +51,7 @@ public class BookingServiceTest {
 
     @Test
     public void returnAllBookingsTest() throws SQLException {
-        List<Booking> bookings = new ArrayList<>(){{
+        List<Booking> bookings = new ArrayList<Booking>(){{
             this.add(createGenericBooking());
             this.add(createGenericBooking());
         }};
@@ -68,7 +68,7 @@ public class BookingServiceTest {
 
     @Test
     public void returnBookingsByRoomIdTest() throws SQLException {
-        List<Booking> bookings = new ArrayList<>(){{
+        List<Booking> bookings = new ArrayList<Booking>(){{
             this.add(createGenericBooking());
         }};
 
