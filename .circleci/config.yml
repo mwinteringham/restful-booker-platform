@@ -209,7 +209,7 @@ jobs:
             if [ -f ~/tmp/assets.txt ]; then
               echo "[BUILDING] Assets"
               npm install --legacy-peer-deps
-              npm test
+              npm test -- --runInBand
               npm run build
               cd ..
               cd api
