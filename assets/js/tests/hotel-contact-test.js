@@ -1,5 +1,5 @@
 import React from 'react';
-import HotelContact from '../src/js/components/HotelContact.jsx';
+import HotelContact from '../src/js/components/HotelContact.js';
 import nock from 'nock';
 
 import '@testing-library/jest-dom'
@@ -7,7 +7,6 @@ import {
     render,
     fireEvent,
     waitFor,
-    getByTestId
   } from '@testing-library/react'
 
 
@@ -31,11 +30,11 @@ test('Contact form sends request to message API', async () => {
                     .post('/message/', message)
                     .reply(201);
 
-    const {findByPlaceholderText, getByText, getByTestId} = render(
-        <HotelContact contact={contactDetails} />
+    const {getByPlaceholderText, getByText, getByTestId} = render(
+        <HotelContact contactDetails={contactDetails} />
     )
-
-    await waitFor(() => findByPlaceholderText(/Name/))
+ 
+    await waitFor(() => getByPlaceholderText(/Name/))
     fireEvent.change(getByTestId(/ContactName/), { target: { value: message.name } });
     fireEvent.change(getByTestId(/ContactEmail/), { target: { value: message.email } });
     fireEvent.change(getByTestId(/ContactPhone/), { target: { value: message.phone } });

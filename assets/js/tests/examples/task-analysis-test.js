@@ -1,6 +1,6 @@
 import React from 'react';
 import nock from 'nock';
-import LoginComponent from '../../src/js/components/Login.jsx';
+import LoginComponent from '../../src/js/components/Login.js';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 
 jest.mock("react-ga")

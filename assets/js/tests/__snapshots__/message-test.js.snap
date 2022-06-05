@@ -14,7 +14,6 @@ exports[`Message popup is populated with details 1`] = `
         <span>
           From: 
         </span>
-        
       </p>
     </div>
     <div
@@ -24,7 +23,6 @@ exports[`Message popup is populated with details 1`] = `
         <span>
           Phone: 
         </span>
-        
       </p>
     </div>
   </div>
@@ -38,7 +36,6 @@ exports[`Message popup is populated with details 1`] = `
         <span>
           Email: 
         </span>
-        
       </p>
     </div>
   </div>

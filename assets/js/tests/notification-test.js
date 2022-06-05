@@ -1,5 +1,5 @@
 import React from 'react';
-import Notification from '../src/js/components/Notification.jsx';
+import Notification from '../src/js/components/Notification.js';
 import {
     render,
     asFragment,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Report from '../src/js/components/Report.jsx';
+import Report from '../src/js/components/Report.js';
 import nock from 'nock';
 import '@testing-library/jest-dom'
 
