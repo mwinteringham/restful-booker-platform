@@ -20,7 +20,7 @@ public class AuthVisualTest extends TestSetup {
         eyes.open(driver, "RBP","Login Visual Test", new RectangleSize(1400, 700));
 
         // Next we use Selenium to navigate to our page under test
-        driver.navigate().to("http://localhost:8080/#/admin");
+        driver.navigate().to("http://localhost:3003/#/admin");
 
         // Close down the banner because we don't want to screenshot that
         driver.findElement(By.cssSelector(".btn-primary")).click();

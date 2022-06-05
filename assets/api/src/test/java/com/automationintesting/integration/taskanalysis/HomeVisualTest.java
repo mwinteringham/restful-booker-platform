@@ -37,7 +37,7 @@ public class HomeVisualTest extends TestSetup {
         eyes.setForceFullPageScreenshot(true);
 
         // Next we use Selenium to navigate to our page under test
-        driver.navigate().to("http://localhost:8080/");
+        driver.navigate().to("http://localhost:3003/");
 
         // Close down the banner because we don't want to screenshot that
         driver.findElement(By.cssSelector(".btn-primary")).click();
