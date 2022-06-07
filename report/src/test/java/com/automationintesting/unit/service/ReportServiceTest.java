@@ -1,5 +1,6 @@
 package com.automationintesting.unit.service;
 
+import com.automationintesting.model.booking.*;
 import com.automationintesting.model.report.Report;
 import com.automationintesting.model.room.*;
 import com.automationintesting.requests.BookingRequests;
@@ -39,7 +40,7 @@ public class ReportServiceTest {
         Room roomOne = new Room(1, "101", "Single", 1, true, "Wifi");
         Room roomTwo = new Room(2, "102", "Double", 2, true, "Mini-bar");
 
-        Rooms sampleRooms = new Rooms(new ArrayList<>(){{
+        Rooms sampleRooms = new Rooms(new ArrayList<Room>(){{
             this.add(roomOne);
             this.add(roomTwo);
         }});
@@ -51,11 +52,20 @@ public class ReportServiceTest {
         Booking bookingOne = new Booking(1, 1, "Mark", "Dean", true, bookingDates);
         Booking bookingTwo = new Booking(2, 2, "James", "Jones", true, bookingDates);
 
-        Bookings bookingsOne = new Bookings(new ArrayList<>(){{
+        BookingSummaries bookingSummaryOne = new BookingSummaries(new ArrayList<BookingSummary>(){{
+                this.add(new BookingSummary(bookingDates));
+            }}
+        );
+        BookingSummaries bookingSummaryTwo = new BookingSummaries(new ArrayList<BookingSummary>(){{
+            this.add(new BookingSummary(bookingDates));
+        }}
+        );
+
+        Bookings bookingsOne = new Bookings(new ArrayList<Booking>(){{
             this.add(bookingOne);
         }});
 
-        Bookings bookingsTwo = new Bookings(new ArrayList<>(){{
+        Bookings bookingsTwo = new Bookings(new ArrayList<Booking>(){{
             this.add(bookingTwo);
         }});
 
@@ -63,8 +73,8 @@ public class ReportServiceTest {
         when(bookingRequests.getBookings(1, "abc123")).thenReturn(bookingsOne);
         when(bookingRequests.getBookings(2, "abc123")).thenReturn(bookingsTwo);
 
-        when(bookingRequests.getBookingSummaries(1)).thenReturn(bookingsOne);
-        when(bookingRequests.getBookingSummaries(2)).thenReturn(bookingsTwo);
+        when(bookingRequests.getBookingSummaries(1)).thenReturn(bookingSummaryOne);
+        when(bookingRequests.getBookingSummaries(2)).thenReturn(bookingSummaryTwo);
     }
 
     @Test

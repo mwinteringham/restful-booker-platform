@@ -1,10 +1,7 @@
 package com.automationintesting.service;
 
 import com.automationintesting.db.BookingDB;
-import com.automationintesting.model.db.Booking;
-import com.automationintesting.model.db.Bookings;
-import com.automationintesting.model.db.CreatedBooking;
-import com.automationintesting.model.db.Message;
+import com.automationintesting.model.db.*;
 import com.automationintesting.model.service.BookingResult;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.requests.MessageRequests;
@@ -125,11 +122,11 @@ public class BookingService {
         }
     }
 
-    public Bookings getBookingSummaries(String roomId) throws SQLException {
-        List<Booking> bookingList;
+    public BookingSummaries getBookingSummaries(String roomId) throws SQLException {
+        List<BookingSummary> bookingList;
 
         bookingList = bookingDB.queryBookingSummariesById(roomId);
 
-        return new Bookings(bookingList);
+        return new BookingSummaries(bookingList);
     }
 }

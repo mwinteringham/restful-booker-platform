@@ -1,5 +1,6 @@
 package com.automationintesting.model.room;
 
+import com.automationintesting.model.booking.Booking;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;

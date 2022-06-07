@@ -1,6 +1,7 @@
 package com.automationintesting.api;
 
 import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.BookingSummaries;
 import com.automationintesting.model.db.Bookings;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.model.service.BookingResult;
@@ -57,7 +58,7 @@ public class BookingController {
 
     @RequestMapping(value = "/summary", method = RequestMethod.GET)
     public ResponseEntity getSummaries(@RequestParam("roomid") String roomid) throws SQLException {
-        Bookings bookingSummaries = bookingService.getBookingSummaries(roomid);
+        BookingSummaries bookingSummaries = bookingService.getBookingSummaries(roomid);
 
         return ResponseEntity.status(HttpStatus.OK).body(bookingSummaries);
     }

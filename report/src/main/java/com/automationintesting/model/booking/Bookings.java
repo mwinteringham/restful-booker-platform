@@ -1,4 +1,4 @@
-package com.automationintesting.model.room;
+package com.automationintesting.model.booking;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,5 +22,12 @@ public class Bookings {
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    @Override
+    public String toString() {
+        return "Bookings{" +
+                "bookings=" + bookings +
+                '}';
     }
 }

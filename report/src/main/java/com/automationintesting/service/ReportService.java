@@ -1,9 +1,11 @@
 package com.automationintesting.service;
 
+import com.automationintesting.model.booking.BookingSummaries;
+import com.automationintesting.model.booking.BookingSummary;
 import com.automationintesting.model.report.Entry;
 import com.automationintesting.model.report.Report;
-import com.automationintesting.model.room.Booking;
-import com.automationintesting.model.room.Bookings;
+import com.automationintesting.model.booking.Booking;
+import com.automationintesting.model.booking.Bookings;
 import com.automationintesting.model.room.Room;
 import com.automationintesting.requests.BookingRequests;
 import com.automationintesting.requests.RoomRequests;
@@ -40,11 +42,11 @@ public class ReportService {
     }
 
     public Report getSpecificRoomReport(int roomId) {
-        List<Entry> parsedRooms = new ArrayList<>();
+        List<Entry> parsedRooms = new ArrayList<Entry>();
 
-        Bookings roomBookings = bookingRequests.getBookingSummaries(roomId);
+        BookingSummaries roomBookings = bookingRequests.getBookingSummaries(roomId);
 
-        for(Booking b : roomBookings.getBookings()){
+        for(BookingSummary b : roomBookings.getBookings()){
             Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), "Unavailable");
             parsedRooms.add(entry);
         }

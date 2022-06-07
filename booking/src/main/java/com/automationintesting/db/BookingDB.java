@@ -1,6 +1,7 @@
 package com.automationintesting.db;
 
 import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.BookingSummary;
 import com.automationintesting.model.db.CreatedBooking;
 import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
@@ -181,13 +182,13 @@ public class BookingDB {
         return listToReturn;
     }
 
-    public List<Booking> queryBookingSummariesById(String roomid) throws SQLException {
-        List<Booking> listToReturn = new ArrayList<Booking>();
+    public List<BookingSummary> queryBookingSummariesById(String roomid) throws SQLException {
+        List<BookingSummary> listToReturn = new ArrayList<BookingSummary>();
         String sql = "SELECT * FROM BOOKINGS WHERE roomid = " + roomid;
 
         ResultSet results = connection.prepareStatement(sql).executeQuery();
         while(results.next()){
-            listToReturn.add(new Booking(results));
+            listToReturn.add(new BookingSummary(results));
         }
 
         return listToReturn;

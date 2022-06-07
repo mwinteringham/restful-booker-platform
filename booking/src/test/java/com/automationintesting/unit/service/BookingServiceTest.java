@@ -3,7 +3,6 @@ package com.automationintesting.unit.service;
 import com.automationintesting.db.BookingDB;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.BookingDates;
-import com.automationintesting.model.db.Bookings;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.model.service.BookingResult;
 import com.automationintesting.requests.AuthRequests;

@@ -1,4 +1,4 @@
-package com.automationintesting.model.room;
+package com.automationintesting.model.booking;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

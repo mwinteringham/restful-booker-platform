@@ -43,7 +43,7 @@ public class BuildReportIT {
 
         whenHttp(bookingApi).
                 match(get("/booking/summary"), parameter("roomid", "1")).
-                then(ok(),  header("Content-Type","application/json"), stringContent("{\"bookings\":[{\"bookingid\":1,\"roomid\":1,\"firstname\":\"James\",\"lastname\":\"Dean\",\"totalprice\":100,\"depositpaid\":true,\"bookingdates\":{\"checkin\":\"2018-01-01\",\"checkout\":\"2018-01-05\"}},{\"bookingid\":2,\"roomid\":1,\"firstname\":\"Mark\",\"lastname\":\"Winteringham\",\"totalprice\":200,\"depositpaid\":false,\"bookingdates\":{\"checkin\":\"2018-02-01\",\"checkout\":\"2018-02-05\"}}]}"));
+                then(ok(),  header("Content-Type","application/json"), stringContent("{\"bookings\": [{\"bookingDates\": {\"checkin\": \"2018-01-01\",\"checkout\": \"2018-01-05\"}},{\"bookingDates\":{\"checkin\": \"2018-02-01\",\"checkout\": \"2018-02-05\"}}]}"));
 
         whenHttp(authApi)
                 .match(post("/auth/validate"))

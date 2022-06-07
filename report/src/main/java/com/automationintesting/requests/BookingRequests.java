@@ -1,6 +1,7 @@
 package com.automationintesting.requests;
 
-import com.automationintesting.model.room.Bookings;
+import com.automationintesting.model.booking.BookingSummaries;
+import com.automationintesting.model.booking.Bookings;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,10 +28,10 @@ public class BookingRequests {
         return restTemplate.exchange(host + "/?roomid=" + roomId, HttpMethod.GET, httpEntity, Bookings.class).getBody();
     }
 
-    public Bookings getBookingSummaries(int roomId){
+    public BookingSummaries getBookingSummaries(int roomId){
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.getForObject(host + "/summary?roomid=" + roomId, Bookings.class);
+        return restTemplate.getForObject(host + "/summary?roomid=" + roomId, BookingSummaries.class);
     }
 
 }
