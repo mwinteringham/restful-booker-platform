@@ -413,7 +413,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/cimg/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/circleci/tmp/auth.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Auth"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -435,7 +435,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/cimg/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/circleci/tmp/booking.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Booking"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -457,7 +457,7 @@ jobs:
               - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
         - run:
             command: |
-              if [ -f /home/cimg/tmp/report.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f /home/circleci/tmp/report.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[DEPLOYING] Report"
                 version=`find ~/tmp/*.tmp -printf "%f\n"`
                 ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -479,7 +479,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/cimg/tmp/room.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/circleci/tmp/room.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Room"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -501,7 +501,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/cimg/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/circleci/tmp/branding.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Branding"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -523,7 +523,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/cimg/tmp/message.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/circleci/tmp/message.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Message"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
@@ -545,7 +545,7 @@ jobs:
             - "1c:eb:8d:d5:b6:56:34:09:bd:db:bb:de:d2:94:42:33"
       - run:
           command: |
-            if [ -f /home/cimg/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f /home/circleci/tmp/assets.txt ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[DEPLOYING] Report"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
