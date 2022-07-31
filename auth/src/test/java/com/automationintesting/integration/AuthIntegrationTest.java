@@ -5,34 +5,33 @@ import com.automationintesting.model.Auth;
 import com.automationintesting.model.Token;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = AuthApplication.class)
 @ActiveProfiles("dev")
 public class AuthIntegrationTest {
 
     private Token token;
 
-    @Before
+    @BeforeEach
     public void createToken(){
         Auth authPayload = new Auth("admin", "password");
 
-        token = given()
-                .contentType(ContentType.JSON)
-                .body(authPayload)
-                .post("http://localhost:3004/auth/login")
-                .as(Token.class);
+        Response response = given()
+                            .contentType(ContentType.JSON)
+                            .body(authPayload)
+                            .post("http://localhost:3004/auth/login");
+
+        token = new Token(response.cookies().get("token"));
     }
 
     @Test
@@ -42,7 +41,7 @@ public class AuthIntegrationTest {
                             .body(token)
                             .post("http://localhost:3004/auth/validate");
 
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals(200, response.getStatusCode());
     }
 
     @Test
@@ -52,7 +51,7 @@ public class AuthIntegrationTest {
                 .body(token)
                 .post("http://localhost:3004/auth/logout");
 
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals(200, response.getStatusCode());
     }
 
 }

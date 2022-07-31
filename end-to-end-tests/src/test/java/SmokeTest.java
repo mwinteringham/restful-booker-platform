@@ -1,6 +1,5 @@
-import models.MessagePage;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import pageobjects.*;
 
@@ -12,7 +11,7 @@ import static org.hamcrest.number.OrderingComparison.greaterThan;
 
 public class SmokeTest extends TestSetup {
 
-    @Before
+    @BeforeEach
     public void logIntoApplication(){
         navigateToApplication();
 
@@ -34,7 +33,7 @@ public class SmokeTest extends TestSetup {
         RoomListingPage roomListingPage = new RoomListingPage(driver);
         int initialRoomCount = roomListingPage.roomCount();
 
-        roomListingPage.populateRoomNumber("102");
+        roomListingPage.populateRoomName("102");
         roomListingPage.setRoomPrice("100");
         roomListingPage.checkWifi();
         roomListingPage.checkSafe();

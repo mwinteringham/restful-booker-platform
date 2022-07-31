@@ -3,15 +3,14 @@ package com.automationintesting.unit.service;
 import com.automationintesting.db.BookingDB;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.BookingDates;
-import com.automationintesting.model.db.Bookings;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.model.service.BookingResult;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.service.BookingService;
 import com.automationintesting.service.DateCheckValidator;
 import org.h2.jdbc.JdbcSQLNonTransientException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -25,8 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 public class BookingServiceTest {
@@ -44,9 +43,9 @@ public class BookingServiceTest {
     @Autowired
     private BookingService bookingService;
 
-    @Before
+    @BeforeEach
     public void initialiseMocks() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -57,12 +56,13 @@ public class BookingServiceTest {
         }};
 
         when(bookingDB.queryAllBookings()).thenReturn(bookings);
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
 
         Optional<String> emptyOptional = Optional.empty();
 
-        Bookings bookingResults = bookingService.getBookings(emptyOptional);
+        BookingResult bookingResults = bookingService.getBookings(emptyOptional, "abc123");
 
-        assertEquals(bookingResults.getBookings().size(), 2);
+        assertEquals(2, bookingResults.getBookings().getBookings().size());
     }
 
     @Test
@@ -72,34 +72,37 @@ public class BookingServiceTest {
         }};
 
         when(bookingDB.queryBookingsById("2")).thenReturn(bookings);
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
 
         Optional<String> roomid = Optional.of("2");
 
-        Bookings bookingResults = bookingService.getBookings(roomid);
+        BookingResult bookingResults = bookingService.getBookings(roomid, "abc123");
 
-        assertEquals(bookingResults.getBookings().size(), 1);
+        assertEquals(1, bookingResults.getBookings().getBookings().size());
     }
 
     @Test
     public void returnSpecificBookingTest() throws SQLException {
         Booking booking = this.createGenericBooking();
         when(bookingDB.query(2)).thenReturn(booking);
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
 
-        BookingResult bookingResult = bookingService.getIndividualBooking(2);
+        BookingResult bookingResult = bookingService.getIndividualBooking(2,"abc123");
 
-        assertEquals(bookingResult.getStatus(), HttpStatus.OK);
-        assertEquals(bookingResult.getBooking().toString(), "Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}");
+        assertEquals(HttpStatus.OK, bookingResult.getStatus());
+        assertEquals("Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}", bookingResult.getBooking().toString());
     }
 
 
     @Test
     public void returnBookingNotFoundTest() throws SQLException {
         when(bookingDB.query(100)).thenThrow(new JdbcSQLNonTransientException("a", "b", "c", 1, new Throwable(), "d"));
+        when(authRequests.postCheckAuth("abc123")).thenReturn(true);
 
-        BookingResult bookingResult = bookingService.getIndividualBooking(100);
+        BookingResult bookingResult = bookingService.getIndividualBooking(100, "abc123");
 
-        assertEquals(bookingResult.getStatus(), HttpStatus.NOT_FOUND);
-        assertEquals(bookingResult.getBooking(), null);
+        assertEquals(HttpStatus.NOT_FOUND, bookingResult.getStatus());
+        assertNull(bookingResult.getBooking());
     }
 
     @Test
@@ -109,7 +112,7 @@ public class BookingServiceTest {
 
         HttpStatus bookingResult = bookingService.deleteBooking(1, "abc123");
 
-        assertEquals(bookingResult, HttpStatus.ACCEPTED);
+        assertEquals(HttpStatus.ACCEPTED, bookingResult);
     }
 
     @Test
@@ -119,7 +122,7 @@ public class BookingServiceTest {
 
         HttpStatus bookingResult = bookingService.deleteBooking(100, "abc123");
 
-        assertEquals(bookingResult, HttpStatus.NOT_FOUND);
+        assertEquals(HttpStatus.NOT_FOUND, bookingResult);
     }
 
     @Test
@@ -134,8 +137,8 @@ public class BookingServiceTest {
 
         BookingResult bookingResult = bookingService.updateBooking(1, booking, "abc123");
 
-        assertEquals(bookingResult.getStatus(), HttpStatus.OK);
-        assertEquals(bookingResult.getCreatedBooking().toString(), "CreatedBooking{bookingid=1, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}}");
+        assertEquals(HttpStatus.OK, bookingResult.getStatus());
+        assertEquals("CreatedBooking{bookingid=1, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}}", bookingResult.getCreatedBooking().toString());
     }
 
     @Test
@@ -149,8 +152,8 @@ public class BookingServiceTest {
 
         BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
 
-        assertEquals(bookingResult.getStatus(), HttpStatus.NOT_FOUND);
-        assertEquals(bookingResult.getCreatedBooking(), null);
+        assertEquals(HttpStatus.NOT_FOUND, bookingResult.getStatus());
+        assertNull(bookingResult.getCreatedBooking());
     }
 
     @Test
@@ -162,7 +165,7 @@ public class BookingServiceTest {
         when(bookingDB.checkForBookingConflict(booking)).thenReturn(true);
 
         BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
-        assertEquals(bookingResult.getStatus(), HttpStatus.CONFLICT);
+        assertEquals(HttpStatus.CONFLICT, bookingResult.getStatus());
     }
 
     @Test
@@ -173,7 +176,7 @@ public class BookingServiceTest {
         when(dateCheckValidator.isValid(booking.getBookingDates())).thenReturn(false);
 
         BookingResult bookingResult = bookingService.updateBooking(100, booking, "abc123");
-        assertEquals(bookingResult.getStatus(), HttpStatus.CONFLICT);
+        assertEquals(HttpStatus.CONFLICT, bookingResult.getStatus());
     }
 
     @Test
@@ -184,8 +187,8 @@ public class BookingServiceTest {
 
         BookingResult bookingResult = bookingService.createBooking(booking);
 
-        assertEquals(bookingResult.getStatus(), HttpStatus.CREATED);
-        assertEquals(bookingResult.getCreatedBooking().toString(), "CreatedBooking{bookingid=3, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}}");
+        assertEquals(HttpStatus.CREATED, bookingResult.getStatus());
+        assertEquals("CreatedBooking{bookingid=3, booking=Booking{roomid=2, firstname='Mark', lastname='Dean', depositpaid=true, bookingDates=BookingDates{checkin=2019-09-01, checkout=2019-09-02}}}", bookingResult.getCreatedBooking().toString());
     }
 
     @Test
@@ -196,7 +199,7 @@ public class BookingServiceTest {
 
         BookingResult bookingResult = bookingService.createBooking(booking);
 
-        assertEquals(bookingResult.getStatus(), HttpStatus.CONFLICT);
+        assertEquals(HttpStatus.CONFLICT, bookingResult.getStatus());
     }
 
     @Test
@@ -206,7 +209,7 @@ public class BookingServiceTest {
 
         BookingResult bookingResult = bookingService.createBooking(booking);
 
-        assertEquals(bookingResult.getStatus(), HttpStatus.CONFLICT);
+        assertEquals(HttpStatus.CONFLICT, bookingResult.getStatus());
     }
 
     private Booking createGenericBooking() {

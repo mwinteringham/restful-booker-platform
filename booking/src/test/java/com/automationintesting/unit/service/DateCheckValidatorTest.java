@@ -2,8 +2,8 @@ package com.automationintesting.unit.service;
 
 import com.automationintesting.model.db.BookingDates;
 import com.automationintesting.service.DateCheckValidator;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
 
@@ -14,7 +14,7 @@ public class DateCheckValidatorTest {
     private DateCheckValidator dateCheckValidator;
     private BookingDates bookingDates;
 
-    @Before
+    @BeforeEach
     public void setup() {
         dateCheckValidator = new DateCheckValidator();
         bookingDates = new BookingDates();

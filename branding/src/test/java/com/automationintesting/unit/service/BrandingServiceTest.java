@@ -7,8 +7,8 @@ import com.automationintesting.model.db.Map;
 import com.automationintesting.model.service.BrandingResult;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.service.BrandingService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -17,8 +17,7 @@ import org.springframework.http.HttpStatus;
 
 import java.sql.SQLException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class BrandingServiceTest {
@@ -33,9 +32,9 @@ public class BrandingServiceTest {
     @Autowired
     private BrandingService brandingService;
 
-    @Before
+    @BeforeEach
     public void initialiseMocks() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -47,7 +46,7 @@ public class BrandingServiceTest {
         when(brandingDB.queryBranding()).thenReturn(sampleBranding);
 
         Branding branding = brandingService.getBrandingDetails();
-        assertEquals(branding.toString(), "Branding{name='Demo B&B', map=Map{latitude=2.0, longitude=4.0}, logoUrl='http://sample.url', description='Branding description here', contact=Contact{name='Demo B&B contact name', address='The street', phone='012345', email='test@email.com'}}");
+        assertEquals("Branding{name='Demo B&B', map=Map{latitude=2.0, longitude=4.0}, logoUrl='http://sample.url', description='Branding description here', contact=Contact{name='Demo B&B contact name', address='The street', phone='012345', email='test@email.com'}}", branding.toString());
     }
 
     @Test
@@ -63,8 +62,8 @@ public class BrandingServiceTest {
 
         BrandingResult result = brandingService.updateBrandingDetails(sampleBranding, token);
 
-        assertEquals(result.getHttpStatus(), HttpStatus.ACCEPTED);
-        assertEquals(result.getBranding().toString(), "Branding{name='Updated Branding', map=Map{latitude=2.0, longitude=4.0}, logoUrl='http://sample.url', description='Branding description here', contact=Contact{name='Demo B&B contact name', address='The street', phone='012345', email='test@email.com'}}");
+        assertEquals(HttpStatus.ACCEPTED, result.getHttpStatus());
+        assertEquals("Branding{name='Updated Branding', map=Map{latitude=2.0, longitude=4.0}, logoUrl='http://sample.url', description='Branding description here', contact=Contact{name='Demo B&B contact name', address='The street', phone='012345', email='test@email.com'}}", result.getBranding().toString());
     }
 
     @Test
@@ -75,7 +74,7 @@ public class BrandingServiceTest {
 
         BrandingResult result = brandingService.updateBrandingDetails(null, token);
 
-        assertEquals(result.getHttpStatus(), HttpStatus.FORBIDDEN);
+        assertEquals(HttpStatus.FORBIDDEN, result.getHttpStatus());
     }
 
 }

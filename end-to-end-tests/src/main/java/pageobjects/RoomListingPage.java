@@ -7,14 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.w3c.dom.html.HTMLInputElement;
 
+import java.time.Duration;
 import java.util.List;
 
 public class RoomListingPage extends BasePage {
 
-    @FindBy(how = How.ID, using = "roomNumber")
-    private WebElement txtRoomNumber;
+    @FindBy(how = How.ID, using = "roomName")
+    private WebElement txtRoomName;
 
     @FindBy(how = How.ID, using = "createRoom")
     private WebElement btnCreate;
@@ -39,12 +39,12 @@ public class RoomListingPage extends BasePage {
 
     public RoomListingPage(WebDriver driver){
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.col-sm-2.rowHeader")));
     }
 
-    public void populateRoomNumber(String roomNumber) throws InterruptedException {
-        txtRoomNumber.sendKeys(roomNumber);
+    public void populateRoomName(String roomName) throws InterruptedException {
+        txtRoomName.sendKeys(roomName);
         Thread.sleep(200);
     }
 

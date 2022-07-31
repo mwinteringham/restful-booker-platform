@@ -6,8 +6,8 @@ import com.automationintesting.model.db.Rooms;
 import com.automationintesting.model.service.RoomResult;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.service.RoomService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class RoomServiceTest {
@@ -33,35 +33,35 @@ public class RoomServiceTest {
     @InjectMocks
     private RoomService roomService;
 
-    @Before
+    @BeforeEach
     public void initialiseMocks() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     public void getRoomsTest() throws SQLException {
-        List<Room> sampleRooms = new ArrayList<>(){{
-            this.add(new Room(101, "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123));
-            this.add(new Room(102, "Twin", false, "image2", "Room description 2", new String[] {"x", "y", "z"}, 987));
+        List<Room> sampleRooms = new ArrayList<Room>(){{
+            this.add(new Room("101", "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123));
+            this.add(new Room("102", "Twin", false, "image2", "Room description 2", new String[] {"x", "y", "z"}, 987));
         }};
 
         when(roomDB.queryRooms()).thenReturn(sampleRooms);
 
         Rooms rooms = roomService.getRooms();
 
-        assertEquals(rooms.toString(), "Rooms{rooms=[Room{roomid=0, roomNumber=101, type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}, Room{roomid=0, roomNumber=102, type='Twin', accessible=false, image='image2', description='Room description 2', features=[x, y, z], roomPrice=987}]}");
+        assertEquals("Rooms{rooms=[Room{roomid=0, roomName='101', type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}, Room{roomid=0, roomName='102', type='Twin', accessible=false, image='image2', description='Room description 2', features=[x, y, z], roomPrice=987}]}", rooms.toString());
     }
 
     @Test
     public void getSpecificRoomTest() throws SQLException {
-        Room sampleRoom = new Room(101, "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
+        Room sampleRoom = new Room("101", "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
 
         when(roomDB.query(1)).thenReturn(sampleRoom);
 
         RoomResult room = roomService.getSpecificRoom(1);
 
-        assertEquals(room.getHttpStatus(), HttpStatus.OK);
-        assertEquals(room.getRoom().toString(),"Room{roomid=0, roomNumber=101, type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}");
+        assertEquals(HttpStatus.OK, room.getHttpStatus());
+        assertEquals("Room{roomid=0, roomName='101', type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}", room.getRoom().toString());
     }
 
     @Test
@@ -75,26 +75,26 @@ public class RoomServiceTest {
 
     @Test
     public void createRoomTest() throws SQLException {
-        Room sampleRoom = new Room(103, "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
+        Room sampleRoom = new Room("103", "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
 
         when(authRequests.postCheckAuth("abc")).thenReturn(true);
         when(roomDB.create(sampleRoom)).thenReturn(sampleRoom);
 
         RoomResult roomResult = roomService.createRoom(sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.CREATED);
-        assertEquals(roomResult.getRoom().toString(),"Room{roomid=0, roomNumber=103, type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}");
+        assertEquals(HttpStatus.CREATED, roomResult.getHttpStatus());
+        assertEquals("Room{roomid=0, roomName='103', type='Single', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}", roomResult.getRoom().toString());
     }
 
     @Test
     public void createRoomNotAuthorisedTest() throws SQLException {
-        Room sampleRoom = new Room(103, "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
+        Room sampleRoom = new Room("103", "Single", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
 
         when(authRequests.postCheckAuth("abc")).thenReturn(false);
 
         RoomResult roomResult = roomService.createRoom(sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.FORBIDDEN);
+        assertEquals(HttpStatus.FORBIDDEN, roomResult.getHttpStatus());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.deleteRoom(1, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.ACCEPTED);
+        assertEquals(HttpStatus.ACCEPTED, roomResult.getHttpStatus());
     }
 
     @Test
@@ -114,7 +114,7 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.deleteRoom(1, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.NOT_FOUND);
+        assertEquals(HttpStatus.NOT_FOUND, roomResult.getHttpStatus());
     }
 
     @Test
@@ -123,43 +123,43 @@ public class RoomServiceTest {
 
         RoomResult roomResult = roomService.deleteRoom(1, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.FORBIDDEN);
+        assertEquals(HttpStatus.FORBIDDEN, roomResult.getHttpStatus());
     }
 
     @Test
     public void updateRoomTest() throws SQLException {
-        Room sampleRoom = new Room(105, "Twin", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
+        Room sampleRoom = new Room("105", "Twin", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
 
         when(authRequests.postCheckAuth("abc")).thenReturn(true);
         when(roomDB.update(1, sampleRoom)).thenReturn(sampleRoom);
 
         RoomResult roomResult = roomService.updateRoom(1, sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.ACCEPTED);
-        assertEquals(roomResult.getRoom().toString(), "Room{roomid=0, roomNumber=105, type='Twin', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}");
+        assertEquals(HttpStatus.ACCEPTED, roomResult.getHttpStatus());
+        assertEquals("Room{roomid=0, roomName='105', type='Twin', accessible=true, image='image1', description='Room description', features=[a, b, c], roomPrice=123}", roomResult.getRoom().toString());
     }
 
     @Test
     public void updateRoomNotFoundTest() throws SQLException {
-        Room sampleRoom = new Room(105, "Twin", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
+        Room sampleRoom = new Room("105", "Twin", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
 
         when(authRequests.postCheckAuth("abc")).thenReturn(true);
         when(roomDB.update(1, sampleRoom)).thenReturn(null);
 
         RoomResult roomResult = roomService.updateRoom(1, sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.NOT_FOUND);
+        assertEquals(HttpStatus.NOT_FOUND, roomResult.getHttpStatus());
     }
 
     @Test
     public void updateRoomNotAuthorisedTest() throws SQLException {
-        Room sampleRoom = new Room(105, "Twin", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
+        Room sampleRoom = new Room("105", "Twin", true, "image1", "Room description", new String[] {"a", "b", "c"}, 123);
 
         when(authRequests.postCheckAuth("abc")).thenReturn(false);
 
         RoomResult roomResult = roomService.updateRoom(1, sampleRoom, "abc");
 
-        assertEquals(roomResult.getHttpStatus(), HttpStatus.FORBIDDEN);
+        assertEquals(HttpStatus.FORBIDDEN, roomResult.getHttpStatus());
     }
 
 }

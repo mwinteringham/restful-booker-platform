@@ -11,10 +11,6 @@ module.exports = {
     path: PATHS.build,
     filename: "js/[name].js"
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'src'),
-    publicPath: '/'
-  },
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},

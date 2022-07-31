@@ -7,7 +7,7 @@ jobs:
   checkout_code:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
       MAVEN_OPTS: -Xmx3200m
@@ -33,7 +33,7 @@ jobs:
   run_auth_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -58,7 +58,7 @@ jobs:
   run_booking_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -83,7 +83,7 @@ jobs:
   run_report_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -108,7 +108,7 @@ jobs:
   run_room_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -133,7 +133,7 @@ jobs:
   run_branding_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
         MAVEN_OPTS: -Xmx3200m
@@ -158,7 +158,7 @@ jobs:
   run_message_build:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     environment:
       MAVEN_OPTS: -Xmx3200m
@@ -183,8 +183,8 @@ jobs:
   run_assets_tests:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
-
+      - image: cimg/openjdk:15.0-node
+    resource_class: large
     steps:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
@@ -192,7 +192,7 @@ jobs:
           name: Startup local proxy
           background: true
           command: |
-            npm install
+            npm install --legacy-peer-deps
             npm start
           working_directory: .utilities/rbp-proxy/local/
       - run:
@@ -208,8 +208,8 @@ jobs:
           command: |
             if [ -f ~/tmp/assets.txt ]; then
               echo "[BUILDING] Assets"
-              npm install
-              npm test
+              npm install --legacy-peer-deps
+              npm test -- --runInBand
               npm run build
               cd ..
               cd api
@@ -236,7 +236,7 @@ jobs:
   build_auth_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -246,11 +246,11 @@ jobs:
           docker_layer_caching: false
       - run:
           command: |
-            if [ -f ~/project/auth/target/restful-booker-platform-auth-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f ~/project/auth/target/restful-booker-platform-auth-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[BUILDING] Auth"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-              docker push mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              docker build -t mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+              docker push mwinteringham/restfulbookerplatform_auth:$(ls target/restful-booker-platform-auth-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
             else
               echo "[SKIPPING] Auth"
             fi
@@ -259,7 +259,7 @@ jobs:
   build_booking_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -270,11 +270,11 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/booking/target/restful-booker-platform-booking-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f ~/project/booking/target/restful-booker-platform-booking-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Booking"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_booking:$(ls target/restful-booker-platform-booking-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
               else
                 echo "[SKIPPING] Booking"
               fi
@@ -283,7 +283,7 @@ jobs:
   build_report_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -294,11 +294,11 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/report/target/restful-booker-platform-report-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f ~/project/report/target/restful-booker-platform-report-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Report"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_report:$(ls target/restful-booker-platform-report-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
               else
                 echo "[SKIPPING] Report"
               fi
@@ -307,7 +307,7 @@ jobs:
   build_room_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -318,11 +318,11 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/room/target/restful-booker-platform-room-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f ~/project/room/target/restful-booker-platform-room-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Room"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_room:$(ls target/restful-booker-platform-room-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
               else
                 echo "[SKIPPING] Room"
               fi
@@ -331,7 +331,7 @@ jobs:
   build_branding_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -342,11 +342,11 @@ jobs:
 
         - run:
             command: |
-              if [ -f ~/project/branding/target/restful-booker-platform-branding-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+              if [ -f ~/project/branding/target/restful-booker-platform-branding-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                 echo "[BUILDING] Branding"
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker build -t mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                docker push mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                docker build -t mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                docker push mwinteringham/restfulbookerplatform_branding:$(ls target/restful-booker-platform-branding-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
               else
                 echo "[SKIPPING] Branding"
               fi
@@ -355,7 +355,7 @@ jobs:
   build_message_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -366,11 +366,11 @@ jobs:
 
       - run:
           command: |
-            if [ -f ~/project/message/target/restful-booker-platform-message-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+            if [ -f ~/project/message/target/restful-booker-platform-message-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
               echo "[BUILDING] Message"
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-              docker push mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*.jar | cut -d '-' -f 5 | cut -c1-11)
+              docker build -t mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+              docker push mwinteringham/restfulbookerplatform_message:$(ls target/restful-booker-platform-message-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
             else
               echo "[SKIPPING] Message"
             fi
@@ -379,7 +379,7 @@ jobs:
   build_assets_docker_image:
 
         docker:
-          - image: circleci/openjdk:14-buster-node-browsers
+          - image: cimg/openjdk:15.0-node
 
         steps:
           - restore_cache:
@@ -390,11 +390,11 @@ jobs:
 
           - run:
               command: |
-                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
+                if [ -f ~/project/assets/api/target/restful-booker-platform-assets-*-exec.jar ] && [ $CIRCLE_BRANCH == "trunk" ]; then
                   echo "[BUILDING] Assets"
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
-                  docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11) .
-                  docker push mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*.jar | cut -d '-' -f 5 | cut -c1-11)
+                  docker build -t mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*-exec.jar | cut -d '-' -f 5 | cut -c1-11) .
+                  docker push mwinteringham/restfulbookerplatform_assets:$(ls api/target/restful-booker-platform-assets-*-exec.jar | cut -d '-' -f 5 | cut -c1-11)
                 else
                   echo "[SKIPPING] Assets"
                 fi
@@ -403,7 +403,7 @@ jobs:
   deploy_auth_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -417,7 +417,7 @@ jobs:
               echo "[DEPLOYING] Auth"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-auth"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-auth -e profile='prod' -e HONEYCOMB_API_KEY='$HONEYCOMB_API_KEY' -e dbRefresh='10' -p 3004:3004 mwinteringham/restfulbookerplatform_auth:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Auth"
             fi
@@ -425,7 +425,7 @@ jobs:
   deploy_booking_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -439,7 +439,7 @@ jobs:
               echo "[DEPLOYING] Booking"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e dbRefresh='10' mwinteringham/restfulbookerplatform_booking:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-booking"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-booking -p 3000:3000 -e profile='prod' -e dbRefresh='10' -e HONEYCOMB_API_KEY='$HONEYCOMB_API_KEY' mwinteringham/restfulbookerplatform_booking:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Booking"
             fi
@@ -447,7 +447,7 @@ jobs:
   deploy_report_docker_image:
 
       docker:
-        - image: circleci/openjdk:14-buster-node-browsers
+        - image: cimg/openjdk:15.0
 
       steps:
         - restore_cache:
@@ -461,7 +461,7 @@ jobs:
                 echo "[DEPLOYING] Report"
                 version=`find ~/tmp/*.tmp -printf "%f\n"`
                 ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-                ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-report"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-report -p 3005:3005 mwinteringham/restfulbookerplatform_report:'${version%.*}' && exit'
+                ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-report"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-report -e profile='prod' -p 3005:3005 mwinteringham/restfulbookerplatform_report:'${version%.*}' && exit'
               else
                 echo "[SKIPPING] Report"
               fi
@@ -469,7 +469,7 @@ jobs:
   deploy_room_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -483,7 +483,7 @@ jobs:
               echo "[DEPLOYING] Room"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-room"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-room -p 3001:3001 -e dbRefresh='10' mwinteringham/restfulbookerplatform_room:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-room"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-room -p 3001:3001 -e profile='prod' -e dbRefresh='10' mwinteringham/restfulbookerplatform_room:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Room"
             fi
@@ -491,7 +491,7 @@ jobs:
   deploy_branding_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -505,7 +505,7 @@ jobs:
               echo "[DEPLOYING] Branding"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-branding"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e dbRefresh='10' mwinteringham/restfulbookerplatform_branding:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-branding"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-branding -p 3002:3002 -e profile='prod' -e dbRefresh='10' -e HONEYCOMB_API_KEY='$HONEYCOMB_API_KEY' mwinteringham/restfulbookerplatform_branding:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Branding"
             fi
@@ -513,7 +513,7 @@ jobs:
   deploy_message_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0
 
     steps:
       - restore_cache:
@@ -527,7 +527,7 @@ jobs:
               echo "[DEPLOYING] Message"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-message"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-message -p 3006:3006 -e dbRefresh='10' mwinteringham/restfulbookerplatform_message:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-message"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-message -p 3006:3006 -e profile='prod' -e dbRefresh='10' mwinteringham/restfulbookerplatform_message:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Message"
             fi
@@ -535,7 +535,7 @@ jobs:
   deploy_assets_docker_image:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0-node
 
     steps:
       - restore_cache:
@@ -549,7 +549,7 @@ jobs:
               echo "[DEPLOYING] Report"
               version=`find ~/tmp/*.tmp -printf "%f\n"`
               ssh-keyscan $AWS_IP >> $HOME/.ssh/known_hosts
-              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-assets"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-assets -p 3003:3003 mwinteringham/restfulbookerplatform_assets:'${version%.*}' && exit'
+              ssh ec2-user@$AWS_IP 'container=`sudo docker ps -aqf "name=rbp-assets"` && sudo docker stop $container && sudo docker rm $container && sudo docker run -d --network rbp-host --name rbp-assets -e profile='prod' -p 3003:3003 mwinteringham/restfulbookerplatform_assets:'${version%.*}' && exit'
             else
               echo "[SKIPPING] Assets"
             fi
@@ -557,7 +557,7 @@ jobs:
   run_e2e_checks:
 
     docker:
-      - image: circleci/openjdk:14-buster-node-browsers
+      - image: cimg/openjdk:15.0-browsers
 
     steps:
       - restore_cache:

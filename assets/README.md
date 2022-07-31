@@ -29,4 +29,4 @@ With that set you can then run ```mvn verify```
 
 ## Documentation
 
-You can also find out the health of the application by accessing ```http://localhost:3003/actuator/health```. Finally to access the APIs logfiles, head to ```http://localhost:3003/actuator/logfile``` 
+You can also find out the health of the application by accessing ```http://localhost:3003/actuator/health```. Finally, to access the APIs logfiles, head to ```http://localhost:3003/actuator/logfile``` 

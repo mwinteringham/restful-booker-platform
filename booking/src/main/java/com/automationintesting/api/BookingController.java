@@ -1,6 +1,7 @@
 package com.automationintesting.api;
 
 import com.automationintesting.model.db.Booking;
+import com.automationintesting.model.db.BookingSummaries;
 import com.automationintesting.model.db.Bookings;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.model.service.BookingResult;
@@ -21,10 +22,10 @@ public class BookingController {
     private BookingService bookingService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity getBookings(@RequestParam("roomid") Optional<String> roomid) throws SQLException {
-        Bookings bookings = bookingService.getBookings(roomid);
+    public ResponseEntity getBookings(@RequestParam("roomid") Optional<String> roomid, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        BookingResult bookingResult = bookingService.getBookings(roomid, token);
 
-        return ResponseEntity.ok(bookings);
+        return ResponseEntity.status(bookingResult.getStatus()).body(bookingResult.getBookings());
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -35,8 +36,8 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/{id:[0-9]*}", method = RequestMethod.GET)
-    public ResponseEntity getBooking(@PathVariable(value = "id") int bookingId) throws SQLException {
-        BookingResult bookingResult = bookingService.getIndividualBooking(bookingId);
+    public ResponseEntity getBooking(@PathVariable(value = "id") int bookingId, @CookieValue(value ="token", required = false) String token) throws SQLException {
+        BookingResult bookingResult = bookingService.getIndividualBooking(bookingId, token);
 
         return ResponseEntity.status(bookingResult.getStatus()).body(bookingResult.getBooking());
     }
@@ -53,6 +54,13 @@ public class BookingController {
         BookingResult updateResult = bookingService.updateBooking(id, booking, token);
 
         return ResponseEntity.status(updateResult.getStatus()).body(updateResult.getCreatedBooking());
+    }
+
+    @RequestMapping(value = "/summary", method = RequestMethod.GET)
+    public ResponseEntity getSummaries(@RequestParam("roomid") String roomid) throws SQLException {
+        BookingSummaries bookingSummaries = bookingService.getBookingSummaries(roomid);
+
+        return ResponseEntity.status(HttpStatus.OK).body(bookingSummaries);
     }
 
 }

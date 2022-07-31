@@ -15,9 +15,9 @@ public class Room {
     private int roomid;
 
     @JsonProperty
-    @Min(1)
-    @Max(999)
-    private int roomNumber;
+    @NotNull()
+    @NotEmpty(message = "Room name must be set")
+    private String roomName;
 
     @JsonProperty
     @NotNull(message = "Type must be set")
@@ -37,15 +37,15 @@ public class Room {
     private String[] features;
 
     @JsonProperty
-    @Min(0)
+    @Min(1)
     @Max(999)
     private int roomPrice;
 
     public Room() {
     }
 
-    public Room(int roomNumber, String type, boolean accessible, String image, String description, String[] features, int roomPrice) {
-        this.roomNumber = roomNumber;
+    public Room(String roomName, String type, boolean accessible, String image, String description, String[] features, int roomPrice) {
+        this.roomName = roomName;
         this.type = type;
         this.accessible = accessible;
         this.image = image;
@@ -56,7 +56,7 @@ public class Room {
 
     public Room(ResultSet result) throws SQLException {
         this.roomid = result.getInt("roomid");
-        this.roomNumber = result.getInt("room_number");
+        this.roomName = result.getString("room_name");
         this.type = result.getString("type");
         this.accessible = result.getBoolean("accessible");
         this.image = result.getString("image");
@@ -81,12 +81,12 @@ public class Room {
         this.roomid = roomid;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
     public String getType() {
@@ -141,7 +141,7 @@ public class Room {
     public String toString() {
         return "Room{" +
                 "roomid=" + roomid +
-                ", roomNumber=" + roomNumber +
+                ", roomName='" + roomName + '\'' +
                 ", type='" + type + '\'' +
                 ", accessible=" + accessible +
                 ", image='" + image + '\'' +
@@ -154,7 +154,7 @@ public class Room {
     public static class RoomBuilder {
 
         private int roomid;
-        private int roomNumber;
+        private String roomName;
         private String type;
         private boolean accessible;
         private String image;
@@ -168,8 +168,8 @@ public class Room {
             return this;
         }
 
-        public RoomBuilder setRoomNumber(int roomNumber) {
-            this.roomNumber = roomNumber;
+        public RoomBuilder setRoomName(String roomName) {
+            this.roomName = roomName;
 
             return this;
         }
@@ -211,7 +211,7 @@ public class Room {
         }
 
         public Room build(){
-            return new Room(roomNumber, type, accessible, image, description, features, roomPrice);
+            return new Room(roomName, type, accessible, image, description, features, roomPrice);
         }
     }
 }

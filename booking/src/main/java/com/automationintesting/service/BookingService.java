@@ -1,10 +1,7 @@
 package com.automationintesting.service;
 
 import com.automationintesting.db.BookingDB;
-import com.automationintesting.model.db.Booking;
-import com.automationintesting.model.db.Bookings;
-import com.automationintesting.model.db.CreatedBooking;
-import com.automationintesting.model.db.Message;
+import com.automationintesting.model.db.*;
 import com.automationintesting.model.service.BookingResult;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.requests.MessageRequests;
@@ -41,24 +38,32 @@ public class BookingService {
         databaseScheduler.startScheduler(bookingDB, TimeUnit.MINUTES);
     }
 
-    public Bookings getBookings(Optional<String> roomId) throws SQLException {
-        List<Booking> bookingList;
+    public BookingResult getBookings(Optional<String> roomId, String token) throws SQLException {
+        if(authRequests.postCheckAuth(token)){
+            List<Booking> bookingList;
 
-        if(roomId.isPresent()){
-            bookingList = bookingDB.queryBookingsById(roomId.get());
+            if(roomId.isPresent()){
+                bookingList = bookingDB.queryBookingsById(roomId.get());
+            } else {
+                bookingList = bookingDB.queryAllBookings();
+            }
+
+            return new BookingResult(new Bookings(bookingList), HttpStatus.OK);
         } else {
-            bookingList = bookingDB.queryAllBookings();
+            return new BookingResult(HttpStatus.FORBIDDEN);
         }
-
-        return new Bookings(bookingList);
     }
 
-    public BookingResult getIndividualBooking(int bookingId) throws SQLException {
-        try {
-            Booking booking = bookingDB.query(bookingId);
-            return new BookingResult(booking, HttpStatus.OK);
-        } catch (JdbcSQLNonTransientException e){
-            return new BookingResult(HttpStatus.NOT_FOUND);
+    public BookingResult getIndividualBooking(int bookingId, String token) throws SQLException {
+        if(authRequests.postCheckAuth(token)){
+            try {
+                Booking booking = bookingDB.query(bookingId);
+                return new BookingResult(booking, HttpStatus.OK);
+            } catch (JdbcSQLNonTransientException e){
+                return new BookingResult(HttpStatus.NOT_FOUND);
+            }
+        } else {
+            return new BookingResult(HttpStatus.FORBIDDEN);
         }
     }
 
@@ -115,5 +120,13 @@ public class BookingService {
         } else {
             return new BookingResult(HttpStatus.CONFLICT);
         }
+    }
+
+    public BookingSummaries getBookingSummaries(String roomId) throws SQLException {
+        List<BookingSummary> bookingList;
+
+        bookingList = bookingDB.queryBookingSummariesById(roomId);
+
+        return new BookingSummaries(bookingList);
     }
 }

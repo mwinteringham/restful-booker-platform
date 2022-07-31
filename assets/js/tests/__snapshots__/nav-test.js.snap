@@ -1,7 +1,112 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Nav bar renders 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<DocumentFragment>
+  <nav
+    class="navbar navbar-expand-md navbar-dark bg-dark"
+  >
+    <div
+      class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"
+    >
+      <ul
+        class="navbar-nav mr-auto"
+      >
+        <li
+          class="nav-item"
+        >
+          <a
+            class="nav-link"
+            href="/admin/"
+          >
+            Rooms
+          </a>
+        </li>
+        <li
+          class="nav-item"
+        >
+          <a
+            class="nav-link"
+            href="/admin/report"
+            id="reportLink"
+          >
+            Report
+          </a>
+        </li>
+        <li
+          class="nav-item"
+        >
+          <a
+            class="nav-link"
+            href="/admin/branding"
+            id="brandingLink"
+          >
+            Branding
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="mx-auto order-0"
+    >
+      <a
+        class="navbar-brand mx-auto"
+        href="#"
+      >
+        B&B Booking Management
+      </a>
+      <button
+        class="navbar-toggler"
+        data-target=".dual-collapse2"
+        data-toggle="collapse"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+    </div>
+    <div
+      class="navbar-collapse collapse w-100 order-3 dual-collapse2"
+    >
+      <ul
+        class="navbar-nav ml-auto"
+      >
+        <li
+          class="nav-item"
+        >
+          <a
+            class="nav-link"
+            href="/admin/messages"
+          >
+            <i
+              class="fa fa-inbox"
+              style="font-size: 1.5rem;"
+            />
+          </a>
+        </li>
+        <li
+          class="nav-item"
+        >
+          <a
+            class="nav-link"
+            href="/"
+            id="frontPageLink"
+          >
+            Front Page
+          </a>
+        </li>
+        <li
+          class="nav-item"
+        >
+          <a
+            class="nav-link"
+            href="#/admin"
+          >
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</DocumentFragment>
 `;

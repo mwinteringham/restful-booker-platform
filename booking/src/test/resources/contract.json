@@ -5,7 +5,7 @@
   "lastname": "Dean",
   "depositpaid": true,
   "bookingdates": {
-    "checkin": "2020-02-01",
-    "checkout": "2020-02-05"
+    "checkin": "2022-02-01",
+    "checkout": "2022-02-05"
   }
 }

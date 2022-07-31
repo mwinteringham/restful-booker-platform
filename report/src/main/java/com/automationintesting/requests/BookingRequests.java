@@ -1,7 +1,8 @@
 package com.automationintesting.requests;
 
-import com.automationintesting.model.room.Bookings;
-import org.springframework.http.ResponseEntity;
+import com.automationintesting.model.booking.BookingSummaries;
+import com.automationintesting.model.booking.Bookings;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 public class BookingRequests {
@@ -16,10 +17,21 @@ public class BookingRequests {
         }
     }
 
-    public Bookings getBookings(int roomid){
+    public Bookings getBookings(int roomId, String token){
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.getForEntity(host + "/?roomid=" + roomid, Bookings.class).getBody();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Cookie", "token=" + token);
+
+        HttpEntity httpEntity = new HttpEntity(null, httpHeaders);
+
+        return restTemplate.exchange(host + "/?roomid=" + roomId, HttpMethod.GET, httpEntity, Bookings.class).getBody();
+    }
+
+    public BookingSummaries getBookingSummaries(int roomId){
+        RestTemplate restTemplate = new RestTemplate();
+
+        return restTemplate.getForObject(host + "/summary?roomid=" + roomId, BookingSummaries.class);
     }
 
 }

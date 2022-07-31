@@ -1,9 +1,11 @@
 package com.automationintesting.service;
 
+import com.automationintesting.model.booking.BookingSummaries;
+import com.automationintesting.model.booking.BookingSummary;
 import com.automationintesting.model.report.Entry;
 import com.automationintesting.model.report.Report;
-import com.automationintesting.model.room.Booking;
-import com.automationintesting.model.room.Bookings;
+import com.automationintesting.model.booking.Booking;
+import com.automationintesting.model.booking.Bookings;
 import com.automationintesting.model.room.Room;
 import com.automationintesting.requests.BookingRequests;
 import com.automationintesting.requests.RoomRequests;
@@ -23,15 +25,15 @@ public class ReportService {
         bookingRequests = new BookingRequests();
     }
 
-    public Report getAllRoomsReport() {
+    public Report getAllRoomsReport(String token) {
         List<Room> rooms = roomRequests.searchForRooms().getRooms();
         List<Entry> parsedRooms = new ArrayList<>();
 
         for(Room r : rooms){
-            Bookings roomBookings = bookingRequests.getBookings(r.getRoomid());
+            Bookings roomBookings = bookingRequests.getBookings(r.getRoomid(), token);
 
             for(Booking b : roomBookings.getBookings()){
-                Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), b.getFirstname() + " " + b.getLastname() + " - Room: " + r.getRoomNumber());
+                Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), b.getFirstname() + " " + b.getLastname() + " - Room: " + r.getRoomName());
                 parsedRooms.add(entry);
             }
         }
@@ -40,11 +42,11 @@ public class ReportService {
     }
 
     public Report getSpecificRoomReport(int roomId) {
-        List<Entry> parsedRooms = new ArrayList<>();
+        List<Entry> parsedRooms = new ArrayList<Entry>();
 
-        Bookings roomBookings = bookingRequests.getBookings(roomId);
+        BookingSummaries roomBookings = bookingRequests.getBookingSummaries(roomId);
 
-        for(Booking b : roomBookings.getBookings()){
+        for(BookingSummary b : roomBookings.getBookings()){
             Entry entry = new Entry(b.getBookingDates().getCheckin(), b.getBookingDates().getCheckout(), "Unavailable");
             parsedRooms.add(entry);
         }

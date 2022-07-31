@@ -1,94 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login component is created 1`] = `
-<div
-  style={
-    Object {
-      "marginTop": "15%",
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="row"
+    style="margin-top: 15%;"
   >
     <div
-      className="col-sm-2"
-    />
-    <div
-      className="col-sm-8"
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
-    >
-      <h2
-        data-testid="login-header"
-      >
-        Log into your account
-      </h2>
-      <br />
-    </div>
-    <div
-      className="col-sm-2"
-    />
-  </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-4"
-    />
-    <div
-      className="col-sm-4"
+      class="row"
     >
       <div
-        className="form-group"
+        class="col-sm-2"
+      />
+      <div
+        class="col-sm-8"
+        style="text-align: center;"
       >
-        <input
-          className="form-control"
-          data-testid="username"
-          id="username"
-          onChange={[Function]}
-          placeholder="Username"
-          style={
-            Object {
-              "border": "1px solid grey",
-            }
-          }
-          type="text"
-        />
+        <h2
+          data-testid="login-header"
+        >
+          Log into your account
+        </h2>
+        <br />
       </div>
       <div
-        className="form-group"
-      >
-        <input
-          className="form-control"
-          data-testid="password"
-          id="password"
-          onChange={[Function]}
-          placeholder="Password"
-          style={
-            Object {
-              "border": "1px solid grey",
-            }
-          }
-          type="password"
-        />
-      </div>
-      <button
-        className="btn btn-primary float-right"
-        data-testid="submit"
-        id="doLogin"
-        onClick={[Function]}
-        type="submit"
-      >
-        Login
-      </button>
+        class="col-sm-2"
+      />
     </div>
     <div
-      className="col-sm-4"
-    />
+      class="row"
+    >
+      <div
+        class="col-sm-4"
+      />
+      <div
+        class="col-sm-4"
+      >
+        <div
+          class="form-group"
+        >
+          <input
+            class="form-control"
+            data-testid="username"
+            id="username"
+            placeholder="Username"
+            style="border: 1px solid grey;"
+            type="text"
+          />
+        </div>
+        <div
+          class="form-group"
+        >
+          <input
+            class="form-control"
+            data-testid="password"
+            id="password"
+            placeholder="Password"
+            style="border: 1px solid grey;"
+            type="password"
+          />
+        </div>
+        <button
+          class="btn btn-primary float-right"
+          data-testid="submit"
+          id="doLogin"
+          type="submit"
+        >
+          Login
+        </button>
+      </div>
+      <div
+        class="col-sm-4"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

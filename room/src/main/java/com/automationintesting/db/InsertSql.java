@@ -11,7 +11,7 @@ public class InsertSql {
 
     private PreparedStatement preparedStatement;
 
-    private int roomNumber;
+    private String roomName;
     private String type;
     private int beds;
     private boolean accessible;
@@ -20,10 +20,10 @@ public class InsertSql {
     private String[] features;
 
     InsertSql(Connection connection, Room room) throws SQLException {
-        final String CREATE_ROOM = "INSERT INTO PUBLIC.ROOMS (room_number, type, accessible, image, description, features, roomPrice) VALUES(?, ?, ?, ?, ?, ?, ?);";
+        final String CREATE_ROOM = "INSERT INTO PUBLIC.ROOMS (room_name, type, accessible, image, description, features, roomPrice) VALUES(?, ?, ?, ?, ?, ?, ?);";
 
         preparedStatement = connection.prepareStatement(CREATE_ROOM);
-        preparedStatement.setInt(1, room.getRoomNumber());
+        preparedStatement.setString(1, room.getRoomName());
         preparedStatement.setString(2, room.getType());
         preparedStatement.setBoolean(3, room.isAccessible());
         preparedStatement.setString(4, room.getImage());

@@ -1,5 +1,5 @@
 import { API_ROOT } from '../api-config';
-import fetch from 'node-fetch';
+import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 String.prototype.capitalize = function() {
@@ -8,232 +8,225 @@ String.prototype.capitalize = function() {
 
 export const API = {
 
-    getRoom : (component) => {
-        fetch(API_ROOT + '/room/')
-			.then(res => res.json())
+    getRoom : (setRooms) => {
+        axios.get(API_ROOT + '/room/')
 			.then(res => {
-				component.setState({rooms : res.rooms});
+				setRooms(res.data.rooms);
 			});
     },
 
-    postRoom : (component) => {
-            fetch(API_ROOT + '/room/', {
-                method: 'POST',
+    getRoomById : (id, room, setRoom) => {
+        axios.get(API_ROOT + '/room/' + id, {
+            headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+        })
+        .then(res => {
+            res.data.featuresObject = room.featuresObject;
+
+            for (let i = 0; i < res.data.features.length; i++) {
+                res.data.featuresObject[res.data.features[i]] = true
+            }
+
+            setRoom(res.data);
+        });
+    },
+
+    postRoom : (newRoom, resetForm, updateRooms, setErrors) => {
+        axios.post(API_ROOT + '/room/', 
+        JSON.stringify(newRoom),
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
+        .then(res => {
+            if(res.status == 201){
+                resetForm();
+                updateRooms();
+            } else {
+                return res.data;
+            }
+        })
+        .catch(res => {
+            setErrors(res.response.data.fieldErrors);
+        });
+    },
+
+    putRoom : (id, room, resetForm, fetchRoomDetails, setErrors) => {
+        axios.put(API_ROOT + '/room/' + id,
+            JSON.stringify(room),
+            {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 credentials: 'include',
-                body : JSON.stringify(component.state.newRoom)
             })
             .then(res => {
-                if(res.status == 201){
-                    component.resetForm();
-                    component.props.updateRooms();
+                if(res.status == 202){
+                    resetForm();
+                    fetchRoomDetails();
                 } else {
-                    return res.json();
+                    return res.data;
                 }
             })
+            .catch(res => {
+                setErrors(res.response.data.fieldErrors);
+            });
+    },
+
+    postBooking : (booking, setComplete, setErrors) => {
+        axios.post(API_ROOT + '/booking/',
+            booking,
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+            })
             .then(res => {
-                if(res){
-                    component.setState({ errors : res.fieldErrors });
+                if (res.status == 201){
+                    setComplete(true)
+                } else {
+                    return res.data;
+                }
+            })
+            .catch(res => {
+                if (res.response.status == 409){
+                    setErrors(["The room dates are either invalid or are already booked for one or more of the dates that you have selected."])
+                } else {
+                    setErrors(res.response.data.fieldErrors);
                 }
             });
     },
 
-    putRoom : (component) => {
-        fetch(API_ROOT + '/room/' + component.props.params.id, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body : JSON.stringify(component.state.room)
-        })
-        .then(res => {
-            if(res.status == 202){
-                component.resetForm();
-                component.fetchRoomDetails();
-            } else {
-                return res.json();
-            }
-        })
-        .then(res => {
-            if(res){
-                component.setState({ errors : res.fieldErrors });
-            }
-        });
-    },
-
-    postBooking : (component) => {
-        fetch(API_ROOT + '/booking/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body : JSON.stringify(component.state.booking)
-        })
-        .then(res => {
-            if (res.status == 409){
-                component.setState({ errors : ["The room dates are either invalid or are already booked for one or more of the dates that you have selected."]})
-            } else if (res.status == 201){
-                component.setState({completed : true})
-            } else {
-                return res.json();
-            }
-        })
-        .then(res => {
-            if(res){
-                component.setState({ errors : res.fieldErrors });
-            }
-        });
-    },
-
-    getBranding : (component) => {
-        fetch(API_ROOT + '/branding/', {
-			method: 'GET',
+    getBranding : (setBranding) => {
+        axios.get(API_ROOT + '/branding/', {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			}
         })
-        .then(res => res.json())
         .then(res => {
-            component.setState({ branding : res });
+            setBranding(res.data);
         });
     },
 
-    putBranding : (component) => {
-        fetch(API_ROOT + '/branding/', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body : JSON.stringify(component.state.branding)
-        })
-        .then(res => {
-            if(res.status == 202){
-                component.setState({showModal : true, errors : {}});
-            } else if(res.status == 400) {
-                return res.json();
-            }
-        })
-        .then(res => {
-            if(res){
-                component.setState({ errors : res.fieldErrors });
-            }
-        });
+    putBranding : (branding, setErrors, toggleModal) => {
+        axios.put(API_ROOT + '/branding/',
+            JSON.stringify(branding),
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            })
+            .then(res => {
+                if(res.status == 202){
+                    setErrors({});
+                    toggleModal(true)
+                }
+            })
+            .catch(res => {
+                setErrors(res.response.data.fieldErrors);
+            })
     },
+    
 
-    getRoomReport : (component) => {
-        fetch(API_ROOT + '/report/room/' + component.props.roomid, {
-            method : 'GET',
+    getRoomReport : (roomid, setEvents) => {
+        axios.get(API_ROOT + '/report/room/' + roomid, {
             headers : {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-        .then(res => res.json())
         .then(res => {
-            component.setState({ events : res.report });
+            setEvents(res.data.report);
         })
     },
 
-    getReport : (component) => {
-        fetch(API_ROOT + '/report/')
-            .then(res => res.json())
+    getReport : (setReport) => {
+        axios.get(API_ROOT + '/report/')
             .then(body => {
-                component.setState({ report : body.report });
+                setReport(body.data.report);
             });
     },
 
-    getNotificationCount : (component) => {
-        fetch(API_ROOT + '/message/count', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(res => {
-            component.setState({ count : res.count });
-        })
-    },
-
-    getMessages : (component) => {
-        fetch(API_ROOT + '/message/', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(res => {
-            component.setState({ messages : res.messages });
-        })
-    },
-
-    deleteMessage : (id, component) => {
-        fetch(API_ROOT + '/message/' + id, {
-            method: 'DELETE',
+    getNotificationCount : (updateCount) => {
+        axios.get(API_ROOT + '/message/count', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
         .then(res => {
-            component.refreshMessageList();
+            updateCount(res.data.count);
         })
     },
 
-    getMessage : (id, component) => {
-        fetch(API_ROOT + '/message/' + id, {
-            method: 'GET',
+    getMessages : (setMessages) => {
+        axios.get(API_ROOT + '/message/', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-        .then(res => res.json())
         .then(res => {
-            component.setState(res);
+            setMessages(res.data.messages);
         })
     },
 
-    postMessage : (component) => {
-        fetch(API_ROOT + '/message/', {
-            method: 'POST',
+    deleteMessage : (id, refreshMessageList) => {
+        axios.delete(API_ROOT + '/message/' + id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            refreshMessageList();
+        })
+    },
+
+    getMessage : (id, setMessage) => {
+        axios.get(API_ROOT + '/message/' + id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            setMessage(res.data);
+        })
+    },
+
+    postMessage : (contact, setSubmitted, setErrors) => {
+        axios.post(API_ROOT + '/message/',
+            JSON.stringify(contact),{
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
-            body : JSON.stringify(component.state.contact)
+            credentials: 'include'
         })
         .then(res => {
             if(res.status == 201){
-                component.setState({ submitted : true});
-            } else if(res.status == 400) {
-                return res.json();
+                setSubmitted(true);
             }
         })
-        .then(res => {
-            if(res){
-                component.setState({ errors : res.fieldErrors });
-            }
+        .catch(res => {
+            setErrors(res.response.data.fieldErrors);
         });
     },
 
     putMessageRead :  (id) => {
-        fetch(API_ROOT + '/message/' + id + '/read', {
-            method: 'PUT',
+        axios.put(API_ROOT + '/message/' + id + '/read', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -242,25 +235,124 @@ export const API = {
         })
     },
 
-    postLogout : (component, tokenCookie) => {
-        fetch(API_ROOT + '/auth/logout', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body : JSON.stringify({
-				'token' : tokenCookie
-			})
+    postLogout : (setAuthenticate, tokenCookie) => {
+        axios.post(API_ROOT + '/auth/logout',
+            JSON.stringify({ 'token' : tokenCookie }),
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
 		})
 		.then(res => {
 			if(res.status == 200){
-				component.props.setAuthenticate(false);
+				setAuthenticate(false);
 
 				const cookies = new Cookies();
 				cookies.remove('token');
 			}
 		})
+    },
+
+    postValidation : (setAuthenticate, cookies) => {
+        axios.post(API_ROOT + '/auth/validate',
+            JSON.stringify({ token: cookies.get('token')}),
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => {
+                if(res.status == 200){
+                    setAuthenticate(true);
+                }
+            })
+            .catch()
+    },
+
+    deleteBooking : (id, getBookings) => {
+        axios.delete(API_ROOT + '/booking/' + id, {
+			credentials: 'include',
+        })
+        .then(res => {
+            if(res.status == 202){
+                getBookings();
+            }
+        })
+        .catch(e => console.log(e))
+    },
+
+    updateBooking : (booking, toggleEdit, getBookings) => {
+        axios.put(API_ROOT + '/booking/' + booking.bookingid,
+            JSON.stringify(booking),
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            })
+            .then(res => {
+                toggleEdit(false)
+                getBookings();
+            })
+            .catch(e => console.log(e));
+    },
+
+    postLogin : (login, setAuthenticate, setError) => {
+        axios.post(API_ROOT + '/auth/login',
+            JSON.stringify(login), {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            if(res.status === 200){
+                setAuthenticate(true);
+            } else {
+                setError(true);
+            }
+        })
+        .catch(e => {
+            setError(true);
+            console.log("Failed to authenticate");
+            console.log(e);
+        })
+    },
+
+    getBookingsByRoomId : (roomid, setBookings) => {
+        axios.get(API_ROOT + '/booking/?roomid=' + roomid, {
+            headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+        })
+        .then(res => {
+            setBookings(res.data.bookings);
+        })
+        .catch(e => console.log(e));
+    },
+
+    deleteAll : (roomid, updateRooms) => {
+        axios.get(API_ROOT + '/booking/?roomid=' + roomid, {
+            method: 'GET'
+        })
+        .then(res => {
+            for(let i = 0; i < res.data.bookings.length; i++){
+                axios.delete(API_ROOT + '/booking/' + res.data.bookings[i].bookingid);
+            }
+
+            axios.delete(API_ROOT + '/room/' + roomid, {
+                credentials: 'include'
+            })
+            .then(res => {
+                if(res.status == 202){
+                    updateRooms();
+                }
+            });
+        })
     }
 
 }

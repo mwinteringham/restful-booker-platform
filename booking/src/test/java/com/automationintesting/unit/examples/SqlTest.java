@@ -3,8 +3,8 @@ package com.automationintesting.unit.examples;
 import com.automationintesting.model.db.Booking;
 import com.automationintesting.model.db.CreatedBooking;
 import com.automationintesting.unit.BaseTest;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ public class SqlTest extends BaseTest {
     // The @Before annotation means run whatever code is in this
     // method before each test starts to run. This is useful when
     // creating test data
-    @Before
+    @BeforeEach
     public void resetDb() throws SQLException, IOException {
         // We call resetDB to return it back to it's vanilla state
         bookingDB.resetDB();

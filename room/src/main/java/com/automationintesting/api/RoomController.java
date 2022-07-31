@@ -1,6 +1,5 @@
 package com.automationintesting.api;
 
-import com.automationintesting.db.RoomDB;
 import com.automationintesting.model.db.Room;
 import com.automationintesting.model.db.Rooms;
 import com.automationintesting.model.service.RoomResult;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.automationintesting.requests.AuthRequests;
 
 import javax.validation.Valid;
 import java.sql.SQLException;

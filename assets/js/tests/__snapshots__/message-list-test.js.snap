@@ -1,241 +1,411 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Clicking message shows message popup 1`] = `
-<div>
-  <div
-    className="messages"
-  >
+<DocumentFragment>
+  <div>
     <div
-      className="row"
+      class="messages"
     >
       <div
-        className="col-sm-2 rowHeader"
+        class="row"
       >
-        <p>
-          Name
-        </p>
-      </div>
-      <div
-        className="col-sm-9 rowHeader"
-      >
-        <p>
-          Subject
-        </p>
-      </div>
-      <div
-        className="col-sm-1"
-      />
-    </div>
-    <div
-      className="row detail read-true"
-      id="message0"
-      key="0"
-    >
-      <div
-        className="col-sm-2"
-        onClick={[Function]}
-      >
-        <p>
-          Mark Winteringham
-        </p>
-      </div>
-      <div
-        className="col-sm-9"
-        onClick={[Function]}
-      >
-        <p>
-          Subject description here
-        </p>
-      </div>
-      <div
-        className="col-sm-1"
-      >
-        <span
-          className="fa fa-remove roomDelete"
-          onClick={[Function]}
+        <div
+          class="col-sm-2 rowHeader"
+        >
+          <p>
+            Name
+          </p>
+        </div>
+        <div
+          class="col-sm-9 rowHeader"
+        >
+          <p>
+            Subject
+          </p>
+        </div>
+        <div
+          class="col-sm-1"
         />
       </div>
-    </div>
-    <div
-      className="row detail read-false"
-      id="message1"
-      key="1"
-    >
       <div
-        className="col-sm-2"
-        onClick={[Function]}
+        class="row detail read-true"
+        id="message0"
       >
-        <p>
-          James Dean
-        </p>
+        <div
+          class="col-sm-2"
+          data-testid="message0"
+        >
+          <p>
+            Mark Winteringham
+          </p>
+        </div>
+        <div
+          class="col-sm-9"
+          data-testid="messageDescription0"
+        >
+          <p>
+            Subject description here
+          </p>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <span
+            class="fa fa-remove roomDelete"
+            data-testid="DeleteMessage0"
+          />
+        </div>
       </div>
       <div
-        className="col-sm-9"
-        onClick={[Function]}
+        class="row detail read-false"
+        id="message1"
       >
-        <p>
-          Another description here
-        </p>
+        <div
+          class="col-sm-2"
+          data-testid="message1"
+        >
+          <p>
+            James Dean
+          </p>
+        </div>
+        <div
+          class="col-sm-9"
+          data-testid="messageDescription1"
+        >
+          <p>
+            Another description here
+          </p>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <span
+            class="fa fa-remove roomDelete"
+            data-testid="DeleteMessage1"
+          />
+        </div>
       </div>
       <div
-        className="col-sm-1"
+        class="row detail read-true"
+        id="message2"
       >
-        <span
-          className="fa fa-remove roomDelete"
-          onClick={[Function]}
-        />
-      </div>
-    </div>
-    <div
-      className="row detail read-true"
-      id="message2"
-      key="2"
-    >
-      <div
-        className="col-sm-2"
-        onClick={[Function]}
-      >
-        <p>
-          Janet Samson
-        </p>
-      </div>
-      <div
-        className="col-sm-9"
-        onClick={[Function]}
-      >
-        <p>
-          Lorem ipsum dolores est
-        </p>
-      </div>
-      <div
-        className="col-sm-1"
-      >
-        <span
-          className="fa fa-remove roomDelete"
-          onClick={[Function]}
-        />
+        <div
+          class="col-sm-2"
+          data-testid="message2"
+        >
+          <p>
+            Janet Samson
+          </p>
+        </div>
+        <div
+          class="col-sm-9"
+          data-testid="messageDescription2"
+        >
+          <p>
+            Lorem ipsum dolores est
+          </p>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <span
+            class="fa fa-remove roomDelete"
+            data-testid="DeleteMessage2"
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`Renders the list of messages correctly 1`] = `
-<div>
-  <div
-    className="messages"
-  >
-    <div
-      className="row"
-    >
-      <div
-        className="col-sm-2 rowHeader"
-      >
-        <p>
-          Name
-        </p>
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class="messages"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-sm-2 rowHeader"
+            >
+              <p>
+                Name
+              </p>
+            </div>
+            <div
+              class="col-sm-9 rowHeader"
+            >
+              <p>
+                Subject
+              </p>
+            </div>
+            <div
+              class="col-sm-1"
+            />
+          </div>
+          <div
+            class="row detail read-true"
+            id="message0"
+          >
+            <div
+              class="col-sm-2"
+              data-testid="message0"
+            >
+              <p>
+                Mark Winteringham
+              </p>
+            </div>
+            <div
+              class="col-sm-9"
+              data-testid="messageDescription0"
+            >
+              <p>
+                Subject description here
+              </p>
+            </div>
+            <div
+              class="col-sm-1"
+            >
+              <span
+                class="fa fa-remove roomDelete"
+                data-testid="DeleteMessage0"
+              />
+            </div>
+          </div>
+          <div
+            class="row detail read-false"
+            id="message1"
+          >
+            <div
+              class="col-sm-2"
+              data-testid="message1"
+            >
+              <p>
+                James Dean
+              </p>
+            </div>
+            <div
+              class="col-sm-9"
+              data-testid="messageDescription1"
+            >
+              <p>
+                Another description here
+              </p>
+            </div>
+            <div
+              class="col-sm-1"
+            >
+              <span
+                class="fa fa-remove roomDelete"
+                data-testid="DeleteMessage1"
+              />
+            </div>
+          </div>
+          <div
+            class="row detail read-true"
+            id="message2"
+          >
+            <div
+              class="col-sm-2"
+              data-testid="message2"
+            >
+              <p>
+                Janet Samson
+              </p>
+            </div>
+            <div
+              class="col-sm-9"
+              data-testid="messageDescription2"
+            >
+              <p>
+                Lorem ipsum dolores est
+              </p>
+            </div>
+            <div
+              class="col-sm-1"
+            >
+              <span
+                class="fa fa-remove roomDelete"
+                data-testid="DeleteMessage2"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-      <div
-        className="col-sm-9 rowHeader"
-      >
-        <p>
-          Subject
-        </p>
-      </div>
-      <div
-        className="col-sm-1"
-      />
     </div>
-    <div
-      className="row detail read-true"
-      id="message0"
-      key="0"
-    >
+  </body>,
+  "container": <div>
+    <div>
       <div
-        className="col-sm-2"
-        onClick={[Function]}
+        class="messages"
       >
-        <p>
-          Mark Winteringham
-        </p>
-      </div>
-      <div
-        className="col-sm-9"
-        onClick={[Function]}
-      >
-        <p>
-          Subject description here
-        </p>
-      </div>
-      <div
-        className="col-sm-1"
-      >
-        <span
-          className="fa fa-remove roomDelete"
-          onClick={[Function]}
-        />
+        <div
+          class="row"
+        >
+          <div
+            class="col-sm-2 rowHeader"
+          >
+            <p>
+              Name
+            </p>
+          </div>
+          <div
+            class="col-sm-9 rowHeader"
+          >
+            <p>
+              Subject
+            </p>
+          </div>
+          <div
+            class="col-sm-1"
+          />
+        </div>
+        <div
+          class="row detail read-true"
+          id="message0"
+        >
+          <div
+            class="col-sm-2"
+            data-testid="message0"
+          >
+            <p>
+              Mark Winteringham
+            </p>
+          </div>
+          <div
+            class="col-sm-9"
+            data-testid="messageDescription0"
+          >
+            <p>
+              Subject description here
+            </p>
+          </div>
+          <div
+            class="col-sm-1"
+          >
+            <span
+              class="fa fa-remove roomDelete"
+              data-testid="DeleteMessage0"
+            />
+          </div>
+        </div>
+        <div
+          class="row detail read-false"
+          id="message1"
+        >
+          <div
+            class="col-sm-2"
+            data-testid="message1"
+          >
+            <p>
+              James Dean
+            </p>
+          </div>
+          <div
+            class="col-sm-9"
+            data-testid="messageDescription1"
+          >
+            <p>
+              Another description here
+            </p>
+          </div>
+          <div
+            class="col-sm-1"
+          >
+            <span
+              class="fa fa-remove roomDelete"
+              data-testid="DeleteMessage1"
+            />
+          </div>
+        </div>
+        <div
+          class="row detail read-true"
+          id="message2"
+        >
+          <div
+            class="col-sm-2"
+            data-testid="message2"
+          >
+            <p>
+              Janet Samson
+            </p>
+          </div>
+          <div
+            class="col-sm-9"
+            data-testid="messageDescription2"
+          >
+            <p>
+              Lorem ipsum dolores est
+            </p>
+          </div>
+          <div
+            class="col-sm-1"
+          >
+            <span
+              class="fa fa-remove roomDelete"
+              data-testid="DeleteMessage2"
+            />
+          </div>
+        </div>
       </div>
     </div>
-    <div
-      className="row detail read-false"
-      id="message1"
-      key="1"
-    >
-      <div
-        className="col-sm-2"
-        onClick={[Function]}
-      >
-        <p>
-          James Dean
-        </p>
-      </div>
-      <div
-        className="col-sm-9"
-        onClick={[Function]}
-      >
-        <p>
-          Another description here
-        </p>
-      </div>
-      <div
-        className="col-sm-1"
-      >
-        <span
-          className="fa fa-remove roomDelete"
-          onClick={[Function]}
-        />
-      </div>
-    </div>
-    <div
-      className="row detail read-true"
-      id="message2"
-      key="2"
-    >
-      <div
-        className="col-sm-2"
-        onClick={[Function]}
-      >
-        <p>
-          Janet Samson
-        </p>
-      </div>
-      <div
-        className="col-sm-9"
-        onClick={[Function]}
-      >
-        <p>
-          Lorem ipsum dolores est
-        </p>
-      </div>
-      <div
-        className="col-sm-1"
-      >
-        <span
-          className="fa fa-remove roomDelete"
-          onClick={[Function]}
-        />
-      </div>
-    </div>
-  </div>
-</div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

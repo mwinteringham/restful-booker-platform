@@ -1,71 +1,186 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rooms list component 1`] = `
-<div
-  className="detail booking-1"
->
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm-2"
-    >
-      <p>
-        James
-      </p>
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="detail booking-1"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col-sm-2"
+          >
+            <p>
+              James
+            </p>
+          </div>
+          <div
+            class="col-sm-2"
+          >
+            <p>
+              Dean
+            </p>
+          </div>
+          <div
+            class="col-sm-1"
+          >
+            <p>
+              0
+            </p>
+          </div>
+          <div
+            class="col-sm-2"
+          >
+            <p>
+              true
+            </p>
+          </div>
+          <div
+            class="col-sm-2"
+          >
+            <p>
+              2022-02-01
+            </p>
+          </div>
+          <div
+            class="col-sm-2"
+          >
+            <p>
+              2022-02-05
+            </p>
+          </div>
+          <div
+            class="col-sm-1"
+          >
+            <span
+              class="fa fa-pencil bookingEdit"
+              style="padding-right: 10px;"
+            />
+            <span
+              class="fa fa-trash bookingDelete"
+            />
+          </div>
+        </div>
+      </div>
     </div>
+  </body>,
+  "container": <div>
     <div
-      className="col-sm-2"
+      class="detail booking-1"
     >
-      <p>
-        Dean
-      </p>
+      <div
+        class="row"
+      >
+        <div
+          class="col-sm-2"
+        >
+          <p>
+            James
+          </p>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <p>
+            Dean
+          </p>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <p>
+            0
+          </p>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <p>
+            true
+          </p>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <p>
+            2022-02-01
+          </p>
+        </div>
+        <div
+          class="col-sm-2"
+        >
+          <p>
+            2022-02-05
+          </p>
+        </div>
+        <div
+          class="col-sm-1"
+        >
+          <span
+            class="fa fa-pencil bookingEdit"
+            style="padding-right: 10px;"
+          />
+          <span
+            class="fa fa-trash bookingDelete"
+          />
+        </div>
+      </div>
     </div>
-    <div
-      className="col-sm-1"
-    >
-      <p>
-        0
-      </p>
-    </div>
-    <div
-      className="col-sm-2"
-    >
-      <p>
-        true
-      </p>
-    </div>
-    <div
-      className="col-sm-2"
-    >
-      <p>
-        2020-02-01
-      </p>
-    </div>
-    <div
-      className="col-sm-2"
-    >
-      <p>
-        2020-02-05
-      </p>
-    </div>
-    <div
-      className="col-sm-1"
-    >
-      <span
-        className="fa fa-pencil bookingEdit"
-        onClick={[Function]}
-        style={
-          Object {
-            "paddingRight": "10px",
-          }
-        }
-      />
-      <span
-        className="fa fa-trash bookingDelete"
-        onClick={[Function]}
-      />
-    </div>
-  </div>
-</div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

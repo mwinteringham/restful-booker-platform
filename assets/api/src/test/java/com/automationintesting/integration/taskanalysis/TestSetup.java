@@ -4,16 +4,16 @@ import com.applitools.eyes.selenium.Eyes;
 import com.automationintesting.UiApplication;
 import com.automationintesting.integration.taskanalysis.driverfactory.DriverFactory;
 import com.xebialabs.restito.server.StubServer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 // We need to start the app up to test it. So we use the SpringRunner class and SpringBootTest to configure
 // and run the app.
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = UiApplication.class)
 public class TestSetup {
 
@@ -28,7 +28,7 @@ public class TestSetup {
 
     // We add the @Before annotation so that when JUnit runs it knows to run this method before
     // the tests are started. This is known as a hook.
-    @Before
+    @BeforeEach
     public void setUpDriver(){
         // In the before hook we need to configure both Selenium WebDriver to create an
         // instance of a browser to run our check in
@@ -52,7 +52,7 @@ public class TestSetup {
 
     // We add the @After annotation so that when JUnit runs it knows to run this method after
     // the tests are started. This is known as a hook.
-    @After
+    @AfterEach
     public void teardownDriver() throws InterruptedException {
         // Once the check is complete we need to close the Applitools and WebDriver instances so that
         // we can rebuild new ones for the next check

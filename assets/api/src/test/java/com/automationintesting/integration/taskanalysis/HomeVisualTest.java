@@ -2,7 +2,7 @@ package com.automationintesting.integration.taskanalysis;
 
 import com.applitools.eyes.RectangleSize;
 import com.xebialabs.restito.semantics.Condition;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
@@ -28,7 +28,7 @@ public class HomeVisualTest extends TestSetup {
         // the get request
         whenHttp(roomApi).
                 match(Condition.get("/room/")).
-                then(ok(), header("Content-Type","application/json"), stringContent("{\"rooms\":[{\"roomid\":1,\"roomNumber\":101,\"type\":\"Twin\",\"accessible\":false,\"image\":\"https://www.mwtestconsultancy.co.uk/img/room1.jpg\",\"description\":\"Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.\",\"features\":[\"Wifi\",\"TV\",\"Safe\"]}]}"));
+                then(ok(), header("Content-Type","application/json"), stringContent("{\"rooms\":[{\"roomid\":1,\"roomName\":\"101\",\"type\":\"Twin\",\"accessible\":false,\"image\":\"https://www.mwtestconsultancy.co.uk/img/room1.jpg\",\"description\":\"Aenean porttitor mauris sit amet lacinia molestie. In posuere accumsan aliquet. Maecenas sit amet nisl massa. Interdum et malesuada fames ac ante.\",\"features\":[\"Wifi\",\"TV\",\"Safe\"]}]}"));
 
         // Next, we start Applitools by calling the open method and giving it the Selenium WebDriver object
         // to interact with and then details about the check and finally a fixed browser size that Applitools will
@@ -37,7 +37,7 @@ public class HomeVisualTest extends TestSetup {
         eyes.setForceFullPageScreenshot(true);
 
         // Next we use Selenium to navigate to our page under test
-        driver.navigate().to("http://localhost:8080/");
+        driver.navigate().to("http://localhost:3003/");
 
         // Close down the banner because we don't want to screenshot that
         driver.findElement(By.cssSelector(".btn-primary")).click();

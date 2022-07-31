@@ -8,8 +8,8 @@ import com.automationintesting.model.db.Messages;
 import com.automationintesting.model.service.MessageResult;
 import com.automationintesting.requests.AuthRequests;
 import com.automationintesting.service.MessageService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -36,14 +36,14 @@ public class MessageServiceTest {
     @InjectMocks
     private MessageService messageService;
 
-    @Before
+    @BeforeEach
     public void initialiseMocks() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     public void getMessagesTest() throws SQLException {
-        List<MessageSummary> sampleMessages = new ArrayList<>(){{
+        List<MessageSummary> sampleMessages = new ArrayList<MessageSummary>(){{
             this.add(new MessageSummary(1, "Mark", "Message 1", false));
             this.add(new MessageSummary(1, "Richard", "Message 2", false));
         }};
