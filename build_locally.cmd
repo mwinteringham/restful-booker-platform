@@ -86,17 +86,17 @@ call npm run build
 echo:
 echo ####### RESTFUL-BOOKER-PLATFORM #######
 echo ####                               ####
-echo ####       BUILDING BACKEND        ####
+echo ####       BUILDING PROJECT        ####
 echo ####                               ####
 echo #######################################
 echo:
 
 cd %cmdFileDirectory%
 if defined APPLITOOLS_API_KEY (
-    call mvn install
+    call mvn install -P ci
 ) else (
     echo Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks
-    call mvn install -Dvisual.skip.test=true
+    call mvn install
 )
 
 CALL run_locally.cmd true

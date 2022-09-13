@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.automationintesting</groupId>
-    <artifactId>restful-booker-platform-assets</artifactId>
+    <artifactId>restful-booker-platform-assets-api</artifactId>
     <version>1.5.${revision}</version>
 
     <parent>
@@ -18,7 +18,22 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>SNAPSHOT</revision>
+        <skipVisual>true</skipVisual>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>ci</id>
+            <activation>
+                <property>
+                    <name>env.skipVisual</name>
+                </property>
+            </activation>
+            <properties>
+                <skipVisual>false</skipVisual>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -71,7 +86,7 @@
                         <include>**/RoomVisualTest.java</include>
                         <include>**/HomeVisualTest.java</include>
                     </includes>
-                    <skipITs>${visual.skip.test}</skipITs>
+                    <skipITs>${skipVisual}</skipITs>
                 </configuration>
             </plugin>
         </plugins>
