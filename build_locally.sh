@@ -43,23 +43,13 @@ if ! type -p npm; then
     exit
 fi
 
-mvn clean
-
-printf "\n####### RESTFUL-BOOKER-PLATFORM #######
-####                               ####
-####      BUILDING FRONTEND        ####
-####                               ####
-#######################################\n"
-
-cd .utilities/rbp-proxy/local
-npm install --legacy-peer-deps
-cd ../../..
-
 printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
 ####       BUILDING PROJECT        ####
 ####                               ####
 #######################################\n"
+
+mvn clean
 
 if [[ -z "${APPLITOOLS_API_KEY}" ]]; then
   printf "Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks"

@@ -61,28 +61,6 @@ if %errorlevel%==1 (
     pause>nul
 )
 
-set cmdFileDirectory=%~dp0
-
-cd %cmdFileDirectory%
-call mvn clean
-
-echo:
-echo ####### RESTFUL-BOOKER-PLATFORM #######
-echo ####                               ####
-echo ####      BUILDING FRONTEND        ####
-echo ####                               ####
-echo #######################################
-echo:
-
-cd %cmdFileDirectory%.utilities\rbp-proxy\local
-call npm install --legacy-peer-deps
-cd %cmdFileDirectory%
-
-cd %cmdFileDirectory%assets\js
-call npm install --legacy-peer-deps
-call npm test
-call npm run build
-
 echo:
 echo ####### RESTFUL-BOOKER-PLATFORM #######
 echo ####                               ####
@@ -90,6 +68,11 @@ echo ####       BUILDING PROJECT        ####
 echo ####                               ####
 echo #######################################
 echo:
+
+set cmdFileDirectory=%~dp0
+
+cd %cmdFileDirectory%
+call mvn clean
 
 cd %cmdFileDirectory%
 if defined APPLITOOLS_API_KEY (

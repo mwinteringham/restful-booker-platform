@@ -18,6 +18,7 @@
         <module>message</module>
         <module>assets/js</module>
         <module>assets/api</module>
+        <module>.utilities/rbp-proxy/local</module>
     </modules>
 
     <build>
