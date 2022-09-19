@@ -46,7 +46,7 @@
     "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "nock": "^13.2.9",
-    "node-sass": "^7.0.1",
+    "node-sass": "^7.0.3",
     "pigeon-maps": "^0.21.0",
     "pigeon-marker": "^0.3.4",
     "query-string": "^7.1.1",
