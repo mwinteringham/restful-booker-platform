@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.automationintesting</groupId>
-    <artifactId>restful-booker-platform-assets-api</artifactId>
-    <version>1.5.${revision}</version>
+    <artifactId>restful-booker-platform-assets</artifactId>
+    <version>1.6.${revision}</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
