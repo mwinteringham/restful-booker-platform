@@ -43,7 +43,7 @@ public class RoomDB {
         // the environmental variable dbServer to true.
         try{
             if(System.getenv("dbServer").equals("true")){
-                Server.createTcpServer("-tcpPort", "9091", "-tcpAllowOthers").start();
+                Server.createTcpServer("-tcpPort", "9094", "-tcpAllowOthers").start();
                 logger.info("DB server mode enabled");
             } else {
                 logger.info("DB server mode disabled");
