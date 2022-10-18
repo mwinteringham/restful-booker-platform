@@ -31,7 +31,7 @@ public class RoomDB {
 
     public RoomDB() throws SQLException, IOException {
         JdbcDataSource ds = new JdbcDataSource();
-        ds.setURL("jdbc:h2:mem:rbp;MODE=MySQL");
+        ds.setURL("jdbc:h2:mem:rbp-room;MODE=MySQL");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();
