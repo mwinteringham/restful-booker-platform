@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 printf "####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
@@ -43,37 +43,19 @@ if ! type -p npm; then
     exit
 fi
 
+printf "\n####### RESTFUL-BOOKER-PLATFORM #######
+####                               ####
+####       BUILDING PROJECT        ####
+####                               ####
+#######################################\n"
+
 mvn clean
-
-printf "\n####### RESTFUL-BOOKER-PLATFORM #######
-####                               ####
-####      BUILDING FRONTEND        ####
-####                               ####
-#######################################\n"
-
-cd .utilities/rbp-proxy/local
-npm install --legacy-peer-deps
-cd ../../..
-
-cd assets/js
-npm install --legacy-peer-deps
-npm run test
-npm run build
-
-printf "\n####### RESTFUL-BOOKER-PLATFORM #######
-####                               ####
-####       BUILDING BACKEND        ####
-####                               ####
-#######################################\n"
-
-cd ../..
-
 
 if [[ -z "${APPLITOOLS_API_KEY}" ]]; then
   printf "Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks"
-  mvn install -Dvisual.skip.test=true
-else
   mvn install
+else
+  mvn install -P ci
 fi
 
 /bin/bash ./run_locally.sh -e true

@@ -35,10 +35,11 @@ const messageMock = nock('http://localhost')
                             });
 
 test('Renders the list of messages correctly', async () => {
-    const messageComponent = render(<MessageList setCount={() => {}} />);
+    const {asFragment, getByTestId} = render(<MessageList setCount={() => {}} />);
 
     await waitFor(() => expect(messageMock.isDone()).toBeTruthy());
-    await waitFor(() => expect(messageComponent).toMatchSnapshot());
+    await waitFor(() => expect(getByTestId(/messageDescription0/)).toBeInTheDocument());
+    await waitFor(() => expect(asFragment()).toMatchSnapshot());
 });
 
 test('Deletes message when selected to delete', async () => {

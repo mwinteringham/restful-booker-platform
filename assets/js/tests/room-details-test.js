@@ -44,8 +44,8 @@ test('Room details component renders', async () => {
         </Router>
     )
 
-    await waitFor(() => {expect(roomMock.isDone()).toBeTruthy()})
-    await getByText(/Aenean/)
+    await waitFor(() => expect(roomMock.isDone()).toBeTruthy())
+    await waitFor(() => expect(getByText(/101/)).not.toBeNull());
     
     expect(asFragment()).toMatchSnapshot();
 });
