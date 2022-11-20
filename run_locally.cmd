@@ -31,8 +31,8 @@ START /B java -jar -Dspring.profiles.active=dev message/target/%message_jar% > m
 for /f "delims=" %%a in ('dir assets\api\target\*.jar /B /O:D') do set "assets_jar=%%a"
 START /B java -jar -Dspring.profiles.active=dev assets/api/target/%assets_jar% > ui.log
 
-for /f "delims=" %%a in ('dir proxy\api\target\*.jar /B /O:D') do set "proxy_jar=%%a"
-START /B java -jar assets/api/target/%proxy_jar% > ui.log
+for /f "delims=" %%a in ('dir proxy\target\*.jar /B /O:D') do set "proxy_jar=%%a"
+START /B java -jar proxy/target/%proxy_jar% > proxy.log
 
 call node .utilities/monitor/local_monitor.js
 
