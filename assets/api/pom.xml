@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+        <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -109,13 +109,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.9.0</version>
+            <version>5.9.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.1.1</version>
+            <version>5.3.0</version>
             <exclusions>
                 <!-- Exclude Groovy because of dependency issue -->
                 <exclusion>
@@ -128,12 +128,12 @@
         <dependency>
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests</artifactId>
-            <version>18.0.0</version>
+            <version>18.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.4.0</version>
+            <version>4.6.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -144,27 +144,27 @@
         <dependency>
             <groupId>com.xebialabs.restito</groupId>
             <artifactId>restito</artifactId>
-            <version>1.0.1</version>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.13.4</version>
+            <version>2.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.4</version>
+            <version>2.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.13.4</version>
+            <version>2.14.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.3.0</version>
+            <version>5.3.1</version>
         </dependency>
     </dependencies>
     
