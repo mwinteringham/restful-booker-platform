@@ -342,6 +342,7 @@ exports[`Home page renders 1`] = `
             class="map"
           >
             <div
+              dir="ltr"
               style="width: 1024px; height: 600px; position: relative; display: inline-block; overflow: hidden; background: rgb(221, 221, 221);"
             >
               <div
