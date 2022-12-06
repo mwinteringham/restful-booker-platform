@@ -266,9 +266,13 @@ export const API = {
             .then(res => {
                 if(res.status == 200){
                     setAuthenticate(true);
+                } else {
+                    setAuthenticate(false);
                 }
             })
-            .catch()
+            .catch(() => {
+                setAuthenticate(false);
+            })
     },
 
     deleteBooking : (id, getBookings) => {
