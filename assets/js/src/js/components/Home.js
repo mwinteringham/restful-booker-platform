@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+
 import HotelRoomInfo from './HotelRoomInfo.js';
 import HotelMap from './HotelMap.js';
 import HotelLogo from './HotelLogo.js';
