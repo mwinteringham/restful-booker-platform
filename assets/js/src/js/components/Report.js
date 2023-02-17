@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar, momentLocalizer} from 'react-big-calendar';
-import moment from 'moment/moment';
+// import moment from 'moment/moment';
+import moment from 'moment-timezone';
 import AdminBooking from './AdminBooking.js';
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -29,6 +30,7 @@ const Report = ({defaultDate}) => {
     API.getReport(setReport);
   }
 
+  moment.tz.setDefault("Europe/London");
   const localizer = momentLocalizer(moment);
 
   if(showBookingForm){

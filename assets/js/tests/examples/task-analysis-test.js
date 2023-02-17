@@ -3,8 +3,6 @@ import nock from 'nock';
 import LoginComponent from '../../src/js/components/Login.js';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 
-jest.mock("react-ga")
-
 // We first declare our test by using Jests test function and provide it
 // with a name and then an anonymous function which will run our test
 test('Login component is created', () => {

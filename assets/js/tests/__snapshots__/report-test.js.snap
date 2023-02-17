@@ -250,7 +250,7 @@ exports[`Multiple reports can be created in the Report component 1`] = `
               </div>
               <div
                 class="rbc-row-segment"
-                style="flex-basis: 28.57142857142857%; max-width: 28.57142857142857%;"
+                style="flex-basis: 14.285714285714285%; max-width: 14.285714285714285%;"
               >
                 <div
                   class="rbc-event rbc-event-allday"
@@ -264,19 +264,9 @@ exports[`Multiple reports can be created in the Report component 1`] = `
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              class="rbc-row"
-            >
               <div
                 class="rbc-row-segment"
-                style="flex-basis: 28.57142857142857%; max-width: 28.57142857142857%;"
-              >
-                 
-              </div>
-              <div
-                class="rbc-row-segment"
-                style="flex-basis: 28.57142857142857%; max-width: 28.57142857142857%;"
+                style="flex-basis: 14.285714285714285%; max-width: 14.285714285714285%;"
               >
                 <div
                   class="rbc-event rbc-event-allday"
@@ -302,7 +292,7 @@ exports[`Multiple reports can be created in the Report component 1`] = `
               </div>
               <div
                 class="rbc-row-segment"
-                style="flex-basis: 28.57142857142857%; max-width: 28.57142857142857%;"
+                style="flex-basis: 14.285714285714285%; max-width: 14.285714285714285%;"
               >
                 <div
                   class="rbc-event rbc-event-allday"
