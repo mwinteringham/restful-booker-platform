@@ -4,6 +4,8 @@ import moment from 'moment/moment';
 import { API } from '../libs/Api';
 import BookingConfirmation from './BookingConfirmation.js';
 
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
 const RoomBookingForm = ({roomid, roomPrice, toggleBooking}) => {
 
     const [completed, setComplete] = useState(false);
