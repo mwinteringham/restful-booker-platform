@@ -51,14 +51,14 @@ public class ProxyService {
     private int derivePortNumber(String requestUrl) {
         if(requestUrl.contains("/booking")){
             return 3000;
-        } else if(requestUrl.contains("/room")){
-            return 3001;
         } else if(requestUrl.contains("/branding")){
             return 3002;
         } else if(requestUrl.contains("/auth")){
             return 3004;
         } else if(requestUrl.contains("/report")){
             return 3005;
+        } else if(requestUrl.contains("/room")){
+            return 3001;
         } else if(requestUrl.contains("/message")){
             return 3006;
         } else {
