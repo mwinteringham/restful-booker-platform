@@ -48,18 +48,18 @@ public class ProxyService {
         }
     }
 
-    private int derivePortNumber(String requestUrl) {
-        if(requestUrl.contains("/booking")){
+    public int derivePortNumber(String requestUrl) {
+        if(requestUrl.matches("^\\/booking\\/.*")){
             return 3000;
-        } else if(requestUrl.contains("/branding")){
+        } else if(requestUrl.matches("^\\/branding\\/.*")){
             return 3002;
-        } else if(requestUrl.contains("/auth")){
+        } else if(requestUrl.matches("^\\/auth\\/.*")){
             return 3004;
-        } else if(requestUrl.contains("/report")){
+        } else if(requestUrl.matches("^\\/report\\/.*")){
             return 3005;
-        } else if(requestUrl.contains("/room")){
+        } else if(requestUrl.matches("^\\/room\\/.*")){
             return 3001;
-        } else if(requestUrl.contains("/message")){
+        } else if(requestUrl.matches("^\\/message\\/.*")){
             return 3006;
         } else {
             return 3003;
