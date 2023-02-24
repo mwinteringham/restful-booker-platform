@@ -34,7 +34,10 @@ public class ProxyService {
 
         while (headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();
-            headers.set(headerName, request.getHeader(headerName));
+
+            if(!headerName.equals("accept-encoding")){
+                headers.set(headerName, request.getHeader(headerName));
+            }
         }
 
         HttpEntity<String> httpEntity = new HttpEntity<>(body, headers);
