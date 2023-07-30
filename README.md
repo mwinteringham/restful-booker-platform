@@ -23,8 +23,10 @@ Assuming you have the above requirements in place, to get started open a termina
 Assuming you have successfully built the application at least once, you can now run the app without having to rebuild the whole application.
 
 ### Mac / Linux
-1. To run without end-to-end checks run: ```run_locally.sh```
-2. To run with end-to-end checks run: ```run_locally.sh -e true```
+
+1. Generates a .jar: `./mvnw install -DskipTests=true`
+2. To run without end-to-end checks run: `run_locally.sh`
+3. To run with end-to-end checks run: `run_locally.sh -e true`
 
 ### Windows
 1. To run without end-to-end checks run: ```run_locally.cmd```
