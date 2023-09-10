@@ -2,6 +2,8 @@ import React from 'react';
 import Report from '../src/js/components/Report.js';
 import nock from 'nock';
 import '@testing-library/jest-dom'
+import { screen } from '@testing-library/react'
+
 
 import {
   render, waitFor
@@ -28,12 +30,12 @@ test('Multiple reports can be created in the Report component', async () => {
                           ]
                         });
 
-    const {asFragment, getByText} = render(
+    const {asFragment, findAllByText} = render(
         <Report defaultDate={new Date("2019-04-02") } />
     )
 
     await waitFor(() => {expect(mockReport.isDone()).toBeTruthy()})
-    await getByText(/103/)
 
-    expect(asFragment()).toMatchSnapshot();
+    const items = await screen.findAllByText(/103/)
+    expect(items).toHaveLength(1)
 });

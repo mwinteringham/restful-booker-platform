@@ -44,7 +44,7 @@ const Banner = ({setWelcome}) => {
                         <br />
                         <img style={{height : "60px", marginLeft : "auto", marginRight : "auto", display : "block"}} src={blockIcon} alt="Building blocks" />
                         <br />
-                        <p><span style={{fontWeight: "bold"}}>Infrastructure:</span> Restful-booker-platform is a continuously deployed application using CircleCi, Docker and Kubernetes. All the deployment assets can be found in the <a href="https://github.com/mwinteringham/restful-booker-platform" alt="Restful booker platform source code">restful-booker-platform source</a> repository for you to create your own pipeline. You can also learn more about the <a href="https://circleci.com/gh/mwinteringham/workflows/restful-booker-platform" alt="Circle CI build pipeline">build process in this public build pipeline</a>.</p>
+                        <p><span style={{fontWeight: "bold"}}>Infrastructure:</span> Restful-booker-platform is a continuously deployed application using CircleCi and Docker. All the deployment assets can be found in the <a href="https://github.com/mwinteringham/restful-booker-platform" alt="Restful booker platform source code">restful-booker-platform source</a> repository for you to create your own pipeline. You can also learn more about the <a href="https://circleci.com/gh/mwinteringham/workflows/restful-booker-platform" alt="Circle CI build pipeline">build process in this public build pipeline</a>.</p>
                     </div>
                     <div className="col-sm-3 content">
                         <br />
@@ -58,7 +58,7 @@ const Banner = ({setWelcome}) => {
                             <li>If you find a particularly bad bug, <a href="https://github.com/mwinteringham/restful-booker-platform/issues" alt="Bug tracker">feel free to raise it here</a></li>
                         </ul>
                         <p><span style={{fontWeight: "bold"}}>Please note:</span> for security reasons the database resets every 10 minutes.</p>
-                        </div>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-5"></div>

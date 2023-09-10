@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.automationintesting</groupId>
     <artifactId>restful-booker-platform</artifactId>
-    <version>1.5.${revision}</version>
+    <version>1.6.${revision}</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -16,7 +16,9 @@
         <module>report</module>
         <module>branding</module>
         <module>message</module>
+        <module>assets/js</module>
         <module>assets/api</module>
+        <module>proxy</module>
     </modules>
 
     <build>

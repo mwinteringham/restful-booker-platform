@@ -31,7 +31,7 @@ public class BrandingDB {
 
     public BrandingDB() throws SQLException, IOException {
         JdbcDataSource ds = new JdbcDataSource();
-        ds.setURL("jdbc:h2:mem:rbp");
+        ds.setURL("jdbc:h2:mem:rbp-branding;MODE=MySQL");
         ds.setUser("user");
         ds.setPassword("password");
         connection = ds.getConnection();

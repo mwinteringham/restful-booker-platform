@@ -2,29 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import ReactModal from 'react-modal';
 import Cookies from 'universal-cookie';
-import { createBrowserHistory as createHistory } from 'history'
-import ReactGA from 'react-ga';
 
-import AdminContainer from './AdminContainer.js';
-import CookiePolicy from './CookiePolicy.js';
-import PrivacyPolicy from './PrivacyPolicy.js';
+const AdminContainer = React.lazy(() => import('./AdminContainer.js'));
+const CookiePolicy = React.lazy(() => import('./CookiePolicy.js'));
+const PrivacyPolicy = React.lazy(() => import('./PrivacyPolicy.js'));
+
 import Banner from './Banner.js';
 import Home from './Home.js';
 import Footer from './Footer.js';
 
+import Loading from './Loading.js';
+
 if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#root');
-
-const history = createHistory();
-
-ReactGA.initialize('UA-118712228-3');
-
-history.listen((location) => {
-    ReactGA.pageview(location.pathname + location.hash);
-});
 
 const App = () => {
     
-    ReactGA.pageview(window.location.pathname + window.location.hash);
     const [showBanner, toggleBanner] = useState(false);
 
     useEffect(() => {
@@ -47,10 +39,10 @@ const App = () => {
         <HashRouter>
             {welcome}
                 <Routes>
-                    <Route path='/admin/*' element={<AdminContainer />} />
+                    <Route path='/admin/*' element={<React.Suspense fallback={<Loading />}><AdminContainer /></React.Suspense>} />
                     <Route exact path='/' element={<Home />} />
-                    <Route exact path='/cookie' element={<CookiePolicy />} />
-                    <Route exact path='/privacy' element={<PrivacyPolicy />} />
+                    <Route exact path='/cookie' element={<React.Suspense fallback={<Loading />}><CookiePolicy /></React.Suspense>} />
+                    <Route exact path='/privacy' element={<React.Suspense fallback={<Loading />}><PrivacyPolicy /></React.Suspense>} />
                 </Routes>
             <Footer />
         </HashRouter>

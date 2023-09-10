@@ -15,31 +15,31 @@ public class Message {
 
     @JsonProperty
     @NotNull(message = "Name must be set")
-    @NotBlank
+    @NotBlank (message = "Name may not be blank")
     private String name;
 
     @JsonProperty
     @Email
     @NotNull(message = "Email must be set")
-    @NotBlank
+    @NotBlank(message = "Email may not be blank")
     private String email;
 
     @JsonProperty
-    @Size(min = 11, max = 21)
+    @Size(min = 11, max = 21, message = "Phone must be between 11 and 21 characters.")
     @NotNull(message = "Phone must be set")
-    @NotBlank
+    @NotBlank(message = "Phone may not be blank")
     private String phone;
 
     @JsonProperty
-    @Size(min = 5, max = 100)
+    @Size(min = 5, max = 100, message = "Subject must be between 5 and 100 characters.")
     @NotNull(message = "Subject must be set")
-    @NotBlank
+    @NotBlank(message = "Subject may not be blank")
     private String subject;
 
     @JsonProperty
-    @Size(min = 20, max = 2000)
-    @NotNull(message = "Description must be set")
-    @NotBlank
+    @Size(min = 20, max = 2000, message = "Message must be between 20 and 2000 characters.")
+    @NotNull(message = "Message must be set")
+    @NotBlank(message = "Message may not be blank")
     private String description;
 
     public Message() {
