@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "rootDir": ".",
+    "target": "es2025",
     "lib": [
       "dom",
       "dom.iterable",
@@ -13,6 +14,7 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",

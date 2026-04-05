@@ -73,11 +73,11 @@ export default function Availability() {
                                 <div className="row g-3">
                                 <div className="col-md-6">
                                     <label htmlFor="checkin" className="form-label">Check In</label>
-                                    <DatePicker wrapperClassName="dateWrapper" dateFormat="P" className='form-control' selected={availabilityDates?.checkIn} onChange={(date) => updateState(date, 'checkIn')} />
+                                    <DatePicker wrapperClassName="dateWrapper" dateFormat="P" className='form-control' selected={availabilityDates?.checkIn} onChange={(date : Date | null) => updateState(date, 'checkIn')} />
                                 </div>
                                 <div className="col-md-6">
                                     <label htmlFor="checkout" className="form-label">Check Out</label>
-                                    <DatePicker wrapperClassName="dateWrapper" dateFormat="P" className='form-control' selected={availabilityDates?.checkOut} onChange={(date) => updateState(date, 'checkOut')} />
+                                    <DatePicker wrapperClassName="dateWrapper" dateFormat="P" className='form-control' selected={availabilityDates?.checkOut} onChange={(date: Date | null) => updateState(date, 'checkOut')} />
                                 </div>
                                 <div className="col-2"></div>
                                 <div className="col-8 mt-4">

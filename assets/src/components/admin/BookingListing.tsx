@@ -93,10 +93,10 @@ const BookingListing: React.FC<BookingListingProps> = ({booking, getBookings, ro
                         </select>
                     </div>
                     <div className="col-sm-2">
-                        <DatePicker wrapperClassName="dateWrapper" className="form-control" dateFormat="P" selected={moment(booking.bookingdates.checkin).utc(true).toDate()} onChange={date => handleDateChange(date, 'checkin')} />
+                        <DatePicker wrapperClassName="dateWrapper" className="form-control" dateFormat="P" selected={moment(booking.bookingdates.checkin).utc(true).toDate()} onChange={(date: Date | null) => handleDateChange(date, 'checkin')} />
                     </div>
                     <div className="col-sm-2">
-                        <DatePicker wrapperClassName="dateWrapper" className="form-control" dateFormat="P" selected={moment(booking.bookingdates.checkout).utc(true).toDate()} onChange={date => handleDateChange(date, 'checkout')} />
+                        <DatePicker wrapperClassName="dateWrapper" className="form-control" dateFormat="P" selected={moment(booking.bookingdates.checkout).utc(true).toDate()} onChange={(date: Date | null) => handleDateChange(date, 'checkout')} />
                     </div>
                     <div className="col-sm-1">
                         <span className="fa fa-check confirmBookingEdit" onClick={doEdit} style={{paddingRight: "10px"}}></span>
