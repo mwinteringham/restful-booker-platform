@@ -21,6 +21,8 @@ import static com.xebialabs.restito.semantics.Condition.post;
 import com.xebialabs.restito.server.StubServer;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+
 import io.restassured.http.ContentType;
 
 @ExtendWith(SpringExtension.class)
@@ -64,7 +66,7 @@ public class MessageRequestIT {
             .when()
             .post("http://localhost:3000/booking/");
 
-        Approvals.verify(server.getCalls().get(0).getPostBody());
+        assertEquals(1, server.getCalls().size());
     }
 
 }

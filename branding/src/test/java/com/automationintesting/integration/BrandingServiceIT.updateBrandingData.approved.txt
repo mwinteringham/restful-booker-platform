@@ -1,22 +1,22 @@
 {
-    "name": "Updated hotel name",
+    "address": {
+        "county": "Update county",
+        "line1": "Update line1",
+        "line2": "Update line2",
+        "postCode": "Update post code",
+        "postTown": "Update post town"
+    },
+    "contact": {
+        "email": "update@email.com",
+        "name": "Update name",
+        "phone": "9999999999"
+    },
+    "description": "Description update",
+    "directions": "Updated directions",
+    "logoUrl": "https://www.valid.com/link/to/logo",
     "map": {
         "latitude": 50.0,
         "longitude": 50.0
     },
-    "logoUrl": "https://www.valid.com/link/to/logo",
-    "description": "Description update",
-    "directions": "Updated directions",
-    "contact": {
-        "name": "Update name",
-        "phone": "9999999999",
-        "email": "update@email.com"
-    },
-    "address": {
-        "line1": "Update line1",
-        "line2": "Update line2",
-        "postTown": "Update post town",
-        "county": "Update county",
-        "postCode": "Update post code"
-    }
+    "name": "Updated hotel name"
 }

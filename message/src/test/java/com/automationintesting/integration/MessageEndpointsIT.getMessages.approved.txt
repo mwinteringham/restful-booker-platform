@@ -3,20 +3,20 @@
         {
             "id": 1,
             "name": "James Dean",
-            "subject": "Booking enquiry",
-            "read": false
+            "read": false,
+            "subject": "Booking enquiry"
         },
         {
             "id": 2,
             "name": "Mark",
-            "subject": "Subject line goes in here for display",
-            "read": true
+            "read": true,
+            "subject": "Subject line goes in here for display"
         },
         {
             "id": 3,
             "name": "Mark",
-            "subject": "Subject line goes in here for display",
-            "read": false
+            "read": false,
+            "subject": "Subject line goes in here for display"
         }
     ]
 }

@@ -1,23 +1,23 @@
 {
     "report": [
         {
-            "start": "2018-01-01",
             "end": "2018-01-05",
+            "start": "2018-01-01",
             "title": "James Dean - Room: 101"
         },
         {
-            "start": "2018-02-01",
             "end": "2018-02-05",
+            "start": "2018-02-01",
             "title": "Mark Winteringham - Room: 101"
         },
         {
-            "start": "2018-03-01",
             "end": "2018-03-05",
+            "start": "2018-03-01",
             "title": "James Dean - Room: 102"
         },
         {
-            "start": "2018-04-01",
             "end": "2018-04-05",
+            "start": "2018-04-01",
             "title": "Mark Winteringham - Room: 102"
         }
     ]
