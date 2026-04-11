@@ -26,7 +26,7 @@ const nextConfig = {
       },
       {
         source: '/api/booking/:path*',
-        destination: `http://rbp-booking:3000/booking/swagger-ui/:path*`
+        destination: `http://rbp-booking:3000/booking/:path*`
       }
     ];
   }
