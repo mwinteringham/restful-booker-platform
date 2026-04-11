@@ -16,7 +16,7 @@ Assuming you have the above requirements in place, to get started open a termina
 1. Clone/Download the repository
 2. Navigate into the restful-booker-platform root folder
 3. Run either ```bash build_locally.sh``` for Linux or Mac or ```build_locally.cmd``` on Windows to build RBP and get it running (It may take a while on the first run as it downloads dependencies)
-4. Navigate to http://localhost:8080 to access the site
+4. Navigate to http://localhost:3003 to access the site
 
 ## Running locally
 
