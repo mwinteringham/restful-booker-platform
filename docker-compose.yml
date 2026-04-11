@@ -1,42 +1,35 @@
 services:
   rbp-booking:
-#    image: mwinteringham/restfulbookerplatform_booking:2.0.05d68b8
     build: ./booking
     ports:
       - "3000:3000"
     restart: always
   rbp-room:
-#    image: mwinteringham/restfulbookerplatform_room:2.0.05d68b8
     build: ./room
     ports:
       - "3001:3001"
     restart: always
   rbp-branding:
-#    image: mwinteringham/restfulbookerplatform_branding:2.0.05d68b8
     build: ./branding
     ports:
       - "3002:3002"
     restart: always
   rbp-assets:
-#    image: mwinteringham/restfulbookerplatform_assets:2.0.f5e8d6c
     build: ./assets
     ports:
       - "80:80"
     restart: always
   rbp-auth:
-#    image: mwinteringham/restfulbookerplatform_auth:2.0.05d68b8
     build: ./auth
     ports:
       - "3004:3004"
     restart: always
   rbp-report:
-#    image: mwinteringham/restfulbookerplatform_report:2.0.05d68b8
     build: ./report
     ports:
       - "3005:3005"
     restart: always
   rbp-message:
-#    image: mwinteringham/restfulbookerplatform_message:2.0.05d68b8
     build: ./message
     ports:
       - "3006:3006"

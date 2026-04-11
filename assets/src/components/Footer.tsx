@@ -64,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({ branding }) => {
         </div>
         <hr className="my-4" />
         <div className="text-center">
-          <small>restful-booker-platform v{version} Created by <a href="http://www.mwtestconsultancy.co.uk">Mark Winteringham</a> - &copy; 2019-25 <Link href="/cookie">Cookie-Policy</Link> - <Link href="/privacy">Privacy-Policy</Link> - <Link href="/admin">Admin panel</Link> </small>
+          <small>restful-booker-platform v{version} Created by <a href="http://www.mwtestconsultancy.co.uk">Mark Winteringham</a> - &copy; 2019-26 <Link href="/cookie">Cookie-Policy</Link> - <Link href="/privacy">Privacy-Policy</Link> - <Link href="/admin">Admin panel</Link> </small>
         </div>
       </div>
     </footer>

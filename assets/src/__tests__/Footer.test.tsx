@@ -80,7 +80,7 @@ describe('Footer Component', () => {
     expect(screen.getByText(/restful-booker-platform v/)).toBeInTheDocument();
     
     // Check for copyright year range
-    expect(screen.getByText(/©\s+2019-25/)).toBeInTheDocument();
+    expect(screen.getByText(/©\s+2019-26/)).toBeInTheDocument();
     
     // Check for creator
     expect(screen.getByText('Mark Winteringham')).toBeInTheDocument();
