@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:26-jre-alpine
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ WORKDIR /app
 COPY target/restful-booker-platform-branding-*-exec.jar ./branding.jar
 
 ENV authDomain=rbp-auth
-ENV profile=dev
+ENV profile=prod
 
 ENV JAVA_OPTS="-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:+UseContainerSupport"
 
