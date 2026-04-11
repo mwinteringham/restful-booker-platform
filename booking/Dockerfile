@@ -7,7 +7,7 @@ COPY target/restful-booker-platform-booking-*-exec.jar ./booking.jar
 
 ENV authDomain=rbp-auth
 ENV messageDomain=rbp-message
-ENV profile=dev
+ENV profile=prod
 
 ENV JAVA_OPTS="-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:+UseContainerSupport"
 
