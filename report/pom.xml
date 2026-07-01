@@ -81,18 +81,18 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>3.0.2</version>
+            <version>3.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>6.1.0-M1</version>
+            <version>6.1.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests</artifactId>
-            <version>30.1.0</version>
+            <version>31.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
