@@ -54,7 +54,7 @@
     "jest-environment-jsdom": "30.4.1",
     "moment": "2.30.1",
     "moment-timezone": "0.6.2",
-    "morgan": "1.11.0",
+    "morgan": "1.12.0",
     "nock": "14.0.16",
     "node-fetch": "3.3.2",
     "sass": "1.101.0",
