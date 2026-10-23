@@ -5,6 +5,7 @@
 **/node
 *.gz
 **/*.received*
+**/pom.xml.versionsBackup
 
 # IntelliJ
 .idea
