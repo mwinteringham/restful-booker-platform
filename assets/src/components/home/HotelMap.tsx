@@ -2,7 +2,7 @@ import React from 'react';
 import { Map, Marker } from 'pigeon-maps';
 import { Branding } from '@/types/branding';
 
-const getProvider = (x: number, y: number, z: number) => `https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/${z}/${x}/${y}.png`;
+const getProvider = (x: number, y: number, z: number) => `https://c.tile.openstreetmap.org/${z}/${x}/${y}.png`;
 
 // Take branding details as props
 interface HotelMapProps {
