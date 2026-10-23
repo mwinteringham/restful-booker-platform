@@ -32,7 +32,7 @@ public class HomePage extends BasePage {
 
     public void clickOpenBookingForm() throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", divSubHeaders.get(0));
-        Thread.sleep(500);
+        Thread.sleep(750);
 
         btnReserveRoom.get(0).click();
     }
