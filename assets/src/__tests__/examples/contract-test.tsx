@@ -9,7 +9,7 @@ import contract from './contract.json';
 
 test('Rooms list component', () => {
     const booking = render(
-        <BookingListing booking={contract} isAuthenticated={true} />
+        <BookingListing booking={contract} getBookings={() => {}}/>
     );
 
     expect(booking).toMatchSnapshot();

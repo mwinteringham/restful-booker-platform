@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 test('Login component is created', () => {
     const { asFragment } = render(
         <BrowserRouter>
-            <LoginComponent />
+            <LoginComponent setAuthenticate={() => {}} />
         </BrowserRouter>
     );
     expect(asFragment()).toMatchSnapshot();
