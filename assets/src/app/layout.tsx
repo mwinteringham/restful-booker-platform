@@ -30,6 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Script src="/dom-action-logger.js" strategy="beforeInteractive" />
         <div id="root-container">
         {children}
         </div>

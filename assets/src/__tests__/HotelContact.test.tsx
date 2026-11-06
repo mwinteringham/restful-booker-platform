@@ -120,6 +120,7 @@ describe('HotelContact Component', () => {
 
     await waitFor(() => {
       expect(getByText(`Thanks for getting in touch ${message.name}!`)).toBeInTheDocument();
+      expect(getByText(`Thanks for getting in touch ${message.name}!`)).toHaveAttribute('data-dom-log-outcome', 'message-submitted');
       expect(getByText('We\'ll get back to you about')).toBeInTheDocument();
       expect(getByText(message.subject)).toBeInTheDocument();
       expect(getByText('as soon as possible.')).toBeInTheDocument();

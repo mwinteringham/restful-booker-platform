@@ -84,7 +84,7 @@ const HotelContact: React.FC<HotelContactProps> = ({ contactDetails }) => {
             <div className="col-lg-8">
               <div className="card shadow">
                 <div className="card-body p-4">
-                    <h3 className="h4 mb-4">Thanks for getting in touch {contact.name}!</h3>
+                    <h3 className="h4 mb-4" data-dom-log-outcome="message-submitted">Thanks for getting in touch {contact.name}!</h3>
                     <p>We'll get back to you about</p>
                     <p style={{ fontWeight: "bold" }}>{contact.subject}</p>
                     <p>as soon as possible.</p>
