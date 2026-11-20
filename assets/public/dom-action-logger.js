@@ -6,32 +6,13 @@
   var lastInteraction = null;
   var active = true;
   var dragInteraction = null;
-  var pointers = new Map();
   var listeners = [];
-  var timers = new Set();
-  var scrollTimers = new Map();
-  var outcomeStates = new Map();
   var sessionId = Array.from(window.crypto.getRandomValues(new Uint32Array(4))).map(function (part) {
     return part.toString(16).padStart(8, '0');
   }).join('-');
   var meaningfulKeys = ['Enter', 'Tab', 'Escape', 'ArrowUp', 'ArrowDown', 'ArrowLeft',
     'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown', 'Delete', 'Backspace', ' '];
   var controlSelector = 'button,a[href],input,select,textarea,[role],[tabindex],[draggable="true"],[data-testid]';
-  var outcomeSelector = '[role="alert"],[role="status"],[role="dialog"],[role="alertdialog"],[role="tooltip"],[aria-live],dialog,.alert,.tooltip,.invalid-feedback,[aria-invalid="true"],[data-dom-log-outcome]';
-
-  function later(callback, delay) {
-    var timer = window.setTimeout(function () {
-      timers.delete(timer);
-      callback();
-    }, delay);
-    timers.add(timer);
-    return timer;
-  }
-
-  function cancel(timer) {
-    window.clearTimeout(timer);
-    timers.delete(timer);
-  }
 
   function listen(target, action, callback) {
     target.addEventListener(action, callback, { capture: true, passive: true });
@@ -138,8 +119,7 @@
       type: target.getAttribute('type'),
       role: role(target),
       accessibleName: accessibleName(target),
-      locator: locator(target),
-      outcome: target.getAttribute('data-dom-log-outcome')
+      locator: locator(target)
     };
   }
 
@@ -201,7 +181,6 @@
         target: describe(target),
         sequence: ++sequence,
         timestamp: new Date().toISOString(),
-        elapsedMs: Math.round(performance.now()),
         interactionId: interactionId || null,
         details: details
       }
@@ -234,8 +213,7 @@
       (action === 'input' && ['input', 'change'].includes(previous.action)) ||
       (now - previous.time < 750 && (
         ['change', 'input', 'blur', 'dblclick'].includes(action) ||
-        (action === 'click' && ['keydown', 'pointerup'].includes(previous.action)) ||
-        (action === 'pointerup' && previous.action === 'pointerdown') ||
+        (action === 'click' && previous.action === 'keydown') ||
         (action === 'submit' && ['click', 'keydown'].includes(previous.action))
       ))
     );
@@ -312,48 +290,6 @@
     emit(event.type, target, details, id);
   }
 
-  function logHover(event) {
-    var target = eventTarget(event);
-    if (!target) return;
-    if (event.pointerType === 'touch') return;
-    target = target.closest(controlSelector);
-    if (!target || (event.relatedTarget instanceof Node && target.contains(event.relatedTarget))) return;
-    emit(event.type, target, { pointerType: event.pointerType }, correlate(event.type, target));
-  }
-
-  function logScroll(event) {
-    var target = event.target === document ? document.scrollingElement : event.target;
-    if (!(target instanceof Element)) return;
-    var id = correlate('scroll', target);
-    cancel(scrollTimers.get(target));
-    scrollTimers.set(target, later(function () {
-      scrollTimers.delete(target);
-      emit('scroll', target, { x: target.scrollLeft, y: target.scrollTop }, id);
-    }, 200));
-  }
-
-  function logPointer(event) {
-    var target = eventTarget(event);
-    if (!target) return;
-    target = target.closest(controlSelector) || target;
-    var id = correlate(event.type, target);
-    var details = { pointerType: event.pointerType, button: event.button, x: event.clientX, y: event.clientY };
-    if (event.type === 'pointerdown') {
-      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY, target: describe(target), id: id });
-    } else {
-      var start = pointers.get(event.pointerId);
-      if (start) {
-        id = start.id;
-        if (event.type === 'pointerup' && Math.hypot(event.clientX - start.x, event.clientY - start.y) >= 5) {
-          details.drag = { from: start.target, deltaX: event.clientX - start.x, deltaY: event.clientY - start.y };
-        }
-        pointers.delete(event.pointerId);
-      }
-    }
-    lastInteraction.id = id;
-    emit(event.type, target, details, id);
-  }
-
   var lastUrl = window.location.href;
   function navigation(source) {
     if (lastUrl === window.location.href) return;
@@ -378,98 +314,18 @@
     if (event.persisted) emit('navigation', null, { source: 'back-forward-cache' }, null);
   });
 
-  function hidden(target) {
-    for (var node = target; node; node = node.parentElement) {
-      if (node.hidden || node.getAttribute('aria-hidden') === 'true' ||
-          window.getComputedStyle(node).display === 'none') return true;
-    }
-    return window.getComputedStyle(target).visibility === 'hidden';
-  }
-
-  function scanOutcomes() {
-    var current = new Set(document.querySelectorAll(outcomeSelector));
-    current.forEach(function (target) {
-      var snapshot = {
-        state: state(target),
-        hidden: hidden(target),
-        open: target.matches('dialog') ? target.open : null,
-        category: target.classList.contains('alert-danger') ? 'error' :
-          target.classList.contains('alert-success') ? 'success' : role(target),
-        text: '[redacted]'
-      };
-      var previous = outcomeStates.get(target);
-      if (!previous || previous.signature !== JSON.stringify(snapshot) || previous.content !== target.textContent) {
-        emit('outcome', target, {
-          kind: previous ? 'updated' : 'appeared',
-          observation: snapshot,
-          correlation: 'most-recent-interaction'
-        }, lastInteraction && lastInteraction.id);
-      }
-      outcomeStates.set(target, { signature: JSON.stringify(snapshot), content: target.textContent, target: describe(target) });
-    });
-    outcomeStates.forEach(function (previous, target) {
-      if (!current.has(target)) {
-        emit('outcome', null, {
-          kind: 'disappeared', previousTarget: previous.target,
-          correlation: 'most-recent-interaction'
-        }, lastInteraction && lastInteraction.id);
-        outcomeStates.delete(target);
-      }
-    });
-  }
-
-  var mutationTimer;
-  var changes = { added: 0, removed: 0, textChanged: 0, attributesChanged: 0 };
-  var observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      if (mutation.target instanceof Element && mutation.target.closest('script,style')) return;
-      if (mutation.target.parentElement && mutation.target.parentElement.closest('script,style')) return;
-      changes.added += mutation.addedNodes.length;
-      changes.removed += mutation.removedNodes.length;
-      if (mutation.type === 'characterData') changes.textChanged++;
-      if (mutation.type === 'attributes') changes.attributesChanged++;
-    });
-    cancel(mutationTimer);
-    mutationTimer = later(function () {
-      scanOutcomes();
-      if (Object.values(changes).some(function (count) { return count > 0; })) {
-        emit('content-change', null, {
-          counts: changes, correlation: 'most-recent-interaction'
-        }, lastInteraction && lastInteraction.id);
-      }
-      changes = { added: 0, removed: 0, textChanged: 0, attributesChanged: 0 };
-    }, 150);
-  });
-  observer.observe(document.documentElement, {
-    subtree: true, childList: true, characterData: true, attributes: true,
-    attributeFilter: ['role', 'aria-live', 'aria-invalid', 'aria-hidden', 'aria-expanded',
-      'aria-selected', 'aria-pressed', 'hidden', 'open', 'class', 'style', 'disabled',
-      'data-dom-log-outcome', 'required', 'readonly']
-  });
-
   ['focus', 'blur', 'click', 'input', 'change', 'submit', 'invalid', 'keydown',
     'dblclick', 'contextmenu', 'dragstart', 'drop', 'dragend', 'copy', 'cut', 'paste',
     'toggle', 'close', 'cancel'].forEach(function (action) {
     listen(document, action, logAction);
   });
-  ['pointerover', 'pointerout'].forEach(function (action) { listen(document, action, logHover); });
-  ['pointerdown', 'pointerup', 'pointercancel'].forEach(function (action) { listen(document, action, logPointer); });
-  listen(document, 'scroll', logScroll);
-  listen(document, 'DOMContentLoaded', scanOutcomes);
 
   window.domActionLogger = {
     stop: function () {
       active = false;
-      observer.disconnect();
-      timers.forEach(function (timer) { window.clearTimeout(timer); });
       listeners.forEach(function (remove) { remove(); });
-      timers.clear();
-      scrollTimers.clear();
-      outcomeStates.clear();
-      pointers.clear();
       delete window.domActionLogger;
     }
   };
   emit('navigation', null, { source: 'initial' }, null);
-  scanOutcomes();
 })();

@@ -23,15 +23,6 @@ describe('DOM action logger', () => {
     return input;
   }
 
-  function pointer(action: string, x = 0, y = 0, pointerType = 'mouse') {
-    const event = new MouseEvent(action, { bubbles: true, clientX: x, clientY: y });
-    Object.defineProperties(event, {
-      pointerId: { value: 1 },
-      pointerType: { value: pointerType }
-    });
-    return event;
-  }
-
   async function flushMutations() {
     await Promise.resolve();
     await jest.advanceTimersByTimeAsync(200);
@@ -58,6 +49,7 @@ describe('DOM action logger', () => {
 
   afterEach(() => {
     recorderWindow.domActionLogger?.stop();
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     document.body.innerHTML = '';
     log.mockRestore();
     fetchMock.mockRestore();
@@ -78,7 +70,6 @@ describe('DOM action logger', () => {
     expect(entries.map((entry) => entry.sequence)).toEqual([2, 3]);
     expect(entries[0]).toMatchObject({
       timestamp: expect.any(String),
-      elapsedMs: expect.any(Number),
       pageUrl: 'http://localhost/',
       interactionId: expect.any(Number)
     });
@@ -215,24 +206,23 @@ describe('DOM action logger', () => {
     });
   });
 
-  it('filters hover movement inside a control and ignores touch hover', () => {
-    document.body.innerHTML = '<button><span>Icon</span><span>Label</span></button>';
-    const spans = document.querySelectorAll('span');
-    spans[0].dispatchEvent(pointer('pointerover'));
-    spans[1].dispatchEvent(new MouseEvent('pointerover', { bubbles: true, relatedTarget: spans[0] }));
-    spans[0].dispatchEvent(pointer('pointerover', 0, 0, 'touch'));
-    expect(records('pointerover')).toHaveLength(1);
-    expect(records('pointerover')[0].target.tagName).toBe('BUTTON');
-  });
-
-  it('records pointer-based drag displacement and groups pointer/click events', () => {
+  it('records focus and clicks but does not log or send raw pointer and hover events', () => {
     const input = inputField();
-    input.dispatchEvent(pointer('pointerdown', 10, 20));
-    input.dispatchEvent(pointer('pointerup', 50, 60));
+    fetchMock.mockClear();
+    input.dispatchEvent(new MouseEvent('pointerover', { bubbles: true }));
+    input.dispatchEvent(new MouseEvent('pointerdown', { bubbles: true }));
+    expect(log).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
+
+    input.focus();
+    input.dispatchEvent(new MouseEvent('pointerup', { bubbles: true }));
     input.click();
-    expect(records('pointerup')[0].details.drag).toMatchObject({ deltaX: 40, deltaY: 40 });
-    expect(records('pointerup')[0].interactionId).toBe(records('pointerdown')[0].interactionId);
-    expect(records('click')[0].interactionId).toBe(records('pointerdown')[0].interactionId);
+    input.dispatchEvent(new MouseEvent('pointerout', { bubbles: true }));
+    input.dispatchEvent(new MouseEvent('pointercancel', { bubbles: true }));
+
+    expect(document.activeElement).toBe(input);
+    expect(log.mock.calls.map((call) => call[1].event.type)).toEqual(['focus', 'click']);
+    expect(fetchMock.mock.calls.map((call) => JSON.parse(call[1].body).event.type)).toEqual(['focus', 'click']);
   });
 
   it('groups native drag and drop across different elements without reading payloads', () => {
@@ -246,16 +236,19 @@ describe('DOM action logger', () => {
     expect(records('dragend')[0].interactionId).toBe(records('dragstart')[0].interactionId);
   });
 
-  it('debounces container scrolling to its final position', () => {
+  it('does not log or send page or container scroll events', async () => {
     const container = document.createElement('div');
     document.body.appendChild(container);
-    container.scrollTop = 10;
-    container.dispatchEvent(new Event('scroll'));
-    container.scrollTop = 50;
+    await flushMutations();
+    log.mockClear();
+    fetchMock.mockClear();
+
+    document.dispatchEvent(new Event('scroll'));
     container.dispatchEvent(new Event('scroll'));
     jest.advanceTimersByTime(200);
-    expect(records('scroll')).toHaveLength(1);
-    expect(records('scroll')[0].details).toEqual({ x: 0, y: 50 });
+
+    expect(log).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it('records native validation reasons without copying the browser message or field value', () => {
@@ -295,59 +288,47 @@ describe('DOM action logger', () => {
     expect(records('navigation')[1].pageUrl).toBe('http://localhost/#contact');
   });
 
-  it('observes outcome appearance, text updates, hiding, and removal without logging text', async () => {
+  it('does not log or send DOM changes, even after an interaction', async () => {
     inputField().click();
+    expect(records('click')).toHaveLength(1);
+    log.mockClear();
+    fetchMock.mockClear();
+
     const alert = document.createElement('div');
     alert.className = 'alert alert-danger';
-    alert.textContent = 'private validation message';
+    alert.textContent = 'Validation message';
     document.body.appendChild(alert);
     await flushMutations();
-    expect(records('outcome')[0]).toMatchObject({
-      interactionId: records('click')[0].interactionId,
-      details: { kind: 'appeared', observation: { text: '[redacted]', hidden: false } }
-    });
-    alert.textContent = 'other private validation message';
-    await flushMutations();
+    alert.firstChild!.textContent = 'Updated validation message';
     alert.hidden = true;
     await flushMutations();
     alert.remove();
     await flushMutations();
-    expect(records('outcome').map((record) => record.details.kind)).toEqual([
-      'appeared', 'updated', 'updated', 'disappeared'
-    ]);
-    expect(records('outcome')[2].details.observation.hidden).toBe(true);
-    expect(JSON.stringify(log.mock.calls)).not.toContain('private validation message');
+
+    expect(log).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
-  it('identifies declarative success outcomes and summarises other page changes', async () => {
-    document.body.innerHTML = '<h3 data-dom-log-outcome="message-submitted">Thanks, private person!</h3>';
-    await flushMutations();
-    expect(records('outcome')[0].target.outcome).toBe('message-submitted');
-    expect(records('content-change')[0].details.counts.added).toBe(1);
-    expect(JSON.stringify(log.mock.calls)).not.toContain('private person');
+  it('does not report existing alerts when the logger starts', () => {
+    recorderWindow.domActionLogger!.stop();
+    document.body.innerHTML = '<div role="alert">Validation message</div>';
+    fetchMock.mockClear();
+    new Function(source)();
+
+    expect(log.mock.calls.map((call) => call[1].event.type)).toEqual(['navigation']);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
-  it('observes dialog visibility changes caused by an ancestor', async () => {
-    document.body.innerHTML = '<div hidden><div role="dialog">Private content</div></div>';
-    await flushMutations();
-    expect(records('outcome')[0].details.observation.hidden).toBe(true);
-    document.querySelector('div')!.hidden = false;
-    await flushMutations();
-    expect(records('outcome')[1].details.observation.hidden).toBe(false);
-  });
-
-  it('does not install duplicate listeners and stops pending and future logging', async () => {
+  it('does not install duplicate listeners and stops future logging', () => {
     new Function(source)();
     const input = inputField();
     input.click();
-    input.dispatchEvent(new Event('scroll'));
     expect(records('click')).toHaveLength(1);
     const sentCount = fetchMock.mock.calls.length;
     recorderWindow.domActionLogger!.stop();
     log.mockClear();
     input.click();
     window.history.pushState({}, '', '/stopped');
-    await flushMutations();
     expect(log).not.toHaveBeenCalled();
     expect(fetchMock).toHaveBeenCalledTimes(sentCount);
   });
@@ -379,6 +360,7 @@ describe('DOM action logger', () => {
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual(initialRecord);
     expect(payload.event).not.toHaveProperty('action');
     expect(payload.event).not.toHaveProperty('url');
+    expect(payload.event).not.toHaveProperty('elapsedMs');
   });
 
   it.each(['network', 'http'])('reports %s failures without interrupting interactions or retrying', async (failure) => {
