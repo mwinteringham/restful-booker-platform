@@ -18,7 +18,7 @@ const BookingListings: React.FC<BookingListingsProps> = ({ roomid, roomPrice }) 
 
   const getBookings = async () => {
     try {
-      const response = await fetch(`/api/booking/?roomid=${roomid}`);
+      const response = await fetch(`/ui-api/booking/?roomid=${roomid}`);
       if (response.ok) {
         const data = await response.json();
         setBookings(data.bookings || []);

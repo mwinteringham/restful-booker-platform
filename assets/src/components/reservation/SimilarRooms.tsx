@@ -12,7 +12,7 @@ const SimilarRooms: React.FC<SimilarRoomsProps> = ({ id, queryString }) => {
     // Fetch all rooms
     useEffect(() => {
         const fetchRooms = async () => {
-            const response = await fetch('/api/room');
+            const response = await fetch('/ui-api/room');
             const data = await response.json();
             
             const filteredRooms = data.rooms.filter((room: { roomid: number }) => room.roomid !== id);

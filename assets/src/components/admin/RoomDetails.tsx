@@ -57,7 +57,7 @@ const RoomDetails: React.FC<RoomDetailsProps> = ({ id }) => {
     };
 
     try {
-      const response = await fetch(`/api/room/${id}`, {
+      const response = await fetch(`/ui-api/room/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ const RoomDetails: React.FC<RoomDetailsProps> = ({ id }) => {
 
   const fetchRoomDetails = async () => {
     try {
-      const response = await fetch(`/api/room/${id}`);
+      const response = await fetch(`/ui-api/room/${id}`);
       if (response.ok) {
         const data = await response.json();
         // Convert features array to object

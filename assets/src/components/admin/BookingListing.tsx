@@ -25,7 +25,7 @@ const BookingListing: React.FC<BookingListingProps> = ({booking, getBookings, ro
     }, [booking])
 
     const doDelete = () => {
-        fetch(`/api/booking/${editBooking.bookingid}`, {
+        fetch(`/ui-api/booking/${editBooking.bookingid}`, {
             method: 'DELETE'
         })
         .then(response => {
@@ -37,7 +37,7 @@ const BookingListing: React.FC<BookingListingProps> = ({booking, getBookings, ro
     }
 
     const doEdit = () => {
-        fetch(`/api/booking/${editBooking.bookingid}`, {
+        fetch(`/ui-api/booking/${editBooking.bookingid}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

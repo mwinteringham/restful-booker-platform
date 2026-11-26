@@ -29,7 +29,7 @@ const Report: React.FC<ReportProps> = ({ defaultDate }) => {
   useEffect(() => {
     const fetchReport = async () => {
       try {
-        const response = await fetch('/api/report');
+        const response = await fetch('/ui-api/report');
         if (response.ok) {
           const data = await response.json();
 
@@ -54,7 +54,7 @@ const Report: React.FC<ReportProps> = ({ defaultDate }) => {
     
     // Refresh report data
     try {
-      const response = await fetch('/api/report');
+      const response = await fetch('/ui-api/report');
       if (response.ok) {
         const data = await response.json();
         

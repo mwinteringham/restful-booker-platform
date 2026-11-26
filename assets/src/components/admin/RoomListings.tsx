@@ -13,7 +13,7 @@ const RoomListings: React.FC = () => {
 
   const updateRooms = async () => {
     try {
-      const response = await fetch('/api/room');
+      const response = await fetch('/ui-api/room');
       if (response.ok) {
         const data = await response.json();
         setRooms(data.rooms || []);

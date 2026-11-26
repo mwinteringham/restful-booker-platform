@@ -10,7 +10,7 @@ interface RoomListingProps {
 const RoomListing: React.FC<RoomListingProps> = ({details, updateRooms}) => {
     const deleteRoom = async () => {
         try {
-            const response = await fetch(`/api/room/${details.roomid}`, {
+            const response = await fetch(`/ui-api/room/${details.roomid}`, {
                 method: 'DELETE'
             });
             

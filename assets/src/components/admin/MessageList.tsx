@@ -18,7 +18,7 @@ const MessageList: React.FC = () => {
 
   const deleteMessage = async (id: number) => {
     try {
-      const response = await fetch(`/api/message/${id}`, {
+      const response = await fetch(`/ui-api/message/${id}`, {
         method: 'DELETE',
       });
       
@@ -35,7 +35,7 @@ const MessageList: React.FC = () => {
 
   const refreshMessageList = async () => {
     try {
-      const response = await fetch('/api/message');
+      const response = await fetch('/ui-api/message');
       if (response.ok) {
         const data = await response.json();
         setMessages(data.messages || []);

@@ -26,7 +26,7 @@ export default function Availability() {
 
     useEffect(() => {
         const fetchRooms = async () => {
-            const response = await fetch('/api/room');
+            const response = await fetch('/ui-api/room');
             const data = await response.json();
             setRooms(data.rooms || []);
         };
@@ -53,7 +53,7 @@ export default function Availability() {
         const checkOutFormatted = formatDate(availabilityDates.checkOut);
         
         try {
-            const response = await fetch(`/api/room?checkin=${checkInFormatted}&checkout=${checkOutFormatted}`);
+            const response = await fetch(`/ui-api/room?checkin=${checkInFormatted}&checkout=${checkOutFormatted}`);
             const data = await response.json();
             setRooms(data.rooms || []);
             document.getElementById('rooms')?.scrollIntoView({ behavior: 'smooth' });

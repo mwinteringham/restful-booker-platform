@@ -12,7 +12,7 @@ async function postValidation(cookies: Cookies): Promise<boolean> {
     const token = cookies.get('token');
     if (!token) return false;
     
-    const response = await fetch('/api/auth/validate', {
+    const response = await fetch('/ui-api/auth/validate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
