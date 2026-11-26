@@ -16,7 +16,7 @@ export default function Home() {
         
     useEffect(() => {
         const fetchBranding = async () => {
-            const response = await fetch('/api/branding');
+            const response = await fetch('/ui-api/branding');
             const data = await response.json();
             setBranding(data);
         };

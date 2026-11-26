@@ -17,7 +17,7 @@ services:
   rbp-assets:
     build: ./assets
     ports:
-      - "80:80"
+      - "80:3003"
     restart: always
   rbp-auth:
     build: ./auth

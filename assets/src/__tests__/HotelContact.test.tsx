@@ -82,7 +82,7 @@ describe('HotelContact Component', () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        '/api/message',
+        '/ui-api/message',
         {
           method: 'POST',
           headers: {

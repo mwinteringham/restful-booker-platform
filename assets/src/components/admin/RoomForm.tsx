@@ -67,7 +67,7 @@ const RoomForm: React.FC<RoomFormProps> = ({ updateRooms }) => {
     };
 
     try {
-      const response = await fetch('/api/room', {
+      const response = await fetch('/ui-api/room', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

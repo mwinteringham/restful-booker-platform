@@ -44,7 +44,7 @@ describe('Report Component', () => {
 
     // Wait for fetch mock to be called
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith('/api/report');
+      expect(global.fetch).toHaveBeenCalledWith('/ui-api/report');
     });
 
     const items = await screen.findAllByText(/103/);

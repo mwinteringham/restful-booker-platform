@@ -31,7 +31,7 @@ const Branding: React.FC = () => {
   useEffect(() => {
     const fetchBranding = async () => {
       try {
-        const response = await fetch('/api/branding', {
+        const response = await fetch('/ui-api/branding', {
           cache: 'force-cache'
         });
         if (response.ok) {
@@ -48,7 +48,7 @@ const Branding: React.FC = () => {
 
   const doUpdate = async () => {
     try {
-      const response = await fetch('/api/branding', {
+      const response = await fetch('/ui-api/branding', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

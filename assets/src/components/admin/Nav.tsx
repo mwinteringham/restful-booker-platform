@@ -14,7 +14,7 @@ const Nav: React.FC<NavProps> = ({ setAuthenticate, isAuthenticated }) => {
 
   const fetchMessageCount = async () => {
     try {
-      const response = await fetch('/api/message/count', {
+      const response = await fetch('/ui-api/message/count', {
         cache: 'no-store',
         headers: {
           'Pragma': 'no-cache',
@@ -46,7 +46,7 @@ const Nav: React.FC<NavProps> = ({ setAuthenticate, isAuthenticated }) => {
   const doLogout = async () => {
     try {
       // Call the auth/logout endpoint
-      await fetch('/api/auth/logout', {
+      await fetch('/ui-api/auth/logout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ export default function AdminPage() {
       // Validate token
       const validateToken = async () => {
         try {
-          const response = await fetch('/api/auth/validate', {
+          const response = await fetch('/ui-api/auth/validate', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

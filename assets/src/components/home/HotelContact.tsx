@@ -41,7 +41,7 @@ const HotelContact: React.FC<HotelContactProps> = ({ contactDetails }) => {
 
   const submitForm = async () => {
     try {
-      const response = await fetch('/api/message', {
+      const response = await fetch('/ui-api/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -35,7 +35,7 @@ const BookingForm: React.FC<RoomDetailsProps> = ({ room }) => {
     useEffect(() => {
         const fetchRoomReport = async () => {
             try {
-            const response = await fetch(`/api/report/room/${room.roomid}`);
+            const response = await fetch(`/ui-api/report/room/${room.roomid}`);
             if (response.ok) {
                 const data = await response.json();
                 
@@ -119,7 +119,7 @@ const BookingForm: React.FC<RoomDetailsProps> = ({ room }) => {
 
     const submitBooking = async () => {
         try {
-            const response = await fetch('/api/booking', {
+            const response = await fetch('/ui-api/booking', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

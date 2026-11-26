@@ -28,14 +28,14 @@ export default function Reservation({params}: {params: Promise<{ id: string }>})
     
     useEffect(() => {
         const fetchRoom = async () => {
-            const response = await fetch(`/api/room/${unwrappedParams.id}`);
+            const response = await fetch(`/ui-api/room/${unwrappedParams.id}`);
             const data = await response.json();
             setRoom(data);
         };
         fetchRoom();
 
         const fetchBranding = async () => {
-            const response = await fetch('/api/branding');
+            const response = await fetch('/ui-api/branding');
             const data = await response.json();
             setBranding(data);
         };

@@ -49,7 +49,7 @@ const AdminBooking: React.FC<AdminBookingProps> = ({ closeBooking, dates }) => {
 
   const fetchRooms = async () => {
     try {
-      const response = await fetch('/api/room');
+      const response = await fetch('/ui-api/room');
       if (response.ok) {
         const data = await response.json();
         setRooms(data.rooms);
@@ -70,7 +70,7 @@ const AdminBooking: React.FC<AdminBookingProps> = ({ closeBooking, dates }) => {
 
   const doBooking = async () => {
     try {
-      const response = await fetch('/api/booking', {
+      const response = await fetch('/ui-api/booking', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -63,7 +63,7 @@ describe('MessageList Component', () => {
     await waitFor(() => fireEvent.click(getByTestId(/DeleteMessage0/)));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith('/api/message/1', {
+      expect(global.fetch).toHaveBeenCalledWith('/ui-api/message/1', {
         method: 'DELETE'
       });
     });

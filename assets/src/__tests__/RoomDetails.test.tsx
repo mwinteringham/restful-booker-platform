@@ -49,7 +49,7 @@ describe('RoomDetails Component', () => {
     // Mock the bookings endpoint by default
     global.fetch = jest.fn()
       .mockImplementation((url: string) => {
-        if (url.includes('/api/booking/')) {
+        if (url.includes('/ui-api/booking/')) {
           return Promise.resolve({
             ok: true,
             json: () => Promise.resolve({ bookings: [] })
@@ -126,21 +126,21 @@ describe('RoomDetails Component', () => {
     const mockFetch = jest.fn((input: RequestInfo | URL, init?: RequestInit) => {
       const url = input.toString();
       
-      if (url === '/api/room/1' && (!init || init.method === 'GET')) {
+      if (url === '/ui-api/room/1' && (!init || init.method === 'GET')) {
         return Promise.resolve({
           ok: true,
           json: () => Promise.resolve(roomObject),
           status: 200,
           headers: new Headers(),
         } as Response);
-      } else if (url === '/api/booking/1') {
+      } else if (url === '/ui-api/booking/1') {
         return Promise.resolve({
           ok: true,
           json: () => Promise.resolve({ bookings: [] }),
           status: 200,
           headers: new Headers(),
         } as Response);
-      } else if (url.includes('/api/room/1') && init?.method === 'PUT') {
+      } else if (url.includes('/ui-api/room/1') && init?.method === 'PUT') {
         return Promise.resolve({
           ok: false,
           json: () => Promise.resolve({
@@ -207,7 +207,7 @@ describe('RoomDetails Component', () => {
 
     await waitFor(() => {
       expect(mockFetch).toHaveBeenCalledWith(
-        '/api/room/1',
+        '/ui-api/room/1',
         {
           method: 'PUT',
           headers: {

@@ -23,7 +23,7 @@ const Message: React.FC<MessageProps> = ({ messageId, closeMessage, refreshMessa
   useEffect(() => {
     const fetchMessage = async () => {
       try {
-        const response = await fetch(`/api/message/${messageId}`);
+        const response = await fetch(`/ui-api/message/${messageId}`);
         if (response.ok) {
           const data = await response.json();
           setMessage(data);
@@ -43,7 +43,7 @@ const Message: React.FC<MessageProps> = ({ messageId, closeMessage, refreshMessa
 
   const markAsRead = async () => {
     try {
-      const response = await fetch(`/api/message/${messageId}/read`, {
+      const response = await fetch(`/ui-api/message/${messageId}/read`, {
         method: 'PUT',
       });
       
